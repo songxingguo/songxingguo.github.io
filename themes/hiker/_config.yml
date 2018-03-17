@@ -104,13 +104,13 @@ wumii:
 # Available value:
 #    default | gray | normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: gray
+highlight_theme: normal
 
 
 # Article theme color
 # Available value:
 #    random | orange | blue | red | green | black
-theme_color: orange
+theme_color: orange 
 
 
 # display widgets at the bottom of index pages (pagination == 2)
