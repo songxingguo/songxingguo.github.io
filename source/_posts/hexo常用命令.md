@@ -1,7 +1,10 @@
 title: hexo常用命令
 author: songxingguo
-date: 2018-03-25 15:07:43
 tags:
+  - hexo
+categories:
+  - hexo
+date: 2018-03-25 15:07:00
 ---
 启动服务器
 ```bash

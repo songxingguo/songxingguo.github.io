@@ -1,7 +1,10 @@
 title: git常用命令
 author: songxingguo
-date: 2018-03-25 15:25:20
 tags:
+  - git
+categories:
+  - git
+date: 2018-03-25 15:25:00
 ---
 查看状态
 ```bash
