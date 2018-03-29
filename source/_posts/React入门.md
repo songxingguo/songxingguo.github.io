@@ -547,3 +547,125 @@ const HelloWorld = (props) => {
 }
 ```
 以前一个组件是通过继承 Component 来构建，一个子类就是一个组件。而用函数式的组件编写方式是一个函数就是一个组件，你可以和以前一样通过 <HellWorld /> 使用该组件。不同的是，函数式组件只能接受 props 而无法像跟类组件一样可以在 constructor 里面初始化 state。你可以理解函数式组件就是一种只能接受 props 和提供 render 方法的类组件。
+
+### 渲染列表数据
+
+React.js 当然也允许我们处理列表数据，但在使用 React.js 处理列表数据的时候，需要掌握一些规则。
+
+#### 渲染存放 JSX 元素的数组
+假设现在我们有这么一个用户列表数据，存放在一个数组当中：
+```bash
+const users = [
+  { username: 'Jerry', age: 21, gender: 'male' },
+  { username: 'Tomy', age: 22, gender: 'male' },
+  { username: 'Lily', age: 19, gender: 'female' },
+  { username: 'Lucy', age: 20, gender: 'female' }
+]
+```
+React.js 把插入表达式数组里面的每一个 JSX 元素一个个罗列下来，渲染到页面上。所以这里有个关键点：如果你往 {} 放一个数组，React.js 会帮你把数组里面一个个元素罗列并且渲染出来。
+
+#### 使用 map 渲染列表数据
+
+知道这一点以后你就可以知道怎么用循环把元素渲染到页面上：循环上面用户数组里面的每一个用户，为每个用户数据构建一个 JSX，然后把 JSX 放到一个新的数组里面，再把新的数组插入 render 方法的 JSX 里面。看看代码怎么写：
+```bash
+const users = [
+  { username: 'Jerry', age: 21, gender: 'male' },
+  { username: 'Tomy', age: 22, gender: 'male' },
+  { username: 'Lily', age: 19, gender: 'female' },
+  { username: 'Lucy', age: 20, gender: 'female' }
+]
+
+class Index extends Component {
+  render () {
+    const usersElements = [] // 保存每个用户渲染以后 JSX 的数组
+    for (let user of users) {
+      usersElements.push( // 循环每个用户，构建 JSX，push 到数组中
+        <div>
+          <div>姓名：{user.username}</div>
+          <div>年龄：{user.age}</div>
+          <div>性别：{user.gender}</div>
+          <hr />
+        </div>
+      )
+    }
+
+    return (
+      <div>{usersElements}</div>
+    )
+  }
+}
+
+ReactDOM.render(
+  <Index />,
+  document.getElementById('root')
+)
+```
+这里用了一个新的数组 usersElements，然后循环 users 数组，为每个 user 构建一个 JSX 结构，然后 push 到 usersElements 中。然后直接用表达式插入，把这个 userElements 插到 return 的 JSX 当中。因为 React.js 会自动化帮我们把数组当中的 JSX 罗列渲染出来。
+
+但我们一般不会手动写循环来构建列表的 JSX 结构，可以直接用 ES6 自带的 map（不了解 map 函数的同学可以先了解相关的知识再来回顾这里），代码可以简化成：
+```bash
+class Index extends Component {
+  render () {
+    return (
+      <div>
+        {users.map((user) => {
+          return (
+            <div>
+              <div>姓名：{user.username}</div>
+              <div>年龄：{user.age}</div>
+              <div>性别：{user.gender}</div>
+              <hr />
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
+}
+```
+这样的模式在 JavaScript 中非常常见，一般来说，在 React.js 处理列表就是用 map 来处理、渲染的。现在进一步把渲染单独一个用户的结构抽离出来作为一个组件，继续优化代码：
+```bash
+const users = [
+  { username: 'Jerry', age: 21, gender: 'male' },
+  { username: 'Tomy', age: 22, gender: 'male' },
+  { username: 'Lily', age: 19, gender: 'female' },
+  { username: 'Lucy', age: 20, gender: 'female' }
+]
+
+class User extends Component {
+  render () {
+    const { user } = this.props
+    return (
+      <div>
+        <div>姓名：{user.username}</div>
+        <div>年龄：{user.age}</div>
+        <div>性别：{user.gender}</div>
+        <hr />
+      </div>
+    )
+  }
+}
+
+class Index extends Component {
+  render () {
+    return (
+      <div>
+        {users.map((user) => <User user={user} />)}
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(
+  <Index />,
+  document.getElementById('root')
+)
+```
+这里把负责展示用户数据的 JSX 结构抽离成一个组件 User ，并且通过 props 把 user 数据作为组件的配置参数传进去；这样改写 Index 就非常清晰了，看一眼就知道负责渲染 users 列表，而用的组件是 User。
+
+这样 React.js 就简单的通过 key 来判断出来，这两个列表元素只是交换了位置，可以尽量复用元素内部的结构。
+
+这里没听懂没有关系，后面有机会会继续讲解这部分内容。现在只需要记住一个简单的规则：对于用表达式套数组罗列到页面上的元素，都要为每个元素加上 key 属性，这个 key 必须是每个元素唯一的标识。一般来说，key 的值可以直接后台数据返回的 id，因为后台的 id 都是唯一的。
+
+记住一点：在实际项目当中，如果你的数据顺序可能发生变化，标准做法是最好是后台数据返回的 id 作为列表元素的 key。
+

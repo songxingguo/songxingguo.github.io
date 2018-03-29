@@ -80,3 +80,8 @@ deploy:
   type: git
   repository: https://github.com/songxingguo/songxingguo.github.io.git
   branch: master
+
+admin:
+  username: songxingguo
+  password_hash: $2a$10$EPfB6/k7xwYOdUtnCukxiOOI97QUYmtv//7.VXy7k5hLtaCNMfmQC
+  secret: a secret something
