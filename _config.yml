@@ -4,7 +4,7 @@
 
 # Site
 title: 阿有的博客
-subtitle:
+subtitle: 爱技术，也爱生活。
 description: < 写文章 && 做分享 />
 author: songxingguo
 language: zh-CN
@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://songxingguo.com
+url: https://www.songxingguo.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:

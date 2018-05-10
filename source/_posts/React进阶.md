@@ -1,7 +1,10 @@
 title: React进阶
 author: songxingguo
-date: 2018-03-26 16:44:28
 tags:
+  - React
+categories:
+  - React
+date: 2018-03-26 16:44:00
 ---
 ## React进阶
 
