@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8910aad3-372d-4de8-92a2-75f4d51a269f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_config.yml" afterPath="$PROJECT_DIR$/_config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/hiker/_config.yml" afterPath="$PROJECT_DIR$/themes/hiker/_config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/hiker/source/css/style.styl" afterPath="$PROJECT_DIR$/themes/hiker/source/css/style.styl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/themes/hiker/source/css/images/avatar.jpg" afterPath="$PROJECT_DIR$/themes/hiker/source/images/avatar.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/themes/hiker/source/css/images/home-bg.jpg" afterPath="$PROJECT_DIR$/themes/hiker/source/images/home-bg.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/themes/hiker/source/css/images/homelogo.jpg" afterPath="$PROJECT_DIR$/themes/hiker/source/images/homelogo.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/themes/hiker/source/css/images/mylogo.jpg" afterPath="$PROJECT_DIR$/themes/hiker/source/images/mylogo.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/themes/hiker/source/css/images/pose.jpg" afterPath="$PROJECT_DIR$/themes/hiker/source/images/pose.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/themes/hiker/source/css/images/rocket.png" afterPath="$PROJECT_DIR$/themes/hiker/source/images/rocket.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/themes/hiker/source/css/images/sample.jpg" afterPath="$PROJECT_DIR$/themes/hiker/source/images/sample.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/varaint" afterPath="$PROJECT_DIR$/themes/varaint" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/ztopic" afterPath="$PROJECT_DIR$/themes/ztopic" />
     </list>
     <ignored path="blog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,20 +27,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file leaf-file-name="_config.yml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/_config.yml">
+        <entry file="file://$PROJECT_DIR$/themes/varaint/_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="74" column="13" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_config.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/themes/ztopic/_config.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="180">
+              <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -68,8 +47,8 @@
         <option value="$PROJECT_DIR$/themes/hiker/layout/_partial/header.ejs" />
         <option value="$PROJECT_DIR$/themes/landscape/_config.yml" />
         <option value="$PROJECT_DIR$/themes/hiker/_config.yml" />
-        <option value="$PROJECT_DIR$/themes/varaint/_config.yml" />
         <option value="$PROJECT_DIR$/_config.yml" />
+        <option value="$PROJECT_DIR$/themes/varaint/_config.yml" />
       </list>
     </option>
   </component>
@@ -145,10 +124,6 @@
               <option name="myItemId" value="themes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ztopic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -161,6 +136,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="varaint" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -255,12 +234,12 @@
       <updated>1521205757121</updated>
       <workItem from="1521205758940" duration="6796000" />
       <workItem from="1525940711532" duration="8434000" />
-      <workItem from="1526487751351" duration="2639000" />
+      <workItem from="1526487751351" duration="2960000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17869000" />
+    <option name="totallyTimeSpent" value="18190000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="0" />
@@ -584,14 +563,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/themes/varaint/_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/themes/mic/_config.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-180">
@@ -610,8 +581,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
+        <state relative-caret-position="1119">
           <caret line="74" column="13" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/varaint/_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
           <folding />
         </state>
       </provider>
