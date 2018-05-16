@@ -23,7 +23,7 @@ avatar:
   width: 124
   height: 124
   top: 4
-  url: css/images/mylogo.jpg
+  url: /images/mylogo.jpg
 
 
 # Homepage
@@ -38,7 +38,7 @@ home_background_image:
 home_logo_image:
   enable: false
   border: false
-  url: css/images/homelogo.jpg
+  url: /images/homelogo.jpg
 
 
 # AboutPage background
