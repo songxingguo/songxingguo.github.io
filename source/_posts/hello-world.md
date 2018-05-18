@@ -1,5 +1,9 @@
 title: Hello World
-date: 2018-05-18 23:45:30
+tags:
+  - Hexo
+categories:
+  - 技术学习
+date: 2018-05-18 23:45:00
 ---
 Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
 

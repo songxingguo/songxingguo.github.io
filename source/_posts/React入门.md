@@ -4,8 +4,7 @@ tags:
   - react
   - JSX
 categories:
-  - react
-  - JSX
+  - 技术学习
 date: 2018-03-25 17:19:00
 ---
 ## React学习

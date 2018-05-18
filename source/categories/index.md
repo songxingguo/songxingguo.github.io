@@ -1,6 +1,6 @@
 ---
-title: categories
-date: 2018-05-10 18:20:50
-type: "ategories"
+title: 分类
+date: 2018-05-19 00:21:09
+type: "categories"
 comments: false
 ---

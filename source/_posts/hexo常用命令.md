@@ -3,7 +3,8 @@ author: songxingguo
 tags:
   - hexo
 categories:
-  - hexo
+  - 常用命令
+  - ''
 date: 2018-03-25 15:07:00
 ---
 启动服务器
