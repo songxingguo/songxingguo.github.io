@@ -18,6 +18,8 @@ $ git add 【-A】|【文件名称】|$ git add .
 ```bash
 $ git commit -m "文件描述"
 ```
+<!-- more -->
+
 推送到远程仓库
 ```bash
 $ git push 【remote orgin mater】

@@ -18,6 +18,8 @@ $ hexo clean
 ```bash
 $ hexo g
 ```
+<!-- more -->
+
 部署网站
 ```bash
 $ hexo d
