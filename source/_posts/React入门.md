@@ -12,7 +12,8 @@ date: 2018-03-25 17:19:00
 ### React渲染页面的过程
 
 JSX 到页面的渲染如下图：
-![upload successful](\\images\pasted-0.png\)
+
+![upload successful](React入门/pasted-0.png)
 
 有些同学可能会问，为什么不直接从 JSX 直接渲染构造 DOM 结构，而是要经过中间这么一层呢？
 
@@ -102,7 +103,7 @@ render () {
 
 组件可以和组件组合在一起，组件内部可以使用别的组件。就像普通的 HTML 标签一样使用就可以。这样的组合嵌套，最后构成一个所谓的组件树，就正如上面的例子那样，Index 用了 Header、Main、Footer，Header 又使用了 Title 。这样用这样的树状结构表示它们之间的关系：
 
-![upload successful](\\images\pasted-1.png\)
+![upload successful](React入门/pasted-1.png)
 
 这里的结构还是比较简单，因为我们的页面结构并不复杂。当页面结构复杂起来，有许多不同的组件嵌套组合的话，组件树会相当的复杂和庞大。理解组件树的概念对后面理解数据是如何在组件树内自上往下流动过程很重要。
 
@@ -457,7 +458,7 @@ defaultProps 作为点赞按钮组件的类属性，里面是对 props 中各个
 props 一旦传入进来就不能改变。我们尝试改变 this.props.likedText，
 然后你会看到控制台报错了：
 
-![upload successful](\\images\pasted-2.png\)
+![upload successful](React入门/pasted-2.png)
 
 你不能改变一个组件被渲染的时候传进来的 props。React.js 希望一个组件在输入确定的 props 的时候，能够输出确定的 UI 显示形态。如果 props 渲染过程中可以被修改，那么就会导致这个组件显示形态和行为变得不可预测，这样会可能会给组件使用者带来困惑。
 
