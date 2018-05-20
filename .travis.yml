@@ -14,7 +14,6 @@ install:
 before_script:
    - git config user.name "songxingguo"
    - git config user.email "1328989942@qq.com"
-   - sed -i'' "s~git@github.com:songxingguo/songxingguo.github.io.git~https://${GH_TOKEN}:x-oauth-basic@github.com/songxingguo/songxingguo.github.io.git~" _config.yml
 
 script:
   - hexo clean
