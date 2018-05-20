@@ -1,0 +1,6 @@
+
+Host github.com
+User git
+StrictHostKeyChecking no
+IndentityFile `/.ssh/id_rsa
+IndetitiesOnly yes			

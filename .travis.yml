@@ -2,25 +2,26 @@ language: node_js
 node_js: stable
 
 # S: Build Lifecycle
+
+before_install:
+  - npm install -g hexo
+  - npm install -g hexo-cli
+
 install:
   - npm install
 
-
-#before_script:
- # - npm install -g gulp
+before_script:
+   - git config user.name "songxingguo"
+   - git config user.email "1328989942@qq.com"
+   - sed -i'' "s~git@github.com:songxingguo/songxingguo.github.io.git~https://${GH_TOKEN}:x-oauth-basic@github.com/songxingguo/songxingguo.github.io.git~" _config.yml
 
 script:
+  - hexo clean
   - hexo g
 
-after_script:
-  - cd ./public
-  - git init
-  - git config user.name "songxingguo"
-  - git config user.email "1328989942@qq.com"
-  - git add -A
-  - git commit -m "Update docs"
-  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
-#  - hexo d
+after_success:
+  - hexo d
+
 # E: Build LifeCycle
 
 branches:
