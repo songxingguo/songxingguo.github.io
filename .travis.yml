@@ -5,16 +5,16 @@ node_js: stable
 install:
   - npm install
 
-
-#before_script:
- # - npm install -g gulp
+before_script:
+  - npm install hexo-deployer-git
 
 script:
   - hexo clean
   - hexo g
+  - hexo d
 
 after_script:
-  - cd ./public
+  - cd ./.deploy_git
   - git init
   - git config user.name "songxingguo"
   - git config user.email "1328989942@qq.com"
