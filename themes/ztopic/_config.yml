@@ -1,0 +1,70 @@
+# Miscelaneous
+favicon: /favicon.ico
+
+# fancybox gallery
+fancybox: true
+
+# main menu navigation
+# ====================================
+menu:
+  home: /
+  archive: /archives
+  category: /categories
+  tags: /tags
+  about: /about
+
+# site logo introduce and footer quote
+# ====================================
+logo: SongXingguo‘s blog
+introduce: "写文章，做分享"
+quote: "专注，极致，快"
+
+# social club
+# ====================================
+social:
+  # zhihu: https://www.zhihu.com/
+  # weibo: https://weibo.com
+  github: https://github.com/songxingguo
+  steam:
+  linkedin:
+  facebook:
+  twitter:
+  douban:
+  tumblr:
+  instagram:
+  stackoverflow:
+  rss:
+
+# third party services settings
+# ===================================
+
+#leanCloud
+leancloud:
+  app_id:
+  app_key:
+
+# comments
+# Valine comment system. https://valine.js.org
+valine:
+  comment_name: 留言板 #your comment area title
+  enable: true # if you want use valine, please set this value to true
+  app_id:  # your leancloud appId
+  app_key:  # your leancloud appKey
+  notify: false # Mail notify
+  verify: false # Verify code
+  avatar: retro # Gravatar style : mm/identicon/monsterid/wavatar/retro/hide
+  placeholder: 欢迎留言~ O(∩_∩)O # Comment Box placeholder
+  guest_info: nick,mail,link # Comment header info
+  pageSize: 10 # comment list page size
+
+#disqus
+disqus_shortname:
+
+# node_sass:
+#   outputStyle: nested
+#   precision: 5
+#   sourceComments: true
+
+# ==================================
+version: 1.0
+# ==================================

@@ -1,0 +1,14 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title><% if (page.title){ %><%= page.title %> | <% } %><%= config.title %></title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <%- css('css/style.css') %>
+  <%- partial('../_thirdParty/google_sitemap') %>
+  <%- partial('../_thirdParty/baidu_sitemap') %>
+  <%- partial('../_thirdParty/google_analys') %>
+  <%- partial('../_thirdParty/baidu_analys') %>
+</head>

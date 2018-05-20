@@ -1,0 +1,62 @@
+
+
+# site icon
+favicon: /favicon.png
+
+# author headimg
+headimg: /images/mylogo.jpg
+# author info
+name: SongXingguo
+description: Stay Hungry,Stay Foolish.
+
+# search
+search: 
+    enable: true
+    placeholder: Enter Key...
+
+# sidebar
+sidebar: 
+  enable: true
+  menus:
+    -
+      name: Weibo
+      link: https://github.com/songxingguo
+    -
+      name: 简历
+      link: https://github.com/songxingguo
+      target: _blank
+
+
+
+# count(统计)
+count:
+  enable: false
+
+# comments
+comments:
+  duoshuo_username:  SongXingguo
+  #disqus_username: yumemor
+
+# accounts support weibo/github/zhihu/twitter/douban 
+# display to former three
+social: 
+  -
+    name: weibo
+    link: https://github.com/songxingguo
+  -
+    name: github
+    link: https://github.com/songxingguo
+  -
+    name: zhihu
+    link: https://github.com/songxingguo
+#  -
+#    name: twitter
+#    link: 
+#  -
+#    name: douban
+#    link: 
+
+
+
+
+
