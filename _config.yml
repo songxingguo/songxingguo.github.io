@@ -78,7 +78,6 @@ theme: ztopic
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  user: songxingguo
   repository: https://github.com/songxingguo/songxingguo.github.io.git
   branch: master
 
