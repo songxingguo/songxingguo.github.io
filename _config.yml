@@ -81,7 +81,14 @@ deploy:
   repository: https://github.com/songxingguo/songxingguo.github.io.git
   branch: master
 
+#hexo可视化验证
 admin:
   username: songxingguo
   password_hash: $2a$10$EPfB6/k7xwYOdUtnCukxiOOI97QUYmtv//7.VXy7k5hLtaCNMfmQC
   secret: a secret something
+
+# 自动生成sitemap
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml

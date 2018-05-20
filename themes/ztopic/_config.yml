@@ -65,6 +65,9 @@ disqus_shortname:
 #   precision: 5
 #   sourceComments: true
 
+# Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
+baidu_push: true
+
 # ==================================
 version: 1.0
 # ==================================
