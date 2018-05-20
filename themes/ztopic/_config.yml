@@ -57,6 +57,9 @@ valine:
   guest_info: nick,mail,link # Comment header info
   pageSize: 10 # comment list page size
 
+# Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
+baidu_push: true
+
 #disqus
 disqus_shortname:
 
@@ -64,9 +67,6 @@ disqus_shortname:
 #   outputStyle: nested
 #   precision: 5
 #   sourceComments: true
-
-# Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
-baidu_push: true
 
 # ==================================
 version: 1.0
