@@ -1,10 +1,10 @@
 title: hexo常用命令
 author: songxingguo
 tags:
-  - hexo
+  - Hexo
+  - ''
 categories:
   - 常用命令
-  - ''
 date: 2018-03-25 15:07:00
 ---
 启动服务器

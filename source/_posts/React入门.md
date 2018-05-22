@@ -1,7 +1,7 @@
 title: React入门
 author: songxingguo
 tags:
-  - react
+  - React
   - JSX
 categories:
   - 技术学习
