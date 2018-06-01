@@ -7,6 +7,7 @@ install:
   - npm install hexo-generator-sitemap --save
   - npm install hexo-generator-baidu-sitemap --save
   - npm install hexo-baidu-url-submit --save
+  - npm install hexo-deployer-qiniu --save
 
 before_script:
  # - npm install -g gulp
