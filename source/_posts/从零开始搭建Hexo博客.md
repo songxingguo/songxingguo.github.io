@@ -17,4 +17,22 @@ date: 2018-05-22 22:52:00
  
 ### 什么是Hexo
 
-未完待续。。。。
+[Hexo官网]（https://hexo.io/zh-cn/docs/）
+
+Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。
+
+### 安装
+
+#### 安装前提
+安装 Hexo 相当简单。然而在安装前，您必须检查电脑中是否已安装下列应用程序：
+[Node.js]（https://nodejs.org/en/）
+[Git]（https://git-scm.com/）
+
+接下来只需要使用 npm 即可完成 Hexo 的安装。
+```bash
+ $ npm install -g hexo-cli
+```
+效果：
+![安装成功](\\images\pasted-0.png\)
+
+未完待续。。。
