@@ -101,3 +101,20 @@ baidu_url_submit:
     token: your_token # 请注意这是您的秘钥， 请不要发布在公众仓库里!
     path: baidu_urls.txt #文本文档的地址， 新链接会保存在此文本文档里
 
+qiniu:
+  offline: false
+  sync: true
+  bucket: graphbed
+  secret_file: source/sec/qn.json
+  dirPrefix: static
+  urlPrefix: http://p9myzkds7.bkt.clouddn.com/static
+  up_host: http://upload.qiniu.com
+  local_dir: source
+  update_exist: true
+  image:
+    folder: images
+    extend:
+  js:
+    folder: js
+  css:
+    folder: css

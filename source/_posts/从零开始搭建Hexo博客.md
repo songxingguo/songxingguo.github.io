@@ -79,4 +79,7 @@ $ npm install
 主题 文件夹。Hexo 会根据主题来生成静态页面。
 
 
+![upload successful](\\images\pasted-2.png\)
+
+
 未完待续。。。
