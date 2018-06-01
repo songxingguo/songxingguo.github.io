@@ -2,31 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8910aad3-372d-4de8-92a2-75f4d51a269f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/CNAME" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/about/index.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/categories/index.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/command/hexo-server.bat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/command/push-blog.bat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180529.231203.658.2.etl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180529.235811.046.1.etl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180530.001158.132.1.etl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180530.125935.994.1.etl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180530.125935.994.2.etl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180530.125935.994.3.etl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/Download/c9c1f550a73c72c48a98294db176f702ddb956a8" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/SLS/7971F918-A847-4430-9279-4A52D1EFE18D/sls.cab" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/SLS/855E8A7C-ECB4-4CA3-B045-1DFA50104289/sls.cab" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/SLS/8B24B027-1DEE-BABB-9A95-3517DFB9C552/sls.cab" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/SLS/9482F4B4-E343-43B6-B170-9A65BC822C77/sls.cab" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/从零开始搭建Hexo博客.md" afterPath="$PROJECT_DIR$/source/_posts/从零开始搭建Hexo博客.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/DataStore.edb" afterPath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/DataStore.edb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/DataStore.jfm" afterPath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/DataStore.jfm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/Logs/edb.chk" afterPath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/Logs/edb.chk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_config.yml" afterPath="$PROJECT_DIR$/_config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/sec/qn.json" afterPath="$PROJECT_DIR$/source/sec/qn.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/CNAME" afterPath="$PROJECT_DIR$/source/CNAME" />
     </list>
     <ignored path="blog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -271,12 +247,12 @@
       <workItem from="1526917954299" duration="1199000" />
       <workItem from="1526950261761" duration="547000" />
       <workItem from="1527830633002" duration="24000" />
-      <workItem from="1527831977735" duration="6546000" />
+      <workItem from="1527831977735" duration="6642000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69291000" />
+    <option name="totallyTimeSpent" value="69387000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
