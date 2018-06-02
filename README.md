@@ -25,3 +25,7 @@ songxingguo.github.io
      -- hiker 
         -- config.yml 博客主题配置文件
 ```
+
+手机上查看
+-----------------------
+ ![我的博客](./source/images/blog.png)

@@ -28,7 +28,6 @@ $ npm install -g hexo-cli
 效果：
 ![安装成功](http://p9myzkds7.bkt.clouddn.com/pasted-0.png)
 
-
 ### 新建博客
 
 ```bash

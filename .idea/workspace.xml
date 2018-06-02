@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8910aad3-372d-4de8-92a2-75f4d51a269f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/_drafts/从零开始搭建Hexo博客.md" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/Hexo问题解决.md" afterPath="$PROJECT_DIR$/source/_posts/Hexo问题解决.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/source/images/blog.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/hello-world.md" afterPath="$PROJECT_DIR$/source/_posts/hello-world.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/客搭建前言.md" afterPath="$PROJECT_DIR$/source/_posts/客搭建前言.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/DataStore.edb" afterPath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/DataStore.edb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/DataStore.jfm" afterPath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/DataStore.jfm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/Logs/edb.chk" afterPath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/Logs/edb.chk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="blog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,7 +62,7 @@
       <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
+            <state relative-caret-position="210">
               <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
               <folding />
             </state>
@@ -97,8 +103,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="13" />
-    <option name="y" value="135" />
+    <option name="x" value="503" />
+    <option name="y" value="102" />
     <option name="width" value="1936" />
     <option name="height" value="1038" />
   </component>
@@ -127,7 +133,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -160,40 +165,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="songxingguo.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="songxingguo.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="source" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="songxingguo.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="songxingguo.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="source" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="_discarded" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -205,19 +179,19 @@
     <property name="js-jscs-nodeInterpreter" value="E:\Program Files\nodejs\node.exe" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io\source\images" />
+      <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io\source\_drafts" />
+      <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io" />
+      <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io\source\_posts\React进阶" />
+      <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io\source\_posts\React入门" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io\static\images" />
       <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io" />
       <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io\source\images" />
       <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io\themes\ztopic\source" />
       <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io\themes\ztopic\source\images" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io\source\_drafts" />
-      <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io\source\images" />
-      <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io" />
-      <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io\source\_posts\React进阶" />
-      <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io\source\_posts\React入门" />
     </key>
   </component>
   <component name="RunManager">
@@ -304,17 +278,18 @@
       <workItem from="1527857030090" duration="2459000" />
       <workItem from="1527863929247" duration="4127000" />
       <workItem from="1527909985823" duration="3179000" />
+      <workItem from="1527934713154" duration="811000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79152000" />
+    <option name="totallyTimeSpent" value="79963000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="13" y="135" width="1936" height="1038" extended-state="0" />
+    <frame x="503" y="102" width="1936" height="1038" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973932" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973932" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -426,18 +401,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
           <folding />
         </state>
       </provider>
