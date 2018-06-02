@@ -2,29 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8910aad3-372d-4de8-92a2-75f4d51a269f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/source/images/创建仓库.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/source/images/创建成功.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/source/images/在4000端口启动服务.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/source/images/在4000端口预览.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/source/images/文件目录.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/source/images/进入博客目录.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180530.132717.040.3.etl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180530.194749.125.1.etl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180530.215744.889.1.etl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180530.235831.137.1.etl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180531.013741.141.1.etl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180531.015622.380.1.etl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180531.031738.015.1.etl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180531.060815.219.1.etl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180531.112228.259.1.etl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180531.112228.259.2.etl" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/hello-world.md" afterPath="$PROJECT_DIR$/source/_posts/hello-world.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/从零开始搭建Hexo博客.md" afterPath="$PROJECT_DIR$/source/_posts/从零开始搭建Hexo博客.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/NetSetup/service.0.etl" afterPath="$PROJECT_DIR$/source/hexo-server.bat/Logs/NetSetup/service.0.etl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/DataStore.edb" afterPath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/DataStore.edb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/DataStore.jfm" afterPath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/DataStore.jfm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/Logs/edb.chk" afterPath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/Logs/edb.chk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/客搭建前言.md" afterPath="$PROJECT_DIR$/source/_posts/客搭建前言.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/source/_discarded/ded/Hexo问题解决.md" afterPath="$PROJECT_DIR$/source/_drafts/Hexo问题解决.md" />
     </list>
     <ignored path="blog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -195,6 +174,42 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="songxingguo.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="songxingguo.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="source" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="_drafts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="songxingguo.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="songxingguo.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="source" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="_discarded" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -216,11 +231,11 @@
       <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io\themes\ztopic\source\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io\source\_drafts" />
       <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io\source\images" />
       <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io" />
       <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io\source\_posts\React进阶" />
       <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io\source\_posts\React入门" />
-      <recent name="E:\Program Files (x86)\MyGit\songxingguo.github.io\themes\ztopic\source" />
     </key>
   </component>
   <component name="RunManager">
@@ -306,12 +321,12 @@
       <workItem from="1527831977735" duration="6642000" />
       <workItem from="1527857030090" duration="2459000" />
       <workItem from="1527863929247" duration="4127000" />
-      <workItem from="1527909985823" duration="1980000" />
+      <workItem from="1527909985823" duration="2586000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77953000" />
+    <option name="totallyTimeSpent" value="78559000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="469" y="134" width="1936" height="1038" extended-state="0" />
