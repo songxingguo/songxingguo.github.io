@@ -7,9 +7,17 @@ categories:
   - 常用命令
 date: 2018-03-25 15:07:00
 ---
-启动服务器
+启动服务器（默认端口4000）
 ```bash
 $ hexo server
+```
+或
+```bash
+$ hexo s
+```
+在指定端口（5000端口）上启动服务
+```bash
+$ hexo s -p 5000
 ```
 清除缓存文件 (db.json) 和已生成的静态文件 (public)
 ```bash
@@ -25,3 +33,4 @@ $ hexo g
 ```bash
 $ hexo d
 ```
+
