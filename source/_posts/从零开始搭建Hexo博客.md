@@ -33,7 +33,7 @@ Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（�
  $ npm install -g hexo-cli
 ```
 效果：
-![安装成功](\\images\pasted-0.png\)
+![安装成功](http://p9myzkds7.bkt.clouddn.com/pasted-0.png)
 
 ### 建站
 
@@ -77,9 +77,5 @@ $ npm install
 ##### themes
 
 主题 文件夹。Hexo 会根据主题来生成静态页面。
-
-
-![upload successful](\\images\pasted-2.png\)
-
 
 未完待续。。。
