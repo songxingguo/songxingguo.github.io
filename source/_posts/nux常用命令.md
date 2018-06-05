@@ -18,6 +18,7 @@ date: 2018-06-04 15:21:00
 ```bash
 # touch example.js
 ```
+<!-- more-->
 删除文件
 
 ```bash
