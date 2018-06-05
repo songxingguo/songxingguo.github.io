@@ -21,9 +21,13 @@ $ git commit -m "文件描述"
 ```
 <!-- more -->
 
-推送到远程仓库
+推送到默认分支
 ```bash
-$ git push 【remote orgin mater】
+$ git push
+```
+推送到远程分支
+```bash
+$ git push origin master
 ```
 将本地仓库和远程仓库进行关联
 ```bash
@@ -31,5 +35,13 @@ $ git remote add origin https://github.com/guyibang/TEST2.git
 ```
 把本地仓库的项目推送到远程仓库
 ```bash
-git push -u origin master
+$ git push -u origin master
+```
+移除远程仓库
+```bash
+$ git remote rm origin
+```
+查看远程分支
+```bash
+$ git branch --remote
 ```
