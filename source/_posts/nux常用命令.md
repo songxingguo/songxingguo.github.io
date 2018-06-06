@@ -1,7 +1,7 @@
 title: Linux常用命令
 author: songxingguo
 tags:
-  - 'Linux '
+  - Linux
 categories:
   - 常用命令
 date: 2018-06-04 15:21:00
