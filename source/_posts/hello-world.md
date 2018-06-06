@@ -18,27 +18,27 @@ date: 2018-05-18 23:45:00
 
 - ### 安装hexo脚手架
 
- * 全局安装hexo脚手架
+ 全局安装hexo脚手架
   ```bash
   $ npm install -g hexo-cli
   ```
   <!-- more -->
 
-  * 安装成功：
+ 安装成功：
   ![安装成功](http://p9myzkds7.bkt.clouddn.com/pasted-0.png)
 
 - ### 新建博客
 
- * 代码
+ 代码
   ```bash
   $ hexo init hexo-blog
   $ cd hexo-blog
   $ npm install
   ```
- * 文件目录：
+ 文件目录：
  ![文件目录](http://p9myzkds7.bkt.clouddn.com/%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95.png)
 
- * 新建完成后，指定文件夹的目录如下：
+ 新建完成后，指定文件夹的目录如下：
   ```bash
   .
   ├── _config.yml
@@ -61,7 +61,7 @@ date: 2018-05-18 23:45:00
 
 
 - ### 启动服务
-  * 代码
+  代码
   ``` bash
   $ hexo server
   ```
@@ -69,9 +69,9 @@ date: 2018-05-18 23:45:00
   ``` bash
   $ hexo s
   ```
- * 运行命令
+ 运行命令
  ![启动服务](http://p9myzkds7.bkt.clouddn.com/%E5%9C%A84000%E7%AB%AF%E5%8F%A3%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1.png)
 
- * 访问端口 [http://localhost:4000/](http://localhost:4000/)
+ 访问端口 [http://localhost:4000/](http://localhost:4000/)
 
  ![预览效果](http://p9myzkds7.bkt.clouddn.com/%E5%9C%A84000%E7%AB%AF%E5%8F%A3%E9%A2%84%E8%A7%88.png)
