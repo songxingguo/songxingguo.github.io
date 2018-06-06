@@ -72,8 +72,8 @@ ls -l
   *  -a 横向展示
   ```bash
   ls -a
-  ```bash
-  * -all 竖向展示
+  ```
+  *  -all 竖向展示
   ```bash
   ls -all
   ```
