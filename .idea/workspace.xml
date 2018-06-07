@@ -2,9 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8910aad3-372d-4de8-92a2-75f4d51a269f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180531.112228.259.4.etl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180531.112228.259.5.etl" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/git常用命令.md" afterPath="$PROJECT_DIR$/source/_posts/git常用命令.md" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/_drafts/博客部署到github-pages.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180604.120223.864.4.etl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180604.120223.864.5.etl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180604.123522.500.1.etl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180604.130852.107.1.etl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180604.161015.489.1.etl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180604.180047.773.1.etl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180604.220506.601.1.etl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180604.230140.759.1.etl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180604.235826.127.1.etl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180605.105307.844.1.etl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/WindowsUpdate/WindowsUpdate.20180605.105307.844.2.etl" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_drafts/Hexo配置修改.md" afterPath="$PROJECT_DIR$/source/_drafts/Hexo配置修改.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/hexo-server.bat/Logs/NetSetup/service.0.etl" afterPath="$PROJECT_DIR$/source/hexo-server.bat/Logs/NetSetup/service.0.etl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/DataStore.edb" afterPath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/DataStore.edb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/DataStore.jfm" afterPath="$PROJECT_DIR$/source/hexo-server.bat/SoftwareDistribution/DataStore/DataStore.jfm" />
@@ -39,17 +49,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_config.yml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="_config.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3360">
-              <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+            <state relative-caret-position="329">
+              <caret line="102" column="7" selection-start-line="102" selection-start-column="7" selection-end-line="102" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
@@ -88,8 +98,8 @@
         <option value="$PROJECT_DIR$/source/CNAME" />
         <option value="$PROJECT_DIR$/source/sec/qn.json" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/.travis.yml" />
+        <option value="$PROJECT_DIR$/_config.yml" />
       </list>
     </option>
   </component>
@@ -133,8 +143,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -163,16 +171,18 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
+              <option name="myItemId" value="source" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../letsblog" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../MyGItDemo/hexo-blog" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="nodejs_interpreter_path" value="E:/Program Files/nodejs/node" />
@@ -280,17 +290,19 @@
       <workItem from="1527909985823" duration="3179000" />
       <workItem from="1527934713154" duration="1407000" />
       <workItem from="1527955316137" duration="71000" />
+      <workItem from="1528293596501" duration="2638000" />
+      <workItem from="1528340631576" duration="741000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80630000" />
+    <option name="totallyTimeSpent" value="84009000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24947916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24947916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -396,8 +408,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3360">
-          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+        <state relative-caret-position="329">
+          <caret line="102" column="7" selection-start-line="102" selection-start-column="7" selection-end-line="102" selection-end-column="7" />
           <folding />
         </state>
       </provider>
