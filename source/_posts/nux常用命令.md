@@ -52,7 +52,7 @@ cp /test1/file1 /test3/file2
 ```
 - 移动文件夹
 
- * 如将/test1目录下的file1复制到/test3 目录，并将文件名改为file2,可输入以下命令：
+ * 如将/test1目录下的file1**复制到/test3** 目录，并将**文件名改为file2**,可输入以下命令：
 ```bash
 mv /test1/file1 /test3/file2
 ```
@@ -77,6 +77,10 @@ ls -l
   ```bash
   ls -all
   ```
+- 查看目录文件
+```bash
+ll
+```
 - 相对路径
 ```bash
 root/data
@@ -129,4 +133,24 @@ rm /usr/jboss4.0.5.GA/jboss
   rm -f /usr/local/bin/npm
   ln -s /opt/node/bin/node /usr/local/bin/node
   ln -s /opt/node/bin/npm /usr/local/bin/npm
+```
+--- 
+进程
+---
+- 查看进程
+```bash
+ps -ef|grep mysqld
+```
+ 或者
+```bash
+ps aux|grep mysql
+```
+
+- 杀死进程(上边的进程号)
+```bash
+kill -9 112704
+```
+- 杀死所有输出的进程
+```
+ps aux|grep mysql|awk '{print $2}'|xargs kill -9
 ```
