@@ -1,0 +1,3 @@
+https://www.songxingguo.com/2018/06/06/客部署到github-pages/
+https://www.songxingguo.com/2018/06/06/inux安装Mysql/
+https://www.songxingguo.com/2018/06/06/nux配置Node环境/
