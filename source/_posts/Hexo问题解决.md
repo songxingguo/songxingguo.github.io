@@ -10,9 +10,9 @@ date: 2018-06-02 17:06:00
 
 结束服务，使用命令清除
 ```
-$ hexo clean
+ hexo clean
 ```
 重新启动服务
 ```
-$ hexo s
+ hexo s
 ```
