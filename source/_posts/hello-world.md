@@ -19,8 +19,8 @@ date: 2018-05-18 23:45:00
 - ### 安装hexo脚手架
 
  打开命令行工具，全局安装hexo脚手架
-  ```bash
-  $ npm install -g hexo-cli
+  ```
+   npm install -g hexo-cli
   ```
   <!-- more -->
 
@@ -30,10 +30,10 @@ date: 2018-05-18 23:45:00
 - ### 新建博客
 
  进入项目存放的目录，执行代码：
-  ```bash
-  $ hexo init hexo-blog
-  $ cd hexo-blog
-  $ npm install
+  ```
+   hexo init hexo-blog
+   cd hexo-blog
+   npm install
   ``` 
   hexo-blog 为博客写项目的名称
   
@@ -64,12 +64,12 @@ date: 2018-05-18 23:45:00
 
 - ### 启动服务
   代码
-  ``` bash
-  $ hexo server
+  ``` 
+   hexo server
   ```
    或
-  ``` bash
-  $ hexo s
+  ``` 
+   hexo s
   ```
  运行命令
  ![启动服务](http://p9myzkds7.bkt.clouddn.com/%E5%9C%A84000%E7%AB%AF%E5%8F%A3%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1.png)
