@@ -1,7 +1,10 @@
 title: Hexo修改主题
 author: songxingguo
-date: 2018-06-06 21:58:23
 tags:
+  - hexo
+categories:
+  - 博客搭建
+date: 2018-06-06 21:58:00
 ---
 -  ### 前提
  
