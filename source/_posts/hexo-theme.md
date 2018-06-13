@@ -1,4 +1,4 @@
-title: Hexo修改主题
+title: Hexo主题修改
 author: songxingguo
 tags:
   - hexo
