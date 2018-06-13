@@ -14,6 +14,8 @@ date: 2018-06-06 21:58:00
  &emsp;&emsp;在Hexo [主题列表](https://hexo.io/themes/) 中选取一个自己喜欢的主题，
  
  &emsp;&emsp;我这儿选取的是 hiker 主题
+ 
+ <!-- more -->
 
 - ### 将主题clone到themes目录下
 
