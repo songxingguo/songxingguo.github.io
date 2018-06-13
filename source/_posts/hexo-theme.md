@@ -15,11 +15,11 @@ date: 2018-06-06 21:58:00
  
  &emsp;&emsp;我这儿选取的是 hiker 主题
 
-- ### 将主题clone到themes文件下
+- ### 将主题clone到themes目录下
 
  - 进入博客根目录，将代码clone到 **themes/hiker** 目录下
   ```
-  git clone https://github.com/iTimeTraveler/hexo-theme-hiker.git themes/hiker
+ git clone https://github.com/iTimeTraveler/hexo-theme-hiker.git themes/hiker
   ```
    效果：
  ![clone主题](http://p9myzkds7.bkt.clouddn.com/clone-hiker.png)
@@ -36,7 +36,7 @@ date: 2018-06-06 21:58:00
 -  ### 修改博客_config.yml文件
 
  - 打开博客的—config.yml文件，找到 **theme** 字段并修改为 **hiker**
-![修改主题配置](http://p9myzkds7.bkt.clouddn.com/%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E4%B8%BAhiker.png)
+ ![修改主题配置](http://p9myzkds7.bkt.clouddn.com/%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E4%B8%BAhiker.png)
 
 - ### 重新启动服务
 
