@@ -30,7 +30,7 @@ date: 2018-06-06 21:58:00
     npm install
     ```
    效果：
- ![安装依赖](http://p9myzkds7.bkt.clouddn.com/clone-hiker.png)
+ ![安装依赖](http://p9myzkds7.bkt.clouddn.com/%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96.png)
 
 
 -  ### 修改博客_config.yml文件
@@ -47,7 +47,7 @@ date: 2018-06-06 21:58:00
   hexo g
   hexo s
   ```
-   ![重启服务](http://p9myzkds7.bkt.clouddn.com/clone-hiker.png)
+   ![重启服务](http://p9myzkds7.bkt.clouddn.com/%E9%87%8D%E5%90%AFHexo%E6%9C%8D%E5%8A%A1.png)
 
  - 点击 <http://localhost:4000> 查看
  ![hiker效果](http://p9myzkds7.bkt.clouddn.com/hiker%E6%95%88%E6%9E%9C.png)
