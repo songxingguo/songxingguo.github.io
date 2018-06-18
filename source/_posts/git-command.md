@@ -45,3 +45,15 @@ $ git remote rm origin
 ```git
 $ git branch --remote
 ```
+查看本地分支
+```
+$ git branch
+```
+查看所有远程分支
+```
+$ git branch -a 
+```
+切换到 **source-code** 分支
+```
+git checkout source-code
+```
