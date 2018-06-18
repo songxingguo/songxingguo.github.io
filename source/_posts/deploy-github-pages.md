@@ -2,7 +2,8 @@ title: 博客部署到Github Pages
 author: songxingguo
 tags:
   - github
-  - hexo
+  - Hexo
+  - ''
 categories:
   - 博客搭建
 date: 2018-06-06 21:43:00
