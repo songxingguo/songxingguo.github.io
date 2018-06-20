@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="intro">
+          写文章，做分享
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <section class="posts">
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/06/20/flex-layout/">Flex布局</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-20</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/技术学习/">技术学习</a>
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/技术学习/前端技术/">前端技术</a>
+              
+          
+          <!---------------------------------------->
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>Flex布局分为：父容器和子容器，主轴和交叉轴</p>
+<p>关于Flex的属性一共有 <strong>13</strong> 个，分别是：</p>
+<ol>
+<li>justify-content</li>
+<li>align-items</li>
+<li>align-content</li>
+<li>flex-direction</li>
+<li>flex-wrap</li>
+<li>flex-flow</li>
+<li>flex</li>
+<li>flex-basis</li>
+<li>flex-grow</li>
+<li>flex-shrink</li>
+<li>flex-order</li>
+<li>algn-self</li>
+<li><p>display</p>
+<p>按作用的对象（子容器和父容器 ）可以分为下面的内容：<br><img src="http://p9myzkds7.bkt.clouddn.com/flex%E6%8C%89%E5%AE%B9%E5%99%A8%E5%88%86%E7%B1%BB.png" alt="按作用的对象进行分类"></p>
+</li>
+</ol>
+<p>按属性的作用，我们大致可以把属性分为 <strong>5</strong> 大类，分别是：</p>
+<ul>
+<li>元素排列</li>
+<li>换行方式</li>
+<li>伸缩方式</li>
+<li>主轴排序</li>
+<li>交叉轴对齐方式</li>
+</ul>
+<p>下面从5个大类分别介绍每个属性。</p>
+<hr>
+<h3 id="元素排列"><a href="#元素排列" class="headerlink" title="元素排列"></a>元素排列</h3><p>元素排列共有三个属性，分别是：</p>
+<ul>
+<li><h4 id="justify-content"><a href="#justify-content" class="headerlink" title="justify-content"></a>justify-content</h4></li>
+</ul>
+<p>参考文章:</p>
+<p><a href="https://juejin.im/post/58e3a5a0a0bb9f0069fc16bb" target="_blank" rel="noopener">一劳永逸的搞定 flex 布局</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">Flex 布局教程：语法篇 - 阮一峰</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="noopener">Flex 布局教程：实例篇 - 阮一峰</a></p>
+
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/Flex/">Flex</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/06/18/push-source-code/">将博客源码推送到github上</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-18</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/博客搭建/">博客搭建</a>
+              
+          
+          <!---------------------------------------->
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <ul>
+<li><h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p> 已经搭建了一个Hexo博客</p>
+</li>
+<li><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p> &emsp;&emsp;使用命令 <code>Hexo d</code> 推送到github上的是Hexo生成的静态文件，而如果我们 换一台电脑就无法编辑博客了，所以我们需要把Hexo博客的源码推送到github上，方便我们在其他电脑上也能进行博客的编辑。也保证博客文章不会丢失。(但需要注意的是github上的仓库是开源的，也就是说所有人的都可以看到你的源代码）</p></li></ul>
+          <div id="read-more">
+            <a href="/2018/06/18/push-source-code/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/Hexo/">Hexo</a> <a class="tag-link" href="/tags/github/">github</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/06/15/WeChat-Basics/">微信小程序基础学习</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-15</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/技术学习/">技术学习</a>
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/技术学习/微信小程序/">微信小程序</a>
+              
+          
+          <!---------------------------------------->
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><ul>
+<li><h4 id="模板的作用"><a href="#模板的作用" class="headerlink" title="模板的作用"></a>模板的作用</h4><p> 避免重复开发，提升效率。</p>
+<p> 模板类似与React的组件思想提高重用性，但是模板只是只是包括视图和样式，并且两者需要分别引入对应的目标文件中。</p>
+</li>
+<li><h4 id="模板的定义"><a href="#模板的定义" class="headerlink" title="模板的定义"></a>模板的定义</h4><ol>
+<li><p>创建模板文件<br><img src="http://p9myzkds7.bkt.clouddn.com/%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6.png" alt="模板文件"></p>
+<ul>
+<li>一个模板wxml文件中可以创建多个template，通过name进行区分。</li>
+<li>ES6的扩展语法：<strong>…</strong> , 可以用于将数据解构之后传给模板使用。</li>
+</ul>
+</li>
+<li><p>.xml文件中定义模板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template name=&quot;list-item&quot;&gt;</span><br><span class="line">   &lt;view class=&quot;kind-list-item&quot;&gt;&lt;/view&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+          <div id="read-more">
+            <a href="/2018/06/15/WeChat-Basics/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/WeChat/">WeChat</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/06/06/hexo-theme/">Hexo主题修改</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-06</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/博客搭建/">博客搭建</a>
+              
+          
+          <!---------------------------------------->
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <ul>
+<li><h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>&emsp;&emsp;已经使用Hexo搭建一个博客</p>
+</li>
+<li><h3 id="选取自己喜欢的主题"><a href="#选取自己喜欢的主题" class="headerlink" title="选取自己喜欢的主题"></a>选取自己喜欢的主题</h3><p>&emsp;&emsp;在Hexo <a href="https://hexo.io/themes/" target="_blank" rel="noopener">主题列表</a> 中选取一个自己喜欢的主题，</p>
+<p>&emsp;&emsp;我这儿选取的是 hiker 主题</p></li></ul>
+          <div id="read-more">
+            <a href="/2018/06/06/hexo-theme/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/Hexo/">Hexo</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/06/06/deploy-github-pages/">博客部署到Github Pages</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-06</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/博客搭建/">博客搭建</a>
+              
+          
+          <!---------------------------------------->
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <ul>
+<li><h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>拥有github账号<br>已经搭建了一个Hexo博客</p>
+</li>
+<li><h3 id="前景知识"><a href="#前景知识" class="headerlink" title="前景知识"></a>前景知识</h3><p>Github Pages是一个静态页面服务器，可以用来展示托管在gitbub仓库的静态页面。</p>
+<p>Github Pages 提供了三种方式展示静态页面。</p>
+<ul>
+<li>仓库以 <strong> xx.github.io </strong> 命名</li>
+<li>仓库创建gh-pages分支</li>
+</ul>
+<p>下面以第一种方式推送到Gitbub Pages</p>
+</li>
+</ul>
+          <div id="read-more">
+            <a href="/2018/06/06/deploy-github-pages/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/Hexo/">Hexo</a> <a class="tag-link" href="/tags/github/">github</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/06/06/linux-node/">Linux配置Node环境</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-06</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/技术学习/">技术学习</a>
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/技术学习/操作系统/">操作系统</a>
+              
+          
+          <!---------------------------------------->
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h2 id="配置node环境"><a href="#配置node环境" class="headerlink" title="配置node环境"></a>配置node环境</h2><ol>
+<li><p>wget命令下载Node.js安装包（下载到当前目录）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://nodejs.org/dist/v6.9.5/node-v6.9.5-linux-x64.tar.xz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解压文件（解压到当前目录）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xvf node-v6.9.5-linux-x64.tar.xz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建软链接，使node和npm命令全局有效。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s /root/node-v6.9.5-linux-x64/bin/node /usr/<span class="built_in">local</span>/bin/node</span><br><span class="line">ln -s /root/node-v6.9.5-linux-x64/bin/npm /usr/<span class="built_in">local</span>/bin/npm</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看node、npm版本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+          <div id="read-more">
+            <a href="/2018/06/06/linux-node/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/Linux/">Linux</a> <a class="tag-link" href="/tags/Node/">Node</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/06/04/linux-command/">Linux常用命令</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-04</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/常用命令/">常用命令</a>
+              
+          
+          <!---------------------------------------->
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><ul>
+<li><p>创建文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch example.js</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim example.js</span><br></pre></td></tr></table></figure>
+<p>输入 i，进入编辑模式。</p>
+<p>输入为v进入视图模式，可进行多行选择。</p>
+<p>使用Esc按钮，退出编辑模式，输入:wq，回车，保存文件内容并退出。</p>
+</li>
+<li><p>查看文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /var/<span class="built_in">log</span>/mysqld.log</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm example.js</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+          <div id="read-more">
+            <a href="/2018/06/04/linux-command/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/Linux/">Linux</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/06/02/blog-build/">博客搭建</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-02</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/博客搭建/">博客搭建</a>
+              
+          
+          <!---------------------------------------->
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>大三的我，做过项目，平时也看了不少的书，但是能记住却少之有少。于是我希望通过博客将学过的知识整理下来，形成自己的知识体系。在今年上半年开始就打算搭建博客，在网上百度了各种资料，找到博客三种搭建方式: Wordpress、Jekyll、Hexo。其中Wordpress是需要服务器的，作为学生党的我当然没钱买服务器了，于是果断放弃了Wordpress,那就再看看Jekeyll吧，就来到了<a href="https://www.jekyll.com.cn" target="_blank" rel="noopener">Jekyll的官网</a> ，看了一下是不需要服务器的 ，那就撸起袖子开干吧，按着官方的教程往下弄，但Jekyll是设计是基于Ruby的，而我又没有Ruby的环境，那就顺理成章的来到了<a href="http://www.ruby-lang.org/en/downloads/" target="_blank" rel="noopener">Ruby的官网</a>找到了Windows系统的<a href="https://rubyinstaller.org/downloads" target="_blank" rel="noopener">下载连接</a>。但说起最气的就是安装Ruby了，下载一个只有8兆左右的却怎么也下载不下来，下载了一半结果进度就不动了，接着试了几次，都没下载下来。那个真是把我气的那是不要不要的。这东西光是下载下来就花了我接近一个小时。最后在千辛万苦下终于还是弄出来了一个<a href="http://blog.songxingguo.com" target="_blank" rel="noopener">Jekeyll的博客</a>。当然了，前面的说所的一切都是我们今天的主角Hexo做铺垫的。下面我们正式进入正题吧。</p>
+<h3 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h3><ul>
+<li><a href="https://www.songxingguo.com/2018/05/18/hello-world/">Hello Wrold</a></li>
+<li><a href="https://www.songxingguo.com/2018/06/06/%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0github-pages/">博客部署到Github Pages</a></li>
+<li><a href="">更换主题</a></li>
+<li><a href="">可视化编写文档</a></li>
+<li><a href="">将源代码推送到github相同仓库的不同分支</a></li>
+<li><a href="">使用Travis CI 进行自动发布代码</a></li>
+<li><a href="">将博客推送给百度</a></li>
+<li><a href="">使用Coding作为国内访问站点</a></li>
+<li><a href="">实现windows开机启动Hexo 服务</a></li>
+<li><a href="">图床七牛云</a></li>
+</ul>
+
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/Hexo/">Hexo</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/06/02/Hexo-problem/">Hexo问题解决</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-02</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/博客搭建/">博客搭建</a>
+              
+          
+          <!---------------------------------------->
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h5 id="服务busy"><a href="#服务busy" class="headerlink" title="服务busy"></a>服务busy</h5><p>结束服务，使用命令清除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure></p>
+<p>重新启动服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure></p>
+
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/Hexo/">Hexo</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/05/18/hello-world/">Hello World</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-05-18</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/博客搭建/">博客搭建</a>
+              
+          
+          <!---------------------------------------->
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h1 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h1><ul>
+<li><h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>安装 Hexo 相当简单。然而在安装前，您必须检查电脑中是否已安装下列应用程序：</p>
+<p><a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a></p>
+<p><a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a></p>
+<p>Windows系统</p>
+</li>
+<li><h3 id="安装hexo脚手架"><a href="#安装hexo脚手架" class="headerlink" title="安装hexo脚手架"></a>安装hexo脚手架</h3><p>打开命令行工具，全局安装hexo脚手架</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></li></ul>
+          <div id="read-more">
+            <a href="/2018/05/18/hello-world/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/Hexo/">Hexo</a>
+      
+    </div>
+    </article>
+  
+</section>
+
+          
+     <nav class="pagination">
+    
+    
+      <a href="/page/2/">
+        <span class="next">下一页<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+
+  <script src="/js/ztopic.js"></script>
+</body>
+</html>
