@@ -5,6 +5,7 @@ tags:
   - Linux
 categories:
   - 技术学习
+  - 操作系统
 date: 2018-06-06 10:56:00
 ---
 配置node环境

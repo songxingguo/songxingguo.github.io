@@ -5,6 +5,7 @@ tags:
   - JSX
 categories:
   - 技术学习
+  - 前端技术
 date: 2018-03-25 17:19:00
 ---
 ## React学习
