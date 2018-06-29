@@ -1,4 +1,4 @@
-title: 小米MIX 2线刷指引
+title: 小米MIX 2线刷步骤
 author: songxingguo
 tags: []
 categories:
