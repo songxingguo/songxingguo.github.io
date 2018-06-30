@@ -822,7 +822,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select * from `users` full outer join `accounts` on `accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`
     ```
- - #### crossJoin 
+ - ##### crossJoin 
     -.crossJoin(table, ~mixed~)
     
     交叉连接条件仅在MySQL和SQLite3中受支持。对于连接条件而不是使用innerJoin。
