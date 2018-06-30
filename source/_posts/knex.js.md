@@ -875,3 +875,122 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select * from `accounts` inner join natural full join table1 where `id` = 1   
     ```
+    
+- #### On 语句
+
+  - ##### onIn 
+     -.onIn(column, values)
+     向查询添加onIn子句。
+     
+      例：
+      ```
+      knex.select('*').from('users').join('contacts', function() {
+        this.on('users.id', '=', 'contacts.id').onIn('contacts.id', [7, 15, 23, 41])
+      })
+      ```
+      输出：
+      ```
+      select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and `contacts`.`id` in (7, 15, 23, 41)    
+      ```
+  - ##### onNotIn 
+     -.onNotIn(column, values)
+     向查询添加一个onNotIn子句。
+     
+      例：
+      ```
+      knex.select('*').from('users').join('contacts', function() {
+        this.on('users.id', '=', 'contacts.id').onNotIn('contacts.id', [7, 15, 23, 41])
+      })
+      ```
+      输出：
+      ```
+      select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and `contacts`.`id` not in (7, 15, 23, 41)
+      ```
+  - ##### onNull 
+      -.onNull(column)     
+      向查询添加一个onNull子句。
+      
+      例：      
+      ```
+      knex.select('*').from('users').join('contacts', function() {
+        this.on('users.id', '=', 'contacts.id').onNull('contacts.email')
+      })
+      ```
+      输出：
+      ```
+      select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and `contacts`.`email` is null  
+      ```
+  - ##### onNotNull 
+     -.onNotNull(column)
+     向查询添加一个onNotNull子句。
+      
+      例：
+      ```
+      knex.select('*').from('users').join('contacts', function() {
+        this.on('users.id', '=', 'contacts.id').onNotNull('contacts.email')
+      })
+      ```
+      输出：
+      ```
+      select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and `contacts`.`email` is not null
+      ```
+  - ##### onExists 
+     -.onExists(builder | callback)
+     向查询添加一个onExists子句。
+      
+      例：
+      ```     
+      knex.select('*').from('users').join('contacts', function() {
+        this.on('users.id', '=', 'contacts.id').onExists(function() {
+          this.select('*').from('accounts').whereRaw('users.account_id = accounts.id');
+        })
+      })
+      ```
+      输出：
+      ```
+      select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and exists (select * from `accounts` where users.account_id = accounts.id)
+      ```
+ - ##### onNotExists 
+    -.onNotExists(builder | callback)
+    向查询添加一个onNotExists子句。
+    
+    例：
+    ```
+    knex.select('*').from('users').join('contacts', function() {
+      this.on('users.id', '=', 'contacts.id').onNotExists(function() {
+        this.select('*').from('accounts').whereRaw('users.account_id = accounts.id');
+      })
+    })
+    ```
+    输出：
+    ```
+    select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and not exists (select * from `accounts` where users.account_id = accounts.id)
+    ```
+ - ##### onBetween 
+    -.onBetween(column, range)
+    向查询添加一个onBetween子句。
+    
+     例：
+     ```
+     knex.select('*').from('users').join('contacts', function() {
+      this.on('users.id', '=', 'contacts.id').onBetween('contacts.id', [5, 30])
+    })
+    ```
+    输出：
+    ```
+    select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and `contacts`.`id` between 5 and 30
+    ```
+ - ##### onNotBetween 
+    -.onNotBetween(column, range)
+    向查询添加一个onNotBetween子句。
+    
+      例：
+      ```
+      knex.select('*').from('users').join('contacts', function() {
+        this.on('users.id', '=', 'contacts.id').onNotBetween('contacts.id', [5, 30])
+      })
+      ```
+      输出：
+      ```
+      select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and `contacts`.`id` not between 5 and 30
+      ```
