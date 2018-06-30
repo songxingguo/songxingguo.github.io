@@ -60,7 +60,7 @@ knex 查询构造器是用于构建和执行标准的SQL查询,例如：select, 
 
 最常见的只需要简单tableName.columnName，tableName或者columnName，但在许多情况下，还需要传递一个别名，以便稍后在查询中引用该标识符。
 
- - #### 声明别名
+ - #### Identifier Syntax
  
    有两种方法可以为标识符声明别名。可以直接 `as aliasName` 为标识符提供前缀，也可以传递对象 `{ aliasName: 'identifierName' }` 。
    
@@ -79,39 +79,39 @@ knex 查询构造器是用于构建和执行标准的SQL查询,例如：select, 
 ```
 select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `table` as `b` where `a`.`column_1` = `b`.`column_2`
 ```
----
+
  - #### knex 
     -knex(tableName, options={only: boolean}) / knex.[methodName]
  
  查询构建器通过指定要查询的表名或通过直接在knex对象上调用任何方法来启动。这将启动类似jQuery的链，您可以根据需要调用其他查询构建器方法来构造查询，最终调用任何接口方法，将其转换为toString或返回一个promise对象，回调或链式执行查询。
 
-  - ##### timeout
-     -.timeout(ms, options={cancel: boolean})
+ - #### timeout
+   -.timeout(ms, options={cancel: boolean})
  
-    设置查询的超时时间，并且如果超时超时，将会引发TimeoutError。该错误包含有关查询，绑定和设置的超时的信息。对于想要确保执行的复杂查询不会花太长时间。传递选项的可选第二个参数：cancel：if ，如果达到超时则取消查询。*注意：目前只支持MySQL和MariaDB。 
+  设置查询的超时时间，并且如果超时超时，将会引发TimeoutError。该错误包含有关查询，绑定和设置的超时的信息。对于想要确保执行的复杂查询不会花太长时间。传递选项的可选第二个参数：cancel：if ，如果达到超时则取消查询。*注意：目前只支持MySQL和MariaDB。 
      
-     例：
-     ```
-      knex.select().from('books').timeout(1000)
-     ```
-     输出：
-     ```
-      select * from `books`
-     ```
-     ---
-     例：
-     ```
-    knex.select().from('books').timeout(1000, {cancel: true}) // MySQL and MariaDB only
-    ```
-    输出：
-    ```
-    select * from `books`
-    ```
+   例：
+   ```
+    knex.select().from('books').timeout(1000)
+   ```
+   输出：
+   ```
+   select * from `books`
+   ```
+   ---
+   例：
+  ```
+ knex.select().from('books').timeout(1000, {cancel: true}) // MySQL and MariaDB only
+  ```
+  输出：
+  ```
+  select * from `books`
+  ```
 
-   - ##### select 
-      -.select([*columns])
+ - #### select 
+   -.select([*columns])
 
-    创建一个select查询，为查询提供可选的列数组，如果在构建查询时没有指定，则最终默认为*。select调用的响应将使用从数据库中选择的对象数组来解析。
+   创建一个select查询，为查询提供可选的列数组，如果在构建查询时没有指定，则最终默认为*。select调用的响应将使用从数据库中选择的对象数组来解析。
 
     例：
     ```
@@ -131,10 +131,10 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select * from `books`
      ```
-  - ##### as 
-    -.as(name)
+- #### as 
+  -.as(name)
 
-    允许对子查询进行别名，并取出希望命名当前查询的字符串。如果查询不是子查询，它将被忽略。
+  允许对子查询进行别名，并取出希望命名当前查询的字符串。如果查询不是子查询，它将被忽略。
 
      例:
      ```
@@ -148,10 +148,10 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
      ```
     select avg(`sum_column1`) from (select sum(`column1`) as `sum_column1` from `t1` group by `column1`) as `t1`
      ```
-  - ##### column 
-    — .column(columns)
+- #### column 
+  — .column(columns)
 
-    专门设置要在选择查询中选择的列，并获取数组，列表或列名称。传递对象将使用给定的键自动对列进行别名。
+  专门设置要在选择查询中选择的列，并获取数组，列表或列名称。传递对象将使用给定的键自动对列进行别名。
     
     例：
     ```
@@ -181,10 +181,10 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     select `title`, `author` as `by`, `year` from `books`
     ```
 
-  - ##### from 
-    — .from([tableName], options={only: boolean})
+- #### from 
+  — .from([tableName], options={only: boolean})
 
-    指定当前查询中使用的表格，如果已经指定了当前表格名称，则替换当前表格名称。这通常用于高级where或union方法中执行的子查询。传递选项的可选第二个参数：only：if ，在放弃继承表数据之前使用ONLY关键字。*注意：目前只支持PostgreSQL。 truetableName
+  指定当前查询中使用的表格，如果已经指定了当前表格名称，则替换当前表格名称。这通常用于高级where或union方法中执行的子查询。传递选项的可选第二个参数：only：if ，在放弃继承表数据之前使用ONLY关键字。*注意：目前只支持PostgreSQL。 truetableName
 
     例：
     ```
@@ -195,10 +195,10 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     select * from `users`
     ```
 
-  - ##### with 
-    — .with(alias, function|raw)
+- #### with 
+  — .with(alias, function|raw)
 
-    为查询添加“with”子句。“With”子句由PostgreSQL，Oracle，SQLite3和MSSQL支持。
+  为查询添加“with”子句。“With”子句由PostgreSQL，Oracle，SQLite3和MSSQL支持。
 
     例:
     ```
@@ -221,10 +221,10 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     with `with_alias` as (select * from `books` where `author` = 'Test') select * from `with_alias`
     ```
 
-  - ##### withSchema 
-    — .withSchema([schemaName])
+- #### withSchema 
+   — .withSchema([schemaName])
 
-    指定要用作表名前缀的模式。多表查询。
+  指定要用作表名前缀的模式。多表查询。
     
     例：
     ```
