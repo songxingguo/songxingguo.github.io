@@ -10,11 +10,13 @@ date: 2018-06-30 08:07:00
 ### knexjs 简介
  &emsp;&emsp;Knex.js是为Postgres，MSSQL，MySQL，MariaDB，SQLite3，Oracle和Amazon Redshift设计的“包含电池”SQL查询构建器，其设计灵活，便于携带并且使用起来非常有趣。它具有传统的节点样式回调以及用于清洁异步流控制的承诺接口，流接口，全功能查询和模式构建器，事务支持（带保存点），连接池 以及不同查询客户和方言之间的标准化响应。[传送门](https://knexjs.org/#Installation-node)
   
-  
+
+---
 ### 支持
 
 &emsp;&emsp;Knex的主要目标环境是Node.js，您需要安装该knex库，然后安装适当的数据库库：pg适用于PostgreSQL和Amazon Redshift，mysql适用于MySQL或MariaDB，sqlite3适用于SQLite3或mssql适用于MSSQL。
 
+---
 ### 安装
 ```
 $ npm install knex --save
@@ -31,6 +33,7 @@ $ npm install mssql
 ```
 <!-- more -->
 
+---
 ### 初始数据库
 
 &emsp;&emsp;该knex模块本身是一个为Knex提供配置对象的函数，它接受一些参数。该client参数是必需的，并确定哪个客户端适配器将与该库一起使用。
@@ -48,7 +51,7 @@ var knex = require('knex')({
   }
 });
 ```
-
+---
 ### knex 查询构造器
 
 knex 查询构造器是用于构建和执行标准的SQL查询,例如：select, insert, update, delete.
@@ -76,7 +79,7 @@ knex 查询构造器是用于构建和执行标准的SQL查询,例如：select, 
 ```
 select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `table` as `b` where `a`.`column_1` = `b`.`column_2`
 ```
-
+---
  - #### knex 
     -knex(tableName, options={only: boolean}) / knex.[methodName]
  
@@ -231,7 +234,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select * from `public`.`users`
     ```
-
+---
 - #### Where 语句
 
     有几种方法可以帮助动态地从句。在很多地方，函数可以用来代替值，构造子查询。在大多数地方，现有的knex查询可能用于组成子查询等。请查看每种使用说明方法的几个示例：
@@ -603,7 +606,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
       select * from `users` where id = 1
       Join Me
       ```
-      
+---      
 - #### Join 语句
 
  提供了几种帮助构建连接的方法。
@@ -875,7 +878,140 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select * from `accounts` inner join natural full join table1 where `id` = 1   
     ```
-    
+---    
+- #### Having 语句
+  
+  - ##### having 
+     -.having(column, operator, value)
+     向查询添加having子句。
+     
+      例：
+      ```
+      knex('users')
+      .groupBy('count')
+      .orderBy('name', 'desc')
+      .having('count', '>', 100)
+      ```
+      输出：
+      ```
+      select * from `users` group by `count` having `count` > 100 order by `name` desc
+      ```
+  - #### havingIn 
+     -.havingIn(column, values)
+     向查询添加havingIn子句。
+     
+      例：
+      ```
+      knex.select('*').from('users').havingIn('id', [5, 3, 10, 17])
+      ```
+      输出：
+      ```
+      select * from `users` having `id` in (5, 3, 10, 17)
+      ```
+  - ##### havingNotIn
+     -.havingNotIn(column, values)
+     向查询添加havingNotIn子句。
+     
+      例：
+      ```
+      knex.select('*').from('users').havingNotIn('id', [5, 3, 10, 17])
+      ```
+      输出：
+      ```
+      select * from `users` having `id` not in (5, 3, 10, 17)
+      ```
+  - ##### havingNull 
+     -.havingNull(column)
+     向查询添加havingNull子句。
+     
+      例：
+      ```
+      knex.select('*').from('users').havingNull('email')
+      ```
+      输出：
+      ```
+      select * from `users` having `email` is null
+      ```
+  - ##### havingNotNull 
+     -.havingNotNull(column)
+     向查询添加havingNotNull子句。
+      
+      例：
+      ```
+      knex.select('*').from('users').havingNotNull('email')
+      ```
+      输出：
+      ```
+      select * from `users` having `email` is not null
+      ```
+  - ##### havingExists 
+     -.havingExists(builder | callback)
+     向查询添加一个havingExists子句。
+      
+      例：
+      ```
+      knex.select('*').from('users').havingExists(function() {
+        this.select('*').from('accounts').whereRaw('users.account_id = accounts.id');
+      })
+      ```
+      输出：
+      ```
+      select * from `users` having exists (select * from `accounts` where users.account_id = accounts.id)
+      ```
+  - ##### havingNotExists 
+     -.havingNotExists(builder | callback)
+     向查询添加havingNotExists子句。
+     
+      例：
+      ```
+      knex.select('*').from('users').havingNotExists(function() {
+        this.select('*').from('accounts').whereRaw('users.account_id = accounts.id');
+      })
+      ```
+      输出：
+      ```
+      select * from `users` having not exists (select * from `accounts` where users.account_id = accounts.id)
+      ```
+  - ##### havingBetween 
+     -.havingBetween(column, range)
+     向查询添加一个havingBetween子句。
+     
+      例：
+      ```
+      knex.select('*').from('users').havingBetween('id', [5, 10])
+      ```
+      输出：
+      ```
+      select * from `users` having `id` between 5 and 10
+      ```
+  - ##### havingNotBetween 
+     -.havingNotBetween(column, range)
+     向查询添加havingNotBetween子句。
+     
+      例：
+      ```
+      knex.select('*').from('users').havingNotBetween('id', [5, 10])
+      ```
+      输出：
+      ```
+      select * from `users` having `id` not between 5 and 10
+      ```
+  - ##### havingRaw 
+     -.havingRaw(column, operator, value)
+     向查询添加havingRaw子句。
+     
+      例：
+      ```
+      knex('users')
+      .groupBy('count')
+      .orderBy('name', 'desc')
+      .havingRaw('count > ?', [100])
+      ```
+      输出：
+      ```
+      select * from `users` group by `count` having count > 100 order by `name` desc
+      ```
+---      
 - #### On 语句
 
   - ##### onIn 
@@ -994,6 +1130,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
       ```
       select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and `contacts`.`id` not between 5 and 30
       ```
+---
 - #### Clear 语句
 
   - ##### clearSelect 
