@@ -896,7 +896,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
       ```
       select * from `users` group by `count` having `count` > 100 order by `name` desc
       ```
-  - #### havingIn 
+  - ##### havingIn 
      -.havingIn(column, values)
      向查询添加havingIn子句。
      
@@ -1169,60 +1169,61 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
       ```
       select * from `users`
       ```
-  - ##### distinct 
-     -.distinct()
-     去除重复的记录。
-     
-      例：
-      ```
-      // select distinct 'first_name' from customers
-      knex('customers')
-        .distinct('first_name', 'last_name')
-        .select()
-      ```
-      输出：
-      ```
-      select distinct `first_name`, `last_name` from `customers`
-      ```
-  - ##### groupBy 
-     -.groupBy(*names)
-     向查询添加一个group by子句。
-        例：
-        ```
-        knex('users').groupBy('count')
-        ```
-        输出：
-        ```
-        select * from `users` group by `count`
-        ```
-  - ##### groupByRaw 
-     -.groupByRaw(sql)
-     向查询添加一个原始的group by子句。
-     
-      例：    
-      ```
-      knex.select('year', knex.raw('SUM(profit)')).from('sales').groupByRaw('year WITH ROLLUP')
-      ```
-      输出：
-      ```
-      select `year`, SUM(profit) from `sales` group by year WITH ROLLUP
-      ```
-  - ##### orderBy 
-     -.orderBy(column, [direction])
-     向查询添加一个order by子句。
-     
-      例：
-      ```
-      knex('users').orderBy('name', 'desc')
-      ```
-      输出：
-      ```
-      select * from `users` order by `name` desc
-      ```
-  - ##### orderByRaw 
-     -.orderByRaw(sql)
-    通过raw子句向查询添加一个订单。
-    
+- #### distinct 
+   -.distinct()
+   去除重复的记录。
+
+    例：
+    ```
+    // select distinct 'first_name' from customers
+    knex('customers')
+      .distinct('first_name', 'last_name')
+      .select()
+    ```
+    输出：
+    ```
+    select distinct `first_name`, `last_name` from `customers`
+    ```
+- #### groupBy 
+   -.groupBy(*names)
+   向查询添加一个group by子句。
+   
+     例：
+     ```
+     knex('users').groupBy('count')
+     ```
+     输出：
+     ```
+     select * from `users` group by `count`
+     ```
+- #### groupByRaw 
+   -.groupByRaw(sql)
+   向查询添加一个原始的group by子句。
+
+     例：    
+     ```
+     knex.select('year', knex.raw('SUM(profit)')).from('sales').groupByRaw('year WITH ROLLUP')
+     ```
+     输出：
+     ```
+     select `year`, SUM(profit) from `sales` group by year WITH ROLLUP
+     ```
+- #### orderBy 
+   -.orderBy(column, [direction])
+   向查询添加一个order by子句。
+
+    例：
+    ```
+    knex('users').orderBy('name', 'desc')
+    ```
+    输出：
+    ```
+    select * from `users` order by `name` desc
+    ```
+- #### orderByRaw 
+  -.orderByRaw(sql)
+  通过raw子句向查询添加一个订单。
+
     例：
     ```
     knex.select('*').from('table').orderByRaw('col DESC NULLS LAST')
@@ -1231,3 +1232,671 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select * from `table` order by col DESC NULLS LAST
     ```
+- #### offset 
+   -.offset(value)
+   为查询添加一个偏移子句。
+   
+    例：
+    ```
+    knex.select('*').from('users').offset(10)
+    ```
+    输出：
+    ```
+    select * from `users` limit 18446744073709551615 offset 10
+    ```
+- #### limit 
+   -.limit(value)
+  向查询添加限制子句。
+  
+    例：
+    ```
+    knex.select('*').from('users').limit(10).offset(30)
+    ```
+    输出：
+    ```
+    select * from `users` limit 10 offset 30
+    ```
+- #### union
+   -.union([*queries], [wrap])
+   创建联合查询，采用数组或回调列表构建union语句，并使用可选的布尔换行。查询将使用真正的wrap参数单独包装在括号中。
+
+    例：
+    ```
+    knex.select('*').from('users').whereNull('last_name').union(function() {
+      this.select('*').from('users').whereNull('first_name');
+    })
+    ```
+    输出：
+    ```
+    select * from `users` where `last_name` is null union select * from `users` where `first_name` is null
+    ```
+- #### unionAll 
+   -.unionAll(query)
+   使用与union方法相同的方法签名创建union的所有查询。
+   
+    例：
+    ```
+    knex.select('*').from('users').whereNull('last_name').unionAll(function() {
+      this.select('*').from('users').whereNull('first_name');
+    })
+    ```
+    输出：
+    ```
+    select * from `users` where `last_name` is null union all select * from `users` where `first_name` is null
+    ```
+- #### insert 
+   -.insert(data, [returning])
+   
+    创建插入查询，将要插入行的属性的哈希或插入的数组作为单个插入命令执行。使用包含插入模型的第一个插入标识的数组或者包含所有插入的postgresql标识的数组或Amazon Redshift的行数解析承诺/实现回调。
+
+    例：
+    ```
+    // Returns [1] in "mysql", "sqlite", "oracle"; [] in "postgresql" unless the 'returning' parameter is set.
+    knex('books').insert({title: 'Slaughterhouse Five'})
+    ```
+    输出：
+    ```
+    insert into `books` (`title`) values ('Slaughterhouse Five')
+    ```
+    ---
+    例：
+    ```
+    // Normalizes for empty keys on multi-row insert:
+    knex('coords').insert([{x: 20}, {y: 30},  {x: 10, y: 20}])
+    ```
+    输出：
+    ```
+    insert into `coords` (`x`, `y`) values (20, DEFAULT), (DEFAULT, 30), (10, 20)
+    // Returns [2] in "mysql", "sqlite"; [2, 3] in "postgresql"
+    ```
+    ---
+    例：
+    ```
+    knex.insert([{title: 'Great Gatsby'}, {title: 'Fahrenheit 451'}], 'id').into('books')
+    ```
+    输出：
+    ```
+    insert into `books` (`title`) values ('Great Gatsby'), ('Fahrenheit 451')
+    ```
+
+    如果一个人更喜欢用一个未定义的键替换NULL而不是DEFAULT一个，可以useNullAsDefault在knex config中给出配置参数。
+
+    ```
+    var knex = require('knex')({
+      client: 'mysql',
+      connection: {
+        host : '127.0.0.1',
+        user : 'your_database_user',
+        password : 'your_database_password',
+        database : 'myapp_test'
+      },
+      useNullAsDefault: true
+    });
+
+    knex('coords').insert([{x: 20}, {y: 30}, {x: 10, y: 20}])
+    // insert into `coords` (`x`, `y`) values (20, NULL), (NULL, 30), (10, 20)"
+    ```
+- #### returning 
+ -.returning(column) / .returning([column1, column2, ...])
+   
+  由PostgreSQL，MSSQL和Oracle数据库使用，返回方法指定insert和update方法应返回哪一列。Passed column参数可以是字符串或字符串数​​组。传入字符串时，会将SQL结果报告为指定列中的值数组。传入字符串数组时，会将SQL结果报告为对象数组，每个对象包含每个指定列的单个属性。Amazon Redshift不支持返回方法。
+
+    例：
+    ```
+    // Returns [1]
+    knex('books')
+      .returning('id')
+      .insert({title: 'Slaughterhouse Five'})
+    ```
+    输出：
+    ```
+    insert into `books` (`title`) values ('Slaughterhouse Five')
+    ```
+    ---
+    例：
+    ```
+    // Returns [2] in "mysql", "sqlite"; [2, 3] in "postgresql"
+    knex('books')
+      .returning('id')
+      .insert([{title: 'Great Gatsby'}, {title: 'Fahrenheit 451'}])
+    ```
+    输出：
+    ```
+    insert into `books` (`title`) values ('Great Gatsby'), ('Fahrenheit 451')
+    ```
+    ---
+    例：
+    ```
+    // Returns [ { id: 1, title: 'Slaughterhouse Five' } ]
+    knex('books')
+      .returning(['id','title'])
+      .insert({title: 'Slaughterhouse Five'})
+    ```
+    输出：
+    ```
+    insert into `books` (`title`) values ('Slaughterhouse Five')
+    ```
+- #### update 
+  -.update(data, [returning]) / .update(key, value, [returning])
+    创建更新查询，根据其他查询约束更新属性哈希值或键/值对。使用受影响的查询行数解析promise /履行回调。如果要更新的键的值未定义，则忽略该键。
+
+    例：
+    ```
+    knex('books')
+    .where('published_date', '<', 2000)
+    .update({
+      status: 'archived',
+      thisKeyIsSkipped: undefined
+    })
+    ```
+    输出：
+    ```
+    update `books` set `status` = 'archived' where `published_date` < 2000
+    ```
+    --- 
+    例：
+    ```
+    // Returns [1] in "mysql", "sqlite", "oracle"; [] in "postgresql" unless the 'returning' parameter is set.
+    knex('books').update('title', 'Slaughterhouse Five')
+    ```
+    输出：
+    ```
+    update `books` set `title` = 'Slaughterhouse Five'
+    ```
+- #### del / delete 
+   -.del()
+   别名为del，因为delete是JavaScript中的保留字，此方法将根据查询中指定的其他条件删除一行或多行。使用受影响的查询行数解析promise /履行回调。
+
+    例：
+    ```
+    knex('accounts')
+    .where('activated', false)
+    .del()
+    ```
+    输出：
+    ```
+    delete from `accounts` where `activated` = false
+    ```
+- #### transacting 
+   -.transacting(transactionObj)
+   由knex.transaction使用，交易方法可链接到任何查询，并将希望加入查询的对象作为交易的一部分传递给。
+
+    ```
+    var Promise = require('bluebird');
+    knex.transaction(function(trx) {
+      knex('books').transacting(trx).insert({name: 'Old Books'})
+        .then(function(resp) {
+          var id = resp[0];
+          return someExternalMethod(id, trx);
+        })
+        .then(trx.commit)
+        .catch(trx.rollback);
+    })
+    .then(function(resp) {
+      console.log('Transaction complete.');
+    })
+    .catch(function(err) {
+      console.error(err);
+    });
+    ```
+   - ##### forUpdate 
+      -.transacting(t).forUpdate()
+      在指定事务之后动态添加，forUpdate在select语句期间在PostgreSQL和MySQL中添加FOR UPDATE。由于缺少表锁，在Amazon Redshift上不支持。
+      
+      例：
+      ```
+      knex('tableName')
+      .transacting(trx)
+      .forUpdate()
+      .select('*')
+      ```
+      输出：
+      ```
+      select * from `tableName` for update
+      ```
+   - ##### forShare 
+      -.transacting(t).forShare()
+        在指定事务后动态添加的forShare在select语句中添加了PostShareSQL中的FOR SHARE和MySQL中的LOCK IN SHARE MODE。由于缺少表锁，在Amazon Redshift上不支持。
+        
+        例：
+        ```
+        knex('tableName')
+        .transacting(trx)
+        .forShare()
+        .select('*')
+        ```
+        输出：
+        ```
+        select * from `tableName` lock in share mode
+        ```
+- #### count 
+   -.count(column|columns|raw)
+   
+    对指定的列或列数组执行计数（请注意，某些驱动程序不支持多列）。还接受原始表达式。请注意，在Postgres中，count会返回一个bigint类型，它将是一个String而不是一个Number（更多信息）。
+    
+    例：
+    ```
+    knex('users').count('active')
+    ```
+    输出：
+    ```
+    select count(`active`) from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').count('active as a')
+    ```
+    输出：
+    ```
+    select count(`active`) as `a` from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').count({ a: 'active' })
+    ```
+    输出：
+    ```
+    select count(`active`) as `a` from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').count('id', 'active')
+    ```
+    输出：
+    ```
+    select count(`id`) from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').count({ count: ['id', 'active'] })
+    ```
+    输出：
+    ```
+    select count(`id`, `active`) as `count` from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').count(knex.raw('??', ['active']))
+    ```
+    输出：
+    ```
+    select count(`active`) from `users`
+    ```
+
+    使用countDistinct在聚合函数内添加一个不同的表达式。
+
+    例：
+    ```
+    knex('users').countDistinct('active')
+    ```
+    输出：
+    ```
+    select count(distinct `active`) from `users`
+    ```
+- #### min 
+   -.min(column|columns|raw)
+   
+    获取指定列或列数组的最小值（请注意，某些驱动程序不支持多列）。还接受原始表达式。
+
+    例：
+    ```
+    knex('users').min('age')
+    ```
+    输出：
+    ```
+    select min(`age`) from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').min('age as a')
+    ```
+    输出：
+    ```
+    select min(`age`) as `a` from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').min({ a: 'age' })
+    ```
+    输出：
+    ```
+    select min(`age`) as `a` from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').min('age', 'logins')
+    ```
+    输出：
+    ```
+    select min(`age`) from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').min({ min: ['age', 'logins'] })
+    ```
+    输出：
+    ```
+    select min(`age`, `logins`) as `min` from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').min(knex.raw('??', ['age']))
+    ```
+    输出：
+    ```
+    select min(`age`) from `users`
+    ```
+- #### max 
+   -.max(column|columns|raw)
+   获取指定列或列数组的最大值（请注意，有些驱动程序不支持多列）。还接受原始表达式。
+
+    例：
+    ```
+    knex('users').max('age')
+    ```
+    输出：
+    ```
+    select max(`age`) from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').max('age as a')
+    ```
+    输出：
+    ```
+    select max(`age`) as `a` from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').max({ a: 'age' })
+    ```
+    输出：
+    ```
+    select max(`age`) as `a` from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').max('age', 'logins')
+    ```
+    输出：
+    ```
+    select max(`age`) from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').max({ max: ['age', 'logins'] })
+    ```
+    输出：
+    ```
+    select max(`age`, `logins`) as `max` from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').max(knex.raw('??', ['age']))
+    ```
+    输出：
+    ```
+    select max(`age`) from `users`
+    ```
+- #### sum 
+   -.sum(column|columns|raw)
+   检索给定列或列数组的值的总和（请注意，某些驱动程序不支持多列）。还接受原始表达式。
+
+    例：
+    ```
+    knex('users').sum('products')
+    ```
+    输出：
+    ```
+    select sum(`products`) from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').sum('products as p')
+    ```
+    输出：
+    ```
+    select sum(`products`) as `p` from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').sum({ p: 'products' })
+    ```
+    输出：
+    ```
+    select sum(`products`) as `p` from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').sum('products', 'orders')
+    ```
+    输出：
+    ```
+    select sum(`products`) from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').sum({ sum: ['products', 'orders'] })
+    ```
+    输出：
+    ```
+    select sum(`products`, `orders`) as `sum` from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').sum(knex.raw('??', ['products']))
+    ```
+    输出：
+    ```
+    select sum(`products`) from `users`
+    ```
+  使用sumDistinct在聚合函数内添加一个不同的表达式。
+
+    例：
+    ```
+    knex('users').sumDistinct('products')
+    ```
+    输出：
+    ```
+    select sum(distinct `products`) from `users`
+    ```
+-  #### avg 
+    -.avg(column|columns|raw)
+    检索给定列或列数组的值的平均值（请注意，有些驱动程序不支持多列）。还接受原始表达式。
+
+    例：
+    ```
+    knex('users').avg('age')
+    ```
+    输出：
+    ```
+    select avg(`age`) from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').avg('age as a')
+
+    ```
+    输出：
+    ```
+    select avg(`age`) as `a` from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').avg({ a: 'age' })
+    ```
+    输出：
+    ```
+    select avg(`age`) as `a` from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').avg('age', 'logins')
+    ```
+    输出：
+    ```
+    select avg(`age`) from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').avg({ avg: ['age', 'logins'] })
+    ```
+    输出：
+    ```
+    select avg(`age`, `logins`) as `avg` from `users`
+    ```
+    ---
+    例：
+    ```
+    knex('users').avg(knex.raw('??', ['age']))
+    ```
+    输出：
+    ```
+    select avg(`age`) from `users`
+    ```
+    使用avgDistinct在聚合函数内添加一个不同的表达式。
+
+    例：
+    ```
+    knex('users').avgDistinct('age')
+    ```
+    输出：
+    ```
+    select avg(distinct `age`) from `users`
+    ```
+- #### increment 
+   -.increment(column, amount)
+   按指定的量增加列值。
+   
+    例：
+    ```
+    knex('accounts')
+    .where('userid', '=', 1)
+    .increment('balance', 10)
+    ```
+    输出：
+    ```
+    update `accounts` set `balance` = `balance` + 10 where `userid` = 1
+    ```
+- #### decrement 
+   -.decrement(column, amount)
+   将列值减少指定的量。
+   
+    例： 
+    ```
+    knex('accounts').where('userid', '=', 1).decrement('balance', 5)
+    ```
+    输出：
+    ```
+    update `accounts` set `balance` = `balance` - 5 where `userid` = 1
+    ```
+-  #### truncate 
+   -.truncate()
+   截断当前表。
+
+    例：
+    ```
+    knex('accounts').truncate()
+    ```
+    输出：
+    ```
+    truncate `accounts`
+    ```
+
+- #### pluck 
+   -.pluck(id)
+   这将从结果中的每一行中抽取指定列，产生一个承诺，解析为所选值的数组。
+   
+    ```
+    knex.table('users').pluck('id').then(function(ids) { console.log(ids); });
+    ```
+    第一 -.first([columns])
+    与select类似，但仅使用查询中的第一条记录检索和解析。
+    ```
+    knex.table('users').first('id', 'name').then(function(row) { console.log(row); });
+    ```
+
+- #### clone 
+   -.clone()
+   克隆当前查询链，可用于在不改变原始查询的情况下在其他查询中重复使用部分查询片段。
+
+- #### modify 
+   -.modify(fn, *arguments)
+   允许封装并重新使用查询片段和常见行为作为函数。回调函数应接收查询构建器作为其第一个参数，然后接受传递给其修改的其余（可选）参数。
+
+  ```
+  var withUserName = function(queryBuilder, foreignKey) {
+    queryBuilder.leftJoin('users', foreignKey, 'users.id').select('users.user_name');
+  };
+  knex.table('articles').select('title', 'body').modify(withUserName, 'articles_user.id').then(function(article) {
+    console.log(article.user_name);
+  });
+  ```
+  columnInfo -.columnInfo([columnName])
+  返回一个对象，其中包含有关当前表的列信息，如果传递了一个列，则返回一个单独的列，返回一个具有以下键的对象：defaultValue：列类型的默认值：列类型maxLength：为此设置的最大长度列可为空：列是否可以为空
+
+  ```
+  knex('users').columnInfo().then(function(info) { // ... });
+  ```
+
+- #### debug 
+   -.debug([enabled])
+   覆盖当前查询链的全局调试设置。如果启用省略，查询调试将被打开。
+
+- #### connection
+（不完整） - 此功能被错误地记录为功能。 
+如果实现，该方法将设置数据库连接用于查询而不使用连接池。
+
+- #### options 
+  -.options()
+  允许在数据库客户端特定库中定义的其他选项中进行混合：
+
+  ```
+  knex('accounts as a1')
+  .leftJoin('accounts as a2', function() {
+    this.on('a1.email', '<>', 'a2.email');
+  })
+
+  .select(['a1.email', 'a2.email'])
+  .where(knex.raw('a1.id = 1'))
+  .options({ nestTables: true, rowMode: 'array' })
+  .limit(2)
+  .then(...
+  ```
+
+- #### queryContext 
+   -.queryContext(context)
+   允许配置要传递给wrapIdentifier和postProcessResponse挂钩的上下文：
+   
+  ```
+  knex('accounts as a1')
+  .queryContext({ foo: 'bar' })
+  .select(['a1.email', 'a2.email'])
+  ```
+  上下文可以是任何类型的值，并将被传递给钩子而不需要修改。但是请注意，在查询构建器实例被克隆时，对象将被浅层克隆，这意味着它们将包含原始对象的所有属性，但不会是同一个对象引用。这允许修改克隆的查询生成器实例的上下文。
+
+  queryContext不带参数调用将返回为查询构建器实例配置的任何上下文。
