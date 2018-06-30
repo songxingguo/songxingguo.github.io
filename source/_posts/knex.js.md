@@ -994,3 +994,103 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
       ```
       select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and `contacts`.`id` not between 5 and 30
       ```
+- #### Clear 语句
+
+  - ##### clearSelect 
+    -.clearSelect()
+    清除查询中的所有select子句，不包括子查询。
+
+      例：
+      ```     
+      knex.select('email', 'name').from('users').clearSelect()
+      ```
+      输出：
+      ```
+      select * from `users`
+      ```
+  - #####  clearWhere 
+     -.clearWhere()
+     清除查询中的所有where子句，不包括子查询。
+     
+      例：
+      ```
+      knex.select('email', 'name').from('users').where('id', 1).clearWhere()
+      ```
+      输出：
+      ```
+      select `email`, `name` from `users`
+      ```
+  - ##### clearOrder 
+     -.clearOrder()
+     清除查询中的所有订单子句，不包括子查询。
+      
+      例：
+      ```
+      knex.select().from('users').orderBy('name', 'desc').clearOrder()
+      ```
+      输出：
+      ```
+      select * from `users`
+      ```
+  - ##### distinct 
+     -.distinct()
+     去除重复的记录。
+     
+      例：
+      ```
+      // select distinct 'first_name' from customers
+      knex('customers')
+        .distinct('first_name', 'last_name')
+        .select()
+      ```
+      输出：
+      ```
+      select distinct `first_name`, `last_name` from `customers`
+      ```
+  - ##### groupBy 
+     -.groupBy(*names)
+     向查询添加一个group by子句。
+        例：
+        ```
+        knex('users').groupBy('count')
+        ```
+        输出：
+        ```
+        select * from `users` group by `count`
+        ```
+  - ##### groupByRaw 
+     -.groupByRaw(sql)
+     向查询添加一个原始的group by子句。
+     
+      例：    
+      ```
+      knex.select('year', knex.raw('SUM(profit)')).from('sales').groupByRaw('year WITH ROLLUP')
+      ```
+      输出：
+      ```
+      select `year`, SUM(profit) from `sales` group by year WITH ROLLUP
+      ```
+  - ##### orderBy 
+     -.orderBy(column, [direction])
+     向查询添加一个order by子句。
+     
+      例：
+      ```
+      knex('users').orderBy('name', 'desc')
+      ```
+      输出：
+      ```
+      select * from `users` order by `name` desc
+      ```
+  - ##### orderByRaw 
+     -.orderByRaw(sql)
+    通过raw子句向查询添加一个订单。
+    
+    例：
+    ```
+    knex.select('*').from('table').orderByRaw('col DESC NULLS LAST')
+    ```
+    输出：
+    ```
+    select * from `table` order by col DESC NULLS LAST
+    ```
