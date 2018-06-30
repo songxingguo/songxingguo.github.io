@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>将博客源码推送到github上 | 阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="post-title">
+          将博客源码推送到github上
+            <div class="post-tags">
+    		    
+              <a class="tag-link" href="/tags/Hexo/">Hexo</a> <a class="tag-link" href="/tags/github/">github</a>
+            
+    	      </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <article class="post">
+  
+
+  <header>
+    <div class="post-title mobile-post-title">
+      <h1>将博客源码推送到github上</h1>
+        <div class="post-tags">
+        
+          <a class="tag-link" href="/tags/Hexo/">Hexo</a> <a class="tag-link" href="/tags/github/">github</a>
+        
+        </div>
+    </div>
+    <div class="post-meta">
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-18</span>
+      
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/博客搭建/">博客搭建</a>
+          
+      
+      <!----------------------------------->
+        
+      <!----------------------------------->
+    </div>
+  </header>
+  
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前提"><span class="toc-text">前提</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建source-code分支"><span class="toc-text">新建source-code分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将源代码推送到-source-code-分支上"><span class="toc-text">将源代码推送到 source-code 分支上</span></a></li></ol>
+    </div>
+  </div>
+
+
+  <div class="post-content">
+    <ul>
+<li><h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p> 已经搭建了一个Hexo博客</p>
+</li>
+<li><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p> &emsp;&emsp;使用命令 <code>Hexo d</code> 推送到github上的是Hexo生成的静态文件，而如果我们 换一台电脑就无法编辑博客了，所以我们需要把Hexo博客的源码推送到github上，方便我们在其他电脑上也能进行博客的编辑。也保证博客文章不会丢失。(但需要注意的是github上的仓库是开源的，也就是说所有人的都可以看到你的源代码）</p>
+<a id="more"></a>
+</li>
+<li><h3 id="新建source-code分支"><a href="#新建source-code分支" class="headerlink" title="新建source-code分支"></a>新建source-code分支</h3><ul>
+<li><p>github上的博客仓库新建 <strong>source-code</strong> 分支<br><img src="http://p9myzkds7.bkt.clouddn.com/%E6%96%B0%E5%BB%BA%E5%88%86%E6%94%AF.png" alt="新建分支"></p>
+</li>
+<li><p>将 <strong>source-code</strong> 设置为默认分支<br><img src="http://p9myzkds7.bkt.clouddn.com/%E9%BB%98%E8%AE%A4%E5%88%86%E6%94%AF.png" alt="设置为默认分支"></p>
+</li>
+</ul>
+</li>
+<li><h3 id="将源代码推送到-source-code-分支上"><a href="#将源代码推送到-source-code-分支上" class="headerlink" title="将源代码推送到 source-code 分支上"></a>将源代码推送到 <strong>source-code</strong> 分支上</h3><ul>
+<li>初始化git仓库<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>关联远程仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/songxingguo/hexoblog.github.io.git</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>从远程分支拉取代码,并查看远程分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看远程分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch --remote</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>查看本地分支<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>检出远程分支中的 <strong>source-code</strong> 分支<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout origin/source-code</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>进入博客根路径，然后执行下面代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git status </span><br><span class="line">git add -A</span><br><span class="line">git commit -m &quot;source code&quot;</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>源码推送到了github的 <strong>source-code</strong> 分支上了</p>
+</li>
+</ul>
+
+  </div>
+  <div class="post-footer">the end</div>
+</article>
+
+          
+  <nav class="pagination post-nav">
+    
+      <a href="/2018/06/20/flex-layout/">
+        <span class="prev-post"><i class="iconfont icon-back"></i>Flex布局</span>
+      </a>
+    
+    
+      <a href="/2018/06/15/WeChat-Basics/">
+        <span class="next-post">微信小程序基础学习<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+  
+
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+
+  <script src="/js/ztopic.js"></script>
+</body>
+</html>
