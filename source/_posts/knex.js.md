@@ -714,6 +714,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
  - ##### leftJoin 
     -.leftJoin(table, ~mixed~)
+    
     例：  
     ```
     knex.select('*').from('users').leftJoin('accounts', 'users.id', 'accounts.user_id')
@@ -757,6 +758,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
  - ##### rightJoin 
     — .rightJoin(table, ~mixed~)
+    
     例：
     ```   
     knex.select('*').from('users').rightJoin('accounts', 'users.id', 'accounts.user_id')
@@ -832,6 +834,10 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     输出：
     ```
     select * from `users` cross join `accounts`
+    ```
+    ---
+    例：
+    ```
     knex.select('*').from('users').crossJoin('accounts', 'users.id', 'accounts.user_id')
     ```
     输出：
@@ -868,4 +874,4 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     输出：
     ```
     select * from `accounts` inner join natural full join table1 where `id` = 1   
-    ```   
+    ```
