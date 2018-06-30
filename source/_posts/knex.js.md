@@ -420,3 +420,187 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select * from `accounts` where `id` not in (select `id` from `users` where not `votes` > 100 and `status` = 'active' or `name` = 'John')
     ```
+ - ##### whereIn 
+   — .whereIn(column|columns, array|callback|builder) / .orWhereIn   
+   
+   .where（'id'，'in'，obj）的简写，.whereIn和.orWhereIn方法在查询中添加“where in”子句。
+   
+    例：
+    ```
+    knex.select('name').from('users')
+    .whereIn('id', [1, 2, 3])
+    .orWhereIn('id', [4, 5, 6])
+    ```
+    输出：
+    ```
+    select `name` from `users` where `id` in (1, 2, 3) or `id` in (4, 5, 6)
+    ```
+    ---
+    例：
+    ```
+    knex.select('name').from('users')
+    .whereIn('account_id', function() {
+      this.select('id').from('accounts');
+    })
+    ```
+    输出：
+    ```
+    select `name` from `users` where `account_id` in (select `id` from `accounts`)
+    ```
+    ---
+    例：
+    ```
+    var subquery = knex.select('id').from('accounts');
+
+    knex.select('name').from('users')
+      .whereIn('account_id', subquery)
+    ```
+    输出：
+    ```
+    select `name` from `users` where `account_id` in (select `id` from `accounts`)
+    ```
+    ---
+    例：
+    ```
+    knex.select('name').from('users')
+    .whereIn(['account_id', 'email'], [[3, 'test3@example.com'], [4, 'test4@example.com']])
+    ```
+    输出：
+    ```
+    select `name` from `users` where (`account_id`, `email`) in ((3, 'test3@example.com'), (4, 'test4@example.com'))
+    ```
+    ---
+    例：
+    ```
+    knex.select('name').from('users')
+    .whereIn(['account_id', 'email'], knex.select('id', 'email').from('accounts'))
+    ```
+    输出：
+    ```
+    select `name` from `users` where (`account_id`, `email`) in (select `id`, `email` from `accounts`)
+    ```
+  - ##### whereNotIn 
+     — .whereNotIn(column, array|callback|builder) / .orWhereNotIn
+     
+     例：
+     ```
+      knex('users').whereNotIn('id', [1, 2, 3])
+     ```
+     输出：
+     ```
+      select * from `users` where `id` not in (1, 2, 3)
+     ```
+    ---     
+    例：
+    ```
+    knex('users').where('name', 'like', '%Test%').orWhereNotIn('id', [1, 2, 3])
+    ```
+    输出：
+    ```
+    select * from `users` where `name` like '%Test%' or `id` not in (1, 2, 3)
+    ```
+  - ##### whereNull 
+    -.whereNull(column) / .orWhereNull
+    
+    例：
+    ```
+     knex('users').whereNull('updated_at')
+    ```
+    输出：
+    ```
+    select * from `users` where `updated_at` is null
+    ```
+  - ##### whereNotNull 
+     -.whereNotNull(column) / .orWhereNotNull
+     
+      例：
+      ```
+      knex('users').whereNotNull('created_at')
+      ```
+      输出：
+      ```
+      select * from `users` where `created_at` is not null
+      ```
+  - ##### WhereExists 
+     -.whereExists(builder | callback) / .orWhereExists
+     
+    例：
+    ```
+    knex('users').whereExists(function() {
+      this.select('*').from('accounts').whereRaw('users.account_id = accounts.id');
+    })
+    ```
+    输出：
+    ```
+    select * from `users` where exists (select * from `accounts` where users.account_id = accounts.id)
+    ```
+    ---
+    例：
+    ```
+  knex('users').whereExists(knex.select('*').from('accounts').whereRaw('users.account_id = accounts.id'))
+    ```
+    输出：
+    ```
+  select * from `users` where exists (select * from `accounts` where users.account_id = accounts.id)
+    ```
+  - ##### whereNotExists 
+     — .whereNotExists(builder | callback) / .orWhereNotExists
+
+      例：
+      ```
+      knex('users').whereNotExists(function() {
+        this.select('*').from('accounts').whereRaw('users.account_id = accounts.id');
+      })
+      ```
+      输出：
+      ```
+      select * from `users` where not exists (select * from `accounts` where users.account_id = accounts.id)
+      ```
+      ---
+      例：
+      ```
+      knex('users').whereNotExists(knex.select('*').from('accounts').whereRaw('users.account_id = accounts.id'))
+      ```
+      输出：
+      ```
+      select * from `users` where not exists (select * from `accounts` where users.account_id = accounts.id)
+      ```
+  - ##### whereBetween 
+    — .whereBetween(column, range) / .orWhereBetween
+
+      例：
+      ```
+      knex('users').whereBetween('votes', [1, 100])
+      ```
+      输出：
+      ```
+      select * from `users` where `votes` between 1 and 100
+      ```
+
+  - ##### whereNotBetween 
+    — .whereNotBetween(column, range) / .orWhereNotBetween
+
+      例：
+      ```
+      knex('users').whereNotBetween('votes', [1, 100])
+      ```
+      输出：
+      ```
+      select * from `users` where `votes` not between 1 and 100
+      ```
+
+  - ##### whereRaw 
+     — .whereRaw(query, [bindings])
+
+       .where(knex.raw(query))的简写.
+
+      例：
+      ```
+      knex('users').whereRaw('id = ?', [1])
+      ```
+      输出：
+      ```
+      select * from `users` where id = 1
+      Join Me
+      ```
+    
