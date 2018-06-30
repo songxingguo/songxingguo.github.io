@@ -1168,6 +1168,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
       ```
       select * from `users`
       ```
+---
 - #### distinct 
    -.distinct()
    去除重复的记录。
@@ -1283,6 +1284,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select * from `users` where `last_name` is null union all select * from `users` where `first_name` is null
     ```
+---
 - #### insert 
    -.insert(data, [returning])
    
@@ -1335,6 +1337,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     knex('coords').insert([{x: 20}, {y: 30}, {x: 10, y: 20}])
     // insert into `coords` (`x`, `y`) values (20, NULL), (NULL, 30), (10, 20)"
     ```
+---
 - #### returning 
  -.returning(column) / .returning([column1, column2, ...])
    
@@ -1375,6 +1378,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     insert into `books` (`title`) values ('Slaughterhouse Five')
     ```
+---
 - #### update 
   -.update(data, [returning]) / .update(key, value, [returning])
     创建更新查询，根据其他查询约束更新属性哈希值或键/值对。使用受影响的查询行数解析promise /履行回调。如果要更新的键的值未定义，则忽略该键。
@@ -1402,6 +1406,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     update `books` set `title` = 'Slaughterhouse Five'
     ```
+---
 - #### del / delete 
    -.del()
    别名为del，因为delete是JavaScript中的保留字，此方法将根据查询中指定的其他条件删除一行或多行。使用受影响的查询行数解析promise /履行回调。
@@ -1416,6 +1421,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     delete from `accounts` where `activated` = false
     ```
+---
 - #### transacting 
    -.transacting(transactionObj)
    由knex.transaction使用，交易方法可链接到任何查询，并将希望加入查询的对象作为交易的一部分传递给。
@@ -1468,6 +1474,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
         ```
         select * from `tableName` lock in share mode
         ```
+---
 - #### count 
    -.count(column|columns|raw)
    
@@ -1537,6 +1544,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select count(distinct `active`) from `users`
     ```
+---
 - #### min 
    -.min(column|columns|raw)
    
@@ -1595,6 +1603,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select min(`age`) from `users`
     ```
+---
 - #### max 
    -.max(column|columns|raw)
    获取指定列或列数组的最大值（请注意，有些驱动程序不支持多列）。还接受原始表达式。
@@ -1652,6 +1661,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select max(`age`) from `users`
     ```
+---
 - #### sum 
    -.sum(column|columns|raw)
    检索给定列或列数组的值的总和（请注意，某些驱动程序不支持多列）。还接受原始表达式。
@@ -1719,6 +1729,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select sum(distinct `products`) from `users`
     ```
+---
 -  #### avg 
     -.avg(column|columns|raw)
     检索给定列或列数组的值的平均值（请注意，有些驱动程序不支持多列）。还接受原始表达式。
@@ -1787,6 +1798,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select avg(distinct `age`) from `users`
     ```
+---
 - #### increment 
    -.increment(column, amount)
    按指定的量增加列值。
@@ -1813,6 +1825,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     update `accounts` set `balance` = `balance` - 5 where `userid` = 1
     ```
+---
 -  #### truncate 
    -.truncate()
    截断当前表。
