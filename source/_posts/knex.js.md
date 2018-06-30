@@ -11,10 +11,10 @@ date: 2018-06-30 08:07:00
  &emsp;&emsp;Knex.js是为Postgres，MSSQL，MySQL，MariaDB，SQLite3，Oracle和Amazon Redshift设计的“包含电池”SQL查询构建器，其设计灵活，便于携带并且使用起来非常有趣。它具有传统的节点样式回调以及用于清洁异步流控制的承诺接口，流接口，全功能查询和模式构建器，事务支持（带保存点），连接池 以及不同查询客户和方言之间的标准化响应。[传送门](https://knexjs.org/#Installation-node)
   
 
----
-### 支持
 
-&emsp;&emsp;Knex的主要目标环境是Node.js，您需要安装该knex库，然后安装适当的数据库库：pg适用于PostgreSQL和Amazon Redshift，mysql适用于MySQL或MariaDB，sqlite3适用于SQLite3或mssql适用于MSSQL。
+- #### 支持
+
+  &emsp;&emsp;Knex的主要目标环境是Node.js，您需要安装该knex库，然后安装适当的数据库库：pg适用于PostgreSQL和Amazon Redshift，mysql适用于MySQL或MariaDB，sqlite3适用于SQLite3或mssql适用于MSSQL。
 
 ---
 ### 安装
@@ -33,24 +33,23 @@ $ npm install mssql
 ```
 <!-- more -->
 
----
-### 初始数据库
+  - #### 初始数据库
 
-&emsp;&emsp;该knex模块本身是一个为Knex提供配置对象的函数，它接受一些参数。该client参数是必需的，并确定哪个客户端适配器将与该库一起使用。
+  &emsp;&emsp;该knex模块本身是一个为Knex提供配置对象的函数，它接受一些参数。该client参数是必需的，并确定哪个客户端适配器将与该库一起使用。
 
-mysql数据库初始化
+  mysql数据库初始化
 
-```
-var knex = require('knex')({
-  client: 'mysql',
-  connection: {
-    host : '127.0.0.1',
-    user : 'your_database_user',
-    password : 'your_database_password',
-    database : 'myapp_test'
-  }
-});
-```
+  ```
+  var knex = require('knex')({
+    client: 'mysql',
+    connection: {
+      host : '127.0.0.1',
+      user : 'your_database_user',
+      password : 'your_database_password',
+      database : 'myapp_test'
+    }
+  });
+  ```
 ---
 ### knex 查询构造器
 
