@@ -603,4 +603,269 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
       select * from `users` where id = 1
       Join Me
       ```
+      
+- #### Join 语句
+
+ 提供了几种帮助构建连接的方法。
+ 
+ - ##### join 
+    — .join(table, first, [operator], second)
     
+    连接构建器可用于指定表之间的连接，第一个参数是连接表，后三个参数分别是第一个连接列，连接操作符和第二个连接列。
+
+    例：
+    ```
+    knex('users')
+    .join('contacts', 'users.id', '=', 'contacts.user_id')
+    .select('users.id', 'contacts.phone')
+    ```
+    输出：
+    ```
+    select `users`.`id`, `contacts`.`phone` from `users` inner join `contacts` on `users`.`id` = `contacts`.`user_id`
+    ```
+    ---
+    例：
+    ```
+    knex('users')
+    .join('contacts', 'users.id', 'contacts.user_id')
+    .select('users.id', 'contacts.phone')
+    ```
+    输出：
+    ```
+    select `users`.`id`, `contacts`.`phone` from `users` inner join `contacts` on `users`.`id` = `contacts`.`user_id` 
+    ```
+    对于分组连接，指定一个函数作为连接查询的第二个参数，并使用on具有orOn或andOn创建联接所用括号分组。
+  
+    例：
+    ```
+    knex.select('*').from('users').join('accounts', function() {
+      this.on('accounts.id', '=', 'users.account_id').orOn('accounts.owner_id', '=', 'users.id')
+    })
+    ```
+    输出：
+    ```
+    select * from `users` inner join `accounts` on `accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`
+    ```
+    对于加入语句嵌套，指定一个函数作为第一个参数on，orOn或andOn
+    
+    例：
+    ```
+    knex.select('*').from('users').join('accounts', function() {
+      this.on(function() {
+        this.on('accounts.id', '=', 'users.account_id')
+        this.orOn('accounts.owner_id', '=', 'users.id')
+      })
+    })
+    ```
+    输出：
+    ```
+    select * from `users` inner join `accounts` on (`accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`)
+    ```
+    也可以使用对象来表示连接语法。
+   
+    例：
+    ```
+    knex.select('*').from('users').join('accounts', {'accounts.id': 'users.account_id'})
+    ```
+    输出：
+    ```
+    select * from `users` inner join `accounts` on `accounts`.`id` = `users`.`account_id`
+    ```
+    如果需要在连接而不是列中使用文字值（字符串，数字或布尔值），请使用knex.raw。
+    
+    例：
+    ```
+    knex.select('*').from('users').join('accounts', 'accounts.type', knex.raw('?', ['admin']))
+    ```
+    输出：
+    ```
+    select * from `users` inner join `accounts` on `accounts`.`type` = 'admin'
+    ```
+ - ##### innerJoin 
+    -.innerJoin(table, ~mixed~)
+    
+    例：
+    ```
+    knex.from('users').innerJoin('accounts', 'users.id', 'accounts.user_id')
+    ```
+    输出：
+    ```
+    select * from `users` inner join `accounts` on `users`.`id` = `accounts`.`user_id`
+    ```
+    ---
+    例：
+    ```
+    knex.table('users').innerJoin('accounts', 'users.id', '=', 'accounts.user_id')
+    ```
+    输出：
+    ```
+    select * from `users` inner join `accounts` on `users`.`id` = `accounts`.`user_id`
+    ```
+    ---
+    例：
+    ```
+    knex('users').innerJoin('accounts', function() {
+      this.on('accounts.id', '=', 'users.account_id').orOn('accounts.owner_id', '=', 'users.id')
+    })
+    ```
+    输出：
+    ```
+    select * from `users` inner join `accounts` on `accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`
+    ```
+ - ##### leftJoin 
+    -.leftJoin(table, ~mixed~)
+    例：  
+    ```
+    knex.select('*').from('users').leftJoin('accounts', 'users.id', 'accounts.user_id')
+    ```
+    输出：
+    ```
+    select * from `users` left join `accounts` on `users`.`id` = `accounts`.`user_id`
+    ```
+    ---
+    例：
+    ```
+    knex.select('*').from('users').leftJoin('accounts', function() {
+      this.on('accounts.id', '=', 'users.account_id').orOn('accounts.owner_id', '=', 'users.id')
+    })
+    ```
+    输出：
+    ```
+    select * from `users` left join `accounts` on `accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`
+    ```
+ - ##### leftOuterJoin 
+    -.leftOuterJoin(table, ~mixed~)
+    
+    例：
+    ```    
+    knex.select('*').from('users').leftOuterJoin('accounts', 'users.id', 'accounts.user_id')
+    ```
+    输出：
+    ```
+    select * from `users` left outer join `accounts` on `users`.`id` = `accounts`.`user_id`
+    ```
+    ---
+    例：
+    ```
+    knex.select('*').from('users').leftOuterJoin('accounts', function() {
+      this.on('accounts.id', '=', 'users.account_id').orOn('accounts.owner_id', '=', 'users.id')
+    })
+    ```
+    输出：
+    ```
+    select * from `users` left outer join `accounts` on `accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`
+    ```
+ - ##### rightJoin 
+    — .rightJoin(table, ~mixed~)
+    例：
+    ```   
+    knex.select('*').from('users').rightJoin('accounts', 'users.id', 'accounts.user_id')
+    ```
+    输出：
+    ```
+    select * from `users` right join `accounts` on `users`.`id` = `accounts`.`user_id`
+    ```
+    ---
+    例：
+    ```
+    knex.select('*').from('users').rightJoin('accounts', function() {
+      this.on('accounts.id', '=', 'users.account_id').orOn('accounts.owner_id', '=', 'users.id')
+    })
+    ```
+    输出：
+    ```
+    select * from `users` right join `accounts` on `accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`
+    ```
+ - ##### rightOuterJoin 
+    — .rightOuterJoin(table, ~mixed~) 
+    
+    例：
+    ```
+    knex.select('*').from('users').rightOuterJoin('accounts', 'users.id', 'accounts.user_id')
+    ```
+    输出：
+    ```
+    select * from `users` right outer join `accounts` on `users`.`id` = `accounts`.`user_id`
+    ```
+    ---
+    例：
+    ```
+    knex.select('*').from('users').rightOuterJoin('accounts', function() {
+      this.on('accounts.id', '=', 'users.account_id').orOn('accounts.owner_id', '=', 'users.id')
+    })
+    ```
+    输出：
+    ```
+    select * from `users` right outer join `accounts` on `accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`
+    ```
+ - ##### fullOuterJoin 
+    -.fullOuterJoin(table, ~mixed~)
+    
+    例：
+    ```
+    knex.select('*').from('users').fullOuterJoin('accounts', 'users.id', 'accounts.user_id')
+    ```
+    输出：
+    ```
+    select * from `users` full outer join `accounts` on `users`.`id` = `accounts`.`user_id`
+    ```
+    ---
+    例：
+    ```
+    knex.select('*').from('users').fullOuterJoin('accounts', function() {
+      this.on('accounts.id', '=', 'users.account_id').orOn('accounts.owner_id', '=', 'users.id')
+    })
+    ```
+    输出：
+    ```
+    select * from `users` full outer join `accounts` on `accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`
+    ```
+ - #### crossJoin 
+    -.crossJoin(table, ~mixed~)
+    
+    交叉连接条件仅在MySQL和SQLite3中受支持。对于连接条件而不是使用innerJoin。
+
+    例：
+    ```
+    knex.select('*').from('users').crossJoin('accounts')
+    ```
+    输出：
+    ```
+    select * from `users` cross join `accounts`
+    knex.select('*').from('users').crossJoin('accounts', 'users.id', 'accounts.user_id')
+    ```
+    输出：
+    ```
+    select * from `users` cross join `accounts` on `users`.`id` = `accounts`.`user_id`
+    ```
+    ---
+    例：
+    ```
+    knex.select('*').from('users').crossJoin('accounts', function() {
+      this.on('accounts.id', '=', 'users.account_id').orOn('accounts.owner_id', '=', 'users.id')
+    })
+    ```
+    输出：
+    ```
+    select * from `users` cross join `accounts` on `accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`
+    ```
+ - ##### joinRaw 
+    -.joinRaw(sql, [bindings])   
+    
+    例：
+    ```
+    knex.select('*').from('accounts').joinRaw('natural full join table1').where('id', 1)
+    ```
+    输出：
+    ```
+    select * from `accounts` natural full join table1 where `id` = 1
+    ```
+    ---
+    例：
+    ```
+    knex.select('*').from('accounts').join(knex.raw('natural full join table1')).where('id', 1)
+    ```
+    输出：
+    ```
+    select * from `accounts` inner join natural full join table1 where `id` = 1   
+    ```   
