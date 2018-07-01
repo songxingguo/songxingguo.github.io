@@ -223,7 +223,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
 - #### withSchema 
    — .withSchema([schemaName])
 
-  指定要用作表名前缀的模式。多表查询。
+  指定要用作表名前缀的模式。
     
     例：
     ```
