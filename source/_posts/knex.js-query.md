@@ -31,7 +31,7 @@ $ npm install strong-oracle
 $ npm install oracle
 $ npm install mssql
 ```
-<!-- more -->
+  <!-- more -->
 
   - #### 初始数据库
 

@@ -27,6 +27,8 @@ date: 2018-07-01 16:22:00
     ```
     select count(*) as user_count, status from `users` where 1 or status <> 1 group by `status`
     ```
+    <!-- more -->
+
     位置绑定?被解释为值并被??解释为标识符。
     
     例：
@@ -37,8 +39,6 @@ date: 2018-07-01 16:22:00
     ```
     select * from `users` where `user`.`name` = 1
     ```
-<!-- more -->
-
     命名的绑定例如:name被解释为值并被:name:解释为标识符。只要值不是任何值，就会处理命名绑定undefined。
 
     例：
