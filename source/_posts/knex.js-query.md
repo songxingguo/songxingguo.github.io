@@ -1,4 +1,4 @@
-title: knex.js中文文档
+title: knex.js中文文档-查询
 author: songxingguo
 tags:
   - knexjs
