@@ -37,6 +37,8 @@ date: 2018-07-01 16:22:00
     ```
     select * from `users` where `user`.`name` = 1
     ```
+<!-- more -->
+
     命名的绑定例如:name被解释为值并被:name:解释为标识符。只要值不是任何值，就会处理命名绑定undefined。
 
     例：
@@ -124,6 +126,7 @@ date: 2018-07-01 16:22:00
     ```
     select count(*) as user_count, status from `users` where 1 or status <> 1 group by `status`
     ```
+
 - #### Raw Queries
 
     该knex.raw也可用于构建一个完整的查询并执行它，作为一个标准的查询生成器的查询将被执行。这样做的好处是它使用连接池并为不同的客户端库提供标准接口。
