@@ -3,7 +3,6 @@ author: songxingguo
 tags:
   - React
 categories:
-  - 技术学习
   - 前端技术
 date: 2018-03-26 16:44:00
 ---

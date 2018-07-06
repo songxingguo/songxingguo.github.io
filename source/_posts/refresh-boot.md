@@ -2,7 +2,7 @@ title: 小米MIX 2线刷步骤
 author: songxingguo
 tags: []
 categories:
-  - 技术学习
+  - 操作系统
 date: 2018-06-29 09:40:00
 ---
 ### 刷机背景

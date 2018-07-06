@@ -3,7 +3,6 @@ author: songxingguo
 tags:
   - knexjs
 categories:
-  - 技术学习
   - 数据库
 date: 2018-07-01 15:38:00
 ---

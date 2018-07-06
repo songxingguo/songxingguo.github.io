@@ -3,7 +3,6 @@ author: songxingguo
 tags:
   - WeChat
 categories:
-  - 技术学习
   - 微信小程序
 date: 2018-06-15 16:45:00
 ---

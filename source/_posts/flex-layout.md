@@ -2,9 +2,7 @@ title: Flex布局
 tags:
   - Flex
 categories:
-  - 技术学习
   - 前端技术
-  - ''
 author: songxingguo
 date: 2018-06-20 14:37:00
 ---
