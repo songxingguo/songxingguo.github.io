@@ -30,7 +30,7 @@ date: 2018-06-18 15:49:00
   ```
   git init
   ```
-- 关联远程仓库
+ - 关联远程仓库
   ```
   git remote add origin https://github.com/songxingguo/hexoblog.github.io.git
   ```
@@ -42,17 +42,14 @@ date: 2018-06-18 15:49:00
  ```
  git branch --remote
  ```
- 
  - 查看本地分支
  ```
  git branch
  ```
- 
  - 检出远程分支中的 **source-code** 分支
  ```
  git checkout origin/source-code
  ```
- 
  - 进入博客根路径，然后执行下面代码
   ```
   git status 
@@ -60,4 +57,5 @@ date: 2018-06-18 15:49:00
   git commit -m "source code"
   git push
   ```
+  
  - 源码推送到了github的 **source-code** 分支上了
