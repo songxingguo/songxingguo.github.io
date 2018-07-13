@@ -35,3 +35,8 @@ date: 2018-07-13 18:23:00
   ![停止进程](http://p9myzkds7.bkt.clouddn.com/windows/%E5%81%9C%E6%AD%A2%E8%BF%9B%E7%A8%8B.png)
   
   
+ ---
+ ### Windows 开机启动 hexo server
+
+  [教程链接附上](https://blog.csdn.net/upc_xbt/article/details/54020135)
+
