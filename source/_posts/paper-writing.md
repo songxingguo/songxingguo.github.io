@@ -258,6 +258,13 @@ date: 2018-07-11 08:01:00
   2、`双击摘要页码`，点击 `设置页码`，选择 `样式` 和 `本节`，点击 `确认`。
   
     ![设置页码](http://p9myzkds7.bkt.clouddn.com/paper/%E8%AE%BE%E7%BD%AE%E9%A1%B5%E7%A0%81.png)
+
+---
+- 设置页边距
+
+  点击 `页面布局`， 然后点击 `页边距`,再选择 `适中`。
+
+  ![设置页边距](http://p9myzkds7.bkt.clouddn.com/paper/%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2%E8%BE%B9%E8%B7%9D.png)
     
 ---
 ### 总结
