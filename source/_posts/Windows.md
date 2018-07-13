@@ -12,7 +12,7 @@ date: 2018-07-13 18:23:00
 
 - 复制被占用的文件路径
   
- 复制路径：
+ 复制路径。
  
  ![复制文件路径](http://p9myzkds7.bkt.clouddn.com/windows/%E5%A4%8D%E5%88%B6%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84%E8%B7%AF%E5%BE%84.png)
  
@@ -39,4 +39,3 @@ date: 2018-07-13 18:23:00
  ### Windows 开机启动 hexo server
 
   [教程链接附上](https://blog.csdn.net/upc_xbt/article/details/54020135)
-
