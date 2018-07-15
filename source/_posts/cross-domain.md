@@ -33,7 +33,7 @@ date: 2018-07-15 07:48:00
   
    跨域是JavaScript出于安全方面的考虑，不允许跨域调用其他页面对象。是JavaScript同源策略的限制。
    
-  - 跨域的类型
+  - 常见跨域场景
   
    ![跨域类型](http://p9myzkds7.bkt.clouddn.com/cross-domain/%E8%B7%A8%E5%9F%9F%E7%9A%84%E7%B1%BB%E5%9E%8B.jpg)
    
@@ -60,6 +60,65 @@ date: 2018-07-15 07:48:00
  ---
  #### **方法三： XHR2**
  
+  跨域资源共享（CORS）
+  
+普通跨域请求：只服务端设置Access-Control-Allow-Origin即可，前端无须设置。
+带cookie请求：前后端都需要设置字段，另外需注意：所带cookie为跨域请求接口所在域的cookie，而非当前页。
+目前，所有浏览器都支持该功能(IE8+：IE8/9需要使用XDomainRequest对象来支持CORS）)，CORS也已经成为主流的跨域解决方案。
+ 
  ![XHR2跨域解决](http://p9myzkds7.bkt.clouddn.com/cross-domain/XHR2%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3.jpg) 
   `图片来自慕课网`
- 
+
+---
+#### **方法四： nginx代理**
+
+- nginx配置解决iconfont跨域
+
+   浏览器跨域访问js、css、img等常规静态资源被同源策略许可，但iconfont字体文件(eot|otf|ttf|woff|svg)例外，此时可在nginx的静态资源服务器中加入以下配置
+
+```
+location / {
+  add_header Access-Control-Allow-Origin *;
+}
+```
+- nginx反向代理接口跨域
+
+   跨域原理： 同源策略是浏览器的安全策略，不是HTTP协议的一部分。服务器端调用HTTP接口只是使用HTTP协议，不会执行JS脚本，不需要同源策略，也就不存在跨越问题。
+
+   实现思路：通过nginx配置一个代理服务器（域名与domain1相同，端口不同）做跳板机，反向代理访问domain2接口，并且可以顺便修改cookie中domain信息，方便当前域cookie写入，实现跨域登录。
+
+  nginx具体配置：
+```
+#proxy服务器
+server {
+    listen       81;
+    server_name  www.domain1.com;
+
+    location / {
+        proxy_pass   http://www.domain2.com:8080;  #反向代理
+        proxy_cookie_domain www.domain2.com www.domain1.com; #修改cookie里域名
+        index  index.html index.htm;
+
+        # 当用webpack-dev-server等中间件代理接口访问nignx时，此时无浏览器参与，故没有同源限制，下面的跨域配置可不启用
+        add_header Access-Control-Allow-Origin http://www.domain1.com;  #当前端只跨域不带cookie时，可为*
+        add_header Access-Control-Allow-Credentials true;
+    }
+}
+```
+---
+#### **方法五：nodejs中间件** 
+
+node中间件实现跨域代理，原理大致与nginx相同，都是通过启一个代理服务器，实现数据的转发。
+
+---
+#### **方法六：WebSocket**
+
+WebSocket protocol是HTML5一种新的协议。它实现了浏览器与服务器全双工通信，同时允许跨域通讯，是server push技术的一种很好的实现。原生WebSocket API使用起来不太方便，我们使用Socket.io，它很好地封装了webSocket接口，提供了更简单、灵活的接口，也对不支持webSocket的浏览器提供了向下兼容。
+
+---
+### 参考教程
+
+[处理跨域方式 慕课网](https://www.imooc.com/video/6238)
+
+[前端常见跨域解决方案（全）](https://www.cnblogs.com/roam/p/7520433.html)
+
