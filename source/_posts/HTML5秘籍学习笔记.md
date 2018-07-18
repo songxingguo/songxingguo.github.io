@@ -101,4 +101,91 @@ date: 2018-07-16 11:16:00
    
    虽然文档类型声明主要目的是告诉浏览器去做什么，但其他代理也可以检测该声明。比如： HTML5验证器、搜索引擎、设计工具，还有人-在想知道你当初在页面中想写什么样的标记时。
    
-    
+ - 字符编码
+ 
+   字符编码是一种标准，计算机根据它把文本转换成保存在文档中的字节序列（或者在打开文件时将字节序列转换成文本形式）。由于历史原因，现在的编码标准有很多种。
+
+   但实际上英文网站今天都使用一种叫UTF-8的编码，这种编码简洁、转换速度快，而且支持任何你想要的非英文字符。
+
+   一般来说，经过配置的Web服务器会告诉浏览器它提供的网页采用了什么编码。
+
+   在HTML5文档中添加字符编码信息，只要在 `<head>` 区块的最开始处（如果没有添加 `<head>` 元素，则是紧跟在文档类型声明之后）添加相应的 `<meta>` 元素。
+
+   ```
+   <head>
+     <meta charset="utf-8">
+     <title>A Tiny HTML Document/title>
+   </head>
+   ```
+ - 页面语言
+ 
+   指明网页中使用的自然语言是一种好习惯。有时候对搜索引擎可以通过它来筛选结果。
+   给内容指定语言，可以在任何元素上使用lang属性，并为该属性指定相应语言的语言代码（比如， en表示英语）。各国语言代码可以在这里查到：http://people.w3.org/tishida/utils/subtags/。
+   
+   为整个页面添加语言说明的最简单方式，就是为 `<html>` 元素指定lang属性：
+   
+   ```
+   <html lang="en">
+   ```
+   如果页面中包含多种语言的文本，可以为文本中不同的区块指定lang属性，指定 该区块中文本的语言。 
+ 
+ - 添加样式表
+ 
+   指定想要使用的CSS样式表时，需要在HTML5文档的 `<head>` 区块中添加 `<link>` 元素， 例如： 
+  
+   ```
+   <head>
+     <meta charset="utf-8">
+     <title>A Tiny HTML Document/title>
+     <link href="styles.css" rel="stylesheet">
+   </head>
+   ```
+   CSS是网页中唯一可用的样式表语言，所以网页中过去要求的type="text/css"属性就没有必要了。
+   
+ - 添加JavaScript
+ 
+   下面就是一个引入外部JavaScript代码的文件示例：
+ 
+    ```
+     <head>
+       <meta charset="utf-8">
+       <title>A Tiny HTML Document/title>
+       <script src="script.js"></script>
+     </head>
+     ```
+   没有必要加上language="JavaScript"属性，浏览器会假定你想要使用JavaScript，除非你想使用其他脚本语言。
+   
+   即使是引用外部JavaScript文件，也不能忘了后面的 `</script>` 标签。假如你不写这个标签或者使用空元素语法想缩短标记，页面将不会执行加载脚本。
+   
+   如果你在Inernet Explorer中花大量的时间测试包含JavaScript页面，还应该在 `<head>` 区块中包含一行特殊的注释，叫做Web标志（mark of the web）；这行注释要放在指定字符编码的元数据便签后面，如下所示：
+   
+   ```
+     <head>
+       <meta charset="utf-8">
+       <!-- saved from url=(0014)about:internet -->
+       <title>A Tiny HTML Document/title>
+       <script src="script.js"></script>
+     </head>
+     ```
+   这条注释告诉Internet Explorer将页面视为从远程网站上下载下来的。否则，IE会切换到一种特殊的锁定模式，弹出一条安全警告，在你点了“允许阻止内容”按钮后才会执行JavaScript代码。
+   
+   其他浏览器都会忽略这个“Web标志”注释，对远程站点和本地文件使用相同的安全设置。  
+  
+ - 最终的HTML5文档
+ 
+    ```
+    <!DOCTYPE html>
+    <html lang="en">    
+      <head>
+         <meta charset="utf-8">
+         <title>A Tiny HTML Document/title>
+         <link href="styles.css" rel="stylesheet">
+         <script src="script.js"></script>
+       </head>
+       <body>
+         <p>Let's rock the browser, HTML5 style.</p>
+       </body>
+    </html>
+    ```
+   虽然这不再是一个最短的HTML5文档，但以它为基础可以构建出任何网页。
+  
