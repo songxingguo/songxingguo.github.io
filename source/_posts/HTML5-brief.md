@@ -1,4 +1,4 @@
-title: 《HTML5秘籍》学习笔记-简介
+title: 《HTML5秘籍》学习笔记-HTML5简介
 author: songxingguo
 tags:
   - ''
