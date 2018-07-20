@@ -62,3 +62,19 @@ date: 2018-07-20 11:15:00
  - 工具
  
   工具支持和Java及.NET平台一样好。TypeScript代码分析器会在输入时警告出现的错误，脚手架和部署工具（Angualr CLI）会帮你编写样板代码和配置脚本。
+ 
+ - 代码简洁
+  
+  使用TypeScript类和皆接口，使代码更简洁并易于阅读和编写。
+  
+ - 编译器
+  
+  TypeScript会生成人类可以阅读的JavaScript。TypeScript代码可以编译成ES3、ES5和ES6版本的JavaScript。特定于Angualr代码的（不要与TypeScript编译器混淆）提前（Aot, Ahead-of-time）编译，消除了将编译器与应用程序打包在一起的必要性，这进一步降低了框架的开销。
+ 
+ - 服务器渲染
+  
+  在线下的一个构建步骤中，Angular Universal会将应用程序转换成HTML,这可以用于服务器的渲染，从而大大提高搜索引擎索引和SEO。
+ 
+ - 现代UI组件
+ 
+  一个现代风格的UI库（Angular Material 2）正处在开发过程中。
