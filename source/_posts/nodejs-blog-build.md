@@ -1,7 +1,11 @@
 title: NodeJS博客搭建
 author: songxingguo
-date: 2018-06-13 11:14:11
 tags:
+  - Node
+  - ''
+categories:
+  - 博客搭建
+date: 2018-06-13 11:14:00
 ---
 ### pm2启动服务
 
