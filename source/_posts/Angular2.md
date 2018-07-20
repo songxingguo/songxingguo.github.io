@@ -1,6 +1,7 @@
 title: 《Angular 2 开发实战》学习笔记-前言
 tags:
-  - Angular
+  - Angular 2
+  - ''
 categories:
   - 前端技术
   - 读书笔记

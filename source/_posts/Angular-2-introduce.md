@@ -1,7 +1,11 @@
 title: 《Angular 2开发实战》-Angular 2介绍
 author: songxingguo
-date: 2018-07-20 12:20:46
 tags:
+  - Angular 2
+categories:
+  - 前端技术
+  - 读书笔记
+date: 2018-07-20 12:20:00
 ---
 ### Angular 2介绍
 
