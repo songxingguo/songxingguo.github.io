@@ -1,0 +1,18 @@
+{
+  "apps": [
+    {
+      "name": "website",
+      "script": "hexo s",
+      "cwd": "./",
+      "watch": [
+        "bin",
+        "config",
+        "routes",
+        "views"
+      ],
+      "error_file": "./logs/website-err.log",
+      "out_file": "./logs/website-out.log",
+      "log_date_format": "YYYY-MM-DD HH:mm Z"
+    }
+  ]
+}
