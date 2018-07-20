@@ -1,4 +1,4 @@
-title: 《Angular 2 开发实战》学习笔记
+title: 《Angular 2 开发实战》学习笔记-前言
 tags:
   - Angular
 categories:
@@ -78,3 +78,11 @@ date: 2018-07-20 11:15:00
  - 现代UI组件
  
   一个现代风格的UI库（Angular Material 2）正处在开发过程中。
+  
+### 前言
+
+ Angular 2应用程序能够支持使用两种JavaScript语法（ES5和ES6）进行开发，同样也支持使用Dart和TypeScript进行开发。框架本身使用TypeScript开发。
+ 
+ TypeScript是JavaScript的一个超集。
+ 
+ 本书示例源代码可以从网站 https://www.manning.com/books/angular-2-development-with-typescript 下载。
