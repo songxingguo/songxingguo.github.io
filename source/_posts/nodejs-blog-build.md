@@ -38,3 +38,10 @@ date: 2018-06-13 11:14:00
   ```
   pm2 reload pm2.json
   ```
+  或
+  ```
+  pm2 start pm2.json
+  ```
+- 常用命令
+
+ [常用命令](https://www.cnblogs.com/jtnote/p/6230720.html)
