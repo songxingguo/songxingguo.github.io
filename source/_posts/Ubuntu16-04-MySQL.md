@@ -88,3 +88,10 @@ drop table [if exists] tablename;
 ```
 exit; / quit; 
 ```
+### 参考教程
+
+[ubuntu16.04彻底卸载mysql并且重新安装mysql](https://www.cnblogs.com/xym4869/p/8781792.html)
+[uUbuntu 16.04 安装使用MySQL](https://blog.csdn.net/vXueYing/article/details/52330180)
+[Ubuntu16.04下安装MySQL及简单操作](https://blog.csdn.net/qq_29666899/article/details/79079488)
+[Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock'](https://blog.csdn.net/heatdeath/article/details/78907563)
+[Linux mysql停止失败的解决办法 Stopping MySQL database server mysqld](https://blog.csdn.net/blueskybluesoul/article/details/36658933)
