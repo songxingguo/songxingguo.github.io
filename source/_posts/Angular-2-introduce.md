@@ -116,13 +116,13 @@ date: 2018-07-20 12:20:00
    
    应用程序的着陆页面HTML文件中包含了Angular模块以及它们的依赖。应用程序的代码通过加载自己的根模块进行引导。所有必需的组件和服务将会根据模块中声明和导入语句进行加载。
    
-   ![index.html文件]()
+   ![index.html文件](http://p9myzkds7.bkt.clouddn.com/Angular/index.jpg)
    
    每个组件的HTML片段都可以在组件内部（template属性）或者通过templateURL属性从组件引用的文件中内联得到。
    
    组件是Angular新架构的核心内容。如下图展示了一个由4个组件和2个服务组成的示例Angular应用程序的示意图。所有这些都会被封装到一个模块中。
    
-    ![Angular应用程序的示例框架]()
+    ![Angular应用程序的示例框架](http://p9myzkds7.bkt.clouddn.com/Angular/Angular%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F.jpg)
    
    声明一个组件的简单方式就是用TypeScript写一个类(当然，也可以使用ES5、ES6或Dart)。
    
@@ -171,7 +171,7 @@ date: 2018-07-20 12:20:00
     ```
    下图为组件内部工作原理。
    
-    ![组件内部实现]()
+    ![组件内部实现](http://p9myzkds7.bkt.clouddn.com/Angular/%E7%BB%84%E4%BB%B6%E5%86%85%E9%83%A8%E5%AE%9E%E7%8E%B0.jpg)
    
    组件从服务中获取数据并用于渲染，这些数据用类的方式来定义。在TypeScript中Product类可以是下面的结构：
    
@@ -279,21 +279,49 @@ date: 2018-07-20 12:20:00
    **注意：** 
    
     如果要使用AngularJS,可以通过使用ng-forward(参见 http://github.com/ngUpgraders/ng-forward ）来编写Angular风格的代码。另一个方法是使用ngUpgrade(参见 http://angular.io/docs/ts/latest/guide/upgrade.html ）,它能够令Angular和AngularJS在一个应用程序中共存，然后逐步切换到最新的版本框架，但这种方法会造成应用程序的体积变大。
-    
+
+- #### Angular开发者工具
+
+  - JavaScript是公认的Web应用程序前端开发语言。ES6是脚本语言的最新标准化规范，而JavaScript是其最流行的实现。
   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  - TypeScript是JavaScript的超集，令开发人员更加高效。TypeScript支持ES6的大多数功能，还额外提供了类型、接口、元数据注解等特性。
+  
+  - TypeScript代码分析器使用type-definition文件来处理那些没有使用TypeScript开发的代码。DefinitelyType是一个流行的type-definition文件集合，描述了数百个JavaScript库和框架的API。使用type-definition文件可以让IDE具备上下文相关帮助和高亮显示错误提示的功能。可以从npmjs.org@types组织安装type-definition文件。
+  
+  - 因为目前大多数浏览器仅支持ECMSScript 5(ES5）语法，因此如果需要使用TypeScript或ES6编写代码，那么需要在部署时对代码执行转换。Angular开发者可能会用到Babel、Traceur和TypeScript编译器来进行代码转换。
+  
+  - SystemJs是一个通用模块加载器，能够加载ES6、AMD和CommonJs标准的模块。
+  
+  - Angular CLI是一个代码生成器，允许生成一个全新的Angular项目，包括组件、服务和路由，此外还有部署应用程序的构建工具。
+  
+  - Node.js是一个建立在Chrome的JavaScript引擎上的平台。Node包括一个框架和一个运行时环境，用于在浏览器之外允许JavaScript代码。
+  
+  - npm是一个包管理器，可以让你下载工具、JavaScript库和框架。npm中存储了数以千计的包，可以用它安装所有的包，从开发者工具（比如TypeScript编译器）到安装应用程序依赖。npm还可以运行脚本，可以用npm启动HTTP服务器以及自动化构建。
+  
+  - Bower曾经是一个非常流行的包管理器，用来解决应用程序依赖之间的关系（比如Angular 2和jQuery）。由于可以从npm下载到一切，因此现在Bower已不再使用。
+  
+  - jspm同样是另一个包管理器。现代Web应用程序是由可加载模块组成的，jspm整合了SystemJS，这使得加载模块变得轻而易举。
+  
+  - Grunt是一个任务运行器。开发代码和部署代码之间需要执行很多步骤，这些步骤必须自动化完成。可能需要转换TypeScript或ES6代码为兼容性更好的ES5语法，压缩代码、图片和CSS。可能还需要检查代码质量，以及对应用程序做单元测试。使用Grunt,可以将所有任务及其依赖关系配置到一个JSON文件中，这样整个处理过程将是100%自动完成的。
+  
+  - Gulp是另外一个任务运行器。与Grunt一样，Gulp也可以自动化执行任务。但不同的是，Gulp并不在JSON中配置整个处理过程，而是用JavaScript编码来实现。这就允许在必要时可以调试整个处理过程。
+  
+  - JSLint和ESLint是代码分析工具，用来查找JavaScript代码或JSON格式的文档中是否存在问题。它们是代码质量检查工具。通过JSLint和ESLint运行JavaScript程序会产生若干警告信息，提示如何改善程序的代码质量。
+  
+  - TSLint是TypeScript的代码质量检查工具。它具有可扩展的检查规则集合，以及强制推荐代码风格和模式。
+  
+  - 压缩工具是文件的体积更小，比如UglifyJS。在JavaScript中，它们会删除代码注解和换行符，缩短变量名称。压缩还可以用于HTML、CSS和图片文件。
+  
+  - 打包程序将多个文件和它们的依赖封装到一个独立的文件中，比如Webpack。
+  
+  - 因为JavaScript的语法非常宽松，应用程序需要测试，所以需要选择一个测试框架。比如，使用Jasmine测试框架和Karma测试运行器。
+  
+  - 现代的IDE和文本编辑器，比如WebStrom、Visual Studio、 Visual Studio Code、Sublime Text、Atom等都支持JavaScript和TypeScript。
+  
+  - 所有主流的Web浏览器都带有开发者工具，可以在浏览器内部调试自己的程序。即使程序是用TypeScript所写并被部署到JavaScript中，也仍然可以用source maps；调试原始代码。
+
+  - Web应用程序应该可以在移动设备上使用，应该选择支持响应式设计的UI组件，确保UI布局会根据用户设备的屏幕尺寸自动适应。
+  
+  开发Angular应用程序比开发AngularJS应用程序容易，但是**最初的开发环境一定要设置正确，这样才能真正享受开发过程**。
+  
+  ![工具](http://p9myzkds7.bkt.clouddn.com/Angular/%E5%B7%A5%E5%85%B7.jpg)
