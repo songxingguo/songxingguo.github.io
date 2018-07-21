@@ -11,7 +11,7 @@ date: 2018-07-16 11:16:00
 
 - #### HTML5的故事
   
-  ![HTML5的故事](http://p9myzkds7.bkt.clouddn.com/HTML5/HTML5%E7%9A%84%E6%95%85%E4%BA%8B.png)
+  ![HTML5的故事](http://p9myzkds7.bkt.clouddn.com/HTML5/HTML5%E6%95%85%E4%BA%8B.png)
   
  <!-- more -->
 - #### HTML5三个主要原理
@@ -394,6 +394,3 @@ date: 2018-07-16 11:16:00
     不过，腻子脚本并不完美。有些脚本依赖的技术同样得不到普遍的支持。
     
      腻子脚本的完整集合，页面地址为：http://tinyurl.com/polyfill 。
-    
-    
-    
