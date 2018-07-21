@@ -60,5 +60,61 @@ date: 2018-07-20 12:20:00
     Node.js框架可以用于开发浏览器之外运行的JavaScript程序。可以使用JavaScript或TypeScript开发Web应用程序的服务器端程序；Google为Chrome浏览器开发了一款高性能V8 JavaScript引擎，可用于运行使用Node.jsAPI编写的代码。Node.js包括一个API，具有操作文件系统、访问数据库、监听HTTP请求的功能。
     
     JavaScript社区成员们已经构建了大量的工具用于开发Web应用程序，借助于Node的JavaScript引擎，可以在命令行中运行这些工具。
+   
+- #### AngularJS高级概述
+
+  - ##### Angular的故事
+    ![Angular的故事](http://p9myzkds7.bkt.clouddn.com/Angular/Angular%20%E6%95%85%E4%BA%8B.png)
+ 
+  - ##### AngularJS流行原因
+ 
+    - AngularJS具有利用指令概念创建自定义HTML标签和属性的机制，允许根据自己应哟程序的需要扩展HTML标签。
+
+    - AngularJS是入侵式的，但不会产生过多的干扰。可以把ng-app属性添加到任何一个 `<div>` 标签上，只有这个 `<div>` 标签里面的内容会被影响，页面中的其他部分仍然是纯粹的HTML和JavaScript。
+
+    - AngularJS令你能够轻松地把数据绑定到视图上，更改数据将会触发相应视图元素自动更新，反之亦然。
+
+    - AngularJS配套有一个可配置的路由，使你能够对应用程序的组件与URL模式进行映射，当URL变化时会导致页面对应的视图发生变化。
+    
+    - 在控制器中定义应用程序的数据流，数据流是JavaScript对象类型，其中包括属性和方法。
+    
+    - AngularJS应用程序使用有层级关系的作用域来存储由控制器和视图分享的数据。
+    
+    - AngularJS包含了一个依赖注入模块，使你能够以解耦方式开发应用程序。
+  
+   与jQuery简化DOM操作相反，AngularJS允许开发者以MVC模式设计应用程序，从而把逻辑从UI层分离出来。下图描述了一个用于处理产品的AngularJS应用程序的工作流示例。
+   
+  ![AngularJS应用程序架构示例](http://p9myzkds7.bkt.clouddn.com/Angular/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%9B%BE.jpg)
+  `AngularJS应用程序架构示例`
+    
+  一旦模式中保持的数据发生变化，AngularJS就会自动更新视图。如果用户修改了视图中输入框里的数据，那么UI变化也会传递给模型。这个双向更新机制被称为双向数据绑定。如下图所示。
+  
+  双向绑定意味着其中一个会自动更新另一个，因此在AngularJS中，模型和视图是紧密绑定在一起的。
+  
+  ![双向绑定](http://p9myzkds7.bkt.clouddn.com/Angular/%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A.jpg)
+  `双向绑定`
+    
+ 模式数据保存在一个特定$scope对象的上下文中，AngularJS作用域是一个有层级结构的对象。$rootScope是为整个应用程序创建的。控制器和指令（自定义组件）有自己的$scope对象。
+ 
+ 可以通过创建和加载模块对象来实现模块化。当一个特定模块依赖于其他对象（如控制器、模块或服务）时，Angular的注入机制将会创建这些对象的实例。下面代码片段展示了AngularJS将对象注入其他对象的一种方法：
+ ![依赖注入](http://p9myzkds7.bkt.clouddn.com/Angular/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%20.jpg)
+ 
+ AngularJS经常被用来创建单页面应用程序，用户操作或服务器返回数据只会更新页面中的指定部分（子视图）。
+ 
+ 通过配置ng-route路由组件来设置AngularJS中视图之间的导航。可以根据URL模式指定多个.when选项将应用程序导航到相应的视图。下面代码示例将会演示路由的使用。
+ ![路由使用](http://p9myzkds7.bkt.clouddn.com/Angular/%E8%B7%AF%E7%94%B1%E4%BD%BF%E7%94%A8%20.jpg)
+ 
+ AngularJS支持深度链接，当把页面加入到书签中时，不仅可以收藏整个网页，还可以收藏页面中的某个特定状态。
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+    
+    
+    
     
     
