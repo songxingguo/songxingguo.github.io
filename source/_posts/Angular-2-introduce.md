@@ -1,4 +1,4 @@
-title: 《Angular 2开发实战》-Angular 2介绍
+title: 《Angular 2开发实战》学习笔记-Angular 2介绍
 author: songxingguo
 tags:
   - Angular 2
