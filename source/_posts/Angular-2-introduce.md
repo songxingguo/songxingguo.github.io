@@ -325,3 +325,17 @@ date: 2018-07-20 12:20:00
   开发Angular应用程序比开发AngularJS应用程序容易，但是**最初的开发环境一定要设置正确，这样才能真正享受开发过程**。
   
   ![工具](http://p9myzkds7.bkt.clouddn.com/Angular/%E5%B7%A5%E5%85%B7.jpg)
+  
+- #### 如何使用Angular
+
+  ![任务列表上](http://p9myzkds7.bkt.clouddn.com/Angular/%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8%E4%B8%8A.jpg)
+
+  ![任务列表下](http://p9myzkds7.bkt.clouddn.com/Angular/%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8%E4%B8%8B.jpg)
+
+- #### 在线拍卖示例介绍
+
+  ![在线拍卖工作流](http://p9myzkds7.bkt.clouddn.com/Angular/%E5%B7%A5%E4%BD%9C%E6%B5%81.jpg)
+
+  开发Angular应用程序总结起来就是创建组件和组合组件。
+
+  ![目录结构](http://p9myzkds7.bkt.clouddn.com/Angular/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.jpg)
