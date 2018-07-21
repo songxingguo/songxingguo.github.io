@@ -110,7 +110,7 @@ date: 2018-07-20 12:20:00
 
   与AngularJS相比，Angular在很多方面的表现都会更好。Angular更容易学习，应用程序的框架的结构也被简化了，并且代码更容易书写。
   
-  - ##### 简化代码
+ - ##### 简化代码
   
    Angular应用程序支持ECMAScript 6(ES6)中的标准模块、异步模块定义（Asynchronous Module Definition ,AMD）以及CommonJS格式。通常一个模块一个文件。使用通用的模块加载器SystemJS，并添加import语句。
    
@@ -206,20 +206,94 @@ date: 2018-07-20 12:20:00
       ```
     在上面代码中 `<Product>` 使用了泛型符号，表示TypeScript编译器中只有Product类型的对象被允许存储在这个数组中。
    
-    Angular不是一个MVC框架，
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
+    Angular不是一个MVC框架，因此你的应用程序不会有独立的控制器（MVC模式中的C(Controller
+  层））。组件和被注入的服务（如果需要的话）囊括了所有必需的代码。在我们的例子中，SearchProduct类除了包含HTML视图中UI组件的代码，还包含了与控制器有关的代码。
   
+    为了彻底地分离TypeScript代码和HTML片段，在@Component注解中不建议使用template属性，而推荐使用单独的文件存储HTML片段，并使用templaateUrl属性代替template属性引用该文件。
+
+    不需要像AngularJS一样处理多层级的scrope对象，因为Angular是基于组件的，属性创建在组件的this.对象上，this对象也在组件的作用域内。
+
+    创建对象实例的一种方法是使用new操作符。依赖注入（Dependency Injection, DI）是一种设计模式，能够倒置创建依赖对象的过程。不需要显式地创建对象实例（比如使用new关键字），框架将会创建这些实例对象并把它们注入到代码中。Angualr自带了一个DI模块。
+    
+    在AngularJS中，有几种注册依赖的方式，它们经常会令开发者感到困惑。在Angular中，只能通过组件的构造函数向其注入依赖。下面的TypeScript代码片段显示了如何将ProductService组件注入到SearchComponent中。只需要指定一个provider,并把构造函数的参数声明为该provider的类型。
+    
+    ```
+     @Component({
+      selector: 'search-product',
+      providers: [ProductService],
+      template: `<div>...</div>
+     })     
+     class SearchComponent {
+       products: Array<Product> = [];
+       
+       constructor(productService: ProductService) {
+         this.products = productServive.getProducts();
+       }
+     }
+    ```
+    上面的代码中并没有使用new操作符。Angular将会实例化一个ProductService对象，并在SearchComponent中提供这个对象的引用。
+    
+    总而言之，Angular比AngularJS更简单，原因如下：
+    
+    - 应用程序的每个构建块(building block)都是一个组件，包括功能封装性良好的视图、控制器和自动生成的属性变更检测器。
+    
+    - 组件可以编程为注解类。
+    
+    - 不需要处理多层级作用域。
+    
+    - 依赖的组件通过组件的构造函数进行注入。
+    
+    - 双向绑定功能是默认关闭的。
+    
+    - 变更检测机制被重写了，性能更好。
+    
+    大多数的企业级软件开发人员都是Java、C#和C++程序员，对他们来说，Angular的概念很容易理解。
+    
+ - ##### 性能提升
+ 
+   Repaint Rate Challenge网站（ http://mathieuancelin.github.io/js-repaint-perfs ）对比了各种框架的渲染性能。
+    
+   渲染性能的提升主要得益Angular框架内部的重新设计。渲染组件与应用程序的API被解耦到两个层面，使你能够在独立的Web工作线程中允许非UI相关代码。除了同时可以运行不同层面的代码之外，Web浏览器也可能会为这些线程分配不同的CPU内核。有关新渲染框架更多信息可以在Google Docs文档“Angular 2 Rendering Architecture”中找到，网址为 http://mng.bz/K403 。
+   
+   把渲染层解耦出来还有一个重要的好处：可以根据不同的设备选择不同的渲染引擎。每个组件都包括@Component注解，其中包含了一个定义组件外观的HTML模板。
+   
+   如果创建一个 `<stock=price>` 组件以便在页面中显示股票价格，那么UI部分的代码如下所示：
+   
+   ```
+   @Component({
+     selectoe: 'stock-price',
+     template; '<div>The price of an IBM chare is $165.50</div>'
+   })
+   class StockPriceComponent {
+    ...
+   }
+   ```
+   Angular渲染引擎是一个独立的模块，它允许第三方供应商使用非浏览器依赖的平台作为渲染引擎，来替换默认的DOM渲染引擎。比如，可以在不同设备之间重用TypeScript代码，利用第三方UI渲染引擎在移动设备上渲染原生的组件。组件中TypeScript代码将会被保留，但是@Component装饰器的template属性中的内容可能会变更为XML或其他用于渲染原生组件的开发语言。
+   
+   在NativeScript框架中已经实现了上述Angular 2渲染引擎。NativeScript框架在JavaScript和原生iOS UI组件或Android UI组件之间提供了一座桥梁，可以重用组件的代码，而仅仅是在模板中把HTML替换为XML。
+   
+   另一种自定义UI渲染引擎允许Angular与React Native搭配使用，这是为iOS和Android创建原生（非混合）UI的一条途径。
+   
+   Angular引入了全新的性能更强的变更检测机制，这也为Angular带来了性能上的提升。Angular不使用自动的双向绑定，需要手动开启。单向数据绑定简化了大量相互依赖的组件间变更检测的流程。现在可以把一个组件排除在变更检测工作流之外，当检测到其他组件发生变更时，这个组件不会被检查。
+   
+   **注意：** 
+   
+    如果要使用AngularJS,可以通过使用ng-forward(参见 http://github.com/ngUpgraders/ng-forward ）来编写Angular风格的代码。另一个方法是使用ngUpgrade(参见 http://angular.io/docs/ts/latest/guide/upgrade.html ）,它能够令Angular和AngularJS在一个应用程序中共存，然后逐步切换到最新的版本框架，但这种方法会造成应用程序的体积变大。
+    
   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
