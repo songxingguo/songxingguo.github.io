@@ -105,16 +105,121 @@ date: 2018-07-20 12:20:00
    ![路由使用](http://p9myzkds7.bkt.clouddn.com/Angular/%E8%B7%AF%E7%94%B1%E4%BD%BF%E7%94%A8%20.jpg)
 
    AngularJS支持深度链接，当把页面加入到书签中时，不仅可以收藏整个网页，还可以收藏页面中的某个特定状态。
- 
- 
- 
- 
- 
- 
- 
-    
-    
-    
-    
-    
-    
+   
+- #### Angular高级概述
+
+  与AngularJS相比，Angular在很多方面的表现都会更好。Angular更容易学习，应用程序的框架的结构也被简化了，并且代码更容易书写。
+  
+  - ##### 简化代码
+  
+   Angular应用程序支持ECMAScript 6(ES6)中的标准模块、异步模块定义（Asynchronous Module Definition ,AMD）以及CommonJS格式。通常一个模块一个文件。使用通用的模块加载器SystemJS，并添加import语句。
+   
+   应用程序的着陆页面HTML文件中包含了Angular模块以及它们的依赖。应用程序的代码通过加载自己的根模块进行引导。所有必需的组件和服务将会根据模块中声明和导入语句进行加载。
+   
+   ![index.html文件]()
+   
+   每个组件的HTML片段都可以在组件内部（template属性）或者通过templateURL属性从组件引用的文件中内联得到。
+   
+   组件是Angular新架构的核心内容。如下图展示了一个由4个组件和2个服务组成的示例Angular应用程序的示意图。所有这些都会被封装到一个模块中。
+   
+    ![Angular应用程序的示例框架]()
+   
+   声明一个组件的简单方式就是用TypeScript写一个类(当然，也可以使用ES5、ES6或Dart)。
+   
+   - 如果为TypeScript的类前缀添加了一个@NgModule元数据注解，那么表示它是一个模块。
+   
+   - 如果为类前缀添加了一个@Component元数据注解，那么表示它是一个组件。@Component注解（又被称为装饰器）包含了template属性，声明了一个用于浏览器渲染HTML片段。元数据注解允许在设计阶段修改组件的属性。HTML模板可能包含被双大括号包围的数据绑定表达式。事件绑定也在@Component注解的template属性中定义，并且在类中作为方法被实现。
+   
+   - 另一个元数据注解是@Injectable,它表示创建的组件会被DI模块处理。
+   
+   @Component注解还包含了selector属性，用来声明能够在HTML文档中使用的自定义标签。当Angular发现一个匹配selector属性值的HTML元素时，就会知道是哪个组件实现了这个元素。
+        
+   ```
+    <body>
+      <auction-application>
+        <search-product [productID] = "123"></search-product>
+      </auction-aplication>
+    </body>
+   ```
+   父组件通过为子组件绑定输入属性来向其传递数据（注意上面代码中的方括号），而子元素通过经过它们的输出属性触发事件来实现与父组件的通信。
+   
+   下面的代码显示了一个搜索组件SearchComponent。它的selector属性被声明为search-product，因此可以在HTML文档中通过 `<search-product>` 标签来引用它：、
+   
+    ```
+     @Component({
+      selector: 'search-product',
+      template: 
+        `<from>
+           <div>
+             <input id="prodToFind" #prod>
+             <button (click)="findProduct(prod, value)">Find Product</button>
+             Product name: {{product.name}}
+           </div>
+         </from>
+        `
+     })
+     class SearchComponent {
+       @Input( ) productID: number;
+       
+       product: Product;
+       
+       findProduct(productName: string) {
+         // Implementation of the click hander goes here
+       }
+       // Other code can go here
+     }
+    ```
+   下图为组件内部工作原理。
+   
+    ![组件内部实现]()
+   
+   组件从服务中获取数据并用于渲染，这些数据用类的方式来定义。在TypeScript中Product类可以是下面的结构：
+   
+    ```
+     class Product {
+       id：number;
+       name: string;
+       description: string;
+       bid: number;
+       price:number;
+
+       // construct and other methods go here
+     }
+    ```
+    注意，TypeScript允许在声明类变量的同时指定类型。为让UI组件SearchComponent掌握自己的数据，可以声明一个类变量，如product:
+  
+      ```
+       @Component ({ /* code omitted for brevity */ })
+       class SearchComponent {
+         product: Product;
+
+         findProduct(productID) {
+           // The implementation of the click handler
+           // for the Find components button goes here
+         }
+       }
+      ```
+    如果SearchComponent想要返回多个产品，可以声明一个数组来存储产品：
+  
+      ```
+      products: Array<Product>;
+      ```
+    在上面代码中 `<Product>` 使用了泛型符号，表示TypeScript编译器中只有Product类型的对象被允许存储在这个数组中。
+   
+    Angular不是一个MVC框架，
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+  
+  
