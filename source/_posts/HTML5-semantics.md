@@ -86,4 +86,136 @@ date: 2018-07-22 06:28:00
     ```
     编写规范的传统HTML页面中，通过使用 `<div>` 和 `<span>` 元素，已经把大部分工作移交给了样式表。通过 `<span>` 可以为 **处在其他元素中的少量文本添加样式 **，而通过 `<div>` 不仅可以为 **整个内容区块添加样式** ，还可以 **构建起整个页面结构** 。
     
+    因为使用了 `<div>` 元素，所以添加样式很容易。使用下列规则为页眉及其中内容添加样式。
+    
+    ```
+    /* 为<div>添加样式，使其具有页眉的外观（蓝色带边框）*/
+    .Header {
+      background-color: #7695FE;
+      boder:thin #336699 solid;
+      padding: 10px;
+      margin: 10px;
+      text-align: center;
+    }
+    
+    /* 为页眉中的 <h1> 添加样式(这是文章的标题）*/
+    .Header h1 {
+      margin: 0px;
+      color: white;
+      font-size: xx-large;
+    }
+    
+    /* 为页眉中的子标题添加样式 */
+    .Header .Teaser {
+      margin: 0px;
+      font-weight: bold;
+    }
+    
+    /* 为页面中的署名行添加样式 */
+    .Header .Byline {
+      font-style: italic;
+      font-size: small;
+      margin: 0px;
+    }
+    ```
+    
   - ##### 使用H5构造页面
+  
+   `<div>` 目前依旧是Web设计中的必备元素，它是 **一个直观、多用途的容器** ，可以通过它 **为页面中的任何区块应用样式** 。但 `<div>` 的问题在于，它本身 **不反映与页面相关的任何信息** 。
+    
+   要通过HTML5改进这种情况，可以把 `<div>` 替换成更具有描述性的语义元素。这些语义元素的行为与 `<div>` 元素类似：它们 **仅包含一组标记，除此之外没有其他作用** ，可以将它 **作为“格式挂钩”来为页面应用样式** 。不过，除此之外，它们还会 **为页面添加一点语义** 。
+   
+   下面代码是对传统页面的简单修改之后的结果，删除了两个 `<div>` 元素，但添加了两个HTML5的语义元素：`<header>` 和 `<footer>` 。
+    
+    ```
+    <header class="header">
+      <h1>How the  World Could End</h1>
+      <p class="Teaser">Scenarios that spell the end of life as we know it</p>
+      <p class="Byline">by Ray N.Carnation</p>
+    </header>
+    
+    <div class="content">
+      <p><span class="LeadIn">Right now</span>, you're probably ...</p>
+      <p>...</p>
+      
+      <h2>Mayna Doomsday</h2>
+      <p>Skeptics suggest...</p>
+      ...
+    </div>
+    
+    <footer class="footer">
+      <p class="Disclaimer">These apocalyptic predictions ...</p>
+      <p>
+        <a href="AboutUs.html">About Us</a>
+        ...
+      </p> 
+      <p>Copyright @ 2014</p>
+    </footer>
+    ```
+  如果修改一个大型网站，可以考虑用HTML5中相应的 **语义元素来包装已有的 `<div>` 元素** 。
+  
+  不管怎么说，这里的类名还是有点多余。可以变成这样：
+  
+  ```
+  <header>
+      <h1>How the  World Could End</h1>
+      <p class="Teaser">Scenarios that spell the end of life as we know it</p>
+      <p class="Byline">by Ray N.Carnation</p>
+    </header>
+  ```
+  但这样修改后，就得修改样式表规则，直接 **通过元素名来应用样式** 。
+  
+  下面是修改之后的为 `<header>`及其包含的所有元素应用样式规则：
+      
+    ```
+    /* 为<header>添加样式，使其具有页眉的外观（蓝色带边框）*/
+    header {
+      ...
+    }
+    
+    /* 为<header>中的 <h1> 添加样式(这是文章的标题）*/
+    header h1 {
+      ...
+    }
+    
+    /* 为<header>中的子标题添加样式 */
+    header .Teaser {
+      ...
+    }
+    
+    /* 为<header>中的署名行添加样式 */
+    header .Byline {
+      ...
+    }
+    ```
+  HTML5页面经常会混合各种语义元素和更通用的 `<div>` 容器。
+  
+  **注意：** 上面的网页在IE9之前的Internet Explorer 中无法显示。
+  
+  最后，还有一个元素有必要用在示例页面中。那就是HTML5的 `<article>` 元素，这个元素 **表示一个完整的、自成一体的内容块** ，比如博客文章或新闻报道。 `<article>` 元素应该包含所有相关的内容，包括标题、作者署名以及正文。添加了 `<article>` 元素之后的页面结构就变成如下所示：
+  
+  ```
+  <article>
+    <header>
+      <h1>How the  World Could End</h1>
+      ...
+    </header>
+    
+    <div class="content">
+      <p><span class="LeadIn">Right now</span>, you're probably ...</p>
+      <p>...</p>
+      
+      <h2>Mayna Doomsday</h2>
+      <p>Skeptics suggest...</p>
+      ...
+    </div>
+  </article>
+  
+  <footer>
+    <p class="Disclaimer">These apocalyptic predictions ...</p>
+    ...
+  </footer>
+  ```
+  最终的页面结构示意图：
+  
+  ![页面结构示意图](http://p9myzkds7.bkt.clouddn.com/Angular/%E9%A1%B5%E9%9D%A2%E7%BB%93%E6%9E%84.jpg)
