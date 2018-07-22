@@ -279,6 +279,45 @@ date: 2018-07-22 06:28:00
    ```
    这里要小心的是，不能把alt文本设成空字符串。因为这意味着你的图片纯粹是装饰用的，屏幕阅读器会忽略不读。
    
+   - ##### 用 `<aside>` 添加附注
+   
+    新的 `<aside>` 元素 **表示与它周围的文本没有密切关系的内容** 。这就是说，你可以像在印刷品中使用附录栏一样使用 `<aside>` 元素，可以通过它 **介绍另一个相关的话题** ，或者 **对主文档中提出的某个观点进行解释** 。另外，也可以用 `<aside>` 来盛放广告、相关内容链接，甚至醒目引文（pull quote）。
+    
+    当然，使用熟悉的 `<div>` 元素也可以创造出这种效果，但用 `<aside>` 元素包装同样的内容，可以让标记更富有意义：
+    
+    ```
+    <p>... (in a suitably robotic voice) "who' s your daddy now?"</p>
+    
+    <aside class="PullQuote">
+      <img src=-"quotes_start.png" alt="Quote">
+      We don't know how the universe started, so we can't be sure it won't just end, maybe today.
+      <img src="quotes_end.png" alt="End quote">
+    </aside>
+    
+    <h2>Unexplained Singularity</h2>
+    ```
+    下面给出了相应的样式：
+    
+     ```
+     .PullQuote {
+       float: right;
+       max-width: 300px;
+       border-top: thin black solid;
+       border-bottom: thick black solid;
+       font-size: 30px;
+       line-height: 130%;
+       font-style: italic;
+       padding-top: 5px;
+       padding-bottom: 5px;
+       margin-left: 15px;
+       margin-bottom: 10px;
+     }
+     
+     .PullQuote img {
+       vertical-align: bottom;
+     }
+     ```
+    **语义元素的来历：可以看看这里： https://developers.google.com/webmasters/state-of-the-web/ 。**
    
    
    
@@ -289,3 +328,14 @@ date: 2018-07-22 06:28:00
    
    
    
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+  
