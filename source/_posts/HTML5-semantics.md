@@ -158,10 +158,10 @@ date: 2018-07-22 06:28:00
   
   ```
   <header>
-      <h1>How the  World Could End</h1>
-      <p class="Teaser">Scenarios that spell the end of life as we know it</p>
-      <p class="Byline">by Ray N.Carnation</p>
-    </header>
+     <h1>How the  World Could End</h1>
+     <p class="Teaser">Scenarios that spell the end of life as we know it</p>
+     <p class="Byline">by Ray N.Carnation</p>
+   </header>
   ```
   但这样修改后，就得修改样式表规则，直接 **通过元素名来应用样式** 。
   
