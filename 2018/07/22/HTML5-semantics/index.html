@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>《HTML5秘籍》学习笔记-用语义元素构造网页 | 阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="post-title">
+          《HTML5秘籍》学习笔记-用语义元素构造网页
+            <div class="post-tags">
+    		    
+              <a class="tag-link" href="/tags/HTML/">HTML</a>
+            
+    	      </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <article class="post">
+  
+
+  <header>
+    <div class="post-title mobile-post-title">
+      <h1>《HTML5秘籍》学习笔记-用语义元素构造网页</h1>
+        <div class="post-tags">
+        
+          <a class="tag-link" href="/tags/HTML/">HTML</a>
+        
+        </div>
+    </div>
+    <div class="post-meta">
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2018-07-22</span>
+      
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/前端技术/">前端技术</a>
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/前端技术/读书笔记/">读书笔记</a>
+          
+      
+      <!----------------------------------->
+        
+      <!----------------------------------->
+    </div>
+  </header>
+  
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#用语义元素构造网页"><span class="toc-text">用语义元素构造网页</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#语义元素"><span class="toc-text">语义元素</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#容易修改和维护"><span class="toc-text">容易修改和维护</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#无障碍性"><span class="toc-text">无障碍性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#搜索引擎优化"><span class="toc-text">搜索引擎优化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#未来功能"><span class="toc-text">未来功能</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#改造传统的HTML页面"><span class="toc-text">改造传统的HTML页面</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#构造页面的老办法"><span class="toc-text">构造页面的老办法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用H5构造页面"><span class="toc-text">使用H5构造页面</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </div>
+
+
+  <div class="post-content">
+    <h3 id="用语义元素构造网页"><a href="#用语义元素构造网页" class="headerlink" title="用语义元素构造网页"></a>用语义元素构造网页</h3><p>  为了能够把侧边栏与页眉分开，以及把广告条与菜单分开。HTML5为此引入了一组构造页面的新元素，这组元素能发挥 <code>&lt;div&gt;</code> 一样的作用，但是却能传达出更多的语义。</p>
+<ul>
+<li><h4 id="语义元素"><a href="#语义元素" class="headerlink" title="语义元素"></a>语义元素</h4><ul>
+<li><p><code>&lt;time&gt;</code>元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Registration begins on &lt;time&gt;2014-11-25&lt;/time&gt;.</span><br></pre></td></tr></table></figure>
+<p>代码在网页中呈现的结果如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Registration begins on 2014-11-25.</span><br></pre></td></tr></table></figure>
+<p><code>&lt;time&gt;</code> 元素没有任何内置的样式，元素中的文本和普通文本没有区别。</p>
+<p>设计 <code>&lt;time&gt;</code> 元素的用意是让它包含一小段信息。但大多数HTML5语义元素的用途是 <strong>标识页面中的一个内容区块</strong> 。比如， <code>&lt;nav&gt;</code> 元素用于标识一组导航链接。而 <code>&lt;footer&gt;</code> 元素用于标识通常放在页面底部的文脚（或页脚）。大概有十几个类似的新元素。</p>
+<p>所有语义元素都有一个显著的特点： <strong>不真正做任何事</strong>。相对来说， <code>&lt;video&gt;</code> 元素则囊括了在页面中充当视频播放器的全部能力。</p>
+<a id="more"></a>
+<p>使用这些新元素的理由：</p>
+<ul>
+<li><h5 id="容易修改和维护"><a href="#容易修改和维护" class="headerlink" title="容易修改和维护"></a>容易修改和维护</h5><p>通过HTML5的语义元素，通过标记就可以传达出额外的结构化信息。</p>
+</li>
+<li><h5 id="无障碍性"><a href="#无障碍性" class="headerlink" title="无障碍性"></a>无障碍性</h5><p>现代Web设计的一个重要主题，就是让任何人都能无障碍的访问网页。换句话说，要让使用屏幕阅读器和其他辅助工具的人都能够在页面中自由导航。兼容HTML5的无障碍工具可以为残疾人士提供更好的上网体验。（仅举一个例子，有了 <code>&lt;nav&gt;</code> 元素，屏幕阅读器就能迅速返回导航区，进而找到网页链接。）</p>
+</li>
+<li><h5 id="搜索引擎优化"><a href="#搜索引擎优化" class="headerlink" title="搜索引擎优化"></a>搜索引擎优化</h5><p>如果搜索引擎能更好的理解你的站点，那搜索者的查询就会越容易与你的内容匹配，因而你的网站列在搜索结果中的可能性也就越大。</p>
+</li>
+<li><h5 id="未来功能"><a href="#未来功能" class="headerlink" title="未来功能"></a>未来功能</h5><p>新浏览器和Web编辑器工具一定会利用语义元素。比如，浏览器可以提供一个页面内容的纲要，以方便跳转到页面适当的区块。类似地，网页设计工具也能包含一些方便你构建或编辑菜单的功能，而方法就是组织你放在 <code>&lt;nav&gt;</code> 区块中的内容。</p>
+</li>
+</ul>
+<p>最关键的问题在于，如果正确地使用了语义元素，就能够 <strong>创建更加清晰的页面结构 </strong> ，就能 <strong>适应未来的浏览器和Web设计工具的发展趋势</strong> 。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="改造传统的HTML页面"><a href="#改造传统的HTML页面" class="headerlink" title="改造传统的HTML页面"></a>改造传统的HTML页面</h4><p> 要了解和熟悉新的语义元素（包括学习如何使用它们来构造页面），最好的方式莫过于拿一个经典的HTML文档作为例子，然后把HTML5的一些新鲜营养充实进去。例子访问 <a href="http://prosetech.com/html5" target="_blank" rel="noopener">http://prosetech.com/html5</a> 。</p>
+<ul>
+<li><h5 id="构造页面的老办法"><a href="#构造页面的老办法" class="headerlink" title="构造页面的老办法"></a>构造页面的老办法</h5><p>这个示例页面使用的是HTML最佳实践，没有任何通过标记来格式化的痕迹。没有粗体或斜体元素，没有嵌入的样式。总之，这是一个格式非常规范的页面， <strong>所有样式均来自外部样式表</strong> 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;header&quot;&gt;</span><br><span class="line">  &lt;h1&gt;How the  World Could End&lt;/h1&gt;</span><br><span class="line">  &lt;p class=&quot;Teaser&quot;&gt;Scenarios that spell the end of life as we know it&lt;/p&gt;</span><br><span class="line">  &lt;p class=&quot;Byline&quot;&gt;by Ray N.Carnation&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;content&quot;&gt;</span><br><span class="line">  &lt;p&gt;&lt;span class=&quot;LeadIn&quot;&gt;Right now&lt;/span&gt;, you&apos;re probably ...&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;...&lt;/p&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;h2&gt;Mayna Doomsday&lt;/h2&gt;</span><br><span class="line">  &lt;p&gt;Skeptics suggest...&lt;/p&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;footer&quot;&gt;</span><br><span class="line">  &lt;p class=&quot;Disclaimer&quot;&gt;These apocalyptic predictions ...&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;</span><br><span class="line">    &lt;a href=&quot;AboutUs.html&quot;&gt;About Us&lt;/a&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/p&gt; </span><br><span class="line">  &lt;p&gt;Copyright @ 2014&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>编写规范的传统HTML页面中，通过使用 <code>&lt;div&gt;</code> 和 <code>&lt;span&gt;</code> 元素，已经把大部分工作移交给了样式表。通过 <code>&lt;span&gt;</code> 可以为 <strong>处在其他元素中的少量文本添加样式 </strong>，而通过 <code>&lt;div&gt;</code> 不仅可以为 <strong>整个内容区块添加样式</strong> ，还可以 <strong>构建起整个页面结构</strong> 。</p>
+<p>因为使用了 <code>&lt;div&gt;</code> 元素，所以添加样式很容易。使用下列规则为页眉及其中内容添加样式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">/* 为&lt;div&gt;添加样式，使其具有页眉的外观（蓝色带边框）*/</span><br><span class="line">.Header &#123;</span><br><span class="line">  background-color: #7695FE;</span><br><span class="line">  boder:thin #336699 solid;</span><br><span class="line">  padding: 10px;</span><br><span class="line">  margin: 10px;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 为页眉中的 &lt;h1&gt; 添加样式(这是文章的标题）*/</span><br><span class="line">.Header h1 &#123;</span><br><span class="line">  margin: 0px;</span><br><span class="line">  color: white;</span><br><span class="line">  font-size: xx-large;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 为页眉中的子标题添加样式 */</span><br><span class="line">.Header .Teaser &#123;</span><br><span class="line">  margin: 0px;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 为页面中的署名行添加样式 */</span><br><span class="line">.Header .Byline &#123;</span><br><span class="line">  font-style: italic;</span><br><span class="line">  font-size: small;</span><br><span class="line">  margin: 0px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h5 id="使用H5构造页面"><a href="#使用H5构造页面" class="headerlink" title="使用H5构造页面"></a>使用H5构造页面</h5><p><code>&lt;div&gt;</code> 目前依旧是Web设计中的必备元素，它是 <strong>一个直观、多用途的容器</strong> ，可以通过它 <strong>为页面中的任何区块应用样式</strong> 。但 <code>&lt;div&gt;</code> 的问题在于，它本身 <strong>不反映与页面相关的任何信息</strong> 。</p>
+<p>要通过HTML5改进这种情况，可以把 <code>&lt;div&gt;</code> 替换成更具有描述性的语义元素。这些语义元素的行为与 <code>&lt;div&gt;</code> 元素类似：它们 <strong>仅包含一组标记，除此之外没有其他作用</strong> ，可以将它 <strong>作为“格式挂钩”来为页面应用样式</strong> 。不过，除此之外，它们还会 <strong>为页面添加一点语义</strong> 。</p>
+<p>下面代码是对传统页面的简单修改之后的结果，删除了两个 <code>&lt;div&gt;</code> 元素，但添加了两个HTML5的语义元素：<code>&lt;header&gt;</code> 和 <code>&lt;footer&gt;</code> 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;header class=&quot;header&quot;&gt;</span><br><span class="line">  &lt;h1&gt;How the  World Could End&lt;/h1&gt;</span><br><span class="line">  &lt;p class=&quot;Teaser&quot;&gt;Scenarios that spell the end of life as we know it&lt;/p&gt;</span><br><span class="line">  &lt;p class=&quot;Byline&quot;&gt;by Ray N.Carnation&lt;/p&gt;</span><br><span class="line">&lt;/header&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;content&quot;&gt;</span><br><span class="line">  &lt;p&gt;&lt;span class=&quot;LeadIn&quot;&gt;Right now&lt;/span&gt;, you&apos;re probably ...&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;...&lt;/p&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;h2&gt;Mayna Doomsday&lt;/h2&gt;</span><br><span class="line">  &lt;p&gt;Skeptics suggest...&lt;/p&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;footer class=&quot;footer&quot;&gt;</span><br><span class="line">  &lt;p class=&quot;Disclaimer&quot;&gt;These apocalyptic predictions ...&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;</span><br><span class="line">    &lt;a href=&quot;AboutUs.html&quot;&gt;About Us&lt;/a&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/p&gt; </span><br><span class="line">  &lt;p&gt;Copyright @ 2014&lt;/p&gt;</span><br><span class="line">&lt;/footer&gt;</span><br></pre></td></tr></table></figure>
+<p>如果修改一个大型网站，可以考虑用HTML5中相应的 <strong>语义元素来包装已有的 <code>&lt;div&gt;</code> 元素</strong> 。</p>
+<p>不管怎么说，这里的类名还是有点多余。可以变成这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;header&gt;</span><br><span class="line">   &lt;h1&gt;How the  World Could End&lt;/h1&gt;</span><br><span class="line">   &lt;p class=&quot;Teaser&quot;&gt;Scenarios that spell the end of life as we know it&lt;/p&gt;</span><br><span class="line">   &lt;p class=&quot;Byline&quot;&gt;by Ray N.Carnation&lt;/p&gt;</span><br><span class="line"> &lt;/header&gt;</span><br></pre></td></tr></table></figure>
+<p>但这样修改后，就得修改样式表规则，直接 <strong>通过元素名来应用样式</strong> 。</p>
+<p>下面是修改之后的为 <code>&lt;header&gt;</code>及其包含的所有元素应用样式规则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/* 为&lt;header&gt;添加样式，使其具有页眉的外观（蓝色带边框）*/</span><br><span class="line">header &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 为&lt;header&gt;中的 &lt;h1&gt; 添加样式(这是文章的标题）*/</span><br><span class="line">header h1 &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 为&lt;header&gt;中的子标题添加样式 */</span><br><span class="line">header .Teaser &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 为&lt;header&gt;中的署名行添加样式 */</span><br><span class="line">header .Byline &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>HTML5页面经常会混合各种语义元素和更通用的 <code>&lt;div&gt;</code> 容器。</p>
+<p><strong>注意：</strong> 上面的网页在IE9之前的Internet Explorer 中无法显示。</p>
+<p>最后，还有一个元素有必要用在示例页面中。那就是HTML5的 <code>&lt;article&gt;</code> 元素，这个元素 <strong>表示一个完整的、自成一体的内容块</strong> ，比如博客文章或新闻报道。 <code>&lt;article&gt;</code> 元素应该包含所有相关的内容，包括标题、作者署名以及正文。添加了 <code>&lt;article&gt;</code> 元素之后的页面结构就变成如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;article&gt;</span><br><span class="line">  &lt;header&gt;</span><br><span class="line">    &lt;h1&gt;How the  World Could End&lt;/h1&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/header&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;div class=&quot;content&quot;&gt;</span><br><span class="line">    &lt;p&gt;&lt;span class=&quot;LeadIn&quot;&gt;Right now&lt;/span&gt;, you&apos;re probably ...&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;...&lt;/p&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;h2&gt;Mayna Doomsday&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;Skeptics suggest...&lt;/p&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/article&gt;</span><br><span class="line"></span><br><span class="line">&lt;footer&gt;</span><br><span class="line">  &lt;p class=&quot;Disclaimer&quot;&gt;These apocalyptic predictions ...&lt;/p&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/footer&gt;</span><br></pre></td></tr></table></figure>
+<p>最终的页面结构示意图：</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/Angular/%E9%A1%B5%E9%9D%A2%E7%BB%93%E6%9E%84.jpg" alt="页面结构示意图"></p>
+</li>
+</ul>
+
+  </div>
+  <div class="post-footer">the end</div>
+</article>
+
+          
+  <nav class="pagination post-nav">
+    
+    
+      <a href="/2018/07/20/Angular-2-introduce/">
+        <span class="next-post">《Angular 2开发实战》学习笔记-Angular 2介绍<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+  
+
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+
+  <script src="/js/ztopic.js"></script>
+</body>
+</html>
