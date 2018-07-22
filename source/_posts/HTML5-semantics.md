@@ -219,3 +219,73 @@ date: 2018-07-22 06:28:00
   最终的页面结构示意图：
   
   ![页面结构示意图](http://p9myzkds7.bkt.clouddn.com/Angular/%E9%A1%B5%E9%9D%A2%E7%BB%93%E6%9E%84.jpg)
+  
+  - ##### 用 `<figure>` 添加插图
+  
+   HTML5规范建议我们将插图想象成一本书中的附图；换句话说，**插图虽独立于文本，但文本中会提到它** 。
+   
+   一般来说，插图应该是浮动的；换句话说，应该把它 **放在相关文本旁边的一个比较近便的位置上** ，而不要把它们锁定在特定的词或元素旁边。而且，插图通常 **还会有与之相伴的浮动图题** 。
+   
+   下面是个这篇文章添加插图的HTML标记。
+   
+   ```
+   <p><span class="LeadIn">Right now</span>, you're probably ...</p>
+   <div class="FloatFigure">
+     <img src="human_skull.jpg" alt="Human skull">
+     <p>Will you be the last person standing if one of these apocalyptic scenarios play out?</p>
+   </div>
+   
+   <p>But don't get too smug ...</p>
+   ```
+   下面是给出的样式规则：
+   
+   ```
+   /* 为插图应用样式 */
+   .FloatFigure {
+     float: left;
+     margin-left: 0px; 
+     margin-top: opx;
+     margin-right: 20px;
+     margin-bottom: 0px;
+   }
+   
+   /* 为题图应用样式 */
+   .FloatFigure p {
+     max-width: 200px;
+     font-size: small;
+     font-style: italic;
+     margin-bottom: 5px;
+   }
+   ```
+   HTML5专门量身打造了一个了一个新的语义元素为内容添加插图，下面是用 `<figure>` 改造后的HTML5文档：
+   
+   ```
+   <figure class="FloatFigure">
+     <img src="human_skull.jpg" alt="Human skull">
+     <figcaption>Will you be the last person standing if one of these apocalyptic scenarios play out?</figcaption>
+   </figure>
+   ```
+   而题图是放在 `<figure>` 中的 `<figcaption>` 元素里的。
+   
+   当然，给插图和图题应用什么样式，把它们放在什么位置上，还是由你说了算。使用新元素之后，插图还是那样，但不同的是标注插图的标记现在的含义已经非常明确了。（随便在提个醒，`<figcaption>` 元素不是只能包含文本——任何HTML元素都可以，比如链接、小图标等。）
+   
+   因为图题中经常包含了对图片的完整说明，所以alt文本就显得有点多余了。这种情况下，可以把 `<img>` 元素中的alt属性删除：
+   
+   ```
+   <figure class="FloatFigure">
+     <img src="human_skull.jpg">
+     <figcaption>A human skull lies on the sand</figcaption>
+   </figure>
+   ```
+   这里要小心的是，不能把alt文本设成空字符串。因为这意味着你的图片纯粹是装饰用的，屏幕阅读器会忽略不读。
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
