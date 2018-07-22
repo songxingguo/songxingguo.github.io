@@ -11,7 +11,7 @@ date: 2018-07-22 06:28:00
 
   为了能够把侧边栏与页眉分开，以及把广告条与菜单分开。HTML5为此引入了一组构造页面的新元素，这组元素能发挥 `<div>` 一样的作用，但是却能传达出更多的语义。
   
-  - #### 语义元素
+- #### 语义元素
    
     - `<time>`元素
     
@@ -55,7 +55,7 @@ date: 2018-07-22 06:28:00
  
    要了解和熟悉新的语义元素（包括学习如何使用它们来构造页面），最好的方式莫过于拿一个经典的HTML文档作为例子，然后把HTML5的一些新鲜营养充实进去。例子访问 http://prosetech.com/html5 。
    
-   - ##### 构造页面的老办法
+  - ##### 构造页面的老办法
    
     这个示例页面使用的是HTML最佳实践，没有任何通过标记来格式化的痕迹。没有粗体或斜体元素，没有嵌入的样式。总之，这是一个格式非常规范的页面， **所有样式均来自外部样式表** 。
     
@@ -118,7 +118,6 @@ date: 2018-07-22 06:28:00
       margin: 0px;
     }
     ```
-    
   - ##### 使用H5构造页面
   
    `<div>` 目前依旧是Web设计中的必备元素，它是 **一个直观、多用途的容器** ，可以通过它 **为页面中的任何区块应用样式** 。但 `<div>` 的问题在于，它本身 **不反映与页面相关的任何信息** 。
@@ -152,73 +151,73 @@ date: 2018-07-22 06:28:00
       <p>Copyright @ 2014</p>
     </footer>
     ```
-  如果修改一个大型网站，可以考虑用HTML5中相应的 **语义元素来包装已有的 `<div>` 元素** 。
-  
-  不管怎么说，这里的类名还是有点多余。可以变成这样：
-  
-  ```
-  <header>
-     <h1>How the  World Could End</h1>
-     <p class="Teaser">Scenarios that spell the end of life as we know it</p>
-     <p class="Byline">by Ray N.Carnation</p>
-   </header>
-  ```
-  但这样修改后，就得修改样式表规则，直接 **通过元素名来应用样式** 。
-  
-  下面是修改之后的为 `<header>`及其包含的所有元素应用样式规则：
-      
+    如果修改一个大型网站，可以考虑用HTML5中相应的 **语义元素来包装已有的 `<div>` 元素** 。
+
+    不管怎么说，这里的类名还是有点多余。可以变成这样：
+
     ```
-    /* 为<header>添加样式，使其具有页眉的外观（蓝色带边框）*/
-    header {
-      ...
-    }
-    
-    /* 为<header>中的 <h1> 添加样式(这是文章的标题）*/
-    header h1 {
-      ...
-    }
-    
-    /* 为<header>中的子标题添加样式 */
-    header .Teaser {
-      ...
-    }
-    
-    /* 为<header>中的署名行添加样式 */
-    header .Byline {
-      ...
-    }
-    ```
-  HTML5页面经常会混合各种语义元素和更通用的 `<div>` 容器。
-  
-  **注意：** 上面的网页在IE9之前的Internet Explorer 中无法显示。
-  
-  最后，还有一个元素有必要用在示例页面中。那就是HTML5的 `<article>` 元素，这个元素 **表示一个完整的、自成一体的内容块** ，比如博客文章或新闻报道。 `<article>` 元素应该包含所有相关的内容，包括标题、作者署名以及正文。添加了 `<article>` 元素之后的页面结构就变成如下所示：
-  
-  ```
-  <article>
     <header>
-      <h1>How the  World Could End</h1>
+       <h1>How the  World Could End</h1>
+       <p class="Teaser">Scenarios that spell the end of life as we know it</p>
+       <p class="Byline">by Ray N.Carnation</p>
+     </header>
+    ```
+    但这样修改后，就得修改样式表规则，直接 **通过元素名来应用样式** 。
+
+    下面是修改之后的为 `<header>`及其包含的所有元素应用样式规则：
+
+      ```
+      /* 为<header>添加样式，使其具有页眉的外观（蓝色带边框）*/
+      header {
+        ...
+      }
+
+      /* 为<header>中的 <h1> 添加样式(这是文章的标题）*/
+      header h1 {
+        ...
+      }
+
+      /* 为<header>中的子标题添加样式 */
+      header .Teaser {
+        ...
+      }
+
+      /* 为<header>中的署名行添加样式 */
+      header .Byline {
+        ...
+      }
+      ```
+    HTML5页面经常会混合各种语义元素和更通用的 `<div>` 容器。
+
+    **注意：** 上面的网页在IE9之前的Internet Explorer 中无法显示。
+
+    最后，还有一个元素有必要用在示例页面中。那就是HTML5的 `<article>` 元素，这个元素 **表示一个完整的、自成一体的内容块** ，比如博客文章或新闻报道。 `<article>` 元素应该包含所有相关的内容，包括标题、作者署名以及正文。添加了 `<article>` 元素之后的页面结构就变成如下所示：
+
+    ```
+    <article>
+      <header>
+        <h1>How the  World Could End</h1>
+        ...
+      </header>
+
+      <div class="content">
+        <p><span class="LeadIn">Right now</span>, you're probably ...</p>
+        <p>...</p>
+
+        <h2>Mayna Doomsday</h2>
+        <p>Skeptics suggest...</p>
+        ...
+      </div>
+    </article>
+
+    <footer>
+      <p class="Disclaimer">These apocalyptic predictions ...</p>
       ...
-    </header>
-    
-    <div class="content">
-      <p><span class="LeadIn">Right now</span>, you're probably ...</p>
-      <p>...</p>
-      
-      <h2>Mayna Doomsday</h2>
-      <p>Skeptics suggest...</p>
-      ...
-    </div>
-  </article>
-  
-  <footer>
-    <p class="Disclaimer">These apocalyptic predictions ...</p>
-    ...
-  </footer>
-  ```
-  最终的页面结构示意图：
-  
-  ![页面结构示意图](http://p9myzkds7.bkt.clouddn.com/Angular/%E9%A1%B5%E9%9D%A2%E7%BB%93%E6%9E%84.jpg)
+    </footer>
+    ```
+    最终的页面结构示意图：
+
+    ![页面结构示意图](http://p9myzkds7.bkt.clouddn.com/Angular/%E9%A1%B5%E9%9D%A2%E7%BB%93%E6%9E%84.jpg)
   
   - ##### 用 `<figure>` 添加插图
   
@@ -279,7 +278,7 @@ date: 2018-07-22 06:28:00
    ```
    这里要小心的是，不能把alt文本设成空字符串。因为这意味着你的图片纯粹是装饰用的，屏幕阅读器会忽略不读。
    
-   - ##### 用 `<aside>` 添加附注
+  - ##### 用 `<aside>` 添加附注
    
     新的 `<aside>` 元素 **表示与它周围的文本没有密切关系的内容** 。这就是说，你可以像在印刷品中使用附录栏一样使用 `<aside>` 元素，可以通过它 **介绍另一个相关的话题** ，或者 **对主文档中提出的某个观点进行解释** 。另外，也可以用 `<aside>` 来盛放广告、相关内容链接，甚至醒目引文（pull quote）。
     
@@ -319,7 +318,26 @@ date: 2018-07-22 06:28:00
      ```
     **语义元素的来历：可以看看这里： https://developers.google.com/webmasters/state-of-the-web/ 。**
    
-   
+- #### 对语义元素的支持情况
+  
+  所幸的是，HTML5的这些语义元素已经基本得到了所有现代浏览器的支持。最大绊脚石还是IE9之前的Internet Expolorer，包括仍然占很大比例的IE8.
+  
+  幸运的是，语义元素还是一个比较容易弥补的功能。只要让浏览器把它们当做普通的 `<div>` 元素就行了。
+  
+  - ##### 为语义元素添加样式
+  
+    浏览器在遇到不认识的元素时，会把它们 **当成内联（inline）元素** 。大多数HTML5语义元素（包括已经介绍的这些，但除 `<time>` 之外）都是 **块级元素** ，也就是 **需要在单独一行上来呈现它们** ，同时在 **它们与前后元素之间各添加一些空间** 。
+    
+    为解决浏览器不认识HTML5语义元素，只要在样式表中添加一条“超级规则”即可。下面就是一条为9个HTML5元素应用块级显示格式的规则：
+    
+    ```
+    article, aside, figure, figcaption, footer, header, main, nav, section, summary {
+      display: block;
+    }
+    ```
+    这条规则 **对于能够识别HTML5元素的浏览器没有作用** ，因为它们的display属性已经被默认设成了block.而且这条规则 **也不影响我们已经为这些元素应用的样式** ，那些样式照样可以添加到它们身上。
+    
+    
    
    
    
