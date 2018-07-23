@@ -635,19 +635,19 @@ date: 2018-07-22 06:28:00
    
  - ##### 如何查看纲要
  
-  目前，还没有浏览器实现HTML5纲要（或者提供一种查看方式）。不过，有几个工具填补了这个空白。
+   目前，还没有浏览器实现HTML5纲要（或者提供一种查看方式）。不过，有几个工具填补了这个空白。
   
-  - 在线HTML纲要生成器
-    
-    访问 http://gsnedders.html5.org/outliner/ ，告诉纲要生成器你想为那个网页生成纲要。可以通过三种方式提交网页：从本地电脑中上传、提供URL或直接在文本框中粘贴标记。
-    
-  - Chrome扩展
-  
-    在Chrome浏览器中查看网页纲要是，可以使用h5o插件分析纲要。访问 http://code.google.com/p/h5o 安装插件，然后在网上打开一个HTML5页面看一看。然后浏览器地址栏中会出现一个纲要图标，点击该图标就会显示页面的结构。
-    
-  - Opera扩展
-  
-    Chrome的h5o扩展也有一个针对Opera开发的版本，安装地址在 http://tinyurl.com/3k3ecdy 。
+    - 在线HTML纲要生成器
+
+      访问 http://gsnedders.html5.org/outliner/ ，告诉纲要生成器你想为那个网页生成纲要。可以通过三种方式提交网页：从本地电脑中上传、提供URL或直接在文本框中粘贴标记。
+
+    - Chrome扩展
+
+      在Chrome浏览器中查看网页纲要是，可以使用h5o插件分析纲要。访问 http://code.google.com/p/h5o 安装插件，然后在网上打开一个HTML5页面看一看。然后浏览器地址栏中会出现一个纲要图标，点击该图标就会显示页面的结构。
+
+    - Opera扩展
+
+      Chrome的h5o扩展也有一个针对Opera开发的版本，安装地址在 http://tinyurl.com/3k3ecdy 。
  
  - ##### 基本纲要
  
@@ -720,10 +720,82 @@ date: 2018-07-22 06:28:00
      1.三级标题
      2.二级标题
    ```
+   本来的三级标题与二级标题放在同一层次上了，正是由于这种纲要算法可以消除网页标题级别不完美匹配的问题。
    
+  - ##### 分块元素
+  
+    分块元素（sectioning element）是指那些 **在页面中创建新的、嵌套纲要的元素** 。这些元素有 `<article>` 、 `<aside>` 、 `<nav>` 和 `<section>` 。要理解分块元素的作用，可以想象一个包含两个 `<article>` 元素的页面。因为 `<article>` 是一个分块元素，所以 **这个页面中（至少）有三个纲要：整个页面有一个纲要、每篇文章有一个嵌套的纲要 **。
    
-   
- 
+    为了进一步弄清楚到底是什么情况，我们来看一看用HTML5改造之后的启示录文章页面：
+
+    ```
+    <dody>
+      <article>
+        <header>
+          <h1>How World Could End</h1>
+          ...
+        </header>
+        
+        <div class="Content">
+          ...
+          <h2>Mayan Doomsday</h2>
+          ...
+          <h2>Robot Takeover</h2>
+          ...
+          <h2>Unexplained Singularity</h2>
+          ...
+          <h2>Runaway Climate Change</h2>
+          ...
+          <h2>Global Epidenmic</h2>
+          ...
+        </div>
+      </article>
+      
+      <footer>
+        ...
+      </footer>
+    </body>
+    ```
+    将这些标记复制到 http://gsnedders.html5.org/outliner/ 中，可以看到下面的结果：
+    ```
+    1.Untitled Section
+      1.How World Could End
+        1.Mayan Doomsday
+        2.Robot Takeover
+        3.Unexplained Singularity
+        4.Runaway Climate Change
+        5.Global Epidenmic
+    ```
+    这个纲要开始于 **一个无标题的区块（Untitled Section）**，也就是 **最上层的 `<body>` 元素** 。然后，`<article>` 元素开始一个新的嵌套的纲要，其中包含一个 `<h1>` 元素和几个 `<h2>` 元素。
     
-     
-     
+    有时候，Untitled Section意味着一个错误。尽管 `<aside>` 和 `<nav>` 元素可以不带标题，但 `<article>` 和 `<section>` 则万万不可。
+    
+    现在，再看一个复杂一点的例子。比如带有导航侧边栏的启示录站：
+       http://prosetech.com/html5/Chapter%2002/FatFooter.html 。
+    把相应的链接放到纲要生成器中，可以得到如下结果：
+    ```
+    1.Apocalypse Today
+      1.Untitled Section
+        1.Articles
+        2.About Us
+      2.How the World Could End
+        1.Scenarios that spell the end of life as we know
+        2.Mayan Doomsday
+        3.Robot Takeover
+        4.Untitled Section
+        5.Unexplained Singularity
+        6.Runaway Climate Change
+        7.Global Epidemic
+      3.Untitled Section
+    ```
+    这一次，标记包含三个分块元素，因此就有 **三个嵌套的纲要：**一个属于侧边栏，一个属于文章，另外一个属于页脚。此外，也有 **三个无标题区块** ，但都是合乎规范的-第一个是属于侧边栏的 `<aside>` 元素，第二个是文章中醒目引文的 `<aside>` 元素，第三个是页脚“胖”页脚部分的 `<aside>` 元素。
+    
+    除了分块元素之外，还有一些元素被称作 **区块根** （section root）。这些元素不是从已有纲要向下分支，而是 **产生自己的纲要，但不会出现在包含页面的主纲要视图中** 。比如包含网页内容的 `<body>` 元素就是一个区块根，这当然合理。但HTML5还把下列元素视为区块根：`<blockquote>` 、`<td>`、 `<fieldset>` 、 `<figure>` 和 `<details>` 。
+    
+    分块元素对复杂页面的意义：
+    
+    分块对联合（syndication）和聚合（aggregation）都有很大的意义，这两种方式都是从一个页面取得内容，然后注入到另一个页面的技术。
+    
+    在HTML5中，只要把这篇文章嵌套在一个 `<article>` 元素中，那么抓过来的内容就会变成它自己嵌套纲要的一部分。而这个纲要可以从任意级别的标题开始，几级标题都无所谓。
+    
+    **最后的结论是：** HTML5有一个讲究逻辑的纲要机制，让组合文档变得更容易。在这种纲要机制下，标题的位置变得更加重要，而实际的级别则没有那么重要了。
