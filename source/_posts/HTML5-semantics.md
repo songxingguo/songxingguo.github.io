@@ -624,7 +624,106 @@ date: 2018-07-22 06:28:00
     
     总之一句话，就是 `<main>` **只应该包含主要内容，而不是上下左右的外部细节**。
     
+- #### HTML5纲要
+
+  HTML5定义了一组规则，**用于说明如何为网页创建文档纲要（document outline）** 。网页纲要能够提高很多便利：
+  
+   - 浏览器可以让你从纲要中的一处跳到另一处。
+   - 设计工具可以让你通过在纲要视图中拖放来重排区块。
+   - 搜索引擎可以使用纲要构建更好的页面预览。
+   - 屏幕阅读器通过使用纲要可以引导视力障碍的用户在深度嵌套的区块和子区块中导航。
+   
+ - ##### 如何查看纲要
+ 
+  目前，还没有浏览器实现HTML5纲要（或者提供一种查看方式）。不过，有几个工具填补了这个空白。
+  
+  - 在线HTML纲要生成器
     
+    访问 http://gsnedders.html5.org/outliner/ ，告诉纲要生成器你想为那个网页生成纲要。可以通过三种方式提交网页：从本地电脑中上传、提供URL或直接在文本框中粘贴标记。
+    
+  - Chrome扩展
+  
+    在Chrome浏览器中查看网页纲要是，可以使用h5o插件分析纲要。访问 http://code.google.com/p/h5o 安装插件，然后在网上打开一个HTML5页面看一看。然后浏览器地址栏中会出现一个纲要图标，点击该图标就会显示页面的结构。
+    
+  - Opera扩展
+  
+    Chrome的h5o扩展也有一个针对Opera开发的版本，安装地址在 http://tinyurl.com/3k3ecdy 。
+ 
+ - ##### 基本纲要
+ 
+   要知道自己网页的纲要是什么样子，可以想象把页面中的所有内容都剥离，只 **剩下编号的标题元素（ `<h1>`、`<h2>`、`<h3>`等）中的文本**。然后，根据它们在 **标记中位置缩进标题** ，那么嵌套最深的标题在纲要中的缩进也最多。
+  
+   以最初的还没有应用HTML5元素之前的启示录文章页面的标记为例：
+
+    ```
+    <dody>
+      <div class="Header">
+        <h1>How World Could End</h1>
+        ...
+      </div>
+      ...
+      <h2>Mayan Doomsday</h2>
+      ...
+      <h2>Robot Takeover</h2>
+      ...
+      <h2>Unexplained Singularity</h2>
+      ...
+      <h2>Runaway Climate Change</h2>
+      ...
+      <h2>Global Epidenmic</h2>
+      
+      <div class="Footer">
+        ...
+      </div>
+    </body>
+    ```
+   这个简单的结构会生成如下所示的纲要：
+   ```
+   1.How World Could End
+    1.Mayan Doomsday
+    2.Robot Takeover
+    3.Unexplained Singularity
+    4.Runaway Climate Change
+    5.Global Epidenmic
+   ```
+   两个级别的标题（ `<h1>`和`<h2>`）就创建两级的纲要。**这种对应关系与文字处理软件中的纲要功能类似** 。比如，可以在微软Word的文档结构图窗格中看到类似的纲要。
+   换个例子，对于下面的标记：
+   ```
+   <h1>Level-1 Heading</h1>
+   <h2>Level-2 Heading</h2>
+   <h2>Level-2 Heading</h2>
+   <h3>Level-3 Heading</h3>
+   <h2>Level-2 Heading</h2>
+   ```
+   会生成如下所示的纲要：
+   ```
+   1.一级标题
+     2.二级标题
+     2.二级标题
+       1.三级标题
+     3.二级标题
+   ```
+   最后，纲要算法也很聪明，**能够自动忽略跳过的级别** 。例如，如果写的标记有点不太规范，从 `<h1>` 直接就跳到了 `<h3>`：
+   
+   ```
+   <h1>Level-1 Heading</h1>
+   <h2>Level-2 Heading</h2>
+   <h1>Level-1 Heading</h1>
+   <h3>Level-3 Heading</h3>
+   <h2>Level-2 Heading</h2>
+   ```
+   那会得到如下纲要：
+   ```
+   1.一级标题
+     1.二级标题
+   2.一级标题
+     1.三级标题
+     2.二级标题
+   ```
+   
+   
+   
+ 
     
      
      
