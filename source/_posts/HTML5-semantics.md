@@ -409,3 +409,91 @@ date: 2018-07-22 06:28:00
     **站点标题结构：**
     
       随着HTML5获得胜利并统治Web,好像过多个 `<h1>` 的设计会越来越时髦。不过现在，很多开发人员为了让屏幕阅读器开心，仍然坚持只使用一个 `<h1>` 。
+     
+   - ##### 用 `<nav>` 标注导航链接
+     
+     在传统的HTML网站中，可能会把整个侧边栏都放到一个 `<div>` 中。而在HTML5时代，则应该主要使用两个针对性更强的元素： `<aside>` 和 `<nav>` 。
+      
+     要说 `<aside>` 元素 ，倒是跟 `<header>` 元素有点像， `<aside>` 的含义也有些发散。可以用它来 **标注一段与正文相关的内容** ，也可以用它 **表示页面中一个完全独立的区块** ——作为页面主要内容的陪衬。
+      
+     而 `<nav>` 元素则 **用于包装一组链接** 。这些链接可以指向当前页面中的主题，也可以指向网站中的其他页面。多数页面中都会 **包含多个 `<nav>` 区块** 。但不是所有链接都需要 `<nav>` 区块——相反， `<nav>` 通常 **用于页面中最大最主要的导航区** 。
+     
+     事实上，如下图所示，至少有两个比较合理的方式来构造侧边栏。
+      
+      ![构造侧边栏](http://p9myzkds7.bkt.clouddn.com/Angular/%E6%9E%84%E9%80%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F.jpg)
+      
+      - 第一种，侧边栏这里的导航又长又复杂(比如都用上了可折叠的菜单形式），只是后面跟着一段小内容。
+      
+      - 第二种，侧边栏有多种用途，而没有哪一种用途是主要用途。
+      
+     以下就是构成侧边栏的标记，包含三个区块：
+      
+      ```
+      <aside>
+        <nav>
+          <h2>Articles</h2>
+          <ul>
+            <li><a href="...">How The World Could End</a></li>
+            <li><a href="...">Would Aliens Enslave or Eradicate Us?</a></li>
+          </ul>
+        </nav>
+        
+        <section>
+          <h2>About Us</h2>
+          <p>Apocalypse Today is a world leader in conspiracy theories ..."</p>
+        </section>
+        
+        <div>
+          <img src="ad.jpg" alt="Luckies cigarette ad: it's toasted">
+        </div>
+      </aside>
+      ```
+      看完这些代码，应该注意到如下关键点。
+      
+      - 标题（Articles和About Us）使用的是二级标题。这样，它们就自然位于网站的一级标题之下，从而方便屏幕阅读器无障碍的阅读标题。
+      
+      - 链接以 `<ul>` 和 `<li>` 元素组成的无序列表来标记。处理一组链接的最佳方式，也是最无障碍的方式，就是使用列表。不过，得通过样式表删除列表项默认的缩进和项目符号。
+      
+      - “About Us”包含在一个 `<section>` 元素中。`<section>` 适合任何以标题开头的内容区块。
+      
+      - 图片广告放在一个 `<div>`里。有了 `<di>` 区块在之间的关系就更加明确了。
+      
+     复杂的侧边栏可能会以 `<header>` 和 `<footer>` 元素作为开头和结尾，也可能包含多个 `<nav>` 区块——存档文章链接一个、新闻报道连接诶一个、友情链接一个或相关站点链接一个，等等。
+
+     下面是侧边栏的样式表：
+
+        ```
+        aside .NavSidebar {
+          position: absolute;
+          top: 179px;
+          left: 0px;
+          paddding: 5px 15px 0px 15px;
+          width: 203px;
+          min-height: 1500px;
+          background-color: #eee;
+          font-size: small;
+        }
+      ```
+     其他样式可以从 http://prosetech.com/html5 下载示例代码。
+
+     **注意：** `<nav>` 通常会单独出现，有时候也会出现在 `<aside>` 中。其实，还有经常出现在顶部的 `<header>` 元素中。
+
+     下面是整个页面布局关系：
+
+     ![页面布局](http://p9myzkds7.bkt.clouddn.com/Angular/%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80.jpg)
+
+         使用 `<details>` 和 `<summary>` 的折叠框,HTML5新添加了两个语义元素，用于辅助将折叠区块（通过单击区块标题能够显示或隐藏其中的内容）这种行为自动化。具体做法是可以把折叠的区块放在一个 `<details>` 元素中，而把标题放在一个 `<summary>` 元素中。最终结构类似如下这样：
+
+         ```
+         <details>
+           <summary>Section #1</summary>
+           <p>If you can see this content, the section is expanded</p>
+         </details>
+         ```
+         **注意：** 对这两个元素支持的浏览器还很少。
+   
+   
+   
+      
+      
+      
