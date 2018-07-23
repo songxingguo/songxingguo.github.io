@@ -799,3 +799,147 @@ date: 2018-07-22 06:28:00
     在HTML5中，只要把这篇文章嵌套在一个 `<article>` 元素中，那么抓过来的内容就会变成它自己嵌套纲要的一部分。而这个纲要可以从任意级别的标题开始，几级标题都无所谓。
     
     **最后的结论是：** HTML5有一个讲究逻辑的纲要机制，让组合文档变得更容易。在这种纲要机制下，标题的位置变得更加重要，而实际的级别则没有那么重要了。
+    
+  - ##### 解决一个纲要问题
+   
+     有时候也会出现一个问题。比如：你创建了一下页面结构：
+
+     ```
+     <body>
+       <article>
+         <h1>Natural Wonders to Visit Before You Die</h1>
+         ...
+         <h2>In North America</h2>
+         ...
+         <h3>The Grand Canyon</h3>
+         ...
+         <h3>Yellowstone National Park</h3>
+         ...
+         <h2>In the Rest of the World</h2>
+         ...
+         <aside>...</aside>
+         ...
+         <h3>Galapagos Islands</h3>
+         ...
+         <h3>The Swisss Alps</h3>
+         ...
+       </article>
+     </body>
+     ```
+     然后，你觉得这个页面的纲要应该是这样的：
+     ```
+     1.Untitled Section for the <body>
+       1.Natural Wonders to Visit Before You Die
+         1.In North America
+          1.The Grand Canyon
+          2.Yellowstone National Park
+       2.In the Rest of the World
+       3.Untitled Section for the <aside>
+          1.Galapagos Islands
+          2.The Swisss Alps
+     ```
+     但实际上纲要确实这样的：
+     ```
+     1. Untitled Section for the <body>
+       1.Natural Wonders to Visit Before You Die
+         1.In North America
+           1.The Grand Canyon
+           2.Yellowstone National Park
+        2.In the Rest of the World
+        3.Untitled Section for the <aside>
+        4.Galapagos Islands
+        5.The Swisss Alps
+     ```
+     不知怎么地， `<h2>` 后面多出来的那个 `<aside>` 把后面的两个 `<h3>` 元素都带了出来，让它们在逻辑上跟 `<h2>` 元素排在了同一层次上。这显然不是想要的结果。
+     
+    为解决这个问题，首先需要理解HTML5的纲要机制，即每次遇到编号标题元素（ `<h1>`、 `<h2>`、`<h3>` ，等等），只要该元素 **不在某个区块顶部 **，就会为它 **自动创建一个新的区块** 。
+    
+    对这个例子来说，纲要机制对一开头的 `<h1>` 元素什么都不做，因为它位于 `<article>` 区块的顶部。但纲要算法却会为接下来的 `<h2>` 和 `<h3>` 创建新的区块，就好像你写了如下标记一样：
+    
+    ```
+     <body>
+       <article>
+         <h1>Natural Wonders to Visit Before You Die</h1>
+         ...
+         <section>
+           <h2>In North America</h2>
+           ...
+           <section>
+             <h3>The Grand Canyon</h3>
+             ...
+           </section>
+           <section>
+             <h3>Yellowstone National Park</h3>
+             ...
+           </section>
+         </section>
+         
+         <section>
+           <h2>In the Rest of the World</h2>
+           ...
+         </section>
+         <aside>...</aside>
+         ...
+         <section>
+           <h3>Galapagos Islands</h3>
+           ...
+         </section>
+         <section>
+           <h3>The Swisss Alps</h3>
+           ...
+         </section>
+       </article>
+     </body>
+    ```
+    多数情况下，这些自动创建的区块不是问题。事实上，这些区块通常还很有用，因为这样可以确保为正确编号的标题仍然能排在正确的纲要级别上。但这样做的代价就是偶尔会出现小差错，就像我们这个例子。
+    
+    而这个问题的原因就是因为 **碰到了 `<aside>` 元素，而关闭了为 `<h2>` 创建的子区块** 。
+    
+    为了纠正这个问题，需要通过自己定义区块和子区块，来代替纲要机制的自动创建行为。在标记中 **明确为该 `<h2>` 定义一个区块即可解决问题：**
+    
+    ```
+     <body>
+       <article>
+         <h1>Natural Wonders to Visit Before You Die</h1>
+         ...
+         <h2>In North America</h2>
+         ...
+         <h3>The Grand Canyon</h3>
+         ...
+         <h3>Yellowstone National Park</h3>
+         ...
+         <section>
+           <h2>In the Rest of the World</h2>
+           ...
+           <aside>...</aside>
+           ...
+           <h3>Galapagos Islands</h3>
+           ...
+           <h3>The Swisss Alps</h3>
+           ...
+         </section>
+       </article>
+     </body>
+    ```
+    这样，纲要算法就不必再为第二个 `<h2>` 自动创建区块了，因而也就避免了在它发现 `<aside>` 时去关闭该区块的风险。
+    
+    修改后的纲要：
+    ```
+     1.Untitled Section for the <body>
+       1.Natural Wonders to Visit Before You Die
+         1.In North America
+           1.The Grand Canyon
+           2.Yellowstone National Park
+        2.In the Rest of the World
+           1.Untitled Section for the <aside>
+           2.Galapagos Islands
+           3.The Swisss Alps
+    ```
+    另一个办法是用 `<div>` 元素替换 `<aside>` 。因为 `<div>` 不是分块元素，因此不会导致前面的区块意外关闭。
+    
+    假如不小心在 **两个不同级别的标题之间插入了一个分块元素 **，那就要检查一下纲要，看这样干是不是说得过去。
+    
+    最好是把HTML5的纲要机制当成一种 质量保障工具，它有时候可以帮上你的忙。通过在纲要生成器中查看自己的标记，有可能 **发现其他问题导致的错误**，而且能够 **确保你正确地使用语义元素** 。
+    
+    
+    
