@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>《HTML5秘籍》学习笔记-编写更有意义的标记 | 阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="post-title">
+          《HTML5秘籍》学习笔记-编写更有意义的标记
+            <div class="post-tags">
+    		    
+              <a class="tag-link" href="/tags/HTML/">HTML</a>
+            
+    	      </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <article class="post">
+  
+
+  <header>
+    <div class="post-title mobile-post-title">
+      <h1>《HTML5秘籍》学习笔记-编写更有意义的标记</h1>
+        <div class="post-tags">
+        
+          <a class="tag-link" href="/tags/HTML/">HTML</a>
+        
+        </div>
+    </div>
+    <div class="post-meta">
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2018-07-25</span>
+      
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/前端技术/">前端技术</a>
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/前端技术/读书笔记/">读书笔记</a>
+          
+      
+      <!----------------------------------->
+        
+      <!----------------------------------->
+    </div>
+  </header>
+  
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#编写更有意义的标记"><span class="toc-text">编写更有意义的标记</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#回顾语义元素"><span class="toc-text">回顾语义元素</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#标注日期和时间"><span class="toc-text">标注日期和时间</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </div>
+
+
+  <div class="post-content">
+    <h3 id="编写更有意义的标记"><a href="#编写更有意义的标记" class="headerlink" title="编写更有意义的标记"></a>编写更有意义的标记</h3><p>  使用微数据（microdata）,解决文件级语义问题的前言标准，可以让网页和搜索结果的内容更加丰富。</p>
+<ul>
+<li><h4 id="回顾语义元素"><a href="#回顾语义元素" class="headerlink" title="回顾语义元素"></a>回顾语义元素</h4><p>从页面结构开始讨论语义是因为页面结构容易把握。绝大多数网站在规划布局时，都会使用为数不多的几种常见设计元素（页眉、页脚、侧边栏、菜单），结果网站的布局——除了外观装饰有所不同外——都很相似。</p>
+<a id="more"></a>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/HTML5/%E9%A1%B5%E9%9D%A2%E7%BB%93%E6%9E%84%E7%9B%B8%E5%85%B3%E8%AF%AD%E4%B9%89%E5%85%83%E7%B4%A0%E4%B8%8A.jpg" alt="页面结构相关语义元素上"></p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/HTML5/%E9%A1%B5%E9%9D%A2%E7%BB%93%E6%9E%84%E7%9B%B8%E5%85%B3%E8%AF%AD%E4%B9%89%E5%85%83%E7%B4%A0%E4%B8%8B.jpg" alt="页面结构相关语义元素下"></p>
+<p>由于结构化的内容是又很多更小的内容片段构成的，而组织这些内容片段的方式没有一定之规。</p>
+<p>HTML5的策略是双管齐下。一方面，它 <strong>只增强了很少几个文本级语义元素</strong> ；另一方面，任何人都 <strong>可以定义自己的信息</strong> 。HTML5支持一个 <strong>独立的微数据标准</strong> 。这个标准为人们提供了扩展的可能性，任何人都可以定义自己的信息，在自己的页面中为信息添加标注。</p>
+<p>首先，来认识三个新的文本级的语义元素： <code>&lt;time&gt;</code> 、 <code>&lt;output&gt;</code> 和 <code>&lt;mark&gt;</code> 。</p>
+<ul>
+<li><h5 id="标注日期和时间"><a href="#标注日期和时间" class="headerlink" title="标注日期和时间"></a>标注日期和时间</h5><p>网页中经常会出现日期和时间信息。有了 <code>&lt;time&gt;</code> 元素可以解决 没有标准的方式来标注日期的问题，通过它可以标注日期、时间或日期与时间的组合。先看个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The Party starts &lt;time&gt;2014-03-21&lt;/time&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>用 `&lt;time&gt;` 元素来标注日期似乎有点违反直觉，这是HTML5的古怪行为之一。更适合的元素显然应该是 `&lt;datatime&gt;`。
+</code></pre><p><code>&lt;time&gt;</code> 元素在这儿扮演两个角色。首先，它 <strong>表示日期和时间位于标记的哪个地方</strong> 。其次，它 <strong>以任何软件程序都能理解的方式提供日期和时间</strong>。  </p>
+<p>前面的例子符合第二个角色的要求，使用了通用日期格式。</p>
+<p>可以采用任何格式来表示日期，只要你在datetime属性中提供计算机能看懂的通用格式日期就行，比如： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The party starts &lt;time datetime=&quot;2014-03-21&quot;&gt;March 21&lt;sup&gt;st&lt;/sup&gt;&lt;/time&gt;</span><br></pre></td></tr></table></figure>
+<p>在浏览器中的效果如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The party starts March 21^st.</span><br></pre></td></tr></table></figure>
+<p>对于时间部分， <code>&lt;time&gt;</code> 也有类似的规则，标准的时间格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HH:MM</span><br></pre></td></tr></table></figure>
+<p>首先是2位数的小时（24小时制），然后是2位数的分钟。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Parties starts &lt;time datatime=&quot;2014-03-21 16:30&quot;&gt;4:30 p.m.&lt;/time&gt;</span><br></pre></td></tr></table></figure>
+<p>最后，组合以上两个规则可以指定具体日期和时间，日期在前，空一个格，时间在后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The party starts &lt;time datatime=&quot;2014-03-21 16:30&quot;&gt;March 21&lt;sup&gt;st&lt;/sup&gt; at 4:30 p.m.&lt;/time&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>最初 `&lt;time&gt;` 元素要求用一种稍有不同的格式组合日期和时间。2014-03-21T16:30的格式还可以用，因此在别人的网页也可能出现。
+</code></pre><p>在组合日期和时间的情况下，有时候还需要 <strong>后缀时区信息</strong> 。比如：纽约在东五区，即UTC-5:00。（关于时区的划分，请参见 <a href="http://en.wikipedia.org/wiki/Time_zone。）要表示纽约时间下午4:30，应该使用如下标记：" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Time_zone。）要表示纽约时间下午4:30，应该使用如下标记：</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The party starts &lt;time datetime=&quot;2014-03-21 16:30-05:00&quot;&gt;March 21&lt;sup&gt;st&lt;/sup&gt; at 4:30 p.m.&lt;/time&gt;</span><br></pre></td></tr></table></figure>
+<p>这样，看你网页的人，能看到他们想看到的格式，而搜索机器人和其他软件则能看到它们可以处理的值，而且毫无歧义。</p>
+<p>另外， <code>&lt;time&gt;</code> 还有 <strong>一个pubdate属性</strong> 。如果当前内容（例如 <code>&lt;time&gt;</code> 元素所在的 <code>&lt;article&gt;</code> ）对应一个发表日期，可以使用这个属性。下面就是一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Published on &lt;time datetime=&quot;2014-03-21&quot; pubdate&gt;March 31,2014&lt;/time&gt;.</span><br></pre></td></tr></table></figure>
+<pre><code>因为 `&lt;time&gt;`元素是纯粹是信息性的，没有任何附加样式，所以可以在任何浏览器中使用。不必担心兼容性问题。
+</code></pre></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="post-footer">the end</div>
+</article>
+
+          
+  <nav class="pagination post-nav">
+    
+    
+      <a href="/2018/07/22/HTML5-semantics/">
+        <span class="next-post">《HTML5秘籍》学习笔记-用语义元素构造网页<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+  
+
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+
+  <script src="/js/ztopic.js"></script>
+</body>
+</html>
