@@ -124,15 +124,147 @@ date: 2018-07-25 12:04:00
       ```
       有关带标签的模板字符串的更多详细信息，请参阅由AxelRauschmayer编写的Exploring ES6一书中的Template Literals章节，可从 http://exploringjs.com 获取。
       
+  - #### 可选参数和默认值
+  
+     在ES6中，可以 **为函数参数指定默认值** ，这对于当函数被调用却没有传参数的情况是非常有用的。假设有一个计算税费的函数，它有两个参数：一个是全年的收入（income）;另一个是居住的州（state）。如果没有传state的值，你希望能够使用Florida。
+     在ES5中，需要在函数体开始的时候检查是否提供了state值，如果没有，则使用Florida：
+     
+     ```
+     function calcTaxES5(income, state) {
+     
+       state = state || "Florida";
+       
+       console.log("ES5. Calculating tax for the resident of " + state +
+                                "with the income " + income);
+     }
+     
+     calcTaxES5（50000);
+     ```
+     下面是代码的输出结果：
+     
+     ```
+     "ES5. Calculating tax for the resident if Florida with the income 50000"
+     ```
+     在ES6中，需要 **在函数签名中指定默认值** ：
+     
+     ```
+     function calcTaxES6(income, state = "Florida") {
+      console.log("ES6. Calculating tax for the resident of " + state + 
+                               "with the income " + income);
+     }
+     
+     calcTaxES6(50000);
+     ```
+     输出与上面看起来是一样的：
+     
+     ```
+     "ES6. Calculating tax for the resident if Florida with the income 50000"
+     ```
+     除了能够为可选参数提供硬编码的默认值之外，甚至可以 **把函数的返回值作为默认值** ：
+     
+     ```
+     function calcTaxES6(income, state = getDefaultState()) {
+       console.log("ES6. Calculating tax for the resident of " + state +
+                                "with the income " + income);
+     }
+     
+     function getDefaultState() {
+       return "Florida";
+     }
+     ```
+     请记住，每次调用calcTaxES6()同样 **也会调用getDefaultState()函数** ，这  **可能会带来性能问题** 。这个可选参数的新语法能够让你 **编写更少的代码** ，并  **使代码更好理解** 。
+     
+  - #### 变量的作用域
+  
+    ES5中作用域机制相当混乱。无论在哪里使用var声明的变量，**声明都会被移动到作用域的顶部** ，这被称为 **变量提升**（hoisting）。 this 关键字的使用也不像Java或C#语言那么简单。
+    
+    ES6通过引入 **关键字let** 来 **消除变量提升带来的混乱** ，通过 **箭头函数** 来 **解决this带来的混乱** 。
+    
+    - ##### 变量提升
+    
+      在JavaScript中，**所有的变量声明都会被移到顶部** ，并且 **没有块级作用域** 。看看下面的简单示例，其中 **在for循环中声明了变量i** ,但是 **在循环外面仍然可以使用**。
+      
+      ```
+      function foo() {
+        for (var i = 0; i < 10; i++) {
+          
+        }
+        
+        console.log("i=" + i);
+      }
+      
+      foo();
+      ```
+      运行代码后会打印i=10。变量i在循环外仍然可以被访问，尽管它看起来似乎只能在循环内部调用。**JavaScript自动把变量的声明提升到顶部** 。
+      
+      在这个例子中，因为只有一个变量被命名为i，提升不会引起任何问题。如果在函数内部和外部同时声明名字一样的两个变量，就 **可能会造成代码逻辑上的混乱** 。思考一下下面代码，在 **全局作用域内声明了变量customer** 。之后在 **本地作用域内同样引入一个customer变量** ，但是 **会把引入的这个变量注释掉** 。
+      
+      ```
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>hoisting.html</title>
+      </head>
+      <body>
+      
+      <script>
+        "use strict";
+        
+        var customer = "Joe";
+        
+        (function() {
+          console.log("The name of the customer inside the function is " +                 customer);
+          
+          /* if(2 > 1) {
+            var customer = "Mary";
+          }*/
+        })();
+        
+        console.log("The name of the customer outside the function is " +               customer);
+      </script>
+      
+      </body>
+      </html>
+      ```
+      使用Chrome浏览器打开这个文件，查看Chrome Developer Tools中控制台输出。正如我们所期望的，全局变量customer在函数的内部和外部都可见的,如下图所示。
+      
+      ![变量声明被提升](http://p9myzkds7.bkt.clouddn.com/Angular/%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E%E8%A2%AB%E6%8F%90%E5%8D%87.png)
+      
+      **取消对if语句的注释**，在大括号中初始化customer变量。现在，有两个名字一样的变量，其中 **一个是全局变量** ，而 **另一个变量则在函数的作用域内** 。刷新浏览器页面，控制台的输出与之前不同了，函数中的customer变量为undefined,如下图所示。
+      
+      ![变量初始化未被提升](http://p9myzkds7.bkt.clouddn.com/Angular/%E5%8F%98%E9%87%8F%E5%88%9D%E5%A7%8B%E5%8C%96%E6%9C%AA%E8%A2%AB%E6%8F%90%E5%8D%87.png)
+      
+      这是因为在ES5中，**变量声明** 总是 **被提升到作用域顶部** ，但是 **变量并不会被初始化** 。因此 **第二个没有初始化的变量被提升到了函数顶部** ，console.log()打印的值为 **函数内容部定义的变量的值** ，，而不是全局变量customer的值。
+      
+      **函数的声明同样会被提升** ，因此 **可以在声明一个函数之前调用它** ：
+      
+      ```
+      doSomething();
+      
+      function doSomething() {
+        console.log("I'm doing something");
+      }
+      ```
+      另一方面，**函数表达式被认为是变量初始化** ，因此 **不会被提升**。在下面的代码片段中，**变量doSomething()的值为undefined** :
+      
+      ```
+      doSomething();
+      
+      var doSomething = function() {
+        console.log("I'm doing something");
+      }
+      ```
+      
+      
+      
       
       
       
     
-      
     
-    
-    
+   
      
      
-   
-   
+     
+     
+     
