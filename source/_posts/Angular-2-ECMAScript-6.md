@@ -254,7 +254,81 @@ date: 2018-07-25 12:04:00
         console.log("I'm doing something");
       }
       ```
+    - ##### let和const
+    
+      使用ES6关键字let代替var声明变量，能够 **让变量拥有块级作用域** 。下面是一个示例：
       
+      ```
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>hoisting.html</title>
+      </head>
+      <body>
+      
+      <script>
+        "use strict";
+        
+        let customer = "Joe";
+        
+        (function() {
+          console.log("The name of the customer inside the function is " +                 customer);
+          
+          if(2 > 1) {
+            let customer = "Mary";
+            console.log("The name of the customer inside the block is " +                 customer);
+          }
+        })();
+        
+        for (let i =0; i < 5; i++) {
+          console.log("i=" + i);
+        }
+        
+        console.log("i=" + i); //prints Uncaught Reference Error: i is not defined
+      </script>
+      
+      </body>
+      </html>
+       ```
+       现在两个customer变量有不同的作用域和值，如下图所示。
+       
+       ![let的块级作用域](http://p9myzkds7.bkt.clouddn.com/Angular/let%E7%9A%84%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F.png)
+       
+       如果循环中声明一个变量，它只是循环中可用：
+       
+       ```
+       for (let i =0; i < 5; i++) {
+          console.log("i=" + i);
+       }
+        
+       console.log("i=" + i); //Reference Error: i is not defined
+       ```
+       在Traceur REPL中测试let关键字，访问Traceur的Transcoding Demo页面（ http://mng.bz/b191 ）,把输入的ES6语法已交互的方式转码为ES5。
+       
+       简而言之，如果正在开发新的应用程序，请不要使用var,而是使用let。**let关键字允许为变量无限制地分配值** 。
+       
+       如果要声明一个变量，使其 **在分配了值之后不会被重新分配** ，可以使用const关键词。**常量同样支持块级作用域** 。
+       
+       let和const的唯一区别是：**const不允许改变已经被分配的值** 。程序中 **优先推荐使用const** ;如果 **变量需要被改变** ，那么 **使用let替换const**。
+       
+    - ##### 函数的块级作用域
+    
+      如果在一个块（一对大括号）中声明了一个函数，那么在快外，该函数是不可见的。下面的代码将抛出错误： “doSomething is note defined”。
+      
+      ```
+      {
+        function doSomething() {
+          console.log("In doSomething");
+        }
+      }
+      
+      doSomething();
+      ```
+      在ES5中，doSomething()声明将会被提升，并打印“In doSomething”。在ES5中并不推荐在块中声明一个函数（参加 http://mng.bz/Bvym 中的 “ES5 Implementtation Best Practice”）,这是因为 **不同浏览器会以不同的方式解析此语法** ，产生不一致的结果。
+       
+       
+       
+       
       
       
       
