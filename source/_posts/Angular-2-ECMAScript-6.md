@@ -262,7 +262,7 @@ date: 2018-07-25 12:04:00
       <!DOCTYPE html>
       <html>
       <head>
-        <title>hoisting.html</title>
+        <title>let.html</title>
       </head>
       <body>
       
@@ -325,20 +325,115 @@ date: 2018-07-25 12:04:00
       doSomething();
       ```
       在ES5中，doSomething()声明将会被提升，并打印“In doSomething”。在ES5中并不推荐在块中声明一个函数（参加 http://mng.bz/Bvym 中的 “ES5 Implementtation Best Practice”）,这是因为 **不同浏览器会以不同的方式解析此语法** ，产生不一致的结果。
-       
-       
-       
-       
-      
-      
-      
-      
-      
-    
-    
    
+   - #### 箭头函数、this和that
+   
+     ES6引入了箭头函数表达式，**为匿名函数提供了更短的写法** ，**为this变量添加了词法作用域** 。在其他编程语言（如C#和Java）中，类似的语法被称为lambda表达式。
      
+     箭头函数表达式的语法包括 **参数** 、**箭头符号**（=>）、以及 **函数体** 。如果 **函数体只有一个表达式**， **可以不写大括号** 。如果 **一个单一表达式函数返回值** ，那么 **可以省略return语句**，结果被隐式地返回：
      
+     ```
+     let sun = (arg1, arg2) => arg1 + arg2;
+     ```
+     如果 **函数体是多行的箭头函数表达式** ，那么 **需要使用大括号闭合函数体** ，并 **使用显式的return语句** ：
      
+     ```
+     (arg1, arg2) => {
+       //do something
+       return someResult;
+     }
+     ```
+     如果箭头函数 **没有任何参数** ，**使用空括号** ：
      
+     ```
+     () => {
+       // do something 
+       return someResult;
+     }
+     ```
+     如果箭头函数 **只有一个参数** ，**括号不是必需的** ：
      
+     ```
+     arg1 => {
+       //do something
+     }
+     ```
+     在下面的代码片段中，箭头函数作为参数传入reduce()方法用来计算合计，另一个箭头函数被传入filter()方法用来打印偶数：
+     
+     ```
+     var myArray = [1, 2, 3, 4, 5];
+     console.log("The sum if myArray elements is " + 
+                myArray.reduce((a,b) = > a + b); //pints 15
+     console.lgo("The even numbers in myArray are " +
+                myArray.filter(value => value % 2 == 0); prints 2 4
+     ```
+     在ES5中，搞清楚关键字this是那个对象的引用并不是简单的任务。在线搜索“JavaScript this and that”,会发现很多类似的文章，人们都在抱怨this指向了“错误”的对象。基于函数如何被调用以及是否严格模式（参见 http://mng.bz/VNVL 上有关Mozila Developer NetNork的“Strict Mode”）, **this 引用可以有不同的值** 。
+     
+     考虑thisAndThat.html文件中的代码，它会每秒调用一次getQuote()函数。getQuote()函数会在StockQuoteGenerator()构造函数中为股票代码打印随机生成的价格。
+     
+      ```
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>thisAndThat.html</title>
+      </head>
+      <body>
+      
+      <script>
+        function StockQuoteGenerator(symbol) {
+          // this.symbol = symbol; //is undefined inside getQuote()
+          
+          var that = this;
+          that.symbol = symbol;
+          
+          setInterval(function getQuote() {
+            console.log("The price quote for " + that.symbol  
+                  + " is " + Math.random());
+          },1000);
+        }
+        
+        var stockQuoteGenerator = new StockQuoteGenerator("IBM");
+
+      </script>
+      
+      </body>
+      </html>
+       ```
+       上述代码中被注释部分，演示了this的错误用法。当函数需要一个值时，虽然看起来是同一个this引用，但实际上并不是，。如果 **没有把this变量的值保存到that中** ，使用setInterval()或回调函数调用getQuote()函数 **得到的this.symbol的值将是undefined** 。在getQuote()中， **this指向全局对象** ，与StockQuoteGenerator构造函数中定义的this不一致。
+       
+       另一种可能的解决方式是 **使用JavaScriptcall()、apply()或bind()函数** ，以 **确保函数运行在指定的this对象中** 。
+       
+       **提示：** 如果不了解JavaScript中this问题，详见Richard Bovell的文章“Understand JavaScript s 'this' with Clarity and Master It”（网址为 http://mng.bz/ZQfz ）
+       
+       fatArrow.html文件演示了箭头函数的解决方案，无须像thisAndThat.html中所做的那样，在that中存储this。
+       
+      ```
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>fatArrow.html</title>
+      </head>
+      <body>
+      
+      <script>
+      
+        "use strict";
+        
+        function StockQuoteGenerator(symbol) {
+        
+          this.symbol = symbol; 
+         
+          setInterval(() => {
+            console.log("The price quote for " + that.symbol  
+                  + " is " + Math.random());
+          },1000);
+        }
+        
+        var stockQuoteGenerator = new StockQuoteGenerator("IBM");
+
+      </script>
+      
+      </body>
+      </html>
+       ```
+       箭头函数被当成参数传入setInterval()中，它 **使用了封闭上下文中的this值** ，因此可以识别this.symbol的值为IBM。
