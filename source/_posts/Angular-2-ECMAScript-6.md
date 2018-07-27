@@ -437,3 +437,134 @@ date: 2018-07-25 12:04:00
       </html>
        ```
        箭头函数被当成参数传入setInterval()中，它 **使用了封闭上下文中的this值** ，因此可以识别this.symbol的值为IBM。
+       
+       - ##### rest和扩展运算符
+       
+         在ES5中， **编写可变长度参数** 的函数需要 **使用特殊的arguments对象** 。这个 **对象类似于数组** ，其中包含了对应传递给函数的参数。隐式的arguments变量 **在任何函数中都可以被视为局部变量** 。
+        
+         ES6有 **rest** 和 **扩展运算符** ，都 **用三个点（...）来表示** 。rest操作符被 **用于为函数传递可变长度参数** ，该操作符必须是 **参数列表中最后一个参数** 。如果函数参数的名字 **以三个点开始** ，函数将会 **以数组的形式得到参数的剩余部分** 。例如，在rest操作符的作用下只需使用一个变量名便可以向函数传递多个customers:
+        
+         ```
+          function processCustomers(...customers) {
+            //implementation of the function goes here
+          }
+         ```
+         在这个函数中，可以 **像处理任何数组一样处理customers数据**  。
+        
+         想象一下，需要编写一个用来计算税费的函数，第一个参数是income，后面根据客户数量，可以又任意数量的参数来表示顾客的名字。下面代码显示了分别使用老语法和新语法处理可变参数。
+      
+           ```
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <title>rest.html</title>
+            </head>
+            <body>
+
+            <script>
+
+              "use strict";
+
+               //ES5 and arguments object
+               function calcTaxES5() {
+                 //income是第一个参数
+                 console.log("ES5. Calculating tax for customers with the income ", 
+                                 arguments[0]);
+
+                 //从第二个元素起提取出一个数组
+                 var customers = [].slice.call(arguments, 1);
+
+                 customers.forEach(function(customer) {
+                   console.log("Processing ", customer);
+                 });
+               }
+
+               calcTaxES5(50000, "Smith", "Johnson", "McDonald");
+               calcTaxES5(750000, "Smith", "Olson", "Clinton");
+
+
+               //ES6 and rest operator
+               function calcTaxdES6(income, ...customers) {
+                 console.log("ES6. Calculating tax for customers with the income ", 
+                    income);
+
+                 customers.forEach(function(customer) {
+                    console.log("Processing", customer);
+                 });
+               }
+
+               calcTaxdES6(50000, "Smith", "Johnson", "McDonald");
+               calcTaxdES6(750000, "Olson", "Clinton");
+
+            </script>
+
+            </body>
+            </html>
+           ```
+         calcTaxEs5()和calcTaxEs6()函数产生相同的结果：
+          
+           ```
+             ES5. Calculating tax for customers with the income  50000
+             Processing  Smith
+             Processing  Johnson
+             Processing  McDonald
+             ES5. Calculating tax for customers with the income  750000
+             Processing  Smith
+             Processing  Olson
+             Processing  Clinton
+             ES6. Calculating tax for customers with the income  50000
+             Processing Smith
+             Processing Johnson
+             Processing McDonald
+             ES6. Calculating tax for customers with the income  750000
+             Processing Olson
+             Processing Clinton
+          ```
+          不过，它们在处理customers时还是有差异的，因为arguments对象并不是一个真正的数组，在ES5中不得不使用slice()和call()方法 **创建一个数组** ，并从arguments中的第二个元素开始提取顾客姓名，放入到新创建的数组中。
+          
+          ES6则不需要使用这些技巧，rest操作符能够返回一个正常的customers数组。rest参数能 **让代码更简单** ，**可读性更强** 。
+          
+          如果 **rest操作符** 能够把 **变长参数转换为数组** ，那么 **扩展运算符** 则执行相反的操作； **把一个数组分解到参数列表中** 。假设需要编写一个函数，计算给定收入的三名顾客的税费。这一次，**参数的长度是固定的** ，但是顾客被存放到要给数组中。可以使用扩展运算符——三个点（...）, **把数组分解到独立参数的列表中** 。
+         
+          ```
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <title>spread.html</title>
+            </head>
+            <body>
+
+            <script>
+
+              "use strict";
+
+               function calcTaxSpread(customer1, customer2, customer3, income) {
+                 console.log("ES6. Caclulating tax for customers with the income ", income);
+                 console.log("Processing", customer1, customer2, customer3);
+               }
+               
+               var customers = ["Smith", "Johnson", "McDonald"];
+               
+               //扩展运算符
+               calcTaxSpread(...customers, 50000);
+            </script>
+
+            </body>
+            </html>
+           ```
+           这个示例中，并不会从customers数组中提取值，然后把这些值作为函数的参数，而是使用扩展运算符处理数组，就好像在对函数说：“你需要三个参数，而我只会给你一个数组，你自己把它们提取出来吧”。注意，作为rest运算符的反向操作，  **扩展运算符不一定必须是参数列表中的最后一个参数**。
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
