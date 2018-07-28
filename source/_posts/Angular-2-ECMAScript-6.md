@@ -630,6 +630,114 @@ date: 2018-07-25 12:04:00
         
         利用generator函数，可以 **分离某些操作执行 （如获取报价）以及这些操作产生数据的消耗** 。数据使用者可以 **惰性求值** 并且 **决定是否需要请求更多的数据** 。
         
+     - ##### 解构
+      
+       **创建对象** 意味着 **在内存中构造它们** 。**解构**（Destructuring）意味着** 将对象分解** 。在ES5中可以 **编写一个方法来解构任何对象和数组** 。ES6引入了 **解构赋值语法** ，允许通过 **指定匹配模式**（matching pattern），**利用简单的表达式从一个对象的属性或一个数组中提取数据** 。
+       
+       解构表达式由 **匹配模式** 、**等号**  以及需要分解的 **对象** 或 **数组** 组成。用示例说明会更容易理解。下面会有一个具体示例：
+       
+       - 解构对象
+         
+         假设getStock()函数返回一个Stock对象，其中包括symbol和price属性。在ES5中，如过想要把这些属性的值分配给不同的变量，首先需要 **创建一个变量来存储Stock对象**，之后编写两条语句， **把对象属性分配到对应的变量中** ：
+         
+         ```
+         var stock = getStock();
+         var symbol = stock.symbol;
+         var price = stock.price;
+         ```
+         在ES6中，只需要在等号左侧 **写一个匹配模式**，并 **把Stock对象分配给它** ：
+         ```
+         let {symbol, price}= getStock();
+         ```
+         在等号左侧，你会看到大括号与平时的用法有些不太一样，这是 **匹配表达式语法** 的一部分。当在左侧看到的大括号时，应该把它们认为是 **代码块** 而 **不是对象字面量** 。
+         下面的代码演示了如何从getStock()函数中得到Stock对象，并把其解构到两个变量中。
+         
+         ```
+         function getStock() {
+           return {
+             symbol: "IBM",
+             price: 100.00
+           }
+         }
+         
+         let  {symbol, price} = getStock();
+         
+         concole.log(`The price of ${symbol} is ${price}`);
+         ```
+         运行上面的代码将会打印如下输出：
+         
+         ```
+         The price of IBM is 100
+         ```
+         换句话说，通过一个 **赋值表达式** ，将 **一组数据**（在本例中是对象属性）绑定到**另一组变量** （symbol和price）中。即使Stock对象除了这两个属性外 **还有其他属性** ，结构表达式也 **仍然可以工作** ，因为symbol和price **满足匹配模式** 。**匹配表达式** 仅列出 **希望提取** 的对象属性对应的变量。
+         
+        上面代码，只有在变量名称与Stock对象属性名称一致时才会工作。让我们把symbol改变称sym:
+        
+        ```
+        let {sym, price} = getStock();
+        ```
+        这样输出结果将会发生变化，因为JavaScript并不知道要把对象的symbol属性赋给sym变量：
+        
+        ```
+        The price of undefined is 100
+        ```
+        这是一个错误的模式匹配示例。如果确实需要用变量sym映射到symbol属性，那么需要  **为symbol分配一个别名** ：
+        
+        ```
+        let {symnol: sym, price} = getStock();
+        ```
+        如果等号左侧变量的 **数量超过对象属性的数量** ， **额外的变量将会被分配值undefined**。
+        如果在等号左侧 **添加了一个StockExchange变量** ，它 **将会被初始化为undefined** ,这是因为getStock()返回的对象中没有同名的属性：
+        
+        ```
+        let {sym, price, stockExchange} = getStock();
+        console..log(`The price of ${symbol} is ${price} ${stockExchange}`);
+        ```
+        如果将上面的结构表达式应用到同一个Stock对象上，控制台输出将如下所示：
+        
+        ```
+        The price of IBM is 100 undefined
+        ```
+        如果希望stockExchange变量有一个 **默认值** ，比如“NASDAQ”,可以重写解构表达式，如下所示：
+        
+        ```
+        let {sym, price, stockExchange="NASDAQ"} = getStock();
+        ```
+        **嵌套对象也可以解构。** 在下面代码中创建了一个嵌套对象用来表示MSFT股票，并把其传递给printStockInfo()函数，该函数从对象中提取股票代码这证券交易所的名称。
+        
+        ```
+        let msft = {symbol: "MSFT"，
+            lastPrice: 50。00，
+            exchange: {
+              name: "NASDAQ",
+              tradingHours: "9:30am-4pm",
+            }
+         }
+         
+         function printStockInfo(stock) {
+           let {symbol, exchange: {name}} = stock;
+           console.log(`The ${symbol} stock is traded at ${name}`);
+         }
+         
+         printStockInfo(msft);
+        ```
+        运行这个脚本将会打印如下输出：
+        
+        ```
+        The MSFT stock if traded at NASDAQ
+        ```
+        
+        
+        
+        
+        
+        
+        
+         
+         
+         
+        
+        
         
         
   
