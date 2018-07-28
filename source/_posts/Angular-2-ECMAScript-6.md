@@ -2,7 +2,6 @@ title: 《Angular 2开发实战》学习笔记-ECMAScript 6概述
 author: songxingguo
 tags:
   - ES6
-  - ''
 categories:
   - 前端技术
   - 读书笔记
@@ -914,7 +913,7 @@ date: 2018-07-25 12:04:00
      ES6新引入关键字 **class** 和 **extends** ,使其在语法与其他面向对象编程语言（如Java和C#）保持一致。上面的代码按照ES6的写法如下所示：
      
      ```
-     class Tax() {
+     class Tax {
        //The code of the tax class goes here
      }
      
@@ -954,7 +953,7 @@ date: 2018-07-25 12:04:00
      JavaScript依旧是 **原型继承的语言** ，但是ES6能够令开发者 **编写更优雅的代码** ：
      
      ```
-     class Tax() {
+     class Tax {
      
        calcTax() {
          // code to calculate tax goes here
@@ -970,41 +969,14 @@ date: 2018-07-25 12:04:00
      ```
      - ##### 构造函数
      
+       在实例化的过程中，类会执行一些特使方法中的代码，这些方法被称为 **构造函数** 。在Java和C#这类开发语言中，构造函数的名称必须与类的名称保持一致；但在ES6中，使用**constructor关键字** 声明类的构造函数：
        
-     
-     
-     
-     
-     
-        
-      
-    
-    
-        
+       ```
+       class Tax {
+         constructor (income) {
+           this.income = income;
+         }
+       }
        
-       
-   
-         
-         
-        
-        
-        
-        
-        
-        
-        
-         
-         
-         
-        
-        
-        
-        
-  
-        
-        
-        
-        
-        
-        
-        
+       var myTax = new Tax()
+       ```
