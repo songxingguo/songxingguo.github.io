@@ -636,7 +636,7 @@ date: 2018-07-25 12:04:00
        
        解构表达式由 **匹配模式** 、**等号**  以及需要分解的 **对象** 或 **数组** 组成。用示例说明会更容易理解。下面会有一个具体示例：
        
-       - 解构对象
+       - ###### 解构对象
          
          假设getStock()函数返回一个Stock对象，其中包括symbol和price属性。在ES5中，如过想要把这些属性的值分配给不同的变量，首先需要 **创建一个变量来存储Stock对象**，之后编写两条语句， **把对象属性分配到对应的变量中** ：
          
@@ -671,61 +671,126 @@ date: 2018-07-25 12:04:00
          ```
          换句话说，通过一个 **赋值表达式** ，将 **一组数据**（在本例中是对象属性）绑定到**另一组变量** （symbol和price）中。即使Stock对象除了这两个属性外 **还有其他属性** ，结构表达式也 **仍然可以工作** ，因为symbol和price **满足匹配模式** 。**匹配表达式** 仅列出 **希望提取** 的对象属性对应的变量。
          
-        上面代码，只有在变量名称与Stock对象属性名称一致时才会工作。让我们把symbol改变称sym:
+         上面代码，只有在变量名称与Stock对象属性名称一致时才会工作。让我们把symbol改变称sym:
         
-        ```
-        let {sym, price} = getStock();
-        ```
-        这样输出结果将会发生变化，因为JavaScript并不知道要把对象的symbol属性赋给sym变量：
+          ```
+          let {sym, price} = getStock();
+          ```
+         这样输出结果将会发生变化，因为JavaScript并不知道要把对象的symbol属性赋给sym变量：
         
-        ```
-        The price of undefined is 100
-        ```
-        这是一个错误的模式匹配示例。如果确实需要用变量sym映射到symbol属性，那么需要  **为symbol分配一个别名** ：
+          ```
+          The price of undefined is 100
+          ```
+         这是一个错误的模式匹配示例。如果确实需要用变量sym映射到symbol属性，那么需要  **为symbol分配一个别名** ：
         
-        ```
-        let {symnol: sym, price} = getStock();
-        ```
-        如果等号左侧变量的 **数量超过对象属性的数量** ， **额外的变量将会被分配值undefined**。
-        如果在等号左侧 **添加了一个StockExchange变量** ，它 **将会被初始化为undefined** ,这是因为getStock()返回的对象中没有同名的属性：
+          ```
+          let {symnol: sym, price} = getStock();
+          ```
+         如果等号左侧变量的 **数量超过对象属性的数量** ， **额外的变量将会被分配值undefined**。
+         如果在等号左侧 **添加了一个StockExchange变量** ，它 **将会被初始化为undefined** ,这是因为getStock()返回的对象中没有同名的属性：
         
-        ```
-        let {sym, price, stockExchange} = getStock();
-        console..log(`The price of ${symbol} is ${price} ${stockExchange}`);
-        ```
-        如果将上面的结构表达式应用到同一个Stock对象上，控制台输出将如下所示：
+        	```
+        	let {sym, price, stockExchange} = getStock();
+        	console..log(`The price of ${symbol} is ${price} ${stockExchange}`);
+        	```
+         如果将上面的结构表达式应用到同一个Stock对象上，控制台输出将如下所示：
         
-        ```
-        The price of IBM is 100 undefined
-        ```
-        如果希望stockExchange变量有一个 **默认值** ，比如“NASDAQ”,可以重写解构表达式，如下所示：
+        	```
+        	The price of IBM is 100 undefined
+        	```
+         如果希望stockExchange变量有一个 **默认值** ，比如“NASDAQ”,可以重写解构表达式，如下所示：
         
-        ```
-        let {sym, price, stockExchange="NASDAQ"} = getStock();
-        ```
-        **嵌套对象也可以解构。** 在下面代码中创建了一个嵌套对象用来表示MSFT股票，并把其传递给printStockInfo()函数，该函数从对象中提取股票代码这证券交易所的名称。
+         ```
+         let {sym, price, stockExchange="NASDAQ"} = getStock();
+         ```
+         **嵌套对象也可以解构。** 在下面代码中创建了一个嵌套对象用来表示MSFT股票，并把其传递给printStockInfo()函数，该函数从对象中提取股票代码这证券交易所的名称。
         
-        ```
-        let msft = {symbol: "MSFT"，
-            lastPrice: 50。00，
-            exchange: {
-              name: "NASDAQ",
-              tradingHours: "9:30am-4pm",
-            }
+          ```
+          let msft = {symbol: "MSFT"，
+              lastPrice: 50。00，
+              exchange: {
+                name: "NASDAQ",
+                tradingHours: "9:30am-4pm",
+              }
+           }
+
+           function printStockInfo(stock) {
+             let {symbol, exchange: {name}} = stock;
+             console.log(`The ${symbol} stock is traded at ${name}`);
+           }
+
+           printStockInfo(msft);
+          ```
+         运行这个脚本将会打印如下输出：
+        
+          ```
+          The MSFT stock if traded at NASDAQ
+          ```
+       - ###### 解构数组
+        
+         **数组解构** 与对象解构 **类似** ，但是会用 **方括号** 代替大括号。当 **解构对象*8 时，需要 **声明匹配属性的变量** ；而当 **解构数组** 时，则需要 **声明匹配索引的变量** 。下面的代码会从数组中提取两个数组元素并复制给两个变量：
+         
+         ```
+         let [name1, name2] = ["Smith", "Clinton"];
+         console.log(`name1 = ${name1}, name2 = ${name2}`);
+         ```
+         输出如下所示：
+         
+         ```
+         name1 = Smith, name2 = Clinton
+         ```
+         如果仅需要 **提取数组的第二个元素** ，匹配模式应该这么写：
+         
+         ```
+         let [, name2] = ["Smith", "Clinton"];
+         ```
+         如果 **函数返回一个数组** ，结构语法会将其 **转换为一个返回多个数据的函数** ，如下面的getCustomers()函数所示：
+         
+         ```
+         function getCustomers() {
+           return ["Smith", , , "Gonzales"];
          }
          
-         function printStockInfo(stock) {
-           let {symbol, exchange: {name}} = stock;
-           console.log(`The ${symbol} stock is traded at ${name}`);
+         let [firstCustomer, , , lastCustomer] = getCustomers();
+         console.log(`The first customer is ${firstCustomer} and the last one is ${lastCustomer}`);
+         ```
+         现在我们可以 **将rest参数和数据结构组合在一起使用** 。假设有一个数组，其中包含了若干名顾客，但是只需处理最开始的两个元素。下面的代码片段展示了如何实现：
+         
+         ```
+         let customers = ["Smith", "Clinton", "Lou", "Gonzles"];
+         
+         let [firstCust, secondCust, ...otherCust] = customers;
+         
+         console.log(`The first customer is ${firstCust} and the second one is ${secondCust}`);
+         console.log(`Other customers are ${otherCust}`);
+         ```
+         代码在控制台产生的输出如下所示：
+         
+         ```
+         The first customer is Smith and the second one is Clinton
+         Other customers are Lou,Gonzles
+         ```
+         另外一种用法，可以匹配模式以及rest参数一起传递给函数：
+         
+         ```
+         var customers = ["Smith", "Clinton", "Lou", "Gonzles"];
+         
+         function processFirstTwoCustomers([firstCust, secondCust, ...otherCust]) {
+           console.log(`The first customer is ${firstCust} and the second one is ${secondCust}`);
+           console.log(`Other customers are ${otherCust}`);
          }
          
-         printStockInfo(msft);
-        ```
-        运行这个脚本将会打印如下输出：
-        
-        ```
-        The MSFT stock if traded at NASDAQ
-        ```
+         processFirstTwoCustomers(customers);
+         ```
+         输出与上次执行是一致的：
+         ```
+         The first customer is Smith and the second one is Clinton
+         Other customers are Lou,Gonzles
+         ```
+         总而言之，解构的好处是当 **需要从对象属性或数组中初始一些变量** 时，可以 **写更少的代码** 。
+         
+         
+         
         
         
         
