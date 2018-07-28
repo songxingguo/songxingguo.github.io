@@ -567,19 +567,76 @@ date: 2018-07-25 12:04:00
           console.log("Resumed processing");
         }
         ```
+        当调用这个函数时，它并 **不会立即执行函数代码** ，而是会 **返回一个特殊的generator对象** ，它 **可以被认为是一个 迭代器** 。下面的代码 **不会打印任何东西** ：
+        
+        ```
+        var iterator = dosomething();
+        ```
+        为了开始执行函数体，需要 **调用generator的next()方法** ：
+        
+        ```
+        iterator.next();
+        ```
+        在这行代码执行后，doSomething()函数将会 **打印“Started processing”** ,并且由于 **执行到yield操作符** ， **函数将暂停执行** 。再次 **调用next()方法** 将会 **打印“Resumed peocessing”** 。
+        
+        当需要 **编写一个产生数据流的函数** 时，generator函数是非常有用的。想象一下，需要一个函数能够检索和生成指定代码（IBM、MSFT等）的股票价格。如果股票价格第一指定的价格（限价），那么购买这只股票。
+        
+        下面的generator函数getStockPrice()模拟了这种场景。为了简单起见，它并不会从股票交易所检索价格，而是采用由Math。random()生成的随机数代替。
+        
+        ```
+        function* getStockPrice(symbol) {
+          
+          while(true) {
+            yield Math.random() * 100;
             
+            console.log(`resuming for ${symbol}`);
+          }
+        }
+        ```
+        如果在yield之后的值，那么它应该被返回给调用函数，但是这个函数并没有执行完。尽管getStockPrice()中有一个无限循环，但只有当调用getStockPrice()的脚本在这个genernator上调用next()时，才会产生（返回）价格，如下所示：
+        
+        ```
+        //创建Generator对象，但是不执行getStockPrice()函数体，getStockPrice将会提供IBM价格的数据流。
+        let priceGenerator = getStockPrice("IBM");
+        
+        //设置限价为$15初始化价格为$100
+        const limitPrice = 15;
+        let price = 100;
+        
+        //请求股票价格，直到价格低于$15
+        while(price > limitPrice) {
           
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+          //请求价格并打印到控制台
+          price = priceGenerator.next().value;
+          console.log(`The generator returned ${price}`);
+        }
+        
+        //如果价格低于$15,循环结束，打印一条关于购买的股票以及购买价格的消息
+        console.log(`buying at ${price} !!!`);
+        ```
+        运行代码，在浏览器的控制台将会打印类似于下面的输出：
+        
+        ```
+         The generator returned 83.18050163853641
+         resuming for IBM
+         The generator returned 88.87640154512837
+         resuming for IBM
+         The generator returned 46.90606158470856
+         resuming for IBM
+         The generator returned 1.1542147358593269
+         buying at 1.1542147358593269 !!!
+        ```
+        注意消息的顺序。当调用priceGenerator的next()方法时，被暂停的getStockPrice方法会被恢复，yield下面的代码会打印出“resuming for IBM”，即使控制流退出函数，之后再次进入函数，getStockPrice()也仍然记录symbol的值为“IBM”。当yield操作符把控制权还给外部脚本后，它将 **会创建堆栈的快照** ，**以便能够记录所有本地变量值** ，即便generator函数恢复，这些值也不会丢。
+        
+        利用generator函数，可以 **分离某些操作执行 （如获取报价）以及这些操作产生数据的消耗** 。数据使用者可以 **惰性求值** 并且 **决定是否需要请求更多的数据** 。
+        
+        
+        
+  
+        
+        
+        
+        
+        
+        
+        
