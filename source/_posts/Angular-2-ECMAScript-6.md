@@ -981,3 +981,75 @@ date: 2018-07-25 12:04:00
        var myTax = new Tax(50000);
        ```
        构造函数是 **一类特殊的方法** ，当对象 **创建时只会被执行一次** 。如果对Java或C#语言熟悉的话，就会发现上面的代码看起来有些不同；并**没有** 单独 **声明一个类级别的income变量** ，而是 **动态的创建在this对象上** ，使用构造函数的参数来初始化this.income。**this变量** 指向 **当前对象的实例** 。
+       
+       下面的示例将会展示如何创建子类NJTax的实例，并把50 000传入到它的构造函数中：
+       
+       ```
+       class Tax {
+         constructor(income) {
+           this.income = income;
+         }
+       }
+       
+       class NJTax extends Tax {
+         // The code of New Jersey tax object goes here
+       }
+       
+       var njTax = new NJTax(50000);
+       
+       console.log(`The income in njTax instance is ${njTax.income}`);
+       ```
+       上面代码片段的输出如下所示：
+       
+       ```
+       The income in njTax instance is 50000
+       ```
+       由于子类NJTax并没有定义自己的构造函数，因此当初始化NJTax时， **父类Tax的构造函数会自动被调用** 。
+       
+       注意通过njTax引用变量可以类的外部访问到income变量。
+       
+     - ##### 静态变量
+     
+       如果一个类的属性希望能够 **被它的多个实例共享** ，那么需要在类声明的 **外部创建这个属性** 。在下面的示例中，counter变量被对象A的两个实例所共享：
+       
+       ```
+       class A {
+       }
+       
+       A.counter =  0;
+       
+       var a1  = new A();
+       A.counter++;
+       console.log(A.counter);
+       
+       var a2  = new A();
+       A.counter++;
+       console.log(A.counter);
+       ```
+       
+       执行代码后，输出如下：
+       
+       ```
+       1
+       2
+       ```
+       
+      
+      
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
