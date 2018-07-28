@@ -1310,7 +1310,7 @@ date: 2018-07-25 12:04:00
         ```
         与回调相比，promise能够 **让代码更线性** ，**更加容易阅读** ，并且 **能够表示应用程序的多种状态** 。promise的劣势是，**promise无法被取消** 。想象一下，一位不耐烦的客户单击一个按钮很多次，想从服务器获取数据。每次单击都会创建一个promise并初始化一个HTTP请求，并没有办法能做到只保持最新的请求而取消没有完成的请求。Promise对象下一步的优化是obervable对象，Observable对象在未来的ECMAScript规范中可能会被引入。
         
-        **注意：** 用来从网络中获取资源的新推出的Fetch API可能很快将会取代XMLRequest对象。Fetch API基于promise,有关详细信息，请参阅Mozilla开发人员网络文档（详见 http://mng.bz/mbMe ）。
+        **注意：** 用来从网络中获取资源的新推出的 **Fetch API** 可能很快将会取代XMLRequest对象。Fetch API基于promise,有关详细信息，请参阅Mozilla开发人员网络文档（详见 http://mng.bz/mbMe ）。
         
         
      
