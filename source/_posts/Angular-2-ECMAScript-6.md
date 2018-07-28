@@ -892,7 +892,90 @@ date: 2018-07-25 12:04:00
           console.log(char);
         }
         ```
-        
+   - #### 类与继承
+   
+     ES3和ES5都支持 **面向对象编程** 以及 **继承** ,但是使用ES6的 **类** 够更容易地 **开发代码** 和 **理解代码** 。
+     
+     在ES5中，既可以 **创建一个全新的对象** ，也可以 **从其他对象继承得到一个对象** 。默认所有JavaScript对象 **继承自Object类** 。对象的继承是由一个名为 **prototype的特殊属性** 实现的，该属性 **指向对象的父级** ，这被称为 **原型继承** （prototypal inheritance）。例如，为了创建继承自对象Tax的NJTax对象，需要这么写：
+     
+     ```
+     function Tax() {
+       //The code of the tax object goes here
+     }
+     
+     function NJTax() {
+       //The code of New Jersey tax object goes here 
+     }
+     
+     //NJTax继承自Tax
+     NJTax.prototype = new Tax();
+     var njTax = new NJTax();
+     ```
+     ES6新引入关键字 **class** 和 **extends** ,使其在语法与其他面向对象编程语言（如Java和C#）保持一致。上面的代码按照ES6的写法如下所示：
+     
+     ```
+     class Tax() {
+       //The code of the tax class goes here
+     }
+     
+     class NJTax extends Tax {
+       // The code of New Jersey tax object goes here
+     }
+     
+     var njTax = new NJTax();
+     ```
+     Tax是父级或者称为超类，NJTax是子级或者称为子类。可以认为NJTax类与Tax类是“is a”的关系。换句话说，NJTax是一个Tax。可以在NJTax中 **实现额外的功能** ，但NJTax始终是一个（“is a”）Tax,或者说是一种（“is a kind of”） Tax。同样，如果创建一个继承自Person的类Employee,那么Employee是Person。
+     可以创建一个或多个对象，如下所示：
+     
+     ```
+     //Tax对象的第一个实例
+     var tax1 = new Tax();
+     //Tax对象的第二个实例
+     var tax2 = new Tax();
+     ```
+     **提示：** 类声明是不会被提升的。在使用类之前需要首先声明它。
+     
+     这些对象 **都具有Tax类的属性和方法** ，但是它们 **保持不同的状态** 。例如，第一个实例可以创建一名年收入$50 000的客户，而第二个实例可以创建为一名年收入$75 000的客户。每一个实例 **共享同一份Tax中声明的方法的拷贝** ，因此 **不会有重复的代码存在** 。
+     
+     在ES5中，为了 **避免代码重复** ，可以通过不在对象中声明方法而是在 **属性中声明方法** 来解决：
+     
+     ```
+     function Tax() {
+       //The code of the tax object goes here
+     }
+     
+     
+     Tax.prototype = {
+      calcTax: function() {
+        // code to calculate tax goes here
+      }
+     }
+     ```
+     JavaScript依旧是 **原型继承的语言** ，但是ES6能够令开发者 **编写更优雅的代码** ：
+     
+     ```
+     class Tax() {
+     
+       calcTax() {
+         // code to calculate tax goes here
+       }
+     }
+     ```
+     **不支持成员变量：** ES6语法不支持声明Java、C#或TypeScript中类似的类成员变量。下面的语法是不受支持的：
+     
+     ```
+     class Tax {
+       var income;
+     }
+     ```
+     - ##### 构造函数
+     
+       
+     
+     
+     
+     
+     
         
       
     
