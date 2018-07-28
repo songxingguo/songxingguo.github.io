@@ -789,6 +789,118 @@ date: 2018-07-25 12:04:00
          ```
          总而言之，解构的好处是当 **需要从对象属性或数组中初始一些变量** 时，可以 **写更少的代码** 。
          
+   - #### 用forEach()、for-in和for-of进行迭代
+   
+     可以使用不同的JavaScript关键字和API对对象集合进行遍历。在本节中，将会展示如何使用新的for-of循环，将会对for-of、for-in以及forEach()方法进行比较。
+    
+     - ##### 使用forEach()方法
+     
+       考虑下面的代码，对一个包含了4个数字的数组进行迭代。该数组还有一个额外的desciption属性，这个 **属性会被forEach()忽略** ：
+       
+       ```
+       var numbersArray = [1, 2, 3, 4];
+       numbersArray.description = "four numbers";
+       
+       numbersArray.forEach(forEach(n) => console.log(n));
+       ```
+       脚本输出如下所示：
+       ```
+       1
+       2
+       3
+       4
+       ```
+       forEach()方法将一个函数作为参数，并从数组中正确的打印四个数字，忽略了description属性。forEach()的另一个限制是 **无法提前打断循环** 。可以使用every()方法代替forEach()或借助其他一些hack手段来实现这个功能。
+       
+     - ##### 使用for-in循环
+     
+        for-in能够 **循环遍历对象的属性以及集合数据** 。在JavaScript中，任何一个对象都是 **键值对集合** 。键对应的是属性名称，值是属性的值。数组有五个属性：numbers Array其中有四个为数字，一个是description属性。让我们遍历这数组的属性：
+        
+        ```
+        var numbersArray = [1, 2, 3, 4];
+        numbersArray.description = "four numbers";
+        
+        for(let n in numbersArray) {
+           console.log(n);
+        }
+        ```
+        上面代码的输出如下所示：
+        
+        ```
+        0
+        1
+        2
+        3
+        description
+        ```
+        通过调试器运行此代码，显示每个属性都是字符串。为了 **查看属性实际的值** ，可以使用numbersArray[n]打印数组元素：
+        
+        ```
+        var numbersArray = [1, 2, 3, 4];
+        numbersArray.description = "four numbers";
+        
+        for(let n in numbersArray) {
+           console.log(numbersArray[n]);
+        }
+        ```
+        输出如下所示：
+        
+        ```
+        1
+        2
+        3
+        4
+        four numbers
+        ```
+        正如你看到的，for-in循环 **遍历的是所有属性** ，而 **不仅仅是数据** ，这个可能并非预期效果。
+        
+     - ##### 使用for-of循环
+     
+        ES6引入了for-of循环，能够做到 **只遍历数据** 而 **不读取数据集合中的其他属性** 。可以使用break关键字打断循环：
+        
+        ```
+        var numbersArray = [1, 2, 3, 4];
+        numbersArray.description = "four numbers";
+        
+        console.log("Running for of  for the entire array");
+        for (let n of numbersArray) {
+          console.log(n);
+        }
+        
+        console.log("Running for of with a break");
+        for (let n of numbersArray) {
+          if (n > 2) break;
+          console.log(n);
+        }
+        ```
+        输出如下所示：
+        
+        ```
+         Running for of  for the entire array
+         1
+         2
+         3
+         4
+         Running for of with a break
+         1
+         2
+        ```
+        for-of 可以遍历 **任何一个可被迭代的对象** ，包括Array、Map、Set以及其他一些对象。字符串同样是可迭代的。下面的代码将会打印字符串“John”,一次一个字母。
+        
+        ```
+        for (let char of "John") {
+          console.log(char);
+        }
+        ```
+        
+        
+      
+    
+    
+        
+       
+       
+   
          
          
         
