@@ -1175,7 +1175,142 @@ date: 2018-07-25 12:04:00
         
     - ##### ES6 promise
      
+        ES6引入了promise，在 **保持与回调相同功能** 的同时，**消除回调嵌套** 并 **令代码更易阅读** 。Promise对象 **等待并监听异步操作的结果** ，**通知代码执行是否执行成功或失败** ,以便能够相应地处理下一步操作。Promise对象 **表示一个未来结果的操作** ，可能是以下状态之一：
         
+        - Fulfilled: 操作成功完成。
+        - Rejected: 操作失败并返回一个错误。
+        - Pending: 操作正在处理中，既没有fulfilled,也没有rejected。
+        
+        可以通过为构造函数提供两个函数来实例化一个Promise对象：一个函数在 **操作处于fullfilled状态时会被调用** ；另一个函数在 **操作处于rejected时被调用** 。考虑一下带getCustomers()函数的脚本。
+        
+        ```
+        function getCustomers() {
+          return new Promise(function(resolve, reject) {
+            console.log("Getting customers");
+            // Emulate an async server call here
+            setTimeout(function() {
+              var success = true;
+              if (success) {
+                //得到顾客
+                resolve("John Somith");
+              } else {
+                reject("Can't get customers");
+              }
+            }, 1000);
+          });
+        }
+        
+        let promise = getCustomers()
+           .then((cust) => console.log(cust))
+           .catch((err) => console.error(err));
+           
+        console.log("Invoked getCustomers. Waiting for results");
+        ```
+        getCustomers()函数返回一个promise对象，这个对象被初始化时，构造函数接收一个函数作为参数，该函数持有resolve和reject。在上面的代码中，如果接收到顾客信息，就调用resolve()。为了简单起见，setTimeout()模拟一个持续一秒钟的异步请求，并且通过硬编码的方式设置success标志为true.在真实场景中，可以利用XMLHttpRequest对象制造一个请求。如果请求结果成功返回，则调用resolve()；如果又异常发生，则调用reject()。
+        
+        在上面代码的底部，向Promise()实例附加then()和catch()方法。在这两个方法中只有一个会被调用。当从函数内部调用resolve("John Smith")时，这会导致then()被调用，并接收“John Smith”作为参数。如果把success改为false，catch()方法将会被调用，并接收“Can't get coustomers”作为参数。
+        
+        运行代码，会在控制塔打印下面的信息：
+        
+        ```
+        Getting customers
+        Invoked getCustomers. Waiting for results
+        John Somith
+        ```
+        注意信息“Invoked getCustomers. Waiting for results”比“John Somith”更早被打印，这证明getCustomers()函数是异步工作的。
+        
+        每个promise表示一个异步操作，通过**链式调用** 来 **保证特定的操作顺序** 。现在添加一个getOrders()函数，该函数能够找到指定的顾客的订单，与getCustomeers()一起链式调用。
+        
+        ```
+        function getCustomers() {
+          let promise = new Promise(function(resolve, reject) {
+            console.log("Getting customers");
+            // Emulate an async server call here
+            setTimeout(function() {
+              var success = true;
+              if (success) {
+                //得到顾客
+                resolve("John Somith");
+              } else {
+                reject("Can't get customers");
+              }
+            }, 1000);
+          });
+          
+          return promise;
+        }
+        
+        function getOders(customer) {
+          let promise = new Promise(function(resolve, reject) {
+            
+            // Emulate an async server call here
+            setTimeout(function() {
+              var success = true;
+              if (success) {
+                //得到订单
+                resolve(`Found the order 123 for ${customer}`);
+              } else {
+                reject("Can't get orders");
+              }
+            }, 1000);
+          });
+          
+          return promise;
+        }
+        
+        getCustomers()
+           .then((cust) => {console.log(cust); return cust})
+           .then((cust) => getOders(cust))
+           .then((order) => console.log(order))
+           .catch((err) => console.error(err));
+           
+        console.log("Invoked getCustomers and getOrders. Waiting for results");
+        ```
+        上面的代码不仅仅 **声明和链式调用了两个函数** ，还演示了如何在控制台中 **打印中间信息** 。上面代码输出如下（注意getCustomers()返回的顾客数据被正确传给了getOders()）：
+        
+        ```
+        Getting customers
+        Invoked getCustomers and getOrders. Waiting for results
+        John Somith
+        Found the order 123 for John Somith
+        ```
+        可以使用then()链式调用多个函数，而整个链式调用过程中只使用一个错误处理脚本。如果有错误发生，将会 **遍历整个then()方法链** ，直到找到一个错误处理函数。**发生错误后不会再有then()方法被调用** 。
+        
+        在上面代码中，把变量success的值改为false将会打印信息“Can't get customers”,并且getOders()方法将不会被调用。如果删除这些控制台打印，检索顾客和订单的 **代码看起来整洁并易于理解** ：
+        
+        ```
+        getCustomers()
+          .then((cust) => getOders(cust))
+          .catch((err) => console.error(err));       
+        ```
+        即使添加更多的then()方法，也不会让代码的可读性降低。
+        
+     - ##### 一次resolve多个promise
+     
+        需要考虑的另一种情况是不相互依赖的异步函数。假设需要调用两个函数，这两个函数并没有特定的调用顺序，但是只有在两者完成之后才能执行某些操作。Promise有一个all()方法，可以 **处理一个可迭代的promise集合并执行（resolve）它们** 。因为all()方法返回一个promise对象，所以可以为执行结果添加then()或catch()，或者两者都添加。
+        
+        让我们看看如何使用all()处理getCustomers()和getOders()函数：
+        
+        ```
+        Promise.all([getCustomers(), getOders()]).
+        then((order) => console.log(order))
+        ```
+        上面代码产生如下的输出如下：
+        
+        ```
+        Getting customers
+        Getting orders for undefined
+        ["John Somith", "Found the order 123 for undefined"]
+        ```
+        注意信息“Getting orders for undefined”。这是因为没有以有序的方式resolve promise,因此getOders()没有接收到顾客作为参数。当然，这种场景下使用Promise.all()并不是什么好主意，但在有些情况下Promise.all()是很好的解决方案。想象一下，有一个Web门户网站，它需要调用过个异步请求以获得天气、股票市场新闻以及交通信息。如果希望在所有异步请求都完成之后才显示门户页面，Promise.all()正是所需要的：
+        
+        ```
+        Promise.all([getWrather(), getStockMarketNews(), getTraffic()])
+          .then(renderGUI);
+        ```
+        与回调相比，promise能够 **让代码更线性** ，**更加容易阅读** ，并且 **能够表示应用程序的多种状态** 。promise的劣势是，**promise无法被取消** 。想象一下，一位不耐烦的客户单击一个按钮很多次，想从服务器获取数据。每次单击都会创建一个promise并初始化一个HTTP请求，并没有办法能做到只保持最新的请求而取消没有完成的请求。Promise对象下一步的优化是obervable对象，Observable对象在未来的ECMAScript规范中可能会被引入。
+        
+        **注意：** 用来从网络中获取资源的新推出的Fetch API可能很快将会取代XMLRequest对象。Fetch API基于promise,有关详细信息，请参阅Mozilla开发人员网络文档（详见 http://mng.bz/mbMe ）。
         
         
      
