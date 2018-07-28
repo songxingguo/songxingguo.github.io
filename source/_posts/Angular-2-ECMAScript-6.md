@@ -1034,23 +1034,103 @@ date: 2018-07-25 12:04:00
        ```
      - ##### 访问器、设置器以及方法定义
      
-       对象的访问器（getter）和设置器（setter）方法并不是ES6的新语法，在介绍新的方法定义语法之前，先回顾一下。设置器和生成器把函数 **绑定到对象的属性中** 。
+       对象的访问器（getter）和设置器（setter）方法并不是ES6的新语法，在介绍新的方法定义语法之前，先回顾一下。设置器和生成器把函数 **绑定到对象的属性中** 。考虑对象字面量Tax声明和使用：
        
+       ```
+       var Tax = {
+         taxableIncome: 0,
+         get income() {return  this.taxableIncome;},
+         set income(value) {this.taxableIncome = value}
+       };
        
-      
-      
+       Tax.income = 50000;
+       console.log("Income: " + Tax.income); // prints Income: 50000
+       ```
+       注意分配和检索income的值时使用的是 **点符号** ，就好像它是Tax对象的 **一个声明属性一样** 。
        
+       在ES5中，需要使用function关键字声明函数，如calculateTax = function(){...}。ES6允许在定义任何方法的时候 **忽略function关键字** 。
        
+       ```
+       var Tax = {
+         taxableIncome: 0,
+         get income() {return this.taxableIncome}
+         set income(value) {this.taxtableIncome=value},
+         calculateTax() {return this.taxableIncome*0.13}
+       }
        
+       Tax.income = 50000;
+       console.log(`For the income ${Tax.income} your tax is ${Tax.calculateTax()}`);
+       ```
+       输出如下：
        
+       ```
+       For the incoem 50000 your tax is 6500
+       ```
+       **访问器和设置器为处理属性提供了一种方便的语法** 。例如，如果决定为income访问器添加校验代码，那么使用Tax.income的脚本不需要改动。缺点是ES6并 **不支持** 在类中 **声明私有变量** ，因此访问器和设置器中的变量（如taxtableIncome）总是可以被直接访问。
        
+     - ##### super关键字和super()函数
+     
+       **super()函数** 允许 **子类（后代）调用父类（祖先）的构造函数** 。super关键字 **用于调用父类声明的方法** 。下面代码展示了super()函数和super关键字。Tax类中定义一个calculateFrderalTax()方法，在它的子类NJTax中添加calculateStateTax()方法。父类和子类分别有自己的calcMinTax()方法。
        
+       ```
+       "use strict";
        
+       class Tax {
+         constructor(income) {
+           this.income = income;
+         }
+         
+         calculateFederalTax() {
+           console.log(`Calculating federal tax for income ${this.income}`);
+         }
+         
+         calcMinTax() {
+           console.log("In Tax. Calculating min tax");
+           return 123;
+         }
+       }
        
+       class NJTax extends Tax {
+         constructor(income, stateTaxPersent) {
+           super(income);
+           this.stateTaxPersent=stateTaxPersent;
+         }
+         
+         calculateStateTax() {
+           console.log(`Calculating state tax for income ${this.income}`);
+         }
+         
+         calcMinTax() {
+           super.calcMinTax();
+           console.log("In NJTax. Adjusting min tax");
+         }
+       }
        
+       var theTax = new NJTax(50000, 6);
        
+       theTax.calculateFederalTax();
+       theTax.calculateStateTax();
        
+       theTax.calcMinTax();
+       ```
+       运行代码，得到以下输出：
        
+       ```
+       Calculating federal tax for income 50000
+       Calculating state tax for income 50000
+       In Tax. Calculating min tax
+       In NJTax. Adjusting min tax
+       ```
+       NJTax类有自己显式定义的构造函数，拥有两个参数，分别是income和stateTaxPersent，当实例化NJTax时需要提供两个参数。为了确保Tax的构造函数被调用（其中会设置对象的inome属性），在子类的构造函数中 **显式调用了父类的构造方法** ：super("50000")。如果不加入上面的代码，下面的代码将会保错；即使不报错，Tax中的代码也不会得到income的值。
+       
+       如果需要 **调用父类的构造函数** ，只能通过在 **子类的构造函数中调用super()函数** 来实现。另一种 **调用父类代码的方法** 是 **使用super关键字** 。Tax和NJTax都有calcMinTax()方法。父类Tax中的calMinTax根据美国联邦税法计算最基本的最少纳税金额，子类中的calcMinTax获得基本值并对其进行调整。两个方法拥有同样的签名，因此这也是 **方法重写**（method overriding）的一个例子。
+       
+       通过 **调用super.calcMinTax()** ，确保了计算州税时会考虑联邦税金。如果没有调用super.calcMinTax(),方法重写将会启动，子类的calcMinTax()方法将会被执行。方法重写被 **用于替换父类方法的功能** ，而 **不改变父类的代码** 。
+       
+       **关于类和继承的警告：** 
+       
+       ES6中的类 **只是提高代码的可读性的语法糖** 。在底层实现中， **JavaScript仍然使用原型链继承** ，这使得子运行时能够动态替换父级，而类只有一个父级。尽量 **避免** 创建 **深层继承结构** ，因为这会 **降低代码的灵活性** ，也会 **让重构代码变得复杂** 。
+       尽管使用super关键字和super()函数能够调用父级的代码，但是应该 **尽量避免使用它们** ，这是因为它们 **会在父类之间产生高度耦合性** 。子类知道关于父类的内容越少越好。如果对象的父类发生了变化，新的父类可能并没有super()试图调用的方法。
        
        
        
