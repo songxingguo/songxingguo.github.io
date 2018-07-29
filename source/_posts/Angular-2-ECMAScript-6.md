@@ -1312,10 +1312,190 @@ date: 2018-07-25 12:04:00
         
         **注意：** 用来从网络中获取资源的新推出的 **Fetch API** 可能很快将会取代XMLRequest对象。Fetch API基于promise,有关详细信息，请参阅Mozilla开发人员网络文档（详见 http://mng.bz/mbMe ）。
         
-        
+  - #### 模块
+   
+     在任何一种编程语言中，把代码拆分到模块中都有助于 **将应用程序组织成具有逻辑的可复用单元** 。模块化应用程序能够 **让软件开发者更有效地拆分开发任务** 。开发者可以决定模块应该暴露 **那些API以提供外部使用** ，**哪些API应该仅在内部使用** 。
      
+     ES5并没有用于创建模块的语言结构，因此不得不采用以下方法：
+     
+     - 利用 **立即执行函数** 来手动实现一种模块设计模式（请参阅Todd Motto的文章“Mastering the Module Pattern”, 网址为 http://toddmotto.com/mastering-the-module-pattern/ ）
+     
+     - 使用AMD(详见 http://mng.bz/7L1d ) 或CommonJS（详见 http://mng.bz/JKVc ）标准的第三方实现。
+     
+     CommonJS被创建用于 **模块化** 那些  **运行在非Web浏览器环境中的JavaScript应用程序** （比如那些用Node.js开发并部署在Google V8引擎下的应用程序）。AMD主要用于 **运行在Web浏览器中的应用程序** 。
+     
+     在任何“体面”（decent-sized）的应用程序中，都应该尽量 **减少客户端需要加载的JavaScript代码量** 。想象一个典型的电商网站。是否需要在打开应用程序首页的时候就加载处理支付的代码？如果用户从来就没有点击过订单提交按钮呢？把应用程序模块化将会是非常好的事情，这样 **代码就能够被按需加载** 。**RequireJs** 可能是 **最流行的实现AMD标准的第三方库** 。它可以 **定义模块间的依赖关系** ，并把它们 **按需加载到浏览器中** 。
+     
+     从ES6开始， **模块已经成为语言的一部分** ，这就意味着开发者 **将会停止使用第三方库来实现各种标准** 。即使Web浏览器原生不支持ES6模块，也还是有一些 **polyfill** 能够让你从现在开始使用JavaScript模块。我们将使用 **SystemJs** 作为polyfill。
+     
+     - ##### 导入和导出
        
+       通常来说，模块只是一个 **JavaScript代码文件** ，它 **实现了特定的功能** 并 **对外提供公共API** 以便其他JavaScript程序能够使用，并没有特殊的关键字用来声明特定文件中的代码是模块。但是在脚本中，关键字 **import** 和 **export** 会 **将脚本转换成ES6模块** 。
        
+       **import关键字** 允许一个脚本 **声明它需要使用在另一个脚本文件中定义的变量和函数** 。同样， **export关键字** 能够 **声明模块需要导出给其他脚本使用的变量、函数或类** 。换句话说，通过使用export关键字，可以 **将选择的API提供给其他模块使用** 。模块中 **没有被显式导出函数、变量和类仍然被封装在模块中** 。
        
+       **注意：**
        
+       模块和常规JavaScript文件之间的主要区别是：当使用 `<script>` 标签添加一个常规JavaScript文件到页面时，它 **会变成全局上下文的一部分** ，而 **模块中的声明则是局部的** ，不会变成全局命名空间的一部分。即使是被导出的成员，也仅对那些导入它们的模块可用。
        
+       ES6提供了两种export用法：**命名导出** 和 **默认导出** 。**使用命名导出**，可以 **在模块的多个成员（如类、函数和变量）的前面添加export关键字** 。下面文件（tax.js）中的代码会导出变量taxCode和函数calcTaxes(),但是doSomethingEles()函数仍然对外部脚本隐藏：
+       ```
+       export var taxCode;
+       export function calcTaxes(){ // the code goes here}
+       export doSomethingElse() { //the code goes here}
+       ```
+       当其他脚本需要 **导入这些命名导出的成员时** ，它们的 **名字必须放在大括号中** 。main.js文件说明如下：
+       
+       ```
+       import {taxCode, calcTaxes} from 'tax';
+       if (taxCode === 1) { // do something }
+       calcTaxes();
+       ```
+       此处tax引用的是文件名，去掉后缀名。
+       模块中所有被导出的成员中 **可以有一个标记为default**,这 **意味着它是匿名导出** ，其他模块可以在导入它的语句中为它指定任何名字。在my_modules.js文件中导出一个函数，如下所示：
+       
+       ```
+       export default function() { // do something } //没有分号
+       export var taxCode;
+       ```
+       main.js文件既导入默认导出的函数，又导入命名导出的变量，并将coolFunction分配给默认导出的函数：
+       
+       ```
+       import coolFunction, { taxCode } from 'my_module';
+       coolFunction();
+       ```
+       注意对于coolFunction，并 **不需要用大括号括起来**，但是taxCode需要用大括号括起来。脚本导入由default关键词导出的类、变量或函数，可以在 **不需要使用任何特殊关键字的情况下为它们指定新的名字** ：
+       
+       ```
+       import aVeryCoolFunction, {taxCode} form 'my_module’；
+       aVeryCoolFunction();
+       ```
+       但是，如果需要给一个**已经命名导出成员一个别名** ，需要这么写：
+       
+       ```
+       import coolFunction, {taxCode as taxCode2016} from 'my_module';
+       ```
+       import语句并不会复制导出的代码。**导入的是引用。** 脚本不会修改导入的模块或成员，如果导入模块中的值发生变化，那么新值会立刻反映到所有导入该模块的地方。
+       
+     - ##### 使用ES6模块加载器动态加载模块
+     
+        ES6规范的早期草稿定义了一个动态模块加载器，名为 **System**,但它并没有被写入到规范的最终版本中。在未来，**System对象将会被浏览器作为原生的基于promise的加载器实现** ，使用方法如下所示：
+        
+        ```
+        System.import('someModule')
+          .then(function(modulr) {
+            module.dosomething();
+          })
+          .catch(function(error) {
+            // handle error here
+          });
+        ```
+        现在还没有浏览器实现System对象，因此需要使用polyfill。System有很多polyfill，ES6模块加载器是其中一个，另一个是SystemJS。
+        
+        **注意：** 尽管es6-module-loader.js是System对象的一个polyfill，但它仅能加载ES6模块；而通过SystemJS加载器不仅支持ES6模块，同样支持AMD和CommonJS模块。
+        
+        ES6模块加载器的polyfill可以在GitHub上找到，网址为http://mng.bz/MD8w 。下载并解压这个加载器，复制es6-module-loader.js文件到工程目录下，并把其引入到HTML文件中，早于应用程序脚本加载：
+        
+        ```
+        <script src="es6-module-loader.js"></script>
+        <script src="my_app.js"></script>
+        ```
+        为了确保ES6脚本能够在所有浏览器中工作，需要把其转码成ES5。这个任务 **可以作为构建工程** 的一部分，也 **可以在浏览器中实时完成** 。我们将使用Traceur编译器来演示如何在浏览器中实时转码。
+        
+        首先需要把转码器、模块加载器以及代码脚本全部引入到HTML文件中。既可以将Traceur脚本下载到本地目录中，也可以直接使用远程链接，如下所示：
+        
+        ``` 
+        <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+        <script src="es6-module-loader.js"></script>
+        <script src="my-es6-app.js"></script>
+        ```
+        下面考虑一个在线电商的简单示例，其中包括能够按需加载的运输模块和账单模块。应用程序由一个HTML文件以及两个模块组成。HTML文件中有一个名为加载运输模块（Load the Shipping Module）的按钮。若用户单击这个按钮，应用程序将会加载并运行运输模块，运输模块依赖于账单谋爱。运输模块如下所示：
+        
+        ```
+        import {processPayment} from 'billing'
+        
+        export function ship() {
+          processPayment();
+          console.log("shipping products...");
+        }
+        
+        function calculateShippingCost() {
+          console.log("Calculating shipping cost");
+        }
+        ```
+        ship()函数可以被外部脚本调用，calculateShippingCost()是私有的。运输模块以import语句开始，因此能够调用账单模块processPayment()函数。下面为账单模块的代码：
+        
+        ```
+        function validateBillingInfo() {
+          console.log("validating billing info...");
+        }
+        
+        export function processPayment() {
+           console.log("processing payment...");
+        }
+        ```
+        账单模块中也有一个公共的processPayment()函数，以及一个私有的validateBillingInfo(0函数。
+        HTML文件中包括一个按钮，该按钮的单击事件会触发使用es6-module-loader的System.import()加载运输模块。
+        
+        ```
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>modules.html</title>
+          <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+          <script src="es6-module-loader.js"></script>
+        </head>
+        <body>
+          <button id="shippingBtn">Load the Shipping Module</button>
+          
+          <script type="module">
+          let btn = document.querySelector('#shippingBtn');
+          btn.addEventListener('click', () => {
+            System.import('shipping')
+              .then(function(module) {
+                console.log("Shpping module Loaded.", module);
+                
+                module.ship();
+                
+                //抛出一个异常
+                module.calculateShippingCost();
+              })
+              .catch(function(err) {
+                console.log("In error handler", err);
+              });
+          });
+          
+          </script>
+        </body>
+        </html>
+        ```
+        System。import()返回一个ES6promise对象；当模块被加载时，执行then()中指定的函数。如果发生错误，错误由catch()函数捕获。
+        在then()中，把信息打印到控制台，并调用运输模块的ship()函数，在ship()函数中调用账单模块的processPayment()。之后，当试图调用calculateShippingCost()函数时，会发现发生异常，这是因为calculateShippingCost()函数并没有被导出，而是私有的。
+        
+        **提示：**
+         
+        如果使用Traceur并且在HTML文件中又有一个内联脚本，，使用type="module"确保Traceur能够把它转换为ES5。如果不声明type="module",这个脚本在那些不支持let关键词和箭头函数的浏览器中是无法工作的。
+        
+        为了能够运行这个示例，需要npm和node.js。之后在任何目录中下载并安装es6-module加载器，运行如下命令：
+        
+        ```
+        npm install es6-module-loader
+        ```
+        在此之后，创建一个application文件夹，并把es6-module-loader.js文件（从npm下载器的压缩版本）复制到该文件夹中。示例应用程序有三个额外的文件，如上面代码所示。为简单起见，将所有这些文件放到一个文件夹中。
+        
+        **注意：**
+        为了查看此代码，需要启动一台Web服务器来运行代码。可以安装一个基本的HTTP服务器作为Web服务器，如live-server。
+        
+        在Google Chrome中运行moduleLoader.html，打开Chrome Developer Tools。
+        
+        如果应用程序中包括10个500KB大小的模块，延迟加载模块就很有必要了。
+        
+        如果想深入了解ES6语法，可以阅读Axel Rauschmayer撰写的Exploring ES6（参见 http://exploringjs.com/es6 ）。Eric Douglas在GitHub（参见 http://mng.bz/cZFX）上维护包括各种ES6学习资料的汇总信息。
+        
+        
+        
+        
+        
+        
+        
+        
