@@ -402,7 +402,8 @@ date: 2018-07-25 12:04:00
        
        另一种可能的解决方式是 **使用JavaScriptcall()、apply()或bind()函数** ，以 **确保函数运行在指定的this对象中** 。
        
-       **提示：** 如果不了解JavaScript中this问题，详见Richard Bovell的文章“Understand JavaScript s 'this' with Clarity and Master It”（网址为 http://mng.bz/ZQfz ）
+       >**提示** 
+       如果不了解JavaScript中this问题，详见Richard Bovell的文章“Understand JavaScript s 'this' with Clarity and Master It”（网址为 http://mng.bz/ZQfz ）
        
        fatArrow.html文件演示了箭头函数的解决方案，无须像thisAndThat.html中所做的那样，在that中存储this。
        
@@ -551,7 +552,7 @@ date: 2018-07-25 12:04:00
             </body>
             </html>
            ```
-           这个示例中，并不会从customers数组中提取值，然后把这些值作为函数的参数，而是使用扩展运算符处理数组，就好像在对函数说：“你需要三个参数，而我只会给你一个数组，你自己把它们提取出来吧”。注意，作为rest运算符的反向操作，  **扩展运算符不一定必须是参数列表中的最后一个参数** 。
+       > 这个示例中，并不会从customers数组中提取值，然后把这些值作为函数的参数，而是使用扩展运算符处理数组，就好像在对函数说：“你需要三个参数，而我只会给你一个数组，你自己把它们提取出来吧”。注意，作为rest运算符的反向操作，  **扩展运算符不一定必须是参数列表中的最后一个参数** 。
            
      - ##### generator函数
         
@@ -934,7 +935,8 @@ date: 2018-07-25 12:04:00
      //Tax对象的第二个实例
      var tax2 = new Tax();
      ```
-     **提示：** 类声明是不会被提升的。在使用类之前需要首先声明它。
+     >**提示** 
+     类声明是不会被提升的。在使用类之前需要首先声明它。
      
      这些对象 **都具有Tax类的属性和方法** ，但是它们 **保持不同的状态** 。例如，第一个实例可以创建一名年收入$50 000的客户，而第二个实例可以创建为一名年收入$75 000的客户。每一个实例 **共享同一份Tax中声明的方法的拷贝** ，因此 **不会有重复的代码存在** 。
      
@@ -962,7 +964,8 @@ date: 2018-07-25 12:04:00
        }
      }
      ```
-     **不支持成员变量：** ES6语法不支持声明Java、C#或TypeScript中类似的类成员变量。下面的语法是不受支持的：
+     >**不支持成员变量** 
+     ES6语法不支持声明Java、C#或TypeScript中类似的类成员变量。下面的语法是不受支持的：
      
      ```
      class Tax {
@@ -1131,8 +1134,7 @@ date: 2018-07-25 12:04:00
        
        通过 **调用super.calcMinTax()** ，确保了计算州税时会考虑联邦税金。如果没有调用super.calcMinTax(),方法重写将会启动，子类的calcMinTax()方法将会被执行。方法重写被 **用于替换父类方法的功能** ，而 **不改变父类的代码** 。
        
-       **关于类和继承的警告：** 
-       
+       > **关于类和继承的警告** 
        ES6中的类 **只是提高代码的可读性的语法糖** 。在底层实现中， **JavaScript仍然使用原型链继承** ，这使得子运行时能够动态替换父级，而类只有一个父级。尽量 **避免** 创建 **深层继承结构** ，因为这会 **降低代码的灵活性** ，也会 **让重构代码变得复杂** 。
        尽管使用super关键字和super()函数能够调用父级的代码，但是应该 **尽量避免使用它们** ，这是因为它们 **会在父类之间产生高度耦合性** 。子类知道关于父类的内容越少越好。如果对象的父类发生了变化，新的父类可能并没有super()试图调用的方法。
        
@@ -1314,7 +1316,8 @@ date: 2018-07-25 12:04:00
         ```
         与回调相比，promise能够 **让代码更线性** ，**更加容易阅读** ，并且 **能够表示应用程序的多种状态** 。promise的劣势是，**promise无法被取消** 。想象一下，一位不耐烦的客户单击一个按钮很多次，想从服务器获取数据。每次单击都会创建一个promise并初始化一个HTTP请求，并没有办法能做到只保持最新的请求而取消没有完成的请求。Promise对象下一步的优化是obervable对象，Observable对象在未来的ECMAScript规范中可能会被引入。
         
-        **注意：** 用来从网络中获取资源的新推出的 **Fetch API** 可能很快将会取代XMLRequest对象。Fetch API基于promise,有关详细信息，请参阅Mozilla开发人员网络文档（详见 http://mng.bz/mbMe ）。
+        >**注意** 
+        用来从网络中获取资源的新推出的 **Fetch API** 可能很快将会取代XMLRequest对象。Fetch API基于promise,有关详细信息，请参阅Mozilla开发人员网络文档（详见 http://mng.bz/mbMe ）。
         
   - #### 模块
    
@@ -1338,8 +1341,7 @@ date: 2018-07-25 12:04:00
        
        **import关键字** 允许一个脚本 **声明它需要使用在另一个脚本文件中定义的变量和函数** 。同样， **export关键字** 能够 **声明模块需要导出给其他脚本使用的变量、函数或类** 。换句话说，通过使用export关键字，可以 **将选择的API提供给其他模块使用** 。模块中 **没有被显式导出函数、变量和类仍然被封装在模块中** 。
        
-       **注意：**
-       
+       >**注意**
        模块和常规JavaScript文件之间的主要区别是：当使用 `<script>` 标签添加一个常规JavaScript文件到页面时，它 **会变成全局上下文的一部分** ，而 **模块中的声明则是局部的** ，不会变成全局命名空间的一部分。即使是被导出的成员，也仅对那些导入它们的模块可用。
        
        ES6提供了两种export用法：**命名导出** 和 **默认导出** 。**使用命名导出**，可以 **在模块的多个成员（如类、函数和变量）的前面添加export关键字** 。下面文件（tax.js）中的代码会导出变量taxCode和函数calcTaxes(),但是doSomethingEles()函数仍然对外部脚本隐藏：
@@ -1396,7 +1398,8 @@ date: 2018-07-25 12:04:00
         ```
         现在还没有浏览器实现System对象，因此需要使用polyfill。System有很多polyfill，ES6模块加载器是其中一个，另一个是SystemJS。
         
-        **注意：** 尽管es6-module-loader.js是System对象的一个polyfill，但它仅能加载ES6模块；而通过SystemJS加载器不仅支持ES6模块，同样支持AMD和CommonJS模块。
+        > **注意** 
+        尽管es6-module-loader.js是System对象的一个polyfill，但它仅能加载ES6模块；而通过SystemJS加载器不仅支持ES6模块，同样支持AMD和CommonJS模块。
         
         ES6模块加载器的polyfill可以在GitHub上找到，网址为http://mng.bz/MD8w 。下载并解压这个加载器，复制es6-module-loader.js文件到工程目录下，并把其引入到HTML文件中，早于应用程序脚本加载：
         
@@ -1476,8 +1479,7 @@ date: 2018-07-25 12:04:00
         System。import()返回一个ES6promise对象；当模块被加载时，执行then()中指定的函数。如果发生错误，错误由catch()函数捕获。
         在then()中，把信息打印到控制台，并调用运输模块的ship()函数，在ship()函数中调用账单模块的processPayment()。之后，当试图调用calculateShippingCost()函数时，会发现发生异常，这是因为calculateShippingCost()函数并没有被导出，而是私有的。
         
-        **提示：**
-         
+        > **提示**
         如果使用Traceur并且在HTML文件中又有一个内联脚本，，使用type="module"确保Traceur能够把它转换为ES5。如果不声明type="module",这个脚本在那些不支持let关键词和箭头函数的浏览器中是无法工作的。
         
         为了能够运行这个示例，需要npm和node.js。之后在任何目录中下载并安装es6-module加载器，运行如下命令：
@@ -1487,19 +1489,11 @@ date: 2018-07-25 12:04:00
         ```
         在此之后，创建一个application文件夹，并把es6-module-loader.js文件（从npm下载器的压缩版本）复制到该文件夹中。示例应用程序有三个额外的文件，如上面代码所示。为简单起见，将所有这些文件放到一个文件夹中。
         
-        **注意：**
+        > **注意**
         为了查看此代码，需要启动一台Web服务器来运行代码。可以安装一个基本的HTTP服务器作为Web服务器，如live-server。
         
         在Google Chrome中运行moduleLoader.html，打开Chrome Developer Tools。
         
         如果应用程序中包括10个500KB大小的模块，延迟加载模块就很有必要了。
         
-        如果想深入了解ES6语法，可以阅读Axel Rauschmayer撰写的Exploring ES6（参见 http://exploringjs.com/es6 ）。Eric Douglas在GitHub（参见 http://mng.bz/cZFX）上维护包括各种ES6学习资料的汇总信息。
-        
-        
-        
-        
-        
-        
-        
-        
+       > 如果想深入了解ES6语法，可以阅读Axel Rauschmayer撰写的Exploring ES6（参见 http://exploringjs.com/es6 ）。Eric Douglas在GitHub（参见 http://mng.bz/cZFX ）上维护包括各种ES6学习资料的汇总信息。
