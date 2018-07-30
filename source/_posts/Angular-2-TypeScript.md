@@ -129,29 +129,34 @@ date: 2018-07-30 03:00:00
       ]
      ```
      可以在TypeScript文档（详见 http://mng.bz/rf14 ）中阅读有关 **配置编译过程** 以及 **TypeScript编译器选项的更多信息** 。
+  
+ - #### TypeScript作为JavaScript的超集
+ 
+   Typescript完全支持ES5和大多数ES6语法。只要将JavaScript代码文件的 **扩展名从.js改为.ts** ，它们就将变为有效的TypeScript代码。到目前为止，见过的仅有两个例外是 **处理可选的函数参数** ，以及 **将一个值赋给一个对象字面量** 。
+   
+   在JavaScript中，即使一个 **函数被声明具有两个参数** ，也 **可以通过提供仅提供一个参数来调用它** ；而在TypeScript中，需要为 **参数名称附加一个问号** ，以 **使其成为可选的** 。在JavaScript中，可以 **使用空的对象字面量来初始化变量** ，并 **使用点号立即附加属性** ；而在TypeScript中，**需要使用方括号** 。
+   
+   但这些差异很小 。更重要的是，因为是JavaScript的超集，TypeScript为JavaScript添加了许多有用的特性。
+   
+   >提示
+   如果正在 **将JavaScript项目转换为TypeScript版本** ，可以 **使用tsc编译器的--allowJs选项** 。TypeScript编译器将检查输入的.js文件的语法错误，并根据tsc的--target和--module选项发出有效的输出。此输出还可以与其他的.ts文件相结合。就像.ts文件一样，仍会为.js文件生成source map。
+   
      
      
      
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-  
-  
-  
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
