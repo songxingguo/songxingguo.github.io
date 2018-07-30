@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>《Angular 2开发实战》学习笔记-Angular应用程序的TypeScript | 阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="post-title">
+          《Angular 2开发实战》学习笔记-Angular应用程序的TypeScript
+            <div class="post-tags">
+    		    
+              <a class="tag-link" href="/tags/TypeScript/">TypeScript</a>
+            
+    	      </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <article class="post">
+  
+
+  <header>
+    <div class="post-title mobile-post-title">
+      <h1>《Angular 2开发实战》学习笔记-Angular应用程序的TypeScript</h1>
+        <div class="post-tags">
+        
+          <a class="tag-link" href="/tags/TypeScript/">TypeScript</a>
+        
+        </div>
+    </div>
+    <div class="post-meta">
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2018-07-30</span>
+      
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/前端技术/">前端技术</a>
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/前端技术/读书笔记/">读书笔记</a>
+          
+      
+      <!----------------------------------->
+        
+      <!----------------------------------->
+    </div>
+  </header>
+  
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#作为Angular应用程序语言的TypeScript"><span class="toc-text">作为Angular应用程序语言的TypeScript</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么不使用JavaScript进行开发"><span class="toc-text">为什么不使用JavaScript进行开发</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么使用TypeScript编写Angular应用程序"><span class="toc-text">为什么使用TypeScript编写Angular应用程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#转码器的角色"><span class="toc-text">转码器的角色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TypeScript入门"><span class="toc-text">TypeScript入门</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#安装并使用TypeScript编译器"><span class="toc-text">安装并使用TypeScript编译器</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TypeScript作为JavaScript的超集"><span class="toc-text">TypeScript作为JavaScript的超集</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+  <div class="post-content">
+    <h3 id="作为Angular应用程序语言的TypeScript"><a href="#作为Angular应用程序语言的TypeScript" class="headerlink" title="作为Angular应用程序语言的TypeScript"></a>作为Angular应用程序语言的TypeScript</h3><ul>
+<li><h4 id="为什么不使用JavaScript进行开发"><a href="#为什么不使用JavaScript进行开发" class="headerlink" title="为什么不使用JavaScript进行开发"></a>为什么不使用JavaScript进行开发</h4><ul>
+<li><p>JavaScript是宽容的，因为它是一种动态类型语言。JavaScript类型错误只能在运行时被捕获，而在编译的时候不会进行类型匹配。</p>
+</li>
+<li><p>JavaScript不支持静态类型。使得重构困难。</p>
+</li>
+</ul>
+<p>目前有几十种语言可以编译成JavaScript（请参阅可编译为JavaScript的语言列表，网址为 <a href="http://mng.bz/vjzi" target="_blank" rel="noopener">http://mng.bz/vjzi</a> ）。最受欢迎的是TypeScript(详见 <a href="http://www.typescriptlang.org" target="_blank" rel="noopener">www.typescriptlang.org</a> )、CoffeeScript（详见 <a href="http://coffeescript.org" target="_blank" rel="noopener">http://coffeescript.org</a> ）和 Dart(详见 <a href="http://www.dartlang.org" target="_blank" rel="noopener">www.dartlang.org</a> ）</p>
+<a id="more"></a>
+<blockquote>
+<p><strong>为什么使用Dart语言</strong></p>
+<ul>
+<li>与第三方JavaScript库的互操作性不是很好。</li>
+<li>Dart中的开发只能在附带了Dart VM的Chrome浏览器的专用版本（Dartium）中完成。其他浏览器没有Dart VM。</li>
+<li>生成的JavaScript不易阅读。</li>
+<li>Dart开发社区相当小。</li>
+</ul>
+</blockquote>
+<p>Angular框架是用TypeScript编写的。</p>
+</li>
+<li><h4 id="为什么使用TypeScript编写Angular应用程序"><a href="#为什么使用TypeScript编写Angular应用程序" class="headerlink" title="为什么使用TypeScript编写Angular应用程序"></a>为什么使用TypeScript编写Angular应用程序</h4><p>可以使用ES6(甚至ES5)编写应用程序，但将TypeScipt作为编写JavaScript的一种更有成效的方法。以下是其原因：</p>
+<ul>
+<li><p><strong>TypeScript支持类型。</strong> 这就允许TypeScript编译器在开发过程中帮你找到并修复许多错误，甚至是在运行应用程序之前。</p>
+</li>
+<li><p><strong>极好的IDE支持。</strong> IDE <strong>提供了很好的上下文相关帮助</strong> 。TypeScript代码可以 <strong>由IDE重构</strong> ，而JavaScript代码必须手动重构。IDE会 <strong>提示可用的API</strong> 。</p>
+</li>
+<li><p>Angular和类型定义文件被打包到一起，所以当使用Angular API时，IDE会执行 <strong>类型检查</strong> 并 <strong>提供开箱即用的上下文相关帮助</strong> 。</p>
+</li>
+<li><p>TypeScript <strong>遵循ECMAScript 6和7规范</strong> ，并向它们添加了 <strong>类型</strong> 、<strong>接口</strong> 、<strong>装饰器</strong> 、 <strong>类成员变量</strong> （字段）、 <strong>泛型</strong> 以及 关键字 <strong>public</strong> 和 <strong>private</strong> 。将来的TypeScript版本将支持缺少的ES6特性并实现ES7的特性（请参阅TypeScript的Roadmap, 在GitHub上，网址为 <a href="http://mng.bz/Ri29" target="_blank" rel="noopener">http://mng.bz/Ri29</a> ）</p>
+</li>
+<li><p>TypeScript接口允许声明将会在应用程序中用到的 <strong>自定义类型</strong> 。接口有助于避免在应用程序中使用错误类型的对象而引起的编译时错误。</p>
+</li>
+<li><p>生成的JavaScript代码易于阅读，而且看起来像手写的代码。</p>
+</li>
+<li><p>Angular文档、文章和博客中的大多数代码示例都以TypeScript给出（详见<a href="http://angular.io/docs" target="_blank" rel="noopener">http://angular.io/docs</a> ）。</p>
+</li>
+<li><h4 id="转码器的角色"><a href="#转码器的角色" class="headerlink" title="转码器的角色"></a>转码器的角色</h4><p>除了JavaScript语言，Web浏览器不懂任何语言。如果源代码用TypeScript编写，那么在能够在浏览器或独立的JavaScript引擎中运行它们之前，它们必须转码为JavaScript。</p>
+<p>转码意味着 <strong>将某种语言的源代码转换成另一种语言的源代码</strong> 。许多开发者喜欢使用单词“编译”（compiling）来描述，所以诸如“TypeScript编译器”和“将TypeScript编译成JavaScript”也是有效的。</p>
+<p>Angular与静态类型的TypeScript的结合 <strong>简化了大中型Web应用程序的开发</strong> 。<strong>良好的工具</strong> 及 <strong>静态类型分析器</strong> 会大幅度 <strong>减少运行时的错误数</strong> ，并将缩短上市时间。当完成时，Angular应用程序将会有大量的JavaScript代码；而且虽然用TypeScript进行开发需要编写更多的代码，但将通过 <strong>节省测试和重构时间</strong> 以及 <strong>运行时的错误数量来获益</strong> 。</p>
+</li>
+<li><h4 id="TypeScript入门"><a href="#TypeScript入门" class="headerlink" title="TypeScript入门"></a>TypeScript入门</h4><p><strong>微软</strong> 开放了 <strong>TypeScript源代码</strong> ，它把TypeScript的代码仓库托管在GitHUub上（详见 <a href="http://mng.bz/Ri29" target="_blank" rel="noopener">http://mng.bz/Ri29</a> ）。可以使用 <strong>npm安装TypeScript编译器</strong> ，或者 <strong>从 <a href="http://www.typescriptlang.org" target="_blank" rel="noopener">www.typescriptlang.org</a> 下载它</strong> 。TypeScript网站还有 <strong>一个托管在Web上的TypeScript编译器</strong> （一个Palyground,详见 <a href="http://www.typescriptlang.org/play/index.html" target="_blank" rel="noopener">http://www.typescriptlang.org/play/index.html</a> ），可以在那里输入TypeScript代码并通过交互将其编译成JavaScript。</p>
+<ul>
+<li><h5 id="安装并使用TypeScript编译器"><a href="#安装并使用TypeScript编译器" class="headerlink" title="安装并使用TypeScript编译器"></a>安装并使用TypeScript编译器</h5><p>TypeScript编译器本身就是用TypeScript编写的。可以使用Node.js的npm包管理器安装此编译器。</p>
+<p><strong>全局安装TypeScript编译器</strong> ，在命名窗口或终端窗口中运行以下npm命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g typescript</span><br></pre></td></tr></table></figure>
+<p><strong>检查TypeScript编译器的版本</strong> ，请运行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc --version</span><br></pre></td></tr></table></figure>
+<p>TypeScript代码被保存在带有 <strong>.ts扩展名</strong> 的文件中。可以使用以下命令将TypeScript脚本文件 <strong>main.ts转码成main.js</strong> :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc main.ts</span><br></pre></td></tr></table></figure>
+<p>还可以 <strong>生成source map文件</strong> ， <strong>将TypeScript源代码映射到生成的JavaScript中</strong> 。 <strong>使用source map</strong> ,当浏览器中运行时， <strong>可以在TypeScript中设置断点</strong> ，即使执行的是JavaScript。要 <strong>将main.ts编译成main.js</strong> ，同时还 <strong>生成source map文件main.map</strong> ,运行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc --sourcemap main.ts</span><br></pre></td></tr></table></figure>
+<p>在编译期间，TypeScript编译器会 <strong>从代码中删除所有的TypeScript类型、接口和关键字</strong> ，以 <strong>生成有效的JavaScript</strong> 。通过提供编译器选项，可以生成与ES3、ES5或ES6语法兼容的JavaScript。目前默认是ES3。以下是 <strong>将代码转码成兼容ES5语法命令</strong> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc --t ES5 main.ts</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在Web浏览器中转码TypeScript<br>在开发过程中，我们使用本地安装的tsc。但转码也可以（在服务器上） <strong>在部署过程中完成</strong> ，或者 <strong>当Web浏览器加载应用程序时即时完成</strong> 。使用SystemJS库，它 <strong>内部使用tsc转码并动态加载应用程序模块</strong> 。<br>请记住，在浏览器中即时转码，可能导致在用户设备上显示应用程序内容的延迟。如果使用SystemJS加载并在浏览器中将代码转码，<strong>默认会生成source map</strong> 。</p>
+</blockquote>
+<p><strong>在内存中编译代码</strong> ，而 <strong>不生成输出.js文件</strong> ，可使用–noEmit选项运行tsc:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc --noEmit mian.ts</span><br></pre></td></tr></table></figure>
+<p>可以通过提供-w选项，以监控（watch）模式启动TypeScript编译器。在此模式下，无论何时修改并保存代码，都会将其自动转码到相应的JavaScript文件中。 <strong>要编译并监控全部的.ts文件</strong> ，运行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc -w *.ts</span><br></pre></td></tr></table></figure>
+<p>编译器将会编译所有的TypeScript文件，在控制台打印错误消息（如果有的话），并继续监控改动的文件。一旦文件改动了，tsc将立即重新编译它。</p>
+<blockquote>
+<p>注意<br>通常，我们 <strong>不使用IDE来编译TypeScript</strong> 。我们用 <strong>SystemJS及其浏览器内置（in-browser)的编译器</strong> ，或者使用 <strong>bundler(Webpack)</strong> ,它会使用一个特殊的用于编译的TypeScript加载器。我们使用由IDE提供的 <strong>TypeScript代码分析器来高亮显示错误</strong> ，并使用 <strong>浏览器来调试TypeScript</strong> 。</p>
+</blockquote>
+<p>TypeScrpt编译器允许配置编译的过程（指定源目录和目标目录、source map生成等待）。项目目录中配置文件tsconfig.json的存在，意味着可以 <strong>在命令行中输入tsc</strong> ,而编译器将从tsconfig.json中读取所有的选项。下面显示了一个示例的tsconfig.json文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;compilerOptions&quot;: &#123;</span><br><span class="line">    &quot;target&quot;: &quot;es5&quot;,</span><br><span class="line">    &quot;module&quot;: &quot;commonjs&quot;,</span><br><span class="line">    &quot;emitDecoratorMetadata&quot;: true,</span><br><span class="line">    &quot;experimentaldecorators&quot;: true,</span><br><span class="line">    &quot;rootDir&quot;: &quot;.&quot;,</span><br><span class="line">    &quot;outDir&quot;:&quot;./js&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该配置文件指示tsc将代码转码为ES5语法。生成的JavaScript文件将位于js目录中。tsconfig.json文件 <strong>可能包含files部分</strong> ，它 <strong>列出了必须由TypeScript编译的文件</strong> 。因为使用rootDir选项，要求从项目的根目录开始所有文件的编译。</p>
+<p>如果要将项目的某些文件从编译中排除，请将exclude属性添加到tsconfig.json中。以下演示了如排除node_modules目录的全部内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;exclude&quot; : [</span><br><span class="line">   &quot;node_modules&quot;</span><br><span class="line"> ]</span><br></pre></td></tr></table></figure>
+<p>可以在TypeScript文档（详见 <a href="http://mng.bz/rf14" target="_blank" rel="noopener">http://mng.bz/rf14</a> ）中阅读有关 <strong>配置编译过程</strong> 以及 <strong>TypeScript编译器选项的更多信息</strong> 。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="TypeScript作为JavaScript的超集"><a href="#TypeScript作为JavaScript的超集" class="headerlink" title="TypeScript作为JavaScript的超集"></a>TypeScript作为JavaScript的超集</h4><p>Typescript完全支持ES5和大多数ES6语法。只要将JavaScript代码文件的 <strong>扩展名从.js改为.ts</strong> ，它们就将变为有效的TypeScript代码。到目前为止，见过的仅有两个例外是 <strong>处理可选的函数参数</strong> ，以及 <strong>将一个值赋给一个对象字面量</strong> 。</p>
+<p>在JavaScript中，即使一个 <strong>函数被声明具有两个参数</strong> ，也 <strong>可以通过提供仅提供一个参数来调用它</strong> ；而在TypeScript中，需要为 <strong>参数名称附加一个问号</strong> ，以 <strong>使其成为可选的</strong> 。在JavaScript中，可以 <strong>使用空的对象字面量来初始化变量</strong> ，并 <strong>使用点号立即附加属性</strong> ；而在TypeScript中，<strong>需要使用方括号</strong> 。</p>
+<p>但这些差异很小 。更重要的是，因为是JavaScript的超集，TypeScript为JavaScript添加了许多有用的特性。</p>
+<blockquote>
+<p>提示<br>如果正在 <strong>将JavaScript项目转换为TypeScript版本</strong> ，可以 <strong>使用tsc编译器的–allowJs选项</strong> 。TypeScript编译器将检查输入的.js文件的语法错误，并根据tsc的–target和–module选项发出有效的输出。此输出还可以与其他的.ts文件相结合。就像.ts文件一样，仍会为.js文件生成source map。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="post-footer">the end</div>
+</article>
+
+          
+  <nav class="pagination post-nav">
+    
+    
+      <a href="/2018/07/29/markdown-command/">
+        <span class="next-post">Markdown常用命令<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+  
+
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+
+  <script src="/js/ztopic.js"></script>
+</body>
+</html>
