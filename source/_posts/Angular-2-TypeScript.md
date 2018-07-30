@@ -1,4 +1,4 @@
-title: 《Angular 2开发实战》学习笔记-作为Angular应用程序语言的TypeScript
+title: 《Angular 2开发实战》学习笔记-Angular应用程序的TypeScript
 author: songxingguo
 tags:
   - TypeScript
