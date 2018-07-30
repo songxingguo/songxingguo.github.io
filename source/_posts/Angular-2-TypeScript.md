@@ -185,9 +185,118 @@ date: 2018-07-30 03:00:00
    
    - ##### 函数
    
+     TypeScript函数（及函数表达式）与JavaScript函数类似，但可以显式地声明参数类型和返回值。我们来编写一个计算税款的JavaScript函数，它有三个参数，并将根据州（state）、收入（income）和家属（dependents）数量计算税款。对于每个家属，根据此人居住的州，给予$500或$300的税款减免。
     
+      ```
+      function calcTax(state, income, dependents) {
+        if (state == 'NY') {
+          return income * 0.06 - dependents * 500;
+        }else if (state == 'NJ') {
+          returnn income * 0.05 - dependents * 300;
+        }
+      }
+      ```
+     假如一个居住在新泽西（New Jersey）州的人，有￥50000的收入和两个家属。我们调用calcTax()：
+    
+      ```
+      var tax = ccalcTax('NJ', 50000, 2);
+      ```
+     变量tax得到的值是1900,它是正确的。即使calcTax()没有为函数参数声明任何类型，也 **可以根据参数名称来猜测它们** 。
+    
+     现在我们来以错误的方式调用它，传入一个字符串值给家属（dependents）数量：
+    
+      ```
+      var tax = calcTax('NJ', 50000, 'two');
+      ```
+     直到调用这个函数之后，你才知道问题。变量tax会有一个NaN（Not a Number）值。只是因为没有机会显示地指定参数类型，一个bug就偷偷溜了出来。下面用TypeScript重写这个函数，为参数和返回值声明类型。
+    
+      ```
+      function calcTax(state: string, income: number, dependents: number) :number {
+        if (state == 'NY') {
+          return income * 0.06 - dependents * 500;
+        }else if (state == 'NJ') {
+          returnn income * 0.05 - dependents * 300;
+        }
+      }
+      ```
+     现在就没办法犯同样的错误了，**传一个字符串值给家属（dependents）数量** ：
+    
+      ```
+      var tax: number = calcTax('NJ'， 50000， 'two');
+      ```
+     TypeScript编译器将显示一个错误: “Argument of type 'string' is not assignable to parameter of type 'number'。”此外，该函数的返回值被声明为number，这会阻止你犯下另一个错误， **将税款计算的结果赋值给一个非数值的变量** ：
+    
+      ```
+      var tax：string = calcTax('NJ'， 50000， 'two');
+      ```
+     编译器将捕获到这一点，产生错误:“Argument of type 'string' is not assignable to type 'string': var tax: string。”在任何项目上，这种编译期间的类型检查可以节省大量的时间。
+    
+   - ##### 默认参数
    
-   
+     声明一个函数时，**可以指定默认的参数值** 。唯一的限制是带默认值的参数， **不能在必需（required）参数的前面** 。在上面代码中，要将NY作为state参数的默认值，就不能像下列声明一样：
+     
+     ```
+     function calcTax(state: string = 'NY'， income: number, dependents: number): number {
+       // the code goes here
+     }
+     ```
+     **需要更改参数的顺序** ，以保证在默认参数之后没有必需的参数：
+     
+     ```
+     function calcTax(income: number, dependents: number, state: string = 'NY'): number {
+       //the code goes here
+     }
+     ```
+     甚至需要更改calcTax()函数体中的一行代码，现在可以使用两个或三个参数自由地调用它：
+     
+     ```
+     var tax: number = calcTax(50000, 2);
+     //or 
+     var tax： number = calcTax(5000, 2, 'NY');
+     ```
+     两次调用的结果将是一样的。
+     
+  - ##### 可选参数
+    
+    在TypeScript中，通过 **向参数名称附加一个问号** ，可以轻松地 **将函数参数标记为可选的** ，唯一的限制是 **可选的参数必须在函数声明的最后** 。当编写带可选参数的函数代码时， **需要提供应用程序逻辑来处理没有提供可选参数的情况** 。
+    下面是修改税款计算函数：如果没有指定dependents,就不对计算的税款进行减免。
+    ```
+    function calcTax(income: number, state: string = 'NY', dependents?: number): number {
+      var deduction: number;
+      
+      //处理dependents中的可选值
+      if (dependents) {
+        deduction = dependents * 500;
+      } else {
+        deduction = 0;
+      }
+      
+      if (state = 'NY') {
+        return income *  0.06 - deduction;
+      } else if (state = 'NJ') {
+        return income * 0.05 - deduction;
+      }
+    }
+    
+    var tax: number = calcTax(50000, 'NJ', 3);
+    console.log("Your tax is" + tax);
+    
+    var tax: number = calcTax(50000);
+    console.log("Your tax is" + tax);
+    ```
+    请注意dependents?: number中的问号。现在该函数会检查是否为dependents提供值。如果没有，就将0赋给变量deduction；否则，为每个家属（dependent）减免扣税$500。1000
+    运行上面代码将产生以下输出：
+    
+    ```
+    Your tax is 1000
+    Your tax is 3000
+    ```
+    
+    
+    
+    
+     
+     
    
    
    
