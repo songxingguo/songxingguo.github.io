@@ -291,8 +291,87 @@ date: 2018-07-30 03:00:00
     Your tax is 1000
     Your tax is 3000
     ```
+    - ##### 箭头函数表达式
     
-    
+      TypeScript **支持在表达式中使用匿名函数的简化语法** 。不需要使用关键字function,宽箭头符号（=>）用于将参数和函数体分开。TypeScript支持箭头函数的ES6语法。在其他一些编程语言中，箭头函数被称为 **lambdda表达式** 。
+      
+      我们来看一个最简单的箭头函数的例子，函数体只有一行代码：
+      
+      ```
+      var getName = () => 'John Smith';
+      console.log(getName());
+      ```
+      空括号表示上述箭头函数没有参数。单行的箭头表达式不需要花括号或显式的return语句，而上述代码片段将在控制台打印“John Smith”。如果在TypeScript的playground中实验此代码，它们将被转换成以下ES5代码：
+      
+      ```
+      var getName = function () { return 'John Smith'; };
+      console.log(getName());
+      ```
+      如果箭头函数的函数体由多行构成，那么必须将它们括在大括号内并使用return语句。以下代码片段将硬编码的字符串值转换成大写形式，并在控制台打印“PETER LUGER”：
+      
+      ```
+      var getNameSuper = () => {
+        var name = 'Peter Luger'.toUpperCase();
+        return name;
+      }
+      console.log(getNameUpper());
+      ```
+      除了提供较短的语法之外，箭头函数表达式也消除了this关键字臭名昭著的混乱。在JavaScript中，如果在一个函数中使用this关键字，它可能并不指向正在调用此函数的对象。者可能会导致运行时bug，并需要额外的调试时间。下面看一个例子。
+      下面代码有两个函数：StockQuoteGeneratorArrow()和StockQuoteGeneratorAnonymous()。每隔一秒，这两个函数就会调用Math.random(),为被作为参数提供的股票号（symbol）生成一个随机的价格。在内部，StockQuoteGeneratorArrow()使用箭头函数语法，提供setInterval()的参数，而StockQuoteGeneratorAnonymous()使用匿名函数。
+      
+      ```
+      function StockQuoteGeneratorArrow(symbol: string) {
+        
+        //将股票代号赋值给this.symbol
+        this.symbol = symbol;
+        
+        setInterval(() => {
+          console.log("StockQuoteGeneratorArrow. The price quote for " + this.symbol + " is " + Math.random());
+        }, 1000);
+      }
+      var stockQuoteGeneratorArrow = new StockQuoteGeneratorArrow("IBM");
+      
+      function StockQuoteGeneratorAnonymous(symbol: string) {
+        //将股票代码赋值给this.symbol
+        this.symbol = symbol;
+        
+        setInterval(function() {
+          console.log("StockQuoteGeneratorAnonymous. The price quote for " + this.symbol + " is " + Math.random());
+        }, 1000);
+      }
+      
+      var stockQuoteGeneratorAnonymous = new StockQuoteGeneratorAnonymous("IBM");
+      ```
+      这两种情况汇中，都将股票代号（“IBM”）赋给了对象this上的变量symbol。但是使用箭头函数，对构造函数StockQuoteGeneratorArrow()的实例引用，会被自动保存到单独的变量中；当从箭头函数中引用this.symbol时，会正确地找到它，并在控制台输出中使用“IBM”。
+      但是当浏览器中调用匿名函数时，this指向全局的Window对象，该对象没有symbol属性。在Web浏览器中运行此代码，每隔一秒会打印下面这样的内容：
+      
+      ```
+      StockQuoteGeneratorArrow. The price quote for IBM is 0.6888406401347633
+      StockQuoteGeneratorAnonymous. The price quote for undefined is 0.7601010292924124
+      ```
+      如你所见，当使用箭头函数时，它将IBM识别为股票编代号，但在匿名函数中是undefined。
+      
+      >注意
+      TypeScript **使用一个外部作用域的this引用，通过传入此引用，它会替换箭头函数表达式中的this** 。这就是为什么StockQuoteGeneratorArrow()中箭头内的代码能够正确地看到来自外部作用域的this.symbol的原因所在。
+      
+      >函数重载
+      JavaScript **不支持函数重载** ，所以让几个函数同名但参数列表不同是不可能的。TypeScript的创建者引入了函数重载，但由于代码必须转码到单个JavaScript函数中，因此重载的语法不是很优雅。
+      可以为仅有一个函数体的函数声明多个签名，（在此函数体中）需要检查参数的数量和类型，进而执行相应部分的代码：
+      ```
+      function attr(name: string): string;
+      function attr(name: string, value: string): string;
+      function attr(map: any): void;
+      function attr(nameOrMap: any, value?: string): any {
+        if (nameOrMap && typeof nameOrMap == 'string') {
+          //handle string case
+        } else {
+          //handle map case
+        }
+          //handle value here
+      }
+      ```
+      
+      
     
     
      
