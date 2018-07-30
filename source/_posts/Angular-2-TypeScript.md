@@ -141,6 +141,57 @@ date: 2018-07-30 03:00:00
    >提示
    如果正在 **将JavaScript项目转换为TypeScript版本** ，可以 **使用tsc编译器的--allowJs选项** 。TypeScript编译器将检查输入的.js文件的语法错误，并根据tsc的--target和--module选项发出有效的输出。此输出还可以与其他的.ts文件相结合。就像.ts文件一样，仍会为.js文件生成source map。
    
+ 
+ - #### 可选类型
+ 
+   可声明变量，并为它们全部或其中的一些提供类型。以下两行是有效的TypeScript语法：
+   
+   ```
+   var name1 = 'John Smith';
+   var name2: string = 'John Smith';
+   ```
+   如果使用类型，TypeScript转码器可以在开发期间 **检测不匹配的类型** ，而且IDE将会提供 **代码补全** 和 **重构支持** 。在任何大小合适的项目上，这有助于提高生产力。即使不在声明中使用类型，TypeScript也会 **根据赋值猜测类型** ，并且之后 **仍然会进行类型检查** ，这被称为 **类型推断**（type inference)。
+   
+   以下TypeScript代码片段，不能将一个数字赋给本来是一个字符串的变量name1,即使它最初没有类型（JavaScript语法）声明。使用字符串初始化此变量之后，推断类型将不允许把数字值赋给name1。同样的规则适用于带有显式类型声明的变量name2:
+   
+   ```
+   var name1 = 'John Smith';
+   //JavaScript中，将类型不同的一个赋值给一个变量是有效的，但由于类型推断，这在TypeScript中是无效的
+   name1 = 123;
+   
+   var name2: string = 'John Somith';
+   //JavaScript中，将类型不同的一个赋值给一个变量是有效的，但由于显示的类型声明，这在TypeScript中是无效的
+   name2 = 123;
+   ```
+   在TypeScript中，可以声明有类型的 **变量**、 **函数参数** 和 **返回值** 。有四个关键字用于声明 **基本类型** ： **number** 、 **boolean** 、 **string** 和 **void** 。**void** 在函数声明中 **表示没有返回值** 。与JavaScript类似，变量可以有 **null** 或 **undefined** 类型的值。
+   
+   以下是带有显式类型声明变量的示例：
+   
+   ```
+   var salary： number;
+   var name: string = 'Alex';
+   var isValid: boolean;
+   var customerName: string = null;
+   ```
+   所有这些类型都是 **any类型的子类型** 。如果在 **声明一个变量或函数参数时没有指定类型** ，TypeScript编译器将 **假设它具有any类型** ，这将 **允许给此变量后函数参数赋任何值** 。也可以 **显示地声明一个变量** ，**指定它的类型为any** 。这种情况下，不会应用推断类型。这两种声明都是有效的：
+   
+   ```
+   var name2: any = 'John Smith';
+   name2 = 123;
+   ```
+   如果使用显式的类型声明变量，编译器将检查他们的值以保证它们与声明相匹配。TypeScript包括用于与Web浏览器交互的其他类型，例如HTMLElement和Document。
+   
+   **如果定义一个类或接口，它可以在变量声明中用作自定义类型。**
+   
+   - ##### 函数
+   
+    
+   
+   
+   
+   
+   
+   
      
      
      
