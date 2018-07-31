@@ -874,6 +874,91 @@ date: 2018-07-30 03:00:00
      
  - ##### 使用可调用接口
    
+   TypeScript具有一个有趣的特性，叫做 **可调用接口**（callable interface）,它包含一个 **裸函数签名** （bare function signature, 不带函数名称的签名）。以下示例显示了一个裸函数签名，它接收一个number类型的参数并返回一个boolean值：
+   
+   ```
+   (percent: number): boolean;
+   ```
+   该裸函数签名表示 **此接口的实例是可调用的** 。咋下面代码中，将展示声明IPayable的不同版本，其中包含一个裸函数签名。为了简洁起见，为此例中删除了继承。将会声明独立的函数，用于实现员工及外包人员的工资增加规则。这些函数将作为参数传递，并会被Person类的构造函数调用。
+   
+   ```
+   //包含一个裸函数签名的可调用接口
+   interface IPayable {
+     (percent: number): boolean;
+   }
+   
+   class Person {
+    
+    //Person类的构造函数，将可调用接口IPable的一个实现作为一个参数
+    constructor(private validator: IPayable) {
+    }
+    
+    //increasePay()方法调用传入的IPayable实现上的裸函数，提供用于验证的工资增加值
+    increasePay(percent: number): boolean {
+      return this.validator(percent);
+    }
+   }
+   
+   //通过使用箭头函数表达式，实现了员工工资增加规则
+   var forEmployees: IPayable = (percent) => {
+     console.log("Increasing salary by ", percent);
+     return true;
+   }
+   
+   //通过使用箭头函数表达式，实现了外包人员工资的增加规则
+   var forContractors: IPayable = (percent) => {
+     var increaseCap: number = 20;
+     
+     if (percent < increaseCap) {
+       console.log("Increasing hourly rate by " + percent);
+       return true;
+     } else {
+       console.log("Sorry, the increase cap for contractors is ", increaseCap);
+       return false;
+     }
+   }
+   
+   var workers : Array<Person> = [];
+   
+   //实例化两个Person对象，传入不同的加薪规则
+   workers[0] = new Person(forEmployees);
+   workers[1] = new Person(forContractors);
+
+   //调用每个实例上的increasePay()，验证加薪30%
+   workers.forEach(worker => worker.increasePay(30));
+   ```
+   运行上面代码，将会在浏览器的控制台生成以下输出：
+   
+   ```
+   Increasing salary by  30
+   Sorry, the increase cap for contractors is  20
+   ```
+     >**将类作为接口**
+     在TypeScript中，可以将任何类看作接口。如果声明了类A{}和B{},写作class A implements B {}是完全合法的。
+     当转码成JavaScript时，**TypeScript接口不会生成任何输出** 。而且如果在一个单独的文件（例如iplayable.ts）中放入一个接口声明，并使用tsc编译它，将生成要给空的ipayable.js文件。如果使用SystemJS从文件（例如ipayable.js）导入此接口，将会报错，因为不能导入空文件。需要让SystemJS知道，必须将IPayable作为模块，并在全局的System注册表中注册它。这可以通过在配置SystemJS时使用meta注解来完成，如下所示：
+     ```
+     Symtem.config({
+       transpiler: 'typescript',
+       typescriptOPtions: {emitDecoratorMetadata: true},
+       packages: {app: {defaultExtension: 'ts'}}
+       meta: {
+         'app/ipayable.ts': {
+          format: 'es6'
+         }
+       }
+     });
+     ```
+     接口机制提供了创建自定义类型的一种方式，并最小化了类型相关错误数量。此外，它极大地简化了依赖注入设计模式的实现。
+     
+     可以在TypeScript手册（详见 http://mng.bz/spm7 ）的“Interfaces”小节找到更多详情。
+     
+     >**注意**
+     实用工具TypeDoc是一个便捷的工具，用于根据TypeScript代码中的注释生成程序文档，可以从 www.npmjs.com/package/typedoc 获得。
+    
+     
+   
+   
+   
      
      
    
