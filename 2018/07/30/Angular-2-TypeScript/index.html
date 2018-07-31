@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>《Angular 2开发实战》学习笔记-Angular应用程序的TypeScript | 阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="post-title">
+          《Angular 2开发实战》学习笔记-Angular应用程序的TypeScript
+            <div class="post-tags">
+    		    
+              <a class="tag-link" href="/tags/TypeScript/">TypeScript</a>
+            
+    	      </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <article class="post">
+  
+
+  <header>
+    <div class="post-title mobile-post-title">
+      <h1>《Angular 2开发实战》学习笔记-Angular应用程序的TypeScript</h1>
+        <div class="post-tags">
+        
+          <a class="tag-link" href="/tags/TypeScript/">TypeScript</a>
+        
+        </div>
+    </div>
+    <div class="post-meta">
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2018-07-30</span>
+      
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/前端技术/">前端技术</a>
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/前端技术/读书笔记/">读书笔记</a>
+          
+      
+      <!----------------------------------->
+        
+      <!----------------------------------->
+    </div>
+  </header>
+  
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#作为Angular应用程序语言的TypeScript"><span class="toc-text">作为Angular应用程序语言的TypeScript</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么不使用JavaScript进行开发"><span class="toc-text">为什么不使用JavaScript进行开发</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么使用TypeScript编写Angular应用程序"><span class="toc-text">为什么使用TypeScript编写Angular应用程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#转码器的角色"><span class="toc-text">转码器的角色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TypeScript入门"><span class="toc-text">TypeScript入门</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#安装并使用TypeScript编译器"><span class="toc-text">安装并使用TypeScript编译器</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TypeScript作为JavaScript的超集"><span class="toc-text">TypeScript作为JavaScript的超集</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可选类型"><span class="toc-text">可选类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#函数"><span class="toc-text">函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#默认参数"><span class="toc-text">默认参数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#可选参数"><span class="toc-text">可选参数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#箭头函数表达式"><span class="toc-text">箭头函数表达式</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类"><span class="toc-text">类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#访问修饰符"><span class="toc-text">访问修饰符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法"><span class="toc-text">方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#继承"><span class="toc-text">继承</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#泛型"><span class="toc-text">泛型</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+  <div class="post-content">
+    <h3 id="作为Angular应用程序语言的TypeScript"><a href="#作为Angular应用程序语言的TypeScript" class="headerlink" title="作为Angular应用程序语言的TypeScript"></a>作为Angular应用程序语言的TypeScript</h3><ul>
+<li><h4 id="为什么不使用JavaScript进行开发"><a href="#为什么不使用JavaScript进行开发" class="headerlink" title="为什么不使用JavaScript进行开发"></a>为什么不使用JavaScript进行开发</h4><ul>
+<li><p>JavaScript是宽容的，因为它是一种动态类型语言。JavaScript类型错误只能在运行时被捕获，而在编译的时候不会进行类型匹配。</p>
+</li>
+<li><p>JavaScript不支持静态类型。使得重构困难。</p>
+</li>
+</ul>
+<p>目前有几十种语言可以编译成JavaScript（请参阅可编译为JavaScript的语言列表，网址为 <a href="http://mng.bz/vjzi" target="_blank" rel="noopener">http://mng.bz/vjzi</a> ）。最受欢迎的是TypeScript(详见 <a href="http://www.typescriptlang.org" target="_blank" rel="noopener">www.typescriptlang.org</a> )、CoffeeScript（详见 <a href="http://coffeescript.org" target="_blank" rel="noopener">http://coffeescript.org</a> ）和 Dart(详见 <a href="http://www.dartlang.org" target="_blank" rel="noopener">www.dartlang.org</a> ）</p>
+<a id="more"></a>
+<blockquote>
+<p><strong>为什么使用Dart语言</strong></p>
+<ul>
+<li>与第三方JavaScript库的互操作性不是很好。</li>
+<li>Dart中的开发只能在附带了Dart VM的Chrome浏览器的专用版本（Dartium）中完成。其他浏览器没有Dart VM。</li>
+<li>生成的JavaScript不易阅读。</li>
+<li>Dart开发社区相当小。</li>
+</ul>
+</blockquote>
+<p>Angular框架是用TypeScript编写的。</p>
+</li>
+<li><h4 id="为什么使用TypeScript编写Angular应用程序"><a href="#为什么使用TypeScript编写Angular应用程序" class="headerlink" title="为什么使用TypeScript编写Angular应用程序"></a>为什么使用TypeScript编写Angular应用程序</h4><p>可以使用ES6(甚至ES5)编写应用程序，但将TypeScipt作为编写JavaScript的一种更有成效的方法。以下是其原因：</p>
+<ul>
+<li><p><strong>TypeScript支持类型。</strong> 这就允许TypeScript编译器在开发过程中帮你找到并修复许多错误，甚至是在运行应用程序之前。</p>
+</li>
+<li><p><strong>极好的IDE支持。</strong> IDE <strong>提供了很好的上下文相关帮助</strong> 。TypeScript代码可以 <strong>由IDE重构</strong> ，而JavaScript代码必须手动重构。IDE会 <strong>提示可用的API</strong> 。</p>
+</li>
+<li><p>Angular和类型定义文件被打包到一起，所以当使用Angular API时，IDE会执行 <strong>类型检查</strong> 并 <strong>提供开箱即用的上下文相关帮助</strong> 。</p>
+</li>
+<li><p>TypeScript <strong>遵循ECMAScript 6和7规范</strong> ，并向它们添加了 <strong>类型</strong> 、<strong>接口</strong> 、<strong>装饰器</strong> 、 <strong>类成员变量</strong> （字段）、 <strong>泛型</strong> 以及 关键字 <strong>public</strong> 和 <strong>private</strong> 。将来的TypeScript版本将支持缺少的ES6特性并实现ES7的特性（请参阅TypeScript的Roadmap, 在GitHub上，网址为 <a href="http://mng.bz/Ri29" target="_blank" rel="noopener">http://mng.bz/Ri29</a> ）</p>
+</li>
+<li><p>TypeScript接口允许声明将会在应用程序中用到的 <strong>自定义类型</strong> 。接口有助于避免在应用程序中使用错误类型的对象而引起的编译时错误。</p>
+</li>
+<li><p>生成的JavaScript代码易于阅读，而且看起来像手写的代码。</p>
+</li>
+<li><p>Angular文档、文章和博客中的大多数代码示例都以TypeScript给出（详见<a href="http://angular.io/docs" target="_blank" rel="noopener">http://angular.io/docs</a> ）。</p>
+</li>
+<li><h4 id="转码器的角色"><a href="#转码器的角色" class="headerlink" title="转码器的角色"></a>转码器的角色</h4><p>除了JavaScript语言，Web浏览器不懂任何语言。如果源代码用TypeScript编写，那么在能够在浏览器或独立的JavaScript引擎中运行它们之前，它们必须转码为JavaScript。</p>
+<p>转码意味着 <strong>将某种语言的源代码转换成另一种语言的源代码</strong> 。许多开发者喜欢使用单词“编译”（compiling）来描述，所以诸如“TypeScript编译器”和“将TypeScript编译成JavaScript”也是有效的。</p>
+<p>Angular与静态类型的TypeScript的结合 <strong>简化了大中型Web应用程序的开发</strong> 。<strong>良好的工具</strong> 及 <strong>静态类型分析器</strong> 会大幅度 <strong>减少运行时的错误数</strong> ，并将缩短上市时间。当完成时，Angular应用程序将会有大量的JavaScript代码；而且虽然用TypeScript进行开发需要编写更多的代码，但将通过 <strong>节省测试和重构时间</strong> 以及 <strong>运行时的错误数量来获益</strong> 。</p>
+</li>
+<li><h4 id="TypeScript入门"><a href="#TypeScript入门" class="headerlink" title="TypeScript入门"></a>TypeScript入门</h4><p><strong>微软</strong> 开放了 <strong>TypeScript源代码</strong> ，它把TypeScript的代码仓库托管在GitHUub上（详见 <a href="http://mng.bz/Ri29" target="_blank" rel="noopener">http://mng.bz/Ri29</a> ）。可以使用 <strong>npm安装TypeScript编译器</strong> ，或者 <strong>从 <a href="http://www.typescriptlang.org" target="_blank" rel="noopener">www.typescriptlang.org</a> 下载它</strong> 。TypeScript网站还有 <strong>一个托管在Web上的TypeScript编译器</strong> （一个Palyground,详见 <a href="http://www.typescriptlang.org/play/index.html" target="_blank" rel="noopener">http://www.typescriptlang.org/play/index.html</a> ），可以在那里输入TypeScript代码并通过交互将其编译成JavaScript。</p>
+<ul>
+<li><h5 id="安装并使用TypeScript编译器"><a href="#安装并使用TypeScript编译器" class="headerlink" title="安装并使用TypeScript编译器"></a>安装并使用TypeScript编译器</h5><p>TypeScript编译器本身就是用TypeScript编写的。可以使用Node.js的npm包管理器安装此编译器。</p>
+<p><strong>全局安装TypeScript编译器</strong> ，在命名窗口或终端窗口中运行以下npm命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g typescript</span><br></pre></td></tr></table></figure>
+<p><strong>检查TypeScript编译器的版本</strong> ，请运行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc --version</span><br></pre></td></tr></table></figure>
+<p>TypeScript代码被保存在带有 <strong>.ts扩展名</strong> 的文件中。可以使用以下命令将TypeScript脚本文件 <strong>main.ts转码成main.js</strong> :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc main.ts</span><br></pre></td></tr></table></figure>
+<p>还可以 <strong>生成source map文件</strong> ， <strong>将TypeScript源代码映射到生成的JavaScript中</strong> 。 <strong>使用source map</strong> ,当浏览器中运行时， <strong>可以在TypeScript中设置断点</strong> ，即使执行的是JavaScript。要 <strong>将main.ts编译成main.js</strong> ，同时还 <strong>生成source map文件main.map</strong> ,运行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc --sourcemap main.ts</span><br></pre></td></tr></table></figure>
+<p>在编译期间，TypeScript编译器会 <strong>从代码中删除所有的TypeScript类型、接口和关键字</strong> ，以 <strong>生成有效的JavaScript</strong> 。通过提供编译器选项，可以生成与ES3、ES5或ES6语法兼容的JavaScript。目前默认是ES3。以下是 <strong>将代码转码成兼容ES5语法命令</strong> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc --t ES5 main.ts</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>在Web浏览器中转码TypeScript</strong><br>在开发过程中，我们使用本地安装的tsc。但转码也可以（在服务器上） <strong>在部署过程中完成</strong> ，或者 <strong>当Web浏览器加载应用程序时即时完成</strong> 。使用SystemJS库，它 <strong>内部使用tsc转码并动态加载应用程序模块</strong> 。<br>请记住，在浏览器中即时转码，可能导致在用户设备上显示应用程序内容的延迟。如果使用SystemJS加载并在浏览器中将代码转码，<strong>默认会生成source map</strong> 。</p>
+</blockquote>
+<p><strong>在内存中编译代码</strong> ，而 <strong>不生成输出.js文件</strong> ，可使用–noEmit选项运行tsc:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc --noEmit mian.ts</span><br></pre></td></tr></table></figure>
+<p>可以通过提供-w选项，以监控（watch）模式启动TypeScript编译器。在此模式下，无论何时修改并保存代码，都会将其自动转码到相应的JavaScript文件中。 <strong>要编译并监控全部的.ts文件</strong> ，运行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc -w *.ts</span><br></pre></td></tr></table></figure>
+<p>编译器将会编译所有的TypeScript文件，在控制台打印错误消息（如果有的话），并继续监控改动的文件。一旦文件改动了，tsc将立即重新编译它。</p>
+<blockquote>
+<p>注意<br>通常，我们 <strong>不使用IDE来编译TypeScript</strong> 。我们用 <strong>SystemJS及其浏览器内置（in-browser)的编译器</strong> ，或者使用 <strong>bundler(Webpack)</strong> ,它会使用一个特殊的用于编译的TypeScript加载器。我们使用由IDE提供的 <strong>TypeScript代码分析器来高亮显示错误</strong> ，并使用 <strong>浏览器来调试TypeScript</strong> 。</p>
+</blockquote>
+<p>TypeScrpt编译器允许配置编译的过程（指定源目录和目标目录、source map生成等待）。项目目录中配置文件tsconfig.json的存在，意味着可以 <strong>在命令行中输入tsc</strong> ,而编译器将从tsconfig.json中读取所有的选项。下面显示了一个示例的tsconfig.json文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;compilerOptions&quot;: &#123;</span><br><span class="line">    &quot;target&quot;: &quot;es5&quot;,</span><br><span class="line">    &quot;module&quot;: &quot;commonjs&quot;,</span><br><span class="line">    &quot;emitDecoratorMetadata&quot;: true,</span><br><span class="line">    &quot;experimentaldecorators&quot;: true,</span><br><span class="line">    &quot;rootDir&quot;: &quot;.&quot;,</span><br><span class="line">    &quot;outDir&quot;:&quot;./js&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该配置文件指示tsc将代码转码为ES5语法。生成的JavaScript文件将位于js目录中。tsconfig.json文件 <strong>可能包含files部分</strong> ，它 <strong>列出了必须由TypeScript编译的文件</strong> 。因为使用rootDir选项，要求从项目的根目录开始所有文件的编译。</p>
+<p>如果要将项目的某些文件从编译中排除，请将exclude属性添加到tsconfig.json中。以下演示了如排除node_modules目录的全部内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;exclude&quot; : [</span><br><span class="line">   &quot;node_modules&quot;</span><br><span class="line"> ]</span><br></pre></td></tr></table></figure>
+<p>可以在TypeScript文档（详见 <a href="http://mng.bz/rf14" target="_blank" rel="noopener">http://mng.bz/rf14</a> ）中阅读有关 <strong>配置编译过程</strong> 以及 <strong>TypeScript编译器选项的更多信息</strong> 。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="TypeScript作为JavaScript的超集"><a href="#TypeScript作为JavaScript的超集" class="headerlink" title="TypeScript作为JavaScript的超集"></a>TypeScript作为JavaScript的超集</h4><p>Typescript完全支持ES5和大多数ES6语法。只要将JavaScript代码文件的 <strong>扩展名从.js改为.ts</strong> ，它们就将变为有效的TypeScript代码。到目前为止，见过的仅有两个例外是 <strong>处理可选的函数参数</strong> ，以及 <strong>将一个值赋给一个对象字面量</strong> 。</p>
+<p>在JavaScript中，即使一个 <strong>函数被声明具有两个参数</strong> ，也 <strong>可以通过提供仅提供一个参数来调用它</strong> ；而在TypeScript中，需要为 <strong>参数名称附加一个问号</strong> ，以 <strong>使其成为可选的</strong> 。在JavaScript中，可以 <strong>使用空的对象字面量来初始化变量</strong> ，并 <strong>使用点号立即附加属性</strong> ；而在TypeScript中，<strong>需要使用方括号</strong> 。</p>
+<p>但这些差异很小 。更重要的是，因为是JavaScript的超集，TypeScript为JavaScript添加了许多有用的特性。</p>
+<blockquote>
+<p><strong>提示</strong><br>如果正在 <strong>将JavaScript项目转换为TypeScript版本</strong> ，可以 <strong>使用tsc编译器的–allowJs选项</strong> 。TypeScript编译器将检查输入的.js文件的语法错误，并根据tsc的–target和–module选项发出有效的输出。此输出还可以与其他的.ts文件相结合。就像.ts文件一样，仍会为.js文件生成source map。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="可选类型"><a href="#可选类型" class="headerlink" title="可选类型"></a>可选类型</h4><p>可声明变量，并为它们全部或其中的一些提供类型。以下两行是有效的TypeScript语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var name1 = &apos;John Smith&apos;;</span><br><span class="line">var name2: string = &apos;John Smith&apos;;</span><br></pre></td></tr></table></figure>
+<p>如果使用类型，TypeScript转码器可以在开发期间 <strong>检测不匹配的类型</strong> ，而且IDE将会提供 <strong>代码补全</strong> 和 <strong>重构支持</strong> 。在任何大小合适的项目上，这有助于提高生产力。即使不在声明中使用类型，TypeScript也会 <strong>根据赋值猜测类型</strong> ，并且之后 <strong>仍然会进行类型检查</strong> ，这被称为 <strong>类型推断</strong>（type inference)。</p>
+<p>以下TypeScript代码片段，不能将一个数字赋给本来是一个字符串的变量name1,即使它最初没有类型（JavaScript语法）声明。使用字符串初始化此变量之后，推断类型将不允许把数字值赋给name1。同样的规则适用于带有显式类型声明的变量name2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var name1 = &apos;John Smith&apos;;</span><br><span class="line">//JavaScript中，将类型不同的一个赋值给一个变量是有效的，但由于类型推断，这在TypeScript中是无效的</span><br><span class="line">name1 = 123;</span><br><span class="line"></span><br><span class="line">var name2: string = &apos;John Somith&apos;;</span><br><span class="line">//JavaScript中，将类型不同的一个赋值给一个变量是有效的，但由于显示的类型声明，这在TypeScript中是无效的</span><br><span class="line">name2 = 123;</span><br></pre></td></tr></table></figure>
+<p>在TypeScript中，可以声明有类型的 <strong>变量</strong>、 <strong>函数参数</strong> 和 <strong>返回值</strong> 。有四个关键字用于声明 <strong>基本类型</strong> ： <strong>number</strong> 、 <strong>boolean</strong> 、 <strong>string</strong> 和 <strong>void</strong> 。<strong>void</strong> 在函数声明中 <strong>表示没有返回值</strong> 。与JavaScript类似，变量可以有 <strong>null</strong> 或 <strong>undefined</strong> 类型的值。</p>
+<p>以下是带有显式类型声明变量的示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var salary： number;</span><br><span class="line">var name: string = &apos;Alex&apos;;</span><br><span class="line">var isValid: boolean;</span><br><span class="line">var customerName: string = null;</span><br></pre></td></tr></table></figure>
+<p>所有这些类型都是 <strong>any类型的子类型</strong> 。如果在 <strong>声明一个变量或函数参数时没有指定类型</strong> ，TypeScript编译器将 <strong>假设它具有any类型</strong> ，这将 <strong>允许给此变量后函数参数赋任何值</strong> 。也可以 <strong>显示地声明一个变量</strong> ，<strong>指定它的类型为any</strong> 。这种情况下，不会应用推断类型。这两种声明都是有效的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var name2: any = &apos;John Smith&apos;;</span><br><span class="line">name2 = 123;</span><br></pre></td></tr></table></figure>
+<p>如果使用显式的类型声明变量，编译器将检查他们的值以保证它们与声明相匹配。TypeScript包括用于与Web浏览器交互的其他类型，例如HTMLElement和Document。</p>
+<p><strong>如果定义一个类或接口，它可以在变量声明中用作自定义类型。</strong></p>
+<ul>
+<li><h5 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h5><p>TypeScript函数（及函数表达式）与JavaScript函数类似，但可以显式地声明参数类型和返回值。我们来编写一个计算税款的JavaScript函数，它有三个参数，并将根据州（state）、收入（income）和家属（dependents）数量计算税款。对于每个家属，根据此人居住的州，给予$500或$300的税款减免。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function calcTax(state, income, dependents) &#123;</span><br><span class="line">  if (state == &apos;NY&apos;) &#123;</span><br><span class="line">    return income * 0.06 - dependents * 500;</span><br><span class="line">  &#125;else if (state == &apos;NJ&apos;) &#123;</span><br><span class="line">    returnn income * 0.05 - dependents * 300;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假如一个居住在新泽西（New Jersey）州的人，有￥50000的收入和两个家属。我们调用calcTax()：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var tax = ccalcTax(&apos;NJ&apos;, 50000, 2);</span><br></pre></td></tr></table></figure>
+<p>变量tax得到的值是1900,它是正确的。即使calcTax()没有为函数参数声明任何类型，也 <strong>可以根据参数名称来猜测它们</strong> 。</p>
+<p>现在我们来以错误的方式调用它，传入一个字符串值给家属（dependents）数量：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var tax = calcTax(&apos;NJ&apos;, 50000, &apos;two&apos;);</span><br></pre></td></tr></table></figure>
+<p>直到调用这个函数之后，你才知道问题。变量tax会有一个NaN（Not a Number）值。只是因为没有机会显示地指定参数类型，一个bug就偷偷溜了出来。下面用TypeScript重写这个函数，为参数和返回值声明类型。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function calcTax(state: string, income: number, dependents: number) :number &#123;</span><br><span class="line">  if (state == &apos;NY&apos;) &#123;</span><br><span class="line">    return income * 0.06 - dependents * 500;</span><br><span class="line">  &#125;else if (state == &apos;NJ&apos;) &#123;</span><br><span class="line">    returnn income * 0.05 - dependents * 300;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在就没办法犯同样的错误了，<strong>传一个字符串值给家属（dependents）数量</strong> ：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var tax: number = calcTax(&apos;NJ&apos;， 50000， &apos;two&apos;);</span><br></pre></td></tr></table></figure>
+<p>TypeScript编译器将显示一个错误: “Argument of type ‘string’ is not assignable to parameter of type ‘number’。”此外，该函数的返回值被声明为number，这会阻止你犯下另一个错误， <strong>将税款计算的结果赋值给一个非数值的变量</strong> ：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var tax：string = calcTax(&apos;NJ&apos;， 50000， &apos;two&apos;);</span><br></pre></td></tr></table></figure>
+<p>编译器将捕获到这一点，产生错误:“Argument of type ‘string’ is not assignable to type ‘string’: var tax: string。”在任何项目上，这种编译期间的类型检查可以节省大量的时间。</p>
+</li>
+<li><h5 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h5><p>声明一个函数时，<strong>可以指定默认的参数值</strong> 。唯一的限制是带默认值的参数， <strong>不能在必需（required）参数的前面</strong> 。在上面代码中，要将NY作为state参数的默认值，就不能像下列声明一样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function calcTax(state: string = &apos;NY&apos;， income: number, dependents: number): number &#123;</span><br><span class="line">  // the code goes here</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>需要更改参数的顺序</strong> ，以保证在默认参数之后没有必需的参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function calcTax(income: number, dependents: number, state: string = &apos;NY&apos;): number &#123;</span><br><span class="line">  //the code goes here</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>甚至需要更改calcTax()函数体中的一行代码，现在可以使用两个或三个参数自由地调用它：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var tax: number = calcTax(50000, 2);</span><br><span class="line">//or </span><br><span class="line">var tax： number = calcTax(5000, 2, &apos;NY&apos;);</span><br></pre></td></tr></table></figure>
+<p>两次调用的结果将是一样的。</p>
+</li>
+<li><h5 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h5><p>在TypeScript中，通过 <strong>向参数名称附加一个问号</strong> ，可以轻松地 <strong>将函数参数标记为可选的</strong> ，唯一的限制是 <strong>可选的参数必须在函数声明的最后</strong> 。当编写带可选参数的函数代码时， <strong>需要提供应用程序逻辑来处理没有提供可选参数的情况</strong> 。<br>下面是修改税款计算函数：如果没有指定dependents,就不对计算的税款进行减免。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function calcTax(income: number, state: string = &apos;NY&apos;, dependents?: number): number &#123;</span><br><span class="line">  var deduction: number;</span><br><span class="line">  </span><br><span class="line">  //处理dependents中的可选值</span><br><span class="line">  if (dependents) &#123;</span><br><span class="line">    deduction = dependents * 500;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    deduction = 0;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  if (state = &apos;NY&apos;) &#123;</span><br><span class="line">    return income *  0.06 - deduction;</span><br><span class="line">  &#125; else if (state = &apos;NJ&apos;) &#123;</span><br><span class="line">    return income * 0.05 - deduction;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var tax: number = calcTax(50000, &apos;NJ&apos;, 3);</span><br><span class="line">console.log(&quot;Your tax is&quot; + tax);</span><br><span class="line"></span><br><span class="line">var tax: number = calcTax(50000);</span><br><span class="line">console.log(&quot;Your tax is&quot; + tax);</span><br></pre></td></tr></table></figure>
+<p>请注意dependents?: number中的问号。现在该函数会检查是否为dependents提供值。如果没有，就将0赋给变量deduction；否则，为每个家属（dependent）减免扣税$500。1000<br>运行上面代码将产生以下输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Your tax is 1000</span><br><span class="line">Your tax is 3000</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h5 id="箭头函数表达式"><a href="#箭头函数表达式" class="headerlink" title="箭头函数表达式"></a>箭头函数表达式</h5><p>TypeScript <strong>支持在表达式中使用匿名函数的简化语法</strong> 。不需要使用关键字function,宽箭头符号（=&gt;）用于将参数和函数体分开。TypeScript支持箭头函数的ES6语法。在其他一些编程语言中，箭头函数被称为 <strong>lambdda表达式</strong> 。</p>
+<p>我们来看一个最简单的箭头函数的例子，函数体只有一行代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var getName = () =&gt; &apos;John Smith&apos;;</span><br><span class="line">console.log(getName());</span><br></pre></td></tr></table></figure>
+<p>空括号表示上述箭头函数没有参数。单行的箭头表达式不需要花括号或显式的return语句，而上述代码片段将在控制台打印“John Smith”。如果在TypeScript的playground中实验此代码，它们将被转换成以下ES5代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var getName = function () &#123; return &apos;John Smith&apos;; &#125;;</span><br><span class="line">console.log(getName());</span><br></pre></td></tr></table></figure>
+<p>如果箭头函数的函数体由多行构成，那么必须将它们括在大括号内并使用return语句。以下代码片段将硬编码的字符串值转换成大写形式，并在控制台打印“PETER LUGER”：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var getNameSuper = () =&gt; &#123;</span><br><span class="line">  var name = &apos;Peter Luger&apos;.toUpperCase();</span><br><span class="line">  return name;</span><br><span class="line">&#125;</span><br><span class="line">console.log(getNameUpper());</span><br></pre></td></tr></table></figure>
+<p>除了提供较短的语法之外，箭头函数表达式也消除了this关键字臭名昭著的混乱。在JavaScript中，如果在一个函数中使用this关键字，它可能并不指向正在调用此函数的对象。者可能会导致运行时bug，并需要额外的调试时间。下面看一个例子。<br>下面代码有两个函数：StockQuoteGeneratorArrow()和StockQuoteGeneratorAnonymous()。每隔一秒，这两个函数就会调用Math.random(),为被作为参数提供的股票号（symbol）生成一个随机的价格。在内部，StockQuoteGeneratorArrow()使用箭头函数语法，提供setInterval()的参数，而StockQuoteGeneratorAnonymous()使用匿名函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function StockQuoteGeneratorArrow(symbol: string) &#123;</span><br><span class="line">  </span><br><span class="line">  //将股票代号赋值给this.symbol</span><br><span class="line">  this.symbol = symbol;</span><br><span class="line">  </span><br><span class="line">  setInterval(() =&gt; &#123;</span><br><span class="line">    console.log(&quot;StockQuoteGeneratorArrow. The price quote for &quot; + this.symbol + &quot; is &quot; + Math.random());</span><br><span class="line">  &#125;, 1000);</span><br><span class="line">&#125;</span><br><span class="line">var stockQuoteGeneratorArrow = new StockQuoteGeneratorArrow(&quot;IBM&quot;);</span><br><span class="line"></span><br><span class="line">function StockQuoteGeneratorAnonymous(symbol: string) &#123;</span><br><span class="line">  //将股票代码赋值给this.symbol</span><br><span class="line">  this.symbol = symbol;</span><br><span class="line">  </span><br><span class="line">  setInterval(function() &#123;</span><br><span class="line">    console.log(&quot;StockQuoteGeneratorAnonymous. The price quote for &quot; + this.symbol + &quot; is &quot; + Math.random());</span><br><span class="line">  &#125;, 1000);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var stockQuoteGeneratorAnonymous = new StockQuoteGeneratorAnonymous(&quot;IBM&quot;);</span><br></pre></td></tr></table></figure>
+<p>这两种情况汇中，都将股票代号（“IBM”）赋给了对象this上的变量symbol。但是使用箭头函数，对构造函数StockQuoteGeneratorArrow()的实例引用，会被自动保存到单独的变量中；当从箭头函数中引用this.symbol时，会正确地找到它，并在控制台输出中使用“IBM”。<br>但是当浏览器中调用匿名函数时，this指向全局的Window对象，该对象没有symbol属性。在Web浏览器中运行此代码，每隔一秒会打印下面这样的内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">StockQuoteGeneratorArrow. The price quote for IBM is 0.6888406401347633</span><br><span class="line">StockQuoteGeneratorAnonymous. The price quote for undefined is 0.7601010292924124</span><br></pre></td></tr></table></figure>
+<p>如你所见，当使用箭头函数时，它将IBM识别为股票编代号，但在匿名函数中是undefined。</p>
+<blockquote>
+<p><strong>注意</strong><br>TypeScript <strong>使用一个外部作用域的this引用，通过传入此引用，它会替换箭头函数表达式中的this</strong> 。这就是为什么StockQuoteGeneratorArrow()中箭头内的代码能够正确地看到来自外部作用域的this.symbol的原因所在。</p>
+</blockquote>
+<blockquote>
+<p><strong>函数重载</strong><br>JavaScript <strong>不支持函数重载</strong> ，所以让几个函数同名但参数列表不同是不可能的。TypeScript的创建者引入了函数重载，但由于代码必须转码到单个JavaScript函数中，因此重载的语法不是很优雅。<br>可以为仅有一个函数体的函数声明多个签名，（在此函数体中）需要检查参数的数量和类型，进而执行相应部分的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function attr(name: string): string;</span><br><span class="line">function attr(name: string, value: string): string;</span><br><span class="line">function attr(map: any): void;</span><br><span class="line">function attr(nameOrMap: any, value?: string): any &#123;</span><br><span class="line">  if (nameOrMap &amp;&amp; typeof nameOrMap == &apos;string&apos;) &#123;</span><br><span class="line">    //handle string case</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    //handle map case</span><br><span class="line">  &#125;</span><br><span class="line">    //handle value here</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="类"><a href="#类" class="headerlink" title="类"></a>类</h4><p>如果有Java或C#开发经验，将会熟悉它们的经典形式中的类和继承的概念。在这些语言中，类的定义被作为单独的实体（像是蓝图）加载到内存中，并由该类的全部示例共享。如果一个类继承自另一个类，就使用两个类组合后的蓝图来实例化对象。</p>
+<p>TypeScrript是JavaScript的超集，JavaScript仅支持原型继承，可以通过 <strong>将一个对象附加到另一个对象的prototype属性</strong> 来创建继承层级结构。在这种情况下，对象的继承（或者更确切地说链接）是动态创建的。</p>
+<p>在TypeScript中，关键字class是简化编码的语法糖。最终，类会被转码为带有原型继承的JavaScript对象。在JavaScript中，可以声明一个构造函数并使用关键字new实例化它。在TypeScript中，也可以声明一个类并使用操作符new实例化它。</p>
+<p>类可以包括 <strong>构造函数</strong> 、 <strong>字段</strong>（也称属性）和 <strong>方法</strong> 。声明的属性和方法通常被称为 <strong>类成员</strong> 。</p>
+<p>我们创建一个简单的Person类，它包括四个属性用于存储姓、名、年龄和社会安全号码（Social Security number, 分配给每个美国合法居民的唯一标识符）。在下面的代码中可以看到声明并实例化Person类的TypeScript代码；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">  firstName: string;</span><br><span class="line">  lastName: string;</span><br><span class="line">  age: number;</span><br><span class="line">  ssn: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var p = new Person();</span><br><span class="line"></span><br><span class="line">p.firstName = &quot;John&quot;;</span><br><span class="line">p.lastName = &quot;Smith&quot;;</span><br><span class="line">p.age = 29;</span><br><span class="line">p.ssn = &quot;123-90-4567&quot;;</span><br></pre></td></tr></table></figure>
+<p>然后是一个由tsc编译器生成的JavaScript闭包。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> var Person = /** @class */ (function () &#123;</span><br><span class="line">  function Person() &#123;</span><br><span class="line">  &#125;</span><br><span class="line">  return Person;</span><br><span class="line">&#125;());</span><br><span class="line"> var p = new Person();</span><br><span class="line"> p.firstName = &quot;John&quot;;</span><br><span class="line"> p.lastName = &quot;Smith&quot;;</span><br><span class="line"> p.age = 29;</span><br><span class="line"> p.ssn = &quot;123-90-4567&quot;;</span><br></pre></td></tr></table></figure>
+<p>通过为函数Person创建一个闭包，TypeScript编译器启用了暴露 或隐藏Person对象元素的机制。</p>
+<p>TypeScript也支持类的构造函数，它允许在实例化对象时初始化对象变量。类构造函数仅会在对象创建期间被调用一次。下面代码显示了Person类的下一版，它使用关键字constructor,并用传给构造函数的值实例化类的字段。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">  firstName: string;</span><br><span class="line">  lastName: string;</span><br><span class="line">  age: number;</span><br><span class="line">  ssn: string;</span><br><span class="line">  </span><br><span class="line">  constructor(firstName: string, lastName: string, age: number, ssn: string) &#123;</span><br><span class="line">    this.firstName = firstName;</span><br><span class="line">    this.lastName = lastName;</span><br><span class="line">    this.age = age;</span><br><span class="line">    this.ssn = ssn;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var p = new Person(&quot;John&quot;, &quot;Smith&quot;, 29, &quot;123-90-4567&quot;);</span><br></pre></td></tr></table></figure>
+<p>生成的ES5版本在下面代码中显示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var Person = /** @class */ (function () &#123;</span><br><span class="line"> function Person(firstName, lastName, age, ssn) &#123;</span><br><span class="line">     this.firstName = firstName;</span><br><span class="line">     this.lastName = lastName;</span><br><span class="line">     this.age = age;</span><br><span class="line">     this.ssn = ssn;</span><br><span class="line"> &#125;</span><br><span class="line"> return Person;</span><br><span class="line">&#125;());</span><br><span class="line">var p = new Person(&quot;John&quot;, &quot;Smith&quot;, 29, &quot;123-90-4567&quot;);</span><br></pre></td></tr></table></figure>
+<p>一些JavaScript开发者看不到使用类的价值，因为他们 <strong>可以使用构造函数和闭包轻易地编写出相同的功能</strong>  。但JavaScript初学者会发现，相比于构造函数和闭包， <strong>类的语法更易于阅读和编写</strong> 。</p>
+<ul>
+<li><h5 id="访问修饰符"><a href="#访问修饰符" class="headerlink" title="访问修饰符"></a>访问修饰符</h5><p>JavaScript无法将变量或方法声明为私有的（private, 对外部代码不可见）。要隐藏对象里的属性（或方法），需要创建闭包，这样既不会将属性附加到变量this，也不会在闭包return语句中返回。</p>
+<p>TypeScript提供了关键字 <strong>public</strong> 、<strong>protected</strong> 和 <strong>private</strong> ，以帮助在开发阶段控制对象成员的访问。默认情况下，<strong>所有的类成员都具有public访问权限</strong> ，并且它们 <strong>从类的外部都是可见的</strong> 。如果一个成员被声明带有protected修饰符，那么 <strong>它在该类机器子类中是可见的</strong> 。被声明为private的类成员 <strong>仅在该类内部可见</strong> 。</p>
+<p>我们使用关键字private来隐藏ssn属性的值，所以它无法从Person对象的外部被直接访问。我们将展示两个版本，它们都声明了具有使用访问修饰符的属性类。此类的较长版本看起来是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">  public firstName: string;</span><br><span class="line">  public lastName: string;</span><br><span class="line">  public age: number;</span><br><span class="line">  private _ssn: string;</span><br><span class="line">  </span><br><span class="line">  constructor(firstName: string, lastName: string, age: number, ssn: string) &#123;</span><br><span class="line">    this.firstName = firstName;</span><br><span class="line">    this.lastName = lastName;</span><br><span class="line">    this.age = age;</span><br><span class="line">    this._ssn = ssn;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var p = new Person(&quot;John&quot;, &quot;Smith&quot;, 29, &quot;123-90-4567&quot;);</span><br><span class="line">console.log(&quot;Last name: &quot; + p.lastName + &quot; SSN: &quot; + p._ssn);</span><br></pre></td></tr></table></figure>
+<p>请注意， <strong>私有变量的名称以下画线开始</strong>：_ssn。这只是私有属性的命名惯例。</p>
+<p>上面的代码的最后一行尝试从外部访问私有的属性_ssn，所以TypeScript分线器将给出如下编译错误：“Property ‘_ssn’ is private and is only accessible in calss ‘Person’”。但 <strong>除非使用了编译器选项–noEmitOn-Error</strong> ,否则错误的代码将被转码为JavaScript。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var Person = /** @class */ (function () &#123;</span><br><span class="line"> function Person(firstName, lastName, age, ssn) &#123;</span><br><span class="line">     this.firstName = firstName;</span><br><span class="line">     this.lastName = lastName;</span><br><span class="line">     this.age = age;</span><br><span class="line">     this._ssn = ssn;</span><br><span class="line"> &#125;</span><br><span class="line"> return Person;</span><br><span class="line">&#125;());</span><br><span class="line">var p = new Person(&quot;John&quot;, &quot;Smith&quot;, 29, &quot;123-90-4567&quot;);</span><br><span class="line">console.log(&quot;Last name: &quot; + p.lastName + &quot; SSN: &quot; + p._ssn);</span><br></pre></td></tr></table></figure>
+<p><strong>关键字private仅使其在TypeScript代码中是私有的</strong> 。当尝试从外部访问一个对象的属性时，IDE将不会在上下文相关帮助中显示私有成员，但是， <strong>生产（环境）中的JavaScript会将类的所有属性和方法视为公开的</strong> 。</p>
+<p>TypeScript <strong>允许使用构造函数的参数提供访问修饰符</strong> ，例如以下Person类的简短版本所示：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">  constructor(public firstName: string, public lastName: string, public age: number, private _ssn: string) &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var p = new Person(&quot;John&quot;, &quot;Smith&quot;, 29, &quot;123-90-4567&quot;);</span><br></pre></td></tr></table></figure>
+<p>当使用带有访问修饰符的构造函数时，<strong>TypeScript编译器会将其作为一条指令</strong> ，<strong>创建并保留与构造的参数相匹配的类属性</strong> 。 <strong>不需要显式声明并初始化它们</strong> 。Person类的长短两个版本都会生成相同的JavaScript。</p>
+<blockquote>
+<p><strong>提示</strong><br>访问修饰符有助于在开发期间控制对类成员的访问，但并不像Java和C#这样的语言那么严格。</p>
+</blockquote>
+</li>
+<li><h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><p>当一个函数被声明在一个类中时，它被称为 <strong>方法</strong> 。在JavaScript中，需要在对象的原型上声明方法；但是使用类，可以通过指定一个后跟括号和大括号的名称来声明方法，就像在其他面向对象语言中一样。</p>
+<p>接下来的代码片段展示了如何声明并使用具有方法doSomething()的类MyClass，此方法有一个参数，没有返回值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class MyClass &#123;</span><br><span class="line">  doSomething(howManyTimes: number)： void &#123;</span><br><span class="line">   // do something here</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var mc =  new MyClass();</span><br><span class="line">mc.doSomething(5);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>静态成员和实例成员</strong><br>上面的代码中，首先创建了类的一个实例，然后使用一个指向此实例的引用变量来 访问它的成员：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mc.doSomething(5)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>如果使用 <strong>关键字static</strong> 声明一个类属性或方法，<strong>它的值将被类的所有实例共享</strong> ，而 <strong>无需创建一个实例来访问静态成员</strong> 。不是使用引用变量（例如mc）,而是 <strong>使用类的名称</strong> 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class MyClass &#123;</span><br><span class="line">  static doSomething(howManyTimes: number): void &#123;</span><br><span class="line">    // do something here</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyClass.doSomething(5);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>如果实例化一个类</strong> ，并且 <strong>需要从声明在此类中的另一个方法中调用一个类方法</strong> ，则 <strong>必须</strong> 使用 <strong>关键字this</strong>（例如。this.doSomething(5)）。在其他的编程语言中，在类的代码中使用this是可选的，但如果没有显式地使用this,TypeScript编译器将会抱怨服务找到该方法。</p>
+</blockquote>
+<p>我们将公共的设置器（setter）和访问器（getter）方法添加到Person类，以设置并获取_ssn的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">  //在这一版中，构造函数的最后一个参数是可选的（_ssn?）</span><br><span class="line">  constructor(public firstName: string, public lastName: string, public gae: number, private _ssn?: string) &#123;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  //访问器方法</span><br><span class="line">  get ssn(): string &#123;</span><br><span class="line">    return this._ssn;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  //设置器方法</span><br><span class="line">  set ssn(value: string) &#123;</span><br><span class="line">    this._ssn = value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var p = new Person(&quot;John&quot;, &quot;Smith&quot;, 29);</span><br><span class="line">// 创建Person对象的实例后，使用ssn设置器将该值赋给_ssn</span><br><span class="line">p.ssn = &quot;456-70-1234&quot;;</span><br><span class="line"></span><br><span class="line">console.log(&quot;Last name: &quot;  + p.lastName + &quot;SSN: &quot; + p.ssn);</span><br></pre></td></tr></table></figure>
+<p>在上面代码中，访问器和设置器不包含任何应用程序逻辑；但是在实现的应用程序中，这些方法会执行验证。例如，访问器和设置器中的代码可以检查调用者是否被授权获取或设置_ssn值。</p>
+<blockquote>
+<p><strong>注意</strong><br>从ES5规范开始，JavaScript也支持访问器和设置器。</p>
+</blockquote>
+<p>请注意，在这些方法中 <strong>使用了关键字this来访问对象的属性</strong> 。 <strong>这在TypeScript中是强制性的</strong> 。</p>
+</li>
+<li><h5 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h5><p>JavaScript <strong>支持基于原型对象的继承</strong>，其中一个对象可以使用另一个对象作为原型。像ES6及其他面向对象语言一样，TypeScrript具有用于类继承的关键字extends。但是，在转码为JavaScript的过程中，<strong>生成的代码会使用原型继承的语法</strong> 。下面代码显示了如何创建一个Employee类，它扩展了Person类。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">  constructor(public firstName: string, public lastName: string,, public age： number, private _ssn: string) &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Employee extends Person &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面代码可以看到转码后的JavaScript版本，它使用原型继承。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">var __extends = (this &amp;&amp; this.__extends) || (function () &#123;</span><br><span class="line">  var extendStatics = Object.setPrototypeOf ||</span><br><span class="line">   (&#123; __proto__: [] &#125; instanceof Array &amp;&amp; function (d, b) &#123; d.__proto__ = b; &#125;) ||</span><br><span class="line">   function (d, b) &#123; for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; &#125;;</span><br><span class="line">  return function (d, b) &#123;</span><br><span class="line">   extendStatics(d, b);</span><br><span class="line">   function __() &#123; this.constructor = d; &#125;</span><br><span class="line">   d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)();</span><br><span class="line">var Person = /** @class */ (function () &#123;</span><br><span class="line">   function Person(firstName, lastName, age, number, _ssn) &#123;</span><br><span class="line">     this.firstName = firstName;</span><br><span class="line">     this.lastName = lastName;</span><br><span class="line">     this.age = age;</span><br><span class="line">     this._ssn = _ssn;</span><br><span class="line">   &#125;</span><br><span class="line">   return Person;</span><br><span class="line">&#125;());</span><br><span class="line">var Employee = /** @class */ (function (_super) &#123;</span><br><span class="line">   __extends(Employee, _super);</span><br><span class="line">   function Employee() &#123;</span><br><span class="line">      return _super !== null &amp;&amp; _super.apply(this, arguments) || this;</span><br><span class="line">   &#125;</span><br><span class="line">   return Employee;</span><br><span class="line">&#125;(Person));</span><br></pre></td></tr></table></figure>
+<p><strong>此代码的TypeSccript版本更简洁且易于阅读。</strong></p>
+<p>我们来为Employee类添加一个构造函数和department属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Employee extends Person &#123;</span><br><span class="line">  </span><br><span class="line">  //声明属性department</span><br><span class="line">  department: string;</span><br><span class="line">  </span><br><span class="line">  //创建一个具有额外的department参数的构造函数</span><br><span class="line">  constructor(firstName: string, lastName: string, age: number, _ssn: string, department: string) &#123;</span><br><span class="line">    //声明构造函数的子类必须调用父类的构造函数</span><br><span class="line">    super(firstName, lastName, age, _ssn);</span><br><span class="line">    </span><br><span class="line">    this.department = department;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果要在子类类型的对象上，调用一个声明在父类中的方法，<strong>可以使用此方法的名</strong> ，<strong>就像它被声明在子类中一样</strong> 。但是，有时 <strong>要专门调用父类的方法</strong> ，这正是 <strong>使用关键字super</strong> 的时候。</p>
+<p>关键字super可以有两种使用方式。在 <strong>派生类的构造函数中</strong> ，<strong>将其作为一个方法进行调用</strong> 。还可以 <strong>使用关键字super来专门调用父类的方法</strong> 。这 <strong>通常被用于方法重写</strong>（method overriding）。例如，如果父类及子类都要doSomething()方法，则子类 <strong>可复用编码在父类中功能</strong> ，并且 <strong>还可以添加其他的功能</strong> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">doSomething() &#123;</span><br><span class="line"> super.doSomething();</span><br><span class="line"> // Add more functionality here</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h4><p> TypeScript <strong>支持参数化类型</strong> ，也称为 <strong>泛型</strong>（generics） ，它可以用于各种场景。例如，可以创建一个函数，它 <strong>能够使用任何类型的值</strong> ，但 <strong>在特定的上下文调用时</strong> ，<strong>能够明确地指定具体的类型</strong> 。 </p>
+<p> 举另一个例子：一个数组可以保存任何类型的对象，但是可以指定该数组中允许特定对象类型（例如,Person的实例）。如果试图添加不同类型的对象，TypeScript编译器将生成错误。<br> 以下代码片段声明了一个Person类，创建了它的两个实例，并将它们存储在使用泛型类型声明的数组workers中。通过将它们放在 <strong>尖括号中</strong> （例如，<code>&lt;Person&gt;</code> ）来表示泛型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">  name: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Employee extends Person &#123;</span><br><span class="line">  department: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Animal &#123;</span><br><span class="line">  breed: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var workers: Array&lt;Person&gt; = [];</span><br><span class="line">workers[0] = new Person();</span><br><span class="line">workers[1] = new Employee();</span><br><span class="line">workers[2] = new Animal(); //compile-time error</span><br></pre></td></tr></table></figure>
+<p>在此代码片段中，声明了Person、Employee和Animal类，以及一个带有泛型类型<person>的数组workers。通过这么做，表示计划 <strong>仅存储Person类或其子类</strong> 。尝试将一个Animal实例存进相同的数组，将导致编译时错误。</person></p>
+<p>如果在一个拥有动物员工（如警犬）的组织里工作，可以如下更改数组workers的声明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var workers: Array&lt;any&gt; = [];</span><br></pre></td></tr></table></figure>
+<p> 可以为任意对象或函数使用泛型类型吗？不行。对象或函数的创建者必须允许这一特性。如果在GitHub上（参见 <a href="http://mng.bz/I3V7" target="_blank" rel="noopener">http://mng.bz/I3V7</a> ），打开TypeScript的类型定义文件（lib.d.ts）,并搜索“interface Array”,将会看到Array的声明，如下所示。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">    /////////////////////////////</span><br><span class="line">/// ECMAScript Array API (specially handled by compiler)</span><br><span class="line">/////////////////////////////</span><br><span class="line">interface Array&lt;T&gt; &#123;</span><br><span class="line">    /**</span><br><span class="line">      * Gets or sets the length of the array. This is a number one higher than the highest element defined in an array.</span><br><span class="line">      */</span><br><span class="line">    length: number;</span><br><span class="line">    /**</span><br><span class="line">      * Returns a string representation of an array.</span><br><span class="line">      */</span><br><span class="line">    toString(): string;</span><br><span class="line">    toLocaleString(): string;</span><br><span class="line">    /**</span><br><span class="line">      * Appends new elements to an array, and returns the new length of the array.</span><br><span class="line">      * @param items New elements of the Array.</span><br><span class="line">      */</span><br><span class="line">    push(...items: T[]): number;</span><br><span class="line">    /**</span><br><span class="line">      * Removes the last element from an array and returns it.</span><br><span class="line">      */</span><br><span class="line">    pop(): T;</span><br></pre></td></tr></table></figure>
+<p> 第四行中的 <code>&lt;T&gt;</code> ，意味着 <strong>TypeScript允许使用Array声明类型参数</strong> ，并且编译器 <strong>将检查程序中提供的特定类型</strong> 。上面代码将泛型参数 <code>&lt;T&gt;</code> 指定为<code>&lt;Person&gt;</code> 。但是，由于 <strong>ES6不支持泛型</strong> ，因此在转码器 <strong>生成的代码中将看不到它们</strong> 。对于开发者，<strong>它只是额外的编译时的安全网</strong> 。</p>
+<p> 在上面代码中，在第18行可以看到另一个T。当 <strong>使用函数参数指定泛型类型</strong> 时，<strong>不需要尖括号</strong> 。但在TypeScript中，实际上没有类型T。这里的T,意指方法push()可以将特定类型的对象推入一个数组中，如下所示：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">workers.push(new Person());</span><br></pre></td></tr></table></figure>
+<p>在本节中，我们说明了使用泛型类型的一个用例，其中包含已经支持泛型的数组。<br>也可以 <strong>创建自己的支持泛型的类或函数</strong> 。在代码中的某个地方，如果要尝试调用方法saySomething(),但提供了错误的类型，TypeScript编译器将给出错误。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function saySomething&lt;T&gt;(data: T) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//用一个字符串替换T</span><br><span class="line">saySomething&lt;string&gt;(&quot;Hello&quot;);</span><br><span class="line"></span><br><span class="line">//产生一个编译错误，因为123不是以字符串</span><br><span class="line">saySomething&lt;string&gt;(123);</span><br></pre></td></tr></table></figure>
+</code></pre><p>生成的JavaScript将不会包含任何泛型信息，上面的代码将被转码成如下代码：</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function saySomething(data) &#123;</span><br><span class="line">&#125;</span><br><span class="line">saySomething(&quot;Hello&quot;);</span><br><span class="line">saySomething(123);</span><br></pre></td></tr></table></figure>
+<p>如果想深入学习泛型，请参阅TypeScript手册（详见 <a href="http://mng.bz/447K" target="_blank" rel="noopener">http://mng.bz/447K</a> ）的Generics部分。</p>
+</li>
+</ul>
+
+  </div>
+  <div class="post-footer">the end</div>
+</article>
+
+          
+  <nav class="pagination post-nav">
+    
+    
+      <a href="/2018/07/29/markdown-command/">
+        <span class="next-post">Markdown常用命令<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+  
+
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+
+  <script src="/js/ztopic.js"></script>
+</body>
+</html>
