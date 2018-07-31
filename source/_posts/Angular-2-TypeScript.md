@@ -86,7 +86,7 @@ date: 2018-07-30 03:00:00
      ```
      tsc --t ES5 main.ts
      ```
-     >在Web浏览器中转码TypeScript
+     >**在Web浏览器中转码TypeScript**
      在开发过程中，我们使用本地安装的tsc。但转码也可以（在服务器上） **在部署过程中完成** ，或者 **当Web浏览器加载应用程序时即时完成** 。使用SystemJS库，它 **内部使用tsc转码并动态加载应用程序模块** 。
      请记住，在浏览器中即时转码，可能导致在用户设备上显示应用程序内容的延迟。如果使用SystemJS加载并在浏览器中将代码转码，**默认会生成source map** 。
      
@@ -138,7 +138,7 @@ date: 2018-07-30 03:00:00
    
    但这些差异很小 。更重要的是，因为是JavaScript的超集，TypeScript为JavaScript添加了许多有用的特性。
    
-   >提示
+   >**提示**
    如果正在 **将JavaScript项目转换为TypeScript版本** ，可以 **使用tsc编译器的--allowJs选项** 。TypeScript编译器将检查输入的.js文件的语法错误，并根据tsc的--target和--module选项发出有效的输出。此输出还可以与其他的.ts文件相结合。就像.ts文件一样，仍会为.js文件生成source map。
    
  
@@ -351,10 +351,10 @@ date: 2018-07-30 03:00:00
       ```
       如你所见，当使用箭头函数时，它将IBM识别为股票编代号，但在匿名函数中是undefined。
       
-      >注意
+      >**注意**
       TypeScript **使用一个外部作用域的this引用，通过传入此引用，它会替换箭头函数表达式中的this** 。这就是为什么StockQuoteGeneratorArrow()中箭头内的代码能够正确地看到来自外部作用域的this.symbol的原因所在。
       
-      >函数重载
+      >**函数重载**
       JavaScript **不支持函数重载** ，所以让几个函数同名但参数列表不同是不可能的。TypeScript的创建者引入了函数重载，但由于代码必须转码到单个JavaScript函数中，因此重载的语法不是很优雅。
       可以为仅有一个函数体的函数声明多个签名，（在此函数体中）需要检查参数的数量和类型，进而执行相应部分的代码：
       ```
@@ -504,11 +504,147 @@ date: 2018-07-30 03:00:00
       var p = new Person("John", "Smith", 29, "123-90-4567");
       ```
      当使用带有访问修饰符的构造函数时，**TypeScript编译器会将其作为一条指令** ，**创建并保留与构造的参数相匹配的类属性** 。 **不需要显式声明并初始化它们** 。Person类的长短两个版本都会生成相同的JavaScript。
+     
+     >**提示**
+     访问修饰符有助于在开发期间控制对类成员的访问，但并不像Java和C#这样的语言那么严格。
     
    - ##### 方法
      
+     当一个函数被声明在一个类中时，它被称为 **方法** 。在JavaScript中，需要在对象的原型上声明方法；但是使用类，可以通过指定一个后跟括号和大括号的名称来声明方法，就像在其他面向对象语言中一样。
      
+     接下来的代码片段展示了如何声明并使用具有方法doSomething()的类MyClass，此方法有一个参数，没有返回值。
+     
+     ```
+     class MyClass {
+       doSomething(howManyTimes: number)： void {
+        // do something here
+       }
+     }
+     
+     var mc =  new MyClass();
+     mc.doSomething(5);
+     ```
+     >**静态成员和实例成员** 
+     上面的代码中，首先创建了类的一个实例，然后使用一个指向此实例的引用变量来 访问它的成员：
+     ```
+     mc.doSomething(5)
+     ```
+     >如果使用 **关键字static** 声明一个类属性或方法，**它的值将被类的所有实例共享** ，而 **无需创建一个实例来访问静态成员** 。不是使用引用变量（例如mc）,而是 **使用类的名称** 。
+     ```
+     class MyClass {
+       static doSomething(howManyTimes: number): void {
+         // do something here
+       }
+     }
+     
+     MyClass.doSomething(5);
+     ```
+     >**如果实例化一个类** ，并且 **需要从声明在此类中的另一个方法中调用一个类方法** ，则 **必须** 使用 **关键字this**（例如。this.doSomething(5)）。在其他的编程语言中，在类的代码中使用this是可选的，但如果没有显式地使用this,TypeScript编译器将会抱怨服务找到该方法。
+     
+     我们将公共的设置器（setter）和访问器（getter）方法添加到Person类，以设置并获取_ssn的值。
+     
+     ```
+     class Person {
+       //在这一版中，构造函数的最后一个参数是可选的（_ssn?）
+       constructor(public firstName: string, public lastName: string, public gae: number, private _ssn?: string) {
+       }
+       
+       //访问器方法
+       get ssn(): string {
+         return this._ssn;
+       }
+       
+       //设置器方法
+       set ssn(value: string) {
+         this._ssn = value;
+       }
+     }
+     var p = new Person("John", "Smith", 29);
+     // 创建Person对象的实例后，使用ssn设置器将该值赋给_ssn
+     p.ssn = "456-70-1234";
+     
+     console.log("Last name: "  + p.lastName + "SSN: " + p.ssn);
+     ```
+     在上面代码中，访问器和设置器不包含任何应用程序逻辑；但是在实现的应用程序中，这些方法会执行验证。例如，访问器和设置器中的代码可以检查调用者是否被授权获取或设置_ssn值。
+     
+     >**注意**
+     从ES5规范开始，JavaScript也支持访问器和设置器。
+     
+     请注意，在这些方法中 **使用了关键字this来访问对象的属性** 。 **这在TypeScript中是强制性的** 。
+     
+   - ##### 继承
    
+     JavaScript **支持基于原型对象的继承**，其中一个对象可以使用另一个对象作为原型。像ES6及其他面向对象语言一样，TypeScrript具有用于类继承的关键字extends。但是，在转码为JavaScript的过程中，**生成的代码会使用原型继承的语法** 。下面代码显示了如何创建一个Employee类，它扩展了Person类。
+     ```
+     class Person {
+       constructor(public firstName: string, public lastName: string,, public age： number, private _ssn: string) {
+       }
+     }
+     
+     class Employee extends Person {
+     }
+     ```
+     下面代码可以看到转码后的JavaScript版本，它使用原型继承。
+     ```
+     var __extends = (this && this.__extends) || (function () {
+       var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+       return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+       };
+     })();
+     var Person = /** @class */ (function () {
+        function Person(firstName, lastName, age, number, _ssn) {
+          this.firstName = firstName;
+          this.lastName = lastName;
+          this.age = age;
+          this._ssn = _ssn;
+        }
+        return Person;
+     }());
+     var Employee = /** @class */ (function (_super) {
+        __extends(Employee, _super);
+        function Employee() {
+           return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return Employee;
+     }(Person));
+     ```
+     **此代码的TypeSccript版本更简洁且易于阅读。**
+     
+     我们来为Employee类添加一个构造函数和department属性。
+     
+     ```
+     class Employee extends Person {
+       
+       //声明属性department
+       department: string;
+       
+       //创建一个具有额外的department参数的构造函数
+       constructor(firstName: string, lastName: string, age: number, _ssn: string, department: string) {
+         //声明构造函数的子类必须调用父类的构造函数
+         super(firstName, lastName, age, _ssn);
+         
+         this.department = department;
+       }
+     }
+     ```
+     如果要在子类类型的对象上，调用一个声明在父类中的方法，**可以使用此方法的名** ，**就像它被声明在子类中一样** 。但是，有时 **要专门调用父类的方法** ，这正是 **使用关键字super** 的时候。
+     
+     关键字super可以有两种使用方式。在 **派生类的构造函数中** ，**将其作为一个方法进行调用** 。还可以 **使用关键字super来专门调用父类的方法** 。这 **通常被用于方法重写**（method overriding）。例如，如果父类及子类都要doSomething()方法，则子类 **可复用编码在父类中功能** ，并且 **还可以添加其他的功能** ：
+     
+     ```
+     doSomething() {
+      super.doSomething();
+      // Add more functionality here
+     }
+     ```
+ 
+     
+     
    
    
    
