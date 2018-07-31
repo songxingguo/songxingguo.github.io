@@ -720,7 +720,7 @@ date: 2018-07-30 03:00:00
       //产生一个编译错误，因为123不是以字符串
       saySomething<string>(123);
       ```
-  生成的JavaScript将不会包含任何泛型信息，上面的代码将被转码成如下代码：
+  **生成的JavaScript将不会包含任何泛型信息** ，上面的代码将被转码成如下代码：
      
      ```
      function saySomething(data) {
