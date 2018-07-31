@@ -1000,7 +1000,93 @@ date: 2018-07-30 03:00:00
    ```
    通过阅读此定义，你和编译器tsc了解到，可以使用一个ConcreteType类型的必选参数和一个可选的编译器选项数组来调用该方法。如果application_ref.d.ts文件不是项目的一部分，TypeScript可能会允许使用错误的参数类型调用bootstrapModule()方法，或者根本不带任何参数，这将会导致运行时错误。但是由于application_def.d.ts存在，因此TypeScript会生成编译时错误提示“Supplied parameters do not match any signature of call target”。当编写调用Angular函数或为对象属性赋值的代码时，类型定义文件还允许IDE显示上下文相关的帮助。
    
+  - ##### 安装类型定义文件
+    
+    要为使用JavaSript编写的库或框架安装类型定义文件，开发者需要使用类型定义管理器：tsd和Typings。前者被弃用了，因为它仅允许从definitelytyped.org获取*.d.ts文件。在TypeScrit2.0发布之前，使用Typings(详见 https://github.com/typeings/typeings ),它允许从任意的代码仓库引入类型定义（文件）。
+    
+    随着TypeScript2.0的发布，**不再需要为基于npm的项目使用类型定义管理器了** 。现在，npmjs.org的npm仓库包含了一个@types组织，里面存储着所有流行的JavaScript库的类型定义（文件）。来自definitelytyped.org的所有库都发布在那里。
+    
+    假设需要为jQuery安装类型定义文件。运行以下命令，将在目录node_modules/@types中安装类型定义（文件），并将此依赖保存到项目的package.json文件中：
+    
+    ```
+    npm install @types/jquery --save-dev
+    ```
+    在许多项目中都将使用类是命令安装类型定义（文件）。例如，ES6为数组引入find()方法，但如果TypeScript项目将ES5配置成编译目标，IDE将会用红色高亮显示find()方法，因为ES5不支持它。安装es6-shim类型定义文件将消除IDE中的红色（提示）：
+    ```
+    npm i @types/es6-shim --save-dev
+    ```
+    >**如果tsc找不到类型定义文件怎么办？**
+    在TypeScript2.0时，tsc有可能找不到位于目录node_modules/@types中的类型定义文件。如果遇到这个问题，请在tsconfig.json文件的types部分添加所需的文件。以下是一个例子：
+    ```
+    "compilerOptions": {
+      ...
+      "types": ["es6-shim", "jasmine"],
+    }
+    ```
+    >**模块解析及引用标签**
+    除非使用CommonJS模块，否则需要显式地为代码添加要给引用，以指向所需的类型定义（文件），如下所示：
+    ```
+    /// <reference types="typings/jquery.d.ts" />
+    ```
+    >使用CommonJS模块作为一个tsc选项，而且每个项目的tsconfig.json文件包含如下选项：
+    ```
+    "module": "commonjs"
+    ```
+    >当tsc看到一条指向某个模块的import语句时，它会自动尝试在node_modules目录中寻找 `<module-name>`d.ts文件。如果没有找到，它会向上一级重复此过程。可以在TypeScript手册（参见 http://mng.bz/ih4z）的“Typings for npm Modules”小节，阅读更多这方面的信息。在即将发布的tsc版本中，将会实现相同的策略，用于MD模块解析。
+    
+    Angular包含所有需要的类型定义文件，并且不需要使用类型定义管理器，除非应用程序使用了其他第三方的JavaScript库。在这种情况下，就需要手动安装它们的（类型）定义文件， **以获得IDE的上下文帮助** 
+    
+    Angular在其d.ts文件中使用了ES6语法，而且对于大多数模块，可以使用以下导入语法：import {Component} from 'Angular 2/core'。你将会找到Component类的定义，并且将导入其他的Angular模块和组件。
+    
+  - ##### 使用TSlint控制代码风格
+  
+    TSLint是一个工具，可以 **用来保证程序的编写符合指定的规则和代码风格**。可以配置TSLint来 **检查项目中的TypeScript代码** ，**检查是否正确对齐和缩进** ，**所有的接口名称是否都是以大写的I开头** ，以及 **类名是否都使用CameCase表示法** ，等等。
+    
+    可以使用如下命令全局安装TSLint：
+    
+    ```
+    npm install tslint -g
+    ```
+    要在项目目录中安装TSLint，请使用以下命令：
+    
+    ```
+    npm install tslint
+    ```
+    要应用于代码的规则可以在配置文件tslint.json中指定。TSLint附带一个示例的规则文件，该文件的名称是sample.tslint.json,它位于docs目录中。可以根据需要打开或关闭具体的规则。
+    
+    有关使用TSLint的详细信息，请访问 www.npmjs.com/package/tslint 。IDE可能支持开箱即用。
+    
+    >**IDE**
+    有几个IDE支持TypeScript，最流行的是 **WebStorm** 、**Visual Studio Code** 、 **Sublime Text** 和 **Atom** 。所有这些IDE和编辑器都剋在Windows、Mac OS和Linux（环境）工作。如果是在Windows电脑上开发TypeScript/Angular应用程序，可以使用 **Visual Studio 2015** 。
+    
+- #### TypeScript/Angular开发流程概述
+
+  TypeScript/Angular应用程序的开发和部署流程由多个步骤组成，它们应该能够自动化。有多种方法可以做到这一点，以下步骤列表可以用来创建Angular应用程序。
+  
+  1. 为项目创建一个目录
+  
+  2. 创建一个package.json文件，其中列出了应用程序所有的依赖项，例如Angular包、测试框架Jasmine，等等。
+  
+  3. 使用npm install 命令，安装所有在package.json中列出的包和库。
+  
+  4. 编写应用程序代码。
+  
+  5. 通过SystemJS加载器的帮助，将应用程序加载到浏览器中，此加载器不仅可以加载应用程序，还可以在浏览器中将TypeScript转换成JavaScript。
+  
+  6. 在Webpack及其他插件的帮助下，压缩并打包代码和资源。
+  
+  7. 使用npm脚本将所有的文件复制到分发目录中。
+  
+  >**注意** 
+  Angular CLI是一个命令行实用工具，可以作为项目的骨架，生成组件和服务，并准备构建。
+  
+  >**注意**
+  由于TypeScript是JavaScript的超集，因此错误处理（的方式）与JavaScript相同。在Mozilla Developer Network （参见 http://mng.bz/FwfO ）上，可以在Error构造函数相关的JavaScriptTeference文章中，阅读有关不同的错误类型的信息。
+  
+  
+    
    
+    
   
     
      
