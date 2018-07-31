@@ -448,6 +448,68 @@ date: 2018-07-30 03:00:00
    ```
    一些JavaScript开发者看不到使用类的价值，因为他们 **可以使用构造函数和闭包轻易地编写出相同的功能**  。但JavaScript初学者会发现，相比于构造函数和闭包， **类的语法更易于阅读和编写** 。
    
+   - ##### 访问修饰符
+   
+     JavaScript无法将变量或方法声明为私有的（private, 对外部代码不可见）。要隐藏对象里的属性（或方法），需要创建闭包，这样既不会将属性附加到变量this，也不会在闭包return语句中返回。
+     
+     TypeScript提供了关键字 **public** 、**protected** 和 **private** ，以帮助在开发阶段控制对象成员的访问。默认情况下，**所有的类成员都具有public访问权限** ，并且它们 **从类的外部都是可见的** 。如果一个成员被声明带有protected修饰符，那么 **它在该类机器子类中是可见的** 。被声明为private的类成员 **仅在该类内部可见** 。
+     
+     我们使用关键字private来隐藏ssn属性的值，所以它无法从Person对象的外部被直接访问。我们将展示两个版本，它们都声明了具有使用访问修饰符的属性类。此类的较长版本看起来是这样的：
+     
+     ```
+     class Person {
+       public firstName: string;
+       public lastName: string;
+       public age: number;
+       private _ssn: string;
+       
+       constructor(firstName: string, lastName: string, age: number, ssn: string) {
+         this.firstName = firstName;
+         this.lastName = lastName;
+         this.age = age;
+         this._ssn = ssn;
+      }
+     }
+     
+     var p = new Person("John", "Smith", 29, "123-90-4567");
+     console.log("Last name: " + p.lastName + " SSN: " + p._ssn);
+     ```
+     请注意， **私有变量的名称以下画线开始**：_ssn。这只是私有属性的命名惯例。
+     
+     上面的代码的最后一行尝试从外部访问私有的属性_ssn，所以TypeScript分线器将给出如下编译错误：“Property '_ssn' is private and is only accessible in calss 'Person'”。但 **除非使用了编译器选项--noEmitOn-Error** ,否则错误的代码将被转码为JavaScript。
+     
+      ```
+       var Person = /** @class */ (function () {
+        function Person(firstName, lastName, age, ssn) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.age = age;
+            this._ssn = ssn;
+        }
+        return Person;
+       }());
+       var p = new Person("John", "Smith", 29, "123-90-4567");
+       console.log("Last name: " + p.lastName + " SSN: " + p._ssn);
+      ```
+     **关键字private仅使其在TypeScript代码中是私有的** 。当尝试从外部访问一个对象的属性时，IDE将不会在上下文相关帮助中显示私有成员，但是， **生产（环境）中的JavaScript会将类的所有属性和方法视为公开的** 。
+    
+     TypeScript **允许使用构造函数的参数提供访问修饰符** ，例如以下Person类的简短版本所示：
+    
+      ```
+      class Person {
+        constructor(public firstName: string, public lastName: string, public age: number, private _ssn: string) {
+        }
+      }
+
+      var p = new Person("John", "Smith", 29, "123-90-4567");
+      ```
+     当使用带有访问修饰符的构造函数时，**TypeScript编译器会将其作为一条指令** ，**创建并保留与构造的参数相匹配的类属性** 。 **不需要显式声明并初始化它们** 。Person类的长短两个版本都会生成相同的JavaScript。
+    
+   - ##### 方法
+     
+     
+   
+   
    
    
    
