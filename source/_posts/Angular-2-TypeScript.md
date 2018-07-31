@@ -954,6 +954,39 @@ date: 2018-07-30 03:00:00
      
      >**注意**
      实用工具TypeDoc是一个便捷的工具，用于根据TypeScript代码中的注释生成程序文档，可以从 www.npmjs.com/package/typedoc 获得。
+     
+- #### 使用注解添加类元数据
+
+  术语 **元数据** （metadata）有着不同的定义。流行的定义是，元数据是 **有关数据的数据** 。我们认为 **** 元数据是描述代码的数据** 。TypeScript装饰器提供了一种为代码添加元数据的方式。特别地，要 **将TypeScript类转换为Angular组件**，可以 **使用元数据注解它** 。注解以@符号开头。
+  
+  要将TypeScript类转换为Angualr UI组件，需要使用注解@Component装饰它。**Angular将内部解析注解并生成代码** ， 这会将所需的行为添加到此TypeScript类：
+  
+  ```
+  @Component({
+    //这里包含选择器名称，以在HTML文档中识别组件
+    
+    //提供具有HTML片段的template属性来渲染组件。组件的样式也在这里
+    //
+    //
+  })
+  
+  class HelloWordComponent {
+    //实现组件的应用程序逻辑的代码在这里
+    //
+  }
+  ```
+  当使用注解时，应该有一个 **注解处理器** ，它可以 **解析注解的内容** ，并将其 **转换成运行时（浏览器的JavaScript引擎）可以理解的代码** 。**Angular编译器ngc** 执行注解处理器的职责。
+  
+  **要使用Angular支持注解** ，**需要将它们的实现导入到应用程序中** 。例如，需要从Angular模块带入@Component注解。
+  
+  ```
+  import { Component } from 'Angular 2/core'
+  ```
+  虽然这些注解的实现是在Angular中完成的，但可能需要一个标注化的机制来创建自己的注解。这就要用到 **TypeScript装饰器** 。Angular提供了它的注解，用于装饰代码，但 **TypeScript允许在装饰器的支持下创建自己的注解** 。
+  
+  
+  
+  
     
      
    
