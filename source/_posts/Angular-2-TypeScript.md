@@ -730,7 +730,152 @@ date: 2018-07-30 03:00:00
      ```
   如果想深入学习泛型，请参阅TypeScript手册（详见 http://mng.bz/447K ）的Generics部分。
   
+- #### 接口
+
+  JavaScript **不支持接口的概念** ，在其他的面向对象语言中，接口被 **用来引入API必须准守的代码契约**（code contract）。契约的一个例子可以是，类X声明它实现了接口Y。 **如果类X不包括接口Y中声明的一个方法是实现，被认为是违反了契约** ，并且不会被编译。
+  
+  TypeScript包含关键字 **interface** 和用于支持接口的 **implements**,但 **接口不会转码为JavaScript代码** 。它们 **只是帮助你避免在开发过程中使用错误的类型** 。
+  
+  在TypeScript中，使用接口的模式有两种：
+  
+  - **声明一个接口，它定义了一个包含一些属性的自定义类型。** 然后，声明一个具有这种类型的参数的方法。当此方法被调用时，编译器将检查作为参数给出的对象是否包含所有在该接口中声明的属性。
+  
+  - **声明一个包含（未实现的）抽象方法的接口。** 当一个类声明它implements此接口时，该类必须提供所有抽象方法的实现。
+  
+  - ##### 使用接口声明自定义类型
+    
+    当使用JavaScript框架时，可能会遇到需要某中配置对象作为函数参数的API。要弄明白此配置对象中的哪个属性必须提供，需要打开此API的文档或者阅读该框架的源码。在TypeScript中，可以 **声明一个接口** ，**它包含了配置对象中必须存在的所有属性及其类型** 。
+    
+    我们看看如何在Person类中完成 这些，它包含一个构造函数，有四个参数：firstName、lastName、age和ssn。这一次，将声明一个包含四个成员的接口IPerson，并且将修改Person类的构造函数，以将此自定义类型的对象用作参数。
+    
+    ```
+    interface IPerson {
+      firstName: string;
+      lastName: string;
+      age: number;
+      
+      //声明接口IPerson,将ssn作为可选成员（注意问号）
+      ssn?: string;
+    }
+    
+    class Person {
+      
+      //类Person有一个构造函数，它带有一个类型为IPerson的参数
+      constructor(public config: IPerson) {
+      }
+    }
+    
+    //创建一个成员与IPerson兼容的对象字面量aPerson
+    var aPerson: IPerson = {
+      firstName: "John",
+      lastName: "Smith",
+      age: 29
+    }
+    
+    //实例化Person对象，提供一个IPerson类型的对象作为参数
+    var p = new Person(aPerson);
+    console.log("Last name: " + p.config.lastName);
+    ```
+    TypeScript **具有结构化的类型系统** ，这意味着如果两个不同的类型包含相同的成员，这些类型将被认为是兼容的。拥有相同的成员，意思是这些成员具有相同的名称和类型。在上面代码中，即使不指定变量aPerson的类型，它也仍会被认为是与Person兼容的，而且当实例化Person对象时，可以被用作构造函数参数。
+    
+    如果改变了IPerson中一个成员的名称或类型，TypeScript将会报错。另一方面，如果尝试实例化一个Person，其中包括一个对象，它拥有IPerson所有必需的成员和一些其他的成员，则不会引发红色标识（错误）。可以将以下对象作为Person的构造函数的一个参数：
+    ```
+    var anEmployee: IPerson = {
+      firstName: "John",
+      lastName: "Smith",
+      age: 29,
+      department: "HR"
+    }
+    ```
+    在接口IPerson中，没有定义成员department。但是，只要该对象拥有接口中列出的其他全部成员，就满足契约条款。
+    
+    接口IPerson没有定义任何方法，但是，TypeScript接口可以包括没有实现的方法签名。
+    
+  - ##### 使用关键字implements
+  
+     **关键字implements与类声明一起使用** ，以声明该类将实现的特定的接口。假如接口IPayable的声明如下：
+     
+     ```
+     interface IPayable {
+       increase_cap: number;
+       
+       increasePay(percent: number): boolean
+     }
+     ```
+     现在，类Employee可以声明它实现了IPayable:
+     
+     ```
+     class Employee implementsd IPayable {
+       // The implementation goes here
+     }
+     ```
+     在进入实现细节之前，我们来回答下面这个问题：“为什么不把所有必需的代码都写在类中，而将一部分代码隔离到接口中？”我们假设，要编写一个应用程序，它可以让你为你的组织的雇员增加薪水。可以创建一个Employee类（扩展自Person类），并包含increaseSalary()方法，然后，业务分析人员可能要求新增为外包人员增加工资的功能，他们为你们公司工作。但是，外包人员用他们自己公司名称和ID表示，他们没有工资的概念，并且按小时付费。
+     
+     可以创建另一个类Contractor（不是继承自Person类），其中包括一些属性和increaseHourlyRate()方法 。现在，你有了两个不同的API：一个用于增加员工的工资，另一个用于增加外包人员的工资。更好的解决方案是：**创建一个通用得我接口IPayable,并让Employee和Contractor类为各自提供不同的IPayable实现** ，如下所示：
+     
+     ```
+     interface IPayable {
+       //接口IPayable包括方法increasePay()的签名，它将被Employee和Contractor实现
+       increasePay(percent: number): boolean
+     }
+     
+     class Person {
+       //Person类作为Employee的基类
+       // properties are omitted tor brevity 
+       constructor() {
+       }
+     }
+     
+     //Employee类继承自Person类，并实现了接口IPayable。一个类可以实现多个接口
+     class Employee extends Person implements IPayable {
+     
+       //Employee 类实现了increasePay()方法。员工的工资可以增加任意金额。所以此方法只是在控制台打印消息，并返回true。（允许增加）
+       increasePay(percent: number): boolean {
+         console.log("Increasing salary by " + percent);
+         return true;
+       }
+     }
+     
+     class Contractor implements IPayable {
+      
+       //Contractor类包含一个属性，它将加薪的上限设置为20%
+       increaseCap: number = 20;
+       
+       increasePay(percent: number): boolean {
+         
+         //Contractor类中increasePay()的实现有所不同。使用大于20的参数调用increasePay()，返回消息“Sorry”和返回值false
+         if (percent < this.increaseCap) {
+           console.log("Increasing hourly rate by " + percent);
+           return true;
+         } else {
+           console.log("Sorry, the increase cap for contractors is ", this.increaseCap);
+           return false;
+         }
+       }
+     }
+     
+     //声明一个带有泛型<IPayable>的数组，允许放置IPayable类型的任何对象（但请参阅下方注解）
+     var workers : Array<IPayable> = [];
+     workers[0] = new Employee();
+     workers[1] = new Contractor();
+     
+     //现在，可以在数组workers中任何对象上调用increasePay()。请注意，不要对带有单个参数的worker的箭头函数表达式使用括号
+     workers.forEach(worker => worker.increasePay(30));
+     ```
+     运行上面代码，会在浏览器的控制台产生如下输出：
+     
+     ```
+     Increasing salary by 30
+     Sorry, the increase cap for contractors is  20
+     ```
+     >**为什么要使用关键字inplements声明类？**
+     上面代码说明了 **TypeScript的结构化的子类型** 。如果从Employee或Contractor的声明中删除implements IPayable，代码仍然可以工作，而且编译器不会对将这些添加到workers数组的几行代码报错。编译器足够聪明地看到，虽然该类没有显示地声明implements IPayable，但它正确地实现了increasePay()。
+     但是，如果删除了implements IPayable，并尝试修改任何一个类中increasePay()方法的签名，就不能将这个对象放到workers数组中，因为对象不再是IPayable类型。此外，没有关键字implements,IDE支持（例如重构）将会被破坏。
+     
+ - ##### 使用可调用接口
    
+     
+     
    
    
    
