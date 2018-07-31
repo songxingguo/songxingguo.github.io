@@ -642,9 +642,94 @@ date: 2018-07-30 03:00:00
       // Add more functionality here
      }
      ```
+- #### 泛型
  
+   TypeScript **支持参数化类型** ，也称为 **泛型**（generics） ，它可以用于各种场景。例如，可以创建一个函数，它 **能够使用任何类型的值** ，但 **在特定的上下文调用时** ，**能够明确地指定具体的类型** 。 
+   
+   举另一个例子：一个数组可以保存任何类型的对象，但是可以指定该数组中允许特定对象类型（例如,Person的实例）。如果试图添加不同类型的对象，TypeScript编译器将生成错误。
+   以下代码片段声明了一个Person类，创建了它的两个实例，并将它们存储在使用泛型类型声明的数组workers中。通过将它们放在 **尖括号中** （例如，`<Person>` ）来表示泛型。
+  
+  ```
+  class Person {
+    name: string;
+  }
+  
+  class Employee extends Person {
+    department: number;
+  }
+  
+  class Animal {
+    breed: string;
+  }
+  
+  var workers: Array<Person> = [];
+  workers[0] = new Person();
+  workers[1] = new Employee();
+  workers[2] = new Animal(); //compile-time error
+  ```
+  在此代码片段中，声明了Person、Employee和Animal类，以及一个带有泛型类型<Person>的数组workers。通过这么做，表示计划 **仅存储Person类或其子类** 。尝试将一个Animal实例存进相同的数组，将导致编译时错误。
+  
+  如果在一个拥有动物员工（如警犬）的组织里工作，可以如下更改数组workers的声明：
+  
+  ```
+  var workers: Array<any> = [];
+  ```
+   可以为任意对象或函数使用泛型类型吗？不行。对象或函数的创建者必须允许这一特性。如果在GitHub上（参见 http://mng.bz/I3V7 ），打开TypeScript的类型定义文件（lib.d.ts）,并搜索“interface Array”,将会看到Array的声明，如下所示。
+   
+   ```
+        /////////////////////////////
+    /// ECMAScript Array API (specially handled by compiler)
+    /////////////////////////////
+    interface Array<T> {
+        /**
+          * Gets or sets the length of the array. This is a number one higher than the highest element defined in an array.
+          */
+        length: number;
+        /**
+          * Returns a string representation of an array.
+          */
+        toString(): string;
+        toLocaleString(): string;
+        /**
+          * Appends new elements to an array, and returns the new length of the array.
+          * @param items New elements of the Array.
+          */
+        push(...items: T[]): number;
+        /**
+          * Removes the last element from an array and returns it.
+          */
+        pop(): T;
+   ```
+   第四行中的 `<T>` ，意味着 **TypeScript允许使用Array声明类型参数** ，并且编译器 **将检查程序中提供的特定类型** 。上面代码将泛型参数 `<T>` 指定为`<Person>` 。但是，由于 **ES6不支持泛型** ，因此在转码器 **生成的代码中将看不到它们** 。对于开发者，**它只是额外的编译时的安全网** 。
+    
+   在上面代码中，在第18行可以看到另一个T。当 **使用函数参数指定泛型类型** 时，**不需要尖括号** 。但在TypeScript中，实际上没有类型T。这里的T,意指方法push()可以将特定类型的对象推入一个数组中，如下所示：
+    ```
+    workers.push(new Person());
+    ```
+  在本节中，我们说明了使用泛型类型的一个用例，其中包含已经支持泛型的数组。
+  也可以 **创建自己的支持泛型的类或函数** 。在代码中的某个地方，如果要尝试调用方法saySomething(),但提供了错误的类型，TypeScript编译器将给出错误。
+    
+      ```
+      function saySomething<T>(data: T) {
+
+      }
+
+      //用一个字符串替换T
+      saySomething<string>("Hello");
+
+      //产生一个编译错误，因为123不是以字符串
+      saySomething<string>(123);
+      ```
+  生成的JavaScript将不会包含任何泛型信息，上面的代码将被转码成如下代码：
      
-     
+     ```
+     function saySomething(data) {
+     }
+     saySomething("Hello");
+     saySomething(123);
+     ```
+  如果想深入学习泛型，请参阅TypeScript手册（详见 http://mng.bz/447K ）的Generics部分。
+  
    
    
    
