@@ -9,8 +9,10 @@ date: 2018-07-30 03:00:00
 ---
 ### 作为Angular应用程序语言的TypeScript
 
-- #### 为什么不使用JavaScript进行开发
+- #### 不使用JavaScript
 
+  为什么不使用JavaScript进行开发
+ 
   - JavaScript是宽容的，因为它是一种动态类型语言。JavaScript类型错误只能在运行时被捕获，而在编译的时候不会进行类型匹配。
   
   - JavaScript不支持静态类型。使得重构困难。
@@ -27,8 +29,10 @@ date: 2018-07-30 03:00:00
   
   Angular框架是用TypeScript编写的。
   
-- #### 为什么使用TypeScript编写Angular应用程序 
+- #### 使用TypeScript
 
+  为什么使用TypeScript编写Angular应用程序
+  
   可以使用ES6(甚至ES5)编写应用程序，但将TypeScipt作为编写JavaScript的一种更有成效的方法。以下是其原因：
   
   - **TypeScript支持类型。** 这就允许TypeScript编译器在开发过程中帮你找到并修复许多错误，甚至是在运行应用程序之前。
@@ -57,8 +61,10 @@ date: 2018-07-30 03:00:00
    
    **微软** 开放了 **TypeScript源代码** ，它把TypeScript的代码仓库托管在GitHUub上（详见 http://mng.bz/Ri29 ）。可以使用 **npm安装TypeScript编译器** ，或者 **从 www.typescriptlang.org 下载它** 。TypeScript网站还有 **一个托管在Web上的TypeScript编译器** （一个Palyground,详见 http://www.typescriptlang.org/play/index.html ），可以在那里输入TypeScript代码并通过交互将其编译成JavaScript。
    
-   - ##### 安装并使用TypeScript编译器
+   - ##### TypeScript编译器
    
+     安装并使用TypeScript编译器
+     
      TypeScript编译器本身就是用TypeScript编写的。可以使用Node.js的npm包管理器安装此编译器。
      
      **全局安装TypeScript编译器** ，在命名窗口或终端窗口中运行以下npm命令：
@@ -130,8 +136,10 @@ date: 2018-07-30 03:00:00
      ```
      可以在TypeScript文档（详见 http://mng.bz/rf14 ）中阅读有关 **配置编译过程** 以及 **TypeScript编译器选项的更多信息** 。
   
- - #### TypeScript作为JavaScript的超集
+ - #### JavaScript的超集
  
+   TypeScript作为JavaScript的超集
+   
    Typescript完全支持ES5和大多数ES6语法。只要将JavaScript代码文件的 **扩展名从.js改为.ts** ，它们就将变为有效的TypeScript代码。到目前为止，见过的仅有两个例外是 **处理可选的函数参数** ，以及 **将一个值赋给一个对象字面量** 。
    
    在JavaScript中，即使一个 **函数被声明具有两个参数** ，也 **可以通过提供仅提供一个参数来调用它** ；而在TypeScript中，需要为 **参数名称附加一个问号** ，以 **使其成为可选的** 。在JavaScript中，可以 **使用空的对象字面量来初始化变量** ，并 **使用点号立即附加属性** ；而在TypeScript中，**需要使用方括号** 。
@@ -742,7 +750,9 @@ date: 2018-07-30 03:00:00
   
   - **声明一个包含（未实现的）抽象方法的接口。** 当一个类声明它implements此接口时，该类必须提供所有抽象方法的实现。
   
-  - ##### 使用接口声明自定义类型
+  - ##### 声明自定义类型
+    
+    使用接口声明自定义类型
     
     当使用JavaScript框架时，可能会遇到需要某中配置对象作为函数参数的API。要弄明白此配置对象中的哪个属性必须提供，需要打开此API的文档或者阅读该框架的源码。在TypeScript中，可以 **声明一个接口** ，**它包含了配置对象中必须存在的所有属性及其类型** 。
     
@@ -791,7 +801,9 @@ date: 2018-07-30 03:00:00
     
     接口IPerson没有定义任何方法，但是，TypeScript接口可以包括没有实现的方法签名。
     
-  - ##### 使用关键字implements
+  - ##### 关键字implements
+  
+     使用关键字implements
   
      **关键字implements与类声明一起使用** ，以声明该类将实现的特定的接口。假如接口IPayable的声明如下：
      
@@ -1038,7 +1050,9 @@ date: 2018-07-30 03:00:00
     
     Angular在其d.ts文件中使用了ES6语法，而且对于大多数模块，可以使用以下导入语法：import {Component} from 'Angular 2/core'。你将会找到Component类的定义，并且将导入其他的Angular模块和组件。
     
-  - ##### 使用TSlint控制代码风格
+  - ##### TSlint控制代码风格
+  
+    使用TSlint控制代码风格
   
     TSLint是一个工具，可以 **用来保证程序的编写符合指定的规则和代码风格**。可以配置TSLint来 **检查项目中的TypeScript代码** ，**检查是否正确对齐和缩进** ，**所有的接口名称是否都是以大写的I开头** ，以及 **类名是否都使用CameCase表示法** ，等等。
     
@@ -1059,7 +1073,9 @@ date: 2018-07-30 03:00:00
     >**IDE**
     有几个IDE支持TypeScript，最流行的是 **WebStorm** 、**Visual Studio Code** 、 **Sublime Text** 和 **Atom** 。所有这些IDE和编辑器都剋在Windows、Mac OS和Linux（环境）工作。如果是在Windows电脑上开发TypeScript/Angular应用程序，可以使用 **Visual Studio 2015** 。
     
-- #### TypeScript/Angular开发流程概述
+- #### 开发流程概述
+
+  TypeScript/Angular开发流程概述
 
   TypeScript/Angular应用程序的开发和部署流程由多个步骤组成，它们应该能够自动化。有多种方法可以做到这一点，以下步骤列表可以用来创建Angular应用程序。
   
