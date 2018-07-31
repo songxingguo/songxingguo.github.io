@@ -984,8 +984,23 @@ date: 2018-07-30 03:00:00
   ```
   虽然这些注解的实现是在Angular中完成的，但可能需要一个标注化的机制来创建自己的注解。这就要用到 **TypeScript装饰器** 。Angular提供了它的注解，用于装饰代码，但 **TypeScript允许在装饰器的支持下创建自己的注解** 。
   
-  
-  
+ - #### 类型定义文件
+   
+   几年来，TypeScript定义文件的一个大型代码库—— **DefinitelyTped**  ，一直是 **新的ECNAScript API** 以及 **数百个用JavaScript编写的流行框架和库** 的唯一来源。这些（定义）文件的目的，是 **让TypeScript编译器知道这些库的API所期望的类型** 。虽然代码仓库definitelytyped.org仍然存在，但是npmjs.org成为类型定义文件的新的代码仓库。而且我们在所有代码示例中都使用了它。
+   
+   任何定义文件名称的后缀都是d.ts，而且在运行npm install之后，可以在node_modules/@Angular的子目录中找到定义文件。
+   
+   所有必需的*.d.ts文件，都与Angular的npm包打包在一起，并且不需要单独安装它们。项目中定义文件的存在，**将允许TypeScript编译器确保代码在调用Angular API时，使用正确的类型** 。
+   
+   例如，通过调用bootstrapModule()方法启动Angular应用程序，会将应用程序的根模块作为参数传给它。文件application_ref.d.ts包含此方法的如下定义：
+   
+   ```
+   bootstrapModule<M>(moduleType: ConcreteType<M>),
+   compilerOptions?: CompilerOPtions | CompilerOptions[]): Promise<NgModuleRef<M>>;
+   ```
+   通过阅读此定义，你和编译器tsc了解到，可以使用一个ConcreteType类型的必选参数和一个可选的编译器选项数组来调用该方法。如果application_ref.d.ts文件不是项目的一部分，TypeScript可能会允许使用错误的参数类型调用bootstrapModule()方法，或者根本不带任何参数，这将会导致运行时错误。但是由于application_def.d.ts存在，因此TypeScript会生成编译时错误提示“Supplied parameters do not match any signature of call target”。当编写调用Angular函数或为对象属性赋值的代码时，类型定义文件还允许IDE显示上下文相关的帮助。
+   
+   
   
     
      
