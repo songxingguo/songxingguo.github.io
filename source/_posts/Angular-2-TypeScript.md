@@ -370,32 +370,99 @@ date: 2018-07-30 03:00:00
           //handle value here
       }
       ```
-      
-      
-    
-    
+ - #### 类
+ 
+   如果有Java或C#开发经验，将会熟悉它们的经典形式中的类和继承的概念。在这些语言中，类的定义被作为单独的实体（像是蓝图）加载到内存中，并由该类的全部示例共享。如果一个类继承自另一个类，就使用两个类组合后的蓝图来实例化对象。
+   
+   TypeScrript是JavaScript的超集，JavaScript仅支持原型继承，可以通过 **将一个对象附加到另一个对象的prototype属性** 来创建继承层级结构。在这种情况下，对象的继承（或者更确切地说链接）是动态创建的。
+   
+   在TypeScript中，关键字class是简化编码的语法糖。最终，类会被转码为带有原型继承的JavaScript对象。在JavaScript中，可以声明一个构造函数并使用关键字new实例化它。在TypeScript中，也可以声明一个类并使用操作符new实例化它。
+   
+   类可以包括 **构造函数** 、 **字段**（也称属性）和 **方法** 。声明的属性和方法通常被称为 **类成员** 。
+   
+   我们创建一个简单的Person类，它包括四个属性用于存储姓、名、年龄和社会安全号码（Social Security number, 分配给每个美国合法居民的唯一标识符）。在下面的代码中可以看到声明并实例化Person类的TypeScript代码；
+   
+   ```
+   class Person {
+     firstName: string;
+     lastName: string;
+     age: number;
+     ssn: string;
+   }
+   
+   var p = new Person();
+   
+   p.firstName = "John";
+   p.lastName = "Smith";
+   p.age = 29;
+   p.ssn = "123-90-4567";
+   ```
+   然后是一个由tsc编译器生成的JavaScript闭包。
+   
+   ```
+   var Person = /** @class */ (function () {
+    function Person() {
+    }
+    return Person;
+	 }());
+   var p = new Person();
+   p.firstName = "John";
+   p.lastName = "Smith";
+   p.age = 29;
+   p.ssn = "123-90-4567";
+   ```
+   通过为函数Person创建一个闭包，TypeScript编译器启用了暴露 或隐藏Person对象元素的机制。
+   
+   TypeScript也支持类的构造函数，它允许在实例化对象时初始化对象变量。类构造函数仅会在对象创建期间被调用一次。下面代码显示了Person类的下一版，它使用关键字constructor,并用传给构造函数的值实例化类的字段。
+   
+   ```
+   class Person {
+     firstName: string;
+     lastName: string;
+     age: number;
+     ssn: string;
      
-     
+     constructor(firstName: string, lastName: string, age: number, ssn: string) {
+       this.firstName = firstName;
+       this.lastName = lastName;
+       this.age = age;
+       this.ssn = ssn;
+     }
+   }
+   
+   var p = new Person("John", "Smith", 29, "123-90-4567");
+   ```
+   生成的ES5版本在下面代码中显示。
+   
+   ```
+   var Person = /** @class */ (function () {
+    function Person(firstName, lastName, age, ssn) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.ssn = ssn;
+    }
+    return Person;
+   }());
+   var p = new Person("John", "Smith", 29, "123-90-4567");
+   ```
+   一些JavaScript开发者看不到使用类的价值，因为他们 **可以使用构造函数和闭包轻易地编写出相同的功能**  。但JavaScript初学者会发现，相比于构造函数和闭包， **类的语法更易于阅读和编写** 。
    
    
    
    
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+  
