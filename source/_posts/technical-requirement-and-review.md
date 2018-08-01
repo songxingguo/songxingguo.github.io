@@ -83,10 +83,10 @@ date: 2018-07-29 10:18:00
 
   - 重点复习
   
-    `HTML5`、`CSS3`、`JavaScript`、`AJAX`、`数据结构`、`Http协议`
+    `HTML5`、`CSS3`、`JavaScript`、`AJAX`、`数据结构`、`Http协议`、`浏览器兼容问题`
   
   - 优先复习
    
-    `Node.js`、`Java`、`ES6`、`Linux系统`、`DNS`
+    `Node.js`、`Java`、`ES6`、`Linux系统`、`DNS`、`算法`
 
  
