@@ -107,6 +107,14 @@ date: 2018-07-29 05:16:00
    ```
    [阿有的博客](https://www.songxingguo.com/)
    ```
+   ##### 自动连接
+    
+   <1328989942@qq.com>
+   
+   ```
+   <1328989942@qq.com>
+   ```
+   
   - #### 插入图片
   
    ![这里是图片](http://pajsphiyq.bkt.clouddn.com/images/mine/mine-bg.jpg)
@@ -232,20 +240,32 @@ Pipe      | $1
 [TOC]  
 ```
 
-### 参考文献
+### 链接引用
 
-参考文献[^1][1]
+[这里是链接][1]
 
-[1]: http://marxi.co/client_en
+[1]: https://www.songxingguo.com/
 
 ```
-参考文献[^1][1]
+[这里是链接][1]
 
-[1]: http://marxi.co/client_en
+[1]: https://www.songxingguo.com/
 ```
+
+ - #### 参考文献
+ 
+  >该命令在本文档中是不能正确显示的。
+  
+   ```
+   参考文献[^demo]
+   [^demo]: http://marxi.co/client_en
+   ```
+   
 ## 相关文章阅读
 
  - [认识与入门 Markdown](https://sspai.com/post/25137)
  - [Markdown 语法 示例 字体 字号 颜色](https://blog.csdn.net/u011419965/article/details/50536937)
  - [Welcome to Marxico](http://marxi.co/#fn:demo)
  - [MarkDown 图片大小问题](https://blog.csdn.net/yhl_leo/article/details/50099843)
+ - [Markdown 语法说明 (简体中文版)](http://wowubuntu.com/markdown/#list)
+ - [Markdown 语法说明 (英文版)](https://daringfireball.net/projects/markdown/syntax)
