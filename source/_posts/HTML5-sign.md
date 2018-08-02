@@ -80,11 +80,52 @@ date: 2018-07-25 08:50:00
       Published on <time datetime="2014-03-21" pubdate>March 31,2014</time>.
       ```
           因为 `<time>`元素是纯粹是信息性的，没有任何附加样式，所以可以在任何浏览器中使用。不必担心兼容性问题。
-       
-
-    
+        
+    - ##### 使用 `<output>` 标注JavaScript返回值
+      
+      HTML5还包含一个语义元素 `<output>`,它能使 **某种JavaScript驱动页面更加清晰** 。实际上，这个元素是 **一个占位符** ，**用于展示一小段计算后的信息** 。
+      
+      通常的做法是给占位符指定一个ID属性，这样JavaScript代码就可以在计算时找到它。Web开发人员一般将 `<span>` 元素用作占位符，而唯一的问题是该元素不提供任何语义：
+      
+      ```
+      <p>Your BMI: <span id="result"></span></p>
+      ```
+      以下则是使用HTML5的更有意义的版本：
+      
+      ```
+      <p>Your BMI：<output id="result"></output></
+      ```
+      实际的JavaScript代码无需改变，因为它只是根据ID属性查找元素，不用考虑元素类型：
+      ```
+      var resultElement = document.getElementById("result");
+      ```
+      通常，这种页面都会采用一个 `<form>` 元素。在这个例子中，需要包含3个文本框，以便用户使用在其中输入信息：
+      
+      ```
+      <form action="#" id="bmiCalculator">
+        <label for="feet" inches>Height:</label>
+        <input name="feet">feet</br>
+        <input name="inches">inches<br>
+        
+        <labelfor="punds">Weight:</label>
+        <input name="pounds">pounds<br><br>
+        ...
+      </form>
+      ```
+      可以为 `<output>` 元素添加form和for属性，前者的值是 **包含相关控件表单ID** ,后者的值是 **以空格分隔的相关控件的ID** 。比如下面的例子：
+      
+      ```
+      <p>
+       Your BMI: <output id="result" from="bniCalculator" for="feet inches punds" >
+      </p>
+      ```
+      这些属性的唯一用处就是 **表明 `<output>` 从那些控件获取结果这一信息** 。
+      如果其他人需要编辑你的页面， **那些属性可以帮他们理清思路** 。
+      
+      > **提示**
+      可以在 http://prosetech.com/html5 找到所有示例页面。
+      
    
-   
-   
-   
-   
+      
+      
+      
