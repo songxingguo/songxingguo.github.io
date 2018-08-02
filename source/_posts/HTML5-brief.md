@@ -176,7 +176,7 @@ date: 2018-07-16 11:16:00
       <html lang="en">    
         <head>
            <meta charset="utf-8">
-           <title>A Tiny HTML Document/title>
+           <title>A Tiny HTML Document</title>
            <link href="styles.css" rel="stylesheet">
            <script src="script.js"></script>
          </head>
@@ -246,7 +246,7 @@ date: 2018-07-16 11:16:00
       <html lang="en"  xmlns="htttp://www.w3.org/1999/xhtml">    
         <head>
            <meta charset="utf-8">
-           <title>A Tiny HTML Document/title>
+           <title>A Tiny HTML Document</title>
            <link href="styles.css" rel="stylesheet">
            <script src="script.js"></script>
          </head>
