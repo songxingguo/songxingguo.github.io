@@ -16,6 +16,8 @@ date: 2018-07-29 10:19:00
   3. 我有什么需要提高、最希望提升的特质？ （比如：经验还不够丰富）
 
   4. 说一说你做过的印象深刻的项目（着重说一个，你是怎么思考的，怎么解决了问题的，事后如何复盘的）
+ 
+ <!-- more -->
   
 ### 关于这家公司
 
@@ -56,6 +58,3 @@ date: 2018-07-29 10:19:00
 ![面试需要注意的17个问题](http://p9myzkds7.bkt.clouddn.com/%E9%9D%A2%E8%AF%95%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%8417%E4%B8%AA%E9%97%AE%E9%A2%98.webp)
 
 [原文阅读](https://mp.weixin.qq.com/s?__biz=MzI4NTYyMDU0OQ==&mid=100002206&idx=1&sn=f023d729deadb84530d6df38e910f05a&chksm=6be829b45c9fa0a2932259f0f56eaab386ff767e53f0e89135b03fa121e34ea60cd1238b5f1c&mpshare=1&scene=23&srcid=08020JjCzJ0mCO8GeXbA9XV2#rd)
-
-
-  
