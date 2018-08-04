@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>Web前端面试题目汇总 | 阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="post-title">
+          Web前端面试题目汇总
+            <div class="post-tags">
+    		    
+    	      </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <article class="post">
+  
+
+  <header>
+    <div class="post-title mobile-post-title">
+      <h1>Web前端面试题目汇总</h1>
+        <div class="post-tags">
+        
+        </div>
+    </div>
+    <div class="post-meta">
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2018-08-04</span>
+      
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/找工作/">找工作</a>
+          
+      
+      <!----------------------------------->
+        
+      <!----------------------------------->
+    </div>
+  </header>
+  
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML-CSS部分"><span class="toc-text">HTML/CSS部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是盒模型"><span class="toc-text">什么是盒模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML元素构成"><span class="toc-text">HTML元素构成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS实现水平居中"><span class="toc-text">CSS实现水平居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS实现垂直居中"><span class="toc-text">CSS实现垂直居中</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+  <div class="post-content">
+    <h2 id="HTML-CSS部分"><a href="#HTML-CSS部分" class="headerlink" title="HTML/CSS部分"></a>HTML/CSS部分</h2><h3 id="什么是盒模型"><a href="#什么是盒模型" class="headerlink" title="什么是盒模型"></a>什么是盒模型</h3><blockquote>
+<p>在网页中，一个元素占有空间的大小构成，采用盒子作一个比喻来理解。</p>
+</blockquote>
+<ul>
+<li><p><strong>盒模型的组成：</strong> 由里向外由 <strong>content</strong> 、<strong>padding</strong>、 <strong>border</strong> 、<strong>margin</strong> 四部分组成。</p>
+</li>
+<li><p><strong>盒模型的两种标准：</strong>  标准模型，IE模型。</p>
+<ul>
+<li><p>两种标准的区别：</p>
+<p>在标准模型中，盒模型的 <strong>宽高</strong> 只是 <strong>内容（content）的宽高</strong> 。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/web-interview/%E6%A0%87%E5%87%86%E6%A8%A1%E5%9E%8B.png" alt="标准模型"></p>
+<p>在IE模型中盒模型的 <strong>宽高</strong> 是 <strong>内容(content)+填充(padding)+边框(border)的总宽高</strong> 。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/web-interview/IE%E6%A8%A1%E5%9E%8B.png" alt="IE模型"></p>
+</li>
+<li><p>CSS如何设置两种模型</p>
+<p>CSS3 的属性 box-sizing</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/* 标准模型 */</span><br><span class="line">box-sizing:content-box;</span><br><span class="line"></span><br><span class="line">/*IE模型*/</span><br><span class="line">box-sizing:border-box;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>边距重叠：</strong> 两个 <strong>相邻元素</strong> ，如果 <strong>上面的元素</strong> 设置了 <strong>margin-bottom</strong> ，而 <strong>下面的元素</strong> 设置了 <strong>margin-top</strong> ，那么两者的 <strong>margin将会重叠</strong> ，并且将 <strong>使用较大的margin作为最终的边距</strong> 。</p>
+<ul>
+<li>避免方式：只设置 <strong>margin-top</strong> 或 <strong>margin-bottom</strong>  ，而不是将两者混合使用。</li>
+</ul>
+<p><a href="https://www.cnblogs.com/chengzp/p/cssbox.html" target="_blank" rel="noopener">深入理解CSS盒模型</a></p>
+</li>
+</ul>
+<h3 id="HTML元素构成"><a href="#HTML元素构成" class="headerlink" title="HTML元素构成"></a>HTML元素构成</h3><blockquote>
+<p>行内元素、块级元素、空(void)元素</p>
+</blockquote>
+<ul>
+<li><p><strong>行内元素：</strong> a、b、span、img、input、strong、select、label、em、button、textarea 。</p>
+</li>
+<li><p><strong>块级元素：</strong> div、ul、li、dl、dt、dd、p、h1-h6、blockquote 。</p>
+</li>
+<li><p><strong>空元素：</strong> 即没有内容的HTML元素，例如：br、meta、hr、link、input、img 。</p>
+</li>
+</ul>
+<h3 id="CSS实现水平居中"><a href="#CSS实现水平居中" class="headerlink" title="CSS实现水平居中"></a>CSS实现水平居中</h3><ul>
+<li><p>对于有宽度的元素</p>
+<p>使用margin</p>
+</li>
+</ul>
+<h3 id="CSS实现垂直居中"><a href="#CSS实现垂直居中" class="headerlink" title="CSS实现垂直居中"></a>CSS实现垂直居中</h3>
+  </div>
+  <div class="post-footer">the end</div>
+</article>
+
+          
+  <nav class="pagination post-nav">
+    
+    
+      <a href="/2018/08/02/works/">
+        <span class="next-post">作品展示搭建<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+  
+
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+
+  <script src="/js/ztopic.js"></script>
+</body>
+</html>
