@@ -372,6 +372,26 @@ date: 2018-08-04 03:02:00
 
 来自—— [彻底弄懂px,em和rem的区别]
 
+### 什么叫优雅降级和渐进增强？
+
+- 渐进增强 progressive enhancement：
+
+  针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。
+
+- 优雅降级 graceful degradation：
+
+  一开始就构建完整的功能，然后再针对低版本浏览器进行兼容。
+
+区别：
+
+ a. 优雅降级是从复杂的现状开始，并试图减少用户体验的供给
+
+ b. 渐进增强则是从一个非常基础的，能够起作用的版本开始，并不断扩充，以适应未来环境的需要
+
+ c. 降级（功能衰减）意味着往回看；而渐进增强则意味着朝前看，同时保证其根基处于安全地带
+
+来自—— [什么叫优雅降级和渐进增强？]
+
 [HTML中href、src区别]: https://blog.csdn.net/annsheshira23/article/details/51133709
 [rel、href、src、url的区别]:https://blog.csdn.net/chengshaolei2012/article/details/72847770
 [史上最全的CSS hack方式一览]:https://blog.csdn.net/freshlover/article/details/12132801
@@ -386,3 +406,4 @@ date: 2018-08-04 03:02:00
 [HTML文档的根元素是 html 元素]:https://blog.csdn.net/ixygj197875/article/details/79737953
 [px,em,rem单位转换工具]:http://pxtoem.com/
 [彻底弄懂px,em和rem的区别]:https://www.cnblogs.com/langee/p/6890362.html
+[什么叫优雅降级和渐进增强？]:https://www.cnblogs.com/Renyi-Fan/p/7808756.html#_label0_7
