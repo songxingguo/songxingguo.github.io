@@ -237,20 +237,24 @@ Pipe      | $1
 
 ### 生成目录
 
+>该命令在本文档中是不能正确显示的。
+
 ```
 [TOC]  
 ```
 
 ### 链接引用
 
-[这里是链接][1]
+> 可以用于将链接统一放在一起，方便管理。
 
-[1]: https://www.songxingguo.com/
+[这里是链接][link]
+
+[link]: https://www.songxingguo.com/
 
 ```
-[这里是链接][1]
+[这里是链接][link]
 
-[1]: https://www.songxingguo.com/
+[link]: https://www.songxingguo.com/
 ```
 
  - #### 参考文献
