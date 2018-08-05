@@ -58,9 +58,37 @@ date: 2018-08-04 03:02:00
 
     - **空元素：** 即没有内容的HTML元素，例如：br、meta、hr、link、input、img 。
   
-  - **行内和块元素的区别**
+  - **行内元素和块元素**
   
-   
+    - 两者的区别
+    
+      - 块级元素
+
+        > **独占一行** ；默认情况下，其 **宽度自动填满其父元素宽度** ；块级元素 **可以设置width、height属性** ；**可以设置margin和padding属性** 。
+
+        *注意，块级元素即使设置了宽度，仍然是独占一行。*
+
+      - 行内元素
+
+        > **不会独占一行** ，相邻元素排列在同一行，直到排不下才会换行；其宽度  **随元素的内容而变化** ；行内元素 **设置width、height属性无效** ；行内元素的  **margin** 和 **padding** 属性，**水平方向** 的 **padding-left** 、**padding-right** 、**margin-left** 、**margin-right** 都 **产生效果** ，但 **竖直方向** 的 **padding-top** 、**padding-bottom** 、**margin-top** 、**margin-bottom** 却 **不会产生边距效果** 。
+     
+    - CSS相关属性display
+     
+       ```
+       /*块级元素*/
+       display: block;
+       
+       /*行内元素*/
+       display: inline;
+       
+       /*行内的块级元素,集块元素和行内元素的特点于一身*/
+       display: inline-block;
+       ```
+       > 为兼容 IE，真正能用的 display 类型只有 **block** 、**inline** 和  **none** 三种。可以使用一种 **hack** - 触发 **行内元素** 的 **hasLayout** （触发hasLayout，就会让行内元素拥有块级元素的特性），来支持 **display: inline-block** ，然后通过 **vertical-aligin** 解决竖直对齐问题。
+       
+       *只能对行内元素实现 **display:inline-block**,而块级元素就不行。*
+       
+来自—— **《编写高质量代码：Web前端开发修炼之道》曹刘阳 （4.7.6 块级元素和行内元素的区别、4.7.7 display:inlne-block和hasLayout）**
 
 ### CSS实现居中
 
@@ -216,4 +244,4 @@ date: 2018-08-04 03:02:00
 
       可查看站内文章—— **Flex布局**
          
-来自—— **《编写高质量代码：Web前端开发修炼之道》曹刘阳 （4.79 居中）**
+来自—— **《编写高质量代码：Web前端开发修炼之道》曹刘阳 （4.7.9 居中）**
