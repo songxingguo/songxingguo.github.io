@@ -285,5 +285,48 @@ date: 2018-08-04 03:02:00
   
 来自—— [HTML中href、src区别]、[rel、href、src、url的区别]
 
+### 什么是CSS Hack?
+
+> 针对不同的浏览器 /不同版本写相应的 **CSS** 的过程,就是 **CSS Hack** 。
+
+**CSS Hack常见的有三种形式：**  **CSS属性Hack** 、 **CSS选择符Hack** 以及 **IE条件注释Hack** ， Hack主要针对IE浏览器。
+
+
+- CSS属性Hack
+
+  ```
+  #test{
+      color:#c30; /* For Firefox */
+      color:red\0; /* For Opera */
+      color:yellow\9; /* For IE8+ */
+      *color:blue; /* For IE7 */
+      _color:#ccc; /* For IE6 */
+  }
+  ```
+- CSS选择符Hack
+ 
+   ```
+   * html .test{color:#090;}       /* For IE6 and earlier */
+   * + html .test{color:#ff0;}     /* For IE7 */
+   .test:lang(zh-cn){color:#f00;}  /* For IE8+ and not IE */
+   .test:nth-child(1){color:#0ff;} /* For IE9+ and not IE */
+   ```
+ 
+- IE条件注释Hack
+  ```
+  <!--[if <keywords>? IE <version>?]>
+      HTML代码块
+  <![endif]-->
+  ```
+
+来自—— [史上最全的CSS hack方式一览]、[CSS hack大全]、[今天才知道css hack是什么]、[CSS Hack是什么意思？css hack有什么用？]、[你想知道的css hack知识全都帮你整理好了]、[CSS参考手册]
+
+
 [HTML中href、src区别]: https://blog.csdn.net/annsheshira23/article/details/51133709
 [rel、href、src、url的区别]:https://blog.csdn.net/chengshaolei2012/article/details/72847770
+[史上最全的CSS hack方式一览]:https://blog.csdn.net/freshlover/article/details/12132801
+[CSS hack大全]:https://www.duitang.com/static/csshack.html
+[今天才知道css hack是什么]:https://www.cnblogs.com/miniyk/p/3734664.html
+[CSS Hack是什么意思？css hack有什么用？]:https://www.w3cschool.cn/css3/question-10231625.html
+[你想知道的css hack知识全都帮你整理好了]:https://www.w3cschool.cn/css/css-hack.html
+[CSS参考手册]:http://phpstudy.php.cn/css3/
