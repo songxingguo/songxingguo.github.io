@@ -392,6 +392,60 @@ date: 2018-08-04 03:02:00
 
 来自—— [什么叫优雅降级和渐进增强？]
 
+### 浏览器的内核分别是什么?
+
+> 浏览器的内核是分为两个部分的，一是 **渲染引擎** ，另一个是 **JS引擎** 。现在JS引擎比较独立，内核更加倾向于说 **渲染引擎** 。
+
+
+**IE**：Trident内核
+
+**Firefox**：Gecko内核
+
+**safari**：Webkit内核
+
+**opera**：以前是Presto内核，现在改用google chrome的Blink内核
+
+**Chrome**：Blink（基于Webkit，google与opera software共同开发）
+
+- Trident内核
+
+  > 代表作品是 **IE** ，因 **IE捆绑在Windows中** ，所以占有极高的份额，又称为**IE内核** 或 **MSHTML** ，此内核 **只能用于 Windows 平台** ，且 **不是开源的** 。代表作品还有 **腾讯**、**Maxthon**（遨游）、**360浏览器** 等。存在很多的兼容性问题。
+
+- Gecko内核
+
+  > 代表作品是 **Firefox** （即火狐浏览器）。因火狐是最多的用户，故常被称为  **firefox** 内核,它是 **开源的** ，最大优势是 **跨平台**，在 **Microsoft Windows** 、**Linux** 、**MacOs X** 等主要操作系统中使用。
+
+- Webkit内核
+
+  > 代表作品是 **Safari**、曾经的 **Chrome**。开源的项目。
+
+- Presto内核：
+
+  > 代表作品是 **Opera** ，**Presto** 是由 **Opera Software** 开发的 **浏览器排版引擎** ，它是世界公认 **最快的渲染速度的引擎** 。在13年之后，Opera宣布加入谷歌阵营，弃用了 **Presto** 。
+
+- Blink内核
+
+  > 由 **Google** 和 **Opera Software** 开发的 **浏览器排版引擎** ，2013年4月发布。现在 **Chrome** 内核是 **Blink** 。谷歌还开发了自己的 **JS引擎** ，**V8** ，**使JS运行速度极大地提高了** 。
+   
+来自—— [浏览器的内核分别是什么？]、[五大流浏览器内核及其代表]
+
+### sessionStorage 、localStorage 和 cookie 之间的区别
+
+> **sessionStorage** 、**localStorage** 和 **cookie** 都用于浏览器本地存储。
+
+- sessionStorage
+
+- localStorage
+
+- cookie
+
+
+
+![cookie、sessionStorage与lacalStrage的区别]
+
+
+### session和cookie之间的区别
+
 [HTML中href、src区别]: https://blog.csdn.net/annsheshira23/article/details/51133709
 [rel、href、src、url的区别]:https://blog.csdn.net/chengshaolei2012/article/details/72847770
 [史上最全的CSS hack方式一览]:https://blog.csdn.net/freshlover/article/details/12132801
@@ -407,3 +461,6 @@ date: 2018-08-04 03:02:00
 [px,em,rem单位转换工具]:http://pxtoem.com/
 [彻底弄懂px,em和rem的区别]:https://www.cnblogs.com/langee/p/6890362.html
 [什么叫优雅降级和渐进增强？]:https://www.cnblogs.com/Renyi-Fan/p/7808756.html#_label0_7
+[浏览器的内核分别是什么？]:https://www.cnblogs.com/maggie-pan/p/6391355.html
+[五大流浏览器内核及其代表]:https://blog.csdn.net/u014753892/article/details/52713841
+[cookie、sessionStorage与lacalStrage的区别]: http://p9myzkds7.bkt.clouddn.com/web-interview/cookie%E3%80%81sessionStorage%E4%B8%8ElacalStrage%E7%9A%84%E5%8C%BA%E5%88%AB.png
