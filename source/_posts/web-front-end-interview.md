@@ -1,4 +1,4 @@
-title: Web前端面试题目及详解汇总
+title: Web前端面试题目及详解汇总-HTML/CSS部分
 author: songxingguo
 tags: []
 categories:
@@ -33,10 +33,13 @@ date: 2018-08-04 03:02:00
      
      ```
      /* 标准模型 */
-     box-sizing:content-box;
+     box-sizing: content-box;
 
      /*IE模型*/
-     box-sizing:border-box;
+     box-sizing: border-box;
+     
+     /*继承父元素 box-sizing 属性的值*/
+     box-sizing: inherit;
      ```
 
  - **边距重叠：** 两个 **相邻元素** ，如果 **上面的元素** 设置了 **margin-bottom** ，而 **下面的元素** 设置了 **margin-top** ，那么两者的 **margin将会重叠** ，并且将 **使用较大的margin作为最终的边距** 。
@@ -64,13 +67,13 @@ date: 2018-08-04 03:02:00
     
       - 块级元素
 
-        > **独占一行** ；默认情况下，其 **宽度自动填满其父元素宽度** ；块级元素 **可以设置width、height属性** ；**可以设置margin和padding属性** 。
+        > **独占一行**, 垂直方向排列；默认情况下，其 **宽度自动填满其父元素宽度** ；块级元素 **可以设置width、height属性** ；**可以设置margin和padding属性** 。
 
         *注意，块级元素即使设置了宽度，仍然是独占一行。*
 
       - 行内元素
 
-        > **不会独占一行** ，相邻元素排列在同一行，直到排不下才会换行；其宽度  **随元素的内容而变化** ；行内元素 **设置width、height属性无效** ；行内元素的  **margin** 和 **padding** 属性，**水平方向** 的 **padding-left** 、**padding-right** 、**margin-left** 、**margin-right** 都 **产生效果** ，但 **竖直方向** 的 **padding-top** 、**padding-bottom** 、**margin-top** 、**margin-bottom** 却 **不会产生边距效果** 。
+        > **不会独占一行** ，水平方向排列，相邻元素排列在同一行，直到排不下才会换行；其宽度  **随元素的内容而变化** ；行内元素 **设置width、height属性无效**（可以设置 **line-height** ） ；行内元素的  **margin** 和 **padding** 属性，**水平方向** 的 **padding-left** 、**padding-right** 、**margin-left** 、**margin-right** 都 **产生效果** ，但 **竖直方向** 的 **padding-top** 、**padding-bottom** 、**margin-top** 、**margin-bottom** 却 **不会产生边距效果** 。
      
     - CSS相关属性display
      
@@ -85,8 +88,13 @@ date: 2018-08-04 03:02:00
        display: inline-block;
        ```
        > 为兼容 IE，真正能用的 display 类型只有 **block** 、**inline** 和  **none** 三种。可以使用一种 **hack** - 触发 **行内元素** 的 **hasLayout** （触发hasLayout，就会让行内元素拥有块级元素的特性），来支持 **display: inline-block** ，然后通过 **vertical-aligin** 解决竖直对齐问题。
-       
-       *只能对行内元素实现 **display:inline-block**,而块级元素就不行。*
+       ```
+       display:inline-block;
+       *display:inline;
+       vertical-aligin: middle;
+       ```
+
+      *只能对行内元素实现 **display:inline-block**,而块级元素就不行。*
        
 来自—— **《编写高质量代码：Web前端开发修炼之道》曹刘阳 （4.7.6 块级元素和行内元素的区别、4.7.7 display:inlne-block和hasLayout）**
 
@@ -395,7 +403,15 @@ date: 2018-08-04 03:02:00
 
 ### 浏览器的内核分别是什么?
 
-> 浏览器的内核是分为两个部分的，一是 **渲染引擎** ，另一个是 **JS引擎** 。现在JS引擎比较独立，内核更加倾向于说 **渲染引擎** 。
+> 浏览器的内核是分为两个部分的，一是 **渲染引擎** (layout engineer或Rendering Engine)，另一个是 **JS引擎** 。现在JS引擎比较独立，内核更加倾向于说 **渲染引擎** 。
+
+**渲染引擎**
+
+负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入CSS等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核。
+
+**JS引擎则** 
+
+ 解析和执行javascript来实现网页的动态效果。最开始渲染引擎和JS引擎并没有区分的很明确，后来JS引擎越来越独立，内核就倾向于只指渲染引擎。
 
 - 主流浏览器内核及其内核
 
@@ -431,23 +447,23 @@ date: 2018-08-04 03:02:00
 
 - sessionStorage
 
-  > HTML5 Web Storage API 提供；可以方便的在web请求之间保存数据；将数据保存在session对象中。所谓session，是指用户在浏览某个网站时，从进入网站到浏览器关闭所经过的这段时间，也就是用户浏览这个网站所花费的时间。session对象可以用来保存在这段时间内所要求保存的任何数据。sessionStorage为临时保存。
+  > **HTML5 Web Storage API** 提供；可以方便的在 **Web** 请求之间 **保存数据** ；将数据保存在 **session** 对象中。所谓 **session** ，是指用户在 **浏览某个网站** 时，从 **进入网站** 到 **浏览器关闭** 所 **经过的这段时间** ，也就是用户 **浏览这个网站所花费的时间** 。**session** 对象可以用来 **保存在这段时间内所要求保存的任何数据** 。**sessionStorage** 为 **临时保存** 。
   
-   sessionStorage的生命周期是在仅在当前会话下有效。sessionStorage的概念很特别，引入了一个“浏览器窗口”的概念。sessionStorage是在同源的同窗口（或tab）中，始终存在的数据。也就是说只要这个浏览器窗口没有关闭，即使刷新页面或进入同源另一页面，数据仍然存在。关闭窗口后，sessionStorage即被销毁。同时“独立”打开的不同窗口，即使是同一页面，sessionStorage对象也是不同的。
+   **sessionStorage** 的 **生命周期** 是在仅在 **当前会话** 下有效。**sessionStorage** 的概念很特别，引入了一个 **“浏览器窗口”**的概念。**sessionStorage** 是在 **同源的同窗口**（或 **tab** ）中，**始终存在的数据** 。也就是说只要这个 **浏览器窗口没有关闭** ，即使 **刷新页面** 或 **进入同源另一页面** ，**数据仍然存在** 。**关闭窗口** 后，**sessionStorage** 即 **被销毁** 。同时 **“独立”** 打开的 **不同窗口**，即使是 **同一页面** ，**sessionStorage** 对象也是 **不同的** 。
 
 - localStorage
 
-  > 将数据保存在客户端本地的硬件设备(通常指硬盘，也可以是其他硬件设备)中，即使浏览器被关闭了，该数据仍然存在，下次打开浏览器访问网站时仍然可以继续使用。localStorage为永久保存。localStorage的生命周期是永久的，关闭页面或浏览器之后localStorage中的数据也不会消失。localStorage除非主动删除数据，否则数据永远不会消失。
+  > 将数据保存在 **客户端本地的硬件设备** (通常指 **硬盘** ，也可以是 **其他硬件设备** )中，即使 **浏览器被关闭** 了，该 **数据仍然存在** ，**下次打开浏览器** 访问网站时 **仍然可以继续使用** 。**localStorage** 为 **永久保存** 。**localStorage** 的 **生命周期**是 **永久的** ，**关闭页面或浏览器** 之后**localStorage** 中的数据也 **不会消失** 。**localStorage** 除非 **主动删除数据** ，否则 **数据永远不会消失** 。
 
 - cookie
 
-  > HTML5之前的本地存储;浏览器的缓存机制提供了可以将用户数据存储在客户端上的方式，可以利用cookie,session等跟服务端进行数据交互。
+  > **HTML5之前的本地存储** ;浏览器的 **缓存机制** 提供了可以将 **用户数据** 存储在 **客户端上的方式** ，可以利用 **cookie** , **session** 等跟 **服务端** 进行 **数据交互** 。
 
 - session
 
   ![cookie、sessionStorage与lacalStrage的区别]
   
-共同点：都是保存在浏览器端，且同源的。
+共同点：都是 **保存在浏览器端** ，且 **同源的** 。
 
 区别：cookie数据始终在同源的http请求中携带（即使不需要），即cookie在浏览器和服务器间来回传递；cookie数据还有路径（path）的概念，可以限制cookie只属于某个路径下。存储大小限制也不同，cookie数据不能超过4k，同时因为每次http请求都会携带cookie，所以cookie只适合保存很小的数据，如会话标识。
 
@@ -502,6 +518,10 @@ date: 2018-08-04 03:02:00
 
 *注意：Ajax 不是一种新的编程语言，而是一种用于创建更好更快以及交互性更强的Web应用程序的技术。*
 
+传统的Web应用交互由用户触发一个HTTP请求到服务器,服务器对其进行处理后再返回一个新的HTHL页到客户端, 每当服务器处理客户端提交的请求时,客户都只能空闲等待,并且哪怕只是一次很小的交互、只需从服务器端得到很简单的一个数据,都要返回一个完整的HTML页,而用户每次都要浪费时间和带宽去重新读取整个页面。这个做法浪费了许多带宽，由于每次应用的交互都需要向服务器发送请求，应用的响应时间就依赖于服务器的响应时间。这导致了用户界面的响应比本地应用慢得多。
+
+与此不同，AJAX应用可以仅向服务器发送并取回必需的数据，它使用SOAP或其它一些基于XML的Web Service接口，并在客户端采用JavaScript处理来自服务器的响应。因为在服务器和浏览器之间交换的数据大量减少，结果我们就能看到响应更快的应用。同时很多的处理工作可以在发出请求的客户端机器上完成，所以Web服务器的处理时间也减少了。
+
 优点：
 1.减轻服务器的负担,按需取数据,最大程度的减少冗余请求
 
@@ -527,8 +547,23 @@ date: 2018-08-04 03:02:00
 4.发送 send()
 
 5.当ajax对象完成第四步（onreadystatechange）数据接收完成，判断http响应状态（status）200-300之间或者304（缓存）执行回调函数。
+
+AJAX的工作原理
+Ajax的工作原理相当于在用户和服务器之间加了—个中间层(AJAX引擎),使用户操作与服务器响应异步化。并不是所有的用户请求都提交给服务器,像—些数据验证和数据处理等都交给Ajax引擎自己来做, 只有确定需要从服务器读取新数据时再由Ajax引擎代为向服务器提交请求。
+Ajax其核心有JavaScript、XMLHTTPRequest、DOM对象组成，通过XmlHttpRequest对象来向服务器发异步请求，从服务器获得数据，然后用JavaScript来操作DOM而更新页面。这其中最关键的一步就是从服务器获得请求数据。让我们来了解这几个对象。
+(1).XMLHTTPRequest对象
+Ajax的一个最大的特点是无需刷新页面便可向服务器传输或读写数据(又称无刷新更新页面),这一特点主要得益于XMLHTTP组件XMLHTTPRequest对象。
+XMLHttpRequest 对象方法描述 
+
+(2).JavaScript
+JavaScript是一在浏览器中大量使用的编程语言。
+
+(3).DOM Document Object Model
+DOM是给HTML和XML文件使用的一组API。它提供了文件的结构表述，让你可以改变其中的內容及可见物。其本质是建立网页与Script或程序语言沟通的桥梁。所有WEB开发人员可操作及建立文件的属性、方法及事件都以对象来展现（例如，document就代表“文件本身“这个对像，table对象则代表HTML的表格对象等等）。这些对象可以由当今大多数的浏览器以Script来取用。一个用HTML或XHTML构建的网页也可以看作是一组结构化的数据，这些数据被封在DOM（Document Object Model）中，DOM提供了网页中各个对象的读写的支持。
+(4).XML
+可扩展的标记语言（Extensible Markup Language）具有一种开放的、可扩展的、可自描述的语言结构，它已经成为网上数据和文档传输的标准,用于其他应用程序交换数据 。
  
- 来自—— [AJAX 简介]、[Ajax的优缺点及工作原理？]
+ 来自—— [AJAX 简介]、[Ajax的优缺点及工作原理？]、[AJAX工作原理及其优缺点]
  
  ### 请指出document load和document ready的区别？
  
@@ -539,6 +574,437 @@ date: 2018-08-04 03:02:00
 ready 事件的触发，表示文档结构已经加载完成（不包含图片等非文字媒体文件）。
 
 onload 事件的触发，表示页面包含图片等文件在内的所有元素都加载完成。
+
+### 清除浮动有哪些方式？比较好的方式是哪一种？
+
+
+　（1）父级div定义height。
+
+　（2）结尾处加空div标签clear:both。
+
+　（3）父级div定义伪类:after和zoom。
+
+　（4）父级div定义overflow:hidden。
+
+　（5）父级div定义overflow:auto。
+
+　（6）父级div也浮动，需要定义宽度。
+
+　（7）父级div定义display:table。
+
+　（8）结尾处加br标签clear:both。
+ 
+ 38.清除浮动的几种方式，各自的优缺点？
+1.使用空标签清除浮动 clear:both（理论上能清楚任何标签，，，增加无意义的标签）
+2.使用overflow:auto（空标签元素清除浮动而不得不增加无意代码的弊端,,使用zoom:1用于兼容IE）
+3.是用afert伪元素清除浮动(用于非IE浏览器)
+
+　　比较好的是第3种方式，好多网站都这么用。
+  
+### Doctype作用？标准模式与兼容模式各有什么区别? 
+
+告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。
+
+(Q2) 标准模式的排版和JS运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示,模拟老式浏览器的行为以防止站点无法工作。
+
+### HTML5 为什么只需要写<!DOCTYPE html> ？
+
+　HTML5不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行）。
+
+而HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。
+
+### 页面导入样式时，使用link和@import有什么区别？
+
+   （1）link属于XHTML标签，除了加载CSS外，还能用于定义RSS, 定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS;
+
+　　（2）页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载;
+
+　　（3）import是CSS2.1 提出的，只在IE5以上才能被识别，而link是XHTML标签，无兼容问题。
+  （1）、link属于XHTML标签，而@import是CSS提供的;
+
+（2）、页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载;
+
+（3）、import只在IE5以上才能识别，而link是XHTML标签，无兼容问题;
+
+（4）、link方式的样式的权重 高于@import的权重.
+
+
+### CSS定义的权重
+
+### CSS中margin和padding的区别
+
+### 简述一下你对HTML语义化的理解？　　
+
+用正确的标签做正确的事情。
+
+　　html语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析;
+
+　　即使在没有样式CSS情况下也以一种文档格式显示，并且是容易阅读的;
+
+　　搜索引擎的爬虫也依赖于HTML标记来确定上下文和各个关键字的权重，利于SEO;
+
+　　使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。
+　
+### 在html中，position取值有哪几种，默认值是什么？
+
+取值：static、relative、fixed、absolute
+
+默认值：static
+
+### 前端页面由哪三层构成，分别是什么？作用是什么？
+
+前端页面构成：结构层、表示层、行为层
+
+结构层（structural layer）
+
+由 HTML 或 XHTML之类的标记语言负责创建。标签，也就是那些出现在尖括号里的单词，对网页内容的语义含义做出了描述，但这些标签不包含任何关于如何显示有关内容的信息。例如，P标签表达了这样一种语义：“这是一个文本段。”
+
+表示层（presentation layer）
+
+由 CSS 负责创建。 CSS对“如何显示有关内容”的问题做出了回答。
+
+行为层（behaviorlayer）
+
+负责回答“内容应该如何对事件做出反应”这一问题。这是 Javascript 语言和 DOM主宰的领域。
+
+### 如何居中一个浮动元素？
+
+方式1:设置容器的浮动方式为相对定位，然后确定容器的宽高比如宽500 高 300 的层，然后设置层的外边距。
+
+方式2：需要position:absolute;绝对定位。而层的定位点，使用外补丁margin负值的方法。负值的大小为层自身宽度高度除以二。
+
+[来源](https://blog.csdn.net/dkh_321/article/details/79311446)
+
+
+### 请简述HTML和XHTML最重要的4点不同？
+
+  XHTML要求正确嵌套
+  XHTML 所有元素必须关闭
+  XHTML 区分大小写
+  XHTML 属性值要用双引号
+  XHTML 用 id 属性代替 name 属性
+ XHTML 特殊字符的处理
+ 
+ ### 怎么样从web前端方面优化性能？至少列举5点？
+ 
+ 
+ ### .IE6的双倍边距BUG指的是什么？怎么解决？
+ 
+ 双边距：当块级元素有浮动样式的时候，给元素添加margin-left和margin-right样式，在ie6下就会出现双倍边距。
+
+解决方案：给当前元素添加样式，使当前元素不为块，如：display:inline;display:list-item
+
+###  如果制作一个访问量很大的网站，对css，js和图片应该怎么处理?
+
+### 什么是同步异步(主观题，答案不唯一)?
+
+### xhtml和html有什么区别？
+
+HTML是一种基本的WEB网页设计语言，XHTML是一个基于XML的置标语言
+最主要的不同：
+XHTML 元素必须被正确地嵌套。
+XHTML 元素必须被关闭。
+标签名必须用小写字母。
+XHTML 文档必须拥有根元素。
+
+### CSS引入的方式有哪些?link和@import的区别是?
+内联 内嵌 外链 导入
+区别 ：同时加载
+前者无兼容性，后者CSS2.1以下浏览器不支持
+Link 支持使用javascript改变样式，后者不可
+
+### CSS选择符有哪些？哪些属性可以继承？优先级算法如何计算？内联和important哪个优先级高？
+（可以参考书上）
+标签选择符 类选择符 id选择符
+继承不如指定 Id>class>标签选择
+后者优先级高
+
+CSS 选择符有哪些？哪些属性可以继承？优先级算法如何计算？ CSS3新增伪类有那些？
+
+1.id选择器（ # myid）
+
+2.类选择器（.myclassname）
+
+3.标签选择器（div, h1, p）
+
+4.相邻选择器（h1 + p）
+
+5.子选择器（ul < li）
+
+6.后代选择器（li a）
+
+7.通配符选择器（ * ）
+
+8.属性选择器（a[rel = "external"]）
+
+9.伪类选择器（a: hover, li: nth - child）
+
+可继承： font-sizefont-family color, UL LI DL DD DT;
+
+不可继承 ：border paddingmargin width height ;
+
+优先级就近原则，样式定义最近者为准;
+
+载入样式以最后载入的定位为准;
+
+优先级为:
+
+!important >  id > class > tag 
+
+important 比 内联优先级高
+
+CSS3新增伪类举例：
+
+p:first-of-type 选择属于其父元素的首个 <p> 元素的每个 <p> 元素。
+
+p:last-of-type  选择属于其父元素的最后 <p> 元素的每个 <p> 元素。
+
+p:only-of-type  选择属于其父元素唯一的 <p> 元素的每个 <p> 元素。
+
+p:only-child    选择属于其父元素的唯一子元素的每个 <p> 元素。
+
+p:nth-child(2)  选择属于其父元素的第二个子元素的每个 <p> 元素。
+
+:enabled、:disabled控制表单控件的禁用状态。
+
+:checked，单选框或复选框被选中。
+
+### 31.写出几种IE6 BUG的解决方法？
+
+1.双边距BUG float引起的使用display
+2.3像素问题使用float引起的使用dislpay:inline-3px
+3.超链接hover 点击后失效使用正确的书写顺序link visited hover active
+4.Ie z-index问题给父级添加position:relative
+5.Png 透明使用js代码改
+6.Min-height 最小高度！Important解决’
+7.select 在ie6下遮盖使用iframe嵌套
+8.为什么没有办法定义1px左右的宽度容器（IE6默认的行高造成的，使用over:hidden,zoom:0.08 line-height:1px）
+
+### <img>标签上title与alt属性的区别是什么？
+
+Alt 当图片不显示是用文字代表。
+Title 为该属性提供信息
+
+### 33.描述css reset的作用和用途？
+（可以参考书上）
+Reset重置浏览器的css默认属性浏览器的品种不同，样式不同，然后重置，让他们统一
+
+  因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。
+
+·     当然，初始化样式会对SEO有一定的影响，但鱼和熊掌不可兼得，但力求影响最小的情况下初始化。
+
+*最简单的初始化方法就是： * {padding: 0;margin: 0;} （不建议）
+
+   淘宝的样式初始化：
+
+   body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li,pre, form, fieldset, legend, button, input, textarea, th, td { margin:0;padding:0; }
+
+   body, button, input, select, textarea { font:12px/1.5tahoma, arial,\5b8b\4f53; }
+
+   h1, h2, h3, h4, h5, h6{ font-size:100%; }
+
+   address, cite, dfn, em, var { font-style:normal; }
+
+   code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
+
+   small{ font-size:12px; }
+
+   ul, ol { list-style:none; }
+
+   a { text-decoration:none; }
+
+   a:hover { text-decoration:underline; }
+
+   sup { vertical-align:text-top; }
+
+   sub{ vertical-align:text-bottom; }
+
+   legend { color:#000; }
+
+   fieldset, img { border:0; }
+
+   button, input, select, textarea { font-size:100%; }
+
+   table { border-collapse:collapse; border-spacing:0; }
+
+### 解释css sprites，如何使用？
+
+Css 精灵把一堆小的图片整合到一张大的图片上，减轻服务器对图片的请求数量
+
+### 浏览器标准模式和怪异模式之间的区别是什么？
+
+盒子模型渲染模式的不同
+使用 window.top.document.compatMode 可显示为什么模式
+
+### 你如何对网站的文件和资源进行优化？期待的解决方案包括：
+
+文件合并
+文件最小化/文件压缩
+使用CDN托管
+缓存的使用
+
+·          （1）减少http请求次数：CSS Sprites, JS、CSS源码压缩、图片大小控制合适；网页Gzip，CDN托管，data缓存 ，图片服务器。
+
+·         
+
+·          （2）前端模板 JS+数据，减少由于HTML标签导致的带宽浪费，前端用变量保存AJAX请求结果，每次操作本地变量，不用请求，减少请求次数
+
+·         
+
+·          （3）用innerHTML代替DOM操作，减少DOM操作次数，优化javascript性能。
+
+·         
+
+·          （4）当需要设置的样式很多时设置className而不是直接操作style。
+
+·         
+
+·          （5）少用全局变量、缓存DOM节点查找的结果。减少IO读取操作。
+
+·         
+
+·          （6）避免使用CSS Expression（css表达式)又称Dynamic properties(动态属性)。
+
+·         
+
+·          （7）图片预加载，将样式表放在顶部，将脚本放在底部  加上时间戳。
+
+·         
+
+·          （8）避免在页面的主体布局中使用table，table要等其中的内容完全下载之后才会显示出来，显示比div+css布局慢。
+
+###  37.什么是语义化的HTML？
+（可以参考书上 HTML5）
+直观的认识标签对于搜索引擎的抓取有好处
+
+### 经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用hack的技巧？
+
+### 列出display的值，说明他们的作用。position的值， relative和absolute定位原点是？
+
+ 1.    block 象块类型元素一样显示。
+
+ none 缺省值。向行内元素类型一样显示。
+
+ inline-block 象行内元素一样显示，但其内容象块类型元素一样显示。
+
+ list-item 象块类型元素一样显示，并添加样式列表标记。
+
+ 
+
+ 2.
+
+ *absolute
+
+       生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。
+
+ *fixed （老IE不支持）
+
+       生成绝对定位的元素，相对于浏览器窗口进行定位。
+
+ *relative
+
+       生成相对定位的元素，相对于其正常位置进行定位。
+
+ * static  默认值。没有定位，元素出现在正常的流中
+
+ *（忽略 top, bottom, left,right z-index 声明）。
+
+ * inherit 规定从父元素继承 position 属性的值。
+ 
+### iframe有那些缺点？
+
+### 37.AMD（Modules/Asynchronous-Definition）、CMD（Common ModuleDefinition）规范区别？
+
+
+(https://blog.csdn.net/gyq04551/article/details/55254359)
+### 如何避免XSS？
+
+### 平时如何管理项目？
+
+### 工作中用过什么构建工具？
+
+### 谈谈你对模块化的理解？
+
+### 平时都用什么第三方框架？
+
+### 10、谈谈你对预加载的理解？
+11、缓存和预加载的区别是什么？
+9、如何使用缓存？
+
+### 12、图片如何压缩？
+
+### 13、压缩文件有哪些方法？
+
+### 14、如何区分静态页面和动态页面？
+
+答：要区分这两个，最简单的方法就是看后缀了，动态网页网址中有两个标志性的符号“?”和“&”（有的可能没有&），这个问号和&就是用来带参数的。现在几乎爱所有的网页都是动态网页。
+
+### 6、前台兼容性问题有哪些？
+
+答：主要是常用浏览的（前端）API差异，渲染差异，等等
+
+### 18、内存泄漏怎么理解？
+
+### 19、微格式到底是做啥用？
+
+答：是开放的数据格式，面向的是普通用户，任何用户可以透过简单的程序读取微格式内容。而不是像Flickr、Amazon、Google等提供特定的面向技术人员的API（一般基于XML-PRC、REST，相对复杂）。RSS具有微格式的部分优点，但限制还是比较多的，比如有限的元数据（标题、描述、URL等），不能更好地描述语义，不太容易与已存在的工具结合等。用微格式可以来聚合外部Blog，Flickr，YouTube，MapQuest，甚至MySpace里的内容。
+
+微格式实际就是为现有的(X)HTML元素添加元数据和其他属性，增强语义
+
+### 、如何缓存整个页面，在没有网络的时候可以来回的跳转？
+
+### 22、CDN是啥？
+
+### 23、浏览器一次可以从一个域名下请求多少资源？
+
+### 24、什么是垃圾回收机制（GC）？
+36、请描述你熟悉的语言的垃圾回收(GC)机制，他们对循环引用是如何处理的？如何查找内存泄漏(MemoryLeak)?
+
+### 25、image和canvas在处理图片的时候有什么区别？
+
+image是通过对象的形式描述图片的
+
+canvas通过专门的API将图片绘制在画布上
+
+### 26、简述移动开发的注意点,如何做好不同手机的适配,你以前的项目是怎么做的?
+
+1、单独做移动端项目，采用百分比布局
+
+2、采用响应式的方式做适配
+
+### 28、http和tcp有什么区别？
+
+TPC/IP协议是传输层协议，主要解决数据如何在网络中传输，是一种“经过三次握手”的可靠的传输方式；
+
+HTTP协议即超文本传送协议(Hypertext Transfer Protocol )，是应用层协议，是Web联网的基础，也是手机联网常用的协议之一，HTTP协议是建立在TCP协议之上的一种应用。
+
+### 35、设计模式有哪些？列举你在前端开发工作中自己应用到或者了解到其他框架所用到的设计模式？
+
+单例、工厂、观察者、适配器、代理模式
+
+### 16、什么是线程？进程和线程的关系是什么？
+
+### 19、什么是MVVM框架？
+[来源](https://www.jianshu.com/p/0e9a0d460f64)
+
+### 20、利用@media screen实现网页布局的自适应。
+
+### 22、前端安全方面有没有了解？XSS和CSRF如何攻防？
+
+### 20、说说你对HTML5认识?（是什么,为什么）
+
+### 21、什么是WebGL,它有什么优点?
+
+### 22、说说你对SVG理解?
+
+### CSS层叠是什么？介绍一下
+
+### 对BFC规范的理解
+
+BFC，块级格式化上下文，一个创建了新的BFC的盒子是独立布局的，盒子里面的子元素的样式不会影响到外面的元素。在同一个BFC中的两个毗邻的块级盒在垂直方向（和布局方向有关系）的margin会发生折叠。
+
+（W3C CSS 2.1 规范中的一个概念,它决定了元素如何对其内容进行定位,以及与其他元素的关系和相互作用。）
+
 
 [HTML中href、src区别]: https://blog.csdn.net/annsheshira23/article/details/51133709
 [rel、href、src、url的区别]:https://blog.csdn.net/chengshaolei2012/article/details/72847770
@@ -563,3 +1029,4 @@ onload 事件的触发，表示页面包含图片等文件在内的所有元素�
 [AJAX工作原理]:http://p9myzkds7.bkt.clouddn.com/web-interview/AJAX%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.gif
 [AJAX 简介]:https://www.w3cschool.cn/ajax/nr583fns.html
 [Ajax的优缺点及工作原理？]:https://www.cnblogs.com/wdlhao/p/8290436.html#_label3
+[AJAX工作原理及其优缺点]:https://www.cnblogs.com/SanMaoSpace/archive/2013/06/15/3137180.html
