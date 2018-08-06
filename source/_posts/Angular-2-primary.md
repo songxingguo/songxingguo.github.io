@@ -26,6 +26,8 @@ date: 2018-07-25 11:57:00
        **在HTML文件中加载Angular**
        
        Angular框架的代码由模块（每个模块一个文件）组成，它们被组合到库中，将库从逻辑上分组成包，例如@angular/core、@angular/common等。必须 **在应用程序代码之前加载所需的包** 。
+      
+<!-- more -->
        
        下面创建一个index.html文件，它首先加载必需的 **Angular脚本** 、**TypeScript编译器** 以及 **SystemJS模块加载器** 。以下代码从内容分发网络（Content Delivery Network，CDN）unpkg.com 载入这些脚本。
        
@@ -140,9 +142,3 @@ date: 2018-07-25 11:57:00
         通过使用与@Component注解的 **selector属性中的组件名称相匹配的标签** ，任何应用程序组件都可以包含在HTML文件（或其他组件的模板）中。 **组件选择器类似于CSS选择器** ，因此给定‘hello-world’选择器，就将使用名为<hello-world>的元素将这个组件渲染到HTML页面中。 **Angular会将此行转换成document.querySelctorAll(selector)** 。
         
         请注意，在代码清单2.2中整个模板都包含在 **反引号** 中，以 **将模板转换成一个字符串** 。这样，就可以在模板中 **使用单引号和双引号** ，并 **将器分成多行以进行更好的格式化** 。该模板包含 **数据绑定表达式{{name}}** ,而且在运行时，Angular将在组件上找到name属性，并 **用具体值替换大括号中的数据绑定表达式** 。
-       
-        
-        
-        
-       
-       
