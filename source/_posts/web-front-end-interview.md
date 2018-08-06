@@ -435,16 +435,114 @@ date: 2018-08-04 03:02:00
 
 - sessionStorage
 
+  > HTML5 Web Storage API 提供；可以方便的在web请求之间保存数据；将数据保存在session对象中。所谓session，是指用户在浏览某个网站时，从进入网站到浏览器关闭所经过的这段时间，也就是用户浏览这个网站所花费的时间。session对象可以用来保存在这段时间内所要求保存的任何数据。sessionStorage为临时保存。
+  
+   sessionStorage的生命周期是在仅在当前会话下有效。sessionStorage的概念很特别，引入了一个“浏览器窗口”的概念。sessionStorage是在同源的同窗口（或tab）中，始终存在的数据。也就是说只要这个浏览器窗口没有关闭，即使刷新页面或进入同源另一页面，数据仍然存在。关闭窗口后，sessionStorage即被销毁。同时“独立”打开的不同窗口，即使是同一页面，sessionStorage对象也是不同的。
+
 - localStorage
+
+  > 将数据保存在客户端本地的硬件设备(通常指硬盘，也可以是其他硬件设备)中，即使浏览器被关闭了，该数据仍然存在，下次打开浏览器访问网站时仍然可以继续使用。localStorage为永久保存。localStorage的生命周期是永久的，关闭页面或浏览器之后localStorage中的数据也不会消失。localStorage除非主动删除数据，否则数据永远不会消失。
 
 - cookie
 
+  > HTML5之前的本地存储;浏览器的缓存机制提供了可以将用户数据存储在客户端上的方式，可以利用cookie,session等跟服务端进行数据交互。
 
+- session
 
-![cookie、sessionStorage与lacalStrage的区别]
+  ![cookie、sessionStorage与lacalStrage的区别]
+  
+共同点：都是保存在浏览器端，且同源的。
 
+区别：cookie数据始终在同源的http请求中携带（即使不需要），即cookie在浏览器和服务器间来回传递；cookie数据还有路径（path）的概念，可以限制cookie只属于某个路径下。存储大小限制也不同，cookie数据不能超过4k，同时因为每次http请求都会携带cookie，所以cookie只适合保存很小的数据，如会话标识。
+
+而sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。
+
+数据有效期不同，sessionStorage：仅在当前浏览器窗口关闭前有效，自然也就不可能持久保持；localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据；cookie只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭。
+
+作用域不同，sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。Web Storage 支持事件通知机制，可以将数据更新的通知发送给监听者。Web Storage 的 api 接口使用更方便。
+
+来自—— [cookies、sessionStorage和localStorage解释及区别]
 
 ### session和cookie之间的区别
+
+
+### Web Storage与Cookie相比存在的优势
+
+- 存储空间更大：cookie为4KB，而WebStorage是5MB；
+
+- 节省网络流量：WebStorage不会传送到服务器，存储在本地的数据可以直接获取，也不会像cookie一样美词请求都会传送到服务器，所以减少了客户端和服务器端的交互，节省了网络流量；
+
+- 对于那种只需要在用户浏览一组页面期间保存而关闭浏览器后就可以丢弃的数据，sessionStorage会非常方便；
+
+- 快速显示：有的数据存储在WebStorage上，再加上浏览器本身的缓存。获取数据时可以从本地获取会比从服务器端获取快得多，所以速度更快；
+
+- 安全性：WebStorage不会随着HTTP header发送到服务器端，所以安全性相对于cookie来说比较高一些，不会担心截获，但是仍然存在伪造问题；
+
+- WebStorage提供了一些方法，数据操作比cookie方便；
+
+   - setItem (key, value) ——  保存数据，以键值对的方式储存信息。
+   - getItem (key) ——  获取数据，将键值传入，即可获取到对应的value值。
+
+   - removeItem (key) ——  删除单个数据，根据键值移除对应的信息。
+
+   - clear () ——  删除所有的数据
+
+   - key (index) —— 获取某个索引的key
+  
+- 独立的存储空间：每个域（包括子域）有独立的存储空间，各个存储空间是完全独立的，因此不会造成数据混乱。  
+
+来自—— [cookies、sessionStorage和localStorage解释及区别]
+
+
+#### Ajax的优缺点及工作原理？
+
+> **Ajax** 是 **Asynchronous Javascript And XML** （异步 JavaScript 和 XML）的缩写，是指一种创建交互式网页应用的网页开发技术。
+
+- Ajax = 异步 JavaScript 和 XML（标准通用标记语言的子集）。
+- Ajax 是一种用于创建快速动态网页的技术。
+- Ajax 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。 [1] 
+- 通过在后台与服务器进行少量数据交换，Ajax 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。
+- 传统的网页（不使用 Ajax）如果需要更新内容，必须重载整个网页页面。
+
+*注意：Ajax 不是一种新的编程语言，而是一种用于创建更好更快以及交互性更强的Web应用程序的技术。*
+
+优点：
+1.减轻服务器的负担,按需取数据,最大程度的减少冗余请求
+
+2.局部刷新页面,减少用户心理和实际的等待时间,带来更好的用户体验
+
+3.基于xml标准化,并被广泛支持,不需安装插件等,进一步促进页面和数据的分离
+
+缺点：
+1.AJAX大量的使用了javascript和ajax引擎,这些取决于浏览器的支持.在编写的时候考虑对浏览器的兼容性.
+
+2.AJAX只是局部刷新,所以页面的后退按钮是没有用的.
+
+3.对流媒体还有移动设备的支持不是太好等
+
+ ![AJAX工作原理]
+ 
+ 1.创建ajax对象（XMLHttpRequest/ActiveXObject(Microsoft.XMLHttp)）
+
+2.判断数据传输方式(GET/POST)
+
+3.打开链接 open()
+
+4.发送 send()
+
+5.当ajax对象完成第四步（onreadystatechange）数据接收完成，判断http响应状态（status）200-300之间或者304（缓存）执行回调函数。
+ 
+ 来自—— [AJAX 简介]、[Ajax的优缺点及工作原理？]
+ 
+ ### 请指出document load和document ready的区别？
+ 
+ 共同点：这两种事件都代表的是页面文档加载时触发。
+
+异同点：
+
+ready 事件的触发，表示文档结构已经加载完成（不包含图片等非文字媒体文件）。
+
+onload 事件的触发，表示页面包含图片等文件在内的所有元素都加载完成。
 
 [HTML中href、src区别]: https://blog.csdn.net/annsheshira23/article/details/51133709
 [rel、href、src、url的区别]:https://blog.csdn.net/chengshaolei2012/article/details/72847770
@@ -464,3 +562,7 @@ date: 2018-08-04 03:02:00
 [浏览器的内核分别是什么？]:https://www.cnblogs.com/maggie-pan/p/6391355.html
 [五大流浏览器内核及其代表]:https://blog.csdn.net/u014753892/article/details/52713841
 [cookie、sessionStorage与lacalStrage的区别]: http://p9myzkds7.bkt.clouddn.com/web-interview/cookie%E3%80%81sessionStorage%E4%B8%8ElacalStrage%E7%9A%84%E5%8C%BA%E5%88%AB.png
+[cookies、sessionStorage和localStorage解释及区别]:https://www.cnblogs.com/pengc/p/8714475.html
+[AJAX工作原理]:http://p9myzkds7.bkt.clouddn.com/web-interview/AJAX%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.gif
+[AJAX 简介]:https://www.w3cschool.cn/ajax/nr583fns.html
+[Ajax的优缺点及工作原理？]:https://www.cnblogs.com/wdlhao/p/8290436.html#_label3
