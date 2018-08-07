@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>Web前端面试题目及详解汇总-HTML/CSS部分 | 阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="post-title">
+          Web前端面试题目及详解汇总-HTML/CSS部分
+            <div class="post-tags">
+    		    
+    	      </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <article class="post">
+  
+
+  <header>
+    <div class="post-title mobile-post-title">
+      <h1>Web前端面试题目及详解汇总-HTML/CSS部分</h1>
+        <div class="post-tags">
+        
+        </div>
+    </div>
+    <div class="post-meta">
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2018-08-06</span>
+      
+      <!----------------------------------->
+        
+      <!----------------------------------->
+    </div>
+  </header>
+  
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML-CSS部分"><span class="toc-text">HTML/CSS部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是盒模型"><span class="toc-text">什么是盒模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML元素"><span class="toc-text">HTML元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS实现居中"><span class="toc-text">CSS实现居中</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#水平居中"><span class="toc-text">水平居中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#竖直居中"><span class="toc-text">竖直居中</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简述一下-href、src、rel、url-的区别"><span class="toc-text">简述一下 href、src、rel、url 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是CSS-Hack"><span class="toc-text">什么是CSS Hack?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简述同步和异步的区别"><span class="toc-text">简述同步和异步的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#px、em和rem的区别"><span class="toc-text">px、em和rem的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么叫优雅降级和渐进增强？"><span class="toc-text">什么叫优雅降级和渐进增强？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浏览器的内核分别是什么"><span class="toc-text">浏览器的内核分别是什么?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sessionStorage-、localStorage-和-cookie-之间的区别"><span class="toc-text">sessionStorage 、localStorage 和 cookie 之间的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#session和cookie之间的区别"><span class="toc-text">session和cookie之间的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-Storage与Cookie相比存在的优势"><span class="toc-text">Web Storage与Cookie相比存在的优势</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ajax的优缺点及工作原理？"><span class="toc-text">Ajax的优缺点及工作原理？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请指出document-load和document-ready的区别？"><span class="toc-text">请指出document load和document ready的区别？</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+  <div class="post-content">
+    <h2 id="HTML-CSS部分"><a href="#HTML-CSS部分" class="headerlink" title="HTML/CSS部分"></a>HTML/CSS部分</h2><h3 id="什么是盒模型"><a href="#什么是盒模型" class="headerlink" title="什么是盒模型"></a>什么是盒模型</h3><blockquote>
+<p>在网页中，一个元素占有空间的大小构成，采用盒子作一个比喻来理解。</p>
+</blockquote>
+<ul>
+<li><p><strong>盒模型的组成：</strong> 由里向外由 <strong>content</strong> 、<strong>padding</strong>、 <strong>border</strong> 、<strong>margin</strong> 四部分组成。</p>
+</li>
+<li><p><strong>盒模型的两种标准：</strong>  标准模型，IE模型。</p>
+<a id="more"></a>
+<ul>
+<li><p>两种标准的区别：</p>
+<p>在标准模型中，盒模型的 <strong>宽高</strong> 只是 <strong>内容（content）的宽高</strong> 。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/web-interview/%E6%A0%87%E5%87%86%E6%A8%A1%E5%9E%8B.png" alt="标准模型"></p>
+<p>在IE模型中盒模型的 <strong>宽高</strong> 是 <strong>内容(content)+填充(padding)+边框(border)的总宽高</strong> 。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/web-interview/IE%E6%A8%A1%E5%9E%8B.png" alt="IE模型"></p>
+</li>
+<li><p>CSS如何设置两种模型</p>
+<blockquote>
+<p>设置CSS3 的属性 box-sizing</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/* 标准模型 */</span><br><span class="line">box-sizing: content-box;</span><br><span class="line"></span><br><span class="line">/*IE模型*/</span><br><span class="line">box-sizing: border-box;</span><br><span class="line"></span><br><span class="line">/*继承父元素 box-sizing 属性的值*/</span><br><span class="line">box-sizing: inherit;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>边距重叠：</strong> 两个 <strong>相邻元素</strong> ，如果 <strong>上面的元素</strong> 设置了 <strong>margin-bottom</strong> ，而 <strong>下面的元素</strong> 设置了 <strong>margin-top</strong> ，那么两者的 <strong>margin将会重叠</strong> ，并且将 <strong>使用较大的margin作为最终的边距</strong> 。</p>
+<ul>
+<li>避免方式：只设置 <strong>margin-top</strong> 或 <strong>margin-bottom</strong>  ，而不是将两者混合使用。</li>
+</ul>
+</li>
+</ul>
+<p>来自—— <strong><a href="https://www.cnblogs.com/chengzp/p/cssbox.html" target="_blank" rel="noopener">深入理解CSS盒模型</a></strong></p>
+<h3 id="HTML元素"><a href="#HTML元素" class="headerlink" title="HTML元素"></a>HTML元素</h3><ul>
+<li><p><strong>行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？</strong></p>
+<blockquote>
+<p>行内元素、块级元素、空(void)元素</p>
+</blockquote>
+<ul>
+<li><p><strong>行内元素：</strong> a、b、span、img、input、strong、select、label、em、button、textarea 。</p>
+</li>
+<li><p><strong>块级元素：</strong> div、ul、li、dl、dt、dd、p、h1-h6、blockquote 。</p>
+</li>
+<li><p><strong>空元素：</strong> 即没有内容的HTML元素，例如：br、meta、hr、link、input、img 。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>行内元素和块元素</strong></p>
+<ul>
+<li><p>两者的区别</p>
+<ul>
+<li><p>块级元素</p>
+<blockquote>
+<p><strong>独占一行</strong>, 垂直方向排列；默认情况下，其 <strong>宽度自动填满其父元素宽度</strong> ；块级元素 <strong>可以设置width、height属性</strong> ；<strong>可以设置margin和padding属性</strong> 。</p>
+</blockquote>
+<p><em>注意，块级元素即使设置了宽度，仍然是独占一行。</em></p>
+</li>
+<li><p>行内元素</p>
+<blockquote>
+<p><strong>不会独占一行</strong> ，水平方向排列，相邻元素排列在同一行，直到排不下才会换行；其宽度  <strong>随元素的内容而变化</strong> ；行内元素 <strong>设置width、height属性无效</strong>（可以设置 <strong>line-height</strong> ） ；行内元素的  <strong>margin</strong> 和 <strong>padding</strong> 属性，<strong>水平方向</strong> 的 <strong>padding-left</strong> 、<strong>padding-right</strong> 、<strong>margin-left</strong> 、<strong>margin-right</strong> 都 <strong>产生效果</strong> ，但 <strong>竖直方向</strong> 的 <strong>padding-top</strong> 、<strong>padding-bottom</strong> 、<strong>margin-top</strong> 、<strong>margin-bottom</strong> 却 <strong>不会产生边距效果</strong> 。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>CSS相关属性display</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/*块级元素*/</span><br><span class="line">display: block;</span><br><span class="line"></span><br><span class="line">/*行内元素*/</span><br><span class="line">display: inline;</span><br><span class="line"></span><br><span class="line">/*行内的块级元素,集块元素和行内元素的特点于一身*/</span><br><span class="line">display: inline-block;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>为兼容 IE，真正能用的 display 类型只有 <strong>block</strong> 、<strong>inline</strong> 和  <strong>none</strong> 三种。可以使用一种 <strong>hack</strong> - 触发 <strong>行内元素</strong> 的 <strong>hasLayout</strong> （触发hasLayout，就会让行内元素拥有块级元素的特性），来支持 <strong>display: inline-block</strong> ，然后通过 <strong>vertical-aligin</strong> 解决竖直对齐问题。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">display:inline-block;</span><br><span class="line">*display:inline;</span><br><span class="line">vertical-aligin: middle;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><em>只能对行内元素实现 <strong>display:inline-block</strong>,而块级元素就不行。</em></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>来自—— <strong>《编写高质量代码：Web前端开发修炼之道》曹刘阳 （4.7.6 块级元素和行内元素的区别、4.7.7 display:inlne-block和hasLayout）</strong></p>
+<h3 id="CSS实现居中"><a href="#CSS实现居中" class="headerlink" title="CSS实现居中"></a>CSS实现居中</h3><blockquote>
+<p>CSS的居中会遇到很多种情况，不同的情况使用的方法不同。</p>
+</blockquote>
+<ul>
+<li><h4 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h4><ul>
+<li><p>文本、图片等 <strong>行内元素</strong> 的水平居中</p>
+<blockquote>
+<p>给 <strong>父元素</strong> 设置 <strong>text-align：center</strong> 。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.parent  &#123;</span><br><span class="line">  text-align：center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">img &#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>确定宽度</strong> 的 <strong>块级元素</strong> 的水平居中</p>
+<blockquote>
+<p><strong>确定宽度的块级元素本身</strong> 通过设置 <strong>margin-left:auto</strong> 和 <strong>margin-right: auto</strong> 来实现。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.self &#123;</span><br><span class="line">  width: 200px;</span><br><span class="line">  margin-left: auto;</span><br><span class="line">  margin-right: auto；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.self &#123;</span><br><span class="line">  width: 200px;</span><br><span class="line">  margin: 0 auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>不确定宽度</strong> 的 <strong>块级元素</strong> 的水平居中</p>
+<blockquote>
+<p>不确定宽度的块级元素有三种方式可以实现居中。</p>
+</blockquote>
+<ul>
+<li><p>方法一： 使用 <code>table</code> 标签来实现不确定宽度的块级元素的水平居中</p>
+<blockquote>
+<p><code>table</code> 它本身并 <strong>不是块级元素</strong> ，如果不给它设定宽度的话，<strong>它的宽度由内部元素的宽度“撑起”</strong> ，但即使不设定它的宽度，仅 <strong>对 <code>table</code>设置margin-left:auto 和 margin-right: auto就可以使 <code>table</code> 水平居中</strong> ， <strong>间接实现    <code>table</code> 内部元素的居中</strong> 。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">table &#123;</span><br><span class="line">  margin: 0 auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>这种做法很巧妙，但 <strong>缺点</strong> 是 <strong>增加了无语义标签</strong> ，<strong>加深了标签的嵌套层数</strong> 。</em></p>
+</li>
+<li><p>方法二： 改变块级元素的 <strong>display</strong> 为 <strong>inline类型</strong>，然后使用 <strong>text-aligin:center</strong> 来实现居中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  text-aligin: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.self &#123;</span><br><span class="line">  display: inline;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>它也 <strong>存在一定问题</strong> ：它将块级元素变成可行内元素，而 <strong>行内元素比起块级元素少一些功能</strong> ，比如设定长宽值，在某些特殊需求设置CSS设置中，这种方法可能会有一些限制。</em></p>
+</li>
+<li><p>方法三：通过给 <strong>父元素</strong> 设置 <strong>float</strong> ，然后 <strong>父元素</strong> 设置<strong>position：relative</strong> 和 <strong>left:50%</strong> , <strong>子元素</strong> 设置 <strong>positionrelative</strong> 和 <strong>left:-50%</strong> ;来实现水平居中。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">  left: 50%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.self &#123;</span><br><span class="line">  position: relattive;</span><br><span class="line">  left: -50%</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>保留了块级元素，而且不会添加无语义标签，不增加嵌套深度，但它的 <strong>缺点</strong> 是设置了 <strong>position:relative</strong> ,带来了 <strong>一定副作用</strong> 。</em></p>
+</li>
+</ul>
+</li>
+<li><p>Flex</p>
+<p>可查看站内文章—— <strong>Flex布局</strong></p>
+</li>
+</ul>
+</li>
+<li><h4 id="竖直居中"><a href="#竖直居中" class="headerlink" title="竖直居中"></a>竖直居中</h4><ul>
+<li><p><strong>父元素高度不确定</strong> 的 <strong>文本</strong> 、<strong>图片</strong> 、<strong>块级元素</strong> 的竖直居中</p>
+<blockquote>
+<p>通过给 <strong>父容器</strong> 设置 <strong>相同的上下边距</strong> 实现的。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  padding-top: 20px;</span><br><span class="line">  padding-bottom: 20px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  padding: 20px 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>父元素高度确定</strong> 的 <strong>单行文本</strong> 的竖直居中</p>
+<blockquote>
+<p>通过给 <strong>父元素</strong> 设置 <strong>line-height</strong> 来实现的，<strong>line-height值和父元素的高度值相同</strong> 。</p>
+</blockquote>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">parent &#123;</span><br><span class="line">  height: 100px;</span><br><span class="line">  line-height: 100px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>父元素高度确定</strong> 的 <strong>多行文本</strong> 、<strong>图片</strong> 、<strong>块级元素的竖直居中</strong></p>
+<blockquote>
+<p>父元素高度确定的的多行文本、图片、块级元素的竖直居中有两种方法。</p>
+</blockquote>
+<ul>
+<li><p>方法一：使用用于垂直居中的 <strong>属性vertical-align</strong> ,但只有当 <strong>父元素为td或th</strong> 时，这个 <strong>vertical-align属性才会生效</strong> 。</p>
+<p>Fire和IE8及以上版本可以 设置块级元素的 <strong>display</strong> 类型为 <strong>table-cell</strong> ， <strong>激活vertical-align属性</strong> ，但是IE6和IE7并不支持dispaly:table-cell。</p>
+<blockquote>
+<p>虽然可以设置display:table-cell来模拟表格，但没办法跨浏览器兼容，那么就 <strong>直接使用表格</strong> 来实现。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">table &#123;&#125;</span><br><span class="line"></span><br><span class="line">.self &#123;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>方法一可以很好地实现竖直居中效果，且不会带来任何样式上副作用，但是它 <strong>添加了无语义标签</strong> ，并 <strong>增加了嵌套深度</strong> 。</em></p>
+</li>
+<li><p>方法二： 对支持display: table-cell的IE8和Firefox用dispaly:table-cell和vertical-align: middle来实现居中，对不支持display:table-cell的IE6和IE7，使用特定格式的hack。</p>
+<blockquote>
+<p>给不支持display:table-cell的IE6和IE7，通过给 <strong>父子两层元素</strong> 分别设置 <strong>top:50%</strong> 和 <strong>top:-50%</strong>来实现居中。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  display: table-cell;</span><br><span class="line">  vertival-align: middle;</span><br><span class="line">  *position: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.vertical-parent &#123;</span><br><span class="line">  *position: absolute;</span><br><span class="line">  *top:50%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.vertical-self &#123;</span><br><span class="line">  *position: relative;</span><br><span class="line">  *top:-50%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>这种方法的好处是没有增加额外的标签，但它的 <strong>缺点</strong> 也很明显，一方面它 <strong>使用了hack</strong> ，<strong>不利于维护</strong> ，另一方面，它 <strong>需要设置position：relative和posion：absolute</strong> , <strong>带来了副作用</strong> 。</em></p>
+</li>
+</ul>
+</li>
+<li><p>Flex</p>
+<p>可查看站内文章—— <strong>Flex布局</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>来自—— <strong>《编写高质量代码：Web前端开发修炼之道》曹刘阳 （4.7.9 居中）</strong></p>
+<h3 id="简述一下-href、src、rel、url-的区别"><a href="#简述一下-href、src、rel、url-的区别" class="headerlink" title="简述一下 href、src、rel、url 的区别"></a>简述一下 href、src、rel、url 的区别</h3><ul>
+<li><p><strong>href</strong></p>
+<blockquote>
+<p><strong>href</strong> 是 <strong>Hypertext Reference</strong> 的缩写，表示 <strong>超文本引用</strong> 。用来建立 <strong>当前元素</strong> 和 <strong>文档</strong> 之间的链接，指向 <strong>网络资源所在位置</strong> 。</p>
+</blockquote>
+<p>常用的有：link、a。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=&quot;reset.css&quot; rel=”stylesheet“/&gt;</span><br></pre></td></tr></table></figure>
+<p><em>浏览器会识别该文档为css文档，<strong>并行下载该文档</strong> ，并且 <strong>不会停止对当前文档的处理</strong> 。这也是建议使用link，而不采用@import加载css的原因。</em></p>
+</li>
+<li><p><strong>src</strong></p>
+<blockquote>
+<p><strong>src</strong> 是 <strong>source</strong> 的缩写，<strong>src</strong> 的内容是页面必不可少的一部分，是 <strong>引入</strong> 。<strong>src</strong> 指向的 <strong>内容会嵌入到文档中当前标签所在的位置</strong> ,指向 <strong>外部资源的位置</strong> 。</p>
+</blockquote>
+<p>常用的有：img、script、iframe。例如；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p><em>当浏览器解析到该元素时，会 <strong>暂停浏览器的渲染</strong> ， <strong>直到该资源加载完毕</strong> 。这也是将js脚本放在底部而不是头部得原因。</em></p>
+</li>
+</ul>
+<p>简而言之，<strong>src</strong> 用于 <strong>替换当前元素</strong> ；<strong>href</strong> 用于 <strong>在当前文档和引用资源之间建立联系</strong> 。也就是说src引用的路径是 <strong>img自己的路径</strong> ，href引用的路径是要 <strong>跳转到的地方</strong> 。</p>
+<ul>
+<li><p><strong>rel</strong></p>
+<blockquote>
+<p><strong>rel</strong> 是 <strong>relationship</strong> 的缩写。用于 <strong>定义链接的文件和HTML文档之间的关系</strong> 。<strong>StyleSheet</strong> 的意思就是 <strong>样式调用</strong> 。<strong>设置或检索对象之间的链接目标的关系</strong> 。如果没有值指出，rel属性的 <strong>默认关系</strong> 是一个 <strong>空字符串</strong> 。使用此属性 仅当 <strong>href属性</strong> 应用。</p>
+</blockquote>
+</li>
+<li><p><strong>url</strong></p>
+<blockquote>
+<p><strong>统一资源定位符</strong> 是 对可以从互联网上得到的 <strong>资源的位置</strong> 和 <strong>访问方法</strong> 的一种简洁的表示，是 <strong>互联网上标准资源的地址</strong> 。互联网上的每个文件都有一个 <strong>唯一</strong> 的 <strong>URL</strong> ，它包含的信息指出 <strong>文件的位置</strong> 以及 <strong>浏览器应该怎么处理它</strong> 。</p>
+</blockquote>
+<p>基本URL包含 <strong>模式</strong>（或称 <strong>协议</strong> ）、 <strong>服务器名称</strong>（或 <strong>IP地址</strong> ）、 <strong>路径</strong> 和<strong>文件名</strong> 。</p>
+</li>
+</ul>
+<p>来自—— <a href="https://blog.csdn.net/annsheshira23/article/details/51133709" target="_blank" rel="noopener">HTML中href、src区别</a>、<a href="https://blog.csdn.net/chengshaolei2012/article/details/72847770" target="_blank" rel="noopener">rel、href、src、url的区别</a></p>
+<h3 id="什么是CSS-Hack"><a href="#什么是CSS-Hack" class="headerlink" title="什么是CSS Hack?"></a>什么是CSS Hack?</h3><blockquote>
+<p>针对不同的浏览器 /不同版本写相应的 <strong>CSS</strong> 的过程,就是 <strong>CSS Hack</strong> 。</p>
+</blockquote>
+<p><strong>CSS Hack常见的有三种形式：</strong>  <strong>CSS属性Hack</strong> 、 <strong>CSS选择符Hack</strong> 以及 <strong>IE条件注释Hack</strong> ， Hack主要针对IE浏览器。</p>
+<ul>
+<li><p>CSS属性Hack</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#test&#123;</span><br><span class="line">    color:#c30; /* For Firefox */</span><br><span class="line">    color:red\0; /* For Opera */</span><br><span class="line">    color:yellow\9; /* For IE8+ */</span><br><span class="line">    *color:blue; /* For IE7 */</span><br><span class="line">    _color:#ccc; /* For IE6 */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CSS选择符Hack</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">* html .test&#123;color:#090;&#125;       /* For IE6 and earlier */</span><br><span class="line">* + html .test&#123;color:#ff0;&#125;     /* For IE7 */</span><br><span class="line">.test:lang(zh-cn)&#123;color:#f00;&#125;  /* For IE8+ and not IE */</span><br><span class="line">.test:nth-child(1)&#123;color:#0ff;&#125; /* For IE9+ and not IE */</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>IE条件注释Hack<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--[if &lt;keywords&gt;? IE &lt;version&gt;?]&gt;</span><br><span class="line">    HTML代码块</span><br><span class="line">&lt;![endif]--&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>来自—— <a href="https://blog.csdn.net/freshlover/article/details/12132801" target="_blank" rel="noopener">史上最全的CSS hack方式一览</a>、<a href="https://www.duitang.com/static/csshack.html" target="_blank" rel="noopener">CSS hack大全</a>、<a href="https://www.cnblogs.com/miniyk/p/3734664.html" target="_blank" rel="noopener">今天才知道css hack是什么</a>、<a href="https://www.w3cschool.cn/css3/question-10231625.html" target="_blank" rel="noopener">CSS Hack是什么意思？css hack有什么用？</a>、<a href="https://www.w3cschool.cn/css/css-hack.html" target="_blank" rel="noopener">你想知道的css hack知识全都帮你整理好了</a>、<a href="http://phpstudy.php.cn/css3/" target="_blank" rel="noopener">CSS参考手册</a></p>
+<h3 id="简述同步和异步的区别"><a href="#简述同步和异步的区别" class="headerlink" title="简述同步和异步的区别"></a>简述同步和异步的区别</h3><blockquote>
+<p>同步是阻塞模式，异步是非阻塞模式。</p>
+</blockquote>
+<ul>
+<li><p>同步</p>
+<blockquote>
+<p>使用者通过 <strong>单个线程</strong> 调用服务；该线程发送请求，在服务 <strong>运行时阻塞</strong>，并且 <strong>等待响应</strong> 。</p>
+</blockquote>
+<p>同步就是指一个进程在执行某个请求的时候，若该请求需要一段时间才能返回信息，那么这个 <strong>进程将会一直等待</strong> 下去，直到收到 <strong>返回信息才继续执行下去</strong> 。</p>
+</li>
+<li><p>异步</p>
+<blockquote>
+<p>使用者通过 <strong>两个线程</strong> 调用服务；一个线程 <strong>发送请求</strong> ，而另一个单独的线程 <strong>接收响应</strong> 。</p>
+</blockquote>
+<p>异步是指 <strong>进程不需要一直等下去</strong> ，而是 <strong>继续执行下面的操作</strong> ，不管其他进程的状态。当有 <strong>消息返回时系统会通知进程进行处理</strong> ，这样可以提高执行的效率。</p>
+</li>
+</ul>
+<p>来自—— <a href="https://blog.csdn.net/goodshot/article/details/7244053" target="_blank" rel="noopener">同步请求和异步请求的区别</a>、<a href="https://www.cnblogs.com/Renyi-Fan/p/7808756.html#_label0_5" target="_blank" rel="noopener">简述同步和异步的区别</a>、<a href="https://www.cnblogs.com/orez88/articles/2513460.html" target="_blank" rel="noopener">阻塞与非阻塞的区别</a></p>
+<h3 id="px、em和rem的区别"><a href="#px、em和rem的区别" class="headerlink" title="px、em和rem的区别"></a>px、em和rem的区别</h3><ul>
+<li><p>px </p>
+<blockquote>
+<p><strong>px</strong> 又称 <strong>像素</strong> （Pixel），<strong>相对长度单位</strong> 。像素 <strong>px</strong> 是 <strong>相对于显示屏幕分辨率</strong> 而言的。</p>
+</blockquote>
+</li>
+<li><p>em</p>
+<blockquote>
+<p><strong>em</strong>，<strong>相对长度单位</strong> 。<strong>em</strong> 相对于 <strong>当前对象内文本的字体尺寸</strong> 。如当前对行内文本的 <strong>字体尺寸未被人为设置</strong> ，则 <strong>相对于</strong> 浏览器的 <strong>默认字体尺寸</strong>（16px）。</p>
+</blockquote>
+<p><em>任意浏览器的默认字体高都是16px。所有未经调整的浏览器豆腐额：<strong>1em=16px</strong> 。但 <strong>em</strong> 的 <strong>值并不是固定的</strong> ；<strong>em</strong> 会 <strong>继承父级元素</strong> 的 <strong>字体大小</strong> 。</em></p>
+</li>
+<li><p>rem</p>
+<blockquote>
+<p><strong>rem</strong> 是 <strong>root em</strong> 的缩写（即 <strong>根em</strong>），<strong>CSS3</strong> 新增的一个 <strong>相对单位</strong>。区别在于使用 <strong>rem</strong> 为元素设定字体大小时，仍然是相对大小，但 <strong>相对的是 HTML 根元素</strong> （ <a href="https://blog.csdn.net/ixygj197875/article/details/79737953" target="_blank" rel="noopener">HTML文档的根元素是 html 元素</a> ）。</p>
+</blockquote>
+<p><em>这个单位可谓集 <strong>相对大小</strong> 和 <strong>绝对大小</strong> 的 <strong>优点</strong> 于一身，通过它既可以做到 <strong>只修改根元素</strong> 就 <strong>成比例地调整所有字体大小</strong> ，又 <strong>可以避免字体大小逐层复合的连锁反应</strong> 。</em></p>
+<p>目前，除了IE8及更早版本外，所有浏览器均已支持rem。对于 <strong>不支持</strong> 它的 <strong>浏览器</strong> ，应对方法也很简单，就是 <strong>多写一个绝对单位的声明</strong> 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p &#123;</span><br><span class="line">  font-size: 14px;</span><br><span class="line">  font-size: 875rem;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果你的用户群都是用 <strong>最新版的浏览器</strong> ，那 <strong>推荐使用rem</strong> ，如果要 <strong>考虑兼容性</strong>，那就 <strong>使用px</strong> ，或者 <strong>两者同时使用</strong> 。</p>
+<p><a href="http://pxtoem.com/" target="_blank" rel="noopener">px,em,rem单位转换工具</a></p>
+<p>来自—— <a href="https://www.cnblogs.com/langee/p/6890362.html" target="_blank" rel="noopener">彻底弄懂px,em和rem的区别</a></p>
+<h3 id="什么叫优雅降级和渐进增强？"><a href="#什么叫优雅降级和渐进增强？" class="headerlink" title="什么叫优雅降级和渐进增强？"></a>什么叫优雅降级和渐进增强？</h3><ul>
+<li><p><strong>渐进增强</strong>（progressive enhancement）：</p>
+<blockquote>
+<p>针对 <strong>低版本浏览器</strong> 进行 <strong>构建页面</strong> ，保证 <strong>最基本</strong> 的功能，然后再针对 <strong>高级浏览器</strong> 进行 <strong>效果</strong> 、<strong>交互</strong> 等 <strong>改进</strong> 和 <strong>追加功能</strong> 达到 <strong>更好的用户体验</strong> 。</p>
+</blockquote>
+</li>
+<li><p><strong>优雅降级</strong>（graceful degradation）：</p>
+<blockquote>
+<p>一开始就构建 <strong>完整</strong> 的 <strong>功能</strong> ，然后再针对 <strong>低版本浏览器</strong> 进行 <strong>兼容</strong> 。</p>
+</blockquote>
+<hr>
+</li>
+<li><p><strong>渐进增强和优雅降级的区别：</strong></p>
+<ol>
+<li><p><strong>优雅降级</strong> 是从 <strong>复杂</strong> 的现状 <strong>开始</strong> ，并试图 <strong>减少用户体验</strong> 的供给。</p>
+</li>
+<li><p><strong>渐进增强</strong> 则是从一个 <strong>非常基础</strong> 的，<strong>能够起作用</strong> 的 <strong>版本</strong> 开始，并 <strong>不断扩充</strong> ，以 <strong>适应</strong> 未来环境的 <strong>需要</strong> 。</p>
+</li>
+<li><p><strong>降级</strong>（功能衰减）意味着 <strong>往回看</strong> ；而 <strong>渐进增强</strong> 则意味着 <strong>朝前看</strong> ，同时 <strong>保证其根基处于安全地带</strong> 。</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>来自—— <a href="https://www.cnblogs.com/Renyi-Fan/p/7808756.html#_label0_7" target="_blank" rel="noopener">什么叫优雅降级和渐进增强？</a></p>
+<h3 id="浏览器的内核分别是什么"><a href="#浏览器的内核分别是什么" class="headerlink" title="浏览器的内核分别是什么?"></a>浏览器的内核分别是什么?</h3><blockquote>
+<p>浏览器的内核是分为两个部分的，一是 <strong>渲染引擎</strong> (layout engineer或Rendering Engine)，另一个是 <strong>JS引擎</strong> 。现在JS引擎比较独立，内核更加倾向于说 <strong>渲染引擎</strong> 。</p>
+</blockquote>
+<p><strong>渲染引擎</strong></p>
+<p>负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入CSS等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核。</p>
+<p><strong>JS引擎则</strong> </p>
+<p> 解析和执行javascript来实现网页的动态效果。最开始渲染引擎和JS引擎并没有区分的很明确，后来JS引擎越来越独立，内核就倾向于只指渲染引擎。</p>
+<ul>
+<li><p>主流浏览器内核及其内核</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/web-interview/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8.png" alt="主流浏览器内核"></p>
+</li>
+<li><p>五大流浏览器内核及其代表</p>
+<ul>
+<li><p>Trident内核</p>
+<blockquote>
+<p>代表作品是 <strong>IE</strong> ，因 <strong>IE捆绑在Windows中</strong> ，所以占有极高的份额，又称为<strong>IE内核</strong> 或 <strong>MSHTML</strong> ，此内核 <strong>只能用于 Windows 平台</strong> ，且 <strong>不是开源的</strong> 。代表作品还有 <strong>腾讯</strong>、<strong>Maxthon</strong>（遨游）、<strong>360浏览器</strong> 等。存在很多的兼容性问题。</p>
+</blockquote>
+</li>
+<li><p>Gecko内核</p>
+<blockquote>
+<p>代表作品是 <strong>Firefox</strong> （即火狐浏览器）。因火狐是最多的用户，故常被称为  <strong>firefox</strong> 内核,它是 <strong>开源的</strong> ，最大优势是 <strong>跨平台</strong>，在 <strong>Microsoft Windows</strong> 、<strong>Linux</strong> 、<strong>MacOs X</strong> 等主要操作系统中使用。</p>
+</blockquote>
+</li>
+<li><p>Webkit内核</p>
+<blockquote>
+<p>代表作品是 <strong>Safari</strong>、曾经的 <strong>Chrome</strong>。开源的项目。</p>
+</blockquote>
+</li>
+<li><p>Presto内核：</p>
+<blockquote>
+<p>代表作品是 <strong>Opera</strong> ，<strong>Presto</strong> 是由 <strong>Opera Software</strong> 开发的 <strong>浏览器排版引擎</strong> ，它是世界公认 <strong>最快的渲染速度的引擎</strong> 。在13年之后，Opera宣布加入谷歌阵营，弃用了 <strong>Presto</strong> 。</p>
+</blockquote>
+</li>
+<li><p>Blink内核</p>
+<blockquote>
+<p>由 <strong>Google</strong> 和 <strong>Opera Software</strong> 开发的 <strong>浏览器排版引擎</strong> ，2013年4月发布。现在 <strong>Chrome</strong> 内核是 <strong>Blink</strong> 。谷歌还开发了自己的 <strong>JS引擎</strong> ，<strong>V8</strong> ，<strong>使JS运行速度极大地提高了</strong> 。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>来自—— <a href="https://www.cnblogs.com/maggie-pan/p/6391355.html" target="_blank" rel="noopener">浏览器的内核分别是什么？</a>、<a href="https://blog.csdn.net/u014753892/article/details/52713841" target="_blank" rel="noopener">五大流浏览器内核及其代表</a></p>
+<h3 id="sessionStorage-、localStorage-和-cookie-之间的区别"><a href="#sessionStorage-、localStorage-和-cookie-之间的区别" class="headerlink" title="sessionStorage 、localStorage 和 cookie 之间的区别"></a>sessionStorage 、localStorage 和 cookie 之间的区别</h3><blockquote>
+<p><strong>sessionStorage</strong> 、<strong>localStorage</strong> 和 <strong>cookie</strong> 都用于浏览器本地存储。</p>
+</blockquote>
+<ul>
+<li><p>sessionStorage</p>
+<blockquote>
+<p><strong>HTML5 Web Storage API</strong> 提供；可以方便的在 <strong>Web</strong> 请求之间 <strong>保存数据</strong> ；将数据保存在 <strong>session</strong> 对象中。所谓 <strong>session</strong> ，是指用户在 <strong>浏览某个网站</strong> 时，从 <strong>进入网站</strong> 到 <strong>浏览器关闭</strong> 所 <strong>经过的这段时间</strong> ，也就是用户 <strong>浏览这个网站所花费的时间</strong> 。<strong>session</strong> 对象可以用来 <strong>保存在这段时间内所要求保存的任何数据</strong> 。<strong>sessionStorage</strong> 为 <strong>临时保存</strong> 。</p>
+</blockquote>
+<p> <strong>sessionStorage</strong> 的 <strong>生命周期</strong> 是在仅在 <strong>当前会话</strong> 下有效。<strong>sessionStorage</strong> 的概念很特别，引入了一个 <strong>“浏览器窗口”</strong>的概念。<strong>sessionStorage</strong> 是在 <strong>同源的同窗口</strong>（或 <strong>tab</strong> ）中，<strong>始终存在的数据</strong> 。也就是说只要这个 <strong>浏览器窗口没有关闭</strong> ，即使 <strong>刷新页面</strong> 或 <strong>进入同源另一页面</strong> ，<strong>数据仍然存在</strong> 。<strong>关闭窗口</strong> 后，<strong>sessionStorage</strong> 即 <strong>被销毁</strong> 。同时 <strong>“独立”</strong> 打开的 <strong>不同窗口</strong>，即使是 <strong>同一页面</strong> ，<strong>sessionStorage</strong> 对象也是 <strong>不同的</strong> 。</p>
+</li>
+<li><p>localStorage</p>
+<blockquote>
+<p>将数据保存在 <strong>客户端本地的硬件设备</strong> (通常指 <strong>硬盘</strong> ，也可以是 <strong>其他硬件设备</strong> )中，即使 <strong>浏览器被关闭</strong> 了，该 <strong>数据仍然存在</strong> ，<strong>下次打开浏览器</strong> 访问网站时 <strong>仍然可以继续使用</strong> 。<strong>localStorage</strong> 为 <strong>永久保存</strong> 。<strong>localStorage</strong> 的 <strong>生命周期</strong>是 <strong>永久的</strong> ，<strong>关闭页面或浏览器</strong> 之后<strong>localStorage</strong> 中的数据也 <strong>不会消失</strong> 。<strong>localStorage</strong> 除非 <strong>主动删除数据</strong> ，否则 <strong>数据永远不会消失</strong> 。</p>
+</blockquote>
+</li>
+<li><p>cookie</p>
+<blockquote>
+<p><strong>HTML5之前的本地存储</strong> ;浏览器的 <strong>缓存机制</strong> 提供了可以将 <strong>用户数据</strong> 存储在 <strong>客户端上的方式</strong> ，可以利用 <strong>cookie</strong> , <strong>session</strong> 等跟 <strong>服务端</strong> 进行 <strong>数据交互</strong> 。</p>
+</blockquote>
+</li>
+<li><p>session</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/web-interview/cookie%E3%80%81sessionStorage%E4%B8%8ElacalStrage%E7%9A%84%E5%8C%BA%E5%88%AB.png" alt="cookie、sessionStorage与lacalStrage的区别"></p>
+</li>
+</ul>
+<p>共同点：都是 <strong>保存在浏览器端</strong> ，且 <strong>同源的</strong> 。</p>
+<p>区别：cookie数据始终在同源的http请求中携带（即使不需要），即cookie在浏览器和服务器间来回传递；cookie数据还有路径（path）的概念，可以限制cookie只属于某个路径下。存储大小限制也不同，cookie数据不能超过4k，同时因为每次http请求都会携带cookie，所以cookie只适合保存很小的数据，如会话标识。</p>
+<p>而sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。</p>
+<p>数据有效期不同，sessionStorage：仅在当前浏览器窗口关闭前有效，自然也就不可能持久保持；localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据；cookie只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭。</p>
+<p>作用域不同，sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。Web Storage 支持事件通知机制，可以将数据更新的通知发送给监听者。Web Storage 的 api 接口使用更方便。</p>
+<p>来自—— <a href="https://www.cnblogs.com/pengc/p/8714475.html" target="_blank" rel="noopener">cookies、sessionStorage和localStorage解释及区别</a></p>
+<h3 id="session和cookie之间的区别"><a href="#session和cookie之间的区别" class="headerlink" title="session和cookie之间的区别"></a>session和cookie之间的区别</h3><h3 id="Web-Storage与Cookie相比存在的优势"><a href="#Web-Storage与Cookie相比存在的优势" class="headerlink" title="Web Storage与Cookie相比存在的优势"></a>Web Storage与Cookie相比存在的优势</h3><ul>
+<li><p>存储空间更大：cookie为4KB，而WebStorage是5MB；</p>
+</li>
+<li><p>节省网络流量：WebStorage不会传送到服务器，存储在本地的数据可以直接获取，也不会像cookie一样美词请求都会传送到服务器，所以减少了客户端和服务器端的交互，节省了网络流量；</p>
+</li>
+<li><p>对于那种只需要在用户浏览一组页面期间保存而关闭浏览器后就可以丢弃的数据，sessionStorage会非常方便；</p>
+</li>
+<li><p>快速显示：有的数据存储在WebStorage上，再加上浏览器本身的缓存。获取数据时可以从本地获取会比从服务器端获取快得多，所以速度更快；</p>
+</li>
+<li><p>安全性：WebStorage不会随着HTTP header发送到服务器端，所以安全性相对于cookie来说比较高一些，不会担心截获，但是仍然存在伪造问题；</p>
+</li>
+<li><p>WebStorage提供了一些方法，数据操作比cookie方便；</p>
+<ul>
+<li>setItem (key, value) ——  保存数据，以键值对的方式储存信息。</li>
+<li><p>getItem (key) ——  获取数据，将键值传入，即可获取到对应的value值。</p>
+</li>
+<li><p>removeItem (key) ——  删除单个数据，根据键值移除对应的信息。</p>
+</li>
+<li><p>clear () ——  删除所有的数据</p>
+</li>
+<li><p>key (index) —— 获取某个索引的key</p>
+</li>
+</ul>
+</li>
+<li><p>独立的存储空间：每个域（包括子域）有独立的存储空间，各个存储空间是完全独立的，因此不会造成数据混乱。  </p>
+</li>
+</ul>
+<p>来自—— <a href="https://www.cnblogs.com/pengc/p/8714475.html" target="_blank" rel="noopener">cookies、sessionStorage和localStorage解释及区别</a></p>
+<h4 id="Ajax的优缺点及工作原理？"><a href="#Ajax的优缺点及工作原理？" class="headerlink" title="Ajax的优缺点及工作原理？"></a>Ajax的优缺点及工作原理？</h4><blockquote>
+<p><strong>Ajax</strong> 是 <strong>Asynchronous Javascript And XML</strong> （异步 JavaScript 和 XML）的缩写，是指一种创建交互式网页应用的网页开发技术。</p>
+</blockquote>
+<ul>
+<li>Ajax = 异步 JavaScript 和 XML（标准通用标记语言的子集）。</li>
+<li>Ajax 是一种用于创建快速动态网页的技术。</li>
+<li>Ajax 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。 [1] </li>
+<li>通过在后台与服务器进行少量数据交换，Ajax 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</li>
+<li>传统的网页（不使用 Ajax）如果需要更新内容，必须重载整个网页页面。</li>
+</ul>
+<p><em>注意：Ajax 不是一种新的编程语言，而是一种用于创建更好更快以及交互性更强的Web应用程序的技术。</em></p>
+<p>传统的Web应用交互由用户触发一个HTTP请求到服务器,服务器对其进行处理后再返回一个新的HTHL页到客户端, 每当服务器处理客户端提交的请求时,客户都只能空闲等待,并且哪怕只是一次很小的交互、只需从服务器端得到很简单的一个数据,都要返回一个完整的HTML页,而用户每次都要浪费时间和带宽去重新读取整个页面。这个做法浪费了许多带宽，由于每次应用的交互都需要向服务器发送请求，应用的响应时间就依赖于服务器的响应时间。这导致了用户界面的响应比本地应用慢得多。</p>
+<p>与此不同，AJAX应用可以仅向服务器发送并取回必需的数据，它使用SOAP或其它一些基于XML的Web Service接口，并在客户端采用JavaScript处理来自服务器的响应。因为在服务器和浏览器之间交换的数据大量减少，结果我们就能看到响应更快的应用。同时很多的处理工作可以在发出请求的客户端机器上完成，所以Web服务器的处理时间也减少了。</p>
+<p>优点：<br>1.减轻服务器的负担,按需取数据,最大程度的减少冗余请求</p>
+<p>2.局部刷新页面,减少用户心理和实际的等待时间,带来更好的用户体验</p>
+<p>3.基于xml标准化,并被广泛支持,不需安装插件等,进一步促进页面和数据的分离</p>
+<p>缺点：<br>1.AJAX大量的使用了javascript和ajax引擎,这些取决于浏览器的支持.在编写的时候考虑对浏览器的兼容性.</p>
+<p>2.AJAX只是局部刷新,所以页面的后退按钮是没有用的.</p>
+<p>3.对流媒体还有移动设备的支持不是太好等</p>
+<p> <img src="http://p9myzkds7.bkt.clouddn.com/web-interview/AJAX%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.gif" alt="AJAX工作原理"></p>
+<p> 1.创建ajax对象（XMLHttpRequest/ActiveXObject(Microsoft.XMLHttp)）</p>
+<p>2.判断数据传输方式(GET/POST)</p>
+<p>3.打开链接 open()</p>
+<p>4.发送 send()</p>
+<p>5.当ajax对象完成第四步（onreadystatechange）数据接收完成，判断http响应状态（status）200-300之间或者304（缓存）执行回调函数。</p>
+<p>AJAX的工作原理<br>Ajax的工作原理相当于在用户和服务器之间加了—个中间层(AJAX引擎),使用户操作与服务器响应异步化。并不是所有的用户请求都提交给服务器,像—些数据验证和数据处理等都交给Ajax引擎自己来做, 只有确定需要从服务器读取新数据时再由Ajax引擎代为向服务器提交请求。<br>Ajax其核心有JavaScript、XMLHTTPRequest、DOM对象组成，通过XmlHttpRequest对象来向服务器发异步请求，从服务器获得数据，然后用JavaScript来操作DOM而更新页面。这其中最关键的一步就是从服务器获得请求数据。让我们来了解这几个对象。<br>(1).XMLHTTPRequest对象<br>Ajax的一个最大的特点是无需刷新页面便可向服务器传输或读写数据(又称无刷新更新页面),这一特点主要得益于XMLHTTP组件XMLHTTPRequest对象。<br>XMLHttpRequest 对象方法描述 </p>
+<p>(2).JavaScript<br>JavaScript是一在浏览器中大量使用的编程语言。</p>
+<p>(3).DOM Document Object Model<br>DOM是给HTML和XML文件使用的一组API。它提供了文件的结构表述，让你可以改变其中的內容及可见物。其本质是建立网页与Script或程序语言沟通的桥梁。所有WEB开发人员可操作及建立文件的属性、方法及事件都以对象来展现（例如，document就代表“文件本身“这个对像，table对象则代表HTML的表格对象等等）。这些对象可以由当今大多数的浏览器以Script来取用。一个用HTML或XHTML构建的网页也可以看作是一组结构化的数据，这些数据被封在DOM（Document Object Model）中，DOM提供了网页中各个对象的读写的支持。<br>(4).XML<br>可扩展的标记语言（Extensible Markup Language）具有一种开放的、可扩展的、可自描述的语言结构，它已经成为网上数据和文档传输的标准,用于其他应用程序交换数据 。</p>
+<p> 来自—— <a href="https://www.w3cschool.cn/ajax/nr583fns.html" target="_blank" rel="noopener">AJAX 简介</a>、<a href="https://www.cnblogs.com/wdlhao/p/8290436.html#_label3" target="_blank" rel="noopener">Ajax的优缺点及工作原理？</a>、<a href="https://www.cnblogs.com/SanMaoSpace/archive/2013/06/15/3137180.html" target="_blank" rel="noopener">AJAX工作原理及其优缺点</a></p>
+<h3 id="请指出document-load和document-ready的区别？"><a href="#请指出document-load和document-ready的区别？" class="headerlink" title="请指出document load和document ready的区别？"></a>请指出document load和document ready的区别？</h3><p> 共同点：这两种事件都代表的是页面文档加载时触发。</p>
+<p>异同点：</p>
+<p>ready 事件的触发，表示文档结构已经加载完成（不包含图片等非文字媒体文件）。</p>
+<p>onload 事件的触发，表示页面包含图片等文件在内的所有元素都加载完成。</p>
+
+  </div>
+  <div class="post-footer">the end</div>
+</article>
+
+          
+  <nav class="pagination post-nav">
+    
+      <a href="/2018/08/07/company-and-campus-recruitment/">
+        <span class="prev-post"><i class="iconfont icon-back"></i>公司及校园招聘流程</span>
+      </a>
+    
+    
+      <a href="/2018/08/06/Web-interview/">
+        <span class="next-post">Web前端面试<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+  
+
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+
+  <script src="/js/ztopic.js"></script>
+</body>
+</html>
