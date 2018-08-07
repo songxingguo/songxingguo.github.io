@@ -48,6 +48,10 @@ tags:
  
 ### HTML元素
 
+  - 元素分类 
+
+   ![元素分类](http://p9myzkds7.bkt.clouddn.com/web-interview/%E5%85%83%E7%B4%A0%E5%88%86%E7%B1%BB.png)
+
   
   - **行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？**
   
@@ -95,6 +99,7 @@ tags:
       *只能对行内元素实现 **display:inline-block**,而块级元素就不行。*
        
 来自—— **《编写高质量代码：Web前端开发修炼之道》曹刘阳 （4.7.6 块级元素和行内元素的区别、4.7.7 display:inlne-block和hasLayout）**
+
 
 ### CSS实现居中
 
@@ -399,8 +404,99 @@ tags:
   
   >_**position:absolute**和 **float** 会 **隐式地改变display类型** ，不论之前是什么类型的元素（ **display:none** 除外），只要设置了 **position:absolute** 、**float:lef** 或 **float:right** 中任意一个，都会让元素以 **display：inline-block** 的方式显示：**可以设置长宽** ，**默认宽度并不占满父元素** 。就算我们 **显式地** 设置 **display:inline** 或者 **display：block** ，也 **仍然无效** （ **float** 在 **IE 6** 下的 **双倍边距bug** 就是利用 **添加 display:inline 来解决的** ）。值得注意的是，**position:relative** 却 **不会隐式改变display的类型** 。_
   
+来自—— **《编写高质量代码：Web前端开发修炼之道》曹刘阳 （4.7.8 relative、absolute 和 float）**
 
 ### 清除浮动有哪些方式？比较好的方式是哪一种？
+
+- **浮动的定义**
+
+  > 定义了 **浮动属性的框** 可以 **左右移动** ， **直到它的外边缘** 与 **包含框** 或 **另一个浮动元素的框的边框** 相碰为止。**浮动框** 是 **不存在文档的普通流中**  ，因此 **文档的普通流中的块框** 表现的就 **如同浮动框不存在一般** 。如果 **包含框宽度不够** ，即 **无法同时容纳几个浮动元素** ，那么**浮动块** 将 **向下移动** ，**直到有充足的空间** ，可以 **放下浮动框** 为止。如果 **浮动元素的高度不同** ，那么它们向**下移动时** 可能 **会被其他浮动元素“卡住”** 。
+
+- **float 属性**
+
+  > **float** 的 **4** 种属性值：**left** 、**right** 、**none**（默认值） 、**inherit** 。
+
+  ![float属性值](http://p9myzkds7.bkt.clouddn.com/web-interview/float%E5%B1%9E%E6%80%A7%E5%80%BC.png)
+
+<!-- | 值      |    描述| 
+| :-------- | :--------| 
+| left	| 元素 **向左浮动** 。 | 
+| right	| 元素 **向右浮动** 。 |
+| none	| **默认值** 。元素 **不浮动** ，并会 **显示在其在文本中出现的位置** 。 | 
+| inherit	| 规定应该 **从父元素继承 float 属性的值** 。 | -->
+
+- **浮动的“副作用”**
+
+ 1. 背景无法显示。
+ 
+    > 如果对 **父级元素** 设置了 **CSS背景颜色**（background）或是 **CSS背景图片**（background-image）,由于 **浮动的产生** ，**父级元素不能被撑开**，所以导致 **CSS背景无法显示** 。
+   
+ 2. 边框不能撑开。
+ 
+    > 如果 **父级元素** 设置了 **CSS边框属性**（border）,由于 **子级里使用了 float 属性** 而 **产生了浮动** 。而 **父级不能被撑开** ，因此 **导致边框不能随内容而被撑开** 。
+    
+ 3. margin、padding 属性的值不能正确显示。
+ 
+    > **浮动** 会导致 **父级子级之间** 设置的 **padding** 、**margin** 属性值 **不能正确显示** 。特别是 **上下边的 padding 和 margin 值** 。
+   
+- 清除浮动
+
+  1. 对父级设置合适的CSS高度。
+    
+     > **浮动** 导致 **父级元素不能被撑开** 。
+     
+  2. 使用 clear: both 清除浮动。
+  
+     > clear属性规定元素的哪一侧不允许其他的浮动元素。如果声明左侧或者右侧不允许浮动，会使元素的上下边框边界刚好在该边上浮动元素的下外边距边距之下。
+     
+     ![clear属性值](http://p9myzkds7.bkt.clouddn.com/web-interview/clear%E5%B1%9E%E6%80%A7%E5%80%BC.png)
+     
+     <!-- | 值      |    描述| 
+| :-------- | :--------| 
+| left	| 在 **左侧不允许** 浮动元素。 | 
+| right	| 在 **右侧不允许** 浮动元素。 |
+| both  | 在 **左右两侧均不允许**  浮动元素。 |
+| none	| **默认值** 。**允许** 浮动元素出现在两侧。 | 
+| inherit	| 规定应该 **从父元素继承 clear 属性的值**。 | -->
+
+  3. 父级 div 定义： overflow： hidden 。 
+  
+  4. 在浮动元素后面增加 `<br/>` 标签。
+  
+  5. 在父级元素加上 .clearfix 类（常用）
+  
+     > 其 **原理** 就是 **使用 CSS 伪类** ，在 **元素末尾** 加 **一个带有浮动功能的标签** 。
+  
+     ```
+     .clearfix:after {
+       visibility: hidden;
+       display: block;
+       font-size: 0;
+       content: "";
+       clear: both;
+       height: 0;
+     }
+     .clearfix {
+       display: inline-table;
+     }
+     
+     /* Hides from IE-mac \*/
+     *html .clearfix {
+       height: 1%;
+     }
+     .clearfix {
+       dispaly: block;
+     }
+     /* End hide from IE-mac */
+     ```
+
+来自—— [CSS float 属性]、 **《Web 前端开发实战教程（2014版）V1.8》学校教材用书（3.9.4 浮动与清除浮动）**
+
+### 什么是标准文档流？
+
+
+
+来源——[CSS样式----浮动（图文详解）]
 
 ### Doctype作用？标准模式与兼容模式各有什么区别? 
 
@@ -473,3 +569,5 @@ tags:
 [AJAX 简介]:https://www.w3cschool.cn/ajax/nr583fns.html
 [Ajax的优缺点及工作原理？]:https://www.cnblogs.com/wdlhao/p/8290436.html#_label3
 [AJAX工作原理及其优缺点]:https://www.cnblogs.com/SanMaoSpace/archive/2013/06/15/3137180.html
+[CSS样式----浮动（图文详解）]:https://www.cnblogs.com/smyhvae/p/7297736.html
+[CSS float 属性]:http://www.w3school.com.cn/cssref/pr_class_float.asp
