@@ -11,7 +11,7 @@ date: 2018-07-11 08:01:00
 
 本文将从论文格式、WPS工具（Word文档）的使用、总结三个方面诉说我对于论文书写的一些看法。
 
-[最终论文下载](http://p9myzkds7.bkt.clouddn.com/%E7%BB%BC%E5%90%88%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%EF%BC%88%E8%AE%BA%E6%96%87%EF%BC%89.docx)
+[最终论文下载](http://p9myzkds7.bkt.clouddn.com/paper/%E7%BB%BC%E5%90%88%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%EF%BC%88%E8%AE%BA%E6%96%87%EF%BC%89%20.docx)
 
 特别说明：该论文格式要求为 **重庆理工大学软件工程专业毕业论文格式** 要求。
 
