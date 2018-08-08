@@ -40,7 +40,7 @@ tags:
      box-sizing: inherit;
      ```
 
- - **边距重叠：** 两个 **相邻元素** ，如果 **上面的元素** 设置了 **margin-bottom** ，而 **下面的元素** 设置了 **margin-top** ，那么两者的 **margin将会重叠** ，并且将 **使用较大的margin作为最终的边距** 。
+ - **边距重叠：** **块级元素** 的 **垂直相邻外边距会合并** ，并且将 **使用较大的外边距作为最终的边距** 。
  
    - 避免方式：只设置 **margin-top** 或 **margin-bottom**  ，而不是将两者混合使用。
  
@@ -69,7 +69,7 @@ tags:
     
       - 块级元素
 
-        > **独占一行**, 垂直方向排列；默认情况下，其 **宽度自动填满其父元素宽度** ；块级元素 **可以设置width、height属性** ；**可以设置margin和padding属性** 。
+        > **独占一行**, 垂直方向排列；默认情况下，其 **宽度自动填满其父元素宽度** ；块级元素 **可以设置 width 、height 属性** ；**可以设置 margin 和padding 属性** 。
 
         *注意，块级元素即使设置了宽度，仍然是独占一行。*
 
@@ -495,64 +495,139 @@ tags:
 
 来自—— [CSS float 属性]、[CSS样式----浮动（图文详解）]、 **Web 前端开发实战教程（2014版）V1.8[M].教材用书，2014.（3.9.4 浮动与清除浮动）**
 
-### 文档类型声明（DOCTYPE）作用？标准模式与兼容模式各有什么区别? 
+### 文档类型声明（DOCTYPE）作用？
 
 > **文档类型声明** 用于 **宣告后面的文档标记遵循哪个标准** 。
 
-**语法：** **HTML** 顶级元素可用性 " **注册** // **组织** // **类型标签** // **定义语言** ""**URL**"；
+- *声明构成**
 
-```
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"> 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
-```
+  **html**  + 顶级元素可用性 + " **注册** // **组织** // **类型标签** // **定义语言** " + "**URL**"。
+  
+    ```
+    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN"> 
+    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
+    ```
+- **文档定义类型**
 
-其中，DTD的是W3C所发布的一个文档类型定义，简单的说，就是告诉浏览器你的这个HTML
-，是根据那个标准写的，解析的时候用哪个标准解析。
+  HTML 4.01 规定的 3 种主要文档定义类型：
 
-DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现
-           
-HTML 4.01 规定的 3 种主要文档定义类型：
+    - 严格型（Strict）: 所有标记必须符合 XHTML标准。
 
-1. 严格（Strict）: 所有标记必须符合 XHTML标准。
+      ```
+      <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+      ```
+    - 过渡型（Transitional）: 能兼容之前的HTML代码。
 
-  ```
-  <! DOCTYPE html PUBLIC"-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-  ```
-2. 过度型（Transitional）: 能兼容之前的HTML代码。
+      ```
+      <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+      ```
 
-  ```
-  <! DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-  "http://www.w3.org/TR/html4/loose.dtd">
-  ```
+    - 框架型（Frameset）: 能兼容XHTML不推荐的框架。
 
-3. 框架型（Frameset）: 能兼容XHTML不推荐的框架。
+      ```
+      <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org//TR/html4/frameset.dtd">
+      ```
 
-  ```
-  <! DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
-   "http://www.w3.org//TR/html4/frameset.dtd">
-  ```
+  XHTML 1.0 规定的 3 种主要文档定义类型：
 
-> 文档类型定义（DTD: Document Type Definition），它能描述文档的内容和结构和验证文档的合法性。
+    - 严格型（Strict）：文档中不允许使用任何表现样式的标识和属性，例如 `<br>` 。
 
-HTML5中只有一个
+    ```
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    ```
+    - 过渡型（Transitional）：允许你继续使用HTML4.01的标识(但是要符合xhtml的写法) 。
 
-```
-<! DOCTYPE html>
-```
+    ```
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    ```
+    - 框架型（Frameset）：框架页类型。网页使用框架结构时，声明此类型。
 
-HTML 4.01 基于 SGML ，需要对 DTD 进行引用，才能告知浏览器文档所使用的文档类型 。
-HTML 5 不基于 SGML，因此不需要对 DTD 进行引用，但是需要 doctype 来规范浏览器的行为。
-> SGML是标准通用标记语言,简单的说，就是比HTML,XML更老的标准，这两者都是由SGML发展而来的。但是，HTML5不是的。
+    ```
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+    ```
+  HTML5文档定义类型：
+
+    ```
+    <! DOCTYPE html>
+    ```
+    
+ 来自—— **Web 前端开发实战教程（2014版）V1.8[M].教材用书，2014.（2.2.1 文档定义）** 、[<!DOCTYPE html PUBLIC……>的组成解释]、[HTML文档类型 DTD]
+ 
+[HTML文档类型 DTD]:https://blog.csdn.net/lihaikuo666/article/details/81011830
+[<!DOCTYPE html PUBLIC……>的组成解释]:https://www.jianshu.com/p/d3e08ab627ae
+
+
+### 标准模式与兼容模式各有什么区别? 
+
+> **DOCTYPE** **不存在** 或 **格式不正确** 会导致文档以 **兼容模式** 呈现 。
+
+**两种模式**
+
+- 标准模式（Standards, 也就是严格呈现模式）
+
+  > 用于呈现遵循最新标准的网页。
+  
+  标准模式的排版 和 JS运作模式都是以该浏览器支持的最高标准运行。
+  
+- 兼容模式（Quirks, 也就是松散呈现模式或者怪异模式）
+
+  > 用于呈现为传统浏览器而设计的网页。 
+
+  兼容模式中，页面以宽松的向后兼容的方式显示,模拟老式浏览器的行为以防止站点无法工作。简单来说就是尽可能的显示能显示的东西给用户看。
+
+**具体区别**
+
+  - 盒模型。
+  
+    >在 **严格模式** 中 ：**width** 是内容宽度 ，元素真正的宽度 = **width** ;在 **兼容模式** 中 ：**width** = width + padding + border。
+
+  - **兼容模式** 下可设置 **百分比的高度** 和 **行内元素的高宽**。
+  
+    > 在 **标准模式** 下，给 **span** 等行内元素设置 **wdith** 和 **height** 都 **不会生效** ，而在 **兼容模式** 下，则 **会生效** 。
+    
+    > 在标准模式下，一个元素的高度是由其包含的内容来决定的，如果父元素没有设置高度，子元素设置一个百分比的高度是无效的。
+
+  -  用 **margin:0 auto** 设置水平居中在 **IE** 下会失效。
+  
+     > 使用 **margin:0 auto** 在 **标准模式** 下 **可以使元素水平居中** ，但在 **兼容模式** 下却 **会失效**（用 **text-align** 属性解决）。
+     ```
+      body{
+        text-align:center;
+      }
+      #content{
+         text-align:left;
+      }
+     ```
+  - **兼容模式** 下 **Table** 中的 **字体属性不能继承上层的设置** ，**white-space:pre**会失效，设置图片的 **padding** 会失效。
+  
+来自—— [Doctype作用？标准模式与兼容模式各有什么区别?]
+
+[Doctype作用？标准模式与兼容模式各有什么区别?]:https://www.cnblogs.com/coldfishdt/p/6533120.html
 
 ### HTML5 为什么只需要写<!DOCTYPE html> ？
 
+> **HTML 4.01** 基于 **SGML** ，**需要** 对 **DTD** 进行引用，才能 **告知浏览器文档所使用的文档类型** 。**HTML 5** 不基于 **SGML** ，因此 **不需要** 对 **DTD** 进行引用，但是需要 **DOCTYPE**  来 **规范浏览器的行为** 。
+
 > **HTML5** 文档类型声明 **不包含官方规范版本号** （即HTML5中的5）。事实上，这声明 **仅仅表示当前页面是HTML页面** 。只要有 **新功能** 添加到 **HTML** 语言中，在页面中就 **可以使用** 它们，而 **不必** 为此 **修改文档类型声明** 。
 
-_要求 **保留文档类型声明** ，主要是由于 **历史原因** 。如果 **没有文档类型声明** ，那 **大多数浏览器** （包括Internet Explorer 和 Firefox）将转换到一种 **混杂模式**（quirk mode）。在这种模式下，**浏览器会尝试根据有点不那么正常的规则呈现网页** （那些规则是在浏览器的老版本中使用的），并且 **不同浏览器的混杂模式也不一样** 。_
+**文档类型定义是什么？**
 
-_而 **添加了文档类型声明** 后，浏览器就知道你想要使用更严格的 **标准模式**（standard mode）,在这种模式下，**所有浏览器** 都会 **以一致的格式和布局来显示网页** 。浏览器不关心你使用的是哪种文档类型（个别情况下还是有些例外），**只要它检查到你有某种文档类型声明就好** 。HTML5的文档类型声明是 **最短的有效文档类型声明** ，因此它 **总能触发标准模式** 。_
+> 文档类型定义（DTD: Document Type Definition）是W3C所发布的，用于描述文档的内容和结构和验证文档的合法性。告诉浏览器你的这个HTML，是根据那个标准写的，解析的时候用哪个标准解析。[DTD教程]
+
+**SGML是什么？**
+
+> SGML是标准通用标记语言,简单的说，就是比HTML,XML更老的标准，这两者都是由SGML发展而来的。但是，HTML5不是的。
+
+
+**保留文档类型声明的原因：**
+
+>要求 **保留文档类型声明** ，主要是由于 **历史原因** 。如果 **没有文档类型声明** ，那 **大多数浏览器** （包括Internet Explorer 和 Firefox）将转换到一种 **混杂模式**（quirk mode）。在这种模式下，**浏览器会尝试根据有点不那么正常的规则呈现网页** （那些规则是在浏览器的老版本中使用的），并且 **不同浏览器的混杂模式也不一样** 。
+
+> 而 **添加了文档类型声明** 后，浏览器就知道你想要使用更严格的 **标准模式**（standard mode）,在这种模式下，**所有浏览器** 都会 **以一致的格式和布局来显示网页** 。浏览器不关心你使用的是哪种文档类型（个别情况下还是有些例外），**只要它检查到你有某种文档类型声明就好** 。HTML5的文档类型声明是 **最短的有效文档类型声明** ，因此它 **总能触发标准模式** 。
 
 来自—— **（美）麦克唐纳（Matthew MacDonald，M.）著；李松峰，朱魏，刘帅译.HTML5秘籍[M].人民邮电出版社，2017.10.（1.3.1 HTML5文档类型）**
+
+[DTD教程]:http://www.runoob.com/dtd/dtd-tutorial.html
 
 ### CSS定义的权重
 
@@ -616,6 +691,10 @@ CSS sprite的最大好处是减少了HTTP请求次数，减轻服务器的压力
 对于流量不大的网站来说，CSS sprite带来的好处并不明显，而它付出的代价却很大，其实并不划算。所以，是否使用CSS sprite主要取决于网站流量。
 
 ### CSS中margin和padding的区别
+
+- **外边距**（margin）
+
+   **边距重叠：** **块级元素** 的 **垂直相邻外边距会合并** ，并且将 **使用较大的外边距作为最终的边距** 。而行内元素实际上不占上下外边距。行内元素的左右边距不会合并。同样地，浮动元素的外边距也不会合并。允许指定负的外边距值，不过使用时要小心。
 
 
 ### 页面导入样式时，使用link和@import有什么区别？
