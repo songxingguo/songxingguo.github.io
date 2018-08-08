@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>Web前端面试题目及详解汇总-HTML/CSS部分 | 阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="post-title">
+          Web前端面试题目及详解汇总-HTML/CSS部分
+            <div class="post-tags">
+    		    
+    	      </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <article class="post">
+  
+
+  <header>
+    <div class="post-title mobile-post-title">
+      <h1>Web前端面试题目及详解汇总-HTML/CSS部分</h1>
+        <div class="post-tags">
+        
+        </div>
+    </div>
+    <div class="post-meta">
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2018-08-06</span>
+      
+      <!----------------------------------->
+        
+      <!----------------------------------->
+    </div>
+  </header>
+  
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML-CSS部分"><span class="toc-text">HTML/CSS部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是盒模型"><span class="toc-text">什么是盒模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML元素"><span class="toc-text">HTML元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS实现居中"><span class="toc-text">CSS实现居中</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#水平居中"><span class="toc-text">水平居中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#竖直居中"><span class="toc-text">竖直居中</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简述一下-href、src、rel、url-的区别"><span class="toc-text">简述一下 href、src、rel、url 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是CSS-Hack"><span class="toc-text">什么是CSS Hack?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#px、em和rem的区别"><span class="toc-text">px、em和rem的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在HTML中，position取值有哪几种，默认值是什么？"><span class="toc-text">在HTML中，position取值有哪几种，默认值是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#清除浮动有哪些方式？比较好的方式是哪一种？"><span class="toc-text">清除浮动有哪些方式？比较好的方式是哪一种？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文档类型声明（DOCTYPE）作用？"><span class="toc-text">文档类型声明（DOCTYPE）作用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准模式与兼容模式各有什么区别"><span class="toc-text">标准模式与兼容模式各有什么区别?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML5-为什么只需要写-lt-DOCTYPE-html-gt-？"><span class="toc-text">HTML5 为什么只需要写&lt;!DOCTYPE html&gt; ？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS定义的权重"><span class="toc-text">CSS定义的权重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释css-sprites，如何使用？"><span class="toc-text">解释css sprites，如何使用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS中margin和padding的区别"><span class="toc-text">CSS中margin和padding的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#页面导入样式时，使用link和-import有什么区别？"><span class="toc-text">页面导入样式时，使用link和@import有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简述一下你对HTML语义化的理解？37-什么是语义化的HTML？"><span class="toc-text">简述一下你对HTML语义化的理解？37.什么是语义化的HTML？　</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前端页面由哪三层构成，分别是什么？作用是什么？"><span class="toc-text">前端页面由哪三层构成，分别是什么？作用是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何居中一个浮动元素？"><span class="toc-text">如何居中一个浮动元素？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请简述HTML和XHTML最重要的4点不同？"><span class="toc-text">请简述HTML和XHTML最重要的4点不同？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IE6的双倍边距BUG指的是什么？怎么解决？"><span class="toc-text">.IE6的双倍边距BUG指的是什么？怎么解决？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS选择符有哪些？哪些属性可以继承？优先级算法如何计算？内联和important哪个优先级高？"><span class="toc-text">CSS选择符有哪些？哪些属性可以继承？优先级算法如何计算？内联和important哪个优先级高？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-img-gt-标签上title与alt属性的区别是什么？"><span class="toc-text">&lt;img&gt; 标签上title与alt属性的区别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#33-描述css-reset的作用和用途？"><span class="toc-text">33.描述css reset的作用和用途？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列出display的值，说明他们的作用。position的值，-relative和absolute定位原点是？"><span class="toc-text">列出display的值，说明他们的作用。position的值， relative和absolute定位原点是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20、利用-media-screen实现网页布局的自适应。"><span class="toc-text">20、利用@media screen实现网页布局的自适应。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20、说说你对HTML5认识-（是什么-为什么）"><span class="toc-text">20、说说你对HTML5认识?（是什么,为什么）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21、什么是WebGL-它有什么优点"><span class="toc-text">21、什么是WebGL,它有什么优点?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22、说说你对SVG理解"><span class="toc-text">22、说说你对SVG理解?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS层叠是什么？介绍一下"><span class="toc-text">CSS层叠是什么？介绍一下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对BFC规范的理解"><span class="toc-text">对BFC规范的理解</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+  <div class="post-content">
+    <h2 id="HTML-CSS部分"><a href="#HTML-CSS部分" class="headerlink" title="HTML/CSS部分"></a>HTML/CSS部分</h2><h3 id="什么是盒模型"><a href="#什么是盒模型" class="headerlink" title="什么是盒模型"></a>什么是盒模型</h3><blockquote>
+<p>在网页中，一个元素占有空间的大小构成，采用盒子作一个比喻来理解。</p>
+</blockquote>
+<ul>
+<li><p><strong>盒模型的组成：</strong> 由里向外由 <strong>content</strong> 、<strong>padding</strong>、 <strong>border</strong> 、<strong>margin</strong> 四部分组成。</p>
+</li>
+<li><p><strong>盒模型的两种标准：</strong>  标准模型，IE模型。</p>
+<a id="more"></a>
+<ul>
+<li><p>两种标准的区别：</p>
+<p>在标准模型中，盒模型的 <strong>宽高</strong> 只是 <strong>内容（content）的宽高</strong> 。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/web-interview/%E6%A0%87%E5%87%86%E6%A8%A1%E5%9E%8B.png" alt="标准模型"></p>
+<p>在IE模型中盒模型的 <strong>宽高</strong> 是 <strong>内容(content)+填充(padding)+边框(border)的总宽高</strong> 。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/web-interview/IE%E6%A8%A1%E5%9E%8B.png" alt="IE模型"></p>
+</li>
+<li><p>CSS如何设置两种模型</p>
+<blockquote>
+<p>设置CSS3 的属性 box-sizing</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/* 标准模型 */</span><br><span class="line">box-sizing: content-box;</span><br><span class="line"></span><br><span class="line">/*IE模型*/</span><br><span class="line">box-sizing: border-box;</span><br><span class="line"></span><br><span class="line">/*继承父元素 box-sizing 属性的值*/</span><br><span class="line">box-sizing: inherit;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>边距重叠：</strong> <strong>块级元素</strong> 的 <strong>垂直相邻外边距会合并</strong> ，并且将 <strong>使用较大的外边距作为最终的边距</strong> 。</p>
+<ul>
+<li>避免方式：只设置 <strong>margin-top</strong> 或 <strong>margin-bottom</strong>  ，而不是将两者混合使用。</li>
+</ul>
+</li>
+</ul>
+<p>来自—— <strong><a href="https://www.cnblogs.com/chengzp/p/cssbox.html" target="_blank" rel="noopener">深入理解CSS盒模型</a></strong></p>
+<h3 id="HTML元素"><a href="#HTML元素" class="headerlink" title="HTML元素"></a>HTML元素</h3><ul>
+<li><p>元素分类 </p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/web-interview/%E5%85%83%E7%B4%A0%E5%88%86%E7%B1%BB.png" alt="元素分类"></p>
+</li>
+</ul>
+<ul>
+<li><p><strong>行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？</strong></p>
+<blockquote>
+<p>行内元素、块级元素、空(void)元素</p>
+</blockquote>
+<ul>
+<li><p><strong>行内元素：</strong> a、b、span、img、input、strong、select、label、em、button、textarea 。</p>
+</li>
+<li><p><strong>块级元素：</strong> div、ul、li、dl、dt、dd、p、h1-h6、blockquote 。</p>
+</li>
+<li><p><strong>空元素：</strong> 即没有内容的HTML元素，例如：br、meta、hr、link、input、img 。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>行内元素和块元素</strong></p>
+<ul>
+<li><p>两者的区别</p>
+<ul>
+<li><p>块级元素</p>
+<blockquote>
+<p><strong>独占一行</strong>, 垂直方向排列；默认情况下，其 <strong>宽度自动填满其父元素宽度</strong> ；块级元素 <strong>可以设置 width 、height 属性</strong> ；<strong>可以设置 margin 和padding 属性</strong> 。</p>
+</blockquote>
+<p><em>注意，块级元素即使设置了宽度，仍然是独占一行。</em></p>
+</li>
+<li><p>行内元素</p>
+<blockquote>
+<p><strong>不会独占一行</strong> ，水平方向排列，相邻元素排列在同一行，直到排不下才会换行；其宽度  <strong>随元素的内容而变化</strong> ；行内元素 <strong>设置width、height属性无效</strong>（可以设置 <strong>line-height</strong> ） ；行内元素的  <strong>margin</strong> 和 <strong>padding</strong> 属性，<strong>水平方向</strong> 的 <strong>padding-left</strong> 、<strong>padding-right</strong> 、<strong>margin-left</strong> 、<strong>margin-right</strong> 都 <strong>产生效果</strong> ，但 <strong>竖直方向</strong> 的 <strong>padding-top</strong> 、<strong>padding-bottom</strong> 、<strong>margin-top</strong> 、<strong>margin-bottom</strong> 却 <strong>不会产生边距效果</strong> 。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>CSS相关属性display</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/*块级元素*/</span><br><span class="line">display: block;</span><br><span class="line"></span><br><span class="line">/*行内元素*/</span><br><span class="line">display: inline;</span><br><span class="line"></span><br><span class="line">/*行内的块级元素,集块元素和行内元素的特点于一身*/</span><br><span class="line">display: inline-block;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>为兼容 IE，真正能用的 display 类型只有 <strong>block</strong> 、<strong>inline</strong> 和  <strong>none</strong> 三种。可以使用一种 <strong>hack</strong> - 触发 <strong>行内元素</strong> 的 <strong>hasLayout</strong> （触发hasLayout，就会让行内元素拥有块级元素的特性），来支持 <strong>display: inline-block</strong> ，然后通过 <strong>vertical-aligin</strong> 解决竖直对齐问题。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">display:inline-block;</span><br><span class="line">*display:inline;</span><br><span class="line">vertical-aligin: middle;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><em>只能对行内元素实现 <strong>display:inline-block</strong>,而块级元素就不行。</em></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>来自—— <strong>曹刘阳.编写高质量代码：Web前端开发修炼之道[M].机械工业出版社，2016.6.（4.7.6 块级元素和行内元素的区别，4.7.7 display:inlne-block和hasLayout）</strong></p>
+<h3 id="CSS实现居中"><a href="#CSS实现居中" class="headerlink" title="CSS实现居中"></a>CSS实现居中</h3><blockquote>
+<p>CSS的居中会遇到很多种情况，不同的情况使用的方法不同。</p>
+</blockquote>
+<ul>
+<li><h4 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h4><ul>
+<li><p>文本、图片等 <strong>行内元素</strong> 的水平居中</p>
+<blockquote>
+<p>给 <strong>父元素</strong> 设置 <strong>text-align：center</strong> 。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.parent  &#123;</span><br><span class="line">  text-align：center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">img &#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>确定宽度</strong> 的 <strong>块级元素</strong> 的水平居中</p>
+<blockquote>
+<p><strong>确定宽度的块级元素本身</strong> 通过设置 <strong>margin-left:auto</strong> 和 <strong>margin-right: auto</strong> 来实现。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.self &#123;</span><br><span class="line">  width: 200px;</span><br><span class="line">  margin-left: auto;</span><br><span class="line">  margin-right: auto；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.self &#123;</span><br><span class="line">  width: 200px;</span><br><span class="line">  margin: 0 auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>不确定宽度</strong> 的 <strong>块级元素</strong> 的水平居中</p>
+<blockquote>
+<p>不确定宽度的块级元素有三种方式可以实现居中。</p>
+</blockquote>
+<ul>
+<li><p>方法一： 使用 <code>table</code> 标签来实现不确定宽度的块级元素的水平居中</p>
+<blockquote>
+<p><code>table</code> 它本身并 <strong>不是块级元素</strong> ，如果不给它设定宽度的话，<strong>它的宽度由内部元素的宽度“撑起”</strong> ，但即使不设定它的宽度，仅 <strong>对 <code>table</code>设置margin-left:auto 和 margin-right: auto就可以使 <code>table</code> 水平居中</strong> ， <strong>间接实现    <code>table</code> 内部元素的居中</strong> 。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">table &#123;</span><br><span class="line">  margin: 0 auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>这种做法很巧妙，但 <strong>缺点</strong> 是 <strong>增加了无语义标签</strong> ，<strong>加深了标签的嵌套层数</strong> 。</em></p>
+</li>
+<li><p>方法二： 改变块级元素的 <strong>display</strong> 为 <strong>inline类型</strong>，然后使用 <strong>text-aligin:center</strong> 来实现居中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  text-aligin: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.self &#123;</span><br><span class="line">  display: inline;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>它也 <strong>存在一定问题</strong> ：它将块级元素变成可行内元素，而 <strong>行内元素比起块级元素少一些功能</strong> ，比如设定长宽值，在某些特殊需求设置CSS设置中，这种方法可能会有一些限制。</em></p>
+</li>
+<li><p>方法三：通过给 <strong>父元素</strong> 设置 <strong>float</strong> ，然后 <strong>父元素</strong> 设置<strong>position：relative</strong> 和 <strong>left:50%</strong> , <strong>子元素</strong> 设置 <strong>positionrelative</strong> 和 <strong>left:-50%</strong> ;来实现水平居中。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">  left: 50%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.self &#123;</span><br><span class="line">  position: relattive;</span><br><span class="line">  left: -50%</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>保留了块级元素，而且不会添加无语义标签，不增加嵌套深度，但它的 <strong>缺点</strong> 是设置了 <strong>position:relative</strong> ,带来了 <strong>一定副作用</strong> 。</em></p>
+</li>
+</ul>
+</li>
+<li><p>Flex</p>
+<p>可查看站内文章—— <strong>Flex布局</strong></p>
+</li>
+</ul>
+</li>
+<li><h4 id="竖直居中"><a href="#竖直居中" class="headerlink" title="竖直居中"></a>竖直居中</h4><ul>
+<li><p><strong>父元素高度不确定</strong> 的 <strong>文本</strong> 、<strong>图片</strong> 、<strong>块级元素</strong> 的竖直居中</p>
+<blockquote>
+<p>通过给 <strong>父容器</strong> 设置 <strong>相同的上下边距</strong> 实现的。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  padding-top: 20px;</span><br><span class="line">  padding-bottom: 20px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  padding: 20px 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>父元素高度确定</strong> 的 <strong>单行文本</strong> 的竖直居中</p>
+<blockquote>
+<p>通过给 <strong>父元素</strong> 设置 <strong>line-height</strong> 来实现的，<strong>line-height值和父元素的高度值相同</strong> 。</p>
+</blockquote>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">parent &#123;</span><br><span class="line">  height: 100px;</span><br><span class="line">  line-height: 100px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>父元素高度确定</strong> 的 <strong>多行文本</strong> 、<strong>图片</strong> 、<strong>块级元素的竖直居中</strong></p>
+<blockquote>
+<p>父元素高度确定的的多行文本、图片、块级元素的竖直居中有两种方法。</p>
+</blockquote>
+<ul>
+<li><p>方法一：使用用于垂直居中的 <strong>属性vertical-align</strong> ,但只有当 <strong>父元素为td或th</strong> 时，这个 <strong>vertical-align属性才会生效</strong> 。</p>
+<p>Fire和IE8及以上版本可以 设置块级元素的 <strong>display</strong> 类型为 <strong>table-cell</strong> ， <strong>激活vertical-align属性</strong> ，但是IE6和IE7并不支持dispaly:table-cell。</p>
+<blockquote>
+<p>虽然可以设置display:table-cell来模拟表格，但没办法跨浏览器兼容，那么就 <strong>直接使用表格</strong> 来实现。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">table &#123;&#125;</span><br><span class="line"></span><br><span class="line">.self &#123;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>方法一可以很好地实现竖直居中效果，且不会带来任何样式上副作用，但是它 <strong>添加了无语义标签</strong> ，并 <strong>增加了嵌套深度</strong> 。</em></p>
+</li>
+<li><p>方法二： 对支持display: table-cell的IE8和Firefox用dispaly:table-cell和vertical-align: middle来实现居中，对不支持display:table-cell的IE6和IE7，使用特定格式的hack。</p>
+<blockquote>
+<p>给不支持display:table-cell的IE6和IE7，通过给 <strong>父子两层元素</strong> 分别设置 <strong>top:50%</strong> 和 <strong>top:-50%</strong>来实现居中。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  display: table-cell;</span><br><span class="line">  vertival-align: middle;</span><br><span class="line">  *position: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.vertical-parent &#123;</span><br><span class="line">  *position: absolute;</span><br><span class="line">  *top:50%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.vertical-self &#123;</span><br><span class="line">  *position: relative;</span><br><span class="line">  *top:-50%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>这种方法的好处是没有增加额外的标签，但它的 <strong>缺点</strong> 也很明显，一方面它 <strong>使用了hack</strong> ，<strong>不利于维护</strong> ，另一方面，它 <strong>需要设置position：relative和posion：absolute</strong> , <strong>带来了副作用</strong> 。</em></p>
+</li>
+</ul>
+</li>
+<li><p>Flex</p>
+<p>可查看站内文章—— <strong>Flex布局</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>来自—— <strong>曹刘阳.编写高质量代码：Web前端开发修炼之道[M].机械工业出版社，2016.6.（4.7.9 居中）</strong></p>
+<h3 id="简述一下-href、src、rel、url-的区别"><a href="#简述一下-href、src、rel、url-的区别" class="headerlink" title="简述一下 href、src、rel、url 的区别"></a>简述一下 href、src、rel、url 的区别</h3><ul>
+<li><p><strong>href</strong></p>
+<blockquote>
+<p><strong>href</strong> 是 <strong>Hypertext Reference</strong> 的缩写，表示 <strong>超文本引用</strong> 。用来建立 <strong>当前元素</strong> 和 <strong>文档</strong> 之间的链接，指向 <strong>网络资源所在位置</strong> 。</p>
+</blockquote>
+<p>常用的有：link、a。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=&quot;reset.css&quot; rel=”stylesheet“/&gt;</span><br></pre></td></tr></table></figure>
+<p><em>浏览器会识别该文档为css文档，<strong>并行下载该文档</strong> ，并且 <strong>不会停止对当前文档的处理</strong> 。这也是建议使用link，而不采用@import加载css的原因。</em></p>
+</li>
+<li><p><strong>src</strong></p>
+<blockquote>
+<p><strong>src</strong> 是 <strong>source</strong> 的缩写，<strong>src</strong> 的内容是页面必不可少的一部分，是 <strong>引入</strong> 。<strong>src</strong> 指向的 <strong>内容会嵌入到文档中当前标签所在的位置</strong> ,指向 <strong>外部资源的位置</strong> 。</p>
+</blockquote>
+<p>常用的有：img、script、iframe。例如；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p><em>当浏览器解析到该元素时，会 <strong>暂停浏览器的渲染</strong> ， <strong>直到该资源加载完毕</strong> 。这也是将js脚本放在底部而不是头部得原因。</em></p>
+</li>
+</ul>
+<p>简而言之，<strong>src</strong> 用于 <strong>替换当前元素</strong> ；<strong>href</strong> 用于 <strong>在当前文档和引用资源之间建立联系</strong> 。也就是说src引用的路径是 <strong>img自己的路径</strong> ，href引用的路径是要 <strong>跳转到的地方</strong> 。</p>
+<ul>
+<li><p><strong>rel</strong></p>
+<blockquote>
+<p><strong>rel</strong> 是 <strong>relationship</strong> 的缩写。用于 <strong>定义链接的文件和HTML文档之间的关系</strong> 。<strong>StyleSheet</strong> 的意思就是 <strong>样式调用</strong> 。<strong>设置或检索对象之间的链接目标的关系</strong> 。如果没有值指出，rel属性的 <strong>默认关系</strong> 是一个 <strong>空字符串</strong> 。使用此属性 仅当 <strong>href属性</strong> 应用。</p>
+</blockquote>
+</li>
+<li><p><strong>url</strong></p>
+<blockquote>
+<p><strong>统一资源定位符</strong> 是 对可以从互联网上得到的 <strong>资源的位置</strong> 和 <strong>访问方法</strong> 的一种简洁的表示，是 <strong>互联网上标准资源的地址</strong> 。互联网上的每个文件都有一个 <strong>唯一</strong> 的 <strong>URL</strong> ，它包含的信息指出 <strong>文件的位置</strong> 以及 <strong>浏览器应该怎么处理它</strong> 。</p>
+</blockquote>
+<p>基本URL包含 <strong>模式</strong>（或称 <strong>协议</strong> ）、 <strong>服务器名称</strong>（或 <strong>IP地址</strong> ）、 <strong>路径</strong> 和<strong>文件名</strong> 。</p>
+</li>
+</ul>
+<p>来自—— <a href="https://blog.csdn.net/annsheshira23/article/details/51133709" target="_blank" rel="noopener">HTML中href、src区别</a>、<a href="https://blog.csdn.net/chengshaolei2012/article/details/72847770" target="_blank" rel="noopener">rel、href、src、url的区别</a></p>
+<h3 id="什么是CSS-Hack"><a href="#什么是CSS-Hack" class="headerlink" title="什么是CSS Hack?"></a>什么是CSS Hack?</h3><blockquote>
+<p>针对不同的浏览器 /不同版本写相应的 <strong>CSS</strong> 的过程,就是 <strong>CSS Hack</strong> 。</p>
+</blockquote>
+<p><strong>CSS Hack常见的有三种形式：</strong>  <strong>CSS属性Hack</strong> 、 <strong>CSS选择符Hack</strong> 以及 <strong>IE条件注释Hack</strong> ， Hack主要针对IE浏览器。</p>
+<ul>
+<li><p>CSS属性Hack</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#test&#123;</span><br><span class="line">    color:#c30; /* For Firefox */</span><br><span class="line">    color:red\0; /* For Opera */</span><br><span class="line">    color:yellow\9; /* For IE8+ */</span><br><span class="line">    *color:blue; /* For IE7 */</span><br><span class="line">    _color:#ccc; /* For IE6 */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CSS选择符Hack</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">* html .test&#123;color:#090;&#125;       /* For IE6 and earlier */</span><br><span class="line">* + html .test&#123;color:#ff0;&#125;     /* For IE7 */</span><br><span class="line">.test:lang(zh-cn)&#123;color:#f00;&#125;  /* For IE8+ and not IE */</span><br><span class="line">.test:nth-child(1)&#123;color:#0ff;&#125; /* For IE9+ and not IE */</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>IE条件注释Hack<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--[if &lt;keywords&gt;? IE &lt;version&gt;?]&gt;</span><br><span class="line">    HTML代码块</span><br><span class="line">&lt;![endif]--&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>来自—— <a href="https://blog.csdn.net/freshlover/article/details/12132801" target="_blank" rel="noopener">史上最全的CSS hack方式一览</a>、<a href="https://www.duitang.com/static/csshack.html" target="_blank" rel="noopener">CSS hack大全</a>、<a href="https://www.cnblogs.com/miniyk/p/3734664.html" target="_blank" rel="noopener">今天才知道css hack是什么</a>、<a href="https://www.w3cschool.cn/css3/question-10231625.html" target="_blank" rel="noopener">CSS Hack是什么意思？css hack有什么用？</a>、<a href="https://www.w3cschool.cn/css/css-hack.html" target="_blank" rel="noopener">你想知道的css hack知识全都帮你整理好了</a>、<a href="http://phpstudy.php.cn/css3/" target="_blank" rel="noopener">CSS参考手册</a></p>
+<h3 id="px、em和rem的区别"><a href="#px、em和rem的区别" class="headerlink" title="px、em和rem的区别"></a>px、em和rem的区别</h3><ul>
+<li><p>px </p>
+<blockquote>
+<p><strong>px</strong> 又称 <strong>像素</strong> （Pixel），<strong>相对长度单位</strong> 。像素 <strong>px</strong> 是 <strong>相对于显示屏幕分辨率</strong> 而言的。</p>
+</blockquote>
+</li>
+<li><p>em</p>
+<blockquote>
+<p><strong>em</strong>，<strong>相对长度单位</strong> 。<strong>em</strong> 相对于 <strong>当前对象内文本的字体尺寸</strong> 。如当前对行内文本的 <strong>字体尺寸未被人为设置</strong> ，则 <strong>相对于</strong> 浏览器的 <strong>默认字体尺寸</strong>（16px）。</p>
+</blockquote>
+<p><em>任意浏览器的默认字体高都是16px。所有未经调整的浏览器豆腐额：<strong>1em=16px</strong> 。但 <strong>em</strong> 的 <strong>值并不是固定的</strong> ；<strong>em</strong> 会 <strong>继承父级元素</strong> 的 <strong>字体大小</strong> 。</em></p>
+</li>
+<li><p>rem</p>
+<blockquote>
+<p><strong>rem</strong> 是 <strong>root em</strong> 的缩写（即 <strong>根em</strong>），<strong>CSS3</strong> 新增的一个 <strong>相对单位</strong>。区别在于使用 <strong>rem</strong> 为元素设定字体大小时，仍然是相对大小，但 <strong>相对的是 HTML 根元素</strong> （ <a href="https://blog.csdn.net/ixygj197875/article/details/79737953" target="_blank" rel="noopener">HTML文档的根元素是 html 元素</a> ）。</p>
+</blockquote>
+<p><em>这个单位可谓集 <strong>相对大小</strong> 和 <strong>绝对大小</strong> 的 <strong>优点</strong> 于一身，通过它既可以做到 <strong>只修改根元素</strong> 就 <strong>成比例地调整所有字体大小</strong> ，又 <strong>可以避免字体大小逐层复合的连锁反应</strong> 。</em></p>
+<p>目前，除了IE8及更早版本外，所有浏览器均已支持rem。对于 <strong>不支持</strong> 它的 <strong>浏览器</strong> ，应对方法也很简单，就是 <strong>多写一个绝对单位的声明</strong> 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p &#123;</span><br><span class="line">  font-size: 14px;</span><br><span class="line">  font-size: 875rem;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果你的用户群都是用 <strong>最新版的浏览器</strong> ，那 <strong>推荐使用rem</strong> ，如果要 <strong>考虑兼容性</strong>，那就 <strong>使用px</strong> ，或者 <strong>两者同时使用</strong> 。</p>
+<p><a href="http://pxtoem.com/" target="_blank" rel="noopener">px,em,rem单位转换工具</a></p>
+<p>来自—— <a href="https://www.cnblogs.com/langee/p/6890362.html" target="_blank" rel="noopener">彻底弄懂px,em和rem的区别</a></p>
+<h3 id="在HTML中，position取值有哪几种，默认值是什么？"><a href="#在HTML中，position取值有哪几种，默认值是什么？" class="headerlink" title="在HTML中，position取值有哪几种，默认值是什么？"></a>在HTML中，position取值有哪几种，默认值是什么？</h3><blockquote>
+<p><strong>position</strong> 的 <strong>5</strong> 种属性值：<strong>relative</strong> 、<strong>absolute</strong> 、<strong>fixed</strong> 、<strong>static</strong>（默认值） 、<strong>inherit</strong> 。</p>
+</blockquote>
+<ul>
+<li><strong>简述</strong><br><img src="http://p9myzkds7.bkt.clouddn.com/web-interview/position%E5%B1%9E%E6%80%A7%E5%80%BC.png" alt="position属性值"></li>
+</ul>
+<!-- | 值|    描述|
+| :-------- | :--------|
+| relative    | **相对定位**，**相对于** 自己在 **z-index:0 层** 的 **位置** ；**left** 、**top** 、**right** 、**bottom** 和 **z-index** 属性 **激活** 。 | 
+| absolute    | **绝对定位**，**相对于** 自己 **最近的** 一个设置了 **position:relative** 或  **position: absolute** 的 **祖先元素** 或 **相对于 body 元素** ；**left** 、**top** 、**right** 、**bottom** 和 **z-index** 属性 **激活** ；隐式地改变 **display 类型** 为 **inline-block** 。 | 
+| fixed    | **绝对定位**，相对于 **浏览器窗口** 进行定位；**left** 、**top** 、**right** 、**bottom** 和 **z-index** 属性 **激活**。| 
+| static    | **默认值** 。**没有定位** ，元素出现在正常的流中；**left** 、**top** 、**right** 、**bottom** 和 **z-index** 属性 **未激活** 。 | 
+| inherit    | 从父元素继承 **position** 属性的值 。 |  -->
+<ul>
+<li><p><strong>详细描述</strong></p>
+<blockquote>
+<p><em><strong>position: relative</strong> 和 <strong>position:absolute</strong>  可改变元素在 <strong>文档流</strong> 中的 <strong>位置</strong> 。可以让元素激活 <strong>left</strong> 、<strong>top</strong> 、<strong>right</strong> 、<strong>bottom</strong> 和 <strong>z-index</strong>（默认在 <strong>z-index:0</strong> 这一层） 属性（默认情况下，这些属性未激活，设置了也无效）。</em></p>
+</blockquote>
+<p><strong>普通流</strong></p>
+<blockquote>
+<p><em>默认情况下，<strong>所有元素</strong> 都是在 <strong>z-index:0</strong> 这一层。元素根据自己的 <strong>dispaly类型</strong> 、<strong>长宽</strong> 、<strong>内外边距</strong> 等属性 <strong>顺序排列</strong> 在 <strong>z-index:0</strong>  这一层里，这就是 <strong>文档流</strong> 。设置 <strong>position:relative</strong> 或  <strong>position: absolute</strong> 会让元素“ <strong>浮</strong> ”起来，也就是 <strong>z-index</strong> 值 <strong>大于 0</strong> ，它会 <strong>改变</strong> 正常情况下的 <strong>文档流</strong> 。</em></p>
+</blockquote>
+<blockquote>
+<p><strong>CSS</strong> 有三种基本的定位机制，分别是 <strong>普通流</strong> 、<strong>浮动</strong> 以及 <strong>绝对定位</strong> 。<strong>除非特殊定义</strong> ，不然 <strong>任何框</strong> 都应该 <strong>遵循文档流的定位规则</strong> ，换而言之，<strong>普通流的元素的位置</strong> 由其 <strong>在HTML文档中的位置</strong> 决定。</p>
+</blockquote>
+<p><strong>position:relative</strong></p>
+<blockquote>
+<p><em>不同的是 <strong>position:relative</strong> 会 <strong>保留</strong> 自己在 <strong>z-index:0 层</strong>  的 <strong>占位</strong> ，<strong>left</strong>  、<strong>top</strong> 、<strong>right</strong> 、<strong>bottom</strong> 值是 <strong>相对于</strong> 自己在 <strong>z-index:0 层</strong> 的 <strong>位置</strong> 。虽然它的实际位置可能因为设置了 <strong>left</strong>  、<strong>top</strong> 、<strong>right</strong> 、<strong>bottom</strong> 值而 <strong>偏离原来在文档流中的位置</strong> ，但 <strong>对其他仍然在z-index:0层的元素位置不会造成影响</strong> 。</em></p>
+</blockquote>
+<p><strong>position:absolute</strong></p>
+<blockquote>
+<p><em>而 <strong>position:absolute</strong> 会 <strong>完全脱离文档流</strong> ，<strong>不再在z-index:0层保留占位符</strong> ，其 <strong>left</strong>  、<strong>top</strong> 、<strong>right</strong> 、<strong>bottom</strong> 值是 <strong>相对于</strong> 自己 <strong>最近的</strong> 一个设置了 <strong>position:relative</strong> 或  <strong>position: absolute</strong> 的 <strong>祖先元素的</strong> , 如果 <strong>祖先元素全都没有设置</strong>  <strong>position:relative</strong> 或  <strong>position: absolute</strong> ，那么就 <strong>相对于 body 元素</strong> 。</em></p>
+</blockquote>
+<p><strong>float</strong></p>
+<blockquote>
+<p><em><strong>float</strong> 属性也能 <strong>改变文档流</strong> ，不同的是，<strong>float</strong> 属性 <strong>不会让元素“上浮”到另一个 z-index 层</strong>，它仍然 <strong>让元素在 z-index:0 层排列</strong> ，<strong>float</strong> 不像 <strong>position:relative</strong> 和 <strong>position:absolute</strong> 那样，它 <strong>不能</strong> 通过 <strong>left</strong>  、<strong>top</strong> 、<strong>right</strong> 、<strong>bottom</strong> 属性 <strong>精确地控制元素的坐标</strong> ，它只能通过 <strong>float:left</strong> 和 <strong>float:right</strong> 来控制元素 <strong>在同层里“左浮”和“右浮”</strong> 。<strong>float 会改变正常的文档流排列</strong> ，<strong>影响到周围元素</strong> 。</em></p>
+</blockquote>
+<p><strong>隐式改变display类型</strong></p>
+<blockquote>
+<p><em><strong>position:absolute</strong>和 <strong>float</strong> 会 <strong>隐式地改变display类型</strong> ，不论之前是什么类型的元素（ <strong>display:none</strong> 除外），只要设置了 <strong>position:absolute</strong> 、<strong>float:lef</strong> 或 <strong>float:right</strong> 中任意一个，都会让元素以 <strong>display：inline-block</strong> 的方式显示：<strong>可以设置长宽</strong> ，<strong>默认宽度并不占满父元素</strong> 。就算我们 <strong>显式地</strong> 设置 <strong>display:inline</strong> 或者 <strong>display：block</strong> ，也 <strong>仍然无效</strong> （ <strong>float</strong> 在 <strong>IE 6</strong> 下的 <strong>双倍边距bug</strong> 就是利用 <strong>添加 display:inline 来解决的</strong> ）。值得注意的是，<strong>position:relative</strong> 却 <strong>不会隐式改变display的类型</strong> 。</em></p>
+</blockquote>
+</li>
+</ul>
+<p>来自—— <strong>曹刘阳.编写高质量代码：Web前端开发修炼之道[M].机械工业出版社，2016.6.（4.7.8 relative、absolute 和 float）</strong></p>
+<h3 id="清除浮动有哪些方式？比较好的方式是哪一种？"><a href="#清除浮动有哪些方式？比较好的方式是哪一种？" class="headerlink" title="清除浮动有哪些方式？比较好的方式是哪一种？"></a>清除浮动有哪些方式？比较好的方式是哪一种？</h3><ul>
+<li><p><strong>浮动的定义</strong></p>
+<blockquote>
+<p>定义了 <strong>浮动属性的框</strong> 可以 <strong>左右移动</strong> ， <strong>直到它的外边缘</strong> 与 <strong>包含框</strong> 或 <strong>另一个浮动元素的框的边框</strong> 相碰为止。<strong>浮动框</strong> 是 <strong>不存在文档的普通流中</strong>  ，因此 <strong>文档的普通流中的块框</strong> 表现的就 <strong>如同浮动框不存在一般</strong> 。如果 <strong>包含框宽度不够</strong> ，即 <strong>无法同时容纳几个浮动元素</strong> ，那么<strong>浮动块</strong> 将 <strong>向下移动</strong> ，<strong>直到有充足的空间</strong> ，可以 <strong>放下浮动框</strong> 为止。如果 <strong>浮动元素的高度不同</strong> ，那么它们向<strong>下移动时</strong> 可能 <strong>会被其他浮动元素“卡住”</strong> 。</p>
+</blockquote>
+</li>
+<li><p><strong>float 属性</strong></p>
+<blockquote>
+<p><strong>float</strong> 的 <strong>4</strong> 种属性值：<strong>left</strong> 、<strong>right</strong> 、<strong>none</strong>（默认值） 、<strong>inherit</strong> 。</p>
+</blockquote>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/web-interview/float%E5%B1%9E%E6%80%A7%E5%80%BC.png" alt="float属性值"></p>
+</li>
+</ul>
+<!-- | 值      |    描述| 
+| :-------- | :--------| 
+| left    | 元素 **向左浮动** 。 | 
+| right    | 元素 **向右浮动** 。 |
+| none    | **默认值** 。元素 **不浮动** ，并会 **显示在其在文本中出现的位置** 。 | 
+| inherit    | 规定应该 **从父元素继承 float 属性的值** 。 | -->
+<ul>
+<li><p><strong>浮动的“副作用”</strong></p>
+<ol>
+<li><p>背景无法显示。</p>
+<blockquote>
+<p>如果对 <strong>父级元素</strong> 设置了 <strong>CSS背景颜色</strong>（background）或是 <strong>CSS背景图片</strong>（background-image）,由于 <strong>浮动的产生</strong> ，<strong>父级元素不能被撑开</strong>，所以导致 <strong>CSS背景无法显示</strong> 。</p>
+</blockquote>
+</li>
+<li><p>边框不能撑开。</p>
+<blockquote>
+<p>如果 <strong>父级元素</strong> 设置了 <strong>CSS边框属性</strong>（border）,由于 <strong>子级里使用了 float 属性</strong> 而 <strong>产生了浮动</strong> 。而 <strong>父级不能被撑开</strong> ，因此 <strong>导致边框不能随内容而被撑开</strong> 。</p>
+</blockquote>
+</li>
+<li><p>margin、padding 属性的值不能正确显示。</p>
+<blockquote>
+<p><strong>浮动</strong> 会导致 <strong>父级子级之间</strong> 设置的 <strong>padding</strong> 、<strong>margin</strong> 属性值 <strong>不能正确显示</strong> 。特别是 <strong>上下边的 padding 和 margin 值</strong> 。</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><p>清除浮动</p>
+<ol>
+<li><p>对父级设置合适的CSS高度。</p>
+<blockquote>
+<p><strong>浮动</strong> 导致 <strong>父级元素不能被撑开</strong> 。</p>
+</blockquote>
+</li>
+<li><p>使用 clear: both 清除浮动。</p>
+<blockquote>
+<p>clear属性规定元素的哪一侧不允许其他的浮动元素。如果声明左侧或者右侧不允许浮动，会使元素的上下边框边界刚好在该边上浮动元素的下外边距边距之下。</p>
+</blockquote>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/web-interview/clear%E5%B1%9E%E6%80%A7%E5%80%BC.png" alt="clear属性值"></p>
+<!-- | 值      |    描述| 
+| :-------- | :--------| 
+| left    | 在 **左侧不允许** 浮动元素。 | 
+| right    | 在 **右侧不允许** 浮动元素。 |
+| both  | 在 **左右两侧均不允许**  浮动元素。 |
+| none    | **默认值** 。**允许** 浮动元素出现在两侧。 | 
+| inherit    | 规定应该 **从父元素继承 clear 属性的值**。 | -->
+</li>
+<li><p>父级 div 定义： overflow： hidden 。 </p>
+</li>
+<li><p>在浮动元素后面增加 <code>&lt;br/&gt;</code> 标签。</p>
+</li>
+<li><p>在父级元素加上 .clearfix 类（常用）</p>
+<blockquote>
+<p>其 <strong>原理</strong> 就是 <strong>使用 CSS 伪类</strong> ，在 <strong>元素末尾</strong> 加 <strong>一个带有浮动功能的标签</strong> 。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:after &#123;</span><br><span class="line">  visibility: hidden;</span><br><span class="line">  display: block;</span><br><span class="line">  font-size: 0;</span><br><span class="line">  content: &quot;&quot;;</span><br><span class="line">  clear: both;</span><br><span class="line">  height: 0;</span><br><span class="line">&#125;</span><br><span class="line">.clearfix &#123;</span><br><span class="line">  display: inline-table;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* Hides from IE-mac \*/</span><br><span class="line">*html .clearfix &#123;</span><br><span class="line">  height: 1%;</span><br><span class="line">&#125;</span><br><span class="line">.clearfix &#123;</span><br><span class="line">  dispaly: block;</span><br><span class="line">&#125;</span><br><span class="line">/* End hide from IE-mac */</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<p>来自—— <a href="http://www.w3school.com.cn/cssref/pr_class_float.asp" target="_blank" rel="noopener">CSS float 属性</a>、<a href="https://www.cnblogs.com/smyhvae/p/7297736.html" target="_blank" rel="noopener">CSS样式—-浮动（图文详解）</a>、 <strong>Web 前端开发实战教程（2014版）V1.8[M].教材用书，2014.（3.9.4 浮动与清除浮动）</strong></p>
+<h3 id="文档类型声明（DOCTYPE）作用？"><a href="#文档类型声明（DOCTYPE）作用？" class="headerlink" title="文档类型声明（DOCTYPE）作用？"></a>文档类型声明（DOCTYPE）作用？</h3><blockquote>
+<p><strong>文档类型声明</strong> 用于 <strong>宣告后面的文档标记遵循哪个标准</strong> 。</p>
+</blockquote>
+<ul>
+<li><p>*声明构成**</p>
+<p><strong>html</strong>  + 顶级元素可用性 + “ <strong>注册</strong> // <strong>组织</strong> // <strong>类型标签</strong> // <strong>定义语言</strong> “ + “<strong>URL</strong>“。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot;&gt; </span><br><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.0 Strict//EN&quot;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>文档定义类型</strong></p>
+<p>HTML 4.01 规定的 3 种主要文档定义类型：</p>
+<ul>
+<li><p>严格型（Strict）: 所有标记必须符合 XHTML标准。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>过渡型（Transitional）: 能兼容之前的HTML代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>框架型（Frameset）: 能兼容XHTML不推荐的框架。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Frameset//EN&quot; &quot;http://www.w3.org//TR/html4/frameset.dtd&quot;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>XHTML 1.0 规定的 3 种主要文档定义类型：</p>
+<ul>
+<li><p>严格型（Strict）：文档中不允许使用任何表现样式的标识和属性，例如 <code>&lt;br&gt;</code> 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>过渡型（Transitional）：允许你继续使用HTML4.01的标识(但是要符合xhtml的写法) 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>框架型（Frameset）：框架页类型。网页使用框架结构时，声明此类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Frameset//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd&quot;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>HTML5文档定义类型：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;! DOCTYPE html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p> 来自—— <strong>Web 前端开发实战教程（2014版）V1.8[M].教材用书，2014.（2.2.1 文档定义）</strong> 、<a href="https://www.jianshu.com/p/d3e08ab627ae" target="_blank" rel="noopener">&lt;!DOCTYPE html PUBLIC……&gt;的组成解释</a>、<a href="https://blog.csdn.net/lihaikuo666/article/details/81011830" target="_blank" rel="noopener">HTML文档类型 DTD</a></p>
+<h3 id="标准模式与兼容模式各有什么区别"><a href="#标准模式与兼容模式各有什么区别" class="headerlink" title="标准模式与兼容模式各有什么区别?"></a>标准模式与兼容模式各有什么区别?</h3><blockquote>
+<p><strong>DOCTYPE</strong> <strong>不存在</strong> 或 <strong>格式不正确</strong> 会导致文档以 <strong>兼容模式</strong> 呈现 。</p>
+</blockquote>
+<p><strong>两种模式</strong></p>
+<ul>
+<li><p>标准模式（Standards, 也就是严格呈现模式）</p>
+<blockquote>
+<p>用于呈现遵循最新标准的网页。</p>
+</blockquote>
+<p>标准模式的排版 和 JS运作模式都是以该浏览器支持的最高标准运行。</p>
+</li>
+<li><p>兼容模式（Quirks, 也就是松散呈现模式或者怪异模式）</p>
+<blockquote>
+<p>用于呈现为传统浏览器而设计的网页。 </p>
+</blockquote>
+<p>兼容模式中，页面以宽松的向后兼容的方式显示,模拟老式浏览器的行为以防止站点无法工作。简单来说就是尽可能的显示能显示的东西给用户看。</p>
+</li>
+</ul>
+<p><strong>具体区别</strong></p>
+<ul>
+<li><p>盒模型。</p>
+<blockquote>
+<p>在 <strong>严格模式</strong> 中 ：<strong>width</strong> 是内容宽度 ，元素真正的宽度 = <strong>width</strong> ;在 <strong>兼容模式</strong> 中 ：<strong>width</strong> = width + padding + border。</p>
+</blockquote>
+</li>
+<li><p><strong>兼容模式</strong> 下可设置 <strong>百分比的高度</strong> 和 <strong>行内元素的高宽</strong>。</p>
+<blockquote>
+<p>在 <strong>标准模式</strong> 下，给 <strong>span</strong> 等行内元素设置 <strong>wdith</strong> 和 <strong>height</strong> 都 <strong>不会生效</strong> ，而在 <strong>兼容模式</strong> 下，则 <strong>会生效</strong> 。</p>
+</blockquote>
+<blockquote>
+<p>在标准模式下，一个元素的高度是由其包含的内容来决定的，如果父元素没有设置高度，子元素设置一个百分比的高度是无效的。</p>
+</blockquote>
+</li>
+<li><p>用 <strong>margin:0 auto</strong> 设置水平居中在 <strong>IE</strong> 下会失效。</p>
+<blockquote>
+<p>使用 <strong>margin:0 auto</strong> 在 <strong>标准模式</strong> 下 <strong>可以使元素水平居中</strong> ，但在 <strong>兼容模式</strong> 下却 <strong>会失效</strong>（用 <strong>text-align</strong> 属性解决）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">  text-align:center;</span><br><span class="line">&#125;</span><br><span class="line">#content&#123;</span><br><span class="line">   text-align:left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p><strong>兼容模式</strong> 下 <strong>Table</strong> 中的 <strong>字体属性不能继承上层的设置</strong> ，<strong>white-space:pre</strong>会失效，设置图片的 <strong>padding</strong> 会失效。</p>
+</li>
+</ul>
+<p>来自—— <a href="https://www.cnblogs.com/coldfishdt/p/6533120.html" target="_blank" rel="noopener">Doctype作用？标准模式与兼容模式各有什么区别?</a></p>
+<h3 id="HTML5-为什么只需要写-lt-DOCTYPE-html-gt-？"><a href="#HTML5-为什么只需要写-lt-DOCTYPE-html-gt-？" class="headerlink" title="HTML5 为什么只需要写&lt;!DOCTYPE html&gt; ？"></a>HTML5 为什么只需要写&lt;!DOCTYPE html&gt; ？</h3><blockquote>
+<p><strong>HTML 4.01</strong> 基于 <strong>SGML</strong> ，<strong>需要</strong> 对 <strong>DTD</strong> 进行引用，才能 <strong>告知浏览器文档所使用的文档类型</strong> 。<strong>HTML 5</strong> 不基于 <strong>SGML</strong> ，因此 <strong>不需要</strong> 对 <strong>DTD</strong> 进行引用，但是需要 <strong>DOCTYPE</strong>  来 <strong>规范浏览器的行为</strong> 。</p>
+</blockquote>
+<blockquote>
+<p><strong>HTML5</strong> 文档类型声明 <strong>不包含官方规范版本号</strong> （即HTML5中的5）。事实上，这声明 <strong>仅仅表示当前页面是HTML页面</strong> 。只要有 <strong>新功能</strong> 添加到 <strong>HTML</strong> 语言中，在页面中就 <strong>可以使用</strong> 它们，而 <strong>不必</strong> 为此 <strong>修改文档类型声明</strong> 。</p>
+</blockquote>
+<p><strong>文档类型定义是什么？</strong></p>
+<blockquote>
+<p>文档类型定义（DTD: Document Type Definition）是W3C所发布的，用于描述文档的内容和结构和验证文档的合法性。告诉浏览器你的这个HTML，是根据那个标准写的，解析的时候用哪个标准解析。<a href="http://www.runoob.com/dtd/dtd-tutorial.html" target="_blank" rel="noopener">DTD教程</a></p>
+</blockquote>
+<p><strong>SGML是什么？</strong></p>
+<blockquote>
+<p>SGML是标准通用标记语言,简单的说，就是比HTML,XML更老的标准，这两者都是由SGML发展而来的。但是，HTML5不是的。</p>
+</blockquote>
+<p><strong>保留文档类型声明的原因：</strong></p>
+<blockquote>
+<p>要求 <strong>保留文档类型声明</strong> ，主要是由于 <strong>历史原因</strong> 。如果 <strong>没有文档类型声明</strong> ，那 <strong>大多数浏览器</strong> （包括Internet Explorer 和 Firefox）将转换到一种 <strong>混杂模式</strong>（quirk mode）。在这种模式下，<strong>浏览器会尝试根据有点不那么正常的规则呈现网页</strong> （那些规则是在浏览器的老版本中使用的），并且 <strong>不同浏览器的混杂模式也不一样</strong> 。</p>
+</blockquote>
+<blockquote>
+<p>而 <strong>添加了文档类型声明</strong> 后，浏览器就知道你想要使用更严格的 <strong>标准模式</strong>（standard mode）,在这种模式下，<strong>所有浏览器</strong> 都会 <strong>以一致的格式和布局来显示网页</strong> 。浏览器不关心你使用的是哪种文档类型（个别情况下还是有些例外），<strong>只要它检查到你有某种文档类型声明就好</strong> 。HTML5的文档类型声明是 <strong>最短的有效文档类型声明</strong> ，因此它 <strong>总能触发标准模式</strong> 。</p>
+</blockquote>
+<p>来自—— <strong>（美）麦克唐纳（Matthew MacDonald，M.）著；李松峰，朱魏，刘帅译.HTML5秘籍[M].人民邮电出版社，2017.10.（1.3.1 HTML5文档类型）</strong></p>
+<h3 id="CSS定义的权重"><a href="#CSS定义的权重" class="headerlink" title="CSS定义的权重"></a>CSS定义的权重</h3><p><strong>CSS设置的样式</strong> 是可以 <strong>层叠</strong> 的，如代码下代码所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/CSS&quot;&gt;</span><br><span class="line">span&#123;</span><br><span class="line">  font-size: 40px;</span><br><span class="line">&#125;</span><br><span class="line">.test&#123;</span><br><span class="line">  color: red;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;span class=&quot;test&quot;&gt;1234567890&lt;/sapn&gt;</span><br></pre></td></tr></table></figure>
+<p><em>“ <strong>1234567890</strong> ”既 可得到“ <strong>font-size:40px</strong> ”的样式，又可以得到“ <strong>color:red </strong>”的样式。</em></p>
+<p><strong>CSS层叠样式冲突</strong> 的情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/CSS&quot;&gt;</span><br><span class="line">span&#123;</span><br><span class="line">  font-size: 40px;</span><br><span class="line">  color: green;</span><br><span class="line">&#125;</span><br><span class="line">.test&#123;</span><br><span class="line">  color: red;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;span class=&quot;test&quot;&gt;1234567890&lt;/sapn&gt;</span><br></pre></td></tr></table></figure>
+<p><em>“ <strong>1234567890</strong> ”的颜色会是什么呢？这就涉及 <strong>CSS的选择符的权重</strong> 问题了。</em></p>
+<blockquote>
+<p><strong>CSS的选择符</strong> 是 <strong>有权重的</strong> ，当 <strong>不同选择符的样式</strong> 设置 <strong>有冲突</strong> 时，会采用 <strong>权重高的选择符</strong> 设置的样式。</p>
+</blockquote>
+<p><strong>权重规则</strong> </p>
+<blockquote>
+<p><strong>HTML 标签</strong> 的权重是 <strong>1</strong> ，<strong>class</strong> 的权重是 <strong>10</strong> ，<strong>id</strong> 的权重是  <strong>100</strong>。</p>
+</blockquote>
+<p><em>例如 <strong>p</strong> 的权重是 <strong>1</strong> ，“ <strong>div em</strong> ”的权重是 <strong>1+1=2</strong> ，“ <strong>strong .demo</strong> ”的权重是 <strong>1+10=11</strong> ,“ <strong>#test .red</strong> ”的权重是 <strong>100+10=110</strong> 。</em></p>
+<blockquote>
+<p>如果 <strong>选择符权重相同</strong> ，那么样式会遵循 <strong>就近原则</strong> ，哪个选择符 <strong>最后定义</strong> ，<strong>就采用哪个选择符的样式</strong> 。</p>
+</blockquote>
+<p><em><strong>注意：</strong> 使用 <strong>子选择器</strong> ，会 <strong>增加 CSS 选择符的权重</strong> ，CSS选择符的 <strong>权重越高</strong> ，样式 <strong>越不易被覆盖</strong> ，<strong>越容易对其他选择符产生影响</strong> 。所以，除非确定HTML结构非常稳定，一定不会再修改了，否则 <strong>尽量不要使用子选择器</strong> 。为了保证样式容易被覆盖，提高可维护性， <strong>CSS选择符权重需要尽可能低</strong> 。新添加class比使用子选择器更利于维护。</em></p>
+<h3 id="解释css-sprites，如何使用？"><a href="#解释css-sprites，如何使用？" class="headerlink" title="解释css sprites，如何使用？"></a>解释css sprites，如何使用？</h3><blockquote>
+<p> <strong>图片翻转技术</strong> 将 <strong>多张图片合并为一张</strong> ，然后利用 <strong>background-position 属性</strong> 来 <strong>展示我们需要的部分</strong> 。按照这种思路，后来衍生出的另一种技术将这种思路发挥到了极致 — <strong>将网站的多张背景图片合并到一张大图片上</strong> ，这便是 <strong>CSS sprite</strong> 。</p>
+</blockquote>
+<p><em>不仅是 <strong>解决滑过状态时背景图片出现空白的问题</strong> ，而且将多张图片合并成一张大图，会<strong>大大减少网页的HTTP请求数</strong> ，<strong>减小服务器压力</strong> 。</em></p>
+<p><strong>CSS sprite技术</strong> 看似简单，其实 <strong>不容易掌握</strong>，主要有如下原因：</p>
+<ul>
+<li><p>它能合并的 <strong>只能是用于背景的图片</strong> ，对于 <strong><code>&lt;img src=&quot;&quot; /&gt;</code> 设置的图片</strong> ，是 <strong>不能</strong> 合并到CSS sprite大图中的，如果合并这些图片会影响到页面的可读性。</p>
+</li>
+<li><p>对于 <strong>横向和纵向都平铺的图片</strong> ，也 <strong>不能使用CSS sprite</strong> ；如果是 <strong>横向平的</strong> ，只能 <strong>将所有横向平铺的图合成一张大图</strong> ，只能 <strong>竖直排列</strong>，不能水平排列；如果是 <strong>纵向平铺的</strong> ，我们只能 <strong>将所有纵向平铺的图合并成一张大图</strong> ，只能 <strong>水平排列</strong> ，不能竖直排列。</p>
+<p><em>图片如何排列能够尽量紧凑，同时保证不会影响扩展性。这点是CSS sprite技术最困难也是最具挑战性的地方。</em></p>
+</li>
+<li><p><strong>CSS sprite技术</strong> 通过 <strong>position</strong> 进行定位，这对于图片的位置精确程度要求非常高，一方面 <strong>在制作网页时</strong> ，我们 <strong>需要精确测量坐标</strong> ，还 <strong>需要考虑如何让图案尽可能密集的排列</strong> ，这 <strong>影响开发速度</strong> ；另一方面，<strong>大图中每个小图的坐标值都不可轻易改动</strong> ，因为 <strong>每改动一个小图</strong> ，都 <strong>可能影响到周边的其他图片</strong> ，这 <strong>大大降低了可维护性</strong> 。</p>
+</li>
+</ul>
+<p><strong>注意：</strong></p>
+<p><em><strong>CSS sprite</strong> 的最大好处是 <strong>减少了HTTP请求次数</strong> ，<strong>减轻服务器的压力</strong> ，但它却需要付出“ <strong>降低开发效率</strong> ”和“ <strong>增大维护难度</strong> ”的代价。</em><br><em>对于 <strong>流量不大的网站</strong> 来说，<strong>CSS sprite</strong> 带来的 <strong>好处并不明显</strong> ，而它付出的 <strong>代价却很大</strong> ，其实并不划算。所以，<strong>是否使用CSS sprite主要取决于网站流量</strong> 。</em></p>
+<h3 id="CSS中margin和padding的区别"><a href="#CSS中margin和padding的区别" class="headerlink" title="CSS中margin和padding的区别"></a>CSS中margin和padding的区别</h3><ul>
+<li><p><strong>外边距</strong>（margin）</p>
+<p> <strong>边距重叠：</strong> <strong>块级元素</strong> 的 <strong>垂直相邻外边距会合并</strong> ，并且将 <strong>使用较大的外边距作为最终的边距</strong> 。而行内元素实际上不占上下外边距。行内元素的左右边距不会合并。同样地，浮动元素的外边距也不会合并。允许指定负的外边距值，不过使用时要小心。</p>
+</li>
+</ul>
+<h3 id="页面导入样式时，使用link和-import有什么区别？"><a href="#页面导入样式时，使用link和-import有什么区别？" class="headerlink" title="页面导入样式时，使用link和@import有什么区别？"></a>页面导入样式时，使用link和@import有什么区别？</h3><h3 id="简述一下你对HTML语义化的理解？37-什么是语义化的HTML？"><a href="#简述一下你对HTML语义化的理解？37-什么是语义化的HTML？" class="headerlink" title="简述一下你对HTML语义化的理解？37.什么是语义化的HTML？　"></a>简述一下你对HTML语义化的理解？37.什么是语义化的HTML？　</h3><h3 id="前端页面由哪三层构成，分别是什么？作用是什么？"><a href="#前端页面由哪三层构成，分别是什么？作用是什么？" class="headerlink" title="前端页面由哪三层构成，分别是什么？作用是什么？"></a>前端页面由哪三层构成，分别是什么？作用是什么？</h3><h3 id="如何居中一个浮动元素？"><a href="#如何居中一个浮动元素？" class="headerlink" title="如何居中一个浮动元素？"></a>如何居中一个浮动元素？</h3><h3 id="请简述HTML和XHTML最重要的4点不同？"><a href="#请简述HTML和XHTML最重要的4点不同？" class="headerlink" title="请简述HTML和XHTML最重要的4点不同？"></a>请简述HTML和XHTML最重要的4点不同？</h3><h3 id="IE6的双倍边距BUG指的是什么？怎么解决？"><a href="#IE6的双倍边距BUG指的是什么？怎么解决？" class="headerlink" title=".IE6的双倍边距BUG指的是什么？怎么解决？"></a>.IE6的双倍边距BUG指的是什么？怎么解决？</h3><h3 id="CSS选择符有哪些？哪些属性可以继承？优先级算法如何计算？内联和important哪个优先级高？"><a href="#CSS选择符有哪些？哪些属性可以继承？优先级算法如何计算？内联和important哪个优先级高？" class="headerlink" title="CSS选择符有哪些？哪些属性可以继承？优先级算法如何计算？内联和important哪个优先级高？"></a>CSS选择符有哪些？哪些属性可以继承？优先级算法如何计算？内联和important哪个优先级高？</h3><h3 id="lt-img-gt-标签上title与alt属性的区别是什么？"><a href="#lt-img-gt-标签上title与alt属性的区别是什么？" class="headerlink" title="&lt;img&gt; 标签上title与alt属性的区别是什么？"></a><code>&lt;img&gt;</code> 标签上title与alt属性的区别是什么？</h3><h3 id="33-描述css-reset的作用和用途？"><a href="#33-描述css-reset的作用和用途？" class="headerlink" title="33.描述css reset的作用和用途？"></a>33.描述css reset的作用和用途？</h3><h3 id="列出display的值，说明他们的作用。position的值，-relative和absolute定位原点是？"><a href="#列出display的值，说明他们的作用。position的值，-relative和absolute定位原点是？" class="headerlink" title="列出display的值，说明他们的作用。position的值， relative和absolute定位原点是？"></a>列出display的值，说明他们的作用。position的值， relative和absolute定位原点是？</h3><h3 id="20、利用-media-screen实现网页布局的自适应。"><a href="#20、利用-media-screen实现网页布局的自适应。" class="headerlink" title="20、利用@media screen实现网页布局的自适应。"></a>20、利用@media screen实现网页布局的自适应。</h3><h3 id="20、说说你对HTML5认识-（是什么-为什么）"><a href="#20、说说你对HTML5认识-（是什么-为什么）" class="headerlink" title="20、说说你对HTML5认识?（是什么,为什么）"></a>20、说说你对HTML5认识?（是什么,为什么）</h3><h3 id="21、什么是WebGL-它有什么优点"><a href="#21、什么是WebGL-它有什么优点" class="headerlink" title="21、什么是WebGL,它有什么优点?"></a>21、什么是WebGL,它有什么优点?</h3><h3 id="22、说说你对SVG理解"><a href="#22、说说你对SVG理解" class="headerlink" title="22、说说你对SVG理解?"></a>22、说说你对SVG理解?</h3><h3 id="CSS层叠是什么？介绍一下"><a href="#CSS层叠是什么？介绍一下" class="headerlink" title="CSS层叠是什么？介绍一下"></a>CSS层叠是什么？介绍一下</h3><h3 id="对BFC规范的理解"><a href="#对BFC规范的理解" class="headerlink" title="对BFC规范的理解"></a>对BFC规范的理解</h3>
+  </div>
+  <div class="post-footer">the end</div>
+</article>
+
+          
+  <nav class="pagination post-nav">
+    
+      <a href="/2018/08/07/company-and-campus-recruitment/">
+        <span class="prev-post"><i class="iconfont icon-back"></i>公司及校园招聘流程</span>
+      </a>
+    
+    
+      <a href="/2018/08/06/web-front-end-interview-javascript/">
+        <span class="next-post">Web前端面试题目及详解汇总-JavaScript部分<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+  
+
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+
+  <script src="/js/ztopic.js"></script>
+</body>
+</html>
