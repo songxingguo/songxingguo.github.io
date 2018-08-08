@@ -629,7 +629,7 @@ tags:
 
 [DTD教程]:http://www.runoob.com/dtd/dtd-tutorial.html
 
-### CSS定义的权重
+### CSS层叠是什么？CSS定义的权重
 
 **CSS设置的样式** 是可以 **层叠** 的，如代码下代码所示：
 
@@ -733,7 +733,7 @@ _对于 **流量不大的网站** 来说，**CSS sprite** 带来的 **好处并�
 
 ### 列出display的值，说明他们的作用。position的值， relative和absolute定位原点是？
  
- ### 20、利用@media screen实现网页布局的自适应。
+### 20、利用@media screen实现网页布局的自适应。
 
 
 ### 20、说说你对HTML5认识?（是什么,为什么）
@@ -741,8 +741,6 @@ _对于 **流量不大的网站** 来说，**CSS sprite** 带来的 **好处并�
 ### 21、什么是WebGL,它有什么优点?
 
 ### 22、说说你对SVG理解?
-
-### CSS层叠是什么？介绍一下
 
 ### 对BFC规范的理解
 
