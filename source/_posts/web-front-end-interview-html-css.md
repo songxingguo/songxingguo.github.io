@@ -883,6 +883,8 @@ abbr,acronym {
 
 [CSS display 属性]: http://www.w3school.com.cn/cssref/pr_class_display.asp
 
+### CSS选择符有哪些？哪些属性可以继承？优先级算法如何计算？内联和important哪个优先级高？
+
 ### 请简述HTML和XHTML最重要的4点不同？
 
 
@@ -900,20 +902,11 @@ abbr,acronym {
 
 ### 如何居中一个浮动元素？
 
-
-
 ### .IE6的双倍边距BUG指的是什么？怎么解决？
 
-### CSS选择符有哪些？哪些属性可以继承？优先级算法如何计算？内联和important哪个优先级高？
-
-
 ### `<img>` 标签上title与alt属性的区别是什么？
-
-
-
  
 ### 20、利用@media screen实现网页布局的自适应。
-
 
 ### 21、什么是WebGL,它有什么优点?
 
