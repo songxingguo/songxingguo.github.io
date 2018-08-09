@@ -842,6 +842,47 @@ abbr,acronym {
 
 [HTML 5 简介]:http://www.w3school.com.cn/html5/html_5_intro.asp
 
+
+### 列出display的值，说明他们的作用？
+
+ > display 属性规定元素应该生成的框的类型。
+
+ - **说明**
+ 
+  这个属性用于定义建立布局时元素生成的显示框类型。对于 HTML 等文档类型，如果使用 display 不谨慎会很危险，因为可能违反 HTML 中已经定义的显示层次结构。对于 XML，由于 XML 没有内置的这种层次结构，所有 display 是绝对必要的。
+
+  _注释：CSS2 中有值 compact 和 marker，不过由于缺乏广泛的支持，已经从 CSS2.1 中去除了。_
+  
+- **可能的值**
+
+  ![display属性值](http://p9myzkds7.bkt.clouddn.com/web-interview/display%E7%9A%84%E5%B1%9E%E6%80%A7%E5%80%BC.png)
+
+<!-- | 值	       | 描述       |
+| :--------    | :-------- |
+|none	       | 此元素 **不会被显示** 。|
+|block	       | 此元素将显示为 **块级元素** ，**此元素前后会带有换行符**。|
+|inline	       | **默认** 。此元素会被显示为**内联元素** ，**元素前后没有换行符**。|
+|inline-block  | **行内块元素**。（CSS2.1 新增的值）|
+|list-item     | 此元素会作为 **列表** 显示。|
+|run-in	       | 此元素会根据 **上下文** 作为 **块级元素** 或 **内联元素** 显示。|
+|compact       | CSS 中有值 compact，不过由于缺乏广泛支持，**已经从 CSS2.1 中删除**。|
+|marker	       | CSS 中有值 marker，不过由于缺乏广泛支持，**已经从 CSS2.1 中删除**。|
+|table         | 此元素会作为 **块级表格** 来显示（类似 `<table>`），表格前后带有换行符。|
+|inline-table  | 此元素会作为 **内联表格** 来显示（类似 `<table>`），表格前后没有换行符。|
+|table-row-group| 此元素会作为 **一个或多个行的分组** 来显示（类似 `<tbody>`）。|
+|table-header-group | 此元素会作为 **一个或多个行的分组来** 显示（类似 `<thead>`）。|
+|table-footer-group	|此元素会作为 **一个或多个行的分组** 来显示（类似 `<tfoot>`）。|
+|table-row	  | 此元素会作为一个 **表格行** 显示（类似 `<tr>`）。|
+|table-column-group	 |此元素会作为 **一个或多个列的分组** 来显示（类似 `<colgroup>`）。|
+|table-column |	此元素会作为一个 **单元格列** 显示（类似 `<col>`）|
+|table-cell	  | 此元素会作为一个 **表格单元格** 显示（类似 `<td>` 和 `<th>`）。|
+|table-caption | 此元素会作为一个 **表格标题** 显示（类似 `<caption>`）。|
+|inherit	  | 规定应该 **从父元素继承 display 属性的值** 。| -->
+
+来自—— [CSS display 属性]
+
+[CSS display 属性]: http://www.w3school.com.cn/cssref/pr_class_display.asp
+
 ### 请简述HTML和XHTML最重要的4点不同？
 
 
@@ -859,7 +900,7 @@ abbr,acronym {
 
 ### 如何居中一个浮动元素？
 
-### 请简述HTML和XHTML最重要的4点不同？
+
 
 ### .IE6的双倍边距BUG指的是什么？怎么解决？
 
@@ -869,11 +910,9 @@ abbr,acronym {
 ### `<img>` 标签上title与alt属性的区别是什么？
 
 
-### 列出display的值，说明他们的作用。position的值， relative和absolute定位原点是？
+
  
 ### 20、利用@media screen实现网页布局的自适应。
-
-
 
 
 ### 21、什么是WebGL,它有什么优点?
