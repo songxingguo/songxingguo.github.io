@@ -1681,10 +1681,38 @@ _建议最好不要使用 @improt，如果 @import 加载的样式比较大，�
 
 来自—— [XHTML 教程]
 
+### 什么是WebGL,它有什么优点?
+
+> WebGL 是一项用来在网页上绘制和渲染三维图形并允许用户与之交互的技术。同时，WebGL ( Web 图形库)是一种 JavaScript API，用于在任何兼容的 Web 浏览器中呈现交互式 3D 和 2D 图形，而无需使用插件。WebGL 通过引入一个与 OpenGL ES2.0 紧密相符合的 API，可以在 HTML5 `<canvas>` 元素中使用。
+
+
+- WebGL有什么优势？
+
+  - webGL内嵌在浏览器中，不需要安装其他插件就可以直接在浏览器中使用。
+  - webGL不需要搭建开发环境，文本编辑器就可以开发。
+  - 轻松跨平台。
+  - webGL基于并继承开源openGL。
+  
+- 测试当前浏览器是否支持WebGL
+ 
+  ```
+  // 创建一个canvas节点
+  <canvas id="canvas" width="400" height="400"></canvas>
+  // 判断canvas对象中是否有WebGL上下文
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl');
+  if(!gl) {
+      console.log('当前浏览器版本不支持webgl，请升级或切换浏览器');
+  }
+  ```
+来自—— [WebGL学习(1) — 浏览器支持测试]、[WebGL中文网]、[WebGL技术学习之路]
+
+[WebGL学习(1) — 浏览器支持测试]:https://www.jianshu.com/p/de01dce980d5
+[WebGL中文网]:http://www.hewebgl.com/
+[WebGL技术学习之路]:https://blog.csdn.net/happyduoduo1/article/details/51831775
+
 [XHTML 教程]:http://www.w3school.com.cn/xhtml/index.asp
  
-### 21、什么是WebGL,它有什么优点?
-
 [HTML中href、src区别]: https://blog.csdn.net/annsheshira23/article/details/51133709
 [rel、href、src、url的区别]:https://blog.csdn.net/chengshaolei2012/article/details/72847770
 [史上最全的CSS hack方式一览]:https://blog.csdn.net/freshlover/article/details/12132801
