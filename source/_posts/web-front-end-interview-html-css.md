@@ -1524,6 +1524,160 @@ _建议最好不要使用 @improt，如果 @import 加载的样式比较大，�
 
 ### 请简述HTML和XHTML最重要的4点不同？
 
+> XHTML 是更严谨更纯净的 HTML 版本。XHTML 是 HTML 与 XML（扩展标记语言）的结合物。XHTML 包含了所有与 XML 语法结合的 HTML 4.01 元素。
+
+- XHTML 是什么？
+
+  - XHTML 指可扩展超文本标签语言（EXtensible HyperText Markup Language）。
+  - XHTML 的目标是取代 HTML。
+  - XHTML 与 HTML 4.01 几乎是相同的。
+  - XHTML 是更严格更纯净的 HTML 版本。
+  - XHTML 是作为一种 XML 应用被重新定义的 HTML。
+  - XHTML 是一个 W3C 标准。
+  
+    > XHTML 于2000年的1月26日成为 W3C 标准。W3C 将 XHTML 定义为最新的HTML版本。XHTML 将逐渐取代 HTML。
+    
+- 所有新的浏览器都支持 XHTML
+ 
+  > XHTML 与 HTML 4.01 兼容。所有新的浏览器都支持 XHTML。
+ 
+- 为什么要使用XHTML？
+
+  - 我们认为万维网上的许多页面都包含着糟糕的 HTML 代码。
+
+    下面的 HTML 代码仍然可以工作得很好，即使它没有遵守 HTML 规则：
+
+      ```
+      <html>
+      <head>
+      <title>This is bad HTML</title>
+      <body>
+      <h1>Bad HTML
+      </body>
+      ```
+
+
+
+  - 今天的市场中存在着不同的浏览器技术，某些浏览器运行在计算机中，某些浏览器则运行在移动电话和手持设备上。而后者没有能力和手段来解释糟糕的标记语言。
+
+  - XML 是一种标记化语言，其中所有的东西都要被正确的标记，以产生形式良好的文档。XML 用来描述数据，而 HTML 则用来显示数据。因此，通过把 HTML 和 XML 各自的长处加以结合，我们得到了在现在和未来都能派上用场的标记语言 - XHTML。
+
+  - XHTML 可以被所有的支持 XML 的设备读取，同时在其余的浏览器升级至支持 XML 之前，XHTML 使我们有能力编写出拥有良好结构的文档，这些文档可以很好地工作于所有的浏览器，并且可以向后兼容。
+
+- XHTML 与 HTML 之间的差异
+
+  - 最主要的不同：
+
+    - XHTML 元素必须被正确地嵌套。
+    
+      在 HTML 中，某些元素可以像这样彼此不正确地嵌套：
+      
+      ```
+      <b><i>This text is bold and italic</b></i>
+      ```
+      在 XHTML 中，所有的元素必须像这样彼此正确地嵌套：
+      
+      ```
+      <b><i>This text is bold and italic</i></b>
+      ```
+      **提示：** 在嵌套列表中一个容易犯的错误，是忘记内部列表必须位于 li 元 素中，就像下面这样：
+
+      这是错误的：
+      
+      ```
+      <ul>
+        <li>Coffee</li>
+        <li>Tea
+          <ul>
+            <li>Black tea</li>
+            <li>Green tea</li>
+          </ul>
+        <li>Milk</li>
+      </ul>
+      ```
+      这是正确的：
+      
+      ```
+      <ul>
+        <li>Coffee</li>
+        <li>Tea
+          <ul>
+            <li>Black tea</li>
+            <li>Green tea</li>
+          </ul>
+        </li>
+        <li>Milk</li>
+      </ul>
+      ```
+      注意：在正确代码的例子中，我们在 `</ul>` 之后插入了一个 `</li>` 标签。
+      
+    - XHTML 元素必须被关闭。
+    
+      **非空标签必须使用结束标签**
+
+      这是错误的：
+
+      ```
+      <p>This is a paragraph
+      <p>This is another paragraph
+      ```
+      这是正确的：
+
+      ```
+      <p>This is a paragraph</p>
+      <p>This is another paragraph</p>
+      ```
+      **空标签也必须被关闭**
+      
+      > 空标签也必须使用结束标签，或者其开始标签必须使用/>结尾。
+      
+      这是错误的：
+      
+      ```
+      A break: <br>
+      A horizontal rule: <hr>
+      An image: <img src="happy.gif" alt="Happy face">
+      ```
+      这是正确的：
+      ```
+      A break: <br />
+      A horizontal rule: <hr />
+      An image: <img src="happy.gif" alt="Happy face" />
+      ```
+    - 标签名必须用小写字母。
+    
+      > XHTML 规范定义：标签名和属性对大小写敏感。
+      
+      这是错误的：
+      ```
+      <BODY>
+      <P>This is a paragraph</P>
+      </BODY>
+      ```
+      这是正确的：
+      ```
+      <body>
+      <p>This is a paragraph</p>
+      </body>
+      ```
+    - XHTML 文档必须拥有根元素。
+    
+     > 所有的 XHTML 元素必须被嵌套于 `<html>` 根元素中。其余所有的元素均可有子元素。子元素必须是成对的且被嵌套在其父元素之中。基本的文档结构如下：
+
+      ```
+      <html>
+      <head> ... </head>
+      <body> ... </body>
+      </html>
+      ```
+
+  更多的 XHTML 语法规则：
+
+    - 属性名称必须小写。
+    - 属性值必须加引号。
+    - 属性不能简写。
+    - 用 Id 属性代替 name 属性。
+    - XHTML DTD 定义了强制使用的 HTML 元素。
 
 来自—— [XHTML 教程]
 
