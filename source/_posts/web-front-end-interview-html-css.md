@@ -979,13 +979,114 @@ _**一个符合标准的网页** ，标签中的 **标签名** 应该 **全部�
 
 来自—— **曹刘阳.编写高质量代码：Web前端开发修炼之道[M].机械工业出版社，2016.6.（1.2 Web标准— 结构、样式和行为的分离）**
 
-### 请简述HTML和XHTML最重要的4点不同？
-
 ### CSS中margin和padding的区别
 
 - **外边距**（margin）
 
    **边距重叠：** **块级元素** 的 **垂直相邻外边距会合并** ，并且将 **使用较大的外边距作为最终的边距** 。而行内元素实际上不占上下外边距。行内元素的左右边距不会合并。同样地，浮动元素的外边距也不会合并。允许指定负的外边距值，不过使用时要小心。
+  
+- **内边距**（padding）
+  
+  元素的内边距在边框和内容区之间，控制该区域最简单的属性是 padding 属性。padding 属性允许接受 **长度值** 或 **百分比值** ，但 **不允许** 使用 **负值** 。
+  可以按照上、右、下、左的顺序（顺时针）分别设置各边的内边距，各边均可以使用不同的单位或百分比：
+  
+  ```
+  h1 {
+    padding: 8px 20% 0.5em 8pt;
+  }
+  ```
+  也可以通过使用 padding-top、padding-right、padding-bottom、padding-left四个单独的属性，分别设置上、右、下、左内 边距：
+  
+  ```
+  h1 {
+    padding-top: 8px;
+    padding-right: 20%;
+    padding-bottom: 0.5em;
+    padding-left: 8pt;
+  }
+  ```
+  可以为元素的内边距设置百分数值。而百分数值是相对于其父元素的width计算的。所以，如果父元素的 width 改变，它们也会改变。
+  
+  特别注意：上下内边距与左右内边距一致；即 **上下内边距的百分数** 会相对于 **父元素宽度设置** ，而 **不是相对于高度** 。
+  
+- 边框（border）
+
+ 元素的边框是围绕元素内容和内边距的一条或多条线。使用 border 属性来定义。在HTML中，使用表格来创建文本周围的边框，但是通过使用border属性，可以创建出效果出色的边框，并且可以应用于任何元素。每个边框有 3 个方面：宽度、样式以及颜色。
+ 
+ CSS 规范指出，边框绘制在“元素的背景之上”。这很重要，因为有些边框是“间断的”（例如点线边框或虚线边框），元素的背景应当出现在边框的可见部分之间。CSS2指出背景只延伸到内边距，而不是边框。后来CSS2.1进行了更正：元素背景是内容、内边距和边框区的背景。大多数浏览器都遵循 CSS2.1 定义，不过一些较老的浏览器可能会有不同的表现。
+ 
+ - 边框样式
+ 
+  使用border-style 属性泳衣设置元素所有边框样式，或者单独地为各边设置边框样式。只有当这个值不是 none 时边框才可能出现。
+  
+  为一个边框定义多个样式：
+  
+  ```
+  .aside {
+    border-style: solid dotted dashed double;
+  }
+  ```
+  为元素框的某一个边设置边框样式：
+  
+  ```
+  .aside {
+    border-top-style: solid;
+    border-right-style； dotted;
+    border-bottom-style: ddashed;
+    border-left-style: double;
+  }
+  ```
+  - **可能的值**
+  
+   ![border-style属性值](http://p9myzkds7.bkt.clouddn.com/web-interview/border-style%E5%B1%9E%E6%80%A7%E5%80%BC.png)
+   
+   _最不可预测的边框样式是 double。它定义为两条线的宽度再加上这两条线之间的空间等于 border-width 值。不过，CSS 规范并没有说其中一条线是否比另一条粗或者两条线是否应该是一样的粗，也没有指出线之间的空间是否应当比线粗。所有这些都有用户代理决定，创作人员对这个决定没有任何影响。_
+   
+   _**特别注意：** 所有主流的浏览器都支持 border-style 属性，但任何版本的 Internet Explorer（包括 IE8）都不支持属性值“inherit” 或 “hidden”。_
+  
+ - 边框的宽度
+   
+   通过设置 border-width 属性为边框指定宽度，border-width 简写属性为元素所有边框设置，或者单独地为各边框设置宽度，但只有当边框样式不是 none 时才起作用，如果边框样式是 none，边框宽度实际上会被重置为 0，不允许指定负长度值。
+   
+   为边框指定宽度有两种方法：可以指定长度值，比如 2px 或 0.1em；或者使用 3 个关键字之一，它们分别是 thin、 medium（默认值）和 thick。
+   
+   _特别注意： CSS没有定义 3 个关键字的具体宽度，所以一个用户代理可能把 thin 、medium 和 thick 分别设置为等于 5px、3px 和 2px, 而另一个用户代理则分别设置为3px、 2px 和 1px。_
+   
+   按照 top-right-bottom-left的顺序设置元素的各边边框：
+   
+   ```
+   p {
+     border-style: solid;
+     border-width: 15px 5px 15px 5px;
+   }
+   ```
+   也可以简写为（这种写法称为值复制）：
+   
+   ```
+   p {
+     border-style: solid;
+     border-width: 15px 5px;
+   }
+   ```
+   可以分别设置边框各边的宽度：
+   
+   ```
+   p {
+     border-style: solid;
+     border-top-width: 15px;
+     border-right-width: 5px;
+     border-bottom-width: 15px;
+     border-left-width: 5px;
+   }
+   ```
+   
+   
+ 
+来自—— **曹刘阳.编写高质量代码：Web前端开发修炼之道[M].机械工业出版社，2016.6.（1.2 Web标准— 结构、样式和行为的分离）**
+
+### 请简述HTML和XHTML最重要的4点不同？
+
+
 
 
 ### 页面导入样式时，使用link和@import有什么区别？
