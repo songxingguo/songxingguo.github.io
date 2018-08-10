@@ -1263,9 +1263,89 @@ _建议最好不要使用 @improt，如果 @import 加载的样式比较大，�
 [link 与@import的区别]: https://blog.csdn.net/YANGJIAHAO666/article/details/55254735
 [link 和 @import区别]: https://blog.csdn.net/qq_41047322/article/details/81179254
 
-### 请简述HTML和XHTML最重要的4点不同？
-
 ### 如何居中一个浮动元素？
+
+- 宽度不固定的浮动元素
+
+  > 
+
+  下面是 HTML 代码：
+
+    ```
+     <div class="outerbox">
+      <div class="innerbox">我是浮动的</div>
+     </div>
+    ```
+   CSS 代码：
+   
+    ```
+    .outerbox{
+      float:left; 
+      position:relative; 
+      left:50%; 
+    } 
+    .innerbox{ 	
+      float:left; 
+      position:relative; 
+      right:50%; 
+    }
+    ```
+   ![浮动元素居中](http://p9myzkds7.bkt.clouddn.com/web-interview/%E6%B5%AE%E5%8A%A8%E5%85%83%E7%B4%A0%E5%B1%85%E4%B8%AD)
+   
+- 宽度固定的浮动元素
+ 
+   > 在浮动元素外部包裹一层 div，将外层的 div 居中，浮动元素也就居中了。
+  
+    下面是 HTML 代码：
+
+    ```
+    <div class="outerbox">
+      <div>我是浮动的</div>
+    </div>
+    ```
+    CSS 代码：
+
+    ```
+    .outerbox{
+      background-color:pink; /*方便看效果 */  
+      width:500px ; 
+      height:300px; /*高度可以不设*/
+      margin: -150px 0 0 -250px; /*使用marin向左移动250px，保证元素居中*/
+      position:relative;   /*相对定位*/
+      left:50%;
+      top:50%;
+    }
+    ```
+   ![固定宽带的浮动元素居中](http://p9myzkds7.bkt.clouddn.com/%E6%B5%AE%E5%8A%A8%E5%85%83%E7%B4%A0%E5%B1%85%E4%B8%AD-%E5%AE%BD%E5%B8%A6%E5%9B%BA%E5%AE%9A)
+ 
+- 让绝对定位的元素水平居中对齐 
+ 
+   ```
+   .center{
+     position: absolute; /*绝对定位*/
+     width: 500px;
+     height:300px;
+     background: red;
+     margin: 0 auto; /*水平居中*/
+     left: 0; /*此处不能省略，且为0*/
+     right: 0; /*此处不能省略，且为0*/
+   }
+   ```
+   
+**水平居中的主要属性有:**
+
+  - text-alin:center;
+
+  - margin:0 auto;
+
+  - position:relative|absolute; left:50%;
+  
+
+来自—— [Web前端面试指导(十四)：如何居中一个元素（正常、绝对定位、浮动元素）?]
+
+[Web前端面试指导(十四)：如何居中一个元素（正常、绝对定位、浮动元素）?]:https://blog.csdn.net/lxcao/article/details/52670724
+
+### 请简述HTML和XHTML最重要的4点不同？
  
 ### 20、利用@media screen实现网页布局的自适应。
 
