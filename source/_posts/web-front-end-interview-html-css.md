@@ -44,15 +44,16 @@ tags:
  
    - 避免方式：只设置 **margin-top** 或 **margin-bottom**  ，而不是将两者混合使用。
  
-来自—— **[深入理解CSS盒模型](https://www.cnblogs.com/chengzp/p/cssbox.html)**
+来自—— **[深入理解CSS盒模型]**
+
+[深入理解CSS盒模型]:https://www.cnblogs.com/chengzp/p/cssbox.html
  
 ### HTML元素
 
   - 元素分类 
 
-   ![元素分类](http://p9myzkds7.bkt.clouddn.com/web-interview/%E5%85%83%E7%B4%A0%E5%88%86%E7%B1%BB.png)
+   ![元素分类]
 
-  
   - **行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？**
   
   > 行内元素、块级元素、空(void)元素
@@ -100,7 +101,7 @@ tags:
        
 来自—— **曹刘阳.编写高质量代码：Web前端开发修炼之道[M].机械工业出版社，2016.6.（4.7.6 块级元素和行内元素的区别，4.7.7 display:inlne-block和hasLayout）**
 
-
+[元素分类]:http://p9myzkds7.bkt.clouddn.com/web-interview/%E5%85%83%E7%B4%A0%E5%88%86%E7%B1%BB.png
 
 ### CSS实现居中
 
@@ -297,6 +298,9 @@ tags:
   
 来自—— [HTML中href、src区别]、[rel、href、src、url的区别]
 
+[HTML中href、src区别]: https://blog.csdn.net/annsheshira23/article/details/51133709
+[rel、href、src、url的区别]:https://blog.csdn.net/chengshaolei2012/article/details/72847770
+
 ### 什么是CSS Hack?
 
 > 针对不同的浏览器 /不同版本写相应的 **CSS** 的过程,就是 **CSS Hack** 。
@@ -333,6 +337,13 @@ tags:
 
 来自—— [史上最全的CSS hack方式一览]、[CSS hack大全]、[今天才知道css hack是什么]、[CSS Hack是什么意思？css hack有什么用？]、[你想知道的css hack知识全都帮你整理好了]、[CSS参考手册]
 
+[史上最全的CSS hack方式一览]:https://blog.csdn.net/freshlover/article/details/12132801
+[CSS hack大全]:https://www.duitang.com/static/csshack.html
+[今天才知道css hack是什么]:https://www.cnblogs.com/miniyk/p/3734664.html
+[CSS Hack是什么意思？css hack有什么用？]:https://www.w3cschool.cn/css3/question-10231625.html
+[你想知道的css hack知识全都帮你整理好了]:https://www.w3cschool.cn/css/css-hack.html
+[CSS参考手册]:http://phpstudy.php.cn/css3/
+
 ### px、em和rem的区别
 
 - px 
@@ -366,12 +377,16 @@ tags:
 
 来自—— [彻底弄懂px,em和rem的区别]
 
+[HTML文档的根元素是 html 元素]:https://blog.csdn.net/ixygj197875/article/details/79737953
+[px,em,rem单位转换工具]:http://pxtoem.com/
+[彻底弄懂px,em和rem的区别]:https://www.cnblogs.com/langee/p/6890362.html
+
 ### 在HTML中，position取值有哪几种，默认值是什么？
 
 > **position** 的 **5** 种属性值：**relative** 、**absolute** 、**fixed** 、**static**（默认值） 、**inherit** 。
 
 - **简述**
-![position属性值](http://p9myzkds7.bkt.clouddn.com/web-interview/position%E5%B1%9E%E6%80%A7%E5%80%BC.png)
+![position属性值]
 
 <!-- | 值|    描述|
 | :-------- | :--------|
@@ -409,6 +424,8 @@ tags:
   
 来自—— **曹刘阳.编写高质量代码：Web前端开发修炼之道[M].机械工业出版社，2016.6.（4.7.8 relative、absolute 和 float）**
 
+[position属性值]:http://p9myzkds7.bkt.clouddn.com/web-interview/position%E5%B1%9E%E6%80%A7%E5%80%BC.png
+
 ### 清除浮动有哪些方式？比较好的方式是哪一种？
 
 - **浮动的定义**
@@ -419,7 +436,7 @@ tags:
 
   > **float** 的 **4** 种属性值：**left** 、**right** 、**none**（默认值） 、**inherit** 。
 
-  ![float属性值](http://p9myzkds7.bkt.clouddn.com/web-interview/float%E5%B1%9E%E6%80%A7%E5%80%BC.png)
+  ![float属性值]
 
 <!-- | 值      |    描述| 
 | :-------- | :--------| 
@@ -452,7 +469,7 @@ tags:
   
      > clear属性规定元素的哪一侧不允许其他的浮动元素。如果声明左侧或者右侧不允许浮动，会使元素的上下边框边界刚好在该边上浮动元素的下外边距边距之下。
      
-     ![clear属性值](http://p9myzkds7.bkt.clouddn.com/web-interview/clear%E5%B1%9E%E6%80%A7%E5%80%BC.png)
+     ![clear属性值]
      
      <!-- | 值      |    描述| 
 | :-------- | :--------| 
@@ -493,7 +510,12 @@ tags:
      /* End hide from IE-mac */
      ```
 
-来自—— [CSS float 属性]、[CSS样式----浮动（图文详解）]、 **Web 前端开发实战教程（2014版）V1.8[M].教材用书，2014.（3.9.4 浮动与清除浮动）**
+来自—— **Web 前端开发实战教程（2014版）V1.8[M].教材用书，2014.（3.9.4 浮动与清除浮动）**、[CSS float 属性]、[CSS样式----浮动（图文详解）]
+
+[float属性值]:http://p9myzkds7.bkt.clouddn.com/web-interview/float%E5%B1%9E%E6%80%A7%E5%80%BC.png
+[clear属性值]:http://p9myzkds7.bkt.clouddn.com/web-interview/clear%E5%B1%9E%E6%80%A7%E5%80%BC.png
+[CSS样式----浮动（图文详解）]:https://www.cnblogs.com/smyhvae/p/7297736.html
+[CSS float 属性]:http://www.w3school.com.cn/cssref/pr_class_float.asp
 
 ### 文档类型声明（DOCTYPE）作用？
 
@@ -1681,6 +1703,8 @@ _建议最好不要使用 @improt，如果 @import 加载的样式比较大，�
 
 来自—— [XHTML 教程]
 
+[XHTML 教程]:http://www.w3school.com.cn/xhtml/index.asp
+
 ### 什么是WebGL,它有什么优点?
 
 > WebGL 是一项用来在网页上绘制和渲染三维图形并允许用户与之交互的技术。同时，WebGL ( Web 图形库)是一种 JavaScript API，用于在任何兼容的 Web 浏览器中呈现交互式 3D 和 2D 图形，而无需使用插件。WebGL 通过引入一个与 OpenGL ES2.0 紧密相符合的 API，可以在 HTML5 `<canvas>` 元素中使用。
@@ -1711,22 +1735,11 @@ _建议最好不要使用 @improt，如果 @import 加载的样式比较大，�
 [WebGL中文网]:http://www.hewebgl.com/
 [WebGL技术学习之路]:https://blog.csdn.net/happyduoduo1/article/details/51831775
 
-[XHTML 教程]:http://www.w3school.com.cn/xhtml/index.asp
- 
-[HTML中href、src区别]: https://blog.csdn.net/annsheshira23/article/details/51133709
-[rel、href、src、url的区别]:https://blog.csdn.net/chengshaolei2012/article/details/72847770
-[史上最全的CSS hack方式一览]:https://blog.csdn.net/freshlover/article/details/12132801
-[CSS hack大全]:https://www.duitang.com/static/csshack.html
-[今天才知道css hack是什么]:https://www.cnblogs.com/miniyk/p/3734664.html
-[CSS Hack是什么意思？css hack有什么用？]:https://www.w3cschool.cn/css3/question-10231625.html
-[你想知道的css hack知识全都帮你整理好了]:https://www.w3cschool.cn/css/css-hack.html
-[CSS参考手册]:http://phpstudy.php.cn/css3/
+
+
 [同步请求和异步请求的区别]: https://blog.csdn.net/goodshot/article/details/7244053
 [简述同步和异步的区别]:https://www.cnblogs.com/Renyi-Fan/p/7808756.html#_label0_5
 [阻塞与非阻塞的区别]:https://www.cnblogs.com/orez88/articles/2513460.html
-[HTML文档的根元素是 html 元素]:https://blog.csdn.net/ixygj197875/article/details/79737953
-[px,em,rem单位转换工具]:http://pxtoem.com/
-[彻底弄懂px,em和rem的区别]:https://www.cnblogs.com/langee/p/6890362.html
 [什么叫优雅降级和渐进增强？]:https://www.cnblogs.com/Renyi-Fan/p/7808756.html#_label0_7
 [主流浏览器内核]:http://p9myzkds7.bkt.clouddn.com/web-interview/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8.png
 [浏览器的内核分别是什么？]:https://www.cnblogs.com/maggie-pan/p/6391355.html
@@ -1737,5 +1750,3 @@ _建议最好不要使用 @improt，如果 @import 加载的样式比较大，�
 [AJAX 简介]:https://www.w3cschool.cn/ajax/nr583fns.html
 [Ajax的优缺点及工作原理？]:https://www.cnblogs.com/wdlhao/p/8290436.html#_label3
 [AJAX工作原理及其优缺点]:https://www.cnblogs.com/SanMaoSpace/archive/2013/06/15/3137180.html
-[CSS样式----浮动（图文详解）]:https://www.cnblogs.com/smyhvae/p/7297736.html
-[CSS float 属性]:http://www.w3school.com.cn/cssref/pr_class_float.asp
