@@ -1345,15 +1345,75 @@ _建议最好不要使用 @improt，如果 @import 加载的样式比较大，�
 
 [Web前端面试指导(十四)：如何居中一个元素（正常、绝对定位、浮动元素）?]:https://blog.csdn.net/lxcao/article/details/52670724
 
+### 利用@media screen实现网页布局的自适应。
+
+- 了解 Media Queries
+ 
+  >**Media Queries** ，其作用就是 **允许添加表达式用以媒体查询** ，**以此来选择不同的样式表** ，**从而自动适应不同的屏幕分辨率** 。
+ 
+  _**CSS2** 里面虽然支持 @media 属性，但是能实现的 **功能比较少** ，一般 **只用做打印的时候做特殊定义的CSS** ，我们不去讨论。_
+
+  _**CSS3** 的 @media 属性在 CSS3 里面已经演变成一种 **media queries**（媒体查询/匹配）了,在 CSS3 里面，**可以用查询语句来匹配各种类型的屏幕** 。_
+
+- @media 与 @media screen 区别
+
+  > @media screen 的 CSS 在打印设备里是无效的，而 @media 在打印设备里是有效的，如果css需要用在打印设备里，那么就用 @media ，否则，就用@media screen。
+
+  _不过这只是笼统的做法，其实如果把“screen”换为“print”，写为@media print，那么该css就可用到打印设备上了，但要注意，@media print声明的css只能在打印设备上有效。_
+  
+- Media Queries工作方式:
+
+  在media属性里：
+
+  - **screen** 是媒体类型里的一种，CSS2.1定义了10种媒体类型。
+  
+  - **and** 被称为关键字，其他关键字还包括 **not** (排除某种设备)，**only** (限定某种设备)。
+  
+  - (min-width: 400px) 就是 **媒体特性** ，其被放置在一对圆括号中。完整的特性参看相关的Media features部分。
+
+  1. 一种是直接在link中判断设备的尺寸，然后引用不同的css文件：
+
+      ```
+      <link rel="stylesheet" type="text/css" href="styleA.css" media="screen and (min-width: 400px)">
+      ```
+     意思是当屏幕的宽度大于等于 400px 的时候，应用 styleA.css。
+
+      ```
+      <link rel="stylesheet" type="text/css" href="styleB.css"  media="screen and (min-width: 600px) and (max-width: 800px)">
+      ```
+     意思是当屏幕的宽度大于 600 小于 800 时，应用 styleB.css。
+
+  2. 另一种方式，即是直接写在 style 标签里：
+
+      ```
+      @media screen and (max-width: 600px) { /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
+        .class {
+          background: #ccc;
+        }
+      }
+      ```
+     写法是前面加 @media，其它跟 link 里的 media 属性相同。
+
+
+来自—— [利用@media与@media screen进行响应式布局]、[CSS3 @media 查询]、[利用@media screen实现网页布局的自适应]
+
+[利用@media与@media screen进行响应式布局]:http://www.511yj.com/media-media-screen.html
+[CSS3 @media 查询]:http://www.runoob.com/cssref/css3-pr-mediaquery.html
+[利用@media screen实现网页布局的自适应]:https://www.cnblogs.com/xcxc/p/4531846.html
+
+### 对BFC规范的理解
+
+一、常见定位方案
+
+来自—— [10 分钟理解 BFC 原理]
+
+[10 分钟理解 BFC 原理]:https://blog.csdn.net/jiaojsun/article/details/76408215
+
 ### 请简述HTML和XHTML最重要的4点不同？
  
-### 20、利用@media screen实现网页布局的自适应。
-
 ### 21、什么是WebGL,它有什么优点?
 
 ### 22、说说你对SVG理解?
-
-### 对BFC规范的理解
 
 
 [HTML中href、src区别]: https://blog.csdn.net/annsheshira23/article/details/51133709
