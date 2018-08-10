@@ -1185,13 +1185,87 @@ _**一个符合标准的网页** ，标签中的 **标签名** 应该 **全部�
 
 _虽然 alt 也有 title 的功能，但是只是在低版本的ie浏览器才支持，高版本及标准浏览器不支持这个功能了。_
 
-### 请简述HTML和XHTML最重要的4点不同？
+来自—— [HTML语言中img标签的alt属性和title属性的作用与区别]
+
+[HTML语言中img标签的alt属性和title属性的作用与区别]: https://zhidao.baidu.com/question/263730425037686525.html
 
 ### 页面导入样式时，使用link和@import有什么区别？
 
+> link 和 @import 是导入外部样式的两种方式。
+
+- link 语法
+
+  ```
+  <link rel="stylesheet" type="text/css" href="css文件" media="all">
+  ```
+  _这个代码中有一个media，是用来制作响应式网页的，media=“all” 是用于所有设备， media=“screen” 用于电脑屏幕，平板电脑、智能手机场景，举个例子：_
+  
+   ```
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Examples</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link href="" rel="stylesheet">
+  <style>
+      @media screen and (max-width:800px){
+          body{
+              background-color: yellow;
+          }
+      }
+  </style>
+  </head>
+  <body>
+     <h1> hello</h1>
+  </body>
+  </html>
+   ```
+   _这段代码表示当屏幕的宽度小于等于800像素的时候，页面背景是黄色。_
+   
+- @import 语法
+
+  ```
+  <style type="text/css" media="screen">
+    @import url("css文件");
+  </style>
+  ```
+
+**两者的区别：**
+
+- 从属关系   
+
+  > **link** 是 XHTML 标签，除了 **可以引用css样式外还可以定义RSS等事物** ，但 **@import** 是 css 标签，**只能引用 css 样式** 。
+
+- 加载的顺序 
+  
+  > **link** 在页面加载的 **同时加载** （需要等待），而 **@import** 是 **在页面内容加载完成之后加载的** 。
+
+- 兼容性的区别 
+
+  > **link** 是 XHTML标签，**没有兼容问题** ，而 **@import** 是在 css2.1 提出来的，**低版本的浏览器不支持** 。
+
+- DOM可控性的区别 
+
+  > **link** 支持使用JavaScript 控制 DOM去 改变样式 ，@import **不支持** 。
+
+- 权重的区别
+
+  > **link 引入的样式权重大于 @import 引入的样式。** 换句话说就是在 link 标签中引入的 css 文件中使用 @import 时，相同样式将被该 css 文件本身的样式覆盖。
+
+_建议最好不要使用 @improt，如果 @import 加载的样式比较大，出现加载延迟，就可能会发生闪屏的问题。_
+
+来自—— [link和@import区别]、[link 与@import的区别]、[link 和 @import区别]
+
+[link和@import区别]: https://www.jianshu.com/p/0010338621b9
+[link 与@import的区别]: https://blog.csdn.net/YANGJIAHAO666/article/details/55254735
+[link 和 @import区别]: https://blog.csdn.net/qq_41047322/article/details/81179254
+
+### 请简述HTML和XHTML最重要的4点不同？
+
 ### 如何居中一个浮动元素？
-
-
  
 ### 20、利用@media screen实现网页布局的自适应。
 
