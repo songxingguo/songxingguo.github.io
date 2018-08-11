@@ -22,3 +22,9 @@ date: 2018-06-02 17:11:00
    - [使用Coding作为国内访问站点]()
    - [实现windows开机启动Hexo 服务]()
    - [图床七牛云]()
+   
+### 优秀教程
+
+- #### 统计访问量
+
+ [Hexo搭建博客系列：（五）Hexo添加不蒜子和LeanCloud统计无标题文章](https://www.jianshu.com/p/702a7aec4d00)
