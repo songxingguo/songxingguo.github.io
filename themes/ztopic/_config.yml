@@ -41,8 +41,8 @@ social:
 
 #leanCloud
 leancloud:
-  app_id:
-  app_key:
+  app_id: MNdCoL1O2i2njgRy8WVYgAwf-gzGzoHsz
+  app_key: hil0yQTQDbO8nzaxFKqeSqyK
 
 # comments
 # Valine comment system. https://valine.js.org
