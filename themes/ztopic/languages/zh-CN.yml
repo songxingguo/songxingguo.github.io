@@ -28,3 +28,7 @@ counter:
     zero: "暂无标签"
     one: 共计1个标签
     other: "共计 %d 个标签"
+  archive: 
+    zero: "暂无文章"
+    one: 共计一篇文章
+    other: "共计 %d 篇文章"
