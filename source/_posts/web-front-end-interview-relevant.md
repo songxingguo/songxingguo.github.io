@@ -134,6 +134,12 @@ canvas通过专门的API将图片绘制在画布上
 ### 19、什么是MVVM框架？
 [来源](https://www.jianshu.com/p/0e9a0d460f64)
 
+### 调试按钮
+
+F9    在你需要停下的地方设置断点 
+F5    进入调试 
+F10  单步运行 
+F11  进入函数
 
 [同步请求和异步请求的区别]: https://blog.csdn.net/goodshot/article/details/7244053
 [简述同步和异步的区别]:https://www.cnblogs.com/Renyi-Fan/p/7808756.html#_label0_5
