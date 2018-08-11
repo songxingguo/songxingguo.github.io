@@ -6,7 +6,7 @@ categories:
   - 博客搭建
 date: 2018-08-11 12:42:00
 ---
-## 添加文章总条数
+## 添加文章总条数显示
 
  **效果展示**
  
@@ -53,7 +53,7 @@ date: 2018-08-11 12:42:00
     </div>
   </div>
  ```
- 上面 `ejs` 代码中添加了 `tags-title` 中的代码。
+ 上面 `ejs` 代码中添加了 `tags-title` 中的代码, 其中 `site.posts` 为博客变量，详细了解可以查看 Hexo 文档中的 [变量](https://hexo.io/zh-cn/docs/variables) 。
  
  ```css
  .archives-container{
