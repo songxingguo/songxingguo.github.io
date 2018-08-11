@@ -12,6 +12,20 @@
       </article>
     </div>
 <%}%>
+<%if(page.type && page.type==="works"){%>
+    <div id="works">
+      <article class="post">
+        <header>
+          <div class="post-title mobile-post-title">
+            <h1><%= page.title %></h1>
+          </div>
+        </header>
+        <div class="post-content">
+          <%- page.content %>
+        </div>
+      </article>
+    </div>
+<%}%>
 <%if(page.type && page.type ==="tags"){%>
   <div id="tags">
     <div class="tags-container">

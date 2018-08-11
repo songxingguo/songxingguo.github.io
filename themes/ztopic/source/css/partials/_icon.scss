@@ -7,6 +7,15 @@
   url('//at.alicdn.com/t/font_425542_ayw19yrbb2xfxbt9.svg?t=1511273246658#iconfont') format('svg'); /* iOS 4.1- */
 }
 
+@font-face {
+  font-family: 'iconfont';  /* project id 788043 */
+  src: url('//at.alicdn.com/t/font_788043_i0wkv787ma.eot');
+  src: url('//at.alicdn.com/t/font_788043_i0wkv787ma.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_788043_i0wkv787ma.woff') format('woff'),
+  url('//at.alicdn.com/t/font_788043_i0wkv787ma.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_788043_i0wkv787ma.svg#iconfont') format('svg');
+}
+
 .iconfont {
   font-family:"iconfont" !important;
   font-size:16px;
@@ -68,3 +77,5 @@
 .icon-github:before { content: "\e600"; }
 
 .icon-instagram:before { content: "\e641"; }
+
+.icon-works:before { content: "\e693"; }

@@ -19,6 +19,10 @@
         <div class="about-title">
           <%= "about me" %>
         </div>
+      <%}else if(page.type && page.type === 'works'){%>
+        <div class="about-title">
+          <%= "作品展示" %>
+        </div>
       <%}else{%>
         <div class="intro">
           <%= theme.introduce %>
