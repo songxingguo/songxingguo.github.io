@@ -1,4 +1,4 @@
-title: ztopic 主题添加导航-作品
+title: ztopic 主题添加导航 “作品”
 author: songxingguo
 tags:
   - Hexo
