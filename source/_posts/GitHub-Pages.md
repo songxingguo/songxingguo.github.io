@@ -58,7 +58,7 @@ date: 2018-08-12 05:59:00
    
 GitHub Pages 将从该 /docs 目录中读取发布您网站的所有内容，包括 CNAME 文件。例如，当您通过 GitHub 页面设置编辑自定义域时，自定义域将写入 /docs/CNAME 。
 
-_**提示：** 如果在启用后 /docs 从 master 分支中删除该文件夹，则您的站点将无法构建，并且您将收到丢失 /docs 文件夹的页面构建错误消息。_
+>**提示：** 如果在启用后 /docs 从 master 分支中删除该文件夹，则您的站点将无法构建，并且您将收到丢失 /docs 文件夹的页面构建错误消息。
 
 1. 在GitHub上，进入到代码仓库。
 
@@ -72,7 +72,7 @@ _**提示：** 如果在启用后 /docs 从 master 分支中删除该文件夹�
 
  ![选择发布源](http://p9myzkds7.bkt.clouddn.com/github-pages/select-master-branch-docs-folder-as-source.png)
 
-   **提示：** 如果分支 /docs 上不存在该文件夹，则 master 分支 / docs 文件夹源设置将不会显示为选项 master。
+   >**提示：** 如果分支 /docs 上不存在该文件夹，则 master 分支 / docs 文件夹源设置将不会显示为选项 master。
    
 5. 点击保存，选择单击保存主分支的文档文件夹。
 
@@ -80,4 +80,3 @@ _**提示：** 如果在启用后 /docs 从 master 分支中删除该文件夹�
    
    
 ## 问题及解决
-
