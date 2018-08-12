@@ -13,7 +13,7 @@ date: 2018-08-12 05:59:00
  
 <!-- more -->
  
-## 进入正题
+## 发布站点
 
  GitHub Pages 允许我们从 master 分支、gh-pages 分支 或 master分支下的 /docs 目录来发布我们的资源。
  
@@ -30,7 +30,7 @@ date: 2018-08-12 05:59:00
 
 创建了 master 分支 或 gh-pages 分支，可以将其中一个设置为发布源，以便发布站点。
 
-如果您仅使用a master或gh-pagesbranch 分叉或上传站点存储库，则将自动为该分支启用站点的源设置。
+如果您仅使用 master或 gh-pages 分支分叉或上传到仓库，则将自动为该分支启用站点的源设置。
 
 ### 从 master 或 gh-pages 发布资源
 
@@ -56,16 +56,28 @@ date: 2018-08-12 05:59:00
 
 - 不遵循存储库命名方案 `<username>.github.io` 或 `<orgname>.github.io` 。
    
-GitHub Pages 将从该 /docs 文件夹中读取发布您网站的所有内容，包括 CNAME 文件。例如，当您通过 GitHub 页面设置编辑自定义域时，自定义域将写入 /docs/CNAME 。
+GitHub Pages 将从该 /docs 目录中读取发布您网站的所有内容，包括 CNAME 文件。例如，当您通过 GitHub 页面设置编辑自定义域时，自定义域将写入 /docs/CNAME 。
 
 _**提示：** 如果在启用后 /docs 从 master 分支中删除该文件夹，则您的站点将无法构建，并且您将收到丢失 /docs 文件夹的页面构建错误消息。_
 
-1. 在GitHub上，导航到GitHub Pages站点的存储库。
-2. 在master名为分支的存储库的根目录中创建一个文件夹/docs。
-3. 存储库设置按钮在您的存储库名称下，单击  设置。
+1. 在GitHub上，进入到代码仓库。
 
-4. 选择主分支-文档文件夹-作为源使用“选择源”下拉菜单选择master branch / docs文件夹作为GitHub Pages发布源。
+2. 在仓库 master 分支的根目录中创建一个名为 /docs 文件夹。
 
-提示：如果分支/docs上不存在该文件夹，则master分支/ docs文件夹源设置将不会显示为选项master。
+3. 点击仓库设置按钮。
 
-5. 点击保存，下到主分支的文档文件夹源选择单击保存。
+  ![点击设置按钮](http://p9myzkds7.bkt.clouddn.com/github-pages/repo-actions-settings.png)
+
+4. 选择 master 分支的 / docs 目录 作为 GitHub Pages 发布源。
+
+ ![选择发布源](http://p9myzkds7.bkt.clouddn.com/github-pages/select-master-branch-docs-folder-as-source.png)
+
+   **提示：** 如果分支 /docs 上不存在该文件夹，则 master 分支 / docs 文件夹源设置将不会显示为选项 master。
+   
+5. 点击保存，选择单击保存主分支的文档文件夹。
+
+   ![保存发布源](http://p9myzkds7.bkt.clouddn.com/github-pages/click-save-next-to-master-branch-docs-folder-source-selection.png)
+   
+   
+## 问题及解决
+
