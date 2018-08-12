@@ -1,4 +1,4 @@
-title: GitHub Pages 发布项目或博客的 3 种方式
+title: 为 GitHub Pages  配置发布源
 author: songxingguo
 tags:
   - github
