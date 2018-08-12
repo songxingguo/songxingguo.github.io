@@ -27,4 +27,12 @@ date: 2018-06-02 17:11:00
 
 - #### 统计访问量
 
- [Hexo搭建博客系列：（五）Hexo添加不蒜子和LeanCloud统计无标题文章](https://www.jianshu.com/p/702a7aec4d00)
+  [Hexo搭建博客系列：（五）Hexo添加不蒜子和LeanCloud统计无标题文章](https://www.jianshu.com/p/702a7aec4d00)
+ 
+- #### gh-pages 展示项目
+
+  [如何用Github的gh-pages分支展示自己的项目](https://www.cnblogs.com/MuYunyun/p/6082359.html)
+ 
+- #### Travis CI 自动部署
+
+  [使用 Travis CI 自动更新 GitHub Pages](https://notes.iissnan.com/2016/publishing-github-pages-with-travis-ci/)
