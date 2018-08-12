@@ -8,7 +8,7 @@ date: 2018-08-12 08:44:00
 ---
 ## 写在前面
 
-该文章用于介绍 GitHub Pages 的相关内容，帮助了解 GitHub Pages ，也可以查看 GitHub [帮助文档](https://help.github.com/articles/user-organization-and-project-pages/) 。
+该文章用于介绍 GitHub Pages 的相关内容，帮助了解 GitHub Pages ，也可以查看 GitHub [帮助文档](https://help.github.com/articles/user-organization-and-project-pages/) 。[GitHub Pages 基础知识](https://help.github.com/categories/github-pages-basics/) 。
 
 <!-- more -->
 
