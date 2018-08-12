@@ -21,5 +21,8 @@ date: 2018-06-02 10:23:12
 
 <iframe src="https://songxingguo.github.io/FruitShop/" width="100%" height="500" frameborder="0" align="middle" ></iframe>
 
-<!-- [微信小程序](https://works.songxingguo.com/) -->
+[作品展示](https://songxingguo.github.io/works/)
 
+<iframe src="https://songxingguo.github.io/works/" width="100%" height="500" frameborder="0" align="middle" ></iframe>
+
+<!-- [微信小程序](https://works.songxingguo.com/) -->
