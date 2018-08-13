@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>Web前端面试题目及详解汇总-JavaScript部分 | 阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/works" class="menu-item-link"><i class="iconfont icon-works"></i>作品</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="post-title">
+          Web前端面试题目及详解汇总-JavaScript部分
+            <div class="post-tags">
+    		    
+    	      </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <article class="post">
+  
+
+  <header>
+    <div class="post-title mobile-post-title">
+      <h1>Web前端面试题目及详解汇总-JavaScript部分</h1>
+        <div class="post-tags">
+        
+        </div>
+    </div>
+    <div class="post-meta">
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2018-08-06</span>
+      
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/找工作/">找工作</a>
+          
+      
+      <!----------------------------------->
+        
+          <i class="iconfont icon-divide"></i>
+          <div class="post-visits"
+               data-url="/2018/08/06/web-front-end-interview-javascript/"
+               data-title="Web前端面试题目及详解汇总-JavaScript部分">
+              阅读次数
+            </div>
+        
+      <!----------------------------------->
+    </div>
+  </header>
+  
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#请指出document-load和document-ready的区别？"><span class="toc-text">请指出document load和document ready的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript中如何检测一个变量是一个String类型？请写出函数实现。"><span class="toc-text">JavaScript中如何检测一个变量是一个String类型？请写出函数实现。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请用js去除字符串空格？"><span class="toc-text">请用js去除字符串空格？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#你如何获取浏览器URL中查询字符串中的参数？"><span class="toc-text">你如何获取浏览器URL中查询字符串中的参数？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#js-字符串操作函数"><span class="toc-text">js 字符串操作函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#怎样添加、移除、移动、复制、创建和查找节点？"><span class="toc-text">怎样添加、移除、移动、复制、创建和查找节点？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#写出3个使用this的典型应用"><span class="toc-text">写出3个使用this的典型应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#比较typeof与instanceof？"><span class="toc-text">比较typeof与instanceof？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何理解闭包？"><span class="toc-text">如何理解闭包？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是跨域？跨域请求资源的方法有哪些？"><span class="toc-text">什么是跨域？跨域请求资源的方法有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#谈谈垃圾回收机制方式及内存管理"><span class="toc-text">谈谈垃圾回收机制方式及内存管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开发过程中遇到的内存泄露情况，如何解决的？"><span class="toc-text">开发过程中遇到的内存泄露情况，如何解决的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#javascript面向对象中继承实现？"><span class="toc-text">javascript面向对象中继承实现？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-数组-Array-对象"><span class="toc-text">JavaScript 数组(Array)对象</span></a></li></ol>
+    </div>
+  </div>
+
+
+  <div class="post-content">
+    <h3 id="请指出document-load和document-ready的区别？"><a href="#请指出document-load和document-ready的区别？" class="headerlink" title="请指出document load和document ready的区别？"></a>请指出document load和document ready的区别？</h3><p> 共同点：这两种事件都代表的是页面文档加载时触发。</p>
+<p>异同点：</p>
+<p>ready 事件的触发，表示文档结构已经加载完成（不包含图片等非文字媒体文件）。</p>
+<p>onload 事件的触发，表示页面包含图片等文件在内的所有元素都加载完成。</p>
+<h3 id="JavaScript中如何检测一个变量是一个String类型？请写出函数实现。"><a href="#JavaScript中如何检测一个变量是一个String类型？请写出函数实现。" class="headerlink" title="JavaScript中如何检测一个变量是一个String类型？请写出函数实现。"></a>JavaScript中如何检测一个变量是一个String类型？请写出函数实现。</h3><p>方法一：typeof</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isString</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span>(obj) === <span class="string">"string"</span>? <span class="literal">true</span>: <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">// returntypeof obj === "string"? true: false;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方法二：constructor</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isString</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> obj.constructor === <span class="built_in">String</span>? <span class="literal">true</span>: <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方法三：call()<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isString</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj) === <span class="string">"[object String]"</span>?<span class="literal">true</span>:<span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">如：</span><br><span class="line"><span class="keyword">var</span> isstring = isString(<span class="string">'xiaoming'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(isstring);  <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="请用js去除字符串空格？"><a href="#请用js去除字符串空格？" class="headerlink" title="请用js去除字符串空格？"></a>请用js去除字符串空格？</h3><p>方法一：使用replace正则匹配的方法</p>
+<p>  去除所有空格: str = str.replace(/\s*/g,””);      </p>
+<p>  去除两头空格: str = str.replace(/^\s<em>|\s</em>$/g,””);</p>
+<p>  去除左空格： str = str.replace( /^\s*/, “”);</p>
+<p>  去除右空格： str = str.replace(/(\s*$)/g, “”);</p>
+<p>str为要去除空格的字符串，实例如下：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">" 23 23 "</span>;</span><br><span class="line"><span class="keyword">var</span> str2 = str.replace(<span class="regexp">/\s*/g</span>,<span class="string">""</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str2); <span class="comment">// 2323</span></span><br></pre></td></tr></table></figure>
+<p> 来自—— <a href="https://www.cnblogs.com/wdlhao/p/8290436.html" target="_blank" rel="noopener">2018年web前端经典面试题及答案</a></p>
+<h3 id="你如何获取浏览器URL中查询字符串中的参数？"><a href="#你如何获取浏览器URL中查询字符串中的参数？" class="headerlink" title="你如何获取浏览器URL中查询字符串中的参数？"></a>你如何获取浏览器URL中查询字符串中的参数？</h3><h3 id="js-字符串操作函数"><a href="#js-字符串操作函数" class="headerlink" title="js 字符串操作函数"></a>js 字符串操作函数</h3><h3 id="怎样添加、移除、移动、复制、创建和查找节点？"><a href="#怎样添加、移除、移动、复制、创建和查找节点？" class="headerlink" title="怎样添加、移除、移动、复制、创建和查找节点？"></a>怎样添加、移除、移动、复制、创建和查找节点？</h3><h3 id="写出3个使用this的典型应用"><a href="#写出3个使用this的典型应用" class="headerlink" title="写出3个使用this的典型应用"></a>写出3个使用this的典型应用</h3><h3 id="比较typeof与instanceof？"><a href="#比较typeof与instanceof？" class="headerlink" title="比较typeof与instanceof？"></a>比较typeof与instanceof？</h3><h3 id="如何理解闭包？"><a href="#如何理解闭包？" class="headerlink" title="如何理解闭包？"></a>如何理解闭包？</h3><h3 id="什么是跨域？跨域请求资源的方法有哪些？"><a href="#什么是跨域？跨域请求资源的方法有哪些？" class="headerlink" title="什么是跨域？跨域请求资源的方法有哪些？"></a>什么是跨域？跨域请求资源的方法有哪些？</h3><h3 id="谈谈垃圾回收机制方式及内存管理"><a href="#谈谈垃圾回收机制方式及内存管理" class="headerlink" title="谈谈垃圾回收机制方式及内存管理"></a>谈谈垃圾回收机制方式及内存管理</h3><h3 id="开发过程中遇到的内存泄露情况，如何解决的？"><a href="#开发过程中遇到的内存泄露情况，如何解决的？" class="headerlink" title="开发过程中遇到的内存泄露情况，如何解决的？"></a>开发过程中遇到的内存泄露情况，如何解决的？</h3><h3 id="javascript面向对象中继承实现？"><a href="#javascript面向对象中继承实现？" class="headerlink" title="javascript面向对象中继承实现？"></a>javascript面向对象中继承实现？</h3><h3 id="JavaScript-数组-Array-对象"><a href="#JavaScript-数组-Array-对象" class="headerlink" title="JavaScript 数组(Array)对象"></a>JavaScript 数组(Array)对象</h3>
+  </div>
+  <div class="post-footer">the end</div>
+</article>
+
+          
+  <nav class="pagination post-nav">
+    
+      <a href="/2018/08/06/web-front-end-interview-html-css/">
+        <span class="prev-post"><i class="iconfont icon-back"></i>Web前端面试题目及详解汇总-HTML/CSS部分</span>
+      </a>
+    
+    
+      <a href="/2018/08/06/web-front-end-interview-network/">
+        <span class="next-post">Web前端面试题目及详解汇总-网络部分<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+  
+
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/works" class="mobile-nav-link"><i class="iconfont icon-works"></i>作品</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.2.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+        appId: "MNdCoL1O2i2njgRy8WVYgAwf-gzGzoHsz",
+        appKey: "hil0yQTQDbO8nzaxFKqeSqyK"
+      });
+  </script>
+  <script>
+  (function (window) {
+      $(document).ready(function () {
+        visits();
+      });
+    function visits() {
+      var $visits = $('.post-visits');
+
+      function updateVisits(dom, time) {
+        var text = dom.text() + ' ' + time;
+        dom.text(text);
+      }
+
+      function addCounter(Counter) {
+        var query = new AV.Query(Counter);
+
+        var url = $visits.data('url').trim();
+        var title = $visits.data('title').trim();
+
+        query.equalTo('url', url);
+        query.find().then(function (results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.save(null, {
+              fetchWhenSave: true
+            }).then(function (counter) {
+              counter.increment('time', 1);
+              return counter.save();
+            }).then(function (counter) {
+              updateVisits($visits, counter.get('time'));
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set('title', title);
+            newcounter.set('url', url);
+            newcounter.set('time', 1);
+
+            newcounter.save().then(function (counter) {
+              updateVisits($visits, newcounter.get('time'));
+            });
+          }
+        }, function (error) {
+          console.log('Error:' + error.code + " " + error.message);
+        });
+      }
+
+      function showTime(Counter) {
+        $visits.each(function () {
+          var $this = $(this);
+          var query = new AV.Query(Counter);
+          var url = $this.data('url').trim();
+
+          query.equalTo('url', url);
+          query.find().then(function (results) {
+            if (results.length === 0) {
+              updateVisits($this, 0);
+            } else {
+              var counter = results[0];
+              updateVisits($this, counter.get('time'));
+            }
+          }, function (error) {
+            console.log('Error:' + error.code + " " + error.message);
+          });
+        })
+      }
+
+      if (typeof AV === 'object') {
+        var Counter = AV.Object.extend('Counter');
+        if ($visits.length === 1) {
+          addCounter(Counter);
+        } else {
+          showTime(Counter);
+        }
+      }
+    }
+  })(window);
+  </script>
+
+
+  <script src="/js/ztopic.js"></script>
+</body>
+</html>
