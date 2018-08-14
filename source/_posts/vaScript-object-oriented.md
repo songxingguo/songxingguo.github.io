@@ -217,6 +217,48 @@ ECMA-262 把对象定义为：“**无序属性集合，其属性可以包含基
   以上代码在 book 对象上定义了两个数据属性（_year 和 edition）和 一个访问器属性（year）。最终对象与上一节中定义的对象相同。唯一的区别是这里的属性都是在同一时间创建的。
   
   支持 Object.defineProperties() 方法的浏览器有 IE9+、Firefox 4+、Safari 5+、Opera 12+ 和 Chrome。
+  
+### 读取属性的特性
+
+使用ECMAScript 5 的Object.getOwnPropertyDescriptor() 方法，**可以取得给定属性描述符** 。这个方法接收两个参数：**属性所在的对象** 和 **要读取其他描述符的属性名称** 。返回值是一个对象，如果是访问器属性，这个对象的属性有 configurable、enumberable、get 和 set；如果是数据属性，这个对象的属性有 configurable、enumerale、writable 和 value。例如：
+
+```js
+var book = {};
+
+Object.defineProperties(book, {
+  _year: {
+    value: 2014
+  },
+  edition: {
+    value: 1
+  },
+  year: {
+    get: function() {
+      return this._year;
+    },
+    set: function(newValue) {
+      if (newValue > 2004) {
+        this._year  = newValue;
+        this.edition += newValue - 2004;
+      }
+    }
+  }
+});
+
+var descritoion = Object.getOwnPropertyDescriptor(book, "_year");
+alert(descriptor.value); //2004
+alert(descriptor.configurable); //false
+alert(typeof descriptor.get); //"undefined"
+
+var descriptor = Object.getOwnPropertyDescriptor(book，"year");
+alert(descrptor.value); //undefined
+alert(descriptor.enumberable); //false
+alert(typeof descriptor.get); // "function"
+```
+
+对于数据属性 _year，value 等于最初的值，configurable 是 false，而 get 等于 undefined。对于访问器属性 year、value 等于 undefined, enumberable 是 flase，而   get 是一个指向 getter 函数的指针。
+
+在 JavaScript 中，**可以针对任何对象** ——包括 **DOM** 和 **BOM** 对象，使用 Object.getOwnPropertyDescriptor() 方法。支持这个方法的浏览器有 IE9+、Firefox 4+、Safari 5+、opera 12+ 和 Chrome。
     
     
     
