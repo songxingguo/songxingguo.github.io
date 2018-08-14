@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>《JavaScript 高级程序设计》学习笔记-引用类型 | 阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/works" class="menu-item-link"><i class="iconfont icon-works"></i>作品</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="post-title">
+          《JavaScript 高级程序设计》学习笔记-引用类型
+            <div class="post-tags">
+    		    
+              <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+            
+    	      </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <article class="post">
+  
+
+  <header>
+    <div class="post-title mobile-post-title">
+      <h1>《JavaScript 高级程序设计》学习笔记-引用类型</h1>
+        <div class="post-tags">
+        
+          <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+        
+        </div>
+    </div>
+    <div class="post-meta">
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2018-08-13</span>
+      
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/前端技术/">前端技术</a>
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/前端技术/读书笔记/">读书笔记</a>
+          
+      
+      <!----------------------------------->
+        
+          <i class="iconfont icon-divide"></i>
+          <div class="post-visits"
+               data-url="/2018/08/13/JavaScript-reference-type/"
+               data-title="《JavaScript 高级程序设计》学习笔记-引用类型">
+              阅读次数
+            </div>
+        
+      <!----------------------------------->
+    </div>
+  </header>
+  
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单体内置对象"><span class="toc-text">单体内置对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Global-对象"><span class="toc-text">Global 对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#eval-方法"><span class="toc-text">eval() 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Global-对象属性"><span class="toc-text">Global 对象属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#window-对象"><span class="toc-text">window 对象</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Math-对象"><span class="toc-text">Math 对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Math-对象的属性"><span class="toc-text">Math 对象的属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#min-和-max-方法"><span class="toc-text">min() 和 max() 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#舍入方法"><span class="toc-text">舍入方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#random-方法"><span class="toc-text">random() 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他方法"><span class="toc-text">其他方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li></ol>
+    </div>
+  </div>
+
+
+  <div class="post-content">
+    <h2 id="单体内置对象"><a href="#单体内置对象" class="headerlink" title="单体内置对象"></a>单体内置对象</h2><h3 id="Global-对象"><a href="#Global-对象" class="headerlink" title="Global 对象"></a>Global 对象</h3><ul>
+<li><h4 id="eval-方法"><a href="#eval-方法" class="headerlink" title="eval() 方法"></a>eval() 方法</h4><blockquote>
+<p>整个 ECMAScript 语言中 <strong>最强大的一个方法</strong> ： <strong>eval()</strong> 。</p>
+</blockquote>
+<p>eval() 方法就像一个完整的 <strong>ECMAScript 解析器</strong> ，它只接受一个参数，即要 <strong>执行的 ECMAScript（或 JavaScript）字符串</strong> 。看下面的例子：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span>(<span class="string">"alert('hi')"</span>);</span><br></pre></td></tr></table></figure>
+<p> 这行代码的作用等价于下面这行代码：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">"hi"</span>);</span><br></pre></td></tr></table></figure>
+ <a id="more"></a>
+<p> 当解析器发现代码中调用 eval() 方法时，它会 <strong>将传入的参数当作实际的 ECMAScript 语句来解析，然后把执行结果插入到原位置</strong> 。 <strong>通过 eval() 执行的代码被认为是包含该次调用的执行环境的一部分，因此被执行的代码具有与该执行环境相同的作用域链</strong> 。这意味着 <strong>通过 eval() 执行代码可以引用在包含环境中定义的变量</strong> ，举个例子：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> msg = <span class="string">"hello world"</span>;</span><br><span class="line"><span class="built_in">eval</span>(<span class="string">"alert(msg)"</span>); <span class="comment">//"hello world"</span></span><br></pre></td></tr></table></figure>
+<p> 可见，变量 msg 是在 eval() 调用环境之外定义的，但其调用的 alert() 仍然能够显示 “hello world”。 这是因为上面的第二行代码最终被替换成了一行真正的代码。同样地，我们 <strong>可以在 eval() 调用中定义一个函数，然后在调用的外部代码中引用这个函数</strong> ：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span>(<span class="string">"function sayHIi() &#123; alert ('hi'); &#125;"</span>);</span><br><span class="line">sayHi();</span><br></pre></td></tr></table></figure>
+<p> 显然，函数 sayHi() 是在 eval() 内部定义的。但由于对 eval() 的调用最终会被替换成定义的实际代码，因此可以在下一行调用 sayHi()。<strong>对于变量也一样</strong> ：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span>(<span class="string">"var msg =  'hello world'"</span>);</span><br><span class="line">alert(msg);</span><br></pre></td></tr></table></figure>
+<p> 在 eval() 中创建的 <strong>变量或函数都不会被提升</strong> ，因为在解析代码的时候，他们被包含在一个字符串中；它们 <strong>只在 eval() 执行的时候创建</strong> 。</p>
+<p><strong>严格模式</strong> 下，<strong>在外部访问不到 eval() 中创建的任何变量或函数</strong> ，因此前面两个例子都会导致错误。同样，<strong>严格模式</strong> 下，<strong>为 eval 赋值也会导致错误</strong> ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span></span><br><span class="line">evval = <span class="string">"hi"</span>; <span class="comment">//causes error</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>能够解释代码字符串的能力非常强大，但也非常危险</strong> 。因此在使用 eval() 时必须极为谨慎，特别是在用它执行用户输入数据的情况下。否则，可能会有恶意用户输入威胁你的站点或应用程序的安全的代码（即所谓的 <strong>代码注入</strong> ）。</p>
+</blockquote>
+</li>
+<li><h4 id="Global-对象属性"><a href="#Global-对象属性" class="headerlink" title="Global 对象属性"></a>Global 对象属性</h4><p>下表列出了 Global 对象的所有属性。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/JavaScript-reference-typeGlobal%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%80%E6%9C%89%E5%B1%9E%E6%80%A7.png" alt="Global 对象的所有属性"></p>
+<!-- | 属性           | 说明                    |
+| -------------- | ----------------------- |
+| undefined      | 特殊值 undefined        |
+| NaN            | 特殊值 NaN              |
+| Infinity       | 特殊值 Infinity         |
+| Object         | 构造函数 Object         |
+| Array          | 构造函数 Array          |
+| Function       | 构造函数 Function       |
+| Boolean        | 构造函数 Boolean        |
+| String         | 构造函数 String         |
+| Number         | 构造函数 Number         |
+| Date           | 构造函数 Date           |
+| RegExp         | 构造函数 RegExp         |
+| Error          | 构造函数 Error          |
+| EvalError      | 构造函数 EvalError      |
+| RangeError     | 构造函数 RangeError     |
+| ReferenceError | 构造函数 ReferenceError |
+| SyntaxError    | 构造函数 SyntaxError    |
+| Type Error     | 构造函数 TypeError      |
+| URIError       | 构造函数 URIError       | -->
+<p>ECMAScript 5 明确禁止给 undefined 、NaN 和 Infinity 赋值，这样做即使在非严格模式下也会导致错误。</p>
+</li>
+<li><h4 id="window-对象"><a href="#window-对象" class="headerlink" title="window 对象"></a>window 对象</h4><p>ECMAaScript 虽然没有指出如何直接访问 Global 对象，但 Web 浏览器都是 <strong>将这个全局对象作为 window 对象的一部分加以实现的</strong> 。因此，在全局作用域中声明的所有变量和函数，就都 <strong>成为了 window 对象的属性</strong> 。来看一个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> color = <span class="string">"red"</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayColor</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="built_in">window</span>.color);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.sayColor(); <span class="comment">// "red"</span></span><br></pre></td></tr></table></figure>
+<p>这里定义了一个名为 color 的全局变量和一个名为 sayColor() 的全局函数。在 sayColor() 内部我们通过 window.color 来访问 color 变量，以说明全局变量是 window 对象的属性。然后，又使用 window.sayColor() 来直接通过 window 对象调用这个函数，结果显示在了警告框中。</p>
+<blockquote>
+<p>JavaScript 中的 window 对象除了扮演 ECMAScript 规定的 Global 对象的角色外，还承担的了很多别的任务。</p>
+</blockquote>
+<p>另一种 <strong>取得 Global 对象的方法</strong> 是使用以下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> global = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码创建了一个立即调用的函数表达式，返回 this 的值。如前所述，<strong>在没有给函数明确指定 this 值的情况下</strong> （无论是通过 <strong>将函数添加为对象的方法</strong> ，还是通过 <strong>call()</strong> 或 <strong>apply()</strong> ）, <strong>this 值等于 Global 对象</strong> 。而像这样通过简单的返回 this 来取得 Global 对象，<strong>在任何执行环境下都是可行的</strong> 。</p>
+</li>
+</ul>
+<h3 id="Math-对象"><a href="#Math-对象" class="headerlink" title="Math 对象"></a>Math 对象</h3><p>  ECMAScript 还为保存数学公式和信息提供了一个公共位置，即 <strong>Math 对象</strong> 。与我们在 JavaScript 直接编写的计算功能相比， <strong>Math 对象提供的计算功能执行起来要快得多</strong> 。Math 对象中还 <strong>提供了辅助完成这些计算的属性和方法</strong> 。</p>
+<ul>
+<li><h4 id="Math-对象的属性"><a href="#Math-对象的属性" class="headerlink" title="Math 对象的属性"></a>Math 对象的属性</h4><p>Math 对象包含的 <strong>属性大多数是</strong> 数学计算中可能会用到的一些 <strong>特殊值</strong> 。下表列出了这些属性。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/JavaScript-reference-typeMath%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7%E5%80%BC.png" alt="Math 对象的属性"></p>
+<!-- | 属性         | 说明                                |
+| ------------ | ----------------------------------- |
+| Math.E       | 自然对数的底数，即常量 e 的值       |
+| Math.LN1.0   | 10 的自然对数                       |
+| Math.LN2     | 2 的自然对数                        |
+| Math.LOG2E   | 以 2 为底 e 的对数                  |
+| Math.LOG10E  | 以 10 为底 e 的对数                 |
+| Math.PI      | π 的值                              |
+| Math.SQRT1_2 | 1/2 的平方根（即 2 的平方根的倒数） |
+| Math.SQRT2   | 2 的平方根                          | -->
+</li>
+</ul>
+<ul>
+<li><h4 id="min-和-max-方法"><a href="#min-和-max-方法" class="headerlink" title="min() 和 max() 方法"></a>min() 和 max() 方法</h4><p>  min() 和 max() 方法 <strong>用于确定一组数值中的最小值和最大值</strong> 。这两个方法都可以 <strong>接受任意多个数值参数</strong> ，如下面的例子所示。</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> max = <span class="built_in">Math</span>.max(<span class="number">3</span>, <span class="number">54</span>, <span class="number">32</span>, <span class="number">16</span>);</span><br><span class="line">alert(max); <span class="comment">//54</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> min = <span class="built_in">Math</span>.min(<span class="number">3</span>, <span class="number">54</span>, <span class="number">32</span>, <span class="number">16</span>);</span><br><span class="line">alert(min); <span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+<p>  对于 3、34、32 和 16， Math.max() 返回 54， 而 Math.min() 返回 3。 这两个方法经常被用于避免多余的循环和在 if 语句中确定一组数的最大值。</p>
+<p>  <strong>要找到数值中的最大或最小值</strong> ，可以像下面这样使用 apply() 方法。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var values = [1, 2, 3, 4, 5, 6, 7, 8];</span><br><span class="line">var max = Math.max.apply(Math, values);</span><br></pre></td></tr></table></figure>
+<p>  这个技巧的关键是把 <strong>Math 对象</strong> 作为 <strong>apply() 的第一个参数</strong> ，从而 <strong>正确地设置 this 值</strong> 。然后，可以将 <strong>任何数值</strong> 作为 <strong>第二个参数</strong>。</p>
+</li>
+<li><h4 id="舍入方法"><a href="#舍入方法" class="headerlink" title="舍入方法"></a>舍入方法</h4><p>下面将介绍  <strong>将小数值舍入为整数</strong> 的几个方法： <strong>Math.ceil()</strong> 、 <strong>Math.floor()</strong> 和 <strong>Math.round()</strong> 。这三个方法分别遵循下列舍入规则：</p>
+<ul>
+<li><p>Math.ceil() 执行 <strong>向上舍入</strong>  ，即它总是 <strong>将数值向上舍入为最接近的整数</strong> 。</p>
+</li>
+<li><p>Math.floor() 执行 <strong>向下舍入</strong>，即它总是 <strong>将数值向下舍入为最接近的整数</strong> 。</p>
+</li>
+<li><p>Math.round() 执行 <strong>标准舍入</strong> ，即它总是 <strong>将数值四舍五入为最接近的整数</strong> （这也是我我们在数学课上学到的舍入规则）。</p>
+</li>
+</ul>
+<p>下面是使用这些方法的示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="built_in">Math</span>.ceil(<span class="number">25.9</span>));  <span class="comment">//26</span></span><br><span class="line">alert(<span class="built_in">Math</span>.ceil(<span class="number">25.5</span>));  <span class="comment">//26</span></span><br><span class="line">alert(<span class="built_in">Math</span>.ceil(<span class="number">25.1</span>));  <span class="comment">//26</span></span><br><span class="line"></span><br><span class="line">alert(<span class="built_in">Math</span>.round(<span class="number">25.9</span>)); <span class="comment">//26</span></span><br><span class="line">alert(<span class="built_in">Math</span>.round(<span class="number">25.5</span>)); <span class="comment">//26</span></span><br><span class="line">alert(<span class="built_in">Math</span>.round(<span class="number">25.1</span>)); <span class="comment">//25</span></span><br><span class="line"></span><br><span class="line">alert(<span class="built_in">Math</span>.floor(<span class="number">25.9</span>)); <span class="comment">//25</span></span><br><span class="line">alert(<span class="built_in">Math</span>.floor(<span class="number">25.5</span>)); <span class="comment">//25</span></span><br><span class="line">alert(<span class="built_in">Math</span>.floor(<span class="number">25.1</span>)); <span class="comment">//25</span></span><br></pre></td></tr></table></figure>
+<p>对于介于 25 和 26 之间的数值， Math.ceil() 始终返回 26，因为它执行的是向上舍入。Math.round() 方法只在大于等于 25.5 时返回 26；否则返回 25。最后， Math.floor() 对介于25 和 26 之间的数值都返回 25。</p>
+</li>
+<li><h4 id="random-方法"><a href="#random-方法" class="headerlink" title="random() 方法"></a>random() 方法</h4><p>Math.random() 方法 <strong>返回大于等于 0 小于 1 的一个随机数</strong> 。对于某些站点来说，这个方法非常实用，因为可以利用它来随机显示名人名言和新闻事件。套用下面的公式，就 <strong>可以利用 Math.random() 从某个整数范围内随机选择一个值</strong> 。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">值 = Math.floor(Math.random() * 可能值的总数 + 第一个可能的值)</span><br></pre></td></tr></table></figure>
+<p>公式中用到了 Math.floor() 方法，这是因为 Math.random() 总是返回一个小数值。而用这个小数值乘以一个整数，然后在加上一个整数，最终结果仍然还是一个小数。举例来说，如果你想 <strong>选择一个 1 到 10 之间的数值</strong> ，可以像下面这样编写代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">10</span> + <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>总共 10 个可能的值（1 到 10）， 而第一个可能的值是 1.如果想要选择一个介于 2 到 10 之间的值，就应该将上面的代码改成这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">9</span> + <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<p>从 2 数到 10 要数 9 个数，因此可能值的总数就是 9，而第一个可能的值就是 2.多数情况下，其实都 <strong>可以通过一个函数来计算可能的总数和第一个可能的值</strong> ，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectFrom</span>(<span class="params">lowerValue, upperValue</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> choices = upperValue - lowerValue + <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * choices + lowerValue);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> num = selectFrom(<span class="number">2</span>, <span class="number">10</span>);</span><br><span class="line">alert(num); <span class="comment">//介于 2 和 10 之间（包括 2 和 10）的一个数值</span></span><br></pre></td></tr></table></figure>
+<p>函数 seclectFrom() 接受两个参数：应该返回的最小值和最大值。而用最大值减最小值再加上 1 得到了可能的总数，然后它又把这些数值套用到了前面的公式中。这样，通过调用 selectFrom(2, 10) 就可以得到一个介于 2 和 10 之间（包括 2 和 10）的数值了。利用这个函数，可以方便 <strong>从数值中随机取出一项</strong> ，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span>, <span class="string">"yellow"</span>, <span class="string">"black"</span>, <span class="string">"purple"</span>, <span class="string">"brown"</span>];</span><br><span class="line"><span class="keyword">var</span> color = colors[selectFrom(<span class="number">0</span>, colors.length - <span class="number">1</span>)];</span><br><span class="line">alert(color); <span class="comment">//可能是数组中包含的任何一个字符串</span></span><br></pre></td></tr></table></figure>
+<p>在这个例子中，传递给 selectFrom() 的第二个参数是数组的长度减 1，也就是数组中最后一项的位置。</p>
+</li>
+<li><h4 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h4><p>下面我们给出一个表格，其中列出了这些没有介绍到的 Math 对象的方法。<br><img src="http://p9myzkds7.bkt.clouddn.com/JavaScript-reference-type/Math%20%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95.png" alt=" Math 对象的方法"></p>
+<!-- | 方法                 | 说明                    |
+| -------------------- | ----------------------- |
+| Math.abs(num)        | 返回 num 的绝对值       |
+| Math.exp(num)        | 返回 Math.E 的 num 次幂 |
+| Math.log(num)        | 返回 num 的自然对数     |
+| Math.pow(num, power) | 返回 num 的 power 次幂  |
+| Math.sqrt(num)       | 返回 num 的平方根       |
+| Math.acos(x)         | 返回 x 的反余弦值       |
+| Math.asin(x)         | 返回 x 的反正弦值       |
+| Math.atan(x)         | 返回 x 的反正切值       |
+| Math.atan2(y, x)     | 返回 y/x 的反正切值     |
+| Math.cos(x)          | 返回 x  的余弦值        |
+| Math.sin(x)          | 返回 x 的正弦值         |
+| Math.tan(x)          | 返回 x 的正切值         | -->
+<p>虽然 ECMA-262 规定了这些方法，但不同实现可能会对方法采用不同的算法。毕竟，计算某个值的正弦、余弦和正切的方式多种多样。也正是因为如此，<strong>这些方法在不同的实现中可能会有不同的精度</strong> 。</p>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>  <strong>对象</strong> 在 JavaScript 中被称为 <strong>引用类型的值</strong> ，而且 <strong>有一些内置的引用类型可以用来创建特定的对象</strong> ，现简要总结如下：</p>
+<ul>
+<li><p>引用类型与传统面向对象程序设计中的类 <strong>相似</strong> ，但 <strong>实现不同</strong> ；</p>
+</li>
+<li><p>Object 是一个基础类型，其他 <strong>所有类型都从 Object 继承了基本的行为</strong> ；</p>
+</li>
+<li><p>Array 类型是 <strong>一组值的有序列表</strong> ，同时提供了 <strong>操作</strong> 和 转换这些值的功能** ；</p>
+</li>
+<li><p>Date 类型提供了有关 <strong>日期</strong> 和 <strong>时间</strong> 信息，包括 <strong>当前日期和时间</strong> 以及 <strong>相关的计算功能</strong> ；</p>
+</li>
+<li><p>RegExp 类型是 <strong>ECMAScript 支持正则表达式的一个接口</strong> ，提供了 <strong>最基本的和一些高级的正则表达式功能</strong> ；</p>
+</li>
+</ul>
+<p>函数实际上是 Function 类型的实例，因此 <strong>函数也是对象</strong> ；而这一点正是 JavaScript 最有特色的地方。由于函数是对象，所以 <strong>函数也拥有方法</strong> ，<strong>可以用来增强其行为</strong> 。</p>
+<p>因为有了 <strong>基本包装类型</strong> ，所以 JavaScript 中 <strong>基本类型值可以被当作对象来访问</strong> 。三种基本包装类型分别是： <strong>Boolean</strong> 、 <strong>Number</strong> 和 <strong>String</strong> 。以下是它们共同的特征：</p>
+<ul>
+<li><p>每个包装类型都映射到 <strong>同名的基本类型</strong> ；</p>
+</li>
+<li><p>在 <strong>读取模式</strong> 下访问 <strong>基本类型值</strong> 时，就 <strong>会创建对应的基本包装类型的一个对象</strong> ，从而方便了数据操作；</p>
+</li>
+<li><p>操作基本数据类型值的语句一经执行完毕，就会 <strong>立即销毁新创建的包装对象</strong> 。</p>
+</li>
+</ul>
+<p>在 <strong>所有代码执行之前</strong> ，作用域中已经存在两个内置对象：<strong>Global</strong> 和 <strong>Math</strong> 。在大多数 ECMAScript 实现中都不能直接访问 Global 对象；不过，Web 浏览器实现了承担该角色的 <strong>Window 对象</strong> 。<strong>全局变量和函数</strong> 都是 <strong>Global 对象属性</strong> 。Math 对象提供了很多属性和方法，用来完成复杂的数学计算任务。</p>
+
+  </div>
+  <div class="post-footer">the end</div>
+</article>
+
+          
+  <nav class="pagination post-nav">
+    
+      <a href="/2018/08/14/vaScript-object-oriented/">
+        <span class="prev-post"><i class="iconfont icon-back"></i>《JavaScript 高级程序设计》学习笔记-面向对象程序设计</span>
+      </a>
+    
+    
+      <a href="/2018/08/13/web-front-end-interview-jQuery/">
+        <span class="next-post">Web前端面试题目及详解汇总 -jQuery部分<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+  
+
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/works" class="mobile-nav-link"><i class="iconfont icon-works"></i>作品</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.2.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+        appId: "MNdCoL1O2i2njgRy8WVYgAwf-gzGzoHsz",
+        appKey: "hil0yQTQDbO8nzaxFKqeSqyK"
+      });
+  </script>
+  <script>
+  (function (window) {
+      $(document).ready(function () {
+        visits();
+      });
+    function visits() {
+      var $visits = $('.post-visits');
+
+      function updateVisits(dom, time) {
+        var text = dom.text() + ' ' + time;
+        dom.text(text);
+      }
+
+      function addCounter(Counter) {
+        var query = new AV.Query(Counter);
+
+        var url = $visits.data('url').trim();
+        var title = $visits.data('title').trim();
+
+        query.equalTo('url', url);
+        query.find().then(function (results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.save(null, {
+              fetchWhenSave: true
+            }).then(function (counter) {
+              counter.increment('time', 1);
+              return counter.save();
+            }).then(function (counter) {
+              updateVisits($visits, counter.get('time'));
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set('title', title);
+            newcounter.set('url', url);
+            newcounter.set('time', 1);
+
+            newcounter.save().then(function (counter) {
+              updateVisits($visits, newcounter.get('time'));
+            });
+          }
+        }, function (error) {
+          console.log('Error:' + error.code + " " + error.message);
+        });
+      }
+
+      function showTime(Counter) {
+        $visits.each(function () {
+          var $this = $(this);
+          var query = new AV.Query(Counter);
+          var url = $this.data('url').trim();
+
+          query.equalTo('url', url);
+          query.find().then(function (results) {
+            if (results.length === 0) {
+              updateVisits($this, 0);
+            } else {
+              var counter = results[0];
+              updateVisits($this, counter.get('time'));
+            }
+          }, function (error) {
+            console.log('Error:' + error.code + " " + error.message);
+          });
+        })
+      }
+
+      if (typeof AV === 'object') {
+        var Counter = AV.Object.extend('Counter');
+        if ($visits.length === 1) {
+          addCounter(Counter);
+        } else {
+          showTime(Counter);
+        }
+      }
+    }
+  })(window);
+  </script>
+
+
+  <script src="/js/ztopic.js"></script>
+</body>
+</html>
