@@ -185,7 +185,38 @@ ECMA-262 把对象定义为：“**无序属性集合，其属性可以包含基
   ```
   在 **不支持 Object.defineProperty() 方法的浏览器** 中 **不能修改**  **[[Configurable]]** 和 **[[Enumberable]] ** 。
   
+### 定义多个属性
+
+  由于为对象定义多个属性的可能性很大，ECMAScript 5 又定义了一个 Object.defineProperties() 方法。利用这个方法 **可以通过描述符一次定义多个属性** 。这个方法接收两个对象参数：第一个对象是 **要添加和修改其属性的对象** ，第二个对象属性 **与第一个对象中要添加或修改的属性一一对应** 。例如：
   
+  ```js
+  var book = {};
+  
+  Object.defineProperties(book, {
+    _year: {
+      writable: true,
+      value: 2004
+    },
+    edition: {
+      writable：true,
+      value: 1
+    },
+    year: {
+      get: function() {
+        return this._year;
+      },
+      set: function(newValue) {
+         if (newValue > 2004) {
+           this._year = newValue;
+           this.edition += newValue - 2004;
+         }
+      }
+    }
+  });
+  ```
+  以上代码在 book 对象上定义了两个数据属性（_year 和 edition）和 一个访问器属性（year）。最终对象与上一节中定义的对象相同。唯一的区别是这里的属性都是在同一时间创建的。
+  
+  支持 Object.defineProperties() 方法的浏览器有 IE9+、Firefox 4+、Safari 5+、Opera 12+ 和 Chrome。
     
     
     
