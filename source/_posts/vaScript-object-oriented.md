@@ -259,6 +259,10 @@ alert(typeof descriptor.get); // "function"
 对于数据属性 _year，value 等于最初的值，configurable 是 false，而 get 等于 undefined。对于访问器属性 year、value 等于 undefined, enumberable 是 flase，而   get 是一个指向 getter 函数的指针。
 
 在 JavaScript 中，**可以针对任何对象** ——包括 **DOM** 和 **BOM** 对象，使用 Object.getOwnPropertyDescriptor() 方法。支持这个方法的浏览器有 IE9+、Firefox 4+、Safari 5+、opera 12+ 和 Chrome。
+
+## 创建对象
+
+虽然 Object 构造函数
     
     
     
