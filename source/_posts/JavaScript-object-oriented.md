@@ -542,8 +542,7 @@ alert(person1.sayName == person2.sayName); //true
 
   有两种方式使用 in 操作符：**单独使用** 和 **在 for-in 循环中使用** 。在单独使用时，**in 操作符会在通过对象能够访问给的属性时返回 true** ，无论该属性存在于实例中还是原型中。看一看下面的例子。
   
-  ```js
-  
+  ```js 
   function Person() {
   }
 
@@ -582,8 +581,69 @@ alert(person1.sayName == person2.sayName); //true
     return !object.hasOwnProperty(name) && (name in object);
   }
   ```
-  由于 in 操作符只要通过对象能够访问属性就返回 true，hasOwnProperty() 只在属性存在于实例中时才返回 true，因此只要 in 操作符返回 true 而 hasOwnProperty() 返回 false，就可以确定属性是原型中的属性。下面来看一看上面定义的函数 hasPr
+  由于 in 操作符只要通过对象能够访问属性就返回 true，hasOwnProperty() 只在属性存在于实例中时才返回 true，因此只要 in 操作符返回 true 而 hasOwnProperty() 返回 false，就可以确定属性是原型中的属性。下面来看一看上面定义的函数 hasPrototypeProperty() 的用法。
   
+  ```js
+  function Person() {
+  }
+
+  Person.prototype.name = "Nicholas";
+  Person.prototype.age = 29;
+  Person.prototype.job = "Software Engineer";
+  Person.prototype.sayName = function() {
+     alert(this.name);
+  }
+
+  var person = new Person();
+  alert(hasPrototypeProperty(person, "name")); // true
+  
+  person.name = "Greg";
+  alert(hasPrototyProperty(person, "name")); //false
+  ```
+  在这里， name 属性先是存在于原型中，因此 hasPrototypeProperty() 返回 true 。当在实例中重写 name 属性后，该属性就存在于实例中了，因此 hasPrototypeProperty() 返回 false。即使原型中仍然有 name 属性，但由于现在实例中也有了这个属性，因此原型中的 name 属性就用不到了。
+  
+  在使用 for-in 循环时，返回的是所有能够通过对象访问的、可枚举的（enumerated）属性，其中既包括存在于实例中的属性，也包括存在于原型中的属性。屏蔽了原型中的不可枚举的属性（即将 [[Enumberable]] 标记为 flase 的属性）的实例属性也会在 for-in 循环中返回，因为根据规定，所有开发人员定义的属性都是可枚举的——只有在 iE8 及更早的版本中例外。
+  
+  **IE** 早期版本的实现中存在一个 **bug** ，即 **屏蔽不可枚举属性的实例属性不会出现在 for-in 循环中** 。例如：
+  
+  ```js
+  var o = {
+    toString: function() {
+      return "My Object";
+    } 
+  };
+  
+  for (var prop in o) {
+    if (prop == "toString") {
+      alert(Found toString); // 在 IE 中不会显示
+    }
+  }
+  ```
+  当以上代码运行时， 应该会显示一个警告框，表明找到了 toString() 方法。这里的对象 o 定义了一个名为 toString() 的方法，该方法屏蔽了原型中（不可枚举）的 toString() 方法。在 IE 中，由于其实现认为原型的 toString() 方法被打上了值 false 的 [[Enumerable]] 标记，因此应该跳过该属性，结果我们就不会看到警示框。该 bug 会影响默认不可枚举的所有你属性和方法，包括：hasOwnProperty()、propertyIsEnumberable()、toLacaleString()、toString() 和 valueOf()。ECMAScript 5 也将 constructor 和 prototype 属性的 [[Enumerable]] 特性设置为 false，但并不是所有浏览器都照此实现。
+  
+  要取得对象上所有可枚举的实例属性，可以使用 ECMAScript 5 的 Object.keys() 方法。这个方法接收一个对象作为参数，返回一个包含所有可枚举属性的字符串数组。例如：
+  
+  ```js
+  function Person() {
+  }
+
+  Person.prototype.name = "Nicholas";
+  Person.prototype.age = 29;
+  Person.prototype.job = "Software Engineer";
+  Person.prototype.sayName = function() {
+     alert(this.name);
+  }
+  
+  var keys = Object.keys(Person, prototype);
+  alert(keys); // "name, age, job, sayName"
+  
+  var p1 = new Person();
+  p1.name = "Rob";
+  p1.age = 31;
+  var p1keys = Object.keys(p1);
+  alert(p1keys); // "name, age"
+  ```
+  这里，变量 keys 中将保存一个数组，数组中是字符串“name”、“age”、“job” 和 “sayName”。这个顺序也是它们在 for-in 循环中出现的顺序。如果是通过 Person 的实例调用，则 Object.keys() 返回的数组只包含 “name” 和 “age”这两个实例属性。
   
 
 
