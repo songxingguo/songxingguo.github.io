@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>《JavaScript 高级程序设计》学习笔记-面向对象程序设计 | 阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/works" class="menu-item-link"><i class="iconfont icon-works"></i>作品</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="post-title">
+          《JavaScript 高级程序设计》学习笔记-面向对象程序设计
+            <div class="post-tags">
+    		    
+              <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+            
+    	      </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <article class="post">
+  
+
+  <header>
+    <div class="post-title mobile-post-title">
+      <h1>《JavaScript 高级程序设计》学习笔记-面向对象程序设计</h1>
+        <div class="post-tags">
+        
+          <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+        
+        </div>
+    </div>
+    <div class="post-meta">
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2018-08-14</span>
+      
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/前端技术/">前端技术</a>
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/前端技术/读书笔记/">读书笔记</a>
+          
+      
+      <!----------------------------------->
+        
+          <i class="iconfont icon-divide"></i>
+          <div class="post-visits"
+               data-url="/2018/08/14/vaScript-object-oriented/"
+               data-title="《JavaScript 高级程序设计》学习笔记-面向对象程序设计">
+              阅读次数
+            </div>
+        
+      <!----------------------------------->
+    </div>
+  </header>
+  
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#面向对象的程序设计"><span class="toc-text">面向对象的程序设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#理解对象"><span class="toc-text">理解对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#属性类型"><span class="toc-text">属性类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据属性"><span class="toc-text">数据属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问器属性"><span class="toc-text">访问器属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义多个属性"><span class="toc-text">定义多个属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#读取属性的特性"><span class="toc-text">读取属性的特性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象"><span class="toc-text">创建对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂模式"><span class="toc-text">工厂模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数模式"><span class="toc-text">构造函数模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#将构造函数当作函数"><span class="toc-text">将构造函数当作函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#构造函数的问题"><span class="toc-text">构造函数的问题</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+  </div>
+
+
+  <div class="post-content">
+    <h1 id="面向对象的程序设计"><a href="#面向对象的程序设计" class="headerlink" title="面向对象的程序设计"></a>面向对象的程序设计</h1><p>面向对象（Object-Oriented, OO）的语言有一个标志，那就是它们都有类的概念，而通过类可以创建任意多个具有相同属性和方法的对象。前面提到过，<strong>ECMAScript 中没有类的概念</strong> ，因此 <strong>它的对象也与基于类的语言中的对象有所不同</strong> 。</p>
+<p>ECMA-262 把对象定义为：“<strong>无序属性集合，其属性可以包含基本值、对象或者函数。</strong> ”严格来讲，这就是相当于说 <strong>对象是一组没有特定顺序的值</strong> 。对象的每个属性或方法都有一个名字，而每个名字都映射到一个值。正因为这样（以及其他将要讨论的原因）， 我们可以把 ECMAScript 的对象想象成<strong>散列表</strong> ：<strong>无非就是一组名值对</strong> ，<strong>其中值可以是数据和函数</strong> 。</p>
+<p><strong>每个对象</strong> 都是 <strong>基于一个引用类型创建的</strong>，这个 <strong>引用类型</strong> 可以是 <strong>原生类型</strong> ，也可以是 <strong>开发人员定义的类型</strong>。</p>
+<a id="more"></a>
+<h2 id="理解对象"><a href="#理解对象" class="headerlink" title="理解对象"></a>理解对象</h2><p>  <strong>创建自定义对象</strong> 的最简单方式就是 <strong>创建一个 Object 的实例</strong> ，然后 <strong>再为它添加属性和方法</strong> ，如下所示。</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">person.name = <span class="string">"Nicholas"</span>;</span><br><span class="line">person.age = <span class="number">29</span>;</span><br><span class="line">person.jop = <span class="string">"Software Engineer"</span>;</span><br><span class="line"></span><br><span class="line">person.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  上面的例子创建了一个名为 person 的对象，并为它添加了三个属性（name、age 和 job）和一个方法（sayName()）。其中，sayName() 方法用于显示 this.name（将被解析为 person.name）的值。早期的 JavaScript 开发人员经常使用这个模式创建新对象。几年后， <strong>对象字面量语法</strong> 可以写成这样：</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">  name: <span class="string">"Nicholas"</span>,</span><br><span class="line">  age: <span class="number">29</span>,</span><br><span class="line">  job: <span class="string">"Software Engineer"</span>,</span><br><span class="line">  </span><br><span class="line">  sayName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>  这个例子中的 person 对象与前面例子中的 person 对象是一样的，都是相同是属性和方法。这些 <strong>属性在创建时带有一些特征值</strong>（characteristc），<strong>JavaScript 通过这些特征值来定义它们的行为</strong> 。</p>
+<h3 id="属性类型"><a href="#属性类型" class="headerlink" title="属性类型"></a>属性类型</h3><p>  ECMA-262 第 5 版在定义 <strong>只有内部才用的特性（attribute）时</strong> ，描述了 <strong>属性（property）的各种特征</strong> 。ECMA-262 定义这些特征是为了实现 JavaScript 引擎用的，因此在 JavaScript 中不能直接访问它们。为了表示特性是内部值，该规范把它们放在了两对儿方括号中，例如 [[ Enumberable]] 。尽管 ECMA-262 第 3 版的定义有些不同，但本书只参考第 5 版的描述。</p>
+<p>  ECMAScript 中有两种属性： <strong>数据属性</strong> 和 <strong>访问器属性</strong> 。</p>
+<ul>
+<li><h4 id="数据属性"><a href="#数据属性" class="headerlink" title="数据属性"></a>数据属性</h4><p>数据属性包含一个数据值的位置。在这个位置可以读取和写入值。<strong>数据属性</strong> 有 4 个 <strong>描述其行为的特性</strong> 。</p>
+<ul>
+<li><p>[[Configurable]]：表示 <strong>能否通过 delete 删除属性从而重新定义属性</strong> ，<strong>能否修改属性的特性</strong>，或者 <strong>能否把属性修改为访问器属性</strong> 。像前面例子中那样直接在对象上定义的属性，它们的这个特性默认值为 true。</p>
+</li>
+<li><p>[[Enumberable]]：表示 <strong>能否通过 for-in 循环返回属性</strong> 。像前面的例子中那样直接在对象上定义的属性，它们的这个特性默认值为 true。</p>
+</li>
+<li><p>[[Writable]]：表示 <strong>能否修改属性的值</strong> 。像前面的例子中那样直接在对象上定义的属性，它们的这个特性默认值为 true。</p>
+</li>
+<li><p>[[Value]]: 包含这个属性的 <strong>数据值</strong> 。读取属性值的时候，从这个位置读；写入属性值的时候，把新值保存在这个位置。这个特性的默认值为 undefined。</p>
+</li>
+</ul>
+<p>对于像前面例子中那样直接在对象上定义的属性，它们的 [[Configurable]]、[[Enumerable]] 和 [[Writable]] 特性都被设置为 true，而 [[Value]] 特性被设置为指定的值。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">  name: <span class="string">"Nicholas"</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这里创建了一个名为 name 的属性，为它指定的值是“Nicholas”。也就是说，[[Value]]特性将被设置为“Nicholas”，而对这个值的任何修改都将反映在这个位置。</p>
+<p>要 <strong>修改属性默认的特性</strong> ，必须使用 ECMAScript 5 的 Object.defineProperty() 方法。这个方法接受三个参数：<strong>属性所在的对象</strong> 、<strong>属性的名字</strong> 和 <strong>一个描述符对象</strong> 。其中，描述符（desccriptor）对象的属性必须是：configurable、enumberable、writable 和 value。 设置其中的一或多个值，可以修改对应的特性值。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> personn = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person, <span class="string">"name"</span>, &#123;</span><br><span class="line">  writable: falase, </span><br><span class="line">  value: <span class="string">"Nicholas"</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">alert(person.name); <span class="comment">//"Nicholas"</span></span><br><span class="line">person.name = <span class="string">"Greg"</span>;</span><br><span class="line">alert(person.name); <span class="comment">//"Nicholas"</span></span><br></pre></td></tr></table></figure>
+<p>这个例子创建了一个名为 name 的属性，它的值“Nicholas”是只读的。这个属性的值是不可以修改的，如果尝试为它指定新值，则在 <strong>非严格模式</strong> 下，<strong>赋值操作将被忽略</strong>；<strong>严格模式</strong> 下，<strong>赋值操作将会导致抛出错误</strong> 。</p>
+<p>类似的规则也适用于不可配置的属性。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person, <span class="string">"name"</span>, &#123;</span><br><span class="line">  configurable: <span class="literal">false</span>;</span><br><span class="line">  value: <span class="string">"Nicholas"</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">alert(person.name); <span class="comment">//"Nicholas"</span></span><br><span class="line"><span class="keyword">delete</span> person.name;</span><br><span class="line">alert(person.name); <span class="comment">//"Nicholas"</span></span><br></pre></td></tr></table></figure>
+<p>把 configurable 设置为 false，表示不能从对象周刊删除属性。如果对这个属性调用 delete ，则在 <strong>非严格模式</strong> 下 <strong>什么也不会发生</strong> ，而在 <strong>严格模式</strong> 下 <strong>会导致错误</strong> 。而且，<strong>一旦把属性定义为不可配置的就不能把它变回可配置了</strong>  。此时，再调用 Object.defineProperty() 方法修改 <strong> 除 writable 之外的特性都会导致错误</strong>  ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person, <span class="string">"name"</span>, &#123;</span><br><span class="line">  configurable: <span class="literal">false</span>;</span><br><span class="line">  value: <span class="string">"Nicholas"</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//抛出错误</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person, <span class="string">"name"</span>, &#123;</span><br><span class="line">  configurable: <span class="literal">true</span>;</span><br><span class="line">  value: <span class="string">"Nicholas"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>也就是说，<strong>可以多次调用 Object.defineProperty() 方法修改同一个属性，但在把 configurable 特性设置为 false 之后就会有限制了</strong>  。</p>
+<p><strong>在调用 Object.defineProperty() 方法时</strong>  ，如果 <strong>不指定</strong> ， configurable 、enumberable 和 writable 特性的 <strong>默认值都是 false</strong> 。多数情况下，可能没必要利用 Object.defineProperty() 方法提供的这些高级功能。不过，理解这些概念对理解 JavaScript 对象却非常有用。</p>
+<blockquote>
+<p>IE8 是第一个实现 Object.defineProperty() 方法的浏览器版本。然而，这个版本实现存在诸多限制：只能在 DOM 对象上使用这个方法，而且只能创建访问器属性。由于实现不彻底，<strong>建议读者不要在 IE8 中使用 Object.defineProperty() 方法</strong> 。</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><h4 id="访问器属性"><a href="#访问器属性" class="headerlink" title="访问器属性"></a>访问器属性</h4><p>访问器属性不包含数据值，它们包含一对儿 <strong>getter</strong> 和 <strong>setter</strong> 函数（不过，<strong>这两个函数都不是必需的</strong> ）。在 <strong>读取访问器属性</strong> 时，<strong>会调用 getter 函数</strong> ，这个函数 <strong>负责返回有效的值</strong> ；在 <strong>写入访问器属</strong> 时，<strong>会调用 setter 函数并传入新值</strong> ，这个函数 <strong>负责决定如何处理数据</strong> 。访问器属性有如下 <strong>4</strong> 个特性。</p>
+<ul>
+<li><p>[[Configurable]]：表示 <strong>能否通过 delete 删除属性从而重新定义属性</strong> ，<strong>能否修改属性的特性</strong> ，或者 <strong>能否把属性修改为数据属性</strong> 。对于直接在对象上定义的属性，这个特性的默认值为 true。</p>
+</li>
+<li><p>[[Enumerable]]： 表示 <strong>能否通过 for-in 循环返回属性</strong> 。对于直接在对象上定义的属性，这个特性的默认值为 true。</p>
+</li>
+<li><p>[[Get]]: <strong>在读取属性时调用的函数</strong> 。默认值为 undefined。</p>
+</li>
+<li><p>[[Set]]: <strong>在写入属性时调用的函数</strong> 。默认值为 undefined。</p>
+</li>
+</ul>
+<p><strong>访问器属性不能直接定义</strong> ，<strong>必须使用 Object.defineProperty() 来定义</strong> 。请看下面的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">  _year: <span class="number">2004</span>,</span><br><span class="line">  edition: <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(book, <span class="string">"_year"</span>, &#123;</span><br><span class="line">  get: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>._year;</span><br><span class="line">  &#125;</span><br><span class="line">  set: <span class="function"><span class="keyword">function</span>(<span class="params">newValue</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (newValue &gt; <span class="number">2004</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>._year = newValue;</span><br><span class="line">      <span class="keyword">this</span>.edition += newValue - <span class="number">2004</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">book.year = <span class="number">2005</span>;</span><br><span class="line">alert(book.edition); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<p>以上代码创建了一个 book 对象，并给它定义两个默认的属性：_year 和 edition。<strong>_year</strong> 前面的 <strong>下划线</strong> 是一种常用的记号，用于 <strong>表示只能通过对象方法访问的属性</strong> 。而 <strong>访问器属性 year</strong> 则包含一个 <strong>getter 函数</strong> 和一个 <strong>setter 函数</strong> 。getter 函数返回 _year 的值，setter 函数通过计算来确定正确的版本。因此，把 year 属性修改为 2005 会导致 _year 变成 2005，而 edition 变为 2。<strong>这是使用访问器属性的常见方式</strong> ，即 <strong>设置一个属性的值会导致其他属性发生变化</strong> 。</p>
+<p>不一定非要同时指定 getter 和 setter 。 <strong>只指定 getter 意味着属性是不能写</strong> ，尝试写入属性会被忽略。在严格模式下，尝试写入只指定了 getter 函数的属性会抛出错误。类似地，<strong>只指定 setter 函数的属性也不能读</strong> ，否则在非严格模式下会返回 undefined，而在严格模式下会抛出错误。</p>
+<p>支持 ECMAScript 5 的这个方法的浏览器有 IE9+ （IE8 只是部分实现）、Firefox 4+、Opera 12+ 和 Chrome。<strong>在这个方法之前，要创建访问器属性</strong> ，一般都使用两个非标准的方法：<strong><em>defineGetter</em>()</strong> 和<strong><em>defineSettrer</em>()</strong> 。这两个方法最初是由 Firefox 引入的，后来 Sarfari 3 、Chrome 1、Opera 9.5 也给出了相同的实现。使用这两个遗留的方法，可以像下面这样重写前面的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">  _year: <span class="number">2004</span>;</span><br><span class="line">  edition: <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义访问器的旧方法</span></span><br><span class="line">book._defineGetter_(<span class="string">"year"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>._year;</span><br><span class="line">&#125;);</span><br><span class="line">book._defineSetter_(<span class="string">"year"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">newValue</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (newValue &gt; <span class="number">2004</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>._year = newValue;</span><br><span class="line">    <span class="keyword">this</span>.edition += newValue - <span class="number">2004</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">book.year = <span class="number">2005</span>;</span><br><span class="line">alert(book.edition); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<p>在 <strong>不支持 Object.defineProperty() 方法的浏览器</strong> 中 <strong>不能修改</strong>  <strong>[[Configurable]]</strong> 和 <strong>[[Enumberable]] </strong> 。</p>
+</li>
+</ul>
+<h3 id="定义多个属性"><a href="#定义多个属性" class="headerlink" title="定义多个属性"></a>定义多个属性</h3><p>  由于为对象定义多个属性的可能性很大，ECMAScript 5 又定义了一个 Object.defineProperties() 方法。利用这个方法 <strong>可以通过描述符一次定义多个属性</strong> 。这个方法接收两个对象参数：第一个对象是 <strong>要添加和修改其属性的对象</strong> ，第二个对象属性 <strong>与第一个对象中要添加或修改的属性一一对应</strong> 。例如：</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperties(book, &#123;</span><br><span class="line">  _year: &#123;</span><br><span class="line">    writable: <span class="literal">true</span>,</span><br><span class="line">    value: <span class="number">2004</span></span><br><span class="line">  &#125;,</span><br><span class="line">  edition: &#123;</span><br><span class="line">    writable：<span class="literal">true</span>,</span><br><span class="line">    value: <span class="number">1</span></span><br><span class="line">  &#125;,</span><br><span class="line">  year: &#123;</span><br><span class="line">    get: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>._year;</span><br><span class="line">    &#125;,</span><br><span class="line">    set: <span class="function"><span class="keyword">function</span>(<span class="params">newValue</span>) </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (newValue &gt; <span class="number">2004</span>) &#123;</span><br><span class="line">         <span class="keyword">this</span>._year = newValue;</span><br><span class="line">         <span class="keyword">this</span>.edition += newValue - <span class="number">2004</span>;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>  以上代码在 book 对象上定义了两个数据属性（_year 和 edition）和 一个访问器属性（year）。最终对象与上一节中定义的对象相同。唯一的区别是这里的属性都是在同一时间创建的。</p>
+<p>  支持 Object.defineProperties() 方法的浏览器有 IE9+、Firefox 4+、Safari 5+、Opera 12+ 和 Chrome。</p>
+<h3 id="读取属性的特性"><a href="#读取属性的特性" class="headerlink" title="读取属性的特性"></a>读取属性的特性</h3><p>使用ECMAScript 5 的Object.getOwnPropertyDescriptor() 方法，<strong>可以取得给定属性描述符</strong> 。这个方法接收两个参数：<strong>属性所在的对象</strong> 和 <strong>要读取其他描述符的属性名称</strong> 。返回值是一个对象，如果是访问器属性，这个对象的属性有 configurable、enumberable、get 和 set；如果是数据属性，这个对象的属性有 configurable、enumerale、writable 和 value。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperties(book, &#123;</span><br><span class="line">  _year: &#123;</span><br><span class="line">    value: <span class="number">2014</span></span><br><span class="line">  &#125;,</span><br><span class="line">  edition: &#123;</span><br><span class="line">    value: <span class="number">1</span></span><br><span class="line">  &#125;,</span><br><span class="line">  year: &#123;</span><br><span class="line">    get: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>._year;</span><br><span class="line">    &#125;,</span><br><span class="line">    set: <span class="function"><span class="keyword">function</span>(<span class="params">newValue</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (newValue &gt; <span class="number">2004</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>._year  = newValue;</span><br><span class="line">        <span class="keyword">this</span>.edition += newValue - <span class="number">2004</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> descritoion = <span class="built_in">Object</span>.getOwnPropertyDescriptor(book, <span class="string">"_year"</span>);</span><br><span class="line">alert(descriptor.value); <span class="comment">//2004</span></span><br><span class="line">alert(descriptor.configurable); <span class="comment">//false</span></span><br><span class="line">alert(<span class="keyword">typeof</span> descriptor.get); <span class="comment">//"undefined"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> descriptor = <span class="built_in">Object</span>.getOwnPropertyDescriptor(book，<span class="string">"year"</span>);</span><br><span class="line">alert(descrptor.value); <span class="comment">//undefined</span></span><br><span class="line">alert(descriptor.enumberable); <span class="comment">//false</span></span><br><span class="line">alert(<span class="keyword">typeof</span> descriptor.get); <span class="comment">// "function"</span></span><br></pre></td></tr></table></figure>
+<p>对于数据属性 _year，value 等于最初的值，configurable 是 false，而 get 等于 undefined。对于访问器属性 year、value 等于 undefined, enumberable 是 flase，而   get 是一个指向 getter 函数的指针。</p>
+<p>在 JavaScript 中，<strong>可以针对任何对象</strong> ——包括 <strong>DOM</strong> 和 <strong>BOM</strong> 对象，使用 Object.getOwnPropertyDescriptor() 方法。支持这个方法的浏览器有 IE9+、Firefox 4+、Safari 5+、opera 12+ 和 Chrome。</p>
+<h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><p>虽然 Object 构造函数或对象字面量都可以用来创建单个对象，但这些方式有个明显的缺点：<strong>使用同一个接口创建很多个对象</strong> ，<strong>会产生大量重复代码</strong> 。为解决这个问题，<strong>人们开始使用工厂模式的一种变体</strong> 。</p>
+<h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><p>  工厂模式是软件工程领域 一种广为人知的设计模式，这种模式抽象了创建具体对象的过程。考虑到在 ECMAScript 中无法创建类，开发人员就发明了一种函数，<strong>用这种函数来封装以特定接口创建对象的细节</strong> ，如下面的例子所示。</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params">name, age, job</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">  o.name = name;</span><br><span class="line">  o.age = age;</span><br><span class="line">  o.job = jon;</span><br><span class="line">  o.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = createPerson(<span class="string">"Nicholas"</span>, <span class="number">29</span>,  <span class="string">"Software Engineer"</span>);</span><br><span class="line"><span class="keyword">var</span> person2 = createPerson(<span class="string">"Greg"</span>, <span class="number">27</span>, <span class="string">"Doctor"</span>);</span><br></pre></td></tr></table></figure>
+<p>  函数 createPerson() 能够接受的参数来构建一个包含所有必要信息的Person对象。可以无数次地调用这个函数，而每次它都会返回一个包含三个属性一个方法的对象。工厂模式虽然 <strong>解决了创建多个相似对象的问题</strong> ，但却 <strong>没有解决对象识别的问题</strong> （即怎样知道一个对象的类型）。随着 JavaScript 的发展，又一个新模式出现了。</p>
+<h3 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h3><p>  ECMAScript 中的构造函数可以用来创建特定类型的对象。像 Object 和 Array 这样的原生构造函数，在运行时会自动出现在执行环境中。此外，也可以创建自定义的构造函数，从而定义自定义对象的属性和方法。例如，可以使用构造函数模式将前面的例子重写如下。</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">  <span class="keyword">this</span>.job = job;</span><br><span class="line">  <span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Peron(<span class="string">"Nicholas"</span>, <span class="number">29</span>,, <span class="string">"Software Engineer"</span>);</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person(<span class="string">"Greg"</span>, <span class="number">27</span>, <span class="string">"Doctor"</span>);</span><br></pre></td></tr></table></figure>
+<p>  在这个例子中，Person() 函数取代了 createPerson() 函数。我们注意到，Person() 中的代码除了与 createPerson() 中相同的部分外，还 <strong>存在以下不同之处</strong> ：</p>
+<ul>
+<li><p>没有显式地创建对象；</p>
+</li>
+<li><p>直接将属性和方法赋给了 this 对象；</p>
+</li>
+<li><p>没有 return 语句。</p>
+</li>
+</ul>
+<p>此外，还应该注意到函数名 Person 使用的是大写字母 P。 <strong>按照惯例</strong> ，<strong>构造函数始终应该以一个大写字母开头</strong> ，而 <strong>非构造函数则应该以小写字母开头</strong> 。这个做法借鉴自其他 OO 语言，主要是Wie了区别于 ECMAScript 中的其他函数；因为构造函数本身也是函数，只不过可以用来创建对象而已。</p>
+<p>要创建 Person 的新实例，必须使用 new 操作符。以这种方式调用构造函数实际上会经历以下 4 个步骤：</p>
+<ul>
+<li><p>创建一个新对象；</p>
+</li>
+<li><p>将构造函数的作用域赋给新对象（因此 this 就指向了这个新对象）；</p>
+</li>
+<li><p>执行构造函数中的代码（为这个新对象添加属性）；</p>
+</li>
+<li><p>返回新对象。</p>
+</li>
+</ul>
+<p>在前面例子的最后，person1 和 person2 分别保存着 Person 的一个不同的实例。这两个对象都有一个 constructor （构造函数）属性，该属性指向 Person，如下所示。</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alert(person1.constructor == Person); <span class="comment">//true</span></span><br><span class="line">alert(person2.constructor == Person); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>对象的 constructor 属性最初是 <strong>用来标识对象类型的</strong> 。但是，提到 <strong>检查对象类型</strong> ，还是 <strong>instanceof 操作符</strong> 更可靠一些。我们在这个例子中创建的所有对象既是 Object 实例，同时也是 Person 的实例，这一点通过 instanceof 操作符可以得到验证。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">alert(person1 <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">//true</span></span><br><span class="line">alert(person1 <span class="keyword">instanceof</span> Person); <span class="comment">//true</span></span><br><span class="line">alert(person2 <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">//true</span></span><br><span class="line">alert(person2 <span class="keyword">instanceof</span> Person); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>创建自定义的构造函数意味着 <strong>将来可以将它的实例标识为一种特定的类型</strong> ；而这正是构造函数模式胜过工厂模式的地方。在这个例子中，person1 和 person2 之所以同时是 Object 的实例，是因为 <strong>所有对象均继承自 Object </strong> 。</p>
+<blockquote>
+<p>以这种方式定义的构造函数是定义在 Global 对象（在浏览器中是 window 对象）中的。</p>
+</blockquote>
+<ul>
+<li><h4 id="将构造函数当作函数"><a href="#将构造函数当作函数" class="headerlink" title="将构造函数当作函数"></a>将构造函数当作函数</h4><p><strong>构造函数</strong> 与 <strong>其他函数</strong> 的 <strong>唯一区别</strong>，就在于 <strong>调用它们的方式不同。</strong> 不过，构造函数毕竟也是函数，不存在定义构造函数的特殊语法。<strong>任何函数</strong> ，只要 <strong>通过 new 操作符来调用</strong> ，那 <strong>它就可以作为构造函数</strong> ；而 <strong>任何函数</strong> ，如果 <strong>不通过 new 操作符来调用</strong> ，那  <strong>它就跟普通函数也不会有什么两样</strong> 。例如，前面例子中定义的 Person() 函数可以通过下列任何一种方式来调用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 当作构造函数使用</span></span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person(<span class="string">"Nicholas"</span>, <span class="number">29</span>, <span class="string">"Software Engineer"</span>);</span><br><span class="line">person.sayName(); <span class="comment">// "Nicholas"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 作为普通函数使用</span></span><br><span class="line">Person(<span class="string">"Greg"</span>, <span class="number">27</span>, <span class="string">"Doctor"</span>); <span class="comment">//添加到 window</span></span><br><span class="line"><span class="built_in">window</span>.sayName(); <span class="comment">// "Greg"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//在另一个对象的作用域中调用</span></span><br><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">Person.call(o, <span class="string">"Krosten"</span>, <span class="number">25</span>, <span class="string">"Nurse"</span>);</span><br><span class="line">o.sayName(); <span class="comment">// "Kristen"</span></span><br></pre></td></tr></table></figure>
+<p>这个例子中的前面两行代码展示了构造函数的典型用法，即使用 new 操作符来创建一个新对象。接下来的两行代码展示了不使用 new 操作符调用 Person() 会出现什么结果：<strong>属性和方法被添加给 window 对象了</strong> 。有读者可能还记得，<strong>当在全局作用域周刊调用一个函数时，this 对象总是指向 Global 对象</strong> （在浏览器中就是 window 对象）。因此，在调用完函数之后，通过 window 对象来调用 sayName() 方法，并且还返回了 “Greg”。 最后，也可以 <strong>使用 call() (或者 apply() ) 在某个特殊对象的作用域中调用 Person() 函数</strong> 。这里是在对象 o 的作用域中调用的，因此 <strong>调用后 o 拥有了所有属性和 sayName() 方法</strong> 。</p>
+</li>
+<li><h4 id="构造函数的问题"><a href="#构造函数的问题" class="headerlink" title="构造函数的问题"></a>构造函数的问题</h4><p>构造函数模式虽然好用，但也并非没有缺点。使用构造函数的主要问题，就是  <strong>每个方法都要在每个实例上重新创建一遍</strong> 。在前面的例子中，person1 和 person2 都有一个名为 sayName() 的方法，但那两个方法不是同一个 Function 的实例。不要忘了—— ECMAScript 中的 <strong>函数是对象</strong> ，因此每定义一个函数，也就实例化了一个对象。从逻辑角度讲，此时的构造函数也可以这样定义。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">  <span class="keyword">this</span>.job = job;</span><br><span class="line">  <span class="keyword">this</span>.sayName = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"alert(this.name)"</span>); <span class="comment">//与声明函数在逻辑上是等价的</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从这个角度上来构造函数，更容易明白每个 Person 实例都是包含一个不同的 Function 实例（以显示 name 属性）的本质。说明白些，以这种方式创建函数，<strong>会导致不同作用域链和标识符解析</strong> ，但 <strong>创建 Function 新实例的机制仍然是相同的</strong> 。因此，<strong>不同实例上的同名函数是不相等的</strong> ，以下代码可以证明这一点。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">"person1.sayName == person2.sayName"</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>然而，创建两个完成同样任务的 Function 实例的确没有必要；<strong>况且有 this 对象在</strong> ，<strong>根本不用在执行代码之前就把函数绑定到特定对象上面</strong> 。因此，大可像下面这样，通过 <strong>把函数定义转移到构造函数外部</strong> 来解决这个问题。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>. age = age;</span><br><span class="line">  <span class="keyword">this</span>.job = job;</span><br><span class="line">  <span class="keyword">this</span>.sayName = sayName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person (<span class="string">"Nicholas"</span>, <span class="number">29</span>, <span class="string">"Software Engineer"</span>);</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person(<span class="string">"Greg"</span>, <span class="number">27</span>, <span class="string">"Doctor"</span>);</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，我们把 sayName() 函数定义转移到了构造函数外部。而在构造函数内部，我们将 sayName() 属性设置成等于全局的 sayName 函数。这样一来，<strong>由于 sayName 包含的是一个指向函数的指针</strong> ，因此 <strong>person1 和 person2  对象共享了在全局作用域中定义的同一个 sayName() 函数</strong> 。这样做确实解决了两个函数做同一件事的问题，可是新问题又来了：在全局作用域中定义的函数实际上 <strong>只能被某个对象调用</strong> ，这让全局作用域有点名不副实。而让人无法接受的是：如果对象需要定义很多方法，那么就要定义很多个全局函数，于是我们 <strong>这个定义的引用类型就丝毫没有封装可言了</strong> 。好在，这些问题可以 <strong>通过使用原型模式来解决</strong> 。</p>
+</li>
+</ul>
+
+  </div>
+  <div class="post-footer">the end</div>
+</article>
+
+          
+  <nav class="pagination post-nav">
+    
+    
+      <a href="/2018/08/13/JavaScript-reference-type/">
+        <span class="next-post">《JavaScript 高级程序设计》学习笔记-引用类型<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+  
+
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/works" class="mobile-nav-link"><i class="iconfont icon-works"></i>作品</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.2.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+        appId: "MNdCoL1O2i2njgRy8WVYgAwf-gzGzoHsz",
+        appKey: "hil0yQTQDbO8nzaxFKqeSqyK"
+      });
+  </script>
+  <script>
+  (function (window) {
+      $(document).ready(function () {
+        visits();
+      });
+    function visits() {
+      var $visits = $('.post-visits');
+
+      function updateVisits(dom, time) {
+        var text = dom.text() + ' ' + time;
+        dom.text(text);
+      }
+
+      function addCounter(Counter) {
+        var query = new AV.Query(Counter);
+
+        var url = $visits.data('url').trim();
+        var title = $visits.data('title').trim();
+
+        query.equalTo('url', url);
+        query.find().then(function (results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.save(null, {
+              fetchWhenSave: true
+            }).then(function (counter) {
+              counter.increment('time', 1);
+              return counter.save();
+            }).then(function (counter) {
+              updateVisits($visits, counter.get('time'));
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set('title', title);
+            newcounter.set('url', url);
+            newcounter.set('time', 1);
+
+            newcounter.save().then(function (counter) {
+              updateVisits($visits, newcounter.get('time'));
+            });
+          }
+        }, function (error) {
+          console.log('Error:' + error.code + " " + error.message);
+        });
+      }
+
+      function showTime(Counter) {
+        $visits.each(function () {
+          var $this = $(this);
+          var query = new AV.Query(Counter);
+          var url = $this.data('url').trim();
+
+          query.equalTo('url', url);
+          query.find().then(function (results) {
+            if (results.length === 0) {
+              updateVisits($this, 0);
+            } else {
+              var counter = results[0];
+              updateVisits($this, counter.get('time'));
+            }
+          }, function (error) {
+            console.log('Error:' + error.code + " " + error.message);
+          });
+        })
+      }
+
+      if (typeof AV === 'object') {
+        var Counter = AV.Object.extend('Counter');
+        if ($visits.length === 1) {
+          addCounter(Counter);
+        } else {
+          showTime(Counter);
+        }
+      }
+    }
+  })(window);
+  </script>
+
+
+  <script src="/js/ztopic.js"></script>
+</body>
+</html>
