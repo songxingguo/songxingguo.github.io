@@ -398,6 +398,203 @@ alert(person2 instanceof Person); //true
   var person2 = new Person("Greg", 27, "Doctor");
   ```
   在这个例子中，我们把 sayName() 函数定义转移到了构造函数外部。而在构造函数内部，我们将 sayName() 属性设置成等于全局的 sayName 函数。这样一来，**由于 sayName 包含的是一个指向函数的指针** ，因此 **person1 和 person2  对象共享了在全局作用域中定义的同一个 sayName() 函数** 。这样做确实解决了两个函数做同一件事的问题，可是新问题又来了：在全局作用域中定义的函数实际上 **只能被某个对象调用** ，这让全局作用域有点名不副实。而让人无法接受的是：如果对象需要定义很多方法，那么就要定义很多个全局函数，于是我们 **这个定义的引用类型就丝毫没有封装可言了** 。好在，这些问题可以 **通过使用原型模式来解决** 。
+  
+### 原型模式
+
+我们创建的 **每个函数都有一个 prototype （原型）属性** ，这个属性是 **一个指针** ，**指向一个对象** ，而这个对象的用途是 **包含可以由特定类型的所有实例共享的属性和方法** 。如果按照字面意思来理解，那么 **prototype 就是通过调用构造函数而创建的那个对象实例的原型对象** 。使用原型对象的好处是 **可以让所有对象实例共享它所包含的属性和方法** 。换句话说，**不必在构造函数中定义对象实例的信息** ，而是可以 **将这些信息直接添加到原型对象中** ，如下面的例子所示。
+
+```js
+function Person() {
+}
+
+Person.prototype.name = "Nicholas";
+Person.prototype.age = 29;
+Person.prototype.job = "Software Engineer";
+Person.prototype.sayName = function() {
+   alert(this.name);
+}
+
+var person1 = new Person();
+person1.sayName();  // "Nicholas"
+
+var person2 = new Person();
+person2.sayName(); // "Nicholas"
+
+alert(person1.sayName == person2.sayName); //true
+```
+在此，我们将 sayName() 方法和所有属性直接添加到了 Person 的 prototype 属性中，构造函数变成了空函数。即使如此，也仍然可以通过调用构造函数来创建新对象，而且新对象还会具有相同的属性和方法。但与构造函数模式不同的是，新对象的这些属性和方法是由所有实例共享的。换句话说， **person1 和 person2 访问的都是同一组属性和同一个 sayName() 函数** 。要理解原型模式的工作原理，必须先 **理解 ECMAScript 中原型对象的性质** 。
+
+- #### 理解原型对象
+
+  无论什么时候，只要 **创建一个新的函数** ，就会根据一组特定的规则为该函数创建一个 **prototype 属性** ，这个属性 **指向函数的原型对象** 。在默认情况下，**所有原型对象都会自动获得一个 constructor （构造函数）属性** ，这个属性是 **指向 prototype 属性所在函数的的指针** 。就拿前面的例子来说， **Peron.prototype.constructor 指向 Person** 。而 **通过这个构造函数** ，我们**还可继续为原型对象添加其他属性和方法** 。
+  
+  **创建了自定义的构造函数** 之后，其 **原型对象默认只会取得 constructor 属性** ；至于其他方法，则都是从 Object 继承而来的。当调用构造函数创建一个新实例后，该实例的 **内部将包含一个指针（内部属性）** ，**指向构造函数的原型对象** 。 ECMAScript-262 第 5 版中管这个指针叫 **[[Prototype]]**  。 虽然在脚本中没有标准的仿古式访问 [[Prototype]] ,但 Firefox 、Sofari 和 Chrome 在每个对象上都支持一个属性 _proto_; 而在其他实现中，这个属性对脚本则是完全不可见的。不过，要明确的真正重要的一点就是，这个 **连接存在于实例和构造函数的原型对象之间** ，而不是存在于实例和构造函数之间。 
+  
+  以前面使用 Person 构造函数和 Person.prototype 创建实例代码为例，下图展示了各个对象之间的关系。
+  
+  ![对象之间的关系](http://p9myzkds7.bkt.clouddn.com/%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.jpg)
+  
+  上图展示了 Person 构造函数、Person 的原型属性以及 Person 现有的两个实例之间的关系。**prototype 指向了原型对象** ，而 **Person.prototype.contructor 又指回了 Person**  。原型对象中除了包含 constructor 属性之外，还包括后来添加的其他属性。Person 的每个实例—— person1 和 person2 都包含一个 **内部属性** ，该属性仅仅**指向了 Person.prototype** ；换句话说，**它们与构造函数没有直接的关系** 。此外，要格外注意的是，虽然这两个实例都不包含属性和方法，但我们却可以调用 person1.sayName() 。这是 **通过查找对象属性的过程来实现的** 。
+  
+  虽然在所有实现中都无法访问到 [[Prototype]],但是可以通过 isPrototypeOf() 方法来确定对象之间是否存在这种关系。从本质上讲，如果 [[Prototype]] 指向调用 isPrototypeOf() 方法的对象（Person.prototype）,那么这方法就返回 true，如下所示：
+  
+  ```js
+  alert(Person.prototype.isPrototypeOf(person1)); //true
+  alert(Person.prototype.isPrototypeOf(person2)); //true
+  ```
+  这里，我们用原型对象的 isPrototypeOf() 方法测试了 person1 和 person2。因为它们内部都有一个指向 Person.prototype 的指针，因此都返回了 true。
+  
+  ECMAScript 5 增加了一个新方法，叫 Object.getPrototypeOf(), 在所有支持的实现中，这个方法返回 [[Prototype]] 的值。例如：
+  
+  ```js
+  alert(Object.getPrototypeOf(person1) == Person.prototype); //true
+  alert(Object.getPrototypeOf(person1).name); // "Nicholas"
+  ```
+  这里的第一行代码只是确定 Object.getPrototypeOf() 返回的对象实际就是这个对象的原型。第二行代码取得了原型对象中 name 属性值，也就是 “Nicholas”。使用 **Object.getPrototypeOf()**  可以 **方便地取得一个对象的原型** ，而这个利用原型实现继承的情况下是非常重要的。 支持这方法的浏览器有 IE9+、 Firefox 3.5+、Safari 5+、Opera 12+ 和 Chrome。
+  
+  **每当代码读取某个对象属性时** ，都 **会执行一次搜索** ，**目标是具有给定名字的属性** 。搜索首先从对象实例本身开始。如果在实例中找到了具有给定名字的属性，则返回该属性的值；如果没有找到，则继续搜索指针指向的原型对象，在原型对象中查找具有给定名字的属性。如果在原型对象中找到了这个属性，则返回该属性的值。也就是说，在我们调用 person1.sayName() 的时候，会先后执行两次搜索。**首先，解析器会问：“实例 person1 有 sayName 属性吗？”答：“没有。”然后，它继续搜索，再问：“person1 的原型有 sayName() 属性吗？”答：“有。”于是，它就读取那个保存在原型对象中的函数。** 当我们调用 person2.sayName() 时，将会重现相同的搜索过程，得到相同的结果。而正是多个对象实例共享原型所保存的属性和方法的基本原理。
+  
+  > 原型最初只包含 **constructor 属性** ，而该属性也是 **共享的**，因此可以通过对象实例访问。
+  
+  虽然 **可以通过对象实例访问保存在原型中的值** ，但却 **不能通过对象实例重写原型中的值** 。如果我们在实例中添加了一个属性，而该属性与实例原型中的一个属性同名，那我们就在实例中创建该属性，该属性将会屏蔽原型中的那个属性。来看下面的例子。
+  
+  ```js
+  function Person() {
+  }
+
+  Person.prototype.name = "Nicholas";
+  Person.prototype.age = 29;
+  Person.prototype.job = "Software Engineer";
+  Person.prototype.sayName = function() {
+     alert(this.name);
+  }
+
+  var person1 = new Person();
+  var person2 = new Person();
+
+  person1.name = "Greg";
+  alert("person1.name"); // "Greg" —— 来自实例
+  alert("person2.name"); //“Nicholas” —— 来自原型
+  ```
+  在这个实例中，person1 的 name 被一个新值给屏蔽了。但无论访问 person1.name 还是访问 person2.name 都能够正常地返回值，即分别是“Greg”（来自对象实例）和“Nicholas”（来自原型）。当在 alert() 中访问 person1.name 时，需要读取它的值，因此就会在这个实例上搜索一个名为 name 的属性。这个属性确实存在，于是就返回它的值不必在搜索原型了。当以同样的方式访问 person2.name 时，并没有在实例上发现该属性，因此就会继续搜索原型，结果在那里找到了 name 属性。
+  
+  当为对象实例添加一个属性时，这个属性就会屏蔽原型对象中保存的同名属性；换句话说，添加这个属性会阻止我们访问原型中的那个属性，但不会修改那个属性。即使将这个属性设置为 null，也只会在实例中设置这个属性，而不会恢复其指向原型的连接。不过，使用 delete 操作符则可以完全删除实例属性，从而让我们能够重新访问原型中的属性，如下所示。
+  
+   ```js
+  function Person() {
+  }
+
+  Person.prototype.name = "Nicholas";
+  Person.prototype.age = 29;
+  Person.prototype.job = "Software Engineer";
+  Person.prototype.sayName = function() {
+     alert(this.name);
+  }
+
+  var person1 = new Person();
+  var person2 = new Person();
+
+  person1.name = "Greg";
+  alert("person1.name"); // "Greg" —— 来自实例
+  alert("person2.name"); //“Nicholas” —— 来自原型
+  
+  delete person1.name ;
+  alert(person1.name); // "Nicholas" —— 来自原型
+  ```
+  在这个修改后的例子中，我们使用 **delete 操作符** 删除了 person1.name，之前它保存的 “Greg”值屏蔽了同名的原型属性。把它删除以后，就恢复了对原型中 name 属性的连接。因此，接下来再调用 person1.name 时，返回的就是原型中的 name 属性的值了。
+  
+  使用 **hasOwnPropertoty()** 方法 **可以检测一个属性是存在与实例中** ，还是  **存在于原型中** 。这个方法（不要忘了它是从 Object 继承来的）只在给定属性存在于对象实例中时，才会返回 true。来看下面这个例子。
+  
+  ```js
+  function Person() {
+  }
+
+  Person.prototype.name = "Nicholas";
+  Person.prototype.age = 29;
+  Person.prototype.job = "Software Engineer";
+  Person.prototype.sayName = function() {
+     alert(this.name);
+  }
+
+  var person1 = new Person();
+  var person2 = new Person();
+  
+  alert(person1.hasOwnProperty("name")); // false
+
+  person1.name = "Greg";
+  alert("person1.name"); // "Greg" —— 来自实例
+  alert(person1.hasOwnProperty("name")); // true
+  
+  alert("person2.name"); //“Nicholas” —— 来自原型
+  alert(person2.hasOwnProperty("name")); // false
+  
+  delete person1.name ;
+  alert(person1.name); // "Nicholas" —— 来自原型
+  alert(person1.hasOwnProperty("name")); // false
+  ```
+  通过使用 hasOwnProperty() 方法，，什么时候访问的是实例属性，什么时候访问的是原型属性就一清二楚了。调用 person1.hasOwnProperty("name") 时，只有当 person1 重写 name 属性后才会返回 true，因为只有这时候 name 才是一个实例属性，而非原型属性。下图展示了上面例子在不同情况下的实现与原型的关系（为了简单起见，图中省略了与 Person 构造函数的关系）。
+  
+  ![实现与原型的关系](http://p9myzkds7.bkt.clouddn.com/JavaScript-object-oriented/%E5%AE%9E%E7%8E%B0%E4%B8%8E%E5%8E%9F%E5%9E%8B%E7%9A%84%E5%85%B3%E7%B3%BB.jpg)
+  
+  > ECMAScript 5 的 Object.getOwnPropertyDescriptor() 方法只能 **用于实例属性** ，要取得原型属性的的描述符，必须直接在 **原型对象** 上调用 Object.getOwnPropertyDescriptor() 方法。
+  
+- #### 原型与 in 操作符
+
+  有两种方式使用 in 操作符：**单独使用** 和 **在 for-in 循环中使用** 。在单独使用时，**in 操作符会在通过对象能够访问给的属性时返回 true** ，无论该属性存在于实例中还是原型中。看一看下面的例子。
+  
+  ```js
+  
+  function Person() {
+  }
+
+  Person.prototype.name = "Nicholas";
+  Person.prototype.age = 29;
+  Person.prototype.job = "Software Engineer";
+  Person.prototype.sayName = function() {
+     alert(this.name);
+  }
+
+  var person1 = new Person();
+  var person2 = new Person();
+  
+  alert(person1.hasOwnProperty("name")); // false
+  alert("name" in person1); // true
+
+  person1.name = "Greg";
+  alert("person1.name"); // "Greg" —— 来自实例
+  alert(person1.hasOwnProperty("name")); // true
+  alert("name" in person1); // true
+  
+  alert("person2.name"); //“Nicholas” —— 来自原型
+  alert(person2.hasOwnProperty("name")); // false
+  alert("name" in person2); // true
+  
+  
+  delete person1.name ;
+  alert(person1.name); // "Nicholas" —— 来自原型
+  alert(person1.hasOwnProperty("name")); // false
+  alert("name" in person1); // true
+  ```
+  在以上代码执行的整个过程中， name 属性要么是直接在对象上访问到的，要么是通过原型访问到的。因此，调用 “name” in person1 始终都返回 true，无论该属性存在于实例中还是存在于原型中。**同时使用 hasOwnProperty() 方法和 in 操作符** ，就可以 **确定该属性到底是存在于对象中** ，还是 **存在于原型中** ，如下所示。
+  
+  ```js
+  function hasProperty(object, name) {
+    return !object.hasOwnProperty(name) && (name in object);
+  }
+  ```
+  由于 in 操作符只要通过对象能够访问属性就返回 true，hasOwnProperty() 只在属性存在于实例中时才返回 true，因此只要 in 操作符返回 true 而 hasOwnProperty() 返回 false，就可以确定属性是原型中的属性。下面来看一看上面定义的函数 hasPr
+  
+  
+
+
+  
+  
+  
+  
+
+
+
+
 
 
   
