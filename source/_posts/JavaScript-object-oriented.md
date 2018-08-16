@@ -955,9 +955,42 @@ friend.sayName(); // "Nicholas"
 
 > 与寄生构造函数模式类似，使用 **稳妥构造函数模式创建的对象与构造函数之间也没有什么关系** ，因此 **instanceof 操作符对这种对象也没有意义** 。
 
+## 继承
+
+继承是 oo 语言中的一个最为人津津乐道的概念。许多 oo 语言都支持两种继承方式：**接口继承** 和 **实现继承** 。**接口继承** 只是 **继承方法签名** ，而 **实现继承** 则是 **继承实际的方法** 。如前所述，由于函数没有签名，在 ECMAScript 中无法实现接口继承。**ECMAScript 只支持实现继承** ，而其实 **实现继承主要依靠原型链来实现** 。
   
+### 原型链
+
+  ECMAScript 中描述了原型链的概念，并 **将原型链作为实现继承的主要方法** 。其基本思想是**利用原型让一个引用类型继承另一个引用类型的属性和方法** 。简单回顾一下构造函数、原型和实例的关系：**每个构造函数都有一个原型对象** ，**原型对象都包含一个指向构造函数的指针** ，而 **实例都包含一个指向原型对象的内部指针** 。那么，假如我们 **让原型对象等于另一个类型的实例** ，结果会怎样呢？显然，此时的 **原型对象将包含指向另一个原型的指针** ，相应地，**另一个原型中也包含着一个指向另一个构造函数的指针** 。假如另一个原型又是另一个类型的实例，那么上述关系依然成立，**如此层层递进** ，**就构成了实例与原型的链条** 。这就是所谓 **原型链** 的基本概念。
   
+  实现原型链有一种基本模式，其代码大致如下。
   
+  ```js
+  function SuperType() {
+    this.property = true;
+  }
+  
+  SuperType.prototype.getSuperValue = function() {
+    return this.property;
+  }
+  
+  function SubType() {
+    this.subproperty = false;
+  }
+  
+  //继承了 SuperType
+  SubType.prototype = new SuperType();
+  
+  SubType.prototype.getSubValue = function() {
+    return this.subproperty;
+  }
+  
+  var instance = new SubType();
+  alert(instance.getSuperValue); // true
+  ```
+  以上代码定义了两个类型： SuperType 和 SubType。每个类型分别有一个属性和一个方法。它们的主要区别是 SubType 继承了 SuperType，而继承是 **通过创建 SuperType 的实例** ，并 **将该实例赋给 SubType.prototype 实现的** 。实现的 **本质** 是 **重写原型对象**，代。以一个新类型实例。换句话说，**原来存在于 SuperType 的实例中的所有属性和方法** ，**现在也存在于 SubType.prototype 中了**。在确立了继承关系之后，我们给 SubType.prototype 添加了一个方法，这样就在继承了 SuperType 的属性和方法的基础上又添加了一个新方法，这样就 **在继承了 SuperType 的属性和方法的基础上又添加了一个新方法** 。这个例子中的实例以及构造函数和原型之间的关系下图所示。
+  
+  ![实例以及构造函数和原型](http://p9myzkds7.bkt.clouddn.com/JavaScript-object-oriented/%E5%AE%9E%E4%BE%8B%E4%B8%8E%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.jpg)
   
 
 
