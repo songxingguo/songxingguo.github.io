@@ -992,7 +992,42 @@ friend.sayName(); // "Nicholas"
   
   ![实例以及构造函数和原型](http://p9myzkds7.bkt.clouddn.com/JavaScript-object-oriented/%E5%AE%9E%E4%BE%8B%E4%B8%8E%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.jpg)
   
+在上面的代码中，我们 **没有使用 SubType 默认提供原型** ，而是给它 **换了一个新原型** ；这个 **新原型就是 SuperType 的实例** 。于是，新原型不仅 **具有作为一个 SuperType 的实例所拥有的全部属性和方法** ，而且其 **内部还有一个指针** ，**指向了 SuperType 的原型** 。最终结果就是这样的：**instance 指向 SubType 的原型** ，**SubType 的原型又指向 SuperType 的原型** 。getSuperValue() 方法仍然还在 SuperType.prototype 中，但 property 则位于 SubType.prototype 中。这是因为 property 是一个实例属性，而 getSuperValue() 则是一个原型方法。既然 SubType.prototype 现在是 SuperType 的实例，那么 property 当然就位于该实例中了。此外，要注意 **instance.constructor 现在指向的是 SuperType** ,这是因为 **原来 SubType.prototype 中的 constructor 被重写了的缘故** 。
 
+> 实际上，不是 SubType的原型的 constructor 属性被重写了，而是 **SubType 的原型指向了另一个对象**  —— SuperType 的原型，而 **这个原型对象的 constructor 属性指向的是 SuperType** 。
+
+通过实现原型链，本质上 **扩展了本章前面介绍的原型搜索机制** 。读者大概还记得，当以读取模式访问一个实例属性时，首先会在实例中搜索该属性。如果没有找到该属性，则会继续搜索实例的原型。**在通过原型链实现继承的情况下，搜索过程就得沿着原型链继续向上。** 就拿上面的例子来说，调用 instance.getSuperValue()会经历三个搜索步骤： 1)**搜索实例**；2)**搜索 SubType.prototype** ;3) **搜索 SuperType.prototype** ，最后一步才会找到该方法。在找不到属性或方法的情况下，**搜索过程总是要一环一 地前行到原型链的末端才会停下来** 。
+
+- #### 别忘记默认的原型
+
+  事实上，前面例子中展示的原型链还少了一环。我们知道，**所有引用类型默认都继承了 Object**  ,而 **这个继承也是通过原型链实现的** 。大家要记住，**所有函数的默认原型都是 Object 的实例** ，因此 **默认原型都会包含一个内部指针** ，**指向 Object.prototype** 。这也正是 **所有自定义类型都会继承 toString()、vauleOf() 等默认方法** 的根本原因。所以，我们要说上面例子展示的原型链中还应该包括另一个继承层级。下图为我们展示了该例子中完整的原型链。
+  
+  ![完整的原型链](http://p9myzkds7.bkt.clouddn.com/JavaScript-object-oriented/%E5%AE%8C%E6%95%B4%E7%9A%84%E5%8E%9F%E5%9E%8B%E9%93%BE.jpg)
+  
+  一句话，**SubType 继承了SuperType** ，而 **SuperType 继承了 Object** 。当 **调用 instance.toString()** 时，实际上 **调用的是保存在 Object.prototype 中的那个方法** 。
+ 
+- #### 确定原型和实例的关系
+ 
+  可以通过两种方式来确定原型和实例之间的关系。第一种方式是 **使用 instanceof 操作符** ，只要用这个操作符来测试实例与原型链中出现过的构造函数，结果就会返回 true。以下几行代码说明了这一点。
+  
+  ```js
+  alert(instance instanceof Object); //true
+  alert(instance instanceof SuperType); //true
+  alert(isntance instanceof SubType); //true
+  ```
+  由于 **原型链的关系** ，我们 **可以说 instance 是 Object、SuperType 或 SubType 中任何一个类型的实例** 。因此，测试这三个构造函数的结果都返回了 true。
+  
+  第二种方式是 **使用 isPrototypeOf() 方式** 。同样，**只要是原型链中出现过的原型** ，**都可以说是该原型链所派生的实例的原型** ，因此 isPrototypeOf() 方法会返回 true，如下所示。
+  
+  ```js
+  alert(Object.prototype.isPrototypeOf(instance)); //true
+  alert(SuperType.prototype.isPrototype(instance)); //true
+  alert(SubType.prototype.isPrototype(instance)); //true
+  ```
+  
+  
+  
+ 
 
   
   
