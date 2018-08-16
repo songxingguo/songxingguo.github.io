@@ -986,7 +986,7 @@ friend.sayName(); // "Nicholas"
   }
   
   var instance = new SubType();
-  alert(instance.getSuperValue); // true
+  alert(instance.getSuperValue()); // true
   ```
   以上代码定义了两个类型： SuperType 和 SubType。每个类型分别有一个属性和一个方法。它们的主要区别是 SubType 继承了 SuperType，而继承是 **通过创建 SuperType 的实例** ，并 **将该实例赋给 SubType.prototype 实现的** 。实现的 **本质** 是 **重写原型对象**，代。以一个新类型实例。换句话说，**原来存在于 SuperType 的实例中的所有属性和方法** ，**现在也存在于 SubType.prototype 中了**。在确立了继承关系之后，我们给 SubType.prototype 添加了一个方法，这样就在继承了 SuperType 的属性和方法的基础上又添加了一个新方法，这样就 **在继承了 SuperType 的属性和方法的基础上又添加了一个新方法** 。这个例子中的实例以及构造函数和原型之间的关系下图所示。
   
@@ -1024,19 +1024,95 @@ friend.sayName(); // "Nicholas"
   alert(SuperType.prototype.isPrototype(instance)); //true
   alert(SubType.prototype.isPrototype(instance)); //true
   ```
-  
-  
-  
- 
+- #### 谨慎地定义方法
 
+  **子类型有时候需要覆盖超类型中的某个方法** ，或者 **需要添加超类型中不存在的某个方法** 。但不管怎样，**给原型添加方法代码一定要放在替换原型的语句之后** 。来看下面的例子。
   
+  ```js
+  function SuperType() {
+    this.property = true;
+  }
   
+  SuperType.prototype.getSuperValue = function() {
+    return this.property;
+  }
   
+  function SubType() {
+    this.subproperty = false;
+  }
   
+  //继承了 SuperType
+  SubType.prototype = new SuperType();
+  
+  // 添加新方法
+  SubType.prototype.getSubValue = function() {
+    return this.subproperty;
+  }
+  
+  // 重写超类型中方法
+  SubType.prototype.getSuperValue = function() {
+    return false;
+  }
+  
+  var instance = new SubType();
+  alert(instance.getSuperValue()); // false
+  ```
+  在以上代码中，加粗部分是两个方法的定义。第一个方法 getSubValue() 被添加到了SubType 中。第二个方法 getSuperValue() 是原型链中已经存在的一个方法，但重写这个方法将会屏蔽原来的那个方法。换句话说，当 **通过 SubType 的实例调用 getSuperValue() 时** ，**调用的就是这个重新定义的方法** ；但 **通过 SuperType 的实例调用 getSuperValue() 时** ，**还会继续调用原来的那个方法** 。这里要格外注意的是，**必须在用 SuperType 的实例替换原型之后，再定义这两个方法** 。
+  
+  还有一点需要提醒读者，即在 **通过原型链实现继承时** ，**不能使用对象字面量创建原型方法** 。因为 **这样做就会重写原型链** ，如下面的例子所示。
+  
+  ```js
+  function SuperType() {
+    this.property = true;
+  }
+  
+  SuperType.prototype.getSuperValue = function() {
+    return this.property;
+  }
+  
+  function SubType() {
+    this.subproperty = false;
+  }
+  
+  SubType.prototype = {
+    getSubValue: function() {
+      return this.subproperty;
+    },
+    
+    someSotherMethod: function () {
+      return false;
+    }
+  };
+  
+  var instance = new SubType();
+  alert(instance.getSuperValue()); // error
+  ```
+  以上代码展示了刚刚把 SuperType 的实例赋值给原型，紧接着又将原型替换成一个对象字面量而导致的问题。由于 **现在的原型包含的是一个 Object 实例** ，而 **非 SuperType 的实例** ，因此 **我们设想中的原型链已经被切断** —— SubType 和 SuperType 之间已经没有关系了。
+  
+- #### 原型链的问题
 
-
-
-
-
-
+  原型链虽然很强大，可以用它来实现继承，但它也存在这些问题。其中，最主要的问题来自包含引用类型值的原型。想必大家还记得，我们介绍过 **包含引用类型值的原型属性会被所有实例共享** ；而 **这也是为什么要在构造函数中，而不是在原型对象中定义属性的原因** 。在通过原型来实现继承时，原型实际上会变成另一个类型的实例。于是，原先的实例属性也就顺理成章地变成了现在的原型属性了。下列代码可以用来说明这个问题。
+  
+  ```js
+  function SuperType() {
+    this.colors = ["red", "blue", "green"];
+  }
+  
+  function SubType() {
+  }
+  
+  //继承了 SuperType
+  SubType.prototype = new SuperType();
+  
+  var instance1 = new SubType();
+  instance1.colors.push("black");
+  alert(instance1.colors); // "red、blue、green、black"
+  
+  var instance2 = new SubType();
+  alert(instance2.colors); // "red、blue、green、black"
+  ```
+  这个例子中的 SuperType 构造函数定义了一个 colors 属性，该属性包含了一个数组（引用类型值）。SuperType 的每个实例都会各自包含自己数组的 colors属性。当 SubType 通过原型链继承了 SuperType 之后，SubType.prototype 就变成了 SuperType 的实例，因此它也拥有了一个它自己的 colors 属性 —— 就跟专门创建一个 SubType.prototype.colors 属性一样。但结果是什么呢？**结果是 SubType 的所有实例都会共享这个 colors 属性** 而我们对 instance1.colors 的修改能够通过 instance2.colors 反映出来，就已经充分证实了这一点。
+  
+  原型链的第二个问题是 ： **在创建子类型的实例时，不能向超类型的构造函数中传递参数** 实际上，应该说是没有办法在不影响所有对象的情况下，给超类型的构造函数传递参数。有鉴于此，再加上前面讨论过由于原型中包含引用类型值所带来的问题，**实践中很少会单独使用原型链** 。
+  
   
