@@ -719,6 +719,105 @@ alert(person1.sayName == person2.sayName); //true
     value: Person
   });
   ```
+- #### 原型的动态性
+
+  **由于原型中查找值的过程是一次搜索** ，因此我们 **对原型对象所做的任何修改都能够立即从实例上反映出来** ——即使是 **先创建了实例后修改原型也照样如此** 。请看下面的例子。
+  
+  ```js
+  var friend = new Person();
+  
+  Person.prototype.saiHi = function() {
+    alert("hi");
+  }
+  
+  friend.sayHi();  //"hi"（没有问题！）
+  ```
+  以上代码先创建了 Person 的一个实例，并将其保存在 friend 。然后，下一条语句在 Person.prototype 中添加了一个方法 sayHi()。即使 friend 实例是在添加新方法之前创建的，但它仍然可u一访问这个新方法。其原因可以归结为 **实例与原型之间的松散连接关系** 。当我们调用 friend.sayHi() 时，首先会在实例中搜索名为 sayHi 的属性，在没有找到的情况下，会继续搜索原型。因为 **实例与原型之间的连接只不过是一个指针** ，而非副本，因此就可以在原型中找到新的 sayHi 属性并返回保存在那里的函数。
+  
+  尽管可以随时为原型添加属性和方法，并且修改能够立即在所有对象实例中反映出来，但如果是**重写整个原型对象** ，那么情况就不一样了。我们知道，**调用构造函数时** ，**会为实例添加一个指向最初原型的 [[Prototype]] 指针** ，而 **把原型修改为另外一个对象就等于切断了构造函数与最初原型之间的联系** 。请记住： **实例中的指针仅指向原型** ，而 **不指向构造函数** 。看下面的例子。
+  
+  ```js
+  function Person() {
+  
+  }
+  
+  var friend = new Person();
+  
+  Person.prototype = {
+    constructor: Person,
+    name: "Nicholas",
+    age: 29,
+    job: "Software Engineer",
+    sayName : function () {
+      alert(this.name);
+    }
+  };
+  
+  friend.sayName(); // error
+  ```
+  在这个例子中，我们先创建了 Person 的一个实例，然后又重写了其原型对象，然后在调用 friend.sayName() 时发生错误，因为 friend 指向原型中不包含以该名字命名的属性。下图展示了这个过程的内幕。
+  
+  ![过程的内幕](http://p9myzkds7.bkt.clouddn.com/JavaScript-object-oriented/%E8%BF%87%E7%A8%8B%E5%B1%95%E7%A4%BA.jpg)
+  
+  从上图可以看出，**重写原型对象切断了现有原型与任何之前已经存在的对象实例之间的联系** ；它们 **引用的仍然是最初的原型** 。
+  
+- #### 原生对象的原型
+
+  原型模式的重要性 **不仅体现在创建自定义类型方面** ，就连 **所有原生的引用类型** ， **都采用这种模式创建的** 。所有原生引用类型（Object、Array、String，等等）都在其构造函数的原型上定义了方法。例如，在 Array.prototype 中可以找到 sort() 方法，而在 String.prototype 中可以找到 substring() 方法，如下所示。
+  
+  ```js
+  alert(typeof Array.prototype.sort); // "function"
+  alert(typeof String.prototype.substring()); // "function"
+  ```
+  通过原生对象的原型，不仅 **可以取得所有默认方法的引用** ，而且也 **可以定义新方法** 。**可以像修改自定义对象的原型一样修改原生对象的原型** ，因此 **可以随时添加方法** 。下面的代码就给基本包装类型 String 添加了一个名为 startsWith() 的方法。
+  
+  ```js
+  String.prototype.startsWith = function (text) {
+    return this.indexOf(text) == 0;
+  }
+  
+  var msg = "Hello world!";
+  alert(msg.startsWith("Hello")); //true
+  ```
+  这里新定义的 startsWith() 方法会在传入的文本位于一个字符串开始时返回 true。既然 **方法被天添加给了 String.prototype** ，那么 **当前环境中的所有字符串都可以调用它** 。由于 msg 是字符串，而且后台会调用 Sttring 基本包装函数创建这个字符串，因此通过 msg 就可以调用 sartsWith() 方法。
+  
+  > 尽管可以这样做，但我们 **不推荐在产品化的程序中修改原生对象的原型** 。如果因为某个实现中缺少某个方法，就在原生对象的原型中添加这个方法，那么当在另一个支持该方法的实现中运行代码时，就 **可能会导致命名冲突** 。而且，这样做也 **可能会意外重写原生方法** 。
+  
+- #### 原型对象问题
+
+  原型模式也不是没有缺点。首先，它 **省略了为构造函数传递初始化参数这一环节** ，结果所有实例在 **默认情况下都将取得相同的属性值** 。虽然这会在某种程度上带来一些不方便，但还不是原型的最大问题。原型模式的最大问题是 **由其共享的本性所导致的** 。
+  
+  原型中所有属性是被很多实例共享的，这种共享 **对于函数非常适合** 。 **对于那些包含基本值的属性倒也说得过去** ，毕竟（如前面的例子所示），通过在实例上添加一个同名属性，可以隐藏原型中的对应属性。然而，**对于包含引用类型值的属性来说**  ，**问题就比较突出了** 。来看下面的例子。
+  
+  ```js
+  function Person() {
+  
+  }
+    
+  Person.prototype = {
+    constructor: Person,
+    name: "Nicholas",
+    age: 29,
+    job: "Software Engineer",
+    friends: ["Shelby", "Court"],
+    sayName : function () {
+      alert(this.name);
+    }
+  };
+  
+  var person1 = new Person();
+  var person2 = new Person();
+  
+  person1.friends.push("Van");
+  
+  alert(person1.friends); // "Shelby, Court, Van"
+  alert(person2.friends); // "Shelby, Court, Van"
+  alert(person1.friends == person2.friends); // ture
+  ```
+  在此，Person.prototype 对象有一个名为 friends 的属性，该属性包含一个字符串数组。然后，创建了 Person 的两个实例。接着，修改了 person1.friends 引用的数组，向数组中添加了一个字符串。**由于 friends 数组存在于 Person.prototype 而非 person1 中** ，所以刚刚提到的 **修改也会通过 person2.frends（与 person21.friends  指向同一个数组）反映出来** 。假如我们的 **初衷就是像这样在所有实例共享一个数组（静态方法和属性）** ，那么这个结果我没话可说。可是，**实例一般都是需要有属于自己的全部属性的** 。而这个问题正是我们 **很少看到有人单独使用原型模式的原因所在** 。
+  
+
+  
   
   
   
