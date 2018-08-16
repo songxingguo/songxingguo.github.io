@@ -643,7 +643,84 @@ alert(person1.sayName == person2.sayName); //true
   var p1keys = Object.keys(p1);
   alert(p1keys); // "name, age"
   ```
-  这里，变量 keys 中将保存一个数组，数组中是字符串“name”、“age”、“job” 和 “sayName”。这个顺序也是它们在 for-in 循环中出现的顺序。如果是通过 Person 的实例调用，则 Object.keys() 返回的数组只包含 “name” 和 “age”这两个实例属性。
+  这里，**变量 keys 中将保存一个数组**，数组中是字符串“name”、“age”、“job” 和 “sayName”。**这个顺序也是它们在 for-in 循环中出现的顺序** 。如果是通过 Person 的实例调用，则 Object.keys() 返回的数组只包含 “name” 和 “age”这两个实例属性。
+  
+  如果你想要得到所有实例属性，无理论它是否可枚举，都可以使用 **Object.getOwnPropertyNames()** 方法。
+  
+  ```js
+  var keys = Objects.getOwnPropertyNames(Person.proptotype);
+  alert(keys); // "constructor、name、age、job、sayName"
+  ```
+  注意结果中包含了不可枚举的 constructor 属性。Object.keys() 和 Object.getOwnPropertyNames() 方法都可以用来替代 for0in 循环。支持这两个方法的浏览器有 IE9+、Firefox4+、Safari5+、Opera12+ 和 Chrome。
+  
+- #### 更简单的原型语法
+
+  读者大概注意到了，前面的例子中每添加一个属性和方法就哟啊敲一遍 Person.prototype 。为减少不必要的输入，也为了从视觉上更好的封装原型的功能，更常见的做法是用一个包含所有属性和方法的对象字面量来重写整个原型对象，如下面的例子所示。
+  
+  ```js
+  function Person() {
+  }
+  
+  Person.prototype = {
+    name: "Nicholas",
+    age: 9,
+    job: "Software Engineer",
+    sayName: function() {
+      alert(this.name);
+    }
+  };
+  ```
+  在上面的代码中，我们将 Person.prototype 设置为等于一个以对象字面量形式创建的新对象。最终结果相同，但有一个例外：**constructor 属性不再指向 Person 了** 。前面曾经介绍过，每创建一个函数，就会同时创建它的 prototype 对象，这个对象也会自动获得 constructor 属性。而我们子在这里使用的语法，**本质上完全重写了默认的 prototype 对象** ，因此 **constructor 属性也就变成了新对象的 constructor 属性**（指向 Object 构造函数），不再指向 Person 函数。此时，尽管 instanceof 操作符还能返回正确的结果，但通过 constructor 已经无法确定对象的类型了，如下所示。
+  
+  ```js
+  var friend = new Person();
+  
+  alert(friend instanceof Object); //true
+  alert(friend instanceif Person); //true
+  alert(friend.constructor == Person); //false
+  alert(friend.constructor == Object); //true
+  ```
+  在此，用 instanceof 操作符测试 Object 和 Person 仍然返回 true，但 constructor 属性则等于 Object 而不等于 Person 了。如果 constructor 的值真的很重要，可以像下面这样特意将它设置回适当的值。
+  
+  ```js
+  function Person() {
+  }
+  
+  Person.prototype = {
+    constructor: Person,
+    name: "Nicholas",
+    age: 9,
+    job: "Software Engineer",
+    sayName: function() {
+      alert(this.name);
+    }
+  };
+  ```
+  以上代码特意包含了一个 constructor 属性，并 **将它的值设置为 Person** ，**从而确保了通过该属性能访问到适当的值** 。
+  
+  注意，以上 **这种方式重设 constructoe 属性会导致它的 [[Enumberable]] 特性被设置为 true** 。默认情况下，**原生的 constructor 属性是不可枚举的** ，因此如果你使用兼容 ECMAScript 5 的 JavaScript 引擎，可以试一试 Object.definePeoperty()。
+  
+  ```js
+  function Person() {
+  }
+  
+  Person.prototype = {
+    name: "Nicholas",
+    age: 9,
+    job: "Software Engineer",
+    sayName: function() {
+      alert(this.name);
+    }
+  };
+  
+  // 重设构造函数，只适用与于 ECMAScript 5 兼容的浏览器
+  Object.definePeoperty(Person.prototype, "constructor", {
+    enumerable: false,
+    value: Person
+  });
+  ```
+  
+  
   
 
 
