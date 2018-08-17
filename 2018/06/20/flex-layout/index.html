@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>Flex布局 | 阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/works" class="menu-item-link"><i class="iconfont icon-works"></i>作品</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="post-title">
+          Flex布局
+            <div class="post-tags">
+    		    
+              <a class="tag-link" href="/tags/Flex/">Flex</a>
+            
+    	      </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <article class="post">
+  
+
+  <header>
+    <div class="post-title mobile-post-title">
+      <h1>Flex布局</h1>
+        <div class="post-tags">
+        
+          <a class="tag-link" href="/tags/Flex/">Flex</a>
+        
+        </div>
+    </div>
+    <div class="post-meta">
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-20</span>
+      
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/前端技术/">前端技术</a>
+          
+      
+      <!----------------------------------->
+        
+          <i class="iconfont icon-divide"></i>
+          <div class="post-visits"
+               data-url="/2018/06/20/flex-layout/"
+               data-title="Flex布局">
+              阅读次数
+            </div>
+        
+      <!----------------------------------->
+    </div>
+  </header>
+  
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本概念"><span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元素排列"><span class="toc-text">元素排列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#justify-content"><span class="toc-text">justify-content</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#align-items"><span class="toc-text">align-items</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#algn-self"><span class="toc-text">algn-self</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#align-content"><span class="toc-text">align-content</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#换行方式"><span class="toc-text">换行方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#flex-direction"><span class="toc-text">flex-direction</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#flex-wrap"><span class="toc-text">flex-wrap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#flex-flow"><span class="toc-text">flex-flow</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伸缩方式"><span class="toc-text">伸缩方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#flex-basis"><span class="toc-text">flex-basis</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#flex-grow"><span class="toc-text">flex-grow</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#flex-shrink"><span class="toc-text">flex-shrink</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#flex"><span class="toc-text">flex</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主轴排序"><span class="toc-text">主轴排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#order"><span class="toc-text">order</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回顾"><span class="toc-text">回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习误区"><span class="toc-text">学习误区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#感谢"><span class="toc-text">感谢</span></a></li></ol>
+    </div>
+  </div>
+
+
+  <div class="post-content">
+    <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+<li><p>Flex布局分为：父容器和子容器，主轴和交叉轴。</p>
+</li>
+<li><p>关于Flex的属性一共有 <strong>13</strong> 个，分别是：</p>
+<ol>
+<li>justify-content</li>
+<li>align-items</li>
+<li>align-content</li>
+<li>flex-direction</li>
+<li>flex-wrap</li>
+<li>flex-flow</li>
+<li>flex-basis</li>
+<li>flex-grow</li>
+<li>flex-shrink</li>
+<li>flex</li>
+<li>order</li>
+<li>algn-self</li>
+<li>display</li>
+</ol>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><p>按作用的对象（子容器和父容器 ）可以分为下面的内容：</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/flex%E6%8C%89%E5%AE%B9%E5%99%A8%E5%88%86%E7%B1%BB.png" alt="按作用的对象进行分类"></p>
+</li>
+<li><p>按属性的功能，我们大致可以把属性分为 <strong>4</strong> 大类，分别是：</p>
+<ul>
+<li>元素排列（justify-content、align-items、algn-self, align-content）</li>
+<li>换行方式 （flex-direction、 flex-wrap、flex-flow）</li>
+<li>伸缩方式 （flex-basis、flex-grow、flex-shrink、flex）</li>
+<li>主轴排序 （order）</li>
+</ul>
+<p>下面从 <strong>4</strong> 个大类分别介绍每个属性。</p>
+</li>
+</ul>
+<hr>
+<h3 id="元素排列"><a href="#元素排列" class="headerlink" title="元素排列"></a>元素排列</h3><p>元素排列共有三个属性，分别是：</p>
+<ul>
+<li><h4 id="justify-content"><a href="#justify-content" class="headerlink" title="justify-content"></a>justify-content</h4><p>设置子容器沿主轴排列, 用于定义如何 <strong>沿着主轴方向排列子容器</strong>。</p>
+<ul>
+<li><p>位置排列</p>
+<ul>
+<li>flex-start：起始端对齐</li>
+<li>flex-end：末尾段对齐</li>
+<li>center：居中对齐</li>
+</ul>
+</li>
+<li><p>分布排列</p>
+<ul>
+<li><p>space-around：子容器沿主轴均匀分布，位于首尾两端的子容器到父容器的距 离是子容器间距的一半（<strong>子容器和父容器之间的距离是子容器之间距离的一半</strong>）。</p>
+</li>
+<li><p>space-between：子容器<strong>沿主轴均匀分布</strong>，位于首尾两端的<strong>子容器与父容器相切</strong>。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="align-items"><a href="#align-items" class="headerlink" title="align-items"></a>align-items</h4><p> 设置子容器如何沿交叉轴排列,用于定义如何 <strong><code>单行</code> 沿着交叉轴向分配子容器的间距</strong>。</p>
+<ul>
+<li><p>位置排列</p>
+<ul>
+<li>flex-start：起始端对齐</li>
+<li>flex-end：末尾段对齐</li>
+<li>center：居中对齐</li>
+</ul>
+</li>
+<li><p>基线对齐</p>
+<ul>
+<li>baseline： baseline 默认是指 <strong>首行文字</strong>，即 first baseline，所有 <strong>子容器向基线对齐</strong>，<strong>交叉轴起点到元素基线距离最大的子容器</strong> 将会 <strong>与交叉轴起始端相切以确定基线</strong>。</li>
+</ul>
+</li>
+<li><p>拉伸排列</p>
+<ul>
+<li>stretch：子容器 <strong>沿交叉轴方向的尺寸</strong> 拉伸至 <strong>与父容器一致</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="algn-self"><a href="#algn-self" class="headerlink" title="algn-self"></a>algn-self</h4><p>   单独设置子容器如何沿交叉轴排列。每个子容器也可以单独定义沿交叉轴排列的方式，此属性的可选值与父容器 align-items 属性完全一致，如果两者同时设置则以子容器的 align-self 属性为准。</p>
+</li>
+<li><h4 id="align-content"><a href="#align-content" class="headerlink" title="align-content"></a>align-content</h4><p> 多行沿交叉轴对齐, 用于子容器 <code>多行</code> 排列时，设置行与行之间的对齐方式。属性和上面所说的类似，只是 <strong>align-content</strong> 是 <strong>行与行之间</strong> 的排列，而 <strong>justify-content</strong> 、<strong>align-items</strong> 、 <strong>algn-self</strong> 是 <strong>子容器之间</strong> 的排列。</p>
+<ul>
+<li><p>位置排列</p>
+<ul>
+<li>flex-start：起始端对齐</li>
+<li>flex-end：末尾段对齐</li>
+<li>center：居中对齐</li>
+</ul>
+</li>
+<li><p>分布排列 </p>
+<ul>
+<li>space-around：等边距均匀分布</li>
+<li>space-between：等间距均匀分布</li>
+<li>stretch：拉伸对齐</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="换行方式"><a href="#换行方式" class="headerlink" title="换行方式"></a>换行方式</h3><ul>
+<li><h4 id="flex-direction"><a href="#flex-direction" class="headerlink" title="flex-direction"></a>flex-direction</h4><p>主轴的方向,用于决定主轴的方向，交叉轴的方向由主轴确定。（其他属性都要参照主轴确定）</p>
+<ul>
+<li><p>主轴</p>
+<p>  主轴的起始端由 flex-start 表示，末尾段由 flex-end 表示。不同的主<br>轴方向对应的起始端、末尾段的位置也不相同。</p>
+<ul>
+<li>向右：flex-direction: row</li>
+<li>向下：flex-direction: column</li>
+<li>向左：flex-direction: row-reverse</li>
+<li>向上：flex-direction: column-reverse</li>
+</ul>
+</li>
+<li><p>交叉轴</p>
+<p>主轴沿逆时针方向旋转 90° 就得到了交叉轴，交叉轴的起始端和末尾段也由      你flex-start 和 flex-end 表示。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="flex-wrap"><a href="#flex-wrap" class="headerlink" title="flex-wrap"></a>flex-wrap</h4><p>用于决定子容器是否换行排列，不但可以顺序换行而且支持逆序换行。</p>
+<ul>
+<li><p>nowrap：不换行</p>
+</li>
+<li><p>wrap：换行</p>
+</li>
+<li><p>wrap-reverse：逆序换行</p>
+<p>逆序换行是指沿着交叉轴的反方向换行。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h4><p> flow 即流向，也就是子容器沿着哪个方向流动，流动到终点是否允许换行。相当于 flex-direction 与 flex-wrap 的组合。</p>
+</li>
+</ul>
+<hr>
+<h3 id="伸缩方式"><a href="#伸缩方式" class="headerlink" title="伸缩方式"></a>伸缩方式</h3><ul>
+<li><h4 id="flex-basis"><a href="#flex-basis" class="headerlink" title="flex-basis"></a>flex-basis</h4><p>设置基准大小，表示在不伸缩的情况下子容器的原始尺寸。<strong>主轴为横向时代表宽度，主轴为纵向时代表高度</strong>。</p>
+</li>
+<li><h4 id="flex-grow"><a href="#flex-grow" class="headerlink" title="flex-grow"></a>flex-grow</h4><p> 设置扩展比例,子容器弹性伸展的比例。剩余空间按比例分配给子容器。</p>
+</li>
+<li><h4 id="flex-shrink"><a href="#flex-shrink" class="headerlink" title="flex-shrink"></a>flex-shrink</h4><p> 设置收缩比例, 子容器弹性收缩的比例。超出的部分按比例从给子容器中减去。</p>
+</li>
+<li><h4 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h4><p> 主轴上如何伸缩，是上面三个属性的缩写，允许 1 - 3 个值连用，子容器是有弹性的（flex 即弹性），它们会自动填充剩余空间，子容器的伸缩比例由 flex 属性确定。</p>
+<ul>
+<li>无单位数字（如：1, 2, 3）</li>
+<li>有单位数字（如：15px，30px，60px）</li>
+<li><p>none 关键字。</p>
+<p>子容器会按照 flex 定义的尺寸比例自动伸缩，如果取值为 none 则不伸缩。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="主轴排序"><a href="#主轴排序" class="headerlink" title="主轴排序"></a>主轴排序</h3><ul>
+<li><h4 id="order"><a href="#order" class="headerlink" title="order"></a>order</h4><p>设置排列顺序,改变子容器的排列顺序，覆盖 HTML 代码中的顺序，默认值为 0，可以为负值，数值越小排列越靠前。</p>
+</li>
+</ul>
+<hr>
+<h3 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h3><p>以上就是 flex 布局的全部属性，一共 12 个，父容器、子容器各 6 个，可以随时通过下图进行回顾。</p>
+<p>  <img src="http://p9myzkds7.bkt.clouddn.com/flex%E6%8C%89%E5%AE%B9%E5%99%A8%E5%88%86%E7%B1%BB.png" alt="按作用的对象进行分类"></p>
+<hr>
+<h3 id="学习误区"><a href="#学习误区" class="headerlink" title="学习误区"></a>学习误区</h3><ol>
+<li><p>Flex布局没有水平轴和垂直轴的概念，只有主轴和交叉轴，主轴可以是水平的也可以是水平的也可以是垂直的，这要根据具体的 <strong>flex-direction</strong> 属性设置来决定。</p>
+</li>
+<li><p>在每两个嵌套元素之间都可以使用flex布局，并且flex布局的元素也可以嵌套使用。</p>
+</li>
+</ol>
+<hr>
+<h3 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h3><p>参考文章:</p>
+<p><a href="https://juejin.im/post/58e3a5a0a0bb9f0069fc16bb" target="_blank" rel="noopener">一劳永逸的搞定 flex 布局 - osimly</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">Flex 布局教程：语法篇 - 阮一峰</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="noopener">Flex 布局教程：实例篇 - 阮一峰</a></p>
+
+  </div>
+  <div class="post-footer">the end</div>
+</article>
+
+          
+  <nav class="pagination post-nav">
+    
+      <a href="/2018/06/29/refresh-boot/">
+        <span class="prev-post"><i class="iconfont icon-back"></i>小米MIX 2线刷步骤</span>
+      </a>
+    
+    
+      <a href="/2018/06/18/push-source-code/">
+        <span class="next-post">将博客源码推送到github上<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+  
+
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/works" class="mobile-nav-link"><i class="iconfont icon-works"></i>作品</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.2.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+        appId: "MNdCoL1O2i2njgRy8WVYgAwf-gzGzoHsz",
+        appKey: "hil0yQTQDbO8nzaxFKqeSqyK"
+      });
+  </script>
+  <script>
+  (function (window) {
+      $(document).ready(function () {
+        visits();
+      });
+    function visits() {
+      var $visits = $('.post-visits');
+
+      function updateVisits(dom, time) {
+        var text = dom.text() + ' ' + time;
+        dom.text(text);
+      }
+
+      function addCounter(Counter) {
+        var query = new AV.Query(Counter);
+
+        var url = $visits.data('url').trim();
+        var title = $visits.data('title').trim();
+
+        query.equalTo('url', url);
+        query.find().then(function (results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.save(null, {
+              fetchWhenSave: true
+            }).then(function (counter) {
+              counter.increment('time', 1);
+              return counter.save();
+            }).then(function (counter) {
+              updateVisits($visits, counter.get('time'));
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set('title', title);
+            newcounter.set('url', url);
+            newcounter.set('time', 1);
+
+            newcounter.save().then(function (counter) {
+              updateVisits($visits, newcounter.get('time'));
+            });
+          }
+        }, function (error) {
+          console.log('Error:' + error.code + " " + error.message);
+        });
+      }
+
+      function showTime(Counter) {
+        $visits.each(function () {
+          var $this = $(this);
+          var query = new AV.Query(Counter);
+          var url = $this.data('url').trim();
+
+          query.equalTo('url', url);
+          query.find().then(function (results) {
+            if (results.length === 0) {
+              updateVisits($this, 0);
+            } else {
+              var counter = results[0];
+              updateVisits($this, counter.get('time'));
+            }
+          }, function (error) {
+            console.log('Error:' + error.code + " " + error.message);
+          });
+        })
+      }
+
+      if (typeof AV === 'object') {
+        var Counter = AV.Object.extend('Counter');
+        if ($visits.length === 1) {
+          addCounter(Counter);
+        } else {
+          showTime(Counter);
+        }
+      }
+    }
+  })(window);
+  </script>
+
+
+  <script src="/js/ztopic.js"></script>
+</body>
+</html>
