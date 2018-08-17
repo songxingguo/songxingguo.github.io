@@ -47,6 +47,8 @@ date: 2018-08-07 03:32:00
 
 ### 网易
 
+![校招流程-网易](http://p9myzkds7.bkt.clouddn.com/technical-requirement-and-review/%E7%BD%91%E6%98%93%E6%A0%A1%E6%8B%9B%E6%B5%81%E7%A8%8B.png)
+
 [校园招聘流程](https://campus.163.com/app/campus/recprodes)
 
 ### 百度
