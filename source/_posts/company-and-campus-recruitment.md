@@ -27,6 +27,34 @@ date: 2018-08-07 03:32:00
 ![校招流程-知乎](http://p9myzkds7.bkt.clouddn.com/company-and-compus/%E7%9F%A5%E4%B9%8E%E6%A0%A1%E6%8B%9B%E6%B5%81%E7%A8%8B.png)
 [校园招聘流程](https://app.mokahr.com/campus_apply/zhihu#/?anchorName=7191143730&_k=i56e04)
 
+### 唯品会
+
+![校招流程-唯品会](http://p9myzkds7.bkt.clouddn.com/technical-requirement-and-review/%E5%94%AF%E5%93%81%E4%BC%9A%E6%8B%9B%E8%81%98%E6%B5%81%E7%A8%8B.png)
+
+[校园招聘流程](http://campus.vip.com/rec_2.html)
+
+### 京东
+
+![校招流程-京东](http://p9myzkds7.bkt.clouddn.com/technical-requirement-and-review/%E4%BA%AC%E4%B8%9C%E6%8B%9B%E8%81%98%E6%B5%81%E7%A8%8B.png)
+
+[校园招聘流程](http://campus.jd.com/web/talk/index?t=4)
+
+### 360
+
+![校招流程-360](http://p9myzkds7.bkt.clouddn.com/technical-requirement-and-review/360%E6%A0%A1%E6%8B%9B%E6%B5%81%E7%A8%8B.png)
+
+[校园招聘流程](http://campus.chinahr.com/2019/qihu360/process_cur.html)
+
+### 网易
+
+[校园招聘流程](https://campus.163.com/app/campus/recprodes)
+
+### 百度
+
+![校招流程-百度](http://p9myzkds7.bkt.clouddn.com/%E7%99%BE%E5%BA%A6%E6%A0%A1%E5%9B%AD%E6%8B%9B%E8%81%98.png)
+
+[校园招聘流程](https://talent.baidu.com/external/baidu/campus.html#/process)
+
 ## 已投递公司及其状态
 
 1. ### 顺丰
@@ -76,9 +104,3 @@ date: 2018-08-07 03:32:00
 8. ### 猿辅导
 
   > 内推；暂无状态；
-  
-  
-
-  
-
-
