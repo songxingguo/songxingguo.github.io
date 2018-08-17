@@ -9,19 +9,34 @@ date: 2018-06-02 10:23:12
 
 > 该作品是参照 [五星果品](http://www.wuxingguopin.com/) 网站之前的版本开发。
   
+[微信UI](https://github.com/songxingguo/MyWeUI)
+
+> 该作品用于将平时生活中所遇到的优秀 UI ，采用微信小程序的形式展示出来。
+
+<center>
+![WeUI库](https://raw.githubusercontent.com/songxingguo/MyWeUI/master/image/WeUI.jpg)</center>
+
 [海马特效](https://songxingguo.github.io/canvas-hippocampus/)
+
+> 该作品采用 jQuery 实现。
 
 <iframe src="https://songxingguo.github.io/canvas-hippocampus/"  width="100%" height="300" frameborder="0" align="middle" ></iframe>
 
 [彩虹雨](https://songxingguo.github.io/canvas-rainbowRain/)
 
+> 该作品采用 jQuery 实现。
+
  <iframe src="https://songxingguo.github.io/canvas-rainbowRain/" width="100%" height="300" frameborder="0" align="middle" ></iframe>
 
 [树](https://songxingguo.github.io/canvas-tree/)
+
+> 该作品采用 jQuery 实现。
   
  <iframe src="https://songxingguo.github.io/canvas-tree/" width="100%" height="300" frameborder="0" align="middle" ></iframe>
  
 [作品展示](https://songxingguo.github.io/works/)
+
+> 该作品用于作品展示的主页面，现在还在开发中。
 
 <iframe src="https://songxingguo.github.io/works/" width="100%" height="500" frameborder="0" align="middle" ></iframe>
 
