@@ -4,6 +4,10 @@ type: works
 date: 2018-06-02 10:23:12
 ---
 <!--<h1 align="center">我的作品</h1> -->
+
+[水果商店](https://songxingguo.github.io/FruitShop/)
+
+> 该作品是参照 [五星果品](http://www.wuxingguopin.com/) 网站之前的版本开发。
   
 [海马特效](https://songxingguo.github.io/canvas-hippocampus/)
 
@@ -20,8 +24,6 @@ date: 2018-06-02 10:23:12
 [作品展示](https://songxingguo.github.io/works/)
 
 <iframe src="https://songxingguo.github.io/works/" width="100%" height="500" frameborder="0" align="middle" ></iframe>
-
-[水果商店](https://songxingguo.github.io/FruitShop/)
 
 <!-- <iframe src="https://songxingguo.github.io/FruitShop/" width="100%" height="500" frameborder="0" align="middle" ></iframe> -->
 
