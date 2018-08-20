@@ -445,373 +445,327 @@ window.find();
 
 ## location 对象
 
-location 是最有用的 BOM对象之一，它提供了与当前窗口中加载的文档有关的信息，还提供了一
-些导航功能。事实上， location 对象是很特别的一个对象，因为它既是 window 对象的属性，也是
-document 对象的属性；换句话说， window.location 和 document.location 引用的是同一个对象。
-location 对象的用处不只表现在它保存着当前文档的信息，还表现在它将 URL 解析为独立的片段，让
-开发人员可以通过不同的属性访问这些片段。下表列出了 location 对象的所有属性（注：省略了每个属
-性前面的 location 前缀）。
+**location** 是最有用的 BOM对象之一，它提供了 **与当前窗口中加载的文档有关的信息** ，还提供了 **一些导航功能**。事实上， location 对象是很特别的一个对象，因为它既是 **window 对象的属性** ，也是 **document 对象的属性** ；换句话说， **window.location 和  document.location 引用的是同一个对象**。**location 对象** 的用处不只表现在 **它保存着当前文档的信息** ，还表现在 **它将 URL 解析为独立的片段** ，让开发人员 **可以通过不同的属性访问这些片段** 。下表列出了 **location 对象的所有属性**（注：省略了每个属性前面的 location 前缀）。
 
-![表格]()
+![location 对象的所有属性](http://p9myzkds7.bkt.clouddn.com/JavaScript-BOM/location%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png)
 
 ### 查询字符串参数
 
 虽然通过上面的属性可以访问到 location 对象的大多数信息，但其中访问 URL 包含的查询字符
-串的属性并不方便。尽管 location.search 返回从问号到 URL 末尾的所有内容，但却没有办法逐个
-访问其中的每个查询字符串参数。为此，可以像下面这样创建一个函数，用以解析查询字符串，然后返
-回包含所有参数的一个对象：
+串的属性并不方便。尽管 **location.search** 返回 **从问号到 URL 末尾的所有内容** ，但 **却没有办法逐个访问其中的每个查询字符串参数** 。为此，可以像下面这样创建一个函数，**用以解析查询字符串** ，然后 **返回包含所有参数的一个对象** ：
 
 ```js
 function getQueryStringArgs(){
-//取得查询字符串并去掉开头的问号
-var qs = (location.search.length > 0 ? location.search.substring(1) : ""),
-//保存数据的对象
-args = {},
-//取得每一项
-items = qs.length ? qs.split("&") : [],
-item = null,
-name = null,
-value = null,
-//在 for 循环中使用
-i = 0,
-len = items.length;
-//逐个将每一项添加到 args 对象中
-for (i=0; i < len; i++){
-item = items[i].split("=");
-name = decodeURIComponent(item[0]);
-value = decodeURIComponent(item[1]);
-if (name.length) {
-args[name] = value;
-}
-}
-return args;
+  //取得查询字符串并去掉开头的问号
+  var qs = (location.search.length > 0 ? location.search.substring(1) : ""),
+  
+  //保存数据的对象
+  args = {},
+  
+  //取得每一项
+  items = qs.length ? qs.split("&") : [],
+  
+  item = null,
+  name = null,
+  value = null,
+  
+  //在 for 循环中使用
+  i = 0,
+  len = items.length;
+  
+  //逐个将每一项添加到 args 对象中
+  for (i=0; i < len; i++){
+    item = items[i].split("=");
+    name = decodeURIComponent(item[0]);
+    value = decodeURIComponent(item[1]);
+    
+    if (name.length) {
+      args[name] = value;
+    }
+  }
+  
+  return args;
 }
 ```
-这个函数的第一步是先去掉查询字符串开头的问号。当然，前提是 location.search 中必须要
-包含一或多个字符。然后，所有参数将被保存在 args 对象中，该对象以字面量形式创建。接下来，
-根据和号（&）来分割查询字符串，并返回 name=value 格式的字符串数组。下面的 for 循环会迭代
-这个数组，然后再根据等于号分割每一项，从而返回第一项为参数名，第二项为参数值的数组。再使
-用 decodeURIComponent() 分别解码 name 和 value （因为查询字符串应该是被编码过的）。最后，
-将 name 作为 args 对象的属性，将 value 作为相应属性的值。下面给出了使用这个函数的示例。
+这个函数的第一步是  **先去掉查询字符串开头的问号** 。当然，前提是 location.search 中必须要包含一或多个字符。然后，**所有参数将被保存在 args 对象** 中，该对象以字面量形式创建。接下来，**根据和号（&）来分割查询字符串** ，并 **返回 name=value 格式的字符串数组**  。下面的 **for 循环会迭代这个数组** ，然后 **再根据等于号分割每一项** ，从而返回 **第一项为参数名**，**第二项为参数值的数组** 。再使用 **decodeURIComponent()** 分别 **解码 name 和 value **（因为查询字符串应该是被编码过的）。最后，**将 name 作为 args 对象的属性，将 value 作为相应属性的值** 。下面给出了使用这个函数的示例。
 
 ```js
 //假设查询字符串是?q=javascript&num=10
+
 var args = getQueryStringArgs();
+
 alert(args["q"]); //"javascript"
 alert(args["num"]); //"10"
 ```
-可见，每个查询字符串参数都成了返回对象的属性。这样就极大地方便了对每个参数的访问。
+可见，**每个查询字符串参数都成了返回对象的属性** 。这样就极大地方便了对每个参数的访问。
 
 ### 位置操作
 
-使用 location 对象可以通过很多方式来改变浏览器的位置。首先，也是最常用的方式，就是使用
-assign() 方法并为其传递一个 URL，如下所示。
+使用 **location 对象** 可以 **通过很多方式来改变浏览器的位置** 。首先，也是最常用的方式，就是使用 **assign() 方法** 并为其传递一个 **URL** ，如下所示。
+
+```js
 location.assign("http://www.wrox.com");
-这样，就可以立即打开新 URL 并在浏览器的历史记录中生成一条记录。如果是将 location.href
-或 window.location 设置为一个 URL 值，也会以该值调用 assign() 方法。例如，下列两行代码与
-显式调用 assign() 方法的效果完全一样。
-window.location = "http://www.wrox.com";
+```
+
+这样，就 **可以立即打开新 URL 并在浏览器的历史记录中生成一条记录** 。如果是 **将 location.href 或 window.location 设置为一个 URL 值** ，**也会以该值调用 assign() 方法** 。例如，下列两行代码与显式调用 assign() 方法的效果完全一样。
+
+```js
+window.location = "http://www.wrox.com"; 
 location.href = "http://www.wrox.com";
-在这些改变浏览器位置的方法中，最常用的是设置 location.href 属性。
-另外，修改 location 对象的其他属性也可以改变当前加载的页面。下面的例子展示了通过将 hash 、
-search 、 hostname 、 pathname 和 port 属性设置为新值来改变 URL。
+```
+
+在这些改变浏览器位置的方法中，**最常用** 的是设置 **location.href 属性**。
+
+另外，修改 location 对象的其他属性也可以改变当前加载的页面。下面的例子展示了通过将 **hash** 、**search** 、 **hostname** 、 **pathname** 和** port** 属性设置为新值来改变 URL。
 
 ```js
 //假设初始 URL 为 http://www.wrox.com/WileyCDA/
+
 //将 URL 修改为"http://www.wrox.com/WileyCDA/#section1"
 location.hash = "#section1";
+
 //将 URL 修改为"http://www.wrox.com/WileyCDA/?q=javascript"
 location.search = "?q=javascript";
+
 //将 URL 修改为"http://www.yahoo.com/WileyCDA/"
 location.hostname = "www.yahoo.com";
+
 //将 URL 修改为"http://www.yahoo.com/mydir/"
 location.pathname = "mydir";
+
 //将 URL 修改为"http://www.yahoo.com:8080/WileyCDA/"
 location.port = 8080;
 ```
-每次修改 location 的属性（ hash 除外），页面都会以新 URL 重新加载。
+**每次修改 location 的属性（ hash 除外），页面都会以新 URL 重新加载** 。
 
-> 在 IE8、Firefox 1、Safari 2+、Opera 9+和 Chrome 中，修改 hash 的值会在浏览
-器的历史记录中生成一条新记录。在 IE 的早期版本中， hash 属性不会在用户单击“后
-退”和“前进”按钮时被更新，而只会在用户单击包含 hash 的 URL 时才会被更新。
+> 在 IE8、Firefox 1、Safari 2+、Opera 9+和 Chrome 中，**修改 hash 的值会在浏览器的历史记录中生成一条新记录** 。在 IE 的早期版本中， hash 属性不会在用户单击“后退”和“前进”按钮时被更新，而只会在用户单击包含 hash 的 URL 时才会被更新。
 
-当通过上述任何一种方式修改 URL 之后，浏览器的历史记录中就会生成一条新记录，因此用户通
-过单击“后退”按钮都会导航到前一个页面。要禁用这种行为，可以使用 replace() 方法。这个方法
-只接受一个参数，即要导航到的 URL；结果虽然会导致浏览器位置改变，但不会在历史记录中生成新记
-录。在调用 replace() 方法之后，用户不能回到前一个页面，来看下面的例子：
+当通过 **上述任何一种方式修改 URL 之后** ，**浏览器的历史记录中就会生成一条新记录** ，因此 **用户通过单击“后退”按钮都会导航到前一个页面** 。要 **禁用这种行为** ，可以使用 **replace()** 方法。这个方法只接受一个参数，即 **要导航到的 URL** ；结果虽然 **会导致浏览器位置改变** ，但  **不会在历史记录中生成新记录** 。在调用 replace() 方法之后，用户不能回到前一个页面，来看下面的例子：
 
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-<title>You won't be able to get back here</title>
-</head>
-<body>
-<p>Enjoy this page for a second, because you won't be coming back here.</p>
-<script type="text/javascript">
-setTimeout(function () {
-location.replace("http://www.wrox.com/");
-}, 1000);
-</script>
-</body>
+  <head>
+    <title>You won't be able to get back here</title>
+  </head>
+  <body>
+    <p>Enjoy this page for a second, because you won't be coming back here.</p>
+    <script type="text/javascript">
+      setTimeout(function () {
+        location.replace("http://www.wrox.com/");
+      }, 1000);
+    </script>
+  </body>
 </html>
 ```
-如果将这个页面加载到浏览器中，浏览器就会在 1 秒钟后重新定向到 www.wrox.com。然后，“后退”
-按钮将处于禁用状态，如果不重新输入完整的 URL，则无法返回示例页面。
-与位置有关的最后一个方法是 reload() ，作用是重新加载当前显示的页面。如果调用 reload()
-时不传递任何参数，页面就会以最有效的方式重新加载。也就是说，如果页面自上次请求以来并没有改
-变过，页面就会从浏览器缓存中重新加载。如果要强制从服务器重新加载，则需要像下面这样为该方法
-传递参数 true 。
+如果将这个页面加载到浏览器中，浏览器就会在 1 秒钟后重新定向到 www.wrox.com。然后，“后退”按钮将处于禁用状态，如果不重新输入完整的 URL，则无法返回示例页面。
+
+与位置有关的最后一个方法是 **reload()** ，**作用是重新加载当前显示的页面** 。如果调用 reload() 时 **不传递任何参数** ，**页面就会以最有效的方式重新加载** 。也就是说，如果 **页面自上次请求以来并没有改变过** ，页面就会 **从浏览器缓存中重新加载** 。如果 **要强制从服务器重新加载** ，则需要像下面这样 **为该方法传递参数 true** 。
 
 ```js
 location.reload(); //重新加载（有可能从缓存中加载）
 location.reload(true); //重新加载（从服务器重新加载）
 ```
-位于 reload() 调用之后的代码可能会也可能不会执行，这要取决于网络延迟或系统资源等因素。
-为此，最好将 reload() 放在代码的最后一行。
+**位于 reload() 调用之后的代码可能会也可能不会执行** ，这要 **取决于网络延迟或系统资源等因素** 。为此，**最好将 reload() 放在代码的最后一行** 。
 
 ## navigator 对象
 
-最早由 Netscape Navigator 2.0引入的 navigator 对象，现在已经成为识别客户端浏览器的事实标
-准。虽然其他浏览器也通过其他方式提供了相同或相似的信息（例如，IE 中的 window.clientInfor-
-mation 和 Opera 中的 window.opera ），但 navigator 对象却是所有支持 JavaScript 的浏览器所共有
-的。与其他 BOM 对象的情况一样，每个浏览器中的 navigator 对象也都有一套自己的属性。下表列
-出了存在于所有浏览器中的属性和方法，以及支持它们的浏览器版本。
+最早由 Netscape Navigator 2.0 引入的 **navigator 对象**，现在已经成为识别客户端浏览器的事实标准。虽然其他浏览器也通过其他方式提供了相同或相似的信息（例如，IE 中的**window.clientInformation** 和 Opera 中的 **window.opera** ），但 **navigator 对象**却 **是所有支持 JavaScript 的浏览器所共有的** 。与其他 BOM 对象的情况一样，每个浏览器中的 navigator 对象也都有一套自己的属性。下表列出了存在于所有浏览器中的属性和方法，以及支持它们的浏览器版本。
 
-![此处有表格]()
+![navigator 对象属性](http://p9myzkds7.bkt.clouddn.com/JavaScript-BOM/navigater%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png)
 
-表中的这些 navigator 对象的属性通常用于检测显示网页的浏览器类型（第 9 章会详细讨论）。
+![navigator 对象属性（续）](http://p9myzkds7.bkt.clouddn.com/JavaScript-BOM/navagiator%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%EF%BC%88%E7%BB%AD%EF%BC%89.png)
+
+表中的这些 **navigator 对象的属性** 通常 **用于检测显示网页的浏览器类型**（第 9 章会详细讨论）。
 
 ### 检测插件
 
-检测浏览器中是否安装了特定的插件是一种最常见的检测例程。对于非 IE 浏览器，可以使用
-plugins 数组来达到这个目的。该数组中的每一项都包含下列属性。
-- name ：插件的名字。
--  description ：插件的描述。
-- filename ：插件的文件名。
-- length ：插件所处理的 MIME 类型数量。
-一般来说， name 属性中会包含检测插件必需的所有信息，但有时候也不完全如此。在检测插件时，
-需要像下面这样循环迭代每个插件并将插件的 name 与给定的名字进行比较。
+**检测浏览器中是否安装了特定的插件** 是一种最常见的检测例程。对于 **非 IE 浏览器** ，可以使用 **plugins 数组** 来达到这个目的。该数组中的每一项都包含下列属性。
+
+- **name** ：插件的名字。
+- **description** ：插件的描述。
+- **filename** ：插件的文件名。
+- **length** ：插件所处理的 MIME 类型数量。
+
+一般来说， **name 属性** 中会 **包含检测插件必需的所有信息** ，但有时候也不完全如此。在检测插件时，需要像下面这样 **循环迭代每个插件并将插件的 name 与给定的名字进行比较** 。
 
 ```js
 //检测插件（在 IE 中无效）
 function hasPlugin(name){
-name = name.toLowerCase();
-for (var i=0; i < navigator.plugins.length; i++){
-if (navigator. plugins [i].name.toLowerCase().indexOf(name) > -1){
-return true;
-}
-}
-return false;
+  name = name.toLowerCase();
+  for (var i=0; i < navigator.plugins.length; i++){
+    if (navigator. plugins [i].name.toLowerCase().indexOf(name) > -1){
+      return true;
+    }
+  }
+  
+  return false;
 }
 //检测 Flash
 alert(hasPlugin("Flash"));
+
 //检测 QuickTime
 alert(hasPlugin("QuickTime"));
 ```
-这个 hasPlugin() 函数接受一个参数：要检测的插件名。第一步是将传入的名称转换为小写形式，
-以便于比较。然后，迭代 plugins 数组，通过 indexOf() 检测每个 name 属性，以确定传入的名称是
-否出现在字符串的某个地方。比较的字符串都使用小写形式可以避免因大小写不一致导致的错误。而传
-入的参数应该尽可能具体，以避免混淆。应该说，像 Flash 和 QuickTime 这样的字符串就比较具体了，
-不容易导致混淆。在 Firefox、Safari、Opera 和 Chrome 中可以使用这种方法来检测插件。
+这个 **hasPlugin() 函数** 接受一个参数：**要检测的插件名** 。第一步是 **将传入的名称转换为小写形式** ，**以便于比较** 。然后，**迭代 plugins 数组** ，**通过 indexOf() 检测每个 name 属性** ，**以确定传入的名称是否出现在字符串的某个地方** 。比较的字符串都 **使用小写形式可以避免因大小写不一致导致的错误** 。而传入的参数应该尽可能具体，以避免混淆。应该说，像 Flash 和 QuickTime 这样的字符串就比较具体了，不容易导致混淆。在 Firefox、Safari、Opera 和 Chrome 中可以使用这种方法来检测插件。
 
-```js
-每个插件对象本身也是一个 MimeType 对象的数组，这些对象可以通过方括号语
-法来访问。每个 MimeType 对象有 4 个属性：包含 MIME 类型描述的 description 、
-回指插件对象的 enabledPlugin 、表示与 MIME 类型对应的文件扩展名的字符串
-suffixes （以逗号分隔）和表示完整 MIME 类型字符串的 type 。
-```
-检测 IE 中的插件比较麻烦，因为 IE 不支持 Netscape 式的插件。在 IE 中检测插件的唯一方式就是
-使用专有的 ActiveXObject 类型，并尝试创建一个特定插件的实例。IE 是以 COM对象的方式实现插
-件的，而 COM对象使用唯一标识符来标识。因此，要想检查特定的插件，就必须知道其 COM 标识符。
-例如，Flash 的标识符是 ShockwaveFlash.ShockwaveFlash 。知道唯一标识符之后，就可以编写类似
-下面的函数来检测 IE 中是否安装相应插件了。
+> **每个插件对象** 身也是一个 **MimeType 对象的数组**，这些对象 **可以通过方括号语法来访问** 。每个 MimeType 对象有 4 个属性：包含 **MIME 类型描述** 的 **description** 、**回指插件对象** 的 **enabledPlugin** 、表示 **与 MIME 类型对应的文件扩展名** 的 **字符串suffixes** （以逗号分隔）和表示 **完整 MIME 类型字符串** 的 **type** 。
+
+检测 IE 中的插件比较麻烦，因为 **IE 不支持 Netscape 式的插件** 。在 IE 中检测插件的唯一方式就是 **使用专有的 ActiveXObject 类型** ，**并尝试创建一个特定插件的实例** 。** IE 是以 COM对象的方式实现插件的** ，而 **COM对象使用唯一标识符来标识** 。因此，要想检查特定的插件，就 **必须知道其 COM 标识符** 。例如，Flash 的标识符是ShockwaveFlash.ShockwaveFlash 。知道唯一标识符之后，就可以编写类似下面的函数来检测 IE 中是否安装相应插件了。
 
 ```js
 //检测 IE 中的插件
 function hasIEPlugin(name){
-try {
-new ActiveXObject(name);
-return true;
-} catch (ex){
-return false;
-}
+  try {
+    new ActiveXObject(name);
+    return true;
+  } catch (ex){
+    return false;
+  }
 }
 //检测 Flash
 alert(hasIEPlugin("ShockwaveFlash.ShockwaveFlash"));
+
 //检测 QuickTime
 alert(hasIEPlugin("QuickTime.QuickTime"));
 ```
-在这个例子中，函数 hasIEPlugin() 只接收一个 COM 标识符作为参数。在函数内部，首先会尝
-试创建一个 COM对象的实例。之所以要在 try-catch 语句中进行实例化，是因为创建未知 COM对象
-会导致抛出错误。这样，如果实例化成功，则函数返回 true ；否则，如果抛出了错误，则执行 catch
-块，结果就会返回 false 。例子最后检测 IE 中是否安装了 Flash 和 QuickTime 插件。
-鉴于检测这两种插件的方法差别太大，因此典型的做法是针对每个插件分别创建检测函数，而不是
-使用前面介绍的通用检测方法。来看下面的例子。
+在这个例子中，**函数 hasIEPlugin()** 只接收一个 **COM 标识符作为参数** 。在函数内部，首先会尝试 **创建一个 COM对象的实例** 。之所以 **要在 try-catch 语句中进行实例化** ，是因为 **创建未知 COM 对象会导致抛出错误** 。这样，如果 **实例化成功** ，则 **函数返回 true** ；否则，如果 **抛出了错误** ，则 **执行 catch 块** ，**结果就会返回 false** 。例子最后检测 IE 中是否安装了 Flash 和 QuickTime 插件。
+
+鉴于检测这两种插件的方法差别太大，因此 **典型的做法** 是 **针对每个插件分别创建检测函数** ，而不是使用前面介绍的通用检测方法。来看下面的例子。
 
 ```js
 //检测所有浏览器中的 Flash
 function hasFlash(){
-var result = hasPlugin("Flash");
-if (!result){
-result = hasIEPlugin("ShockwaveFlash.ShockwaveFlash");
+  var result = hasPlugin("Flash");
+  if (!result){
+    result = hasIEPlugin("ShockwaveFlash.ShockwaveFlash");
+  }
+  
+  return result;
 }
-return result;
-}
+
 //检测所有浏览器中的 QuickTime
 function hasQuickTime(){
-var result = hasPlugin("QuickTime");
-if (!result){
-result = hasIEPlugin("QuickTime.QuickTime");
+  var result = hasPlugin("QuickTime");
+  if (!result){
+    result = hasIEPlugin("QuickTime.QuickTime");
+  }
+  return result;
 }
-return result;
-}
+
 //检测 Flash
 alert(hasFlash());
+
 //检测 QuickTime
 alert(hasQuickTime());
 ```
-上面代码中定义了两个函数： hasFlash() 和 hasQuickTime() 。每个函数都是先尝试使用不针对
-IE 的插件检测方法。如果返回了 false （在 IE 中会这样），那么再使用针对 IE 的插件检测方法。如果
-IE 的插件检测方法再返回 false ，则整个方法也将返回 false 。只要任何一次检测返回 true ，整个方
-法都会返回 true 。
+上面代码中定义了两个函数： **hasFlash()** 和 **hasQuickTime()** 。每个函数都是 **先尝试使用不针对 IE 的插件检测方法** 。如果 **返回了 false** （在 IE 中会这样），那么 **再使用针对 IE 的插件检测方法** 。如果 **IE 的插件检测方法再返回 false** ，则 **整个方法也将返回 false** 。**只要任何一次检测返回 true**  ，**整个方法都会返回 true** 。
 
-> plugins 集合有一个名叫 refresh() 的方法，用于刷新 plugins 以反映最新安
-装的插件。这个方法接收一个参数：表示是否应该重新加载页面的一个布尔值。如果
-将这个值设置为 true ，则会重新加载包含插件的所有页面；否则，只更新 plugins
-集合，不重新加载页面。
+> **plugins 集合** 有一个名叫 **refresh() 的方法** ，**用于刷新 plugins 以反映最新安装的插件** 。这个方法接收一个参数：表示 **是否应该重新加载页面的一个布尔值** 。如果将 **这个值设置为 true** ，则会 **重新加载包含插件的所有页面** ；否则，**只更新 plugins 集合** ，**不重新加载页面** 。
 
 ### 注册处理程序
 
-Firefox 2为 navigator 对象新增了 registerContentHandler() 和 registerProtocolHandler() 方
-法（这两个方法是在 HTML5 中定义的，相关内容将在第 22 章讨论）。这两个方法可以让一个站点指明
-它可以处理特定类型的信息。随着 RSS 阅读器和在线电子邮件程序的兴起，注册处理程序就为像使用桌
-面应用程序一样默认使用这些在线应用程序提供了一种方式。
-其中， registerContentHandler() 方法接收三个参数：要处理的 MIME 类型、可以处理该 MIME
-类型的页面的 URL 以及应用程序的名称。举个例子，要将一个站点注册为处理 RSS 源的处理程序，可
-以使用如下代码。
+Firefox 2 为 **navigator 对象** 新增了 **registerContentHandler()** 和 **registerProtocolHandler()** 方法（这两个方法是 **在 HTML5 中定义的** ，相关内容将在第 22 章讨论）。这两个方法 **可以让一个站点指明它可以处理特定类型的信息** 。随着 RSS 阅读器和在线电子邮件程序的兴起，**注册处理程序** 就 **为像使用桌面应用程序一样默认使用这些在线应用程序提供了一种方式** 。
+
+其中， **registerContentHandler()方法** 接收三个参数：**要处理的 MIME 类型** 、**可以处理该 MIME 类型的页面的 URL** 以及 **应用程序的名称** 。举个例子，**要将一个站点注册为处理 RSS 源的处理程序** ，可以使用如下代码。
 
 ```js
 navigator.registerContentHandler("application/rss+xml",
-"http://www.somereader.com?feed=%s", "Some Reader");
+  "http://www.somereader.com?feed=%s", "Some Reader");
 ```
-第一个参数是 RSS 源的 MIME 类型。第二个参数是应该接收 RSS源 URL的 URL，其中的 %s 表示
-RSS 源 URL，由浏览器自动插入。当下一次请求 RSS 源时，浏览器就会打开指定的 URL，而相应的
-Web 应用程序将以适当方式来处理该请求。
+第一个参数是 **RSS 源的 MIME 类型** 。第二个参数是应该 **接收 RSS源 URL的 URL** ，其中的 %s 表示 **RSS 源 URL** ，由浏览器自动插入。当下一次请求 RSS 源时，浏览器就会打开指定的 URL，而相应的 **Web 应用程序** 将以适当方式来处理该请求。
 
-> Firefox 4 及之前版本只允许在 registerContentHandler() 方法中使用三个
-MIME 类型： application/rss+xml 、 application/atom+xml 和 application/
-vnd.mozilla.maybe. feed 。这三个 MIME类型的作用都一样，即为 RSS或 ATOM
-新闻源（feed）注册处理程序。
+> Firefox 4 及之前版本只允许在 registerContentHandler() 方法中使用三个 MIME 类型： **application/rss+xml** 、 **application/atom+xml** 和 **application/vnd.mozilla.maybe. feed**  。这三个 MIME类型的作用都一样，即 **为 RSS 或 ATOM 新闻源（feed）注册处理程序** 。
 
-类似的调用方式也适用于 registerProtocolHandler() 方法，它也接收三个参数：要处理的协
-议（例如， mailto 或 ftp ）、处理该协议的页面的 URL 和应用程序的名称。例如，要想将一个应用程
-序注册为默认的邮件客户端，可以使用如下代码。
+类似的调用方式也适用于 **registerProtocolHandler() 方法** ，它也接收三个参数：**要处理的协议**（例如， mailto 或 ftp ）、**处理该协议的页面的 URL**  和 **应用程序的名称** 。例如，**要想将一个应用程序注册为默认的邮件客户端** ，可以使用如下代码。
 
 ```js
 navigator.registerProtocolHandler("mailto",
-"http://www.somemailclient.com?cmd=%s", "Some Mail Client");
+  "http://www.somemailclient.com?cmd=%s", "Some Mail Client");
 ```
 
-这个例子注册了一个 mailto 协议的处理程序，该程序指向一个基于 Web 的电子邮件客户端。同样，
-第二个参数仍然是处理相应请求的 URL，而 %s 则表示原始的请求。
+这个例子注册了一个 **mailto 协议的处理程序** ，该程序指向 **一个基于 Web 的电子邮件客户端** 。同样，第二个参数仍然是 **处理相应请求的 URL**，而 %s 则表示 **原始的请求** 。
  		  
-> Firefox 2 虽然实现了 registerProtocolHandler() ，但该方法还不能用。
-Firefox 3 完整实现这个方法。
+> Firefox 2 虽然实现了 registerProtocolHandler() ，但该方法还不能用。Firefox 3 完整实现这个方法。
 
 ## screen 对象
 
-JavaScript 中有几个对象在编程中用处不大，而 screen 对象就是其中之一。 screen 对象基本上只
-用来表明客户端的能力，其中包括浏览器窗口外部的显示器的信息，如像素宽度和高度等。每个浏览器
-中的 screen 对象都包含着各不相同的属性，下表列出了所有属性及支持相应属性的浏览器。
+JavaScript 中有几个对象在编程中用处不大，而 screen 对象就是其中之一。 **screen 对象** 基本上只 **用来表明客户端的能力** ，其中 **包括浏览器窗口外部的显示器的信息** ，如像素宽度和高度等。**每个浏览器中的 screen 对象都包含着各不相同的属性** ，下表列出了所有属性及支持相应属性的浏览器。
 
-![此处有表格]()
+![screen 对象属性](http://p9myzkds7.bkt.clouddn.com/JavaScript-BOM/screen%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png)
 
-这些信息经常集中出现在测定客户端能力的站点跟踪工具中，但通常不会用于影响功能。不过，有
-时候也可能会用到其中的信息来调整浏览器窗口大小，使其占据屏幕的可用空间，例如：
+![screen 对象属性（续）](http://p9myzkds7.bkt.clouddn.com/JavaScript-BOM/Screen%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%EF%BC%88%E7%BB%AD%EF%BC%89.png)
+
+这些信息经常集中出现在 **测定客户端能力的站点跟踪工具中** ，但通常不会用于影响功能。不过，有时候也可能会用到其中的信息来 **调整浏览器窗口大小** ，**使其占据屏幕的可用空间** ，例如：
 
 ```js
 window.resizeTo(screen.availWidth, screen.availHeight);
 ```
+前面曾经提到过，**许多浏览器都会禁用调整浏览器窗口大小的能力** ，因此上面这行代码不一定在所有环境下都有效。
 
-前面曾经提到过，许多浏览器都会禁用调整浏览器窗口大小的能力，因此上面这行代码不一定在所
-有环境下都有效。
-涉及移动设备的屏幕大小时，情况有点不一样。运行 iOS 的设备始终会像是把设备竖着拿在手里一
-样，因此返回的值是 768×1024。而 Android设备则会相应调用 screen.width 和 screen.height 的值。
+**涉及移动设备的屏幕大小** 时，**情况有点不一样** 。运行 iOS 的设备始终会像是把设备竖着拿在手里一样，因此返回的值是 768×1024。而 Android设备则会相应调用 screen.width 和 screen.height 的值。
 
 ## history 对象
 
-history 对象保存着用户上网的历史记录，从窗口被打开的那一刻算起。因为 history 是 window
-对象的属性，因此每个浏览器窗口、每个标签页乃至每个框架，都有自己的 history 对象与特定的
-window 对象关联。出于安全方面的考虑，开发人员无法得知用户浏览过的 URL。不过，借由用户访问
-过的页面列表，同样可以在不知道实际 URL 的情况下实现后退和前进。
-使用 go() 方法可以在用户的历史记录中任意跳转，可以向后也可以向前。这个方法接受一个参数，
-表示向后或向前跳转的页面数的一个整数值。负数表示向后跳转（类似于单击浏览器的“后退”按钮），
-正数表示向前跳转（类似于单击浏览器的“前进”按钮）。来看下面的例子。
+**history 对象** 保存着 **用户上网的历史记录** ，从窗口被打开的那一刻算起。因为 history 是 window 对象的属性，因此 **每个浏览器窗口** 、**每个标签页** 乃至 **每个框架** ，**都有自己的 history 对象与特定的 window 对象关联** 。出于安全方面的考虑，开发人员无法得知用户浏览过的 URL。不过，借由用户访问过的页面列表，同样可以在不知道实际 URL 的情况下实现后退和前进。使用 **go() 方法** 可以 **在用户的历史记录中任意跳转** ，**可以向后**也 **可以向前** 。这个方法接受一个参数，表示 **向后或向前跳转的页面数** 的 **一个整数值** 。**负数** 表示 **向后跳转**（类似于单击浏览器的“后退”按钮），**正数** 表示 **向前跳转**（类似于单击浏览器的“前进”按钮）。来看下面的例子。
 
 ```js
 //后退一页
 history.go(-1);
+
 //前进一页
 history.go(1);
+
 //前进两页
 history.go(2);
 ```
-也可以给 go() 方法传递一个字符串参数，此时浏览器会跳转到历史记录中包含该字符串的第一个
-位置——可能后退，也可能前进，具体要看哪个位置最近。如果历史记录中不包含该字符串，那么这个
-方法什么也不做，例如：
+也可以给 **go() 方法** 传递 **一个字符串参数** ，此时 **浏览器会跳转到历史记录中包含该字符串的第一个位置** —— 可能后退，也可能前进，具体要看哪个位置最近。**如果历史记录中不包含该字符串** ，那么 **这个方法什么也不做** ，例如：
 
 ```js
 //跳转到最近的 wrox.com 页面
 history.go("wrox.com");
+
 //跳转到最近的 nczonline.net 页面
 history.go("nczonline.net");
 ```
-
-另外，还可以使用两个简写方法 back() 和 forward() 来代替 go() 。顾名思义，这两个方法可以
-模仿浏览器的“后退”和“前进”按钮。
+另外，还可以使用两个简写方法 **back()** 和 **forward()** 来代替 go() 。顾名思义，这两个方法 **可以模仿浏览器的“后退”和“前进”按钮** 。
 
 ```js
 //后退一页
 history.back();
+
 //前进一页
 history.forward();
 ```
-
-除了上述几个方法外， history 对象还有一个 length 属性，保存着历史记录的数量。这个数量
-包括所有历史记录，即所有向后和向前的记录。对于加载到窗口、标签页或框架中的第一个页面而言，
-history.length 等于 0。通过像下面这样测试该属性的值，可以确定用户是否一开始就打开了你的
-页面。
+除了上述几个方法外， **history 对象** 还有一个 **length 属性** ，保存着 **历史记录的数量** 。这个数量包括所有历史记录，即所有向后和向前的记录。对于加载到窗口、标签页或框架中的 **第一个页面** 而言，**history.length 等于 0** 。通过像下面这样测试该属性的值，**可以确定用户是否一开始就打开了你的页面** 。
 
 ```js
 if (history.length == 0){
-//这应该是用户打开窗口后的第一个页面
+  //这应该是用户打开窗口后的第一个页面
 }
 ```
 
-虽然 history 并不常用，但在创建自定义的“后退”和“前进”按钮，以及检测当前页面是不是
-用户历史记录中的第一个页面时，还是必须使用它。
-> 当页面的 URL 改变时，就会生成一条历史记录。在 IE8 及更高版本、Opera、
-Firefox、Safari 3 及更高版本以及 Chrome 中，这里所说的改变包括 URL 中 hash 的变
-化（因此，设置 location.hash 会在这些浏览器中生成一条新的历史记录）。
+虽然 history 并不常用，但 **在创建自定义的“后退”和“前进”按钮** ，以及 **检测当前页面是不是用户历史记录中的第一个页面时** ，还是必须使用它。
+
+> **当页面的 URL 改变时，就会生成一条历史记录** 。在 IE8 及更高版本、Opera、Firefox、Safari 3 及更高版本以及 Chrome 中，**这里所说的改变** 包括 **URL 中 hash 的变化**（因此，设置 location.hash 会在这些浏览器中生成一条新的历史记录）。
 
 
 ## 小结
 
-浏览器对象模型（BOM）以 window 对象为依托，表示浏览器窗口以及页面可见区域。同时， window
-对象还是 ECMAScript 中的 Global 对象，因而所有全局变量和函数都是它的属性，且所有原生的构造
-函数及其他函数也都存在于它的命名空间下。本章讨论了下列 BOM 的组成部分。
-- 在使用框架时，每个框架都有自己的 window 对象以及所有原生构造函数及其他函数的副本。
-每个框架都保存在 frames 集合中，可以通过位置或通过名称来访问。
+**浏览器对象模型** （BOM）**以 window 对象为依托** ，表示 **浏览器窗口** 以及 **页面可见区域** 。同时， **window 对象** 还是 **ECMAScript 中的 Global 对象** ，因而 **** 所有全局变量和函数都是它的属性** ，且 **所有原生的构造函数及其他函数** 也都 **存在于它的命名空间下** 。本章讨论了下列 BOM 的组成部分。
+
+- 在使用框架时，**每个框架** 都有自己的 **window 对象** 以及 **所有原生构造函数及其他函数的副本** 。**每个框架** 都 **保存在 frames 集合** 中，可以通过位置或通过名称来访问。
+
 - 有一些窗口指针，可以用来引用其他框架，包括父框架。
-- top 对象始终指向最外围的框架，也就是整个浏览器窗口。
-- parent 对象表示包含当前框架的框架，而 self 对象则回指 window 。
-- 使用 location 对象可以通过编程方式来访问浏览器的导航系统。设置相应的属性，可以逐段
-或整体性地修改浏览器的 URL。
--  调用 replace() 方法可以导航到一个新 URL，同时该 URL 会替换浏览器历史记录中当前显示
-的页面。
-- navigator 对象提供了与浏览器有关的信息。到底提供哪些信息，很大程度上取决于用户的浏
-览器；不过，也有一些公共的属性（如 userAgent ）存在于所有浏览器中。
-BOM 中还有两个对象： screen 和 history ，但它们的功能有限。 screen 对象中保存着与客户端
-显示器有关的信息，这些信息一般只用于站点分析。 history 对象为访问浏览器的历史记录开了一个
-小缝隙，开发人员可以据此判断历史记录的数量，也可以在历史记录中向后或向前导航到任意页面。
+
+- **top 对象** 始终指向 **最外围的框架** ，也就是 **整个浏览器窗口** 。
+
+- **parent 对象** 表示 **包含当前框架的框架** ，而 **self 对象** 则 **回指 window** 。
+
+- 使用 **location 对象** 可以 **通过编程方式来访问浏览器的导航系统** 。**设置相应的属性**，**可以逐段或整体性地修改浏览器的 URL** 。
+
+-  调用 **replace() 方法** 可以 **导航到一个新 URL** ，同时 **该 URL 会替换浏览器历史记录中当前显示的页面** 。
+
+- **navigator 对象** 提供了 **与浏览器有关的信息** 。到底提供哪些信息，很大程度上取决于用户的浏览器；不过，也有一些公共的属性（如 userAgent ）存在于所有浏览器中。
+
+**BOM** 中还有两个对象： **screen** 和 **history** ，但它们的功能有限。 **screen 对象** 中**保存着与客户端显示器有关的信息** ，这些信息一般 **只用于站点分析** 。 **history 对象** 为 **访问浏览器的历史记录开了一个小缝隙** ，开发人员可以据此 **判断历史记录的数量** ，也可以 **在历史记录中向后或向前导航到任意页面** 。
