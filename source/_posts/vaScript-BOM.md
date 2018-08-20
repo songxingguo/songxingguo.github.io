@@ -9,61 +9,55 @@ date: 2018-08-20 13:19:00
 ---
 # BOM
 
-ECMAScript 是 JavaScript 的核心，但如果要在 Web 中使用 JavaScript，那么 **BOM（浏览器对象模型）则无疑才是真正的核心** 。BOM 提供了很多对象，用于访问浏览器的功能，这些功能与任
-何网页内容无关。多年来，缺少事实上的规范导致 BOM 既有意思又有问题，因为浏览器提供商会按照各自的想法随意去扩展它。于是，浏览器之间共有的对象就成为了事实上的标准。这些对象在浏览器中得以存在，很大程度上是由于它们提供了与浏览器的互操作性。W3C为了把浏览器中 JavaScript最基本的部分标准化，已经将 BOM的主要方面纳入了 HTML5的规范中。
+ECMAScript 是 JavaScript 的核心，但如果要在 Web 中使用 JavaScript，那么 **BOM（浏览器对象模型）则无疑才是真正的核心** 。**BOM** 提供了很多对象，**用于访问浏览器的功能**，**这些功能与任何网页内容无关** 。多年来，**缺少事实上的规范导致 BOM 既有意思又有问题** ，因为 **浏览器提供商会按照各自的想法随意去扩展它** 。于是，浏览器之间共有的对象就成为了事实上的标准。这些对象在浏览器中得以存在，很大程度上是由于它们提供了与浏览器的互操作性。**W3C 为了把浏览器中 JavaScript 最基本的部分标准化** ，**已经将 BOM 的主要方面纳入了 HTML5 的规范中** 。
 
 <!-- more -->
 
 ## window 对象
 
-BOM 的核心对象是 window ，它表示浏览器的一个实例。在浏览器中， window 对象有双重角色，
-它既是通过 JavaScript 访问浏览器窗口的一个接口，又是 ECMAScript 规定的 Global 对象。这意味着
-在网页中定义的任何一个对象、变量和函数，都以 window 作为其 Global 对象，因此有权访问
-parseInt() 等方法。
+**BOM 的核心对象是 window** ，**它表示浏览器的一个实例** 。在浏览器中， window 对象有双重角色，它既是 **通过 JavaScript 访问浏览器窗口的一个接口** ，又是 **ECMAScript 规定的 Global 对象** 。这意味着 **在网页中定义的任何一个对象、变量和函数，都以 window 作为其 Global 对象** ，因此有权访问 parseInt() 等方法。
 
 ### 全局作用域
 
-由于 window 对象同时扮演着 ECMAScript中 Global 对象的角色，因此所有在全局作用域中声明
-的变量、函数都会变成 window 对象的属性和方法。来看下面的例子。
+由于 window 对象同时扮演着 ECMAScript中 Global 对象的角色，因此 **所有在全局作用域中声明的变量、函数都会变成 window 对象的属性和方法** 。来看下面的例子。
 
 ```js
 var age = 29;
 function sayAge(){
 alert(this.age);
 }
+
 alert(window.age); //29
 sayAge(); //29
 window.sayAge(); //29
 ```
-我们在全局作用域中定义了一个变量 age 和一个函数 sayAge() ，它们被自动归在了 window 对象
-名下。于是，可以通过 window.age 访问变量 age ，可以通过 window.sayAge() 访问函数 sayAge() 。
+我们在 **全局作用域** 中定义了一个 **变量 age** 和一个 **函数 sayAge()** ，**它们被自动归在了 window 对象名下**。于是，可以通过 window.age 访问变量 age ，可以通过 window.sayAge() 访问函数 sayAge() 。
 
-由于 sayAge() 存在于全局作用域中，因此 this.age 被映射到 window.age ，最终显示的仍然是正确
-的结果。
-抛开全局变量会成为 window 对象的属性不谈，定义全局变量与在 window 对象上直接定义属性还
-是有一点差别：全局变量不能通过 delete 操作符删除，而直接在 window 对象上的定义的属性可以。
-例如：
+由于 **sayAge() 存在于全局作用域中** ，因此 **this.age 被映射到 window.age** ，最终显示的仍然是正确的结果。
+
+抛开全局变量会成为 window 对象的属性不谈，定义全局变量与在 window 对象上直接定义属性还是有一点差别：**全局变量不能通过 delete 操作符删除** ，而 **直接在 window 对象上的定义的属性可以** 。例如：
 
 ```js
 var age = 29;
 window.color = "red";
+
 //在 IE < 9 时抛出错误，在其他所有浏览器中都返回 false
 delete window.age;
+
 //在 IE < 9 时抛出错误，在其他所有浏览器中都返回 true
 delete window.color; //returns true
+
 alert(window.age); //29
 alert(window.color); //undefined
 ```
-刚才使用 var 语句添加的 window 属性有一个名为 [[Configurable]] 的特性，这个特性的值被
-设置为 false ，因此这样定义的属性不可以通过 delete 操作符删除。IE8及更早版本在遇到使用 delete
-删除 window 属性的语句时，不管该属性最初是如何创建的，都会抛出错误，以示警告。IE9 及更高版
-本不会抛出错误。
-另外，还要记住一件事：尝试访问未声明的变量会抛出错误，但是通过查询 window 对象，可以知
-道某个可能未声明的变量是否存在。例如：
+刚才使用 **var 语句** 添加的 **window 属性** 有一个名为 **[[Configurable]] 的特性** ，这个特性的 **值被设置为 false** ，因此 **这样定义的属性不可以通过 delete 操作符删除**。IE8  及更早版本在遇到使用 delete 删除 window 属性的语句时，不管该属性最初是如何创建的，都会抛出错误，以示警告。IE9 及更高版本不会抛出错误。
+
+另外，还要记住一件事：**尝试访问未声明的变量会抛出错误** ，但是 **通过查询 window 对象**，**可以知道某个可能未声明的变量是否存在** 。例如：
 
 ```js
 //这里会抛出错误，因为 oldValue 未定义
 var newValue = oldValue;
+
 //这里不会抛出错误，因为这是一次属性查询
 //newValue 的值是 undefined
 var newValue = window.oldValue;
@@ -71,9 +65,7 @@ var newValue = window.oldValue;
 本章后面将要讨论的很多全局 JavaScript 对象（如 location 和 navigator ）实际上都是 window
 对象的属性。
 
-> Windows Mobile 平台的 IE 浏览器不允许通过 window.property = value 之类
-的形式，直接在 window 对象上创建新的属性或方法。可是，在全局作用域中声明的
-所有变量和函数，照样会变成 window 对象的成员。
+> Windows Mobile 平台的 IE 浏览器 **不允许通过 window.property = value 之类的形式** ，直接 **在 window 对象上创建新的属性或方法** 。可是，**在全局作用域中声明的所有变量和函数**，照样 **会变成 window 对象的成员** 。
 
 ### 窗口关系及框架
 
