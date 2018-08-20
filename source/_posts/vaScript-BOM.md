@@ -69,92 +69,68 @@ var newValue = window.oldValue;
 
 ### 窗口关系及框架
 
-如果页面中包含框架，则每个框架都拥有自己的 window 对象，并且保存在 frames 集合中。在 frames
-集合中，可以通过数值索引（从 0 开始，从左至右，从上到下）或者框架名称来访问相应的 window 对
-象。每个 window 对象都有一个 name 属性，其中包含框架的名称。下面是一个包含框架的页面：
+如果 **页面中包含框架** ，则 **每个框架都拥有自己的 window 对象** ，并且 **保存在 frames 集合中** 。在 **frames 集合** 中，可以 **通过数值索引（从 0 开始，从左至右，从上到下）或者框架名称来访问相应的 window 对象** 。**每个 window 对象都有一个 name 属性** ，其中 **包含框架的名称** 。下面是一个包含框架的页面：
 
 ```html
 <html>
   <head>
-  <title>Frameset Example</title>
+    <title>Frameset Example</title>
   </head>
   <frameset rows="160,*">
-  <frame src="frame.htm" name="topFrame">
-  <frameset cols="50%,50%">
-  <frame src="anotherframe.htm" name="leftFrame">
-  <frame src="yetanotherframe.htm" name="rightFrame">
-  </frameset>
+    <frame src="frame.htm" name="topFrame">
+    <frameset cols="50%,50%">
+      <frame src="anotherframe.htm" name="leftFrame">
+      <frame src="yetanotherframe.htm" name="rightFrame">
+    </frameset>
   </frameset>
 </html>
 ```
-以上代码创建了一个框架集，其中一个框架居上，两个框架居下。对这个例子而言，可以通过
-window.frames[0] 或者 window.frames["topFrame"] 来引用上方的框架。不过，恐怕你最好使用
-top 而非 window 来引用这些框架（例如，通过 top.frames[0] ）。
-我们知道， top 对象始终指向最高（最外）层的框架，也就是浏览器窗口。使用它可以确保在一个
-框架中正确地访问另一个框架。因为对于在一个框架中编写的任何代码来说，其中的 window 对象指向
-的都是那个框架的特定实例，而非最高层的框架。图 8-1 展示了在最高层窗口中，通过代码来访问前面
-例子中每个框架的不同方式。
+以上代码创建了一个 **框架集** ，其中一个框架居上，两个框架居下。对这个例子而言，可以通过 **window.frames[0]** 或者 **window.frames["topFrame"]** 来引用上方的框架。不过，恐怕你 **最好使用 top 而非 window 来引用这些框架**（例如，通过 top.frames[0] ）。
 
-![图8-1]()
+我们知道，**top 对象始终指向最高（最外）层的框架** ，也就是 **浏览器窗口** 。**使用它可以确保在一个框架中正确地访问另一个框架** 。因为对于在一个框架中编写的任何代码来说，**其中的 window 对象指向的都是那个框架的特定实例** ，而非最高层的框架。下图展示了在最高层窗口中，通过代码来访问前面例子中每个框架的不同方式。
 
-与 top 相对的另一个 window 对象是 parent 。顾名思义， parent （父）对象始终指向当前框架的
-直接上层框架。在某些情况下， parent 有可能等于 top ；但在没有框架的情况下， parent 一定等于
-top （此时它们都等于 window ）。再看下面的例子。
+![访问每个框架](http://p9myzkds7.bkt.clouddn.com/JavaScript-BOM/%E8%AE%BF%E9%97%AE%E6%AF%8F%E4%B8%AA%E6%A1%86%E6%9E%B6.png)
+
+与 top 相对的另一个 window 对象是 **parent** 。顾名思义， **parent （父）对象** 始终 **指向当前框架的直接上层框架** 。在某些情况下， parent 有可能等于 top ；但在 **没有框架** 的情况下， **parent 一定等于 top**（此时它们都等于 window ）。再看下面的例子。
 
 ```html
 <html>
-<head>
-<title>Frameset Example</title>
-</head>
-<frameset rows="100,*">
-<frame src="frame.htm" name="topFrame">
-<frameset cols="50%,50%">
-<frame src="anotherframe.htm" name="leftFrame">
-<frame src="anotherframeset.htm" name="rightFrame">
-</frameset>
-</frameset>
+  <head>
+    <title>Frameset Example</title>
+  </head>
+  <frameset rows="100,*">
+    <frame src="frame.htm" name="topFrame">
+    <frameset cols="50%,50%">
+      <frame src="anotherframe.htm" name="leftFrame">
+      <frame src="anotherframeset.htm" name="rightFrame">
+    </frameset>
+  </frameset>
 </html>
 ```
 这个框架集中的一个框架包含了另一个框架集，该框架集的代码如下所示。
 
 ```html
 <html>
-<head>
-<title>Frameset Example</title>
-</head>
-<frameset cols="50%,50%">
-<frame src="red.htm" name="redFrame">
-<frame src="blue.htm" name="blueFrame">
-</frameset>
+  <head>
+    <title>Frameset Example</title>
+  </head>
+  <frameset cols="50%,50%">
+    <frame src="red.htm" name="redFrame">
+    <frame src="blue.htm" name="blueFrame">
+  </frameset>
 </html>
 ```
-浏览器在加载完第一个框架集以后，会继续将第二个框架集加载到 rightFrame 中。如果代码位于
-redFrame （或 blueFrame ）中，那么 parent 对象指向的就是 rightFrame 。可是，如果代码位于
-topFrame 中，则 parent 指向的是 top ，因为 topFrame 的直接上层框架就是最外层框架。图 8-2展
-示了在将前面例子加载到浏览器之后，不同 window 对象的值。
+浏览器在加载完第一个框架集以后，会继续将第二个框架集加载到 rightFrame 中。如果代码位于   redFrame （或 blueFrame ）中，那么 parent 对象指向的就是 rightFrame 。可是，如果代码位于   topFrame 中，则 parent 指向的是 top ，因为 **topFrame 的直接上层框架就是最外层框架** 。图 8-2展示了在将前面例子加载到浏览器之后，不同 window 对象的值。
 
-![图8-2]()
+![不同 window 对象的值](http://p9myzkds7.bkt.clouddn.com/JavaScript-BOM/%E4%B8%8D%E5%90%8Cwindow%E5%AF%B9%E8%B1%A1%E5%80%BCpng.png)
 
-注意，除非最高层窗口是通过 window.open() 打开的（本章后面将会讨论），否则其 window 对象
-的 name 属性不会包含任何值。
-与框架有关的最后一个对象是 self ，它始终指向 window ；实际上， self 和 window 对象可以互
-换使用。引入 self 对象的目的只是为了与 top 和 parent 对象对应起来，因此它不格外包含其他值。
-所有这些对象都是 window 对象的属性，可以通过 window.parent 、 window.top 等形式来访问。
-同时，这也意味着可以将不同层次的 window 对象连缀起来，例如 window.parent.parent.frames[0] 。
+注意，**除非最高层窗口是通过 window.open() 打开的**（本章后面将会讨论），**否则其 window 对象的 name 属性不会包含任何值** 。与框架有关的最后一个对象是 **self** ，它始终**指向 window** ；实际上， **self 和 window 对象可以互换使用** 。引入 self 对象的目的 **只是为了与 top 和 parent 对象对应起来** ，因此 **它不格外包含其他值** 。所有 **这些对象都是 window 对象的属性** ，可以通过 window.parent 、 window.top 等形式来访问。同时，这也意味着 **可以将不同层次的 window 对象连缀起来**，例如   window.parent.parent.frames[0] 。
 
-> 在使用框架的情况下，浏览器中会存在多个 Global 对象。在每个框架中定义的
-全局变量会自动成为框架中 window 对象的属性。由于每个 window 对象都包含原生
-类型的构造函数，因此每个框架都有一套自己的构造函数，这些构造函数一一对应，
-但并不相等。例如， top.Object 并不等于 top.frames[0].Object 。这个问题会
-影响到对跨框架传递的对象使用 instanceof 操作符。
+> 在 **使用框架** 的情况下，**浏览器中会存在多个 Global 对象** 。在 **每个框架中定义的全局变量会自动成为框架中 window 对象的属性** 。由于 **每个 window 对象都包含原生类型的构造函数** ，因此 **每个框架都有一套自己的构造函数** ，这些构造函数一一对应，但并不相等。例如，top.Object 并不等于 top.frames[0].Object 。**这个问题会影响到对跨框架传递的对象使用 instanceof 操作符** 。
 
 ### 窗口位置
 
-用来确定和修改 window 对象位置的属性和方法有很多。IE、Safari、Opera 和 Chrome 都提供了
-screenLeft 和 screenTop 属性，分别用于表示窗口相对于屏幕左边和上边的位置。Firefox 则在
-screenX 和 screenY 属性中提供相同的窗口位置信息，Safari 和 Chrome 也同时支持这两个属性。Opera
-虽然也支持 screenX 和 screenY 属性，但与 screenLeft 和 screenTop 属性并不对应，因此建议大
-家不要在 Opera 中使用它们。使用下列代码可以跨浏览器取得窗口左边和上边的位置。
+用来 **确定和修改 window 对象位置** 的属性和方法有很多。IE、Safari、Opera 和 Chrome 都提供了**screenLeft 和 screenTop 属性** ，**分别用于表示窗口相对于屏幕左边和上边的位置**  。Firefox 则在 **screenX 和 screenY 属性** 中提供相同的窗口位置信息，Safari 和 Chrome 也同时支持这两个属性。Opera 虽然也支持 screenX 和 screenY 属性，但与 screenLeft 和 screenTop 属性并不对应，因此建议大家不要在 Opera 中使用它们。使用下列代码可以 **跨浏览器取得窗口左边和上边的位置** 。
 
 ```js
 var leftPos = (typeof window.screenLeft == "number") ?
@@ -162,103 +138,74 @@ window.screenLeft : window.screenX;
 var topPos = (typeof window.screenTop == "number") ?
 window.screenTop : window.screenY;
 ```
-这个例子运用二元操作符首先确定 screenLeft 和 screenTop 属性是否存在，如果是（在 IE、
-Safari、Opera 和 Chrome 中），则取得这两个属性的值。如果不存在（在 Firefox 中），则取得 screenX
-和 screenY 的值。
-在使用这些值的过程中，还必须注意一些小问题。在 IE、Opera 中，screenLeft 和 screenTop 中保存
-的是从屏幕左边和上边到由 window 对象表示的页面可见区域的距离。换句话说，如果 window 对象是
-最外层对象，而且浏览器窗口紧贴屏幕最上端——即 y 轴坐标为 0，那么 screenTop 的值就是位于页面
-可见区域上方的浏览器工具栏的像素高度。但是，在 Chrome、Firefox和 Safari中， screenY 或 screenTop
-中保存的是整个浏览器窗口相对于屏幕的坐标值，即在窗口的 y 轴坐标为 0 时返回 0。
-更让人捉摸不透是，Firefox、Safari 和 Chrome 始终返回页面中每个框架的 top.screenX 和
-top.screenY 值。即使在页面由于被设置了外边距而发生偏移的情况下，相对于 window 对象使用
-screenX 和 screenY 每次也都会返回相同的值。而 IE 和 Opera 则会给出框架相对于屏幕边界的精确坐
-标值。
-最终结果，就是无法在跨浏览器的条件下取得窗口左边和上边的精确坐标值。然而，使用 moveTo()
-和 moveBy() 方法倒是有可能将窗口精确地移动到一个新位置。这两个方法都接收两个参数，其中
-moveTo() 接收的是新位置的 x 和 y 坐标值，而 moveBy() 接收的是在水平和垂直方向上移动的像素数。
-下面来看几个例子：
+这个例子运用二元操作符首先确定 screenLeft 和 screenTop 属性是否存在，如果是（在 IE、Safari、Opera 和 Chrome 中），则取得这两个属性的值。如果不存在（在 Firefox 中），则取得 screenX 和 screenY 的值。
+
+在使用这些值的过程中，还必须注意一些小问题。在 **IE**、**Opera** 中，**screenLeft** 和 **screenTop** 中 **保存的是从屏幕左边和上边到由 window 对象表示的页面可见区域的距离** 。换句话说，如果 window 对象是最外层对象，而且浏览器窗口紧贴屏幕最上端——即 y 轴坐标为 0，那么 screenTop 的值就是位于页面可见区域上方的浏览器工具栏的像素高度。但是，在 **Chrome** 、**Firefox** 和 **Safari** 中， **screenY** 或 **screenTop** 中保存的是 **整个浏览器窗口相对于屏幕的坐标值** ，即在窗口的 y 轴坐标为 0 时返回 0。
+
+更让人捉摸不透是，**Firefox**、**Safari** 和 **Chrome** 始终 **返回页面中每个框架的**  **top.screenX** 和 **top.screenY** 值。**即使在页面由于被设置了外边距而发生偏移的情况下** ，相对于 window 对象使用 **screenX** 和 **screenY** 每次也都会返回相同的值。而 **IE** 和 **Opera** 则 **会给出框架相对于屏幕边界的精确坐标值** 。最终结果，就是 **无法在跨浏览器的条件下取得窗口左边和上边的精确坐标值** 。然而，使用 **moveTo()** 和 **moveBy()**  方法倒是 **有可能将窗口精确地移动到一个新位置** 。这两个方法都接收两个参数，其中 **moveTo()** 接收的是 **新位置的 x 和 y 坐标值**，而 **moveBy()** 接收的是 **在水平和垂直方向上移动的像素数** 。下面来看几个例子：
 
 ```
 //将窗口移动到屏幕左上角
 window.moveTo(0,0);
+
 //将窗向下移动 100 像素
 window.moveBy(0,100);
+
 //将窗口移动到(200,300)
 window.moveTo(200,300);
+
 //将窗口向左移动 50 像素
 window.moveBy(-50,0);
 ```
-需要注意的是，这两个方法可能会被浏览器禁用；而且，在 Opera 和 IE 7（及更高版本）中默认就
-是禁用的。另外，这两个方法都不适用于框架，只能对最外层的 window 对象使用。
+**需要注意** 的是，**这两个方法可能会被浏览器禁用** ；而且，在 **Opera** 和 **IE 7**（及更高版本）中 **默认就是禁用的** 。另外，**这两个方法都不适用于框架** ，**只能对最外层的 window 对象使用** 。
 
 ### 窗口大小
 
-跨浏览器确定一个窗口的大小不是一件简单的事。IE9+、Firefox、Safari、Opera 和 Chrome 均为此提
-供了 4个属性： innerWidth 、 innerHeight 、 outerWidth 和 outerHeight 。在 IE9+、Safari和 Firefox
-中， outerWidth 和 outerHeight 返回浏览器窗口本身的尺寸（无论是从最外层的 window 对象还是从
-某个框架访问）。在Opera中，这两个属性的值表示页面视图容器
-（这里所谓的“页面视图容器”指的是 Opera 中单个标签页对应的浏览器窗口。）的大小。而
-innerWidth 和 innerHeight
-则表示该容器中页面视图区的大小（减去边框宽度）。在 Chrome 中， outerWidth 、 outerHeight 与
-innerWidth 、 innerHeight 返回相同的值，即视口（viewport）大小而非浏览器窗口大小。
-IE8 及更早版本没有提供取得当前浏览器窗口尺寸的属性；不过，它通过 DOM 提供了页面可见区域
-的相关信息。
-在 IE、Firefox、Safari、Opera 和 Chrome 中， document.documentElement.clientWidth 和
-document.documentElement.clientHeight 中保存了页面视口的信息。在 IE6 中，这些属性必须在
-标准模式下才有效；如果是混杂模式，就必须通过 document.body.clientWidth 和 document.body.
-clientHeight 取得相同信息。而对于混杂模式下的 Chrome，则无论通过 document.documentEle-
-ment 还是 document.body 中的 clientWidth 和 clientHeight 属性，都可以取得视口的大小。
-虽然最终无法确定浏览器窗口本身的大小，但却可以取得页面视口的大小，如下所示。
+跨浏览器确定一个窗口的大小不是一件简单的事。**IE9+**、**Firefox**、**Safari**、**Opera** 和 **Chrome** 均为此 **提供了 4 个属性**： **innerWidth** 、 **innerHeight** 、 **outerWidth** 和 **outerHeight** 。在 **IE9+**、**Safari** 和 **Firefox** 中， **outerWidth** 和 **outerHeight** 返回 **浏览器窗口本身的尺寸** （无论是从最外层的 window 对象还是从某个框架访问）。在 **Opera** 中，这两个属性的值 **表示页面视图容器** （这里所谓的“**页面视图容器** ”指的是 **Opera 中单个标签页对应的浏览器窗口** 。）的大小。而 **innerWidth** 和 **innerHeight** 则表示 **该容器中页面视图区的大小**（减去边框宽度）。在**Chrome** 中，**outerWidth** 、 **outerHeight** 与 **innerWidth** 、**innerHeight** 返回 **相同的值** ，即 **视口（viewport）大小** 而非浏览器窗口大小。
+
+**IE8 及更早版本没有提供取得当前浏览器窗口尺寸的属性** ；不过，**它通过 DOM 提供了页面可见区域的相关信息** 。
+
+在 **IE**、**Firefox**、**Safari**、**Opera** 和 **Chrome** 中， **document.documentElement.clientWidth** 和**document.documentElement.clientHeight** 中 **保存了页面视口的信息** 。在 **IE6** 中，这些属性 **必须在标准模式下才有效** ；如果是 **混杂模式** ，就必须通过**document.body.clientWidth** 和 **document.body.clientHeight** **取得相同信息** 。而对于 **混杂模式** 下的 **Chrome** ，则无论通过 **document.documentElement** 还是 **document.body** 中的 **clientWidth** 和 **clientHeight** 属性，**都可以取得视口的大小**  。
+
+**虽然最终无法确定浏览器窗口本身的大小，但却可以取得页面视口的大小** ，如下所示。
 
 ```js
 var pageWidth = window.innerWidth,
 pageHeight = window.innerHeight;
-if (typeof pageWidth != "number"){
-if (document.compatMode == "CSS1Compat"){
-pageWidth = document.documentElement.clientWidth;
-pageHeight = document.documentElement.clientHeight;
-} else {
-pageWidth = document.body.clientWidth;
-pageHeight = document.body.clientHeight;
-}
-}
-```
-在以上代码中，我们首先将 window.innerWidth 和 window.innerHeight 的值分别赋给了
-pageWidth 和 pageHeight 。然后检查 pageWidth 中保存的是不是一个数值；如果不是，则通过检查
-document.compatMode （这个属性将在第 10 章全面讨论）来确定页面是否处于标准模式。如果是，则
-分别使用 document.documentElement.clientWidth 和 document.documentElement.client-
-Height 的值。否则，就使用 document.body.clientWidth 和 document.body.clientHeight 的值。
-对于移动设备， window.innerWidth 和 window.innerHeight 保存着可见视口，也就是屏幕上可
-见页面区域的大小。移动 IE 浏览器不支持这些属性，但通过 document.documentElement.client-
-Width 和 document.documentElement.clientHeihgt 提供了相同的信息。随着页面的缩放，这些值
-也会相应变化。
-在其他移动浏览器中， document.documentElement 度量的是布局视口，即渲染后页面的实际大
-小（与可见视口不同，可见视口只是整个页面中的一小部分）。移动 IE 浏览器把布局视口的信息保存在
-document.body.clientWidth 和 document.body.clientHeight 中。这些值不会随着页面缩放变化。
-由于与桌面浏览器间存在这些差异，最好是先检测一下用户是否在使用移动设备，然后再决定使用
-哪个属性。
 
-```js
-有关移动设备视口的话题比较复杂，有很多非常规的情形，也有各种各样的建议。
-移动开发咨询师 Peter-Paul Koch 记述了他对这个问题的研究：http://t.cn/zOZs0Tz。如
-果你在做移动 Web 开发，推荐你读一读这篇文章。
+if (typeof pageWidth != "number"){
+  if (document.compatMode == "CSS1Compat"){
+    pageWidth = document.documentElement.clientWidth;
+    pageHeight = document.documentElement.clientHeight;
+   } else {
+    pageWidth = document.body.clientWidth;
+    pageHeight = document.body.clientHeight;
+  }
+}
 ```
-另外，使用 resizeTo() 和 resizeBy() 方法可以调整浏览器窗口的大小。这两个方法都接收两个
-参数，其中 resizeTo() 接收浏览器窗口的新宽度和新高度，而 resizeBy() 接收新窗口与原窗口的宽
-度和高度之差。来看下面的例子。
+在以上代码中，我们首先将 window.innerWidth 和 window.innerHeight 的值分别赋给了 pageWidth 和 pageHeight 。然后检查 pageWidth 中保存的是不是一个数值；如果不是，则通过检查 document.compatMode （这个属性将在第 10 章全面讨论）来确定页面是否处于标准模式。如果是，则分别使用 document.documentElement.clientWidth 和document.documentElement.clientHeight 的值。否则，就使用 document.body.clientWidth 和 document.body.clientHeight 的值。
+
+对于 **移动设备**， **window.innerWidth** 和 **window.innerHeight 保存着可见视口** ，也就是 **屏幕上可见页面区域的大小** 。移动 IE 浏览器不支持这些属性，但通过 document.documentElement.clientWidth 和document.documentElement.clientHeihgt 提供了相同的信息。**随着页面的缩放，这些值也会相应变化。**
+
+在 **其他移动浏览器** 中，**document.documentElement** 度量的是 **布局视口** ，即 **渲染后页面的实际大小**（与可见视口不同，可见视口只是整个页面中的一小部分）。移动 IE 浏览器把布局视口的信息保存在 **document.body.clientWidth** 和 **document.body.clientHeight ** 中。这些值不会随着页面缩放变化。
+
+由于与桌面浏览器间存在这些差异，最好是 **先检测一下用户是否在使用移动设备** ，然后 **再决定使用哪个属性** 。
+
+> 有关移动设备视口的话题比较复杂，有很多非常规的情形，也有各种各样的建议。移动开发咨询师 Peter-Paul Koch 记述了他对这个问题的研究：http://t.cn/zOZs0Tz 。如果你在做 **移动 Web 开发** ，推荐你读一读这篇文章。
+
+另外，使用 **resizeTo()** 和 **resizeBy()** 方法 **可以调整浏览器窗口的大小** 。这两个方法都接收两个参数，其中 **resizeTo()** 接收 **浏览器窗口的新宽度和新高度** ，而 **resizeBy()** 接收 **新窗口与原窗口的宽度和高度之差** 。来看下面的例子。
 
 ```
 //调整到 100×100
 window.resizeTo(100, 100);
+
 //调整到 200×150
 window.resizeBy(100, 50);
+
 //调整到 300×300
 window.resizeTo(300, 300);
 ```
-需要注意的是，这两个方法与移动窗口位置的方法类似，也有可能被浏览器禁用；而且，在 Opera
-和 IE7（及更高版本）中默认就是禁用的。另外，这两个方法同样不适用于框架，而只能对最外层的
-window 对象使用。
+需要注意的是，这两个方法与移动窗口位置的方法类似，也有 **可能被浏览器禁用** ；而且，在 **Opera** 和 **IE7**（及更高版本）中 **默认就是禁用的** 。另外，这两个方法同样 **不适用于框架**  ，而 **只能对最外层的 window 对象使用** 。
 
 ### 导航和打开窗口
 
