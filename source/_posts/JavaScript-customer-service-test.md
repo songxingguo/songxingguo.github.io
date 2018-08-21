@@ -9,137 +9,98 @@ date: 2018-08-21 09:34:00
 ---
 # 客服端检测
 
-浏览器提供商虽然在实现公共接口方面投入了很多精力，但结果仍然是每一种浏览器都有各自
-的长处，也都有各自的缺点。即使是那些跨平台的浏览器，虽然从技术上看版本相同，也照
-样存在不一致性问题。面对普遍存在的不一致性问题，开发人员要么采取迁就各方的“最小公分母”策
-略，要么（也是更常见的）就得利用各种客户端检测方法，来突破或者规避种种局限性。
-迄今为止，客户端检测仍然是 Web 开发领域中一个饱受争议的话题。一谈到这个话题，人们总会
-不约而同地提到浏览器应该支持一组最常用的公共功能。在理想状态下，确实应该如此。但是，在现实
-当中，浏览器之间的差异以及不同浏览器的“怪癖”（quirk），多得简直不胜枚举。因此，客户端检测除
-了是一种补救措施之外，更是一种行之有效的开发策略。
-检测 Web 客户端的手段很多，而且各有利弊。但最重要的还是要知道，不到万不得已，就不要使
-用客户端检测。只要能找到更通用的方法，就应该优先采用更通用的方法。一言以蔽之，先设计最通用
-的方案，然后再使用特定于浏览器的技术增强该方案。
+浏览器提供商虽然在实现公共接口方面投入了很多精力，但结果仍然是每一种浏览器都有各自的长处，也都有各自的缺点。即使是那些跨平台的浏览器，**虽然从技术上看版本相同**，**也照样存在不一致性问题** 。**面对普遍存在的不一致性问题** ，开发人员要么采取迁就各方的“最小公分母”策略，要么（也是更常见的）就得 **利用各种客户端检测方法** ，来突破或者规避种种局限性。迄今为止，客户端检测仍然是 Web 开发领域中一个饱受争议的话题。一谈到这个话题，人们总会不约而同地提到浏览器应该支持一组最常用的公共功能。在理想状态下，确实应该如此。但是，在现实当中，浏览器之间的差异以及不同浏览器的“怪癖”（quirk），多得简直不胜枚举。因此，**客户端检测除了是一种补救措施之外，更是一种行之有效的开发策略** 。检测 Web 客户端的手段很多，而且各有利弊。但最重要的还是要知道，**不到万不得已** ，就 **不要使用客户端检测** 。**只要能找到更通用的方法** ，就 **应该优先采用更通用的方法** 。一言以蔽之，**先设计最通用的方案** ，**然后再使用特定于浏览器的技术增强该方案** 。
 
 <!-- more -->
 
 ## 能力检测
-最常用也最为人们广泛接受的客户端检测形式是能力检测（又称特性检测）。能力检测的目标不是
-识别特定的浏览器，而是识别浏览器的能力。采用这种方式不必顾及特定的浏览器如何如何，只要确定
-浏览器支持特定的能力，就可以给出解决方案。能力检测的基本模式如下：
+
+最常用也最为人们广泛接受的客户端检测形式是 **能力检测**（又称特性检测）。**能力检测的目标** 不是识别特定的浏览器，而 **是识别浏览器的能力** 。采用这种方式不必顾及特定的浏览器如何如何，**只要确定浏览器支持特定的能力** ，**就可以给出解决方案** 。能力检测的基本模式如下：
 
 ```js
 if (object.propertyInQuestion){
-//使用 object.propertyInQuestion
+  //使用 object.propertyInQuestion
 }
 ```
-
 举例来说，IE5.0 之前的版本不支持 document.getElementById() 这个 DOM 方法。尽管可以使
 用非标准的 document.all 属性实现相同的目的，但 IE 的早期版本中确实不存在 document.get-
 ElementById() 。于是，也就有了类似下面的能力检测代码：
 
 ```js
 function getElement(id){
-if (document.getElementById){
-return document.getElementById(id);
-} else if (document.all){
-return document.all[id];
-
-} else {
-throw new Error("No way to retrieve element!");
-}
+  if (document.getElementById){
+    return document.getElementById(id);
+  } else if (document.all){
+    return document.all[id];
+  } else {
+    throw new Error("No way to retrieve element!");
+  }
 }
 ```
-
-这里的 getElement() 函数的用途是返回具有给定ID的元素。因为 document.getElementById()
-是实现这一目的的标准方式，所以一开始就测试了这个方法。如果该函数存在（不是未定义），则使用
-该函数。否则，就要继续检测 document.all 是否存在，如果是，则使用它。如果上述两个特性都不
-存在（很有可能），则创建并抛出错误，表示这个函数无法使用。
-要理解能力检测，首先必须理解两个重要的概念。如前所述，第一个概念就是先检测达成目的的最常
-用的特性。对前面的例子来说，就是要先检测 document.getElementById() ，后检测 document.all 。
-先检测最常用的特性可以保证代码最优化，因为在多数情况下都可以避免测试多个条件。
-第二个重要的概念就是必须测试实际要用到的特性。一个特性存在，不一定意味着另一个特性也存
-在。来看一个例子：
+这里的 getElement() 函数的用途是返回具有给定 ID 的元素。因为 **document.getElementById()** 是 **实现这一目的的标准方式** ，所以 **一开始就测试了这个方法** 。如果 **该函数存在**（不是未定义），则 **使用该函数** 。否则，**就要继续检测 document.all 是否存在** ，如果是，则 **使用它** 。如果 **上述两个特性都不存在**（很有可能），则 **创建并抛出错误** ，表示 **这个函数无法使用** 。要理解能力检测，首先必须理解两个重要的概念。如前所述，第一个概念就是 **先检测达成目的的最常用的特性** 。对前面的例子来说，就是要先检测 **document.getElementById()** ，后检测 document.all 。**先检测最常用的特性可以保证代码最优化** ，因为在多数情况下都可以避免测试多个条件。第二个重要的概念就是必须测试实际要用到的特性。一个特性存在，不一定意味着另一个特性也存在。来看一个例子：
 
 ```js
 function getWindowWidth(){
-if (document.all){ //假设是 IE
-return document.documentElement.clientWidth; //错误的用法！！！
-} else {
-return window.innerWidth;
-}
+  if (document.all){ //假设是 IE
+    return document.documentElement.clientWidth; //错误的用法！！！
+  } else {
+    return window.innerWidth;
+  }
 }
 ```
-
-这是一个错误使用能力检测的例子。 getWindowWidth() 函数首先检查 document.all 是否存在，
-如果是则返回 document.documentElement.clientWidth 。第 8 章曾经讨论过，IE8 及之前版本确
-实不支持 window.innerWidth 属性。但问题是 document.all 存在也不一定表示浏览器就是 IE。实
-际上，也可能是 Opera；Opera 支持 document.all ，也支持 window.innerWidth 。
+这是一个 **错误使用能力检测** 的例子。 getWindowWidth() 函数首先检查 document.all 是否存在，如果是则返回 document.documentElement.clientWidth 。第 8 章曾经讨论过，IE8 及之前版本确实不支持 window.innerWidth 属性。但问题是 document.all 存在也不一定表示浏览器就是 IE。实际上，也可能是 Opera；Opera 支持 document.all ，也支持 window.innerWidth 。
 
 ### 更可靠的能力检测
 
-能力检测对于想知道某个特性是否会按照适当方式行事（而不仅仅是某个特性存在）非常有用。上
-一节中的例子利用类型转换来确定某个对象成员是否存在，但这样你还是不知道该成员是不是你想要
-的。来看下面的函数，它用来确定一个对象是否支持排序。
-//不要这样做！这不是能力检测——只检测了是否存在相应的方法
+**能力检测** 对于 **想知道某个特性是否会按照适当方式行事（而不仅仅是某个特性存在）非常有用** 。上一节中的例子 **利用类型转换来确定某个对象成员是否存在** ，但这样你还是不知道该成员是不是你想要的。来看下面的函数，它用来确定一个对象是否支持排序。
 
-```
+```js
+//不要这样做！这不是能力检测——只检测了是否存在相应的方法
 function isSortable(object){
-return !!object.sort;
+  return !!object.sort;
 }
 ```
-
-这个函数通过检测对象是否存在 sort() 方法，来确定对象是否支持排序。问题是，任何包含 sort
-属性的对象也会返回 true 。
+这个函数通过检测对象是否存在 sort() 方法，来确定对象是否支持排序。问题是，**任何包含 sort属性的对象也会返回 true** 。
 
 ```js
 var result = isSortable({ sort: true });
 ```
-
-检测某个属性是否存在并不能确定对象是否支持排序。更好的方式是检测 sort 是不是一个函数。
-//这样更好：检查 sort 是不是函数
+检测某个属性是否存在并不能确定对象是否支持排序。**更好的方式是检测 sort 是不是一个函数** 。
 
 ```js
+//这样更好：检查 sort 是不是函数
 function isSortable(object){
-return typeof object.sort == "function";
+  return typeof object.sort == "function";
 }
 ```
-这里的 typeof 操作符用于确定 sort 的确是一个函数，因此可以调用它对数据进行排序。
-在可能的情况下，要尽量使用 typeof 进行能力检测。特别是，宿主对象没有义务让 typeof 返回
-合理的值。最令人发指的事儿就发生在 IE 中。大多数浏览器在检测到 document.createElement()
-存在时，都会返回 true 。
+这里的 **typeof 操作符** 用于 **确定 sort 的确是一个函数** ，因此可以调用它对数据进行排序。在可能的情况下，要尽量使用 typeof 进行能力检测。特别是，宿主对象没有义务让 typeof 返回合理的值。最令人发指的事儿就发生在 IE 中。大多数浏览器在检测到 document.createElement() 存在时，都会返回 true 。
 
 ```js
 //在 IE8 及之前版本中不行
 function hasCreateElement(){
-return typeof document.createElement == "function";
+  return typeof document.createElement == "function";
 }
 ```
-在 IE8 及之前版本中，这个函数返回 false ，因为 typeof document.createElement 返回的是
-"object" ，而不是 "function" 。如前所述，DOM 对象是宿主对象，IE 及更早版本中的宿主对象是通
-过 COM 而非 JScript 实现的。因此， document.createElement() 函数确实是一个 COM 对象，所以
-typeof 才会返回 "object" 。IE9 纠正了这个问题，对所有 DOM 方法都返回 "function" 。
-关于 typeof 的行为不标准，IE 中还可以举出例子来。ActiveX 对象（只有 IE 支持）与其他对象的行
-为差异很大。例如，不使用 typeof 测试某个属性会导致错误，如下所示。
+在 IE8 及之前版本中，这个函数返回 false ，因为 **typeof document.createElement** 返回的是 "**object**" ，而不是 "function" 。如前所述，**DOM 对象是宿主对象** ，IE 及更早版本中的 **宿主对象是通过 COM**  而非 JScript 实现的。因此， document.createElement() 函数确实是一个 COM 对象，所以 typeof 才会返回 "object" 。IE9 纠正了这个问题，**对所有 DOM 方法都返回 "function"** 。
+
+关于 **typeof 的行为不标准** ，IE 中还可以举出例子来。ActiveX 对象（只有 IE 支持）与其他对象的行为差异很大。例如，不使用 typeof 测试某个属性会导致错误，如下所示。
 
 ```js
 //在 IE 中会导致错误
 var xhr = new ActiveXObject("Microsoft.XMLHttp");
 if (xhr.open){ //这里会发生错误
-//执行操作
+  //执行操作
 }
 ```
-像这样直接把函数作为属性访问会导致 JavaScript 错误。使用 typeof 操作符会更靠谱一点，但 IE
-对 typeof xhr.open 会返回 "unknown" 。这就意味着，在浏览器环境下测试任何对象的某个特性是否
-存在，要使用下面这个函数。
+像这样直接把函数作为属性访问会导致 JavaScript 错误。使用 typeof 操作符会更靠谱一点，但 IE 对 typeof xhr.open 会返回 "unknown" 。这就意味着，**在浏览器环境下测试任何对象的某个特性是否存在** ，要使用下面这个函数。
 
 ```js
 //作者：Peter Michaux
 function isHostMethod(object, property) {
-var t = typeof object[property];
-return t=='function' ||
-(!!(t=='object' && object[property])) ||
-t=='unknown';
+  var t = typeof object[property];
+  return t=='function' ||
+       (!!(t=='object' && object[property])) ||
+       t=='unknown';
 }
 ```
 可以像下面这样使用这个函数：
@@ -149,362 +110,374 @@ result = isHostMethod(xhr, "open"); //true
 result = isHostMethod(xhr, "foo"); //false
 ```
 
-目前使用 isHostMethod() 方法还是比较可靠的，因为它考虑到了浏览器的怪异行为。不过也要注
-意，宿主对象没有义务保持目前的实现方式不变，也不一定会模仿已有宿主对象的行为。所以，这个函
-数——以及其他类似函数，都不能百分之百地保证永远可靠。作为开发人员，必须对自己要使用某个功
-能的风险作出理性的估计。
+目前使用 isHostMethod() 方法还是比较可靠的，因为它考虑到了浏览器的怪异行为。不过也要注意，宿主对象没有义务保持目前的实现方式不变，也不一定会模仿已有宿主对象的行为。所以，这个函数——以及其他类似函数，都不能百分之百地保证永远可靠。作为开发人员，必须对自己要使用某个功能的风险作出理性的估计。
 
-> 要想深入了解围绕 JavaScript 中能力检测的一些观点，请参考 Peter Michaux的文
-章“Feature Detection: State of the Art Browser Scripting”，网址为 http://peter.michaux.ca/
-articles/feature-detection-state-of-the-art-browser-scripting。
+> 要想深入了解围绕 JavaScript 中能力检测的一些观点，请参考 Peter Michaux的文章“Feature Detection: State of the Art Browser Scripting”，网址为  http://peter.michaux.ca/articles/feature-detection-state-of-the-art-browser-scripting 。
 
 ###  能力检测，不是浏览器检测
 
-检测某个或某几个特性并不能够确定浏览器。下面给出的这段代码（或与之差不多的代码）可以在
-许多网站中看到，这种“浏览器检测”代码就是错误地依赖能力检测的典型示例。
-//错误！还不够具体
+**检测某个或某几个特性并不能够确定浏览器** 。下面给出的这段代码（或与之差不多的代码）可以在许多网站中看到，这种“浏览器检测”代码就是 **错误地依赖能力检测** 的典型示例。
 
 ```js
+//错误！还不够具体
 var isFirefox = !!(navigator.vendor && navigator.vendorSub);
+
 //错误！假设过头了
 var isIE = !!(document.all && document.uniqueID);
 ```
-这两行代码代表了对能力检测的典型误用。以前，确实可以通过检测 navigator.vendor 和
-navigator.vendorSub 来确定 Firefox 浏览器。但是，Safari 也依葫芦画瓢地实现了相同的属性。于是，
-这段代码就会导致人们作出错误的判断。为检测 IE，代码测试了 document.all 和 document.
-uniqueID 。这就相当于假设 IE 将来的版本中仍然会继续存在这两个属性，同时还假设其他浏览器都不
-会实现这两个属性。最后，这两个检测都使用了双逻辑非操作符来得到布尔值（比先存储后访问的效果
-更好）。
-实际上，根据浏览器不同将能力组合起来是更可取的方式。如果你知道自己的应用程序需要使用某
-些特定的浏览器特性，那么最好是一次性检测所有相关特性，而不要分别检测。看下面的例子。
-//确定浏览器是否支持 Netscape 风格的插件
+这两行代码代表了对能力检测的典型误用。以前，确实可以通过检测 navigator.vendor 和 navigator.vendorSub 来确定 Firefox 浏览器。但是，Safari 也依葫芦画瓢地实现了相同的属性。于是，这段代码就会导致人们作出错误的判断。为检测 IE，代码测试了 document.all 和 document.uniqueID 。这就相当于假设 IE 将来的版本中仍然会继续存在这两个属性，同时还假设其他浏览器都不会实现这两个属性。最后，这两个检测都使用了双逻辑非操作符来得到布尔值（比先存储后访问的效果更好）。实际上，根据浏览器不同将能力组合起来是更可取的方式。**如果你知道自己的应用程序需要使用某些特定的浏览器特性** ，那么 **最好是一次性检测所有相关特性** ，而 **不要分别检测** 。看下面的例子。
 
 ```js
+//确定浏览器是否支持 Netscape 风格的插件
 var hasNSPlugins = !!(navigator.plugins && navigator.plugins.length);
+
 //确定浏览器是否具有 DOM1 级规定的能力
 var hasDOM1 = !!(document.getElementById && document.createElement &&
-document.getElementsByTagName);
+            document.getElementsByTagName);
 ```
-以上例子展示了两个检测：一个检测浏览器是否支持 Netscapte 风格的插件；另一个检测浏览器是
-否具备 DOM1 级所规定的能力。得到的布尔值可以在以后继续使用，从而节省重新检测能力的时间。
-> 在实际开发中，应该将能力检测作为确定下一步解决方案的依据，而不是用它来
-判断用户使用的是什么浏览器。
+以上例子展示了两个检测：一个 **检测浏览器是否支持 Netscapte 风格的插件** ；另一个 **检测浏览器是否具备 DOM1 级所规定的能力** 。得到的布尔值可以在以后继续使用，从而节省重新检测能力的时间。
+
+> 在实际开发中，应该 **将能力检测作为确定下一步解决方案的依据** ，而 **不是用它来判断用户使用的是什么浏览器** 。
 
 ## 怪癖检测
 
-与能力检测类似，怪癖检测（quirks detection）的目标是识别浏览器的特殊行为。但与能力检测确
-认浏览器支持什么能力不同，怪癖检测是想要知道浏览器存在什么缺陷（“怪癖”也就是 bug）。这通常
-需要运行一小段代码，以确定某一特性不能正常工作。例如，IE8 及更早版本中存在一个 bug，即如果
-某个实例属性与 [[Enumerable]] 标记为 false 的某个原型属性同名，那么该实例属性将不会出现在
-fon-in 循环当中。可以使用如下代码来检测这种“怪癖”。
+与能力检测类似，**怪癖检测**（quirks detection）的目标是 **识别浏览器的特殊行为** 。但与 **能力检测确认浏览器支持什么能力不同** ，**怪癖检测是想要知道浏览器存在什么缺陷**（“怪癖”也就是 bug）。这通常需要运行一小段代码，以确定某一特性不能正常工作。例如，IE8 及更早版本中存在一个 bug，即如果某个实例属性与 [[Enumerable]] 标记为 false 的某个原型属性同名，那么该实例属性将不会出现在 for-in 循环当中。可以使用如下代码来检测这种“怪癖”。
 
 ```js
 var hasDontEnumQuirk = function(){
-var o = { toString : function(){} };
-for (var prop in o){
-if (prop == "toString"){
-return false;
-}
-}
-return true;
+
+  var o = { toString : function(){} };
+  for (var prop in o){
+    if (prop == "toString"){
+      return false;
+    }
+  }
+  
+  return true;
 }();
 ```
+以上代码通过一个匿名函数来测试该“怪癖”，函数中创建了一个带有 toString() 方法的对象。在正确的 ECMAScript 实现中， toString 应该在 for-in 循环中作为属性返回。
 
-以上代码通过一个匿名函数来测试该“怪癖”，函数中创建了一个带有 toString() 方法的对象。
-在正确的 ECMAScript 实现中， toString 应该在 for-in 循环中作为属性返回。
-另一个经常需要检测的“怪癖”是 Safari 3 以前版本会枚举被隐藏的属性。可以用下面的函数来检
-测该“怪癖”。
+另一个经常需要检测的“怪癖”是 Safari 3 以前版本会枚举被隐藏的属性。可以用下面的函数来检测该“怪癖”。
 
 ```js
 var hasEnumShadowsQuirk = function(){
-var o = { toString : function(){} };
-var count = 0;
-for (var prop in o){
-if (prop == "toString"){
-count++;
-}
-}
-return (count > 1);
+
+  var o = { toString : function(){} };
+  var count = 0;
+  for (var prop in o){
+    if (prop == "toString"){
+      count++;
+    }
+  }
+  
+  return (count > 1);
 }();
 ```
+如果浏览器存在这个 bug，那么使用 for-in 循环枚举带有自定义的 toString() 方法的对象，就会返回两个 toString 的实例。
 
-如果浏览器存在这个 bug，那么使用 for-in 循环枚举带有自定义的 toString() 方法的对象，就
-会返回两个 toString 的实例。
-一般来说，“怪癖”都是个别浏览器所独有的，而且通常被归为 bug。在相关浏览器的新版本中，这
-些问题可能会也可能不会被修复。由于检测“怪癖”涉及运行代码，因此我们建议仅检测那些对你有直
-接影响的“怪癖”，而且最好在脚本一开始就执行此类检测，以便尽早解决问题。
+一般来说，**“怪癖”都是个别浏览器所独有的** ，而且通常被归为 bug。在相关浏览器的新版本中，这些问题可能会也可能不会被修复。由于检测“怪癖”涉及运行代码，因此我们建议仅检测那些对你有直接影响的“怪癖”，而且 **最好在脚本一开始就执行此类检测** ，**以便尽早解决问题** 。
 
 ## 用户代理检测
-第三种，也是争议最大的一种客户端检测技术叫做用户代理检测。用户代理检测通过检测用户代理
-字符串来确定实际使用的浏览器。在每一次 HTTP 请求过程中，用户代理字符串是作为响应首部发送的，
-而且该字符串可以通过 JavaScript 的 navigator.userAgent 属性访问。在服务器端，通过检测用户代
-理字符串来确定用户使用的浏览器是一种常用而且广为接受的做法。而在客户端，用户代理检测一般被
-当作一种万不得已才用的做法，其优先级排在能力检测和（或）怪癖检测之后。
-提到与用户代理字符串有关的争议，就不得不提到电子欺骗（spoofing）。所谓电子欺骗，就是指浏
-览器通过在自己的用户代理字符串加入一些错误或误导性信息，来达到欺骗服务器的目的。要弄清楚这
-个问题的来龙去脉，必须从 Web 问世初期用户代理字符串的发展讲起。
+
+第三种，也是争议最大的一种客户端检测技术叫做 **用户代理检测** 。用户代理检测通过 **检测用户代理字符串** 来 **确定实际使用的浏览器** 。在每一次 HTTP 请求过程中，用户代理字符串是作为响应首部发送的，而且该字符串可以通过 JavaScript 的 navigator.userAgent 属性访问。在服务器端，通过检测用户代理字符串来确定用户使用的浏览器是一种常用而且广为接受的做法。而在客户端，**用户代理检测** 一般 **被当作一种万不得已才用的做法** ，**其优先级排在能力检测和（或）怪癖检测之后** 。
+
+提到与用户代理字符串有关的争议，就不得不提到电子欺骗（spoofing）。所谓 **电子欺骗** ，就是 **指浏览器通过在自己的用户代理字符串加入一些错误或误导性信息** ，**来达到欺骗服务器的目的** 。要弄清楚这个问题的来龙去脉，必须从 Web 问世初期用户代理字符串的发展讲起。
 
 ### 用户代理字符串的历史
 
-HTTP 规范（包括 1.0 和 1.1版）明确规定，浏览器应该发送简短的用户代理字符串，指明浏览器的
-名称和版本号。RFC 2616（即 HTTP 1.1 协议规范）是这样描述用户代理字符串的：
-“产品标识符常用于通信应用程序标识自身，由软件名和版本组成。使用产品标识符的大
-多数领域也允许列出作为应用程序主要部分的子产品，由空格分隔。按照惯例，产品要按照相
-应的重要程度依次列出，以便标识应用程序。”
-上述规范进一步规定，用户代理字符串应该以一组产品的形式给出，字符串格式为：标识符/产品
-版本号。但是，现实中的用户代理字符串则绝没有如此简单。
+HTTP 规范（包括 1.0 和 1.1版）明确规定，浏览器应该发送 **简短的用户代理字符串** ，**指明浏览器的名称和版本号** 。RFC 2616（即 HTTP 1.1 协议规范）是这样描述用户代理字符串的：
+“**产品标识符常用于通信应用程序标识自身，由软件名和版本组成。使用产品标识符的大多数领域也允许列出作为应用程序主要部分的子产品，由空格分隔。按照惯例，产品要按照相应的重要程度依次列出，以便标识应用程序。** ”
+
+上述规范进一步规定，用户代理字符串应该以一组产品的形式给出，字符串格式为：**标识符/产品版本号** 。但是，现实中的用户代理字符串则绝没有如此简单。
 
 - #### 早期的浏览器
 
-1993 年，美国 NCSA（National Center for Supercomputing Applications，国家超级计算机中心）发布
-了世界上第一款 Web 浏览器 Mosaic。这款浏览器的用户代理字符串非常简单，类似如下所示。
+  1993 年，美国 NCSA（National Center for Supercomputing Applications，国家超级计算机中心）发布了世界上第一款 Web 浏览器 Mosaic。这款浏览器的用户代理字符串非常简单，类似如下所示。
 
-```js
-Mosaic/0.9
-```
-尽管这个字符串在不同操作系统和不同平台下会有所变化，但其基本格式还是简单明了的。正斜杠
-前面的文本表示产品名称（有时候会出现 NCSA Mosaic 或其他类似字样），而斜杠后面的文本是产品的
-版本号。
-Netscape Communications 公司介入浏览器开发领域后，遂将自己产品的代号定名为 Mozilla（Mosaic
-Killer 的简写，意即 Mosaic 杀手）。该公司第一个公开发行版，Netscape Navigator 2 的用户代理字符串
-具有如下格式。
+  ```
+  Mosaic/0.9
+  ```
+  尽管这个字符串在不同操作系统和不同平台下会有所变化，但其基本格式还是简单明了的。正斜杠前面的文本表示 **产品名称**（有时候会出现 NCSA Mosaic 或其他类似字样），而斜杠后面的 **文本是产品的版本号**。
 
-```js
-Mozilla/版本号 [语言] (平台; 加密类型)
-```
-Netscape 在坚持将产品名和版本号作为用户代理字符串开头的基础上，又在后面依次添加了下列
-信息。
--  语言：即语言代码，表示应用程序针对哪种语言设计。
--   平台：即操作系统和（或）平台，表示应用程序的运行环境。
--  加密类型：即安全加密的类型。可能的值有 U（128 位加密）、I（40 位加密）和 N（未加密）。
-典型的 Netscape Navigator 2 的用户代理字符串如下所示。
+  Netscape Communications 公司介入浏览器开发领域后，遂将自己产品的代号定名为 Mozilla（Mosaic Killer 的简写，意即 Mosaic 杀手）。该公司第一个公开发行版，Netscape Navigator 2 的用户代理字符串具有如下格式。
 
-```js
-Mozilla/2.02 [fr] (WinNT; I)
-```
-这个字符串表示浏览器是 Netscape Navigator 2.02，为法语国家编译，运行在 Windows NT 平台下，
-加密类型为 40 位。那个时候，通过用户代理字符串中的产品名称，至少还能够轻易地确定用户使用的
-是什么浏览器。
+  **Mozilla/版本号 [语言] (平台; 加密类型)**
+
+  Netscape 在坚持将产品名和版本号作为用户代理字符串开头的基础上，又在后面依次添加了下列信息。
+
+  -  **语言** ：即语言代码，表示应用程序针对哪种语言设计。
+
+  -  **平台** ：即操作系统和（或）平台，表示应用程序的运行环境。
+
+  -  **加密类型** ：即安全加密的类型。可能的值有 U（128 位加密）、I（40 位加密）和 N（未加密）。典型的 Netscape Navigator 2 的用户代理字符串如下所示。
+
+  ```
+  Mozilla/2.02 [fr] (WinNT; I)
+  ```
+  这个字符串表示浏览器是 Netscape Navigator 2.02，为法语国家编译，运行在 Windows NT 平台下，加密类型为 40 位。那个时候，通过用户代理字符串中的产品名称，至少还能够轻易地确定用户使用的是什么浏览器。
+
 - #### Netscape Navigator 3 和 Internet Explorer 3
-1996 年，Netscape Navigator 3 发布，随即超越 Mosaic 成为当时最流行的 Web 浏览器。而用户代理
-字符串只作了一些小的改变，删除了语言标记，同时允许添加操作系统或系统使用的 CPU 等可选信息。
-于是，格式变成如下所示。
-Mozilla/版本号 (平台; 加密类型 [; 操作系统或 CPU 说明])
-运行在 Windows系统下的 Netscape Navigator 3的用户代理字符串大致如下。
 
-```js
-Mozilla/3.0 (Win95; U)
-```
+  1996 年，Netscape Navigator 3 发布，随即超越 Mosaic 成为当时最流行的 Web 浏览器。而用户代理字符串只作了一些小的改变，删除了语言标记，同时允许添加操作系统或系统使用的 CPU 等可选信息。于是，格式变成如下所示。
 
-这个字符串表示 Netscape Navigator 3 运行在 Windows 95 中，采用了 128 位加密技术。可见，在
-Windows系统中，字符串中的操作系统或 CPU 说明被省略了。
-Netscape Navigator 3 发布后不久，微软也发布了其第一款赢得用户广泛认可的 Web 浏览器，即
-Internet Explorer 3。由于 Netscape 浏览器在当时占绝对市场份额，许多服务器在提供网页之前都要专门
-检测该浏览器。如果用户通过 IE 打不开相关网页，那么这个新生的浏览器很可能就会夭折。于是，微
-软决定将 IE 的用户代理字符串修改成兼容 Netscape 的形式，结果如下：
+  **Mozilla/版本号 (平台; 加密类型 [; 操作系统或 CPU 说明])**
 
-```js
-Mozilla/2.0 (compatible; MSIE 版本号; 操作系统)
-```
-例如，Windows 95 平台下的 Internet Explorer 3.02带有如下用户代理字符串：
+  运行在 Windows系统下的 Netscape Navigator 3的用户代理字符串大致如下。
 
-```js
-Mozilla/2.0 (compatible; MSIE 3.02; Windows 95)
-```
+  ```
+  Mozilla/3.0 (Win95; U)
+  ```
+  这个字符串表示 Netscape Navigator 3 运行在 Windows 95 中，采用了 128 位加密技术。可见，在Windows系统中，字符串中的操作系统或 CPU 说明被省略了。Netscape Navigator 3 发布后不久，微软也发布了其第一款赢得用户广泛认可的 Web 浏览器，即 Internet Explorer 3。由于 Netscape 浏览器在当时占绝对市场份额，许多服务器在提供网页之前都要专门检测该浏览器。如果用户通过 IE 打不开相关网页，那么这个新生的浏览器很可能就会夭折。于是，微软决定将 IE 的用户代理字符串修改成兼容 Netscape 的形式，结果如下：
 
-由于当时的大多数浏览器嗅探程序只检测用户代理字符串中的产品名称部分，结果 IE 就成功地将
-自己标识为 Mozilla，从而伪装成 Netscape Navigator。微软的这一做法招致了很多批评，因为它违反了
-浏览器标识的惯例。更不规范的是，IE 将真正的浏览器版本号插入到了字符串的中间。
-字符串中另外一个有趣的地方是标识符 Mozilla 2.0（而不是 3.0）。毕竟，当时的主流版本是 3.0，
-改成 3.0 应该对微软更有利才对。但真正的谜底到现在还没有揭开——但很可能只是人为疏忽所致。
+  ```
+  Mozilla/2.0 (compatible; MSIE 版本号; 操作系统)
+  ```
+  例如，Windows 95 平台下的 Internet Explorer 3.02带有如下用户代理字符串：
+
+  ```js
+  Mozilla/2.0 (compatible; MSIE 3.02; Windows 95)
+  ```
+  由于当时的大多数浏览器嗅探程序只检测用户代理字符串中的产品名称部分，结果 IE 就成功地将自己标识为 Mozilla，从而伪装成 Netscape Navigator。微软的这一做法招致了很多批评，因为它违反了浏览器标识的惯例。更不规范的是，IE 将真正的浏览器版本号插入到了字符串的中间。字符串中另外一个有趣的地方是标识符 Mozilla 2.0（而不是 3.0）。毕竟，当时的主流版本是 3.0，
+  改成 3.0 应该对微软更有利才对。但真正的谜底到现在还没有揭开——但很可能只是人为疏忽所致。
+
 - #### Netscape Communicator 4 和 IE4～IE8
 
-1997 年 8 月，Netscapte Communicator 4 发布（这一版将浏览器名字中的 Navigator 换成了 Commu-
-nicator）。Netscape 继续遵循了第 3 版时的用户代理字符串格式：
-Mozilla/版本号 (平台; 加密类型 [; 操作系统或 CPU 说明])
-因此，Windows 98 平台中第 4 版的用户代理字符串如下所示：
+  1997 年 8 月，Netscapte Communicator 4 发布（这一版将浏览器名字中的 Navigator 换成了 Communicator）。Netscape 继续遵循了第 3 版时的用户代理字符串格式：
 
-```js
-Mozilla/4.0 (Win98; I)
-```
-Netscape 在发布补丁时，子版本号也会相应提高，用户代理字符串如下面的 4.79 版所示：
-Mozilla/4.79 (Win98; I)
-但是，微软在发布 Internet Explorer 4时，顺便将用户代理字符串修改成了如下格式：
-Mozilla/4.0 (compatible; MSIE 版本号; 操作系统)
-换句话说，对于 Windows 98 中运行的 IE4 而言，其用户代理字符串为：
-Mozilla/4.0 (compatible; MSIE 4.0; Windows 98)
-经过此番修改，Mozilla 版本号就与实际的 IE 版本号一致了，为识别它们的第四代浏览器提供了方
-便。但令人遗憾的是，两者的一致性仅限于这一个版本。在 Internet Explorer 4.5 发布时（只针对 Macs），
-虽然 Mozilla 版本号还是 4，但 IE 版本号则改成了如下所示：
-Mozilla/4.0 (compatible; MSIE 4.5; Mac_PowerPC)
-此后，IE 的版本一直到 7 都沿袭了这个模式：
-Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)
-而 IE8 的用户代理字符串中添加了呈现引擎（Trident）的版本号：
-Mozilla/4.0 (compatible; MSIE 版本号; 操作系统; Trident/Trident 版本号)
+   **Mozilla/版本号 (平台; 加密类型 [; 操作系统或 CPU 说明])**
 
-例如：
-Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0)
-这个新增的 Trident 记号是为了让开发人员知道 IE8 是不是在兼容模式下运行。如果是，则 MSIE 的
-版本号会变成 7，但 Trident 及版本号还会留在用户代码字符串中：
-Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0)
-增加这个记号有助于分辨浏览器到底是 IE7（没有 Trident 记号），还是运行在兼容模式下的 IE8。
-IE9 对字符串格式做了一点调整。Mozilla 版本号增加到了 5.0，而 Trident 的版本号也升到了 5.0。IE9
-默认的用户代理字符串如下：
-Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
-如果 IE9 运行在兼容模式下，字符串中的 Mozilla 版本号和 MSIE 版本号会恢复旧的值，但 Trident
-的版本号仍然是 5.0。例如，下面就是 IE9 运行在 IE7 兼容模式下的用户代理字符串：
-Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0)
-所有这些变化都是为了确保过去的用户代理检测脚本能够继续发挥作用，同时还能给新脚本提供更
-丰富的信息。
+  因此，Windows 98 平台中第 4 版的用户代理字符串如下所示：
+
+  ```
+  Mozilla/4.0 (Win98; I)
+  ```
+  Netscape 在发布补丁时，子版本号也会相应提高，用户代理字符串如下面的 4.79 版所示： 
+
+  ```
+  Mozilla/4.79 (Win98; I)
+  ```
+  但是，微软在发布 Internet Explorer 4时，顺便将用户代理字符串修改成了如下格式：
+
+  ```
+  Mozilla/4.0 (compatible; MSIE 版本号; 操作系统)
+  ```
+  换句话说，对于 Windows 98 中运行的 IE4 而言，其用户代理字符串为：
+
+  ```
+  Mozilla/4.0 (compatible; MSIE 4.0; Windows 98)
+  ```
+  经过此番修改，Mozilla 版本号就与实际的 IE 版本号一致了，为识别它们的第四代浏览器提供了方便。但令人遗憾的是，两者的一致性仅限于这一个版本。在 Internet Explorer 4.5 发布时（只针对 Macs），虽然 Mozilla 版本号还是 4，但 IE 版本号则改成了如下所示：
+
+  ```
+  Mozilla/4.0 (compatible; MSIE 4.5; Mac_PowerPC)
+
+  ```
+  此后，IE 的版本一直到 7 都沿袭了这个模式：
+
+  ```
+  Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)
+  ```
+  而 IE8 的用户代理字符串中添加了呈现引擎（Trident）的版本号：
+
+  ```
+  Mozilla/4.0 (compatible; MSIE 版本号; 操作系统; Trident/Trident 版本号)
+  ```
+  例如：
+
+  ```
+  Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0)
+  ```
+  这个新增的 Trident 记号是为了让开发人员知道 IE8 是不是在兼容模式下运行。如果是，则 MSIE 的版本号会变成 7，但 Trident 及版本号还会留在用户代码字符串中：
+
+  ```
+  Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0)
+  ```
+  增加这个记号有助于分辨浏览器到底是 IE7（没有 Trident 记号），还是运行在兼容模式下的 IE8。
+
+  IE9 对字符串格式做了一点调整。Mozilla 版本号增加到了 5.0，而 Trident 的版本号也升到了 5.0。IE9默认的用户代理字符串如下：
+
+  ```
+  Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+  ```
+  如果 IE9 运行在兼容模式下，字符串中的 Mozilla 版本号和 MSIE 版本号会恢复旧的值，但 Trident 的版本号仍然是 5.0。例如，下面就是 IE9 运行在 IE7 兼容模式下的用户代理字符串：
+
+  ```
+  Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0)
+  ```
+  所有这些变化都是为了确保过去的用户代理检测脚本能够继续发挥作用，同时还能给新脚本提供更
+  丰富的信息。
+
 - #### Gecko
-Gecko 是 Firefox 的呈现引擎。当初的 Gecko 是作为通用 Mozilla 浏览器的一部分开发的，而第一个
-采用 Gecko 引擎的浏览器是 Netscape 6。为 Netscape 6 编写的一份规范中规定了未来版本中用户代理字
-符串的构成。这个新格式与 4.x 版本中相对简单的字符串相比，有着非常大的区别，如下所示：
-Mozilla/Mozilla 版本号 (平台; 加密类型; 操作系统或 CPU; 语言; 预先发行版本)
-Gecko/Gecko 版本号 应用程序或产品/应用程序或产品版本号
-这个明显复杂了很多的用户代理字符串中蕴含很多新想法。下表列出了字符串中各项的用意。
 
-![此处有表格]()
+  Gecko 是 Firefox 的呈现引擎。当初的 Gecko 是作为通用 Mozilla 浏览器的一部分开发的，而第一个采用 Gecko 引擎的浏览器是 Netscape 6。为 Netscape 6 编写的一份规范中规定了未来版本中用户代理字符串的构成。这个新格式与 4.x 版本中相对简单的字符串相比，有着非常大的区别，如下所示：
 
-为了帮助读者更好地理解 Gecko 的用户代理字符串，下面我们来看几个从基于 Gecko 的浏览器中取
-得的字符串。
-Windows XP 下的 Netscape 6.21：
-Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:0.9.4) Gecko/20011128 Netscape6/6.2.1
-Linux 下的 SeaMonkey 1.1a：
-Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1b2) Gecko/20060823 SeaMonkey/1.1a
-Windows XP 下的 Firefox 2.0.0.11：
-Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11
-Mac OS X下的 Camino 1.5.1：
-Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en; rv:1.8.1.6) Gecko/20070809 Camino/1.5.1
-以上这些用户代理字符串都取自基于 Gecko的浏览器（只是版本有所不同）。很多时候，检测特定的
-浏览器还不如搞清楚它是否基于 Gecko更重要。每个字符串中的 Mozilla版本都是 5.0，自从第一个基于
-Gecko的浏览器发布时修改成这个样子，至今就没有改变过；而且，看起来以后似乎也不会有什么变化。
-随着 Firefox 4 发布，Mozilla 简化了这个用户代理字符串。主要改变包括以下几方面。
--   删除了“语言”记号（例如，前面例子中的“en-US”）。
--  在浏览器使用强加密（默认设置）时，不显示“加密类型”。也就是说，Mozilla 用户代理字符串
-中不会再出现“U”，而“I”和“N”还会照常出现。
--  “平台”记号从 Windows 用户代理字符串中删除了，“操作系统或 CPU”中始终都包含
-“Windows”字符串。
--  “Gecko 版本号”固定为“Gecko/20100101”。
-最后，Firefox 4 用户代理字符串变成了下面这个样子：
-Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/20100101 Firefox 4.0.1
+  **Mozilla/Mozilla 版本号 (平台; 加密类型; 操作系统或 CPU; 语言; 预先发行版本)
+     Gecko/Gecko 版本号 应用程序或产品/应用程序或产品版本号**
+
+  这个明显复杂了很多的用户代理字符串中蕴含很多新想法。下表列出了字符串中各项的用意。
+
+  ![用户代理字符串](http://p9myzkds7.bkt.clouddn.com/JavaScript-customer-service-test/%E4%BB%A3%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2.png)
+
+  为了帮助读者更好地理解 Gecko 的用户代理字符串，下面我们来看几个从基于 Gecko 的浏览器中取得的字符串。
+
+  Windows XP 下的 Netscape 6.21：
+
+  ```
+  Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:0.9.4) Gecko/20011128 Netscape6/6.2.1
+  ```
+  Linux 下的 SeaMonkey 1.1a：
+
+  ```
+  Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1b2) Gecko/20060823 SeaMonkey/1.1a
+  ```
+  Windows XP 下的 Firefox 2.0.0.11：
+
+  ```
+  Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11
+  ```
+  Mac OS X下的 Camino 1.5.1：
+
+  ```
+  Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en; rv:1.8.1.6) Gecko/20070809 Camino/1.5.1
+  ```
+  以上这些用户代理字符串都取自基于 Gecko的浏览器（只是版本有所不同）。很多时候，检测特定的浏览器还不如搞清楚它是否基于 Gecko更重要。每个字符串中的 Mozilla版本都是 5.0，自从第一个基于Gecko的浏览器发布时修改成这个样子，至今就没有改变过；而且，看起来以后似乎也不会有什么变化。随着 Firefox 4 发布，Mozilla 简化了这个用户代理字符串。主要改变包括以下几方面。
+
+  - 删除了“语言”记号（例如，前面例子中的“en-US”）。
+
+  -  在浏览器使用强加密（默认设置）时，不显示“加密类型”。也就是说，Mozilla 用户代理字符串中不会再出现“U”，而“I”和“N”还会照常出现。
+
+  -  “平台”记号从 Windows 用户代理字符串中删除了，“操作系统或 CPU”中始终都包含 “Windows”字符串。
+
+  -  “Gecko 版本号”固定为“Gecko/20100101”。
+
+  最后，Firefox 4 用户代理字符串变成了下面这个样子：
+
+  ```
+  Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/20100101 Firefox 4.0.1
+  ```
 
 - #### WebKit
-2003 年，Apple 公司宣布要发布自己的 Web 浏览器，名字定为 Safari。Safari 的呈现引擎叫 WebKit，
-是 Linux 平台中 Konqueror 浏览器的呈现引擎 KHTML 的一个分支。几年后，WebKit 独立出来成为了一
-个开源项目，专注于呈现引擎的开发。
-这款新浏览器和呈现引擎的开发人员也遇到了与 Internet Explorer 3.0 类似的问题：如何确保这款浏
-览器不被流行的站点拒之门外？答案就是向用户代理字符串中放入足够多的信息，以便站点能够信任它
-与其他流行的浏览器是兼容的。于是，WebKit 的用户代理字符串就具备了如下格式：
-Mozilla/5.0 (平台; 加密类型; 操作系统或 CPU; 语言) AppleWebKit/AppleWebKit 版本号
-(KHTML, like Gecko) Safari/Safari 版本号
-以下就是一个示例：
-Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/124 (KHTML, like Gecko)
-Safari/125.1
-显然，这又是一个很长的用户代理字符串。其中不仅包含了 Apple WebKit 的版本号，也包含了 Safari
-的版本号。出于兼容性的考虑，有关人员很快就决定了将 Safari 标识为 Mozilla。至今，基于 WebKit的
 
-所有浏览器都将自己标识为 Mozilla 5.0，与基于 Gecko 的浏览器完全一样。但 Safari 的版本号则通常是
-浏览器的编译版本号，不一定与发布时的版本号对应。换句话说，虽然 Safari 1.25 的用户代理字符串中
-包含数字 125.1，但两者却不一一对应。
-Safari 预发行 1.0 版用户代理字符串中最耐人寻味，也是最饱受诟病的部分就是字符串 "(KHTML,
-like Gecko)" 。Apple 因此收到许多开发人员的反馈，他们认为这个字符串明显是在欺骗客户端和服
-务器，实际上是想让它们把 Safari 当成 Gecko（好像光添加 Mozilla/5.0 还嫌不够）。Apple的回应与
-微软在 IE 的用户代理字符串遭到责难时如出一辙：Safari 与 Mozilla 兼容，因此网站不应该将 Safari 用
-户拒之门外，否则用户就会认为自己的浏览器不受支持。
-到了 Safari 3.0 发布时，其用户代理字符串又稍微变长了一点。下面这个新增的 Version 记号一直到
-现在都被用来标识 Safari 实际的版本号：
-Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/522.15.5 (KHTML, like
-Gecko) Version/3.0.3 Safari/522.15.5
-需要注意的是，这个变化只在 Safari 中有，在 WebKit 中没有。换句话说，其他基于 WebKit 的浏
-览器可能没有这个变化。一般来说，确定浏览器是否基于 WebKit 要比确定它是不是 Safari 更有价值，
-就像针对 Gecko 一样。
+  2003 年，Apple 公司宣布要发布自己的 Web 浏览器，名字定为 Safari。Safari 的呈现引擎叫 WebKit，是 Linux 平台中 Konqueror 浏览器的呈现引擎 KHTML 的一个分支。几年后，WebKit 独立出来成为了一个开源项目，专注于呈现引擎的开发。
+
+  这款新浏览器和呈现引擎的开发人员也遇到了与 Internet Explorer 3.0 类似的问题：如何确保这款浏览器不被流行的站点拒之门外？答案就是向用户代理字符串中放入足够多的信息，以便站点能够信任它与其他流行的浏览器是兼容的。于是，WebKit 的用户代理字符串就具备了如下格式：
+
+  **Mozilla/5.0 (平台; 加密类型; 操作系统或 CPU; 语言) AppleWebKit/AppleWebKit 版本号(KHTML, like Gecko) Safari/Safari 版本号**
+
+  以下就是一个示例：
+
+  ```
+  Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/124 (KHTML, like Gecko) Safari/125.1
+  ```
+  显然，这又是一个很长的用户代理字符串。其中不仅包含了 Apple WebKit 的版本号，也包含了 Safari 的版本号。出于兼容性的考虑，有关人员很快就决定了将 Safari 标识为 Mozilla。至今，基于 WebKi所有浏览器都将自己标识为 Mozilla 5.0，与基于 Gecko 的浏览器完全一样。但 Safari 的版本号则通常浏览器的编译版本号，不一定与发布时的版本号对应。换句话说，虽然 Safari 1.25 的用户代理字符串中包含数字 125.1，但两者却不一一对应。
+
+  Safari 预发行 1.0 版用户代理字符串中最耐人寻味，也是最饱受诟病的部分就是字符串 "(KHTML, like Gecko)" 。Apple 因此收到许多开发人员的反馈，他们认为这个字符串明显是在欺骗客户端和服务器，实际上是想让它们把 Safari 当成 Gecko（好像光添加 Mozilla/5.0 还嫌不够）。Apple的回应与微软在 IE 的用户代理字符串遭到责难时如出一辙：Safari 与 Mozilla 兼容，因此网站不应该将 Safari 用户拒之门外，否则用户就会认为自己的浏览器不受支持。
+
+  到了 Safari 3.0 发布时，其用户代理字符串又稍微变长了一点。下面这个新增的 Version 记号一直到现在都被用来标识 Safari 实际的版本号：
+
+  ```
+  Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/522.15.5 (KHTML, like
+  Gecko) Version/3.0.3 Safari/522.15.5
+  ```
+  需要注意的是，这个变化只在 Safari 中有，在 WebKit 中没有。换句话说，其他基于 WebKit 的浏览器可能没有这个变化。一般来说，确定浏览器是否基于 WebKit 要比确定它是不是 Safari 更有价值，就像针对 Gecko 一样。
+
 - #### Konqueror
-与 KDE Linux 集成的 Konqueror，是一款基于 KHTML 开源呈现引擎的浏览器。尽管 Konqueror只
-能在 Linux 中使用，但它也有数量可观的用户。为确保最大限度的兼容性，Konqueror 效仿 IE 选择了如
-下用户代理字符串格式：
-Mozilla/5.0 (compatible; Konqueror/ 版本号; 操作系统或 CPU )
-不过，为了与 WebKit 的用户代理字符串的变化保持一致，Konqueror 3.2 又有了变化，以如下格式
-将自己标识为 KHTML：
-Mozilla/5.0 (compatible; Konqueror/ 版本号; 操作系统或 CPU) KHTML/ KHTML 版本号 (like Gecko)
-下面是一个例子：
-Mozilla/5.0 (compatible; Konqueror/3.5; SunOS) KHTML/3.5.0 (like Gecko)
-其中，Konqueror与KHTML的版本号比较一致，即使有差别也很小，例如Konqueror 3.5使用KHTML
-3.5.1。
+
+  与 KDE Linux 集成的 Konqueror，是一款基于 KHTML 开源呈现引擎的浏览器。尽管 Konqueror只能在 Linux 中使用，但它也有数量可观的用户。为确保最大限度的兼容性，Konqueror 效仿 IE 选择了如下用户代理字符串格式：
+
+  **Mozilla/5.0 (compatible; Konqueror/ 版本号; 操作系统或 CPU )**
+
+  不过，为了与 WebKit 的用户代理字符串的变化保持一致，Konqueror 3.2 又有了变化，以如下格式将自己标识为 KHTML：
+
+  **Mozilla/5.0 (compatible; Konqueror/ 版本号; 操作系统或 CPU) KHTML/ KHTML 版本号 (like Gecko)**
+
+  下面是一个例子：
+
+  ```
+  Mozilla/5.0 (compatible; Konqueror/3.5; SunOS) KHTML/3.5.0 (like Gecko)
+  ```
+  其中，Konqueror与KHTML的版本号比较一致，即使有差别也很小，例如Konqueror 3.5使用KHTML 3.5.1。
 
 - #### Chrome
 
-谷歌公司的 Chrome 浏览器以 WebKit 作为呈现引擎，但使用了不同的 JavaScript 引擎。在 Chrome 0.2
-这个最初的 beta 版中，用户代理字符串完全取自 WebKit，只添加了一段表示 Chrome版本号的信息，格
-式如下：
-Mozilla/5.0 ( 平台; 加密类型; 操作系统或 CPU; 语言) AppleWebKit/AppleWebKit 版本号 (KHTML,
-like Gecko) Chrome/ Chrome 版本号 Safari/ Safari 版本
-Chrome 7的完整的用户代理字符串如下：
-Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/534.7 (KHTML,
-like Gecko) Chrome/7.0.517.44 Safari/534.7
-其中，WebKit 版本与 Safari 版本看起来似乎始终会保持一致，尽管没有十分的把握。
+  谷歌公司的 Chrome 浏览器以 WebKit 作为呈现引擎，但使用了不同的 JavaScript 引擎。在 Chrome 0.2这个最初的 beta 版中，用户代理字符串完全取自 WebKit，只添加了一段表示 Chrome版本号的信息，格式如下：
+
+  **Mozilla/5.0 ( 平台; 加密类型; 操作系统或 CPU; 语言) AppleWebKit/AppleWebKit 版本号 (KHTML, like Gecko) Chrome/ Chrome 版本号 Safari/ Safari 版本**
+
+  Chrome 7的完整的用户代理字符串如下：
+
+  ```
+  Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/534.7 (KHTML,
+  like Gecko) Chrome/7.0.517.44 Safari/534.7
+  ```
+  其中，WebKit 版本与 Safari 版本看起来似乎始终会保持一致，尽管没有十分的把握。
 
 - #### Opera
-仅就用户代理字符串而言，Opera 应该是最有争议的一款浏览器了。Opera 默认的用户代理字符串
-是所有现代浏览器中最合理的——正确地标识了自身及其版本号。在 Opera 8.0 之前，其用户代理字符
-串采用如下格式：
-Opera/ 版本号 (操作系统或 CPU; 加密类型) [语言]
-Windows XP 中的 Opera 7.54 会显示下面的用户代理字符串：
-Opera/7.54 (Windows NT 5.1; U) [en]
-Opera 8 发布后，用户代理字符串的“语言”部分被移到圆括号内，以便更好地与其他浏览器匹配，
-如下所示：
-Opera/ 版本号 (操作系统或 CPU; 加密类型; 语言)
-Windows XP 中的 Opera 8 会显示下面的用户代理字符串：
-Opera/8.0 (Windows NT 5.1; U; en)
-默认情况下，Opera 会以上面这种简单的格式返回一个用户代理字符串。目前来看，Opera 也是主
-要浏览器中唯一一个使用产品名和版本号来完全彻底地标识自身的浏览器。可是，与其他浏览器一样，
-Opera 在使用自己的用户代理字符串时也遇到了问题。即使技术上正确，但因特网上仍然有不少浏览器
-嗅探代码，只钟情于报告 Mozilla 产品名的那些用户代理字符串。另外还有相当数量的代码则只对 IE 或
-Gecko 感兴趣。Opera 没有选择通过修改自身的用户代理字符串来迷惑嗅探代码，而是干脆选择通过修
-改自身的用户代理字符串将自身标识为一个完全不同的浏览器。
-Opera 9 以后，出现了两种修改用户代理字符串的方式。一种方式是将自身标识为另外一个浏览器，
-如 Firefox 或者 IE。在这种方式下，用户代理字符串就如同 Firefox 或 IE 的用户代理字符串一样，只不
-过末尾追加了字符串 Opera 及 Opera 的版本号。下面是一个例子：
-Mozilla/5.0 (Windows NT 5.1; U; en; rv:1.8.1) Gecko/20061208 Firefox/2.0.0 Opera 9.50
-Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; en) Opera 9.50
-第一个字符串将 Opera 9.5 标识为 Firefox 2，同时带有 Opera 版本信息。第二个字符串将 Opera 9.5
-标识为 IE6，也包含了 Opera 版本信息。这两个用户代理字符串可以通过针对 Firefox 或 IE 的大多数测
-试，不过还是为识别 Opera 留下了余地。
-Opera 标识自身的另一种方式，就是把自己装扮成 Firefox 或 IE。在这种隐瞒真实身份的情况下，用
-户代理字符串实际上与其他浏览器返回的相同——既没有 Opera 字样，也不包含 Opera 版本信息。换
-句话说，在启用了身份隐瞒功能的情况下，无法将 Opera 和其他浏览器区别开来。另外，由于 Opera 喜
-欢在不告知用户的情况下针对站点来设置用户代理字符串，因此问题就更复杂化了。例如，打开 My
-Yahoo!站点（http://my.yahoo.com）会自动导致 Opera 将自己装扮成 Firefox。如此一来，要想识别 Opera
-就难上加难了。
-> 在 Opera 7 以前的版本中，Opera 会解析 Windows操作系统字符串的含义。例如，
-Windows NT 5.1 实际上就是 Windows XP，因此 Opera 会在用户代理字符串中包含
-Windows XP 而非 Windows NT 5.1。为了与其他浏览器更兼容，Opera 7 开始包含正式
-的操作系统版本，而非解析后的版本。
 
-pera 10 对代理字符串进行了修改。现在的格式是：
-Opera/9.80 (操作系统或 CPU; 加密类型; 语言) Presto/Presto 版本号 Version/版本号
-注意，初始的版本号 Opera/9.80 是固定不变的。实际并没有 Opera 9.8，但工程师们担心写得不好的
-浏览器嗅探脚本会将 Opera/10.0 错误的解释为 Opera 1，而不是 Opera 10。因此，Opera 10 又增加了 Presto
-记号（Presto 是 Opera 的呈现引擎）和 Version 记号，后者用以保存实际的版本号。以下是 Windows7 中
-Opera 10.63 的用户代理字符串：
-Opera/9.80 (Windows NT 6.1; U; en) Presto/2.6.30 Version/10.63
+  仅就用户代理字符串而言，Opera 应该是最有争议的一款浏览器了。Opera 默认的用户代理字符串是所有现代浏览器中最合理的——正确地标识了自身及其版本号。在 Opera 8.0 之前，其用户代理字符串采用如下格式：
+
+  **Opera/ 版本号 (操作系统或 CPU; 加密类型) [语言]**
+
+  Windows XP 中的 Opera 7.54 会显示下面的用户代理字符串：
+
+  ```
+  Opera/7.54 (Windows NT 5.1; U) [en]
+  ```
+  Opera 8 发布后，用户代理字符串的“语言”部分被移到圆括号内，以便更好地与其他浏览器匹配，如下所示：
+
+  **Opera/ 版本号 (操作系统或 CPU; 加密类型; 语言)**
+
+  Windows XP 中的 Opera 8 会显示下面的用户代理字符串：
+
+  ```
+  Opera/8.0 (Windows NT 5.1; U; en)
+  ```
+  默认情况下，Opera 会以上面这种简单的格式返回一个用户代理字符串。目前来看，Opera 也是主要浏览器中唯一一个使用产品名和版本号来完全彻底地标识自身的浏览器。可是，与其他浏览器一样，Opera 在使用自己的用户代理字符串时也遇到了问题。即使技术上正确，但因特网上仍然有不少浏览器嗅探代码，只钟情于报告 Mozilla 产品名的那些用户代理字符串。另外还有相当数量的代码则只对 IE 或Gecko 感兴趣。Opera 没有选择通过修改自身的用户代理字符串来迷惑嗅探代码，而是干脆选择通过修改自身的用户代理字符串将自身标识为一个完全不同的浏览器。
+
+  Opera 9 以后，出现了两种修改用户代理字符串的方式。一种方式是将自身标识为另外一个浏览器，如 Firefox 或者 IE。在这种方式下，用户代理字符串就如同 Firefox 或 IE 的用户代理字符串一样，只不过末尾追加了字符串 Opera 及 Opera 的版本号。下面是一个例子：
+
+  ```
+  Mozilla/5.0 (Windows NT 5.1; U; en; rv:1.8.1) Gecko/20061208 Firefox/2.0.0 Opera 9.50
+
+  Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; en) Opera 9.50
+  ```
+  第一个字符串将 Opera 9.5 标识为 Firefox 2，同时带有 Opera 版本信息。第二个字符串将 Opera 9.5标识为 IE6，也包含了 Opera 版本信息。这两个用户代理字符串可以通过针对 Firefox 或 IE 的大多数测试，不过还是为识别 Opera 留下了余地。
+
+  Opera 标识自身的另一种方式，就是把自己装扮成 Firefox 或 IE。在这种隐瞒真实身份的情况下，用户代理字符串实际上与其他浏览器返回的相同——既没有 Opera 字样，也不包含 Opera 版本信息。换句话说，在启用了身份隐瞒功能的情况下，无法将 Opera 和其他浏览器区别开来。另外，由于 Opera 喜欢在不告知用户的情况下针对站点来设置用户代理字符串，因此问题就更复杂化了。例如，打开 MyYahoo!站点（ http://my.yahoo.com ）会自动导致 Opera 将自己装扮成 Firefox。如此一来，要想识别 Opera 就难上加难了。
+
+  > 在 Opera 7 以前的版本中，Opera 会解析 Windows操作系统字符串的含义。例如， Windows NT 5.1 实际上就是 Windows XP，因此 Opera 会在用户代理字符串中包含 Windows XP 而非 Windows NT 5.1。为了与其他浏览器更兼容，Opera 7 开始包含正式的操作系统版本，而非解析后的版本。
+
+  pera 10 对代理字符串进行了修改。现在的格式是：
+
+  **Opera/9.80 (操作系统或 CPU; 加密类型; 语言) Presto/Presto 版本号 Version/版本号**
+
+  注意，初始的版本号 Opera/9.80 是固定不变的。实际并没有 Opera 9.8，但工程师们担心写得不好的浏览器嗅探脚本会将 Opera/10.0 错误的解释为 Opera 1，而不是 Opera 10。因此，Opera 10 又增加了 Presto 记号（Presto 是 Opera 的呈现引擎）和 Version 记号，后者用以保存实际的版本号。以下是 Windows7 中 Opera 10.63 的用户代理字符串：
+
+  ```
+  Opera/9.80 (Windows NT 6.1; U; en) Presto/2.6.30 Version/10.63
+  ```
 
 - #### iOS 和 Android
-移动操作系统 iOS 和 Android 默认的浏览器都基于 WebKit，而且都像它们的桌面版一样，共享相同
-的基本用户代理字符串格式。iOS 设备的基本格式如下：
-Mozilla/5.0 (平台; 加密类型; 操作系统或 CPU like Mac OS X; 语言)
-AppleWebKit/AppleWebKit 版本号 (KHTML, like Gecko) Version/浏览器版本号
-Mobile/移动版本号 Safari/Safari 版本号
-注意用于辅助确定 Mac 操作系统的 "like Mac OS X" 和额外的 Mobile 记号。一般来说，Mobile
-记号的版本号（移动版本号）没什么用，主要是用来确定 WebKit 是移动版，而非桌面版。而平台则可
-能是 "iPhone" 、 "iPod" 或 "iPad" 。例如：
-Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_0 like Mac OS X; en-us)
-AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7A341 Safari/528.16
-在 iOS 3 之前，用户代理字符串中不会出现操作系统版本号。
-Android 浏览器中的默认格式与 iOS 的格式相似，没有移动版本号（但有 Mobile 记号）。例如：
-Mozilla/5.0 (Linux; U; Android 2.2; en-us; Nexus One Build/FRF91)
-AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
-这是 Google Nexus One 手机的用户代理字符串。不过，其他 Android 设备的模式也一样。
+
+  移动操作系统 iOS 和 Android 默认的浏览器都基于 WebKit，而且都像它们的桌面版一样，共享相同的基本用户代理字符串格式。iOS 设备的基本格式如下：
+
+  **Mozilla/5.0 (平台; 加密类型; 操作系统或 CPU like Mac OS X; 语言) AppleWebKit/AppleWebKit 版本号 (KHTML, like Gecko) Version/浏览器版本号 Mobile/移动版本号 Safari/Safari 版本号**
+
+  注意用于辅助确定 Mac 操作系统的 "like Mac OS X" 和额外的 Mobile 记号。一般来说，Mobile记号的版本号（移动版本号）没什么用，主要是用来确定 WebKit 是移动版，而非桌面版。而平台则可能是 "iPhone" 、 "iPod" 或 "iPad" 。例如： 
+
+  ```
+  Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_0 like Mac OS X; enus)AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7A341 Safari/528.16
+  ```
+  在 iOS 3 之前，用户代理字符串中不会出现操作系统版本号。
+
+  Android 浏览器中的默认格式与 iOS 的格式相似，没有移动版本号（但有 Mobile 记号）。例如：
+
+  ```
+  Mozilla/5.0 (Linux; U; Android 2.2; en-us; Nexus One Build/FRF91)
+  AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+  ```
+  这是 Google Nexus One 手机的用户代理字符串。不过，其他 Android 设备的模式也一样。
 
 ### 用户代理字符串检测技术
 考虑到历史原因以及现代浏览器中用户代理字符串的使用方式，通过用户代理字符串来检测特定的
