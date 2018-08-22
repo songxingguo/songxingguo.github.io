@@ -1162,11 +1162,9 @@ alert(element.getAttribute("align")); //"left"
 
 ### 动态脚本
 
-使用 `<script>` 元素可以向页面中插入 JavaScript 代码，一种方式是通过其 src 特性包含外部文件，
-另一种方式就是用这个元素本身来包含代码。而这一节要讨论的动态脚本，指的是在页面加载时不存在
-但将来的某一时刻通过修改 DOM 动态添加的脚本。跟操作 HTML 元素一样，创建动态脚本也有两种方
-式：插入外部文件和直接插入 JavaScript 代码。
-动态加载的外部 JavaScript 文件能够立即运行，比如下面的 `<script>` 元素：
+**使用 `<script>` 元素可以向页面中插入 JavaScript 代码** ，一种方式是 **通过其 src 特性包含外部文件** ，另一种方式就是 **用这个元素本身来包含代码** 。而这一节要讨论的动态脚本，指的是在页面加载时不存在但将来的某一时刻通过修改 DOM 动态添加的脚本。跟操作 HTML 元素一样，创建动态脚本也有两种方式：**插入外部文件** 和 **直接插入 JavaScript 代码** 。
+
+**动态加载的外部 JavaScript 文件能够立即运行** ，比如下面的 `<script>` 元素：
 
 ```html
 <script type="text/javascript" src="client.js"></script>
@@ -1179,17 +1177,14 @@ script.type = "text/javascript";
 script.src = "client.js";
 document.body.appendChild(script);
 ```
-
-显然，这里的 DOM 代码如实反映了相应的 HTML 代码。不过，在执行最后一行代码把 `<script>`
-元素添加到页面中之前，是不会下载外部文件的。也可以把这个元素添加到 <head> 元素中，效果相同。
-整个过程可以使用下面的函数来封装：
+显然，这里的 DOM 代码如实反映了相应的 HTML 代码。不过，**在执行最后一行代码把 `<script>` 元素添加到页面中之前** ，**是不会下载外部文件的** 。也可以把这个元素添加到 `<head>` 元素中，效果相同。整个过程可以使用下面的函数来封装：
   
 ```js
 function loadScript(url){
-var script = document.createElement("script");
-script.type = "text/javascript";
-script.src = url;
-document.body.appendChild(script);
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = url;
+  document.body.appendChild(script);
 }
 ```
 然后，就可以通过调用这个函数来加载外部的 JavaScript 文件了：
@@ -1197,8 +1192,7 @@ document.body.appendChild(script);
 ```
 loadScript("client.js");
 ```
-加载完成后，就可以在页面中的其他地方使用这个脚本了。问题只有一个：怎么知道脚本加载完成
-呢？遗憾的是，并没有什么标准方式来探知这一点。不过，与此相关的一些事件倒是可以派上用场，但
+加载完成后，就可以在页面中的其他地方使用这个脚本了。问题只有一个：怎么知道脚本加载完成呢？遗憾的是，并没有什么标准方式来探知这一点。不过，与此相关的一些事件倒是可以派上用场，但
 要取决于所用的浏览器，详细讨论请见第 13 章。
 另一种指定 JavaScript 代码的方式是行内方式，如下面的例子所示：
 
