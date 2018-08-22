@@ -1399,8 +1399,12 @@ row2.appendChild(cell2_2);
 //将表格添加到文档主体中
 document.body.appendChild(table);
 ```
+<<<<<<< HEAD
 显然，DOM代码很长，还有点不太好懂。为了方便构建表格，HTML DOM 还为 `<table>` 、 `<tbody>` 和 `<tr>` 元素添加了一些属性和方法。
 
+=======
+显然，DOM代码很长，还有点不太好懂。为了方便构建表格，HTML DOM 还为 `<table>` 、 `<tbody>`和 `<tr>` 元素添加了一些属性和方法。
+>>>>>>> 7a80af9ded4afdfd444502cd7d144f39ec511daa
 为 `<table>` 元素添加的属性和方法如下。
 
 - caption ：保存着对 `<caption>` 元素（如果有）的指针。
