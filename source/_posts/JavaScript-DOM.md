@@ -1013,20 +1013,23 @@ div.firstChild.nodeValue = "Some <strong>other</strong> message";
   在这个例子中，包含 "Hello world!" 的文本节点被分割为两个文本节点，从位置 5 开始。位置 5 是 "Hello" 和 "world!" 之间的空格，因此原来的文本节点将包含字符串 "Hello" ，而新文本节点将包含文本 "world!" （包含空格）。**分割文本节点是从文本节点中提取数据的一种常用 DOM 解析技术** 。
 
 ###  Comment 类型
-注释在 DOM 中是通过 Comment 类型来表示的。 Comment 节点具有下列特征：
+
+**注释在 DOM 中是通过 Comment 类型来表示的** 。 Comment 节点具有下列特征：
+
 - nodeType 的值为 8；
 - nodeName 的值为 "#comment" ；
 - nodeValue 的值是注释的内容；
 - parentNode 可能是 Document 或 Element ；
 -  不支持（没有）子节点。
-Comment 类型与 Text 类型继承自相同的基类，因此它拥有除 splitText() 之外的所有字符串操
-作方法。与 Text 类型相似，也可以通过 nodeValue 或 data 属性来取得注释的内容。
+
+**Comment 类型 与 Text 类型继承自相同的基类** ，因此 **它拥有除 splitText() 之外的所有字符串操作方法** 。**与 Text 类型相似** ，**也可以通过 nodeValue 或 data 属性来取得注释的内容** 。
+
 注释节点可以通过其父节点来访问，以下面的代码为例。
 
 ```html
 <div id="myDiv"><!--A comment --></div>
 ```
-在此，注释节点是 <div> 元素的一个子节点，因此可以通过下面的代码来访问它。
+在此，注释节点是 `<div>` 元素的一个子节点，因此可以通过下面的代码来访问它。
   
 ```js
 var div = document.getElementById("myDiv");
@@ -1034,138 +1037,112 @@ var comment = div.firstChild;
 alert(comment.data); //"A comment"
 ```
 
-另外，使用 document.createComment() 并为其传递注释文本也可以创建注释节点，如下面的例
-子所示。
+另外，使用 **document.createComment()** 并为其 **传递注释文本** 也 **可以创建注释节点** ，如下面的例子所示。
+
+```js
 var comment = document.createComment("A comment ");
-显然，开发人员很少会创建和访问注释节点，因为注释节点对算法鲜有影响。此外，浏览器也不会
-识别位于 `</html>` 标签后面的注释。如果要访问注释节点，一定要保证它们是 `<html>` 元素的后代（即
-位于 `<html>` 和 `</html>` 之间）。
-在 Firefox、Safari、Chrome 和 Opera 中，可以访问 Comment 类型的构造函数和
-原型。在 IE8 中，注释节点被视作标签名为 "!" 的元素。也就是说，使用
-getElementsByTagName() 可以取得注释节点。尽管 IE9 没有把注释当成元素，但
-它仍然通过一个名为 HTMLCommentElement 的构造函数来表示注释。
+```
+显然，开发人员很少会创建和访问注释节点，因为注释节点对算法鲜有影响。此外，浏览器也不会识别位于 `</html>` 标签后面的注释。**如果要访问注释节点** ，**一定要保证它们是 `<html>` 元素的后代** （即位于 `<html>` 和 `</html>` 之间）。
+
+> 在 Firefox、Safari、Chrome 和 Opera 中，可以访问 Comment 类型的构造函数和原型。在 IE8 中，注释节点被视作标签名为 "!" 的元素。也就是说，使用 getElementsByTagName() 可以取得注释节点。尽管 IE9 没有把注释当成元素，但它仍然通过一个名为 HTMLCommentElement 的构造函数来表示注释。
 
 ###  CDATASection 类型
 
-CDATASection 类型只针对基于 XML 的文档，表示的是 CDATA 区域。与 Comment 类似，
-CDATASection 类型继承自 Text 类型，因此拥有除 splitText() 之外的所有字符串操作方法。
-CDATASection 节点具有下列特征：
+**CDATASection 类型只针对基于 XML 的文档** ，**表示的是 CDATA 区域** 。**与 Comment 类似，CDATASection 类型继承自 Text 类型** ，**因此拥有除 splitText() 之外的所有字符串操作方法** 。CDATASection 节点具有下列特征：
+
 - nodeType 的值为 4；
 - nodeName 的值为 "#cdata-section" ；
 - nodeValue 的值是 CDATA 区域中的内容；
 - parentNode 可能是 Document 或 Element ；
 -  不支持（没有）子节点。
-CDATA 区域只会出现在 XML 文档中，因此多数浏览器都会把 CDATA 区域错误地解析为 Comment
-或 Element 。以下面的代码为例：
+
+**CDATA 区域只会出现在 XML 文档中** ，因此 **多数浏览器都会把 CDATA 区域错误地解析为 Comment 或 Element** 。以下面的代码为例：
 
 ```html
 <div id="myDiv"><![CDATA[This is some content.]]></div>
 ```
-这个例子中的 `<div>` 元素应该包含一个 CDATASection 节点。可是，四大主流浏览器无一能够这样
-解析它。即使对于有效的 XHTML 页面，浏览器也没有正确地支持嵌入的 CDATA 区域。
-在真正的 XML 文档中，可以使用 document.createCDataSection() 来创建 CDATA 区域，只需
-为其传入节点的内容即可。
+这个例子中的 `<div>` 元素应该包含一个 CDATASection 节点。可是，四大主流浏览器无一能够这样解析它。**即使对于有效的 XHTML 页面，浏览器也没有正确地支持嵌入的 CDATA 区域** 。
+
+在 **真正的 XML 文档** 中，可以 **使用 document.createCDataSection() 来创建 CDATA 区域** ，**只需为其传入节点的内容即可** 。
+
 在 Firefox、Safari、Chrome 和 Opera 中，可以访问 CDATASection 类型的构造函
 数和原型。IE9 及之前版本不支持这个类型。
   
 ###  DocumentType 类型
 
-DocumentType 类型在 Web 浏览器中并不常用，仅有 Firefox、Safari 和 Opera 支持它
-（ Chrome 4.0 也支持 DocumentType 类型。） 。
-DocumentType 包含着与文档的 doctype 有关的所有信息，它具有下列特征：
+**DocumentType 类型在 Web 浏览器中并不常用** ，仅有**Firefox**、**Safari** 和 **Opera** 支持它（ Chrome 4.0 也支持 DocumentType 类型。） 。**DocumentType 包含着与文档的 doctype 有关的所有信息** ，它具有下列特征：
+
 - nodeType 的值为 10；
 - nodeName 的值为 doctype 的名称；
 - nodeValue 的值为 null ；
 - parentNode 是 Document ；
 -  不支持（没有）子节点。
-在 DOM1 级中， DocumentType 对象不能动态创建，而只能通过解析文档代码的方式来创建。支
-持 它 的 浏 览 器 会 把 DocumentType 对 象 保 存 在 document.doctype 中 。 DOM1 级 描 述 了
-DocumentType 对象的 3 个属性： name 、 entities 和 notations 。其中， name 表示文档类型的名称；
-entities 是由文档类型描述的实体的 NamedNodeMap 对象； notations 是由文档类型描述的符号的
-NamedNodeMap 对象。通常，浏览器中的文档使用的都是 HTML 或 XHTML 文档类型，因而 entities
-和 notations 都是空列表（列表中的项来自行内文档类型声明）。但不管怎样，只有 name 属性是有用
-的。这个属性中保存的是文档类型的名称，也就是出现在 <!DOCTYPE 之后的文本。以下面严格型 HTML
-4.01 的文档类型声明为例：
+
+在 **DOM1 级** 中， **DocumentType 对象不能动态创建** ，而 **只能通过解析文档代码的方式来创建** 。**支持它的浏览器会把 DocumentType 对象保存在document.doctype 中** 。 DOM1级描述了 DocumentType 对象的 3 个属性： **name** 、 **entities** 和 **notations** 。其中， **name 表示文档类型的名称** ；**entities 是由文档类型描述的实体的 NamedNodeMap 对 **； **notations 是由文档类型描述的符号的 NamedNodeMap 对象** 。通常，浏览器中的文档使用的都是 HTML 或 XHTML 文档类型，因而 entities 和 notations 都是空列表（列表中的项来自行内文档类型声明）。但不管怎样，只有 name 属性是有用的。**这个属性中保存的是文档类型的名称** ，**也就是出现在 <!DOCTYPE 之后的文本** 。以下面严格型 HTML 4.01 的文档类型声明为例：
 
 ```html
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-"http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 ```
 DocumentType 的 name 属性中保存的就是 "HTML" ：
 
 ```js
 alert(document.doctype.name); //"HTML"
 ```
-IE 及更早版本不支持 DocumentType ，因此 document.doctype 的值始终都等于 null 。可是，
-这些浏览器会把文档类型声明错误地解释为注释，并且为它创建一个注释节点。IE9 会给
-document.doctype 赋正确的对象 ， 但仍然不支持访问 DocumentType 类型。
+IE 及更早版本不支持 DocumentType ，因此 document.doctype 的值始终都等于 null 。可是，这些浏览器会把文档类型声明错误地解释为注释，并且为它创建一个注释节点。IE9 会给 document.doctype 赋正确的对象 ，但仍然不支持访问 DocumentType 类型。
 
 ###  DocumentFragment 类型
-在所有节点类型中，只有 DocumentFragment 在文档中没有对应的标记。DOM 规定文档片段
-（document fragment）是一种“轻量级”的文档，可以包含和控制节点，但不会像完整的文档那样占用
-额外的资源。 DocumentFragment 节点具有下列特征：
+
+在所有节点类型中，**只有 DocumentFragment 在文档中没有对应的标记** 。**DOM 规定文档片段（document fragment）是一种“轻量级”的文档** ，**可以包含和控制节点** ，**但不会像完整的文档那样占用额外的资源** 。 DocumentFragment 节点具有下列特征：
+
 - nodeType 的值为 11；
 - nodeName 的值为 "#document-fragment" ；
 - nodeValue 的值为 null ；
 - parentNode 的值为 null ；
--  子节点可以是 Element 、 ProcessingInstruction 、 Comment 、 Text 、 CDATASection 或
-EntityReference 。
-虽然不能把文档片段直接添加到文档中，但可以将它作为一个“仓库”来使用，即可以在里面保存将
-来可能会添加到文档中的节点。要创建文档片段，可以使用 document.createDocumentFragment() 方
-法，如下所示：
+-  子节点可以是 Element 、 ProcessingInstruction 、 Comment 、 Text 、 CDATASection 或EntityReference 。
+
+虽然 **不能把文档片段直接添加到文档** 中，但 **可以将它作为一个“仓库”来使用** ，即 **可以在里面保存将来可能会添加到文档中的节点** 。要 **创建文档片段** ，可以使用 **document.createDocumentFragment() 方法** ，如下所示：
 
 ```js
 var fragment = document.createDocumentFragment();
 ```
-
-文档片段继承了 Node 的所有方法，通常用于执行那些针对文档的 DOM操作。如果将文档中的节
-点添加到文档片段中，就会从文档树中移除该节点，也不会从浏览器中再看到该节点。添加到文档片段
-中的新节点同样也不属于文档树。可以通过 appendChild() 或 insertBefore() 将文档片段中内容添
-加到文档中。在将文档片段作为参数传递给这两个方法时，实际上只会将文档片段的所有子节点添加到
-相应位置上；文档片段本身永远不会成为文档树的一部分。来看下面的 HTML 示例代码：
+**文档片段继承了 Node 的所有方法** ，**通常用于执行那些针对文档的 DOM操作** 。如果将文档中的节点添加到文档片段中，就会从文档树中移除该节点，也不会从浏览器中再看到该节点。**添加到文档片段中的新节点同样也不属于文档树** 。**可以通过 appendChild() 或 insertBefore() 将文档片段中内容添加到文档中** 。在将文档片段作为参数传递给这两个方法时，实际上 **只会将文档片段的所有子节点添加到相应位置上** ；**文档片段本身永远不会成为文档树的一部分** 。来看下面的 HTML 示例代码：
 
 ```js
 <ul id="myList"></ul>
 ```
-假设我们想为这个 `<ul>` 元素添加 3 个列表项。如果逐个地添加列表项，将会导致浏览器反复渲染（呈
-现）新信息。为避免这个问题，可以像下面这样使用一个文档片段来保存创建的列表项，然后再一次性
-将它们添加到文档中。
+假设我们想为这个 `<ul>` 元素添加 3 个列表项。**如果逐个地添加列表项** ，**将会导致浏览器反复渲染（呈现）新信息** 。为避免这个问题，**可以像下面这样使用一个文档片段来保存创建的列表项，然后再一次性将它们添加到文档中** 。
 
 ```js
 var fragment = document.createDocumentFragment();
 var ul = document.getElementById("myList");
 var li = null;
+
 for (var i=0; i < 3; i++){
-li = document.createElement("li");
-li.appendChild(document.createTextNode("Item " + (i+1)));
-fragment.appendChild(li);
+  li = document.createElement("li");
+  li.appendChild(document.createTextNode("Item " + (i+1)));
+  fragment.appendChild(li);
 }
+
 ul.appendChild(fragment);
 ```
-在这个例子中，我们先创建一个文档片段并取得了对 `<ul>` 元素的引用。然后，通过 for 循环创建
-3 个列表项，并通过文本表示它们的顺序。为此，需要分别创建 `<li>` 元素、创建文本节点，再把文本节
-点添加到 `<li>` 元素。接着使用 appendChild() 将 `<li>` 元素添加到文档片段中。循环结束后，再调用
-appendChild() 并传入文档片段，将所有列表项添加到 `<ul>` 元素中。此时，文档片段的所有子节点都
-被删除并转移到了 `<ul>` 元素中。
+在这个例子中，我们先创建一个文档片段并取得了对 `<ul>` 元素的引用。然后，通过 for 循环创建 3 个列表项，并通过文本表示它们的顺序。为此，需要分别创建 `<li>` 元素、创建文本节点，再把文本节点添加到 `<li>` 元素。接着使用 appendChild() 将 `<li>` 元素添加到文档片段中。循环结束后，再调用 appendChild() 并传入文档片段，将所有列表项添加到 `<ul>` 元素中。此时，**文档片段的所有子节点都被删除并转移到了 `<ul>` 元素中** 。
 
 ### Attr 类型
 
-元素的特性在 DOM 中以 Attr 类型来表示。在所有浏览器中（包括 IE8），都可以访问 Attr 类型
-的构造函数和原型。从技术角度讲，特性就是存在于元素的 attributes 属性中的节点。特性节点具有
-下列特征：
+**元素的特性在 DOM 中以 Attr 类型来表示** 。在所有浏览器中（包括 IE8），都 可以 **访问 Attr 类型的构造函数和原型** 。从技术角度讲，**特性就是存在于元素的 attributes 属性中的节点** 。特性节点具有下列特征：
+
 - nodeType 的值为 2；
 - nodeName 的值是特性的名称；
 - nodeValue 的值是特性的值；
 - parentNode 的值为 null ；
 -  在 HTML 中不支持（没有）子节点；
 -  在 XML 中子节点可以是 Text 或 EntityReference 。
-尽管它们也是节点，但特性却不被认为是 DOM 文档树的一部分。开发人员最常使用的是 getAttribute() 、 setAttribute() 和 remveAttribute() 方法，很少直接引用特性节点。
 
-Attr 对象有 3 个属性： name 、 value 和 specified 。其中， name 是特性名称（与 nodeName 的
-值相同）， value 是特性的值（与 nodeValue 的值相同），而 specified 是一个布尔值，用以区别特
-性是在代码中指定的，还是默认的。
-使用 document.createAttribute() 并传入特性的名称可以创建新的特性节点。例如，要为元素
-添加 align 特性，可以使用下列代码：
+尽管它们也是节点，但特性却不被认为是 DOM 文档树的一部分。开发人员最常使用的是 **getAttribute()** 、 **setAttribute()** 和 **remveAttribute()** 方法，很少直接引用特性节点。
+
+Attr 对象有 3 个属性：**name**、**value** 和 **specified** 。其中，** name 是特性名称**（与 nodeName 的值相同）， **value 是特性的值**（与 nodeValue 的值相同），而 **specified 是一个布尔值** ，**用以区别特性是在代码中指定的，还是默认的** 。
+
+使用 **document.createAttribute()** 并 **传入特性的名称可以创建新的特性节点** 。例如，**要为元素添加 align 特性** ，可以使用下列代码：
 
 ```js
 var attr = document.createAttribute("align");
@@ -1175,13 +1152,9 @@ alert(element.attributes["align"].value); //"left"
 alert(element.getAttributeNode("align").value); //"left"
 alert(element.getAttribute("align")); //"left"
 ```
-这个例子创建了一个新的特性节点。由于在调用 createAttribute() 时已经为 name 属性赋了值，
-所以后面就不必给它赋值了。之后，又把 value 属性的值设置为 "left" 。为了将新创建的特性添加到
-元素中，必须使用元素的 setAttributeNode() 方法。添加特性之后，可以通过下列任何方式访问该
-特性： attributes 属性、 getAttributeNode() 方法以及 getAttribute() 方法。其中， attributes
-和 getAttributeNode() 都会返回对应特性的 Attr 节点，而 getAttribute() 则只返回特性的值。
-> 我们并不建议直接访问特性节点。实际上，使用 getAttribute() 、 setAttribute()
-和 removeAttribute() 方法远比操作特性节点更为方便。
+这个例子创建了一个新的特性节点。由于在调用 createAttribute() 时已经为 name 属性赋了值，所以后面就不必给它赋值了。之后，又把 value 属性的值设置为 "left" 。为了将新创建的特性添加到元素中，必须使用元素的 setAttributeNode() 方法。添加特性之后，可以通过下列任何方式访问该特性： attributes 属性、 getAttributeNode() 方法以及 getAttribute() 方法。其中，**attributes 和 getAttributeNode() 都会返回对应特性的 Attr 节点** ，而 **getAttribute() 则只返回特性的值** 。
+
+> 我们并 **不建议直接访问特性节点** 。实际上，**使用 getAttribute() 、 setAttribute()和 removeAttribute() 方法远比操作特性节点更为方便** 。
 
 ## DOM 操作技术
 
