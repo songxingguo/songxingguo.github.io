@@ -881,40 +881,38 @@ div.removeAttribute("class");
   
 ###  Text 类型
 
-文本节点由 Text 类型表示，包含的是可以照字面解释的纯文本内容。纯文本中可以包含转义后的
-HTML 字符，但不能包含 HTML 代码。 Text 节点具有以下特征：
+**文本节点由 Text 类型表示** ，**包含的是可以照字面解释的纯文本内容**v。**纯文本** 中 **可以包含转义后的 HTML 字符** ，但 **不能包含 HTML 代码** 。 Text 节点具有以下特征：
+
 - nodeType 的值为 3；
 - nodeName 的值为 "#text" ；
 - nodeValue 的值为节点所包含的文本；
 - parentNode 是一个 Element ；
 -  不支持（没有）子节点。
-可以通过 nodeValue 属性或 data 属性访问 Text 节点中包含的文本，这两个属性中包含的值相
-同。对 nodeValue 的修改也会通过 data 反映出来，反之亦然。使用下列方法可以操作节点中的文本。
+
+可以通过 nodeValue 属性或 data 属性访问 Text 节点中包含的文本，这两个属性中包含的值相同。对 nodeValue 的修改也会通过 data 反映出来，反之亦然。使用下列方法可以操作节点中的文本。
+
 - appendData(text) ：将 text 添加到节点的末尾。
 - deleteData(offset, count) ：从 offset 指定的位置开始删除 count 个字符。
 - insertData(offset, text) ：在 offset 指定的位置插入 text 。
-- replaceData(offset, count, text) ：用 text 替换从 offset 指定的位置开始到 offset+
-count 为止处的文本。
+- replaceData(offset, count, text) ：用 text 替换从 offset 指定的位置开始到 offset+count 为止处的文本。
 - splitText(offset) ：从 offset 指定的位置将当前文本节点分成两个文本节点。
-- substringData(offset, count) ：提取从 offset 指定的位置开始到 offset+count 为止
-处的字符串。
-除了这些方法之外，文本节点还有一个 length 属性，保存着节点中字符的数目。而且，
-nodeValue.length 和 data.length 中也保存着同样的值。
-在默认情况下，每个可以包含内容的元素最多只能有一个文本节点，而且必须确实有内容存在。来
-看几个例子。
+- substringData(offset, count) ：提取从 offset 指定的位置开始到 offset+count 为止处的字符串。
+
+除了这些方法之外，文本节点还有一个 **length 属性** ，**保存着节点中字符的数目** 。而且，**nodeValue.length** 和 **data.length** 中 **也保存着同样的值** 。
+
+在默认情况下，**每个可以包含内容的元素最多只能有一个文本节点** ，**而且必须确实有内容存在** 。来看几个例子。
 
 ```html
 <!-- 没有内容，也就没有文本节点 -->
 <div></div>
+
 <!-- 有空格，因而有一个文本节点 -->
 <div> </div>
+
 <!-- 有内容，因而有一个文本节点 -->
 <div>Hello World!</div>
 ```
-上面代码给出的第一个 <div> 元素没有内容，因此也就不存在文本节点。开始与结束标签之间只要
-存在内容，就会创建一个文本节点。因此，第二个 <div> 元素中虽然只包含一个空格，但仍然有一个文
-本子节点；文本节点的 nodeValue 值是一个空格。第三个 <div> 也有一个文本节点，其 nodeValue 的
-值为 "Hello World!" 。可以使用以下代码来访问这些文本子节点。
+上面代码给出的第一个 `<div>` 元素没有内容，因此也就不存在文本节点。**开始与结束标签之间只要存在内容** ，**就会创建一个文本节点** 。因此，第二个 `<div>` 元素中虽然 **只包含一个空格** ，但 **仍然有一个文本子节点** ；**文本节点的 nodeValue 值是一个空格** 。第三个 `<div>` 也有一个文本节点，其 **nodeValue 的值为 "Hello World!"** 。可以使用以下代码来访问这些文本子节点。
   
 ```js
 var textNode = div.firstChild; //或者 div.childNodes[0]
@@ -924,101 +922,96 @@ var textNode = div.firstChild; //或者 div.childNodes[0]
 ```js
 div.firstChild.nodeValue = "Some other message";
 ```
-如果这个文本节点当前存在于文档树中，那么修改文本节点的结果就会立即得到反映。另外，在修
-改文本节点时还要注意，此时的字符串会经过 HTML（或 XML，取决于文档类型）编码。换句话说，
-小于号、大于号或引号都会像下面的例子一样被转义。
+如果 **这个文本节点当前存在于文档树** 中，那么 **修改文本节点的结果就会立即得到反映** 。另外，**在修改文本节点时还要注意** ，**此时的字符串会经过 HTML（或 XML，取决于文档类型）编码** 。换句话说，**小于号、大于号或引号都会像下面的例子一样被转义** 。
 
 ```js
 //输出结果是"Some &lt;strong&gt;other&lt;/strong&gt; message"
 div.firstChild.nodeValue = "Some <strong>other</strong> message";
 ```
-应该说，这是在向 DOM 文档中插入文本之前，先对其进行 HTML 编码的一种有效方式。
-在 IE8、Firefox、Safari、Chrome和 Opera中，可以通过脚本访问 Text 类型的构造
-函数和原型。
+应该说，这是 **在向 DOM 文档中插入文本之前** ，**先对其进行 HTML 编码的一种有效方式** 。在 IE8、Firefox、Safari、Chrome和 Opera中，可以通过脚本访问 Text 类型的构造函数和原型。
 
 - #### 创建文本节点
-可以使用 document.createTextNode() 创建新文本节点，这个方法接受一个参数——要插入节点
-中的文本。与设置已有文本节点的值一样，作为参数的文本也将按照 HTML 或 XML 的格式进行编码。
 
-```js
-var textNode = document.createTextNode("<strong>Hello</strong> world!");
-```
-在创建新文本节点的同时，也会为其设置 ownerDocument 属性。不过，除非把新节点添加到文档
-树中已经存在的节点中，否则我们不会在浏览器窗口中看到新节点。下面的代码会创建一个 `<div>` 元素
-并向其中添加一条消息。
+  可以使用 **document.createTextNode() 创建新文本节点** ，这个方法接受一个参数—— **要插入节点中的文本** 。与设置已有文本节点的值一样，**作为参数的文本也将按照 HTML 或 XML 的格式进行编码** 。
 
-```js
-var element = document.createElement("div");
-element.className = "message";
-var textNode = document.createTextNode("Hello world!");
-element.appendChild(textNode);
-document.body.appendChild(element);
-```
-这个例子创建了一个新 `<div>` 元素并为它指定了值为 "message" 的 class 特性。然后，又创建了
-一个文本节点，并将其添加到前面创建的元素中。最后一步，就是将这个元素添加到了文档的 `<body>`
-元素中，这样就可以在浏览器中看到新创建的元素和文本节点了。
+  ```js
+  var textNode = document.createTextNode("<strong>Hello</strong> world!");
+  ```
+  在 **创建新文本节点** 的同时，**也会为其设置 ownerDocument 属性** 。不过，**除非把新节点添加到文档树中已经存在的节点中** ，**否则我们不会在浏览器窗口中看到新节点**。下面的代码会创建一个 `<div>` 元素并向其中添加一条消息。
 
-一般情况下，每个元素只有一个文本子节点。不过，在某些情况下也可能包含多个文本子节点，如
-下面的例子所示。
+  ```js
+  var element = document.createElement("div");
+  element.className = "message";
 
-```js
-var element = document.createElement("div");
-element.className = "message";
-var textNode = document.createTextNode("Hello world!");
-element.appendChild(textNode);
-var anotherTextNode = document.createTextNode("Yippee!");
-element.appendChild(anotherTextNode);
-document.body.appendChild(element);
-```
-如果两个文本节点是相邻的同胞节点，那么这两个节点中的文本就会连起来显示，中间不会有空格。
+  var textNode = document.createTextNode("Hello world!");
+  element.appendChild(textNode);
+
+  document.body.appendChild(element);
+  ```
+  这个例子创建了一个新 `<div>` 元素并为它指定了值为 "message" 的 class 特性。然后，又创建了一个文本节点，并将其添加到前面创建的元素中。最后一步，就是将这个元素添加到了文档的 `<body>` 元素中，这样就可以在浏览器中看到新创建的元素和文本节点了。
+
+  **一般情况下** ，**每个元素只有一个文本子节点** 。不过，**在某些情况下也可能包含多个文本子节点** ，如下面的例子所示。
+
+  ```js
+  var element = document.createElement("div");
+  element.className = "message";
+
+  var textNode = document.createTextNode("Hello world!");
+  element.appendChild(textNode);
+
+  var anotherTextNode = document.createTextNode("Yippee!");
+  element.appendChild(anotherTextNode);
+
+  document.body.appendChild(element);
+  ```
+  如果 **两个文本节点是相邻的同胞节点** ，那么 **这两个节点中的文本就会连起来显示，中间不会有空格** 。
 
 - #### 规范化文本节点
 
-DOM 文档中存在相邻的同胞文本节点很容易导致混乱，因为分不清哪个文本节点表示哪个字符串。
-另外，DOM 文档中出现相邻文本节点的情况也不在少数，于是就催生了一个能够将相邻文本节点合并
-的方法。这个方法是由 Node 类型定义的（因而在所有节点类型中都存在），名叫 normalize() 。如果
-在一个包含两个或多个文本节点的父元素上调用 normalize() 方法，则会将所有文本节点合并成一个
-节点，结果节点的 nodeValue 等于将合并前每个文本节点的 nodeValue 值拼接起来的值。来看一个
-例子。
+  **DOM 文档中存在相邻的同胞文本节点很容易导致混乱** ，因为分不清哪个文本节点表示哪个字符串。另外，DOM 文档中出现相邻文本节点的情况也不在少数，于是就催生了一个 **能够将相邻文本节点合并的方法** 。这个方法是由 **Node 类型定义的**（因而在所有节点类型中都存在），名叫 **normalize()** 。**如果在一个包含两个或多个文本节点的父元素上调用 normalize() 方法** ，**则会将所有文本节点合并成一个节点** ，**结果节点的 nodeValue 等于将合并前每个文本节点的 nodeValue 值拼接起来的值** 。来看一个例子。
 
-```js
-var element = document.createElement("div");
-element.className = "message";
-var textNode = document.createTextNode("Hello world!");
-element.appendChild(textNode);
-var anotherTextNode = document.createTextNode("Yippee!");
-element.appendChild(anotherTextNode);
-document.body.appendChild(element);
-alert(element.childNodes.length); //2
-element.normalize();
-alert(element.childNodes.length); //1
-alert(element.firstChild.nodeValue); // "Hello world!Yippee!"
-```
-浏览器在解析文档时永远不会创建相邻的文本节点。这种情况只会作为执行 DOM操作的结果出现。
-> 在某些情况下，执行 normalize() 方法会导致 IE6 崩溃。不过，在 IE6 后来的
-补丁中，可能已经修复了这个问题（未经证实）。IE7 及更高版本中不存在这个问题。
+  ```js
+  var element = document.createElement("div");
+  element.className = "message";
+
+  var textNode = document.createTextNode("Hello world!");
+  element.appendChild(textNode);
+
+  var anotherTextNode = document.createTextNode("Yippee!");
+  element.appendChild(anotherTextNode);
+
+  document.body.appendChild(element);
+
+  alert(element.childNodes.length); //2
+
+  element.normalize();
+  alert(element.childNodes.length); //1
+  alert(element.firstChild.nodeValue); // "Hello world!Yippee!"
+  ```
+  **浏览器在解析文档时永远不会创建相邻的文本节点** 。这种情况只会作为执行 DOM 操作的结果出现。
+
+  > 在某些情况下，执行 normalize() 方法会导致 IE6 崩溃。不过，在 IE6 后来的补丁中，可能已经修复了这个问题（未经证实）。IE7 及更高版本中不存在这个问题。
 
 - #### 分割文本节点
-Text 类型提供了一个作用与 normalize() 相反的方法： splitText() 。这个方法会将一个文本节
-点分成两个文本节点，即按照指定的位置分割 nodeValue 值。原来的文本节点将包含从开始到指定位
-置之前的内容，新文本节点将包含剩下的文本。这个方法会返回一个新文本节点，该节点与原节点的
-parentNode 相同。来看下面的例子。
 
-```js
-var element = document.createElement("div");
-element.className = "message";
-var textNode = document.createTextNode("Hello world!");
-element.appendChild(textNode);
-document.body.appendChild(element);
-var newNode = element.firstChild.splitText(5);
-alert(element.firstChild.nodeValue); //"Hello"
-alert(newNode.nodeValue); //" world!"
-alert(element.childNodes.length); //2
-```
-在这个例子中，包含 "Hello world!" 的文本节点被分割为两个文本节点，从位置 5 开始。位置 5
-是 "Hello" 和 "world!" 之间的空格，因此原来的文本节点将包含字符串 "Hello" ，而新文本节点将包
-含文本 "world!" （包含空格）。
-分割文本节点是从文本节点中提取数据的一种常用 DOM解析技术。
+  **Text 类型提供了一个作用与 normalize() 相反的方法** ： **splitText()** 。这个方法会 **将一个文本节点分成两个文本节点** ，即 **按照指定的位置分割 nodeValue 值** 。**原来的文本节点将包含从开始到指定位置之前的内容** ，**新文本节点将包含剩下的文本** 。这个方法会 **返回一个新文本节点** ，**该节点与原节点的 parentNode 相同** 。来看下面的例子。
+
+  ```js
+  var element = document.createElement("div");
+  element.className = "message";
+
+  var textNode = document.createTextNode("Hello world!");
+  element.appendChild(textNode);
+
+  document.body.appendChild(element);
+
+  var newNode = element.firstChild.splitText(5);
+  alert(element.firstChild.nodeValue); //"Hello"
+  alert(newNode.nodeValue); //" world!"
+  alert(element.childNodes.length); //2
+  ```
+  在这个例子中，包含 "Hello world!" 的文本节点被分割为两个文本节点，从位置 5 开始。位置 5 是 "Hello" 和 "world!" 之间的空格，因此原来的文本节点将包含字符串 "Hello" ，而新文本节点将包含文本 "world!" （包含空格）。**分割文本节点是从文本节点中提取数据的一种常用 DOM 解析技术** 。
+
 ###  Comment 类型
 注释在 DOM 中是通过 Comment 类型来表示的。 Comment 节点具有下列特征：
 - nodeType 的值为 8；
