@@ -228,394 +228,330 @@ if (someNode.nodeType == 1){ // 适用于所有浏览器
   我们要介绍的最后一个方法是 **normalize()** ，这个方法唯一的 **作用就是处理文档树中的文本节点** 。由于解析器的实现或 DOM 操作等原因，可能会出现文本节点不包含文本，或者接连出现两个文本节点的情况。当在某个节点上调用这个方法时，就会在该节点的后代节点中查找上述两种情况。如果找到了空文本节点，则删除它；如果找到相邻的文本节点，则将它们合并为一个文本节点。本章后面还将进一步讨论这个方法。
 
 ###  Document 类型
-JavaScript 通过 Document 类型表示文档。在浏览器中， document 对象是 HTMLDocument （继承
-自 Document 类型）的一个实例，表示整个 HTML 页面。而且， document 对象是 window 对象的一个
-属性，因此可以将其作为全局对象来访问。 Document 节点具有下列特征：
+
+**JavaScript 通过 Document 类型表示文档**。在浏览器中， **document 对象** 是 **HTMLDocument （继承自 Document 类型）的一个实例** ，表示 **整个 HTML 页面** 。而且， **document 对象是 window 对象的一个属性** ，因此 **可以将其作为全局对象来访问** 。 Document 节点具有下列特征：
 
 - nodeType 的值为 9；
 - nodeName 的值为 "#document" ；
 - nodeValue 的值为 null ；
 - parentNode 的值为 null ；
-- ownerDocument 的值为  null ；
--  其子节点可能是一个 DocumentType （最多一个）、 Element （最多一个）、 ProcessingInstruction或 Comment 。
+- ownerDocument 的值为 null ；
+-  其子节点可能是一个 DocumentType （最多一个）、 Element （最多一个）、 ProcessingInstruction 或 Comment 。
 
-ocument 类型可以表示 HTML 页面或者其他基于 XML 的文档。不过，最常见的应用还是作为
-HTMLDocument 实例的 document 对象。通过这个文档对象，不仅可以取得与页面有关的信息，而且还
-能操作页面的外观及其底层结构。
-> 在 Firefox、Safari、Chrome 和 Opera 中，可以通过脚本访问 Document 类型的构
-造函数和原型。但在所有浏览器中都可以访问 HTMLDocument 类型的构造函数和原型，
-包括 IE8及后续版本。
+**Document 类型** 可以 **表示 HTML 页面或者其他基于 XML 的文档** 。不过，最常见的应用还是 **作为 HTMLDocument 实例的 document 对象** 。通过这个文档对象，不仅可以 **取得与页面有关的信息** ，而且还能 **操作页面的外观及其底层结构** 。
+
+> 在 Firefox、Safari、Chrome 和 Opera 中，可以通过脚本访问 Document 类型的构造函数和原型。但在所有浏览器中都可以访问 HTMLDocument 类型的构造函数和原型，包括 IE8及后续版本。
 
 - #### 文档的子节点
 
-虽然 DOM 标准规定 Document 节点的子节点可以是 DocumentType 、 Element 、 ProcessingIn-
-struction 或 Comment ，但还有两个内置的访问其子节点的快捷方式。第一个就是 documentElement
-属性，该属性始终指向 HTML 页面中的 <html> 元素。另一个就是通过 childNodes 列表访问文档元素，
-但通过 documentElement 属性则能更快捷、更直接地访问该元素。以下面这个简单的页面为例。
+  虽然 **DOM 标准规定 Document 节点的子节点** 可以是 **DocumentType** 、 **Element** 、 **ProcessingInstruction** 或 **Comment** ，但还有两个内置的访问其子节点的快捷方式。第一个就是 **documentElement属性** ，该属性始终 **指向 HTML 页面中的 <html> 元素** 。另一个就是通过 **childNodes 列表访问文档元素** ，但通过 **documentElement 属性则能更快捷、更直接地访问该元素** 。以下面这个简单的页面为例。
 
-```html
-<html>
-<body>
-</body>
-</html>
-```
-这个页面在经过浏览器解析后，其文档中只包含一个子节点，即 <html> 元素。可以通过
-documentElement 或 childNodes 列表来访问这个元素，如下所示。
+  ```html
+  <html>
+    <body>
 
-```js
-var html = document.documentElement; //取得对<html>的引用
-alert(html === document.childNodes[0]); //true
-alert(html === document.firstChild); //true
-```
-这个例子说明， documentElement 、 firstChild 和 childNodes[0] 的值相同，都指向 <html>
-元素。
-作为 HTMLDocument 的实例， document 对象还有一个 body 属性，直接指向 <body> 元素。因为开
-发人员经常要使用这个元素，所以 document.body 在 JavaScript代码中出现的频率非常高，其用法如下。
-var body = document.body; //取得对<body>的引用
-所有浏览器都支持 document.documentElement 和 document.body 属性。
-Document 另一个可能的子节点是 DocumentType 。通常将 <!DOCTYPE> 标签看成一个与文档其他
-部分不同的实体，可以通过 doctype 属性（在浏览器中是 document.doctype ）来访问它的信息。
-var doctype = document.doctype; //取得对<!DOCTYPE>的引用
-浏览器对 document.doctype 的支持差别很大，可以给出如下总结。
+    </body>
+  </html>
+  ```
+  这个页面在经过浏览器解析后，其文档中只包含一个子节点，即 `<html>` 元素。可以通过 **documentElement** 或 **childNodes** 列表来访问这个元素，如下所示。
 
--  IE8 及之前版本：如果存在文档类型声明，会将其错误地解释为一个注释并把它当作 Comment
-节点；而 document.doctype 的值始终为 null 。
--  IE9+及 Firefox：如果存在文档类型声明，则将其作为文档的第一个子节点； document.doctype
-是一个 DocumentType 节点，也可以通过 document.firstChild 或 document.childNodes[0]
-访问同一个节点。
--  Safari、Chrome和 Opera：如果存在文档类型声明，则将其解析，但不作为文档的子节点。 docu-
-ment.doctype 是一个 DocumentType 节点，但该节点不会出现在 document.childNodes 中。
+  ```js
+  var html = document.documentElement; //取得对<html>的引用
+  alert(html === document.childNodes[0]); //true
+  alert(html === document.firstChild); //true
+  ```
+  这个例子说明， **documentElement** 、 **firstChild** 和 **childNodes[0] 的值相同** ，**都指向 `<html>` 元素** 。
 
-由于浏览器对 document.doctype 的支持不一致，因此这个属性的用处很有限。
-从技术上说，出现在 <html> 元素外部的注释应该算是文档的子节点。然而，不同的浏览器在是否
-解析这些注释以及能否正确处理它们等方面，也存在很大差异。以下面简单的 HTML 页面为例。
+  作为 HTMLDocument 的实例， document 对象还有一个 body 属性，直接指向 <body> 元素。因为开发人员经常要使用这个元素，所以 document.body 在 JavaScript代码中出现的频率非常高，其用法如下。
 
-```html
-<!--第一条注释 -->
-<html>
-<body>
-</body>
-</html>
-<!--第二条注释 -->
-```
-看起来这个页面应该有 3 个子节点：注释、 <html> 元素、注释。从逻辑上讲，我们会认为
-document.childNodes 中应该包含与这 3 个节点对应的 3 项。但是，现实中的浏览器在处理位于
-<html> 外部的注释方面存在如下差异。
+  ```js
+  var body = document.body; //取得对<body>的引用
+  ```
+  所有浏览器都支持 **document.documentElement** 和 **document.body** 属性。
 
--  IE8 及之前版本、Safari 3.1 及更高版本、Opera 和 Chrome 只为第一条注释创建节点，不为第二
-条注释创建节点。结果，第一条注释就会成为 document.childNodes 中的第一个子节点。
--  IE9 及更高版本会将第一条注释创建为 document.childNodes 中的一个注释节点，也会将第
-二条注释创建为 document.childNodes 中的注释子节点。
--  Firefox 以及 Safari 3.1 之前的版本会完全忽略这两条注释。
-同样，浏览器间的这种不一致性也导致了位于 <html> 元素外部的注释没有什么用处。
-多数情况下，我们都用不着在 document 对象上调用 appendChild() 、 removeChild() 和
-replaceChild() 方法，因为文档类型（如果存在的话）是只读的，而且它只能有一个元素子节点（该
-节点通常早就已经存在了）。
+  **Document 另一个可能的子节点是 DocumentType** 。通常 **将 <!DOCTYPE> 标签看成一个与文档其他部分不同的实体** ，可以通过 **doctype 属性**（在浏览器中是 document.doctype ）来访问它的信息。
+
+  ```js
+  var doctype = document.doctype; //取得对<!DOCTYPE>的引用
+  ```
+  浏览器对 document.doctype 的支持差别很大，可以给出如下总结。
+
+  -  IE8 及之前版本：如果存在文档类型声明，会将其错误地解释为一个注释并把它当作 Comment 节点；而 document.doctype 的值始终为 null 。
+
+  -  IE9+及 Firefox：如果存在文档类型声明，则将其作为文档的第一个子节点； document.doctype 是一个 DocumentType 节点，也可以通过 document.firstChild 或 document.childNodes[0] 访问同一个节点。
+
+  -  Safari、Chrome和 Opera：如果存在文档类型声明，则将其解析，但不作为文档的子节点。 document.doctype 是一个 DocumentType 节点，但该节点不会出现在 document.childNodes 中。
+
+  由于浏览器对 document.doctype 的支持不一致，因此这个属性的用处很有限。
+
+  从技术上说，出现在 `<html>` 元素外部的注释应该算是文档的子节点。然而，**不同的浏览器在是否解析这些注释以及能否正确处理它们等方面，也存在很大差异** 。以下面简单的 HTML 页面为例。
+
+  ```html
+  <!--第一条注释 -->
+  <html>
+    <body>
+
+    </body>
+  </html>
+  <!--第二条注释 -->
+  ```
+  看起来这个页面应该有 3 个子节点：注释、 `<html>` 元素、注释。从逻辑上讲，我们会认为 document.childNodes 中应该包含与这 3 个节点对应的 3 项。但是，现实中的浏览器在处理位于 `<html>` 外部的注释方面存在如下差异。
+
+  -  IE8 及之前版本、Safari 3.1 及更高版本、Opera 和 Chrome 只为第一条注释创建节点，不为第二条注释创建节点。结果，第一条注释就会成为 document.childNodes 中的第一个子节点。
+
+  -  IE9 及更高版本会将第一条注释创建为 document.childNodes 中的一个注释节点，也会将第二条注释创建为 document.childNodes 中的注释子节点。
+
+  -  Firefox 以及 Safari 3.1 之前的版本会完全忽略这两条注释。
+
+  同样，**浏览器间的这种不一致性也导致了位于 `<html>` 元素外部的注释没有什么用处** 。
+
+  多数情况下，我们都用不着在 document 对象上调用 appendChild() 、 removeChild() 和 replaceChild() 方法，因为文档类型（如果存在的话）是只读的，而且它只能有一个元素子节点（该节点通常早就已经存在了）。
   
 - #### 文档信息
-作为 HTMLDocument 的一个实例， document 对象还有一些标准的 Document 对象所没有的属性。
-这些属性提供了 document 对象所表现的网页的一些信息。其中第一个属性就是 title ，包含着
-<title> 元素中的文本——显示在浏览器窗口的标题栏或标签页上。通过这个属性可以取得当前页面的
-标题，也可以修改当前页面的标题并反映在浏览器的标题栏中。修改 title 属性的值不会改变 <title>
-元素。来看下面的例子。
-//取得文档标题
-  
-```js
-var originalTitle = document.title;
-//设置文档标题
-document.title = "New page title";
-```
-接下来要介绍的 3 个属性都与对网页的请求有关，它们是 URL 、 domain 和 referrer 。 URL 属性
-中包含页面完整的 URL（即地址栏中显示的 URL）， domain 属性中只包含页面的域名，而 referrer
-属性中则保存着链接到当前页面的那个页面的 URL。在没有来源页面的情况下， referrer 属性中可能
-会包含空字符串。所有这些信息都存在于请求的 HTTP 头部，只不过是通过这些属性让我们能够在
-JavaScrip 中访问它们而已，如下面的例子所示。
 
-```js
-//取得完整的 URL
-var url = document.URL;
-//取得域名
-var domain = document.domain;
-//取得来源页面的 URL
-var referrer = document.referrer;
-```
-URL 与 domain 属性是相互关联的。例如，如果 document.URL 等于 http://www.wrox.com/WileyCDA/，
-那么 document.domain 就等于 www.wrox.com。
-在这 3 个属性中，只有 domain 是可以设置的。但由于安全方面的限制，也并非可以给 domain 设
-置任何值。如果 URL 中包含一个子域名，例如 p2p.wrox.com，那么就只能将 domain 设置为 "wrox.com"
-（URL 中包含 "www" ，如 www.wrox.com 时，也是如此）。不能将这个属性设置为 URL 中不包含的域，
-如下面的例子所示。
+  作为 HTMLDocument 的一个实例， document 对象还有一些标准的 Document 对象所没有的属性。这些属性提供了 document 对象所表现的网页的一些信息。其中第一个属性就是 title ，包含着 **`<title>` 元素** 中的文本——**显示在浏览器窗口的标题栏或标签页上** 。通过这个属性可以 **取得当前页面的标题** ，也可以 **修改当前页面的标题并反映在浏览器的标题栏中** 。修改 title 属性的值不会改变 `<title>`元素。来看下面的例子。
 
-```js
-//假设页面来自 p2p.wrox.com 域
-document.domain = "wrox.com"; // 成功
-document.domain = "nczonline.net"; // 出错！
-```
-当页面中包含来自其他子域的框架或内嵌框架时，能够设置 document.domain 就非常方便了。由
-于 跨 域 安 全 限 制 ， 来 自 不 同 子 域 的 页 面 无 法 通 过 JavaScript 通 信 。 而 通 过 将 每 个 页 面 的
-document.domain 设置为相同的值，这些页面就可以互相访问对方包含的 JavaScript 对象了。例如，
-假设有一个页面加载自 www.wrox.com，其中包含一个内嵌框架，框架内的页面加载自 p2p.wrox.com。
-由于 document.domain 字符串不一样，内外两个页面之间无法相互访问对方的 JavaScript 对象。但如
-果将这两个页面的 document.domain 值都设置为 "wrox.com" ，它们之间就可以通信了。
-浏览器对 domain 属性还有一个限制，即如果域名一开始是“松散的”（loose），那么不能将它再设
-置为“紧绷的”（tight）。换句话说，在将 document.domain 设置为 "wrox.com" 之后，就不能再将其
-设置回 "p2p.wrox.com" ，否则将会导致错误，如下面的例子所示。
+  ```js
+  //取得文档标题
+  var originalTitle = document.title;
 
-```js
-//假设页面来自于 p2p.wrox.com 域
-document.domain = "wrox.com"; //松散的（成功）
-document.domain = "p2p.wrox.com"; //紧绷的（出错！）
-```
-所有浏览器中都存在这个限制，但 IE8 是实现这一限制的最早的 IE 版本。
+  //设置文档标题
+  document.title = "New page title";
+  ```
+  接下来要介绍的 3 个属性都与对 **网页的请求有关** ，它们是 **URL** 、 **domain** 和 **referrer** 。 **URL 属性** 中 **包含页面完整的 URL** （即地址栏中显示的 URL）， **domain 属性** 中只 **包含页面的域名** ，而 **referrer 属性** 中则 **保存着链接到当前页面的那个页面的 URL** 。在没有来源页面的情况下， **referrer 属性** 中可能会包含空字符串。所有 **这些信息都存在于请求的 HTTP 头部，只不过是通过这些属性让我们能够在 JavaScript 中访问它们而已** ，如下面的例子所示。
+
+  ```js
+  //取得完整的 URL
+  var url = document.URL;
+
+  //取得域名
+  var domain = document.domain;
+
+  //取得来源页面的 URL
+  var referrer = document.referrer;
+  ```
+  URL 与 domain 属性是相互关联的。例如，如果 document.URL 等于 http://www.wrox.com/WileyCDA/，那么 document.domain 就等于 www.wrox.com。
+
+  在这 3 个属性中，**只有 domain 是可以设置的** 。但由于安全方面的限制，也并非可以给 domain 设置任何值。如果 URL 中包含一个子域名，例如 p2p.wrox.com ，那么就只能将 domain 设置为 "wrox.com"（URL 中包含 "www" ，如 www.wrox.com 时，也是如此）。**不能将这个属性设置为 URL 中不包含的域** ，如下面的例子所示。
+
+  ```js
+  //假设页面来自 p2p.wrox.com 域
+  document.domain = "wrox.com"; // 成功
+  document.domain = "nczonline.net"; // 出错！
+  ```
+  当页面中包含来自其他子域的框架或内嵌框架时，能够设置 document.domain 就非常方便了。**由于跨域安全限制 ，来自不同子域的页面无法通过 JavaScript 通信** 。 而通过将每个页面的 document.domain 设置为相同的值，这些页面就可以互相访问对方包含的 JavaScript 对象了。例如，假设有一个页面加载自 www.wrox.com ，其中包含一个内嵌框架，框架内的页面加载自 p2p.wrox.com。由于 document.domain 字符串不一样，内外两个页面之间无法相互访问对方的 JavaScript 对象。但如果将这两个页面的 document.domain 值都设置为 "wrox.com" ，它们之间就可以通信了。
+
+  浏览器对 domain 属性还有一个限制，即 **如果域名一开始是“松散的”（loose），那么不能将它再设置为“紧绷的”（tight）** 。换句话说，**在将 document.domain 设置为 "wrox.com" 之后，就不能再将其设置回 "p2p.wrox.com"** ，否则将会导致错误，如下面的例子所示。
+
+  ```js
+  //假设页面来自于 p2p.wrox.com 域
+  document.domain = "wrox.com"; //松散的（成功）
+  document.domain = "p2p.wrox.com"; //紧绷的（出错！）
+  ```
+  所有浏览器中都存在这个限制，但 IE8 是实现这一限制的最早的 IE 版本。
 
 - #### 查找元素
 
-说到最常见的 DOM 应用，恐怕就要数取得特定的某个或某组元素的引用，然后再执行一些操作了。
-取得元素的操作可以使用 document 对象的几个方法来完成。其中， Document 类型为此提供了两个方
-法： getElementById() 和 getElementsByTagName() 。
-第一个方法， getElementById() ，接收一个参数：要取得的元素的 ID。如果找到相应的元素则
-返回该元素，如果不存在带有相应 ID 的元素，则返回 null 。注意，这里的 ID 必须与页面中元素的 id
-特性（attribute）严格匹配，包括大小写。以下面的元素为例。
+  说到最常见的 DOM 应用，恐怕就要数 **取得特定的某个或某组元素的引用** ，然后再执行一些操作了。取得元素的操作可以使用 document 对象的几个方法来完成。其中， Document 类型为此提供了两个方法： **getElementById()** 和 **getElementsByTagName()** 。
 
-```html
-<div id="myDiv">Some text</div>
-```
-可以使用下面的代码取得这个元素：
+  第一个方法，**getElementById()** ，接收一个参数：**要取得的元素的 ID** 。如果 **找到相应的元素则返回该元素** ，如果 **不存在带有相应 ID 的元素** ，则 **返回 null** 。注意，**这里的 ID 必须与页面中元素的 id 特性（attribute）严格匹配，包括大小写** 。以下面的元素为例。
 
-```html
-var div = document.getElementById("myDiv"); //取得 `<div>` 元素的引用
-```
-但是，下面的代码在除 IE7 及更早版本之外的所有浏览器中都将返回 null 。
+  ```html
+  <div id="myDiv">Some text</div>
+  ```
+  可以使用下面的代码取得这个元素：
 
-```js
-var div = document.getElementById("mydiv"); //无效的 ID（在 IE7 及更早版本中可以）
-```
-IE8 及较低版本不区分 ID 的大小写，因此 "myDiv" 和 "mydiv" 会被当作相同的元素 ID。
-如果页面中多个元素的 ID 值相同， getElementById() 只返回文档中第一次出现的元素。IE7 及较
-低版本还为此方法添加了一个有意思的“怪癖”： name 特性与给定 ID 匹配的表单元素（ `<input>` 、
-`<textarea>` 、 `<button>` 及 `<select>` ）也会被该方法返回。如果有哪个表单元素的 name 特性等于指
-定的 ID，而且该元素在文档中位于带有给定 ID 的元素前面，那么 IE 就会返回那个表单元素。来看下面
-的例子。
+  ```html
+  var div = document.getElementById("myDiv"); //取得 `<div>` 元素的引用
+  ```
+  但是，下面的代码在除 IE7 及更早版本之外的所有浏览器中都将返回 null 。
 
-```html
-<input type="text" name="myElement" value="Text field">
-<div id="myElement">A div</div>
-```
-基于这段 HTML 代码，在 IE7 中调用 document.getElementById("myElement ") ，结果会返
-回 `<input>` 元素；而在其他所有浏览器中，都会返回对 `<div>` 元素的引用。为了避免 IE 中存在的这个问
-题，最好的办法是不让表单字段的 name 特性与其他元素的 ID 相同。
-另一个常用于取得元素引用的方法是 getElementsByTagName() 。这个方法接受一个参数，即要
-取得元素的标签名，而返回的是包含零或多个元素的 NodeList 。在 HTML 文档中，这个方法会返回一
-个 HTMLCollection 对象，作为一个“动态”集合，该对象与 NodeList 非常类似。例如，下列代码
-会取得页面中所有的 `<img>` 元素，并返回一个 HTMLCollection 。
+  ```js
+  var div = document.getElementById("mydiv"); //无效的 ID（在 IE7 及更早版本中可以）
+  ```
+  **IE8 及较低版本不区分 ID 的大小写** ，因此 "myDiv" 和 "mydiv" 会被当作相同的元素 ID。
 
-```js
-var images = document.getElementsByTagName("img");
-```
-这行代码会将一个 HTMLCollection 对象保存在 images 变量中。与 NodeList 对象类似，可以
-使用方括号语法或 item() 方法来访问 HTMLCollection 对象中的项。而这个对象中元素的数量则可以
-通过其 length 属性取得，如下面的例子所示。
+  如果页面中多个元素的 ID 值相同， getElementById() 只返回文档中第一次出现的元素。IE7 及较低版本还为此方法添加了一个有意思的“怪癖”： name 特性与给定 ID 匹配的表单元素（ `<input>` 、`<textarea>` 、 `<button>` 及 `<select>` ）也会被该方法返回。如果 **有哪个表单元素的 name 特性等于指定的 ID** ，而且 **该元素在文档中位于带有给定 ID 的元素前面** ，那么 **IE 就会返回那个表单元素** 。来看下面的例子。
 
-```js
-alert(images.length); //输出图像的数量
-alert(images[0].src); //输出第一个图像元素的 src 特性
-alert(images.item(0).src); //输出第一个图像元素的 src 特性
-```
-HTMLCollection 对象还有一个方法，叫做 namedItem() ，使用这个方法可以通过元素的 name
-特性取得集合中的项。例如，假设上面提到的页面中包含如下 `<img>` 元素：
+  ```html
+  <input type="text" name="myElement" value="Text field">
+  <div id="myElement">A div</div>
+  ```
+  基于这段 HTML 代码，在 IE7 中调用 document.getElementById("myElement ") ，结果会返回 `<input>` 元素；而在其他所有浏览器中，都会返回对 `<div>` 元素的引用。**为了避免 IE 中存在的这个问题** ，**最好的办法是不让表单字段的 name 特性与其他元素的 ID 相同** 。
 
-```html
-<img src="myimage.gif" name="myImage">
-```
-那么就可以通过如下方式从 images 变量中取得这个 `<img>` 元素：
+  另一个常用于取得元素引用的方法是 **getElementsByTagName()** 。这个方法接受一个参数，即 **要取得元素的标签名** ，而 **返回的是包含零或多个元素的 NodeList** 。在 HTML 文档中，这个方法会返回一个 HTMLCollection 对象，作为一个“动态”集合，该对象与 NodeList 非常类似。例如，下列代码会取得页面中所有的 `<img>` 元素，并返回一个 HTMLCollection 。
 
-```js
-var myImage = images.namedItem("myImage");
-```
-在提供按索引访问项的基础上， HTMLCollection 还支持按名称访问项，这就为我们取得实际想要
-的元素提供了便利。而且，对命名的项也可以使用方括号语法来访问，如下所示：
+  ```js
+  var images = document.getElementsByTagName("img");
+  ```
+  这行代码会将一个 HTMLCollection 对象保存在 images 变量中。与 NodeList 对象类似，可以使用 **方括号语法** 或 **item() 方法** 来访问 HTMLCollection 对象中的项。而 **这个对象中元素的数量则可以通过其 length 属性取得** ，如下面的例子所示。
 
-```js
-var myImage = images["myImage"];
-```
+  ```js
+  alert(images.length); //输出图像的数量
+  alert(images[0].src); //输出第一个图像元素的 src 特性
+  alert(images.item(0).src); //输出第一个图像元素的 src 特性
+  ```
+  HTMLCollection 对象还有一个方法，叫做 **namedItem()** ，**使用这个方法可以通过元素的 name 特性取得集合中的项** 。例如，假设上面提到的页面中包含如下 `<img>` 元素：
 
-对 HTMLCollection 而言，我们可以向方括号中传入数值或字符串形式的索引值。在后台，对数
-值索引就会调用 item() ，而对字符串索引就会调用 namedItem() 。
-要想取得文档中的所有元素，可以向 getElementsByTagName() 中传入 "*" 。在 JavaScript 及 CSS
-中，星号（ * ）通常表示“全部”。下面看一个例子。
+  ```html
+  <img src="myimage.gif" name="myImage">
+  ```
+  那么就可以通过如下方式从 images 变量中取得这个 `<img>` 元素：
 
-```js
-var allElements = document.getElementsByTagName("*");
-```
-仅此一行代码返回的 HTMLCollection 中，就包含了整个页面中的所有元素——按照它们出现的
-先后顺序。换句话说，第一项是 `<html>` 元素，第二项是 `<head>` 元素，以此类推。由于 IE 将注释（ Comment ）
-实现为元素（ Element ），因此在 IE 中调用 getElementsByTagName("*") 将会返回所有注释节点。
-  
-> 虽然标准规定标签名需要区分大小写，但为了最大限度地与既有 HTML 页面兼
-容，传给 getElementsByTagName() 的标签名是不需要区分大小写的。但对于 XML
-页面而言（包括 XHTML）， getElementsByTagName() 方法就会区分大小写。
+  ```js
+  var myImage = images.namedItem("myImage");
+  ```
+  **在提供按索引访问项的基础上** ， **HTMLCollection 还支持按名称访问项** ，这就为我们取得实际想要的元素提供了便利。而且，对命名的项也可以使用方括号语法来访问，如下所示：
 
-第三个方法，也是只有 HTMLDocument 类型才有的方法，是 getElementsByName() 。顾名思义，
-这个方法会返回带有给定 name 特性的所有元素。最常使用 getElementsByName() 方法的情况是取得
-单选按钮；为了确保发送给浏览器的值正确无误，所有单选按钮必须具有相同的 name 特性，如下面的
-例子所示。
+  ```js
+  var myImage = images["myImage"];
+  ```
+  对 HTMLCollection 而言，我们可以向方括号中传入数值或字符串形式的索引值。在后台，**对数值索引就会调用 item()** ，而 **对字符串索引就会调用 namedItem()** 。
 
-```html
-<fieldset>
-<legend>Which color do you prefer?</legend>
-<ul>
-<li><input type="radio" value="red" name="color" id="colorRed">
-<label for="colorRed">Red</label></li>
-<li><input type="radio" value="green" name="color" id="colorGreen">
-<label for="colorGreen">Green</label></li>
-<li><input type="radio" value="blue" name="color" id="colorBlue">
-<label for="colorBlue">Blue</label></li>
-</ul>
-</fieldset>
-```
-如这个例子所示，其中所有单选按钮的 name 特性值都是 "color" ，但它们的 ID 可以不同。ID 的
-作用在于将 `<label>` 元素应用到每个单选按钮，而 name 特性则用以确保三个值中只有一个被发送给浏
-览器。这样，我们就可以使用如下代码取得所有单选按钮：
-var radios = document.getElementsByName("color");
-与 getElementsByTagName() 类似， getElementsByName() 方法也会返回一个 HTMLCollectioin 。
-但是，对于这里的单选按钮来说， namedItem() 方法则只会取得第一项（因为每一项的 name 特性都相同）。
+  **要想取得文档中的所有元素** ，可以向 getElementsByTagName() 中传入 " \*" 。在 JavaScript 及 CSS 中，星号（ \* ）通常表示“全部”。下面看一个例子。
+
+  ```js
+  var allElements = document.getElementsByTagName("*");
+  ```
+  仅此一行代码返回的 HTMLCollection 中，就包含了整个页面中的所有元素——按照它们出现的先后顺序。换句话说，第一项是 `<html>` 元素，第二项是 `<head>` 元素，以此类推。由于 **IE 将注释（ Comment ）实现为元素（ Element ）** ，因此 **在 IE 中调用 getElementsByTagName("*") 将会返回所有注释节点** 。
+
+  > 虽然标准规定标签名需要区分大小写，但为了最大限度地与既有 HTML 页面兼容，**传给 getElementsByTagName() 的标签名是不需要区分大小写的** 。但 **对于 XML页面** 而言（包括 XHTML）， **getElementsByTagName() 方法就会区分大小写** 。
+
+  第三个方法，也是只有 HTMLDocument 类型才有的方法，是 **getElementsByName()** 。顾名思义，这个方法会 **返回带有给定 name 特性的所有元素** 。最常使用getElementsByName() 方法的情况是 **取得单选按钮** ；为了确保发送给浏览器的值正确无误，所有 **单选按钮必须具有相同的 name 特性** ，如下面的例子所示。
+
+  ```html
+  <fieldset>
+    <legend>Which color do you prefer?</legend>
+    <ul>
+      <li><input type="radio" value="red" name="color" id="colorRed">
+        <label for="colorRed">Red</label></li>
+      <li><input type="radio" value="green" name="color" id="colorGreen">
+         <label for="colorGreen">Green</label></li>
+      <li><input type="radio" value="blue" name="color" id="colorBlue">
+         <label for="colorBlue">Blue</label></li>
+    </ul>
+  </fieldset>
+  ```
+  如这个例子所示，其中所有单选按钮的 name 特性值都是 "color" ，但它们的 ID 可以不同。ID 的作用在于 **将 `<label>` 元素应用到每个单选按钮** ，而 **name 特性则用以确保三个值中只有一个被发送给浏览器** 。这样，我们就可以使用如下代码取得所有单选按钮：
+
+  ```js
+  var radios = document.getElementsByName("color");
+  ```
+  与 getElementsByTagName() 类似， **getElementsByName() 方法也会返回一个 HTMLCollectioin** 。但是，对于这里的单选按钮来说， namedItem() 方法则只会取得第一项（因为每一项的 name 特性都相同）。
   
 - #### 特殊集合
 
-除了属性和方法， document 对象还有一些特殊的集合。这些集合都是 HTMLCollection 对象，
-为访问文档常用的部分提供了快捷方式，包括：
-  
--  document.anchors ，包含文档中所有带 name 特性的 `<a>` 元素；
-- document.applets ，包含文档中所有的 `<applet>` 元素，因为不再推荐使用 `<applet>` 元素，
-所以这个集合已经不建议使用了；
-- document.forms ，包含文档中所有的 `<form>` 元素，与 document.getElementsByTagName("form")
-得到的结果相同；
-- document.images ，包含文档中所有的 `<img>` 元素，与 document.getElementsByTagName
-("img") 得到的结果相同；
-- document.links ，包含文档中所有带 href 特性的 `<a>` 元素。
-这个特殊集合始终都可以通过 HTMLDocument 对象访问到，而且，与 HTMLCollection 对象类似，
-集合中的项也会随着当前文档内容的更新而更新。
+  除了属性和方法， document 对象还有一些特殊的集合。这些集合都是 HTMLCollection 对象，为访问文档常用的部分提供了快捷方式，包括：
+
+  - **document.anchors** ，包含文档中 **所有带 name 特性的 `<a>` 元素** ；
+
+  - **document.applets** ，包含文档中 **所有的 `<applet>` 元素** ，因为不再推荐使用 `<applet>` 元素，所以这个集合已经不建议使用了；
+
+  - **document.forms** ，包含文档中 **所有的 `<form>` 元素** ，与 document.getElementsByTagName("form")得到的结果相同；
+
+  - **document.images** ，包含文档中 **所有的 `<img>` 元素** ，与 document.getElementsByTagName ("img") 得到的结果相同；
+
+  - **document.links** ，包含文档中 **所有带 href 特性的 `<a>` 元素** 。这个特殊集合始终都可以通过 HTMLDocument 对象访问到，而且，与 HTMLCollection 对象类似，集合中的项也会随着当前文档内容的更新而更新。
 
 - #### DOM 一致性检测
 
-由于 DOM 分为多个级别，也包含多个部分，因此检测浏览器实现了 DOM 的哪些部分就十分必要
-了。 document.implementation 属性就是为此提供相应信息和功能的对象，与浏览器对 DOM 的实现
-直接对应。DOM1 级只为 document.implementation 规定了一个方法，即 hasFeature() 。这个方
-法接受两个参数：要检测的 DOM 功能的名称及版本号。如果浏览器支持给定名称和版本的功能，则该
-方法返回 true ，如下面的例子所示：
+  由于 DOM 分为多个级别，也包含多个部分，因此检测浏览器实现了 DOM 的哪些部分就十分必要了。 **document.implementation 属性** 就是为此提供相应信息和功能的对象，与浏览器对 DOM 的实现直接对应。DOM1 级只为 document.implementation 规定了一个方法，即 **hasFeature()** 。这个方法接受两个参数：**要检测的 DOM 功能的名称及版本号** 。如果 **浏览器支持给定名称和版本的功能** ，则 **该方法返回 true ** ，如下面的例子所示：
 
-```js
-var hasXmlDom = document.implementation.hasFeature("XML", "1.0");
-```
-下表列出了可以检测的不同的值及版本号。
+  ```js
+  var hasXmlDom = document.implementation.hasFeature("XML", "1.0");
+  ```
+  下表列出了可以检测的不同的值及版本号。
 
-![表格]()
+  ![检测的不同的值及版本号](http://p9myzkds7.bkt.clouddn.com/JavaScript-DOM/%E6%A3%80%E6%B5%8B%E7%9A%84%E4%B8%8D%E5%90%8C%E5%80%BC%E5%8F%8A%E7%89%88%E6%9C%AC%E5%8F%B7.png)
 
+  尽管使用 hasFeature() 确实方便，但也有缺点。因为实现者可以自行决定是否与 DOM 规范的不同部分保持一致。事实上，要想让 hasFearture() 方法针对所有值都返回 true 很容易，但返回 true 有时候也不意味着实现与规范一致。例如，Safari 2.x 及更早版本会在没有完全实现某些 DOM 功能的情况下也返回 true 。为此，我们建议多数情况下，在使用 DOM 的某些特殊的功能之前，最好除了检测 hasFeature() 之外，还同时使用能力检测。
 
-尽管使用 hasFeature() 确实方便，但也有缺点。因为实现者可以自行决定是否与 DOM 规范的不
-同部分保持一致。事实上，要想让 hasFearture() 方法针对所有值都返回 true 很容易，但返回 true
-有时候也不意味着实现与规范一致。例如，Safari 2.x 及更早版本会在没有完全实现某些 DOM 功能的情
-况下也返回 true 。为此，我们建议多数情况下，在使用 DOM 的某些特殊的功能之前，最好除了检测
-hasFeature() 之外，还同时使用能力检测。
 - ####  文档写入
-有一个 document 对象的功能已经存在很多年了，那就是将输出流写入到网页中的能力。这个能力
-体现在下列 4 个方法中： write() 、 writeln() 、 open() 和 close() 。其中， write() 和 writeln()
-方法都接受一个字符串参数，即要写入到输出流中的文本。 write() 会原样写入，而 writeln() 则会
-在字符串的末尾添加一个换行符（ \n ）。在页面被加载的过程中，可以使用这两个方法向页面中动态地
-加入内容，如下面的例子所示。
 
-```html
-<html>
-<head>
-<title>document.write() Example</title>
-</head>
-<body>
-<p>The current date and time is:
-<script type="text/javascript">
-document.write("<strong>" + (new Date()).toString() + "</strong>");
-</script>
-</p>
-</body>
-</html>
-```
+  有一个 document 对象的功能已经存在很多年了，那就是 **将输出流写入到网页中的能力** 。这个能力体现在下列 4 个方法中： **write()** 、 **writeln()** 、 **open()** 和 **close()** 。其中， **write()** 和 **writeln()** 方法都接受一个字符串参数，即 **要写入到输出流中的文本** 。**write()** 会 **原样写入**，而 **writeln()** 则 **会在字符串的末尾添加一个换行符**（ \n ）。**在页面被加载的过程中** ，**可以使用这两个方法向页面中动态地加入内容** ，如下面的例子所示。
 
-这个例子展示了在页面加载过程中输出当前日期和时间的代码。其中，日期被包含在一个`<strong>`
-元素中，就像在 HTML 页面中包含普通的文本一样。这样做会创建一个 DOM 元素，而且可以在将来访
-问该元素。通过 write() 和 writeln() 输出的任何 HTML 代码都将如此处理。
-此外，还可以使用 write() 和 writeln() 方法动态地包含外部资源，例如 JavaScript 文件等。在包
-含 JavaScript 文件时，必须注意不能像下面的例子那样直接包含字符串 "`</script>`" ，因为这会导致该
-字符串被解释为脚本块的结束，它后面的代码将无法执行。
+  ```html
+  <html>
+  <head>
+    <title>document.write() Example</title>
+  </head>
+  <body>
+    <p>The current date and time is:
+    <script type="text/javascript">
+       document.write("<strong>" + (new Date()).toString() + "</strong>");
+    </script>
+    </p>
+  </body>
+  </html>
+  ```
+  这个例子展示了在页面加载过程中输出当前日期和时间的代码。其中，日期被包含在一个`<strong>` 元素中，就像在 HTML 页面中包含普通的文本一样。这样做会创建一个 DOM 元素，而且可以在将来访问该元素。通过 write() 和 writeln() 输出的任何 HTML 代码都将如此处理。
 
-```html
-<html>
-<head>
-<title>document.write() Example 2</title>
-</head>
-<body>
-<script type="text/javascript">
-document.write("<script type=\"text/javascript\" src=\"file.js\">" +
-"</script>");
-</script>
-</body>
-</html>
-```
-即使这个文件看起来没错，但字符串 "`</script>`" 将被解释为与外部的 `<script>` 标签匹配，结果
-文本 "); 将会出现在页面中。为避免这个问题，只需加入转义字符\即可；第 2 章也曾经提及这个问题，
-解决方案如下。
-  
-```html
-<html>
-<head>
-<title>document.write() Example 3</title>
-</head>
-<body>
-<script type="text/javascript">
-document.write("<script type=\"text/javascript\" src=\"file.js\">" +
-"<\/script>");
-</script>
-</body>
-</html>
-```
-字符串 "`<\/script>`" 不会被当作外部 `<script>` 标签的关闭标签，因而页面中也就不会出现多余
-的内容了。
-前面的例子使用 document.write() 在页面被呈现的过程中直接向其中输出了内容。如果在文档
-加载结束后再调用 document.write() ，那么输出的内容将会重写整个页面，如下面的例子所示：
+  此外，还可以使用 write() 和 writeln() 方法动态地包含外部资源，例如 JavaScript 文件等。在包含 JavaScript 文件时，必须注意不能像下面的例子那样直接包含字符串 "`</script>`" ，因为这会导致该字符串被解释为脚本块的结束，它后面的代码将无法执行。
 
-```html
-<html>
-<head>
-<title>document.write() Example 4</title>
-</head>
-<body>
-<p>This is some content that you won't get to see because it will be overwritten.</p>
-<script type="text/javascript">
-window.onload = function(){
-document.write("Hello world!");
-};
-</script>
-</body>
-</html>
-```
-在这个例子中，我们使用了 window.onload 事件处理程序（事件将在第 13 章讨论），等到页面完
-全加载之后延迟执行函数。函数执行之后，字符串 "Hello world!" 会重写整个页面内容。
-方法 open() 和 close() 分别用于打开和关闭网页的输出流。如果是在页面加载期间使用 write()
-或 writeln() 方法，则不需要用到这两个方法。
->严格型 XHTML 文档不支持文档写入。对于那些按照 application/xml+xhtml
-内容类型提供的页面，这两个方法也同样无效。
+  ```html
+  <html>
+  <head>
+    <title>document.write() Example 2</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+       document.write("<script type=\"text/javascript\" src=\"file.js\">" +
+          "</script>");
+    </script>
+  </body>
+  </html>
+  ```
+  即使这个文件看起来没错，但字符串 "`</script>`" 将被解释为与外部的 `<script>` 标签匹配，结果文本 "); 将会出现在页面中。为避免这个问题，只需加入转义字符\即可；第 2 章也曾经提及这个问题，解决方案如下。
+
+  ```html
+  <html>
+  <head>
+    <title>document.write() Example 3</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      document.write("<script type=\"text/javascript\" src=\"file.js\">" +
+        "<\/script>");
+    </script>
+  </body>
+  </html>
+  ```
+  **字符串 "`<\/script>`" 不会被当作外部 `<script>` 标签的关闭标签** ，因而页面中也就不会出现多余的内容了。
+
+  前面的例子使用 document.write() 在页面被呈现的过程中直接向其中输出了内容。如果在文档加载结束后再调用 document.write() ，那么输出的内容将会重写整个页面，如下面的例子所示：
+
+  ```html
+  <html>
+  <head>
+  <title>document.write() Example 4</title>
+  </head>
+  <body>
+    <p>This is some content that you won't get to see because it will be overwritten.</p>
+    <script type="text/javascript">
+      window.onload = function(){
+            document.write("Hello world!");
+      };
+    </script>
+  </body>
+  </html>
+  ```
+  在这个例子中，我们使用了 window.onload 事件处理程序（事件将在第 13 章讨论），等到页面完全加载之后延迟执行函数。函数执行之后，字符串 "Hello world!" 会重写整个页面内容。
+
+  方法 **open()** 和 **close()** 分别 **用于打开和关闭网页的输出流** 。如果是在页面加载期间使用 write() 或 writeln() 方法，则不需要用到这两个方法。
+
+  > 严格型 XHTML 文档不支持文档写入。对于那些按照 application/xml+xhtml 内容类型提供的页面，这两个方法也同样无效。
 
 ###  Element 类型
 
-除了 Document 类型之外， Element 类型就要算是 Web 编程中最常用的类型了。 Element 类型用
-于表现 XML或 HTML元素，提供了对元素标签名、子节点及特性的访问。 Element 节点具有以下特征：
+除了 Document 类型之外， Element 类型就要算是 Web 编程中最常用的类型了。 Element 类型用于表现 XML或 HTML元素，提供了对元素标签名、子节点及特性的访问。 Element 节点具有以下特征：
 
 - nodeType 的值为 1；
 - nodeName 的值为元素的标签名；
 - nodeValue 的值为 null ；
 - parentNode 可能是 Document 或 Element ；
--  其子节点可能是 Element 、 Text 、 Comment 、 ProcessingInstruction 、 CDATASection 或
-EntityReference 。
-要访问元素的标签名，可以使用 nodeName 属性，也可以使用 tagName 属性；这两个属性会返回
-相同的值（使用后者主要是为了清晰起见）。以下面的元素为例：
+- 其子节点可能是 Element 、 Text 、 Comment 、 ProcessingInstruction 、 CDATASection 或 EntityReference 。
+
+要访问元素的标签名，可以使用 nodeName 属性，也可以使用 tagName 属性；这两个属性会返回相同的值（使用后者主要是为了清晰起见）。以下面的元素为例：
 
 ```html
 <div id="myDiv"></div>
