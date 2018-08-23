@@ -3,7 +3,7 @@ author: songxingguo
 tags:
   - JavaScript
 categories:
-  - '读书笔记 '
+  - 读书笔记
 date: 2018-08-20 13:19:00
 ---
 # BOM
