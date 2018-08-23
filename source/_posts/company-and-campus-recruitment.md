@@ -110,3 +110,17 @@ date: 2018-08-07 03:32:00
 9. ### ThoughtWorks
 
   > 内推：已投递；
+  
+  [校园招聘](https://join.thoughtworks.cn/candidates/update/9478)
+  
+10. ### 字节跳动
+
+  > 内推：已投递；
+  
+  [校园招聘](https://job.bytedance.com/user/profile/)
+  
+11. ### 迅雷
+
+  > 内推： 已投递；
+  
+  [校园招聘](http://campus.xunlei.com/personal_center.html)
