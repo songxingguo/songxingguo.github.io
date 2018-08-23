@@ -3,7 +3,6 @@ author: songxingguo
 tags:
   - JavaScript
 categories:
-  - 前端 技术
   - '读书笔记 '
 date: 2018-08-20 13:19:00
 ---

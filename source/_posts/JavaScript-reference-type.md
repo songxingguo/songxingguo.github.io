@@ -3,9 +3,8 @@ author: songxingguo
 tags:
   - JavaScript
 categories:
-  - 前端技术
   - 读书笔记
-date: 2018-08-13 15:23:20
+date: 2018-08-13 15:23:00
 ---
 ## 单体内置对象
 

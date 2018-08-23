@@ -3,7 +3,6 @@ author: songxingguo
 tags:
   - Angular 2
 categories:
-  - 前端技术
   - 读书笔记
 date: 2018-07-25 11:57:00
 ---

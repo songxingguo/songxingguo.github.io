@@ -1,9 +1,7 @@
 title: 《Angular 2 开发实战》学习笔记-前言
 tags:
   - Angular 2
-  - ''
 categories:
-  - 前端技术
   - 读书笔记
 author: songxingguo
 date: 2018-07-20 11:15:00
