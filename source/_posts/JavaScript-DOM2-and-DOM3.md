@@ -800,41 +800,12 @@ function getElementTop(element){
 
 - #### 确定元素大小
 
-IE、Firefox 3+、Safari 4+、Opera 9.5及 Chrome为每个元素都提供了一个 **getBoundingClientRect() 方法** 。这个方法 **返回会一个矩形对象** ，包含 4 个属性： **left** 、 **top** 、 **right** 和 **bottom** 。**这些属性给出了元素在页面中相对于视口的位置** 。但是，**浏览器的实现稍有不同** 。IE8 及更早版本认为文档的左上角坐标是(2, 2)，而其他浏览器包括 IE9 则将传统的(0,0)作为起点坐标。因此，就需要在一开始检查一下位于 (0,0)处的元素的位置，在 IE8 及更早版本中，会返回(2,2)，而在其他浏览器中会返回(0,0)。来看下面的函数：
+  IE、Firefox 3+、Safari 4+、Opera 9.5及 Chrome为每个元素都提供了一个 **getBoundingClientRect() 方法** 。这个方法 **返回会一个矩形对象** ，包含 4 个属性： **left** 、 **top** 、 **right** 和 **bottom** 。**这些属性给出了元素在页面中相对于视口的位置** 。但是，**浏览器的实现稍有不同** 。IE8 及更早版本认为文档的左上角坐标是(2, 2)，而其他浏览器包括 IE9 则将传统的(0,0)作为起点坐标。因此，就需要在一开始检查一下位于 (0,0)处的元素的位置，在 IE8 及更早版本中，会返回(2,2)，而在其他浏览器中会返回(0,0)。来看下面的函数：
 
-```js
-function getBoundingClientRect(element){
-  if (typeof arguments.callee.offset != "number"){
-    var scrollTop = document.documentElement.scrollTop;
-    var temp = document.createElement("div");
-    temp.style.cssText = "position:absolute;left:0;top:0;";
-    document.body.appendChild(temp);
-    arguments.callee.offset = -temp.getBoundingClientRect().top - scrollTop;
-    document.body.removeChild(temp);
-    temp = null;
-  }
-  var rect = element.getBoundingClientRect();
-  var offset = arguments.callee.offset;
-  return {
-    left: rect.left + offset,
-    right: rect.right + offset,
-    top: rect.top + offset,
-    bottom: rect.bottom + offset
-  };
-}
-```
-这个函数使用了它自身的属性来确定是否要对坐标进行调整。第一步是检测属性是否有定义，如果没有就定义一个。最终的 offset 会被设置为新元素上坐标的负值，实际上就是在 IE 中设置为2，在 Firefox 和 Opera 中设置为0。为此，需要创建一个临时的元素，将其位置设置在(0,0)，然后再调用其 getBoundingClientRect() 。而之所以要减去视口的 scrollTop ，是为了防止调用这个函数时窗口被滚动了。这样编写代码，就无需每次调用这个函数都执行两次 getBoundingClientRect() 了。接下来，再在传入的元素上调用这个方法并基于新的计算公式创建一个对象。
-
-**对于不支持 getBoundingClientRect() 的浏览器，可以通过其他手段取得相同的信息** 。一般来说， **right 和 left 的差值与 offsetWidth 的值相等** ，而 **bottom 和 top 的差值与 offsetHeight 相等** 。而且， **left 和 top 属性大致等于使用本章前面定义的 getElementLeft() 和 getElementTop() 函数取得的值** 。综合上述，就可以创建出下面这个 **跨浏览器的函数** ：
-
-```js
-function getBoundingClientRect(element){
-
-  var scrollTop = document.documentElement.scrollTop;
-  var scrollLeft = document.documentElement.scrollLeft;
-  
-  if (element.getBoundingClientRect){
+  ```js
+  function getBoundingClientRect(element){
     if (typeof arguments.callee.offset != "number"){
+      var scrollTop = document.documentElement.scrollTop;
       var temp = document.createElement("div");
       temp.style.cssText = "position:absolute;left:0;top:0;";
       document.body.appendChild(temp);
@@ -842,32 +813,61 @@ function getBoundingClientRect(element){
       document.body.removeChild(temp);
       temp = null;
     }
-    
     var rect = element.getBoundingClientRect();
     var offset = arguments.callee.offset;
-    
     return {
       left: rect.left + offset,
       right: rect.right + offset,
       top: rect.top + offset,
       bottom: rect.bottom + offset
     };
-  } else {
-    var actualLeft = getElementLeft(element);
-    var actualTop = getElementTop(element);
-    
-    return {
-      left: actualLeft - scrollLeft,
-      right: actualLeft + element.offsetWidth - scrollLeft,
-      top: actualTop - scrollTop,
-      bottom: actualTop + element.offsetHeight - scrollTop
+  }
+  ```
+  这个函数使用了它自身的属性来确定是否要对坐标进行调整。第一步是检测属性是否有定义，如果没有就定义一个。最终的 offset 会被设置为新元素上坐标的负值，实际上就是在 IE 中设置为2，在 Firefox 和 Opera 中设置为0。为此，需要创建一个临时的元素，将其位置设置在(0,0)，然后再调用其 getBoundingClientRect() 。而之所以要减去视口的 scrollTop ，是为了防止调用这个函数时窗口被滚动了。这样编写代码，就无需每次调用这个函数都执行两次 getBoundingClientRect() 了。接下来，再在传入的元素上调用这个方法并基于新的计算公式创建一个对象。
+
+  **对于不支持 getBoundingClientRect() 的浏览器，可以通过其他手段取得相同的信息** 。一般来说， **right 和 left 的差值与 offsetWidth 的值相等** ，而 **bottom 和 top 的差值与 offsetHeight 相等** 。而且， **left 和 top 属性大致等于使用本章前面定义的 getElementLeft() 和 getElementTop() 函数取得的值** 。综合上述，就可以创建出下面这个 **跨浏览器的函数** ：
+
+  ```js
+  function getBoundingClientRect(element){
+
+    var scrollTop = document.documentElement.scrollTop;
+    var scrollLeft = document.documentElement.scrollLeft;
+
+    if (element.getBoundingClientRect){
+      if (typeof arguments.callee.offset != "number"){
+        var temp = document.createElement("div");
+        temp.style.cssText = "position:absolute;left:0;top:0;";
+        document.body.appendChild(temp);
+        arguments.callee.offset = -temp.getBoundingClientRect().top - scrollTop;
+        document.body.removeChild(temp);
+        temp = null;
+      }
+
+      var rect = element.getBoundingClientRect();
+      var offset = arguments.callee.offset;
+
+      return {
+        left: rect.left + offset,
+        right: rect.right + offset,
+        top: rect.top + offset,
+        bottom: rect.bottom + offset
+      };
+    } else {
+      var actualLeft = getElementLeft(element);
+      var actualTop = getElementTop(element);
+
+      return {
+        left: actualLeft - scrollLeft,
+        right: actualLeft + element.offsetWidth - scrollLeft,
+        top: actualTop - scrollTop,
+        bottom: actualTop + element.offsetHeight - scrollTop
+      }
     }
   }
-}
-```
-**这个函数在 getBoundingClientRect() 有效时，就使用这个原生方法，而在这个方法无效时则使用默认的计算公式** 。在某些情况下，这个函数返回的值可能会有所不同，例如使用表格布局或使用滚动元素的情况下。
+  ```
+  **这个函数在 getBoundingClientRect() 有效时，就使用这个原生方法，而在这个方法无效时则使用默认的计算公式** 。在某些情况下，这个函数返回的值可能会有所不同，例如使用表格布局或使用滚动元素的情况下。
 
->  由于这里使用了 arguments.callee ，所以这个方法不能在严格模式下使用。
+  >  由于这里使用了 arguments.callee ，所以这个方法不能在严格模式下使用。
 
 ## 遍历
 
