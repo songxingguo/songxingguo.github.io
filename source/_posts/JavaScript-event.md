@@ -1,7 +1,10 @@
 title: 《JavaScript 高级程序设计》学习笔记-事件
 author: songxingguo
-date: 2018-08-26 17:43:53
 tags:
+  - JavaScript
+categories:
+  - 读书笔记
+date: 2018-08-26 17:43:00
 ---
 # 事件
 
