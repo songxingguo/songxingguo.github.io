@@ -1290,1295 +1290,1166 @@ var isSupported = document.implementation.hasFeature("MouseEvent", "3.0")
 
 ### 键盘与文本事件
 
-用户在使用键盘时会触发键盘事件。“DOM2 级事件”最初规定了键盘事件，但在最终定稿之前又删除了相应的内容。结果，对键盘事件的支持主要遵循的是 DOM0 级。
+**用户在使用键盘时会触发键盘事件**。“DOM2 级事件”最初规定了键盘事件，但在最终定稿之前又删除了相应的内容。结果，**对键盘事件的支持主要遵循的是 DOM0 级** 。
+
 “DOM3 级事件”为键盘事件制定了规范，IE9 率先完全实现了该规范。其他浏览器也在着手实现这一标准，但仍然有很多遗留的问题。
 
 有 3 个键盘事件，简述如下。
- keydown ：当用户按下键盘上的任意键时触发，而且如果按住不放的话，会重复触发此事件。
- keypress ：当用户按下键盘上的字符键时触发，而且如果按住不放的话，会重复触发此事件。
-按下 Esc 键也会触发这个事件。Safari 3.1 之前的版本也会在用户按下非字符键时触发 keypress
-事件。
- keyup ：当用户释放键盘上的键时触发。
-虽然所有元素都支持以上 3 个事件，但只有在用户通过文本框输入文本时才最常用到。
-只有一个文本事件： textInput 。这个事件是对 keypress 的补充，用意是在将文本显示给用户之
-前更容易拦截文本。在文本插入文本框之前会触发 textInput 事件。
-在用户按了一下键盘上的字符键时，首先会触发 keydown 事件，然后紧跟着是 keypress 事件，
-最后会触发 keyup 事件。其中， keydown 和 keypress 都是在文本框发生变化之前被触发的；而 keyup
-事件则是在文本框已经发生变化之后被触发的。如果用户按下了一个字符键不放，就会重复触发
-keydown 和 keypress 事件，直到用户松开该键为止。
-如果用户按下的是一个非字符键，那么首先会触发 keydown 事件，然后就是 keyup 事件。如果按
-住这个非字符键不放，那么就会一直重复触发 keydown 事件，直到用户松开这个键，此时会触发 keyup
-事件。
-> 键盘事件与鼠标事件一样，都支持相同的修改键。而且，键盘事件的事件对象中
-也有 shiftKey 、 ctrlKey 、 altKey 和 metaKey 属性。IE 不支持 metaKey 。
+
+- keydown ：当用户按下键盘上的任意键时触发，而且如果按住不放的话，会重复触发此事件。
+
+- keypress ：当用户按下键盘上的字符键时触发，而且如果按住不放的话，会重复触发此事件。按下 Esc 键也会触发这个事件。Safari 3.1 之前的版本也会在用户按下非字符键时触发 keypress事件。
+
+- keyup ：当用户释放键盘上的键时触发。
+
+**虽然所有元素都支持以上 3 个事件，但只有在用户通过文本框输入文本时才最常用到** 。
+
+只有一个文本事件： **textInput** 。这个事件是对 keypress 的补充，用意是在将文本显示给用户之前更容易拦截文本。**在文本插入文本框之前会触发 textInput 事件** 。
+
+在用户 **按了一下键盘上的字符键** 时，首先会 **触发 keydown 事件** ，然后 **紧跟着是 keypress 事件** ，最后会 **触发 keyup 事件** 。其中， **keydown 和 keypress 都是在文本框发生变化之前被触发的** ；而 **keyup事件则是在文本框已经发生变化之后被触发的** 。如果 **用户按下了一个字符键不放** ，**就会重复触发 keydown 和 keypress 事件** ，**直到用户松开该键为止** 。
+
+如果用户 **按下的是一个非字符键** ，那么首先会 **触发 keydown 事件** ，然后就是 **keyup 事件**。如果 **按住这个非字符键不放** ，那么 **就会一直重复触发 keydown 事件** ，**直到用户松开这个键** ，**此时会触发 keyup事件** 。
+
+> 键盘事件与鼠标事件一样，都支持相同的修改键。而且，键盘事件的事件对象中也有 shiftKey 、 ctrlKey 、 altKey 和 metaKey 属性。IE 不支持 metaKey 。
 
 - #### 键码
-在发生 keydown 和 keyup 事件时， event 对象的 keyCode 属性中会包含一个代码，与键盘上一
-个特定的键对应。对数字字母字符键， keyCode 属性的值与 ASCII 码中对应小写字母或数字的编码相
-同。因此，数字键 7 的 keyCode 值为 55，而字母 A 键的 keyCode 值为 65——与 Shift 键的状态无关。
-DOM 和 IE 的 event 对象都支持 keyCode 属性。请看下面这个例子：
 
-```js
-var textbox = document.getElementById("myText");
-EventUtil.addHandler(textbox, "keyup", function(event){
-event = EventUtil.getEvent(event);
-alert(event.keyCode);
-});
-```
-在这个例子中，用户每次在文本框中按键触发 keyup 事件时，都会显示 keyCode 的值。下表列出
-了所有非字符键的键码。
+  **在发生 keydown 和 keyup 事件** 时，**event 对象的 keyCode 属性中会包含一个代码** ，**与键盘上一个特定的键对应** 。**对数字字母字符键** ， **keyCode 属性的值与 ASCII 码中对应小写字母或数字的编码相同** 。因此，**数字键 7 的 keyCode 值为 55** ，而 **字母 A 键的 keyCode 值为 65** ——与 Shift 键的状态无关。DOM 和 IE 的 event 对象都支持 keyCode 属性。请看下面这个例子：
 
-![表格]()
+  ```js
+  var textbox = document.getElementById("myText");
+  EventUtil.addHandler(textbox, "keyup", function(event){
+    event = EventUtil.getEvent(event);
+    alert(event.keyCode);
+  });
+  ```
+  在这个例子中，用户每次在文本框中按键触发 keyup 事件时，都会显示 keyCode 的值。下表列出了所有非字符键的键码。
 
-无论 keydown 或 keyup 事件都会存在的一些特殊情况。在Firefox和Opera中，按分号键时 keyCode
-值为 59，也就是 ASCII 中分号的编码；但 IE 和 Safari 返回 186，即键盘中按键的键码。
+  ![所有非字符键的键码](http://p9myzkds7.bkt.clouddn.com/%E6%89%80%E6%9C%89%E9%9D%9E%E5%AD%97%E7%AC%A6%E9%94%AE%E7%9A%84%E9%94%AE%E7%A0%81.png)
+
+  ![所有非字符键的键码（续）](http://p9myzkds7.bkt.clouddn.com/%E6%89%80%E6%9C%89%E9%9D%9E%E5%AD%97%E7%AC%A6%E9%94%AE%E7%9A%84%E9%94%AE%E7%A0%81%EF%BC%88%E7%BB%AD%EF%BC%89.png)
+
+  **无论 keydown 或 keyup 事件都会存在的一些特殊情况** 。在Firefox和Opera中，按分号键时 keyCode 值为 59，也就是 ASCII 中分号的编码；但 IE 和 Safari 返回 186，即键盘中按键的键码。
 
 -  #### 字符编码
-发生 keypress 事件意味着按下的键会影响到屏幕中文本的显示。在所有浏览器中，按下能够插入
-或删除字符的键都会触发 keypress 事件；按下其他键能否触发此事件因浏览器而异。由于截止到 2008
-年，尚无浏览器实现“DOM3 级事件”规范，所以浏览器之间的键盘事件并没有多大的差异。
-IE9、Firefox、Chrome 和 Safari 的 event 对象都支持一个 charCode 属性，这个属性只有在发生
-keypress 事件时才包含值，而且这个值是按下的那个键所代表字符的 ASCII 编码。此时的 keyCode
-通常等于0或者也可能等于所按键的键码。IE8及之前版本和Opera则是在 keyCode 中保存字符的ASCII
-编码。要想以跨浏览器的方式取得字符编码，必须首先检测 charCode 属性是否可用，如果不可用则使
-用 keyCode ，如下面的例子所示。
 
-```js
-var EventUtil = {
-//省略的代码
-getCharCode: function(event){
-if (typeof event.charCode == "number"){
-return event.charCode;
-} else {
-return event.keyCode;
-}
-},
-//省略的代码
-};
-EventUtil.js
-```
-这个方法首先检测 charCode 属性是否包含数值（在不支持这个属性的浏览器中，值为 undefined），
-如果是，则返回该值。否则，就返回 keyCode 属性值。下面是使用这个方法的示例。
+    **发生 keypress 事件意味着按下的键会影响到屏幕中文本的显示** 。在所有浏览器中，**按下能够插入或删除字符的键都会触发 keypress 事件** ；**按下其他键能否触发此事件因浏览器而异** 。由于截止到 2008 年，尚无浏览器实现“DOM3 级事件”规范，所以浏览器之间的键盘事件并没有多大的差异。
 
-```js
-var textbox = document.getElementById("myText");
-EventUtil.addHandler(textbox, "keypress", function(event){
-event = EventUtil.getEvent(event);
-alert(EventUtil.getCharCode(event));
-});
-```
-在取得了字符编码之后，就可以使用 String.fromCharCode() 将其转换成实际的字符。
+    IE9、Firefox、Chrome 和 Safari 的 **event 对象都支持一个 charCode 属性** ，**这个属性只有在发生 keypress 事件时才包含值** ，而且 **这个值是按下的那个键所代表字符的 ASCII 编码** 。**此时的 keyCode 通常等于0或者也可能等于所按键的键码** 。IE8及之前版本和 Opera 则是 **在 keyCode 中保存字符的ASCII编码** 。**要想以跨浏览器的方式取得字符编码** ，**必须首先检测 charCode 属性是否可用** ，**如果不可用则使用 keyCode** ，如下面的例子所示。
+
+    ```js
+    var EventUtil = {
+
+      //省略的代码
+
+      getCharCode: function(event){
+        if (typeof event.charCode == "number"){
+                return event.charCode;
+        } else {
+            return event.keyCode;
+        }
+      },
+
+      //省略的代码
+
+    };
+    EventUtil.js
+    ```
+    这个方法首先检测 charCode 属性是否包含数值（在不支持这个属性的浏览器中，值为 undefined），如果是，则返回该值。否则，就返回 keyCode 属性值。下面是使用这个方法的示例。
+
+    ```js
+    var textbox = document.getElementById("myText");
+    EventUtil.addHandler(textbox, "keypress", function(event){
+      event = EventUtil.getEvent(event);
+      alert(EventUtil.getCharCode(event));
+    });
+    ```
+    **在取得了字符编码之后** ，就可以 **使用 String.fromCharCode() 将其转换成实际的字符** 。
 
 - #### DOM3 级变化
-尽管所有浏览器都实现了某种形式的键盘事件，DOM3 级事件还是做出了一些改变。比如，DOM3
-级事件中的键盘事件，不再包含 charCode 属性，而是包含两个新属性： key 和 char 。
-其中， key 属性是为了取代 keyCode 而新增的，它的值是一个字符串。在按下某个字符键时， key
-的值就是相应的文本字符（如“k”或“M”）；在按下非字符键时，  key 的值是相应键的名（如“Shift”
-或“Down”）。而 char 属性在按下字符键时的行为与 key 相同，但在按下非字符键时值为 null 。
-IE9 支持 key 属性，但不支持 char 属性。Safari 5 和 Chrome 支持名为 keyIdentifier 的属性，
-在按下非字符键（例如 Shift）的情况下与 key 的值相同。对于字符键， keyIdentifier 返回一个格式
-类似“U+0000”的字符串，表示 Unicode 值。
 
-```js
-var textbox = document.getElementById("myText");
-EventUtil.addHandler(textbox, "keypress", function(event){
-event = EventUtil.getEvent(event);
-var identifier = event.key || event.keyIdentifier;
-if (identifier){
-alert(identifi er);
-}
-});
-```
-由于存在跨浏览器问题，因此本书不推荐使用 key 、 keyIdentifier 或 char 。
-DOM3 级事件还添加了一个名为 location 的属性，这是一个数值，表示按下了什么位置上的键：
-0 表示默认键盘，1 表示左侧位置（例如左位的 Alt 键），2 表示右侧位置（例如右侧的 Shift 键），3 表示
-数字小键盘，4 表示移动设备键盘（也就是虚拟键盘），5 表示手柄（如任天堂 Wii控制器）。IE9 支持这
-个属性。Safari 和 Chrome 支持名为 keyLocation 的等价属性，但即有 bug——值始终是 0，除非按下
-了数字键盘（此时，值 为 3）；否则，不会是 1、2、4、5。
+  尽管所有浏览器都实现了某种形式的键盘事件 ，DOM3 级事件还是做出了一些改变。比如，**DOM3 级事件中的键盘事件** ，**不再包含 charCode 属性** ，**而是包含两个新属性： key 和 char **。
 
-```js
-var textbox = document.getElementById("myText");
-EventUtil.addHandler(textbox, "keypress", function(event){
-event = EventUtil.getEvent(event);
-var loc = event.location || event.keyLocation;
-if (loc){
-alert(loc);
-}
-});
-```
-与 key 属性一样，支持 location 的浏览器也不多，所以在跨浏览器开发中不推荐使用。
-最后是给 event 对象添加了 getModifierState() 方法。这个方法接收一个参数，即等于 Shift 、
-Control 、 AltGraph 或 Meta 的字符串，表示要检测的修改键。如果指定的修改键是活动的（也就是
-处于被按下的状态），这个方法返回 true ，否则返回 false 。
+  其中， **key 属性是为了取代 keyCode 而新增的** ，它的 **值是一个字符串** 。在**按下某个字符键** 时， **key 的值就是相应的文本字符**（如“k”或“M”）；在**按下非字符键** 时，**key 的值是相应键的名**（如“Shift”或“Down”）。而 **char 属性在按下字符键时的行为与 key 相同** ，但在按下非字符键时值为 null 。
 
-```js
-var textbox = document.getElementById("myText");
-EventUtil.addHandler(textbox, "keypress", function(event){
-event = EventUtil.getEvent(event);
-if (event.getModifierState){
-alert(event.getModifierState("Shift"));
-}
-});
-```
-实际上，通过 event 对象的 shiftKey 、 altKey 、 ctrlKey 和 metaKey 属性已经可以取得类似
-的属性了。IE9 是唯一支持 getModifierState() 方法的浏览器。
+  IE9 支持 key 属性，但不支持 char 属性。Safari 5 和 Chrome 支持名为 keyIdentifier 的属性，在按下非字符键（例如 Shift）的情况下与 key 的值相同。对于字符键， keyIdentifier 返回一个格式类似“U+0000”的字符串，表示 Unicode 值。
+
+  ```js
+  var textbox = document.getElementById("myText");
+  EventUtil.addHandler(textbox, "keypress", function(event){
+    event = EventUtil.getEvent(event);
+    var identifier = event.key || event.keyIdentifier;
+    if (identifier){
+      alert(identifi er);
+    }
+  });
+  ```
+  **由于存在跨浏览器问题，因此本书不推荐使用 key 、 keyIdentifier 或 char **。
+
+  **DOM3 级事件还添加了一个名为 location 的属性** ，这是一个 **数值** ，表示 **按下了什么位置上的键** ：**0 表示默认键盘**，**1 表示左侧位置**（例如左位的 Alt 键），**2 表示右侧位置**（例如右侧的 Shift 键），**3 表示数字小键盘** ，**4 表示移动设备键盘**（也就是虚拟键盘），**5 表示手柄**（如任天堂 Wii控制器）。IE9 支持这个属性。Safari 和 Chrome 支持名为 keyLocation 的等价属性，但即有 bug——值始终是 0，除非按下了数字键盘（此时，值 为 3）；否则，不会是 1、2、4、5。
+
+  ```js
+  var textbox = document.getElementById("myText");
+  EventUtil.addHandler(textbox, "keypress", function(event){
+    event = EventUtil.getEvent(event);
+    var loc = event.location || event.keyLocation;
+    if (loc){
+      alert(loc);
+    }
+  });
+  ```
+  与 key 属性一样，支持 location 的浏览器也不多，所以在跨浏览器开发中不推荐使用。
+
+  最后是给 **event 对象添加了 getModifierState() 方法** 。这个方法接收一个参数，即 **等于 Shift 、Control 、 AltGraph 或 Meta 的字符串** ，**表示要检测的修改键** 。如果 **指定的修改键是活动的**（也就是处于被按下的状态），这个方法 **返回 true** ，**否则返回 false** 。
+
+  ```js
+  var textbox = document.getElementById("myText");
+  EventUtil.addHandler(textbox, "keypress", function(event){
+    event = EventUtil.getEvent(event);
+    if (event.getModifierState){
+    alert(event.getModifierState("Shift"));
+  }
+  });
+  ```
+  实际上，通过 event 对象的 shiftKey 、 altKey 、 ctrlKey 和 metaKey 属性已经可以取得类似的属性了。IE9 是唯一支持 getModifierState() 方法的浏览器。
 
 - #### textInput 事件
-“DOM3 级事件”规范中引入了一个新事件，名叫 textInput 。根据规范，当用户在可编辑区域中
-输入字符时，就会触发这个事件。这个用于替代 keypress 的 textInput 事件的行为稍有不同。区别
-之一就是任何可以获得焦点的元素都可以触发 keypress 事件，但只有可编辑区域才能触发 textInput
-事件。区别之二是 textInput 事件只会在用户按下能够输入实际字符的键时才会被触发，而 keypress
-事件则在按下那些能够影响文本显示的键时也会触发（例如退格键）。
-由于 textInput 事件主要考虑的是字符，因此它的 event 对象中还包含一个 data 属性，这个属
-性的值就是用户输入的字符（而非字符编码）。换句话说，用户在没有按上档键的情况下按下了 S 键，
-data 的值就是 "s" ，而如果在按住上档键时按下该键， data 的值就是 "S" 。
-以下是一个使用 textInput 事件的例子：
 
-```js
-var textbox = document.getElementById("myText");
-EventUtil.addHandler(textbox, "textInput", function(event){
-event = EventUtil.getEvent(event);
-alert(event.data);
-});
-```
-在这个例子中，插入到文本框中的字符会通过一个警告框显示出来。
-另外， event 对象上还有一个属性，叫 inputMethod ，表示把文本输入到文本框中的方式。
-  0，表示浏览器不确定是怎么输入的。
-  1，表示是使用键盘输入的。
-  2，表示文本是粘贴进来的。
-  3，表示文本是拖放进来的。
-  4，表示文本是使用 IME 输入的。
-  5，表示文本是通过在表单中选择某一项输入的。
-  6，表示文本是通过手写输入的（比如使用手写笔）。
-  7，表示文本是通过语音输入的。
-  8，表示文本是通过几种方法组合输入的。
-  9，表示文本是通过脚本输入的。
-使用这个属性可以确定文本是如何输入到控件中的，从而可以验证其有效性。支持 textInput 属
-性的浏览器有 IE9+、Safari 和 Chrome。只有 IE 支持 inputMethod 属性。
+  **“DOM3 级事件”规范中引入了一个新事件，名叫 textInput** 。根据规范，**当用户在可编辑区域中输入字符** 时，**就会触发这个事件** 。这个 **用于替代 keypress 的 textInput 事件的行为稍有不同** 。区别之一就是 **任何可以获得焦点的元素都可以触发 keypress 事件** ，但 **只有可编辑区域才能触发 textInput 事件** 。区别之二是 **textInput 事件只会在用户按下能够输入实际字符的键时才会被触发** ，而 **keypress 事件则在按下那些能够影响文本显示的键时也会触发**（例如退格键）。
+
+  由于 **textInput 事件主要考虑的是字符** ，因此它的 **event 对象中还包含一个 data 属性** ，**这个属性的值就是用户输入的字符** （而非字符编码）。换句话说，用户在没有按上档键的情况下按下了 S 键，data 的值就是 "s" ，而如果在按住上档键时按下该键， data 的值就是 "S" 。
+
+  以下是一个使用 textInput 事件的例子：
+
+  ```js
+  var textbox = document.getElementById("myText");
+  EventUtil.addHandler(textbox, "textInput", function(event){
+    event = EventUtil.getEvent(event);
+    alert(event.data);
+  });
+  ```
+  在这个例子中，插入到文本框中的字符会通过一个警告框显示出来。
+
+  另外， **event 对象上还有一个属性**，叫 **inputMethod** ，**表示把文本输入到文本框中的方式** 。
+
+  - 0，表示浏览器不确定是怎么输入的。
+  - 1，表示是使用键盘输入的。
+  - 2，表示文本是粘贴进来的。
+  - 3，表示文本是拖放进来的。
+  - 4，表示文本是使用 IME 输入的。
+  - 5，表示文本是通过在表单中选择某一项输入的。
+  - 6，表示文本是通过手写输入的（比如使用手写笔）。
+  - 7，表示文本是通过语音输入的。
+  - 8，表示文本是通过几种方法组合输入的。
+  - 9，表示文本是通过脚本输入的。
+
+  **使用这个属性可以确定文本是如何输入到控件中的** ，**从而可以验证其有效性** 。支持 textInput 属性的浏览器有 IE9+、Safari 和 Chrome。只有 IE 支持 inputMethod 属性。
 
 - #### 设备中的键盘事件
-任天堂 Wii 会在用户按下 Wii 遥控器上的按键时触发键盘事件。尽管没有办法访问 Wii遥控器中的
-所有按键，但还是有一些键可以触发键盘事件。图 13-6 展示了一些键的键码，通过这些键码可以知道
-用户按下了哪个键。
 
-![图片]()
+  任天堂 Wii 会在用户按下 Wii 遥控器上的按键时触发键盘事件。尽管没有办法访问 Wii遥控器中的所有按键，但还是有一些键可以触发键盘事件。下图展示了一些键的键码，通过这些键码可以知道用户按下了哪个键。
 
-当用户按下十字键盘（键码为 175～178）、减号（170）、加号（174）、1（172）或 2（173）键时就
-会触发键盘事件。但没有办法得知用户是否按下了电源开关、A、B 或主页键。
-iOS 版 Safari 和 Android 版 WebKit 在使用屏幕键盘时会触发键盘事件。
+  ![设备键码](http://p9myzkds7.bkt.clouddn.com/JavaScript-event/%E8%AE%BE%E5%A4%87%E9%94%AE%E7%A0%81.png)
+
+  当用户按下十字键盘（键码为 175～178）、减号（170）、加号（174）、1（172）或 2（173）键时会触发键盘事件。但没有办法得知用户是否按下了电源开关、A、B 或主页键。
+
+  iOS 版 Safari 和 Android 版 WebKit 在使用屏幕键盘时会触发键盘事件。
 
 ### 复合事件
 
-复合事件（composition event）是 DOM3 级事件中新添加的一类事件，用于处理 IME 的输入序列。
-IME（Input Method Editor，输入法编辑器）可以让用户输入在物理键盘上找不到的字符。例如，使用拉
-丁文键盘的用户通过 IME 照样能输入日文字符。IME 通常需要同时按住多个键，但最终只输入一个字
-符。复合事件就是针对检测和处理这种输入而设计的。有以下三种复合事件。
- compositionstart ：在 IME 的文本复合系统打开时触发，表示要开始输入了。
+**复合事件**（composition event）是 DOM3 级事件中新添加的一类事件，用于处理 IME 的输入序列。 **IME（Input Method Editor，输入法编辑器）可以让用户输入在物理键盘上找不到的字符** 。例如，使用拉丁文键盘的用户通过 IME 照样能输入日文字符。**IME 通常需要同时按住多个键** ，**但最终只输入一个字符** 。**复合事件就是针对检测和处理这种输入而设计的** 。有以下三种复合事件。
 
- compositionupdate ：在向输入字段中插入新字符时触发。
- compositionend ：在 IME 的文本复合系统关闭时触发，表示返回正常键盘输入状态。
-复合事件与文本事件在很多方面都很相似。在触发复合事件时，目标是接收文本的输入字段。但它
-比文本事件的事件对象多一个属性 data ，其中包含以下几个值中的一个：
-  如果在 compositionstart 事件发生时访问，包含正在编辑的文本（例如，已经选中的需要马
-上替换的文本）；
-  如果在 compositionupdate 事件发生时访问，包含正插入的新字符；
-  如果在 compositionend 事件发生时访问，包含此次输入会话中插入的所有字符。
-与文本事件一样，必要时可以利用复合事件来筛选输入。可以像下面这样使用它们：
+- compositionstart ：在 IME 的文本复合系统打开时触发，表示要开始输入了。
+
+- compositionupdate ：在向输入字段中插入新字符时触发。
+
+- compositionend ：在 IME 的文本复合系统关闭时触发，表示返回正常键盘输入状态。复合事件与文本事件在很多方面都很相似。在触发复合事件时，目标是接收文本的输入字段。但它比文本事件的事件对象多一个属性 data ，其中包含以下几个值中的一个：
+
+- 如果在 compositionstart 事件发生时访问，包含正在编辑的文本（例如，已经选中的需要马上替换的文本）；
+
+- 如果在 compositionupdate 事件发生时访问，包含正插入的新字符；
+
+- 如果在 compositionend 事件发生时访问，包含此次输入会话中插入的所有字符。
+
+**与文本事件一样** ，**必要时可以利用复合事件来筛选输入** 。可以像下面这样使用它们：
 
 ```js
 var textbox = document.getElementById("myText");
 EventUtil.addHandler(textbox, "compositionstart", function(event){
-event = EventUtil.getEvent(event);
-alert(event.data);
+  event = EventUtil.getEvent(event);
+  alert(event.data);
 });
+
 EventUtil.addHandler(textbox, "compositionupdate", function(event){
-event = EventUtil.getEvent(event);
-alert(event.data);
+  event = EventUtil.getEvent(event);
+  alert(event.data);
 });
+
 EventUtil.addHandler(textbox, "compositionend", function(event){
-event = EventUtil.getEvent(event);
-alert(event.data);
+  event = EventUtil.getEvent(event);
+  alert(event.data);
 });
 ```
-IE9+是到 2011 年唯一支持复合事件的浏览器。由于缺少支持，对于需要开发跨浏览器应用的开发
-人员，它的用处不大。要确定浏览器是否支持复合事件，可以使用以下代码：
+IE9+是到 2011 年唯一支持复合事件的浏览器。由于缺少支持，对于需要开发跨浏览器应用的开发人员，它的用处不大。**要确定浏览器是否支持复合事件** ，可以使用以下代码：
+
+```js
 var isSupported = document.implementation.hasFeature("CompositionEvent", "3.0");
-
+```
 ### 变动事件
-DOM2 级的变动（mutation）事件能在 DOM中的某一部分发生变化时给出提示。变动事件是为 XML
-或 HTML DOM设计的，并不特定于某种语言。DOM2 级定义了如下变动事件。
- DOMSubtreeModified ：在 DOM 结构中发生任何变化时触发。这个事件在其他任何事件触发
-后都会触发。
- DOMNodeInserted ：在一个节点作为子节点被插入到另一个节点中时触发。
- DOMNodeRemoved ：在节点从其父节点中被移除时触发。
- DOMNodeInsertedIntoDocument ：在一个节点被直接插入文档或通过子树间接插入文档之后
-触发。这个事件在 DOMNodeInserted 之后触发。
- DOMNodeRemovedFromDocument ：在一个节点被直接从文档中移除或通过子树间接从文档中移
-除之前触发。这个事件在 DOMNodeRemoved 之后触发。
- DOMAttrModified ：在特性被修改之后触发。
- DOMCharacterDataModified ：在文本节点的值发生变化时触发。
 
-使用下列代码可以检测出浏览器是否支持变动事件：
+DOM2 级的变动（mutation）事件能在 DOM中的某一部分发生变化时给出提示。**变动事件** 是 **为 XML 或 HTML DOM设计的** ，**并不特定于某种语言** 。DOM2 级定义了如下变动事件。
+
+- DOMSubtreeModified ：在 DOM 结构中发生任何变化时触发。这个事件在其他任何事件触发后都会触发。
+
+- DOMNodeInserted ：在一个节点作为子节点被插入到另一个节点中时触发。
+
+- DOMNodeRemoved ：在节点从其父节点中被移除时触发。
+
+- DOMNodeInsertedIntoDocument ：在一个节点被直接插入文档或通过子树间接插入文档之后触发。这个事件在 DOMNodeInserted 之后触发。
+
+- DOMNodeRemovedFromDocument ：在一个节点被直接从文档中移除或通过子树间接从文档中移除之前触发。这个事件在 DOMNodeRemoved 之后触发。
+
+- DOMAttrModified ：在特性被修改之后触发。
+
+- DOMCharacterDataModified ：在文本节点的值发生变化时触发。
+
+使用下列代码可以 **检测出浏览器是否支持变动事件** ：
 
 ```js
 var isSupported = document.implementation.hasFeature("MutationEvents", "2.0");
 ````
 IE8 及更早版本不支持任何变动事件。下表列出了不同浏览器对不同变动事件的支持情况。
 
-![表格]()
+![不同变动事件的支持情况](http://p9myzkds7.bkt.clouddn.com/JavaScript-event/%E4%B8%8D%E5%90%8C%E5%8F%98%E5%8A%A8%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5.png)
 
 由于 DOM3 级事件模块作废了很多变动事件，所以本节只介绍那些将来仍然会得到支持的事件。
+
 - #### 删除节点
-在使用 removeChild() 或 replaceChild() 从DOM中删除节点时，首先会触发 DOMNodeRemoved
-事件。这个事件的目标（ event.target ）是被删除的节点，而 event.relatedNode 属性中包含着对
-目标节点父节点的引用。在这个事件触发时，节点尚未从其父节点删除，因此其 parentNode 属性仍然
-指向父节点（与 event.relatedNode 相同）。这个事件会冒泡，因而可以在 DOM 的任何层次上面处
-理它。
-如果被移除的节点包含子节点，那么在其所有子节点以及这个被移除的节点上会相继触发
-DOMNodeRemovedFromDocument 事件。但这个事件不会冒泡，所以只有直接指定给其中一个子节点的
-事件处理程序才会被调用。这个事件的目标是相应的子节点或者那个被移除的节点，除此之外 event
-对象中不包含其他信息。
-紧随其后触发的是 DOMSubtreeModified 事件。这个事件的目标是被移除节点的父节点；此时的
-event 对象也不会提供与事件相关的其他信息。
-为了理解上述事件的触发过程，下面我们就以一个简单的 HTML 页面为例。
 
-```html
-<! DOCTYPE html>
-<html>
-<head>
-<title>Node Removal Events Example</title>
-</head>
-<body>
-<ul id="myList">
-<li>Item 1</li>
-<li>Item 2</li>
-<li>Item 3</li>
-</ul>
-</body>
-</html>
-```
-在这个例子中，我们假设要移除 <ul> 元素。此时，就会依次触发以下事件。
-(1) 在 <ul> 元素上触发 DOMNodeRemoved 事件。 relatedNode 属性等于 document.body 。
-(2) 在 <ul> 元素上触发 DOMNodeRemovedFromDocument 事件。
-(3) 在身为 <ul> 元素子节点的每个 <li> 元素及文本节点上触发 DOMNodeRemovedFromDocument
-事件。
-(4) 在 document.body 上触发 DOMSubtreeModified 事件，因为 <ul> 元素是 document.body
-的直接子元素。
-  
-运行下列代码可以验证以上事件发生的顺序。
+  **在使用 removeChild() 或 replaceChild() 从DOM中删除节点时** ，首先会触发 **DOMNodeRemoved 事件** 。这个事件的目标（ event.target ）是被删除的节点，而 **event.relatedNode 属性中包含着对目标节点父节点的引用** 。在这个事件触发时，节点尚未从其父节点删除，因此其 parentNode 属性仍然指向父节点（与 event.relatedNode 相同）。这个事件会冒泡，因而可以在 DOM 的任何层次上面处理它。
 
-```js
-EventUtil.addHandler(window, "load", function(event){
-var list = document.getElementById("myList");
-EventUtil.addHandler(document, "DOMSubtreeModified", function(event){
-alert(event.type);
-alert(event.target);
-});
-EventUtil.addHandler(document, "DOMNodeRemoved", function(event){
-alert(event.type);
-alert(event.target);
-alert(event.relatedNode);
-});
-EventUtil.addHandler(list.firstChild, "DOMNodeRemovedFromDocument", function(event){
-alert(event.type);
-alert(event.target);
-});
-list.parentNode.removeChild(list);
-});
-```
-以上代码为 document 添加了针对 DOMSubtreeModified 和 DOMNodeRemoved 事件的处理程序，
-以便在页面上处理这些事件。由于 DOMNodeRemovedFromDocument 不会冒泡，所以我们将针对它的
-事件处理程序直接添加给了 <ul> 元素的第一个子节点（在兼容 DOM 的浏览器中是一个文本节点）。在
-设置了以上事件处理程序后，代码从文档中移除了 <ul> 元素。
+  **如果被移除的节点包含子节点** ，那么在 **其所有子节点以及这个被移除的节点上会相继触发 DOMNodeRemovedFromDocument 事件** 。但这个事件不会冒泡，所以 **只有直接指定给其中一个子节点的事件处理程序才会被调用** 。这个事件的目标是相应的子节点或者那个被移除的节点，除此之外 event对象中不包含其他信息。
+
+  紧随其后 **触发的是 DOMSubtreeModified 事件** 。这个事件的 **目标是被移除节点的父节点** ；**此时的 event 对象也不会提供与事件相关的其他信息** 。
+
+  为了理解上述事件的触发过程，下面我们就以一个简单的 HTML 页面为例。
+
+  ```html
+  <! DOCTYPE html>
+  <html>
+    <head>
+      <title>Node Removal Events Example</title>
+    </head>
+    <body>
+      <ul id="myList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+      </ul>
+    </body>
+  </html>
+  ```
+  在这个例子中，我们假设要移除 `<ul>` 元素。此时，就会依次触发以下事件。
+
+  ```
+  (1) 在 `<ul>` 元素上触发 DOMNodeRemoved 事件。 relatedNode 属性等于 document.body 。
+  (2) 在 `<ul>` 元素上触发 DOMNodeRemovedFromDocument 事件。
+  (3) 在身为 `<ul>` 元素子节点的每个 `<li>` 元素及文本节点上触发DOMNodeRemovedFromDocument事件。
+  (4) 在 document.body 上触发 DOMSubtreeModified 事件，因为 `<ul>` 元素是 document.body 的直接子元素。
+  ```
+  运行下列代码可以 **验证以上事件发生的顺序** 。
+
+  ```js
+  EventUtil.addHandler(window, "load", function(event){
+    var list = document.getElementById("myList");
+
+    EventUtil.addHandler(document, "DOMSubtreeModified", function(event){
+      alert(event.type);
+      alert(event.target);
+    });
+
+    EventUtil.addHandler(document, "DOMNodeRemoved", function(event){
+      alert(event.type);
+      alert(event.target);
+      alert(event.relatedNode);
+    });
+
+    EventUtil.addHandler(list.firstChild, "DOMNodeRemovedFromDocument", function(event){
+      alert(event.type);
+      alert(event.target);
+    });
+
+    list.parentNode.removeChild(list);
+  });
+  ```
+  以上代码为 document 添加了针对 DOMSubtreeModified 和 DOMNodeRemoved 事件的处理程序，以便在页面上处理这些事件。由于 DOMNodeRemovedFromDocument 不会冒泡，所以我们将针对它的事件处理程序直接添加给了 `<ul>` 元素的第一个子节点（在兼容 DOM 的浏览器中是一个文本节点）。在设置了以上事件处理程序后，代码从文档中移除了 `<ul>` 元素。
 
 - ### 插入节点
-在使用 appendChild() 、 replaceChild() 或 insertBefore() 向 DOM 中插入节点时，首先会
-触发 DOMNodeInserted 事件。这个事件的目标是被插入的节点，而 event.relatedNode 属性中包含
-一个对父节点的引用。在这个事件触发时，节点已经被插入到了新的父节点中。这个事件是冒泡的，因
-此可以在 DOM的各个层次上处理它。
-紧接着，会在新插入的节点上面触发 DOMNodeInsertedIntoDocument 事件。这个事件不冒泡，
-因此必须在插入节点之前为它添加这个事件处理程序。这个事件的目标是被插入的节点，除此之外
-event 对象中不包含其他信息。
-最后一个触发的事件是 DOMSubtreeModified ，触发于新插入节点的父节点。
-我们仍以前面的 HTML 文档为例，可以通过下列 JavaScript 代码来验证上述事件的触发顺序。
 
-```js
-EventUtil.addHandler(window, "load", function(event){
-var list = document.getElementById("myList");
-var item = document.createElement("li");
-item.appendChild(document.createTextNode("Item 4"));
-EventUtil.addHandler(document, "DOMSubtreeModified", function(event){
-alert(event.type);
-alert(event.target);
-});
-EventUtil.addHandler(document, "DOMNodeInserted", function(event){
-alert(event.type);
-alert(event.target);
-alert(event.relatedNode);
-});
-EventUtil.addHandler(item, "DOMNodeInsertedIntoDocument", function(event){
-alert(event.type);
-alert(event.target);
-});
-list.appendChild(item);
-});
-```
-以上代码首先创建了一个包含文本 "Item 4" 的新 <li> 元素。由于 DOMSubtreeModified 和
-DOMNodeInserted 事件是冒泡的，所以把它们的事件处理程序添加到了文档中。在将列表项插入到其
-父节点之前，先将 DOMNodeInsertedIntoDocument 事件的事件处理程序添加给它。最后一步就是使
-用 appendChild() 来添加这个列表项；此时，事件开始依次被触发。首先是在新 <li> 元素项上触发
-DOMNodeInserted 事件，其 relatedNode 是 <ul> 元素。然后是触发新 <li> 元素上的 DOMNode-
-InsertedIntoDocument 事件，最后触发的是 <ul> 元素上的 DOMSubtreeModified 事件。
+  在使用 **appendChild()** 、 **replaceChild()** 或 **insertBefore()** 向 DOM 中 **插入节点** 时，首先会 **触发 DOMNodeInserted 事件** 。这个事件的目标是 **被插入的节点** ，而 **event.relatedNode 属性中包含一个对父节点的引用** 。在这个事件触发时，**节点已经被插入到了新的父节点中** 。这个事件是 **冒泡的** ，因此可以在 DOM 的各个层次上处理它。
 
+  紧接着，会在新插入的节点上面 **触发 DOMNodeInsertedIntoDocument 事件** 。这个事件 **不冒泡** ，因此 **必须在插入节点之前为它添加这个事件处理程序** 。这个事件的 **目标是被插入的节点** ，**除此之外 event 对象中不包含其他信息** 。
+
+  最后一个 **触发的事件是 DOMSubtreeModified** ，**触发于新插入节点的父节点** 。
+
+  我们仍以前面的 HTML 文档为例，可以通过下列 JavaScript 代码来验证上述事件的触发顺序。
+
+  ```js
+  EventUtil.addHandler(window, "load", function(event){
+    var list = document.getElementById("myList");
+    var item = document.createElement("li");
+    item.appendChild(document.createTextNode("Item 4"));
+
+    EventUtil.addHandler(document, "DOMSubtreeModified", function(event){
+      alert(event.type);
+      alert(event.target);
+    });
+
+    EventUtil.addHandler(document, "DOMNodeInserted", function(event){
+      alert(event.type);
+      alert(event.target);
+      alert(event.relatedNode);
+    });
+
+    EventUtil.addHandler(item, "DOMNodeInsertedIntoDocument", function(event){
+      alert(event.type);
+      alert(event.target);
+    });
+
+    list.appendChild(item);
+  });
+  ```
+  以上代码首先创建了一个包含文本 "Item 4" 的新 `<li>` 元素。由于DOMSubtreeModified 和 DOMNodeInserted 事件是冒泡的，所以把它们的事件处理程序添加到了文档中。在将列表项插入到其父节点之前，先将 DOMNodeInsertedIntoDocument 事件的事件处理程序添加给它。最后一步就是使用 appendChild() 来添加这个列表项；此时，事件开始依次被触发。首先是在新 `<li>` 元素项上触发DOMNodeInserted 事件，其 relatedNode 是 `<ul>` 元素。然后是触发新 `<li>` 元素上的 DOMNodeInsertedIntoDocument 事件，最后触发的是 `<ul>` 元素上的DOMSubtreeModified 事件。
 
 ### HTML5 事件
-DOM 规范没有涵盖所有浏览器支持的所有事件。很多浏览器出于不同的目的——满足用户需求或
-解决特殊问题，还实现了一些自定义的事件。HTML5 详尽列出了浏览器应该支持的所有事件。本节只
-讨论其中得到浏览器完善支持的事件，但并非全部事件。（其他事件会在本书其他章节讨论。）
+
+DOM 规范没有涵盖所有浏览器支持的所有事件。很多浏览器出于不同的目的——满足用户需求或解决特殊问题，还实现了一些自定义的事件。HTML5 详尽列出了浏览器应该支持的所有事件。本节只讨论其中得到浏览器完善支持的事件，但并非全部事件。（其他事件会在本书其他章节讨论。）
 
 - #### contextmenu 事件
 
-Windows 95 在 PC 中引入了上下文菜单的概念，即通过单击鼠标右键可以调出上下文菜单。不久，
-这个概念也被引入了 Web 领域。为了实现上下文菜单，开发人员面临的主要问题是如何确定应该显示
-上下文菜单（在 Windows 中，是右键单击；在 Mac 中，是 Ctrl+单击），以及如何屏蔽与该操作关联的
-默认上下文菜单。为解决这个问题，就出现了 contextmenu 这个事件，用以表示何时应该显示上下文
-菜单，以便开发人员取消默认的上下文菜单而提供自定义的菜单。
-由于 contextmenu 事件是冒泡的，因此可以为 document 指定一个事件处理程序，用以处理页面
-中发生的所有此类事件。这个事件的目标是发生用户操作的元素。在所有浏览器中都可以取消这个事件：
-在兼容 DOM 的浏览器中，使用 event.preventDefalut() ；在 IE 中，将 event.returnValue 的值
-设置为 false 。因为 contextmenu 事件属于鼠标事件，所以其事件对象中包含与光标位置有关的所有
-属性。通常使用 contextmenu 事件来显示自定义的上下文菜单，而使用 onclick 事件处理程序来隐
-藏该菜单。以下面的 HTML 页面为例。
+  Windows 95 在 PC 中引入了上下文菜单的概念，即通过单击鼠标右键可以调出上下文菜单。不久，这个概念也被引入了 Web 领域。为了实现上下文菜单，开发人员面临的主要问题是如何确定应该显示上下文菜单（在 Windows 中，是右键单击；在 Mac 中，是 Ctrl+单击），以及如何屏蔽与该操作关联的默认上下文菜单。为解决这个问题，就出现了 contextmenu 这个事件，用以表示何时应该显示上下文菜单，以便开发人员取消默认的上下文菜单而提供自定义的菜单。
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-<title>ContextMenu Event Example</title>
-</head>
-<body>
-<div id="myDiv">Right click or Ctrl+click me to get a custom context menu.
-Click anywhere else to get the default context menu.</div>
-<ul id="myMenu" style="position:absolute;visibility:hidden;background-color:
-silver">
-<li><a href="http://www.nczonline.net">Nicholas’ site</a></li>
-<li><a href="http://www.wrox.com">Wrox site</a></li>
-<li><a href="http://www.yahoo.com">Yahoo!</a></li>
-</ul>
-</body>
-</html>
-```
+  由于 contextmenu 事件是冒泡的，因此可以为 document 指定一个事件处理程序，用以处理页面中发生的所有此类事件。这个事件的目标是发生用户操作的元素。在所有浏览器中都可以取消这个事件：在兼容 DOM 的浏览器中，使用 event.preventDefalut() ；在 IE 中，将 event.returnValue 的值设置为 false 。因为 contextmenu 事件属于鼠标事件，所以其事件对象中包含与光标位置有关的所有属性。通常使用 contextmenu 事件来显示自定义的上下文菜单，而使用 onclick 事件处理程序来隐藏该菜单。以下面的 HTML 页面为例。
 
-这里的 `<div>` 元素包含一个自定义的上下文菜单。其中， `<ul>` 元素作为自定义上下文菜单，并且在
-初始时是隐藏的。实现这个例子的 JavaScript 代码如下所示。
+  ```html
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>ContextMenu Event Example</title>
+    </head>
+    <body>
+    <div id="myDiv">Right click or Ctrl+click me to get a custom context menu.Click anywhere else to get the default context menu.</div>
+      <ul id="myMenu" style="position:absolute;visibility:hidden;background-color: silver">
+        <li><a href="http://www.nczonline.net">Nicholas’ site</a></li>
+        <li><a href="http://www.wrox.com">Wrox site</a></li>
+        <li><a href="http://www.yahoo.com">Yahoo!</a></li>
+      </ul>
+    </body>
+  </html>
+  ```
+  这里的 `<div>` 元素包含一个自定义的上下文菜单。其中， `<ul>` 元素作为自定义上下文菜单，并且在初始时是隐藏的。实现这个例子的 **JavaScript 代码** 如下所示。
 
-```js
-EventUtil.addHandler(window, "load", function(event){
-var div = document.getElementById("myDiv");
-EventUtil.addHandler(div, "contextmenu", function(event){
-event = EventUtil.getEvent(event);
-EventUtil.preventDefault(event);
-var menu = document.getElementById("myMenu");
-menu.style.left = event.clientX + "px";
-menu.style.top = event.clientY + "px";
-menu.style.visibility = "visible";
-});
-EventUtil.addHandler(document, "click", function(event){
-document.getElementById("myMenu").style.visibility = "hidden";
-});
-});
-```
-在这个例子中，我们为 <div> 元素添加了 oncontextmenu 事件的处理程序。这个事件处理程序首
-先会取消默认行为，以保证不显示浏览器默认的上下文菜单。然后，再根据 event 对象 clientX 和
-clientY 属性的值，来确定放置 <ul> 元素的位置。最后一步就是通过将 visibility 属性设置为
-"visible" 来显示自定义上下文菜单。另外，还为 document 添加了一个 onclick 事件处理程序，以
-便用户能够通过鼠标单击来隐藏菜单（单击也是隐藏系统上下文菜单的默认操作）。
-虽然这个例子很简单，但它却展示了 Web 上所有自定义上下文菜单的基本结构。只需为这个例子
-中的上下文菜单添加一些 CSS 样式，就可以得到非常棒的效果。
-支持 contextmenu 事件的浏览器有 IE、Firefox、Safari、Chrome 和 Opera 11+。
+  ```js
+  EventUtil.addHandler(window, "load", function(event){
+    var div = document.getElementById("myDiv");
+
+    EventUtil.addHandler(div, "contextmenu", function(event){
+      event = EventUtil.getEvent(event);
+      EventUtil.preventDefault(event);
+
+      var menu = document.getElementById("myMenu");
+      menu.style.left = event.clientX + "px";
+      menu.style.top = event.clientY + "px";
+      menu.style.visibility = "visible";
+    });
+
+    EventUtil.addHandler(document, "click", function(event){
+      document.getElementById("myMenu").style.visibility = "hidden";
+    });
+  });
+  ```
+  在这个例子中，我们为 `<div>` 元素添加了 oncontextmenu 事件的处理程序。这个事件处理程序首先会取消默认行为，以保证不显示浏览器默认的上下文菜单。然后，再根据 event 对象 clientX 和 clientY 属性的值，来确定放置 `<ul>` 元素的位置。最后一步就是通过将 visibility 属性设置为"visible" 来显示自定义上下文菜单。另外，还为 document 添加了一个 onclick 事件处理程序，以便用户能够通过鼠标单击来隐藏菜单（单击也是隐藏系统上下文菜单的默认操作）。
+
+  虽然这个例子很简单，但它却展示了 Web 上所有自定义上下文菜单的基本结构。只需为这个例子中的上下文菜单添加一些 CSS 样式，就可以得到非常棒的效果。
+
+  支持 contextmenu 事件的浏览器有 IE、Firefox、Safari、Chrome 和 Opera 11+。
   
 - #### beforeunload 事件
 
-之所以有发生在 window 对象上的 beforeunload 事件，是为了让开发人员有可能在页面卸载前
-阻止这一操作。这个事件会在浏览器卸载页面之前触发，可以通过它来取消卸载并继续使用原有页面。
-但是，不能彻底取消这个事件，因为那就相当于让用户无法离开当前页面了。为此，这个事件的意图是
-将控制权交给用户。显示的消息会告知用户页面行将被卸载（正因为如此才会显示这个消息），询问用
-户是否真的要关闭页面，还是希望继续留下来（见图 13-9）。
+  **之所以有发生在 window 对象上的 beforeunload 事件，是为了让开发人员有可能在页面卸载前阻止这一操作** 。这个事件会在浏览器卸载页面之前触发，可以通过它来取消卸载并继续使用原有页面。但是，不能彻底取消这个事件，因为那就相当于让用户无法离开当前页面了。为此，这个事件的意图是将控制权交给用户。显示的消息会告知用户页面行将被卸载（正因为如此才会显示这个消息），询问用户是否真的要关闭页面，还是希望继续留下来（见下图）。
 
-![图片]()
+  ![询问用户](http://p9myzkds7.bkt.clouddn.com/JavaScript-event/%E8%AF%A2%E9%97%AE%E7%94%A8%E6%88%B7.png)
 
-为了显示这个弹出对话框，必须将 event.returnValue 的值设置为要显示给用户的字符串（对
-IE 及 Fiefox 而言），同时作为函数的值返回（对 Safari 和 Chrome 而言），如下面的例子所示。
+  为了显示这个弹出对话框，必须将 event.returnValue 的值设置为要显示给用户的字符串（对 IE 及 Fiefox 而言），同时作为函数的值返回（对 Safari 和 Chrome 而言），如下面的例子所示。
 
-```js
-EventUtil.addHandler(window, "beforeunload", function(event){
-event = EventUtil.getEvent(event);
-var message = "I'm really going to miss you if you go.";
-event.returnValue = message;
-return message;
-});
-```
-IE 和 Firefox、Safari 和 Chrome 都支持 beforeunload 事件，也都会弹出这个对话框询问用户是否
-真想离开。Opera 11 及之前的版本不支持 beforeunload 事件。
+  ```js
+  EventUtil.addHandler(window, "beforeunload", function(event){
+    event = EventUtil.getEvent(event);
+    var message = "I'm really going to miss you if you go.";
+    event.returnValue = message;
+    return message;
+  });
+  ```
+  IE 和 Firefox、Safari 和 Chrome 都支持 beforeunload 事件，也都会弹出这个对话框询问用户是否真想离开。Opera 11 及之前的版本不支持 beforeunload 事件。
 
 - #### DOMContentLoaded 事件
-如前所述， window 的 load 事件会在页面中的一切都加载完毕时触发，但这个过程可能会因为要
-加载的外部资源过多而颇费周折。而 DOMContentLoaded 事件则在形成完整的 DOM树之后就会触发，
-不理会图像、JavaScript 文件、CSS 文件或其他资源是否已经下载完毕。与 load 事件不同，
-DOMContentLoaded 支持在页面下载的早期添加事件处理程序，这也就意味着用户能够尽早地与页面
-进行交互。
-要处理 DOMContentLoaded 事件，可以为 document 或 window 添加相应的事件处理程序（尽管
-这个事件会冒泡到 window ，但它的目标实际上是 document ）。来看下面的例子。
 
-```js
-EventUtil.addHandler(document, "DOMContentLoaded", function(event){
-alert("Content loaded");
-});
-```
-DOMContentLoaded 事件对象不会提供任何额外的信息（其 target 属性是 document ）。
-IE9+、Firefox、Chrome、Safari 3.1+和 Opera 9+都支持 DOMContentLoaded 事件，通常这个事件
-既可以添加事件处理程序，也可以执行其他 DOM 操作。这个事件始终都会在 load 事件之前触发。
-对于不支持 DOMContentLoaded 的浏览器，我们建议在页面加载期间设置一个时间为 0 毫秒的超
-时调用，如下面的例子所示。
+  如前所述， **window 的 load 事件会在页面中的一切都加载完毕时触发** ，但这个过程可能会因为要加载的外部资源过多而颇费周折。而 **DOMContentLoaded 事件则在形成完整的 DOM树之后就会触发** ，不理会图像、JavaScript 文件、CSS 文件或其他资源是否已经下载完毕。与 load 事件不同，DOMContentLoaded 支持在页面下载的早期添加事件处理程序，这也就意味着用户能够尽早地与页面进行交互。
 
-```js
-setTimeout(function(){
-//在此添加事件处理程序
-}, 0);
-```
-这段代码的实际意思就是：“在当前 JavaScript 处理完成后立即运行这个函数。”在页面下载和构建
-期间，只有一个 JavaScript 处理过程，因此超时调用会在该过程结束时立即触发。至于这个时间与
-DOMContentLoaded 被触发的时间能否同步，主要还是取决于用户使用的浏览器和页面中的其他代码。
-为了确保这个方法有效，必须将其作为页面中的第一个超时调用；即便如此，也还是无法保证在所有环
-境中该超时调用一定会早于 load 事件被触发。
+  要处理 DOMContentLoaded 事件，可以为 document 或 window 添加相应的事件处理程序（尽管这个事件会冒泡到 window ，但它的目标实际上是 document ）。来看下面的例子。
+
+  ```js
+  EventUtil.addHandler(document, "DOMContentLoaded", function(event){
+    alert("Content loaded");
+  });
+  ```
+  DOMContentLoaded 事件对象不会提供任何额外的信息（其 target 属性是 document ）。
+
+  IE9+、Firefox、Chrome、Safari 3.1+和 Opera 9+都支持 DOMContentLoaded 事件，通常这个事件既可以添加事件处理程序，也可以执行其他 DOM 操作。这个事件始终都会在 load 事件之前触发。
+
+  对于不支持 DOMContentLoaded 的浏览器，我们建议在页面加载期间设置一个时间为 0 毫秒的超时调用，如下面的例子所示。
+
+  ```js
+  setTimeout(function(){
+    //在此添加事件处理程序
+  }, 0);
+  ```
+  这段代码的实际意思就是：“在当前 JavaScript 处理完成后立即运行这个函数。”在页面下载和构建期间，只有一个 JavaScript 处理过程，因此超时调用会在该过程结束时立即触发。至于这个时间与 DOMContentLoaded 被触发的时间能否同步，主要还是取决于用户使用的浏览器和页面中的其他代码。
+
+  为了确保这个方法有效，必须将其作为页面中的第一个超时调用；即便如此，也还是无法保证在所有环境中该超时调用一定会早于 load 事件被触发。
 
 - #### readystatechange 事件
-IE 为 DOM 文档中的某些部分提供了 readystatechange 事件。这个事件的目的是提供与文档或
-元素的加载状态有关的信息，但这个事件的行为有时候也很难预料。支持 readystatechange 事件的
-每个对象都有一个 readyState 属性，可能包含下列 5 个值中的一个。
- uninitialized （未初始化）：对象存在但尚未初始化。
 
- loading （正在加载）：对象正在加载数据。
- loaded （加载完毕）：对象加载数据完成。
- interactive （交互）：可以操作对象了，但还没有完全加载。
- complete （完成）：对象已经加载完毕。
-这些状态看起来很直观，但并非所有对象都会经历 readyState 的这几个阶段。换句话说，如果某
-个阶段不适用某个对象，则该对象完全可能跳过该阶段；并没有规定哪个阶段适用于哪个对象。显然，
-这意味着 readystatechange 事件经常会少于 4 次，而 readyState 属性的值也不总是连续的。
-对于 document 而言，值为 "interactive" 的 readyState 会在与 DOMContentLoaded 大致相
-同的时刻触发 readystatechange 事件。此时，DOM树已经加载完毕，可以安全地操作它了，因此就
-会进入交互（interactive）阶段。但与此同时，图像及其他外部文件不一定可用。下面来看一段处理
-readystatechange 事件的代码。
+  **IE 为 DOM 文档中的某些部分提供了 readystatechange 事件** 。这个事件的目的是**提供与文档或元素的加载状态有关的信息** ，但这个事件的行为有时候也很难预料。**支持 readystatechange 事件的每个对象都有一个 readyState 属性** ，可能包含下列 5 个值中的一个。
 
-```js
-EventUtil.addHandler(document, "readystatechange", function(event){
-if (document.readyState == "interactive"){
-alert("Content loaded");
-}
-});
-```
-这个事件的 event 对象不会提供任何信息，也没有目标对象。
-在与 load 事件一起使用时，无法预测两个事件触发的先后顺序。在包含较多或较大的外部资源的
-页面中，会在 load 事件触发之前先进入交互阶段；而在包含较少或较小的外部资源的页面中，则很难
-说 readystatechange 事件会发生在 load 事件前面。
-让问题变得更复杂的是，交互阶段可能会早于也可能会晚于完成阶段出现，无法确保顺序。在包含
-较多外部资源的页面中，交互阶段更有可能早于完成阶段出现；而在页面中包含较少外部资源的情况下，
-完成阶段先于交互阶段出现的可能性更大。因此，为了尽可能抢到先机，有必要同时检测交互和完成阶
-段，如下面的例子所示。
+  - uninitialized （未初始化）：对象存在但尚未初始化。
 
-```js
-EventUtil.addHandler(document, "readystatechange", function(event){
-if (document.readyState == "interactive" || document.readyState == "complete"){
-EventUtil.removeHandler(document, "readystatechange", arguments.callee);
-alert("Content loaded");
-}
-});
-```
-对于上面的代码来说，当 readystatechange 事件触发时，会检测 document.readyState 的值，
-看当前是否已经进入交互阶段或完成阶段。如果是，则移除相应的事件处理程序以免在其他阶段再执行。
-注意，由于事件处理程序使用的是匿名函数，因此这里使用了 arguments.callee 来引用该函数。然
-后，会显示一个警告框，说明内容已经加载完毕。这样编写代码可以达到与使用 DOMContentLoaded
-十分相近的效果。
-支持 readystatechange 事件的浏览器有 IE、Firfox 4+和 Opera。
+  - loading （正在加载）：对象正在加载数据。
+  - loaded （加载完毕）：对象加载数据完成。
+  - interactive （交互）：可以操作对象了，但还没有完全加载。
+  - complete （完成）：对象已经加载完毕。
 
->虽然使用 readystatechange 可以十分近似地模拟 DOMContentLoaded 事件，
-但它们本质上还是不同的。在不同页面中， load 事件与 readystatechange 事件并
-不能保证以相同的顺序触发。
+  这些状态看起来很直观，但并非所有对象都会经历 readyState 的这几个阶段。换句话说，**如果某个阶段不适用某个对象** ，**则该对象完全可能跳过该阶段** ；**并没有规定哪个阶段适用于哪个对象** 。显然，这意味着 readystatechange 事件经常会少于 4 次，而 readyState 属性的值也不总是连续的。
 
-另外， `<script>` （在 IE 和 Opera 中）和 `<link>` （仅 IE 中）元素也会触发 readystatechange
-事件，可以用来确定外部的 JavaScript 和 CSS 文件是否已经加载完成。与在其他浏览器中一样，除非把
-动 态 创 建 的 元 素 添 加 到 页 面 中 ， 否 则 浏 览 器 不 会 开 始 下 载 外 部 资 源 。 基 于 元 素 触 发 的
-readystatechange 事件也存在同样的问题，即 readyState 属性无论等于 "loaded" 还是
-"complete" 都可以表示资源已经可用。有时候， readyState 会停在 "loaded" 阶段而永远不会“完成”；
-有时候，又会跳过 "loaded" 阶段而直接“完成”。于是，还需要像对待 document 一样采取相同的编码
-方式。例如，下面展示了一段加载外部 JavaScript 文件的代码。
+  对于 document 而言，值为 "interactive" 的 readyState 会在与 DOMContentLoaded 大致相同的时刻触发 readystatechange 事件。此时，DOM树已经加载完毕，可以安全地操作它了，因此就会进入交互（interactive）阶段。但与此同时，图像及其他外部文件不一定可用。下面来看一段处理 readystatechange 事件的代码。
 
-```js
-EventUtil.addHandler(window, "load", function(){
-var script = document.createElement("script");
-EventUtil.addHandler(script, "readystatechange", function(event){
-event = EventUtil.getEvent(event);
-var target = EventUtil.getTarget(event);
-if (target.readyState == "loaded" || target.readyState == "complete"){
-EventUtil.removeHandler(target, "readystatechange", arguments. callee);
-alert("Script Loaded");
-}
-});
-script.src = "example.js";
-document.body.appendChild(script);
-});
-```
-这个例子为新创建的 `<script>` 节点指定了一个事件处理程序。事件的目标是该节点本身，因此当
-触发 readystatechange 事件时，要检测目标的 readyState 属性是不是等于 "loaded" 或
-"complete" 。如果进入了其中任何一个阶段，则移除事件处理程序（以防止被执行两次），并显示一个
-警告框。与此同时，就可以执行已经加载完毕的外部文件中的函数了。
-同样的编码方式也适用于通过 `<link>` 元素加载 CSS 文件的情况，如下面的例子所示。
-  
-```js
-EventUtil.addHandler(window, "load", function(){
-var link = document.createElement("link");
-link.type = "text/css";
-link.rel= "stylesheet";
-EventUtil.addHandler(script, "readystatechange", function(event){
-event = EventUtil.getEvent(event);
-var target = EventUtil.getTarget(event);
-if (target.readyState == "loaded" || target.readyState == "complete"){
-EventUtil.removeHandler(target, "readystatechange", arguments. callee);
-alert("CSS Loaded");
-}
-});
-link.href = "example.css";
-document.getElementsByTagName("head")[0].appendChild(link);
-});
-```
-同样，最重要的是要一并检测 readyState 的两个状态，并在调用了一次事件处理程序后就将其移除。
+  ```js
+  EventUtil.addHandler(document, "readystatechange", function(event){
+    if (document.readyState == "interactive"){
+      alert("Content loaded");
+    }
+  });
+  ```
+  这个事件的 event 对象不会提供任何信息，也没有目标对象。
+
+  在与 load 事件一起使用时，无法预测两个事件触发的先后顺序。在包含较多或较大的外部资源的页面中，会在 load 事件触发之前先进入交互阶段；而在包含较少或较小的外部资源的页面中，则很难说 readystatechange 事件会发生在 load 事件前面。
+
+  让问题变得更复杂的是，交互阶段可能会早于也可能会晚于完成阶段出现，无法确保顺序。在包含较多外部资源的页面中，交互阶段更有可能早于完成阶段出现；而在页面中包含较少外部资源的情况下，完成阶段先于交互阶段出现的可能性更大。因此，为了尽可能抢到先机，有必要同时检测交互和完成阶段，如下面的例子所示。
+
+  ```js
+  EventUtil.addHandler(document, "readystatechange", function(event){
+    if (document.readyState == "interactive" || document.readyState == "complete"){
+      EventUtil.removeHandler(document, "readystatechange", arguments.callee);
+      alert("Content loaded");
+    }
+  });
+  ```
+  对于上面的代码来说，**当 readystatechange 事件触发时** ，**会检测 document.readyState 的值** ，**看当前是否已经进入交互阶段或完成阶段** 。如果是，则移除相应的事件处理程序以免在其他阶段再执行。
+
+  注意，由于事件处理程序使用的是匿名函数，因此这里使用了 arguments.callee 来引用该函数。然后，会显示一个警告框，说明内容已经加载完毕。这样编写代码可以达到与使用 DOMContentLoaded 十分相近的效果。
+
+  支持 readystatechange 事件的浏览器有 IE、Firfox 4+和 Opera。
+
+  > **虽然使用 readystatechange 可以十分近似地模拟 DOMContentLoaded 事件，但它们本质上还是不同的** 。在不同页面中， **load 事件与 readystatechange 事件并不能保证以相同的顺序触发** 。
+
+  另外， `<script>` （在 IE 和 Opera 中）和 `<link>` （仅 IE 中）元素也会触发 readystatechange 事件，可以用来确定外部的 JavaScript 和 CSS 文件是否已经加载完成。与在其他浏览器中一样，除非把动态创建的元素添加到页面中 ，否则浏览器不会 开 始下载外部资源 。 基于元素触发的 readystatechange 事件也存在同样的问题，即 readyState 属性无论等于 "loaded" 还是 "complete" 都可以表示资源已经可用。有时候， readyState 会停在 "loaded" 阶段而永远不会“完成”；有时候，又会跳过 "loaded" 阶段而直接“完成”。于是，还需要像对待 document 一样采取相同的编码
+  方式。例如，下面展示了一段加载外部 JavaScript 文件的代码。
+
+  ```js
+  EventUtil.addHandler(window, "load", function(){
+    var script = document.createElement("script");
+
+    EventUtil.addHandler(script, "readystatechange", function(event){
+      event = EventUtil.getEvent(event);
+      var target = EventUtil.getTarget(event);
+      if (target.readyState == "loaded" || target.readyState == "complete"){
+        EventUtil.removeHandler(target, "readystatechange", arguments. callee);
+        alert("Script Loaded");
+      }
+    });
+    script.src = "example.js";
+    document.body.appendChild(script);
+  });
+  ```
+  这个例子为新创建的 `<script>` 节点指定了一个事件处理程序。事件的目标是该节点本身，因此当触发 readystatechange 事件时，要检测目标的 readyState 属性是不是等于 "loaded" 或 "complete" 。如果进入了其中任何一个阶段，则移除事件处理程序（以防止被执行两次），并显示一个警告框。与此同时，就可以执行已经加载完毕的外部文件中的函数了。
+
+  同样的编码方式也适用于通过 `<link>` 元素加载 CSS 文件的情况，如下面的例子所示。
+
+  ```js
+  EventUtil.addHandler(window, "load", function(){
+    var link = document.createElement("link");
+    link.type = "text/css";
+    link.rel= "stylesheet";
+
+    EventUtil.addHandler(script, "readystatechange", function(event){
+      event = EventUtil.getEvent(event);
+      var target = EventUtil.getTarget(event);
+      if (target.readyState == "loaded" || target.readyState == "complete"){
+        EventUtil.removeHandler(target, "readystatechange", arguments. callee);
+        alert("CSS Loaded");
+      }
+    });
+
+    link.href = "example.css";
+    document.getElementsByTagName("head")[0].appendChild(link);
+  });
+  ```
+  同样，**最重要的是要一并检测 readyState 的两个状态** ，**并在调用了一次事件处理程序后就将其移除** 。
+
 - #### pageshow 和 pagehide 事件
-Firefox 和 Opera 有一个特性，名叫“往返缓存”（back-forward cache，或 bfcache），可以在用户使
-用浏览器的“后退”和“前进”按钮时加快页面的转换速度。这个缓存中不仅保存着页面数据，还保存
-了 DOM 和 JavaScript 的状态；实际上是将整个页面都保存在了内存里。如果页面位于 bfcache 中，那么
-再次打开该页面时就不会触发 load 事件。尽管由于内存中保存了整个页面的状态，不触发 load 事件
-也不应该会导致什么问题，但为了更形象地说明 bfcache 的行为，Firefox 还是提供了一些新事件。
-第一个事件就是 pageshow ，这个事件在页面显示时触发，无论该页面是否来自 bfcache。在重新加
-载的页面中， pageshow 会在 load 事件触发后触发；而对于 bfcache 中的页面， pageshow 会在页面状
-态完全恢复的那一刻触发。另外要注意的是，虽然这个事件的目标是 document ，但必须将其事件处理
-程序添加到 window 。来看下面的例子。
 
-```js
-(function(){
-var showCount = 0;
-EventUtil.addHandler(window, "load", function(){
-alert("Load fired");
-});
-EventUtil.addHandler(window, "pageshow", function(){
-showCount++;
-alert("Show has been fired " + showCount + " times.");
-});
-})();
-```
-这个例子使用了私有作用域，以防止变量 showCount 进入全局作用域。当页面首次加载完成时，
-showCount 的值为 0 。此后，每当触发 pageshow 事件， showCount 的值就会递增并通过警告框显示
-出来。如果你在离开包含以上代码的页面之后，又单击“后退”按钮返回该页面，就会看到 showCount
-每次递增的值。这是因为该变量的状态，乃至整个页面的状态，都被保存在了内存中，当你返回这个页
-面时，它们的状态得到了恢复。如果你单击了浏览器的“刷新”按钮，那么 showCount 的值就会被重
-置为 0 ，因为页面已经完全重新加载了。
-除了通常的属性之外， pageshow 事件的 event 对象还包含一个名为 persisted 的布尔值属性。
-如果页面被保存在了 bfcache 中，则这个属性的值为 true ；否则，这个属性的值为 false 。可以像下面
-这样在事件处理程序中检测这个属性。
+  Firefox 和 Opera 有一个特性，名叫“往返缓存”（back-forward cache，或 bfcache），可以在用户使用浏览器的“后退”和“前进”按钮时加快页面的转换速度。这个缓存中不仅保存着页面数据，还保存了 DOM 和 JavaScript 的状态；实际上是将整个页面都保存在了内存里。如果页面位于 bfcache 中，那么再次打开该页面时就不会触发 load 事件。尽管由于内存中保存了整个页面的状态，不触发 load 事件也不应该会导致什么问题，但为了更形象地说明 bfcache 的行为，Firefox 还是提供了一些新事件。
 
-```js
-(function(){
-var showCount = 0;
-EventUtil.addHandler(window, "load", function(){
-alert("Load fired");
-});
-EventUtil.addHandler(window, "pageshow", function(){
-showCount++;
-alert("Show has been fired " + showCount +
-" times. Persisted? " + event.persisted);
-});
-})();
-```
-通过检测 persisted 属性，就可以根据页面在 bfcache 中的状态来确定是否需要采取其他操作。
-与 pageshow 事件对应的是 pagehide 事件，该事件会在浏览器卸载页面的时候触发，而且是在
-unload 事件之前触发。与 pageshow 事件一样， pagehide 在 document 上面触发，但其事件处理程
-序必须要添加到 window 对象。这个事件的 event 对象也包含 persisted 属性，不过其用途稍有不同。
-来看下面的例子。
+  第一个事件就是 pageshow ，这个事件在页面显示时触发，无论该页面是否来自 bfcache。在重新加载的页面中， pageshow 会在 load 事件触发后触发；而对于 bfcache 中的页面， pageshow 会在页面状态完全恢复的那一刻触发。另外要注意的是，虽然这个事件的目标是 document ，但必须将其事件处理程序添加到 window 。来看下面的例子。
 
-```js
-EventUtil.addHandler(window, "pagehide", function(event){
-alert("Hiding. Persisted? " + event.persisted);
-});
-```
-有时候，可能需要在 pagehide 事件触发时根据 persisted 的值采取不同的操作。对于 pageshow
-事件，如果页面是从 bfcache 中加载的，那么 persisted 的值就是 true ；对于 pagehide 事件，如果
-页面在卸载之后会被保存在 bfcache 中，那么 persisted 的值也会被设置为 true 。因此，当第一次触
-发 pageshow 时， persisted 的值一定是 false ，而在第一次触发 pagehide 时， persisted 就会变
-成 true （除非页面不会被保存在 bfcache 中）。
-支持 pageshow 和 pagehide 事件的浏览器有 Firefox、Safari 5+、Chrome 和 Opera。IE9 及之前版
-本不支持这两个事件。
-> 指定了 onunload 事件处理程序的页面会被自动排除在 bfcache 之外，即使事件
-处理程序是空的。原因在于， onunload 最常用于撤销在 onload 中所执行的操作，
-而跳过 onload 后再次显示页面很可能就会导致页面不正常。
+  ```js
+  (function(){
+    var showCount = 0;
+
+    EventUtil.addHandler(window, "load", function(){
+      alert("Load fired");
+    });
+
+    EventUtil.addHandler(window, "pageshow", function(){
+      showCount++;
+      alert("Show has been fired " + showCount + " times.");
+    });
+  })();
+  ```
+  这个例子使用了私有作用域，以防止变量 showCount 进入全局作用域。当页面首次加载完成时，showCount 的值为 0 。此后，每当触发 pageshow 事件， showCount 的值就会递增并通过警告框显示出来。如果你在离开包含以上代码的页面之后，又单击“后退”按钮返回该页面，就会看到 showCount每次递增的值。这是因为该变量的状态，乃至整个页面的状态，都被保存在了内存中，当你返回这个页面时，它们的状态得到了恢复。如果你单击了浏览器的“刷新”按钮，那么 showCount 的值就会被重置为 0 ，因为页面已经完全重新加载了。
+
+  除了通常的属性之外， pageshow 事件的 event 对象还包含一个名为 persisted 的布尔值属性。如果页面被保存在了 bfcache 中，则这个属性的值为 true ；否则，这个属性的值为 false 。可以像下面这样在事件处理程序中检测这个属性。
+
+  ```js
+  (function(){
+    var showCount = 0;
+    EventUtil.addHandler(window, "load", function(){
+        alert("Load fired");
+    });
+    EventUtil.addHandler(window, "pageshow", function(){
+      showCount++;
+      alert("Show has been fired " + showCount +
+      " times. Persisted? " + event.persisted);
+    });
+  })();
+  ```
+  通过检测 persisted 属性，就可以根据页面在 bfcache 中的状态来确定是否需要采取其他操作。与 pageshow 事件对应的是 pagehide 事件，该事件会在浏览器卸载页面的时候触发，而且是在 unload 事件之前触发。与 pageshow 事件一样， pagehide 在 document 上面触发，但其事件处理程序必须要添加到 window 对象。这个事件的 event 对象也包含 persisted 属性，不过其用途稍有不同。来看下面的例子。
+
+  ```js
+  EventUtil.addHandler(window, "pagehide", function(event){
+    alert("Hiding. Persisted? " + event.persisted);
+  });
+  ```
+  有时候，可能需要在 pagehide 事件触发时根据 persisted 的值采取不同的操作。对于 pageshow 事件，如果页面是从 bfcache 中加载的，那么 persisted 的值就是 true ；对于 pagehide 事件，如果页面在卸载之后会被保存在 bfcache 中，那么 persisted 的值也会被设置为 true 。因此，当第一次触发 pageshow 时， persisted 的值一定是 false ，而在第一次触发 pagehide 时， persisted 就会变成 true （除非页面不会被保存在 bfcache 中）。
+
+  支持 pageshow 和 pagehide 事件的浏览器有 Firefox、Safari 5+、Chrome 和 Opera。IE9 及之前版本不支持这两个事件。
+
+  > 指定了 onunload 事件处理程序的页面会被自动排除在 bfcache 之外，即使事件
+  处理程序是空的。原因在于， onunload 最常用于撤销在 onload 中所执行的操作，
+  而跳过 onload 后再次显示页面很可能就会导致页面不正常。
 
 - #### hashchange 事件
-HTML5 新增了 hashchange 事件，以便在 URL 的参数列表（及 URL 中“#”号后面的所有字符串）
-发生变化时通知开发人员。之所以新增这个事件，是因为在 Ajax 应用中，开发人员经常要利用 URL 参
-数列表来保存状态或导航信息。
-必须要把 hashchange 事件处理程序添加给 window 对象，然后 URL 参数列表只要变化就会调用
-它。此时的 event 对象应该额外包含两个属性： oldURL 和 newURL 。这两个属性分别保存着参数列表
-变化前后的完整 URL。例如：
 
-```js
-EventUtil.addHandler(window, "hashchange", function(event){
-alert("Old URL: " + event.oldURL + "\nNew URL: " + event.newURL);
-});
-```
-支持 hashchange 事件的浏览器有 IE8+、Firefox 3.6+、Safari 5+、Chrome 和 Opera 10.6+。在这些
-浏览器中，只有 Firefox 6+、Chrome 和 Opera 支持 oldURL 和 newURL 属性。为此，最好是使用 location
-对象来确定当前的参数列表。
+  **HTML5 新增了 hashchange 事件** ，**以便在 URL 的参数列表（及 URL 中“#”号后面的所有字符串）发生变化时通知开发人员** 。之所以新增这个事件，是因为在 Ajax 应用中，**开发人员经常要利用 URL 参数列表来保存状态或导航信息** 。
 
-```js
-EventUtil.addHandler(window, "hashchange", function(event){
-alert("Current hash: " + location.hash);
-});
-```
+  **必须要把 hashchange 事件处理程序添加给 window 对象** ，**然后 URL 参数列表只要变化就会调用它** 。此时的 event 对象应该额外包含两个属性： **oldURL** 和 **newURL** 。**这两个属性分别保存着参数列表变化前后的完整 URL** 。例如：
 
-使用以下代码可以检测浏览器是否支持 hashchange 事件：
-var isSupported = ("onhashchange" in window); //这里有 bug
-如果 IE8 是在 IE7 文档模式下运行，即使功能无效它也会返回 true 。为解决这个问题，可以使用
-以下这个更稳妥的检测方式：
-var isSupported = ("onhashchange" in window) && (document.documentMode ===
-undefined || document.documentMode > 7);
+  ```js
+  EventUtil.addHandler(window, "hashchange", function(event){
+    alert("Old URL: " + event.oldURL + "\nNew URL: " + event.newURL);
+  });
+  ```
+  支持 hashchange 事件的浏览器有 IE8+、Firefox 3.6+、Safari 5+、Chrome 和 Opera 10.6+。在这些浏览器中，只有 Firefox 6+、Chrome 和 Opera 支持 oldURL 和 newURL 属性。为此，最好是使用 location 对象来确定当前的参数列表。
+
+  ```js
+  EventUtil.addHandler(window, "hashchange", function(event){
+    alert("Current hash: " + location.hash);
+  });
+  ```
+  使用以下代码可以检测浏览器是否支持 hashchange 事件：
+
+  ```js
+  var isSupported = ("onhashchange" in window); //这里有 bug
+  ```
+
+  如果 IE8 是在 IE7 文档模式下运行，即使功能无效它也会返回 true 。为解决这个问题，可以使用以下这个更稳妥的检测方式：
+
+  ```js
+  var isSupported = ("onhashchange" in window) && (document.documentMode ===
+  undefined || document.documentMode > 7);
+  ```
 
 ### 设备事件
-智能手机和平板电脑的普及，为用户与浏览器交互引入了一种新的方式，而一类新事件也应运而生。
-设备事件（device event）可以让开发人员确定用户在怎样使用设备。W3C 从 2011年开始着手制定一份
-关于设备事件的新草案（http://dev.w3.org/geo/api/spec-source-orientation.html），以涵盖不断增长的设备
-类型并为它们定义相关的事件。本节会同时讨论这份草案中涉及的 API 和特定于浏览器开发商的事件。
+
+智能手机和平板电脑的普及，为用户与浏览器交互引入了一种新的方式，而一类新事件也应运而生。设备事件（device event）可以让开发人员确定用户在怎样使用设备。W3C 从 2011年开始着手制定一份关于设备事件的新草案（ http://dev.w3.org/geo/api/spec-source-orientation.html ），以涵盖不断增长的设备类型并为它们定义相关的事件。本节会同时讨论这份草案中涉及的 API 和特定于浏览器开发商的事件。
+
 - #### orientationchange 事件
-苹果公司为移动 Safari 中添加了 orientationchange 事件，以便开发人员能够确定用户何时将设
-备由横向查看模式切换为纵向查看模式。移动 Safari 的 window.orientation 属性中可能包含 3 个值：
-0 表示肖像模式， 90 表示向左旋转的横向模式（“主屏幕”按钮在右侧）， -90 表示向右旋转的横向模
-式（“主屏幕”按钮在左侧）。相关文档中还提到一个值，即 180 表示 iPhone 头朝下；但这种模式至今
-尚未得到支持。图 13-10 展示了 window.orientation 的每个值的含义。
 
-![图]()
+  苹果公司为移动 Safari 中添加了 **orientationchange 事件** ，**以便开发人员能够确定用户何时将设备由横向查看模式切换为纵向查看模式** 。移动 Safari 的 **window.orientation 属性** 中可能包含 3 个值：**0 表示肖像模式** ， **90 表示向左旋转的横向模式** （“主屏幕”按钮在右侧）， **-90 表示向右旋转的横向模
+  式**（“主屏幕”按钮在左侧）。相关文档中还提到一个值，即 180 表示 iPhone 头朝下；但这种模式至今尚未得到支持。下图展示了 window.orientation 的每个值的含义。
 
-只要用户改变了设备的查看模式，就会触发 orientationchange 事件。此时的 event 对象不包
-含任何有价值的信息，因为唯一相关的信息可以通过 window.orientation 访问到。下面是使用这个
-事件的典型示例。
+  ![设备模式](http://p9myzkds7.bkt.clouddn.com/JavaScript-event/%E8%AE%BE%E5%A4%87%E6%A8%A1%E5%BC%8F.png)
 
-```
-EventUtil.addHandler(window, "load", function(event){
-var div = document.getElementById("myDiv");
-div.innerHTML = "Current orientation is " + window.orientation;
-EventUtil.addHandler(window, "orientationchange", function(event){
-div.innerHTML = "Current orientation is " + window.orientation;
-});
-});
-```
-在这个例子中，当触发 load 事件时会显示最初的方向信息。然后，添加了处理 orientationchange
-事件的处理程序。只要发生这个事件，就会有表示新方向的信息更新页面中的消息。
-所有 iOS 设备都支持 orientationchange 事件和 window.orientation 属性。
-由于可以将 orientationchange 看成 window 事件，所以也可以通过指定
-<body> 元素的 onorientationchange 特性来指定事件处理程序。
+  **只要用户改变了设备的查看模式，就会触发 orientationchange 事件** 。此时的 event 对象不包含任何有价值的信息，因为唯一相关的信息可以通过 **window.orientation** 访问到。下面是使用这个事件的典型示例。
+
+  ```
+  EventUtil.addHandler(window, "load", function(event){
+    var div = document.getElementById("myDiv");
+    div.innerHTML = "Current orientation is " + window.orientation;
+    EventUtil.addHandler(window, "orientationchange", function(event){
+      div.innerHTML = "Current orientation is " + window.orientation;
+    });
+  });
+  ```
+  在这个例子中，当触发 load 事件时会显示最初的方向信息。然后，添加了处理 orientationchange 事件的处理程序。只要发生这个事件，就会有表示新方向的信息更新页面中的消息。
+
+  所有 iOS 设备都支持 orientationchange 事件和 window.orientation 属性。
+
+  > 由于可以将 orientationchange 看成 window 事件，所以也可以通过指定 `<body>` 元素的 onorientationchange 特性来指定事件处理程序。
 
 - #### MozOrientation 事件
-Firefox 3.6 为检测设备的方向引入了一个名为 MozOrientation 的新事件。（前缀 Moz 表示这是特
-定于浏览器开发商的事件，不是标准事件。）当设备的加速计检测到设备方向改变时，就会触发这个事
-件。但这个事件与 iOS 中的 orientationchange 事件不同，该事件只能提供一个平面的方向变化。由
-于 MozOrientation 事件是在 window 对象上触发的，所以可以使用以下代码来处理。
 
-```js
-EventUtil.addHandler(window, "MozOrientation", function(event){
-//响应事件
-});
-```
-此时的 event 对象包含三个属性： x 、 y 和 z 。这几个属性的值都介于 1 到-1 之间，表示不同坐标
-轴上的方向。在静止状态下， x 值为 0， y 值为 0， z 值为 1（表示设备处于竖直状态）。如果设备向右倾
-斜， x 值会减小；反之，向左倾斜， x 值会增大。类似地，如果设备向远离用户的方向倾斜， y 值会减
-小，向接近用户的方向倾斜， y 值会增大。 z 轴检测垂直加速度度，1 表示静止不动，在设备移动时值
-会减小。（失重状态下值为 0。）以下是输出这三个值的一个简单的例子。
+  Firefox 3.6 为检测设备的方向引入了一个名为 **MozOrientation 的新事件** 。（前缀 Moz 表示这是特定于浏览器开发商的事件，不是标准事件。）**当设备的加速计检测到设备方向改变时** ，**就会触发这个事件** 。但这个事件与 iOS 中的 orientationchange 事件不同，**该事件只能提供一个平面的方向变化** 。**由于 MozOrientation 事件是在 window 对象上触发的** ，所以可以使用以下代码来处理。
 
-```js
-EventUtil.addHandler(window, "MozOrientation", function(event){
-var output = document.getElementById("output");
-output.innerHTML = "X=" + event.x + ", Y=" + event.y + ", Z=" + event.z +"<br>";
-});
-```
-只有带加速计的设备才支持 MozOrientation 事件，包括 Macbook、Lenovo Thinkpad、Windows
-Mobile 和 Android 设备。请大家注意，这是一个实验性 API，将来可能会变（可能会被其他事件取代）。
+  ```js
+  EventUtil.addHandler(window, "MozOrientation", function(event){
+    //响应事件
+  });
+  ```
+  此时的 event 对象包含三个属性： x 、 y 和 z 。这几个属性的值都介于 1 到-1 之间，表示不同坐标轴上的方向。在静止状态下， x 值为 0， y 值为 0， z 值为 1（表示设备处于竖直状态）。如果设备向右倾斜， x 值会减小；反之，向左倾斜， x 值会增大。类似地，如果设备向远离用户的方向倾斜， y 值会减小，向接近用户的方向倾斜， y 值会增大。 z 轴检测垂直加速度度，1 表示静止不动，在设备移动时值会减小。（失重状态下值为 0。）以下是输出这三个值的一个简单的例子。
+
+  ```js
+  EventUtil.addHandler(window, "MozOrientation", function(event){
+    var output = document.getElementById("output");
+    output.innerHTML = "X=" + event.x + ", Y=" + event.y + ", Z=" + event.z +"<br>";
+  });
+  ```
+  **只有带加速计的设备才支持 MozOrientation 事件** ，包括 Macbook、Lenovo Thinkpad、Windows Mobile 和 Android 设备。请大家注意，这是一个实验性 API，将来可能会变（可能会被其他事件取代）。
 
 - #### deviceorientation 事件
-本质上，DeviceOrientation Event 规范定义的 deviceorientation 事件与 MozOrientation 事件类
-似。它也是在加速计检测到设备方向变化时在 window 对象上触发，而且具有与 MozOrientation 事件
-相同的支持限制。不过， deviceorientation 事件的意图是告诉开发人员设备在空间中朝向哪儿，而
-不是如何移动。
 
-设备在三维空间中是靠 x、y 和 z 轴来定位的。当设备静止放在水平表面上时，这三个值都是 0。x
-轴方向是从左往右，y 轴方向是从下往上，z 轴方向是从后往前（参见图 13-11）。
+  本质上，DeviceOrientation Event 规范定义的 **deviceorientation 事件** 与 **MozOrientation 事件** 类似。**它也是在加速计检测到设备方向变化时在 window 对象上触发** ，而且 **具有与 MozOrientation 事件相同的支持限制** 。不过， **deviceorientation 事件的意图是告诉开发人员设备在空间中朝向哪儿** ，**而不是如何移动** 。
 
-![下图]()
+  设备在三维空间中是靠 x、y 和 z 轴来定位的。当设备静止放在水平表面上时，这三个值都是 0。x轴方向是从左往右，y 轴方向是从下往上，z 轴方向是从后往前（参见下图）。
 
-触发 deviceorientation 事件时，事件对象中包含着每个轴相对于设备静止状态下发生变化的信
-息。事件对象包含以下 5 个属性。
- alpha ：在围绕 z轴旋转时（即左右旋转时），y 轴的度数差；是一个介于 0 到 360 之间的浮点数。
- beta ：在围绕 x轴旋转时（即前后旋转时），z轴的度数差；是一个介于180到 180之间的浮点数。
- gamma ：在围绕 y轴旋转时（即扭转设备时），z轴的度数差；是一个介于90到 90之间的浮点数。
- absolute ：布尔值，表示设备是否返回一个绝对值。
- compassCalibrated ：布尔值，表示设备的指南针是否校准过。
-图 13-12 是 alpha 、 beta 和 gamma 值含义的示意图。
-下面是一个输出 alpha 、 beta 和 gamma 值的例子。
+  ![设备轴向](http://p9myzkds7.bkt.clouddn.com/%E8%AE%BE%E5%A4%87%E6%96%B9%E5%90%91.png)
 
-```js
-EventUtil.addHandler(window, "deviceorientation", function(event){
-var output = document.getElementById("output");
-output.innerHTML = "Alpha=" + event.alpha + ", Beta=" + event.beta +
-", Gamma=" + event.gamma + "<br>";
-});
-```
-通过这些信息，可以响应设备的方向，重新排列或修改屏幕上的元素。要响应设备方向的改变而旋
-转元素，可以参考如下代码。
+  触发 deviceorientation 事件时，事件对象中包含着每个轴相对于设备静止状态下发生变化的信息。事件对象包含以下 5 个属性。
 
-```js
-EventUtil.addHandler(window, "deviceorientation", function(event){
-var arrow = document.getElementById("arrow");
-arrow.style.webkitTransform = "rotate(" + Math.round(event.alpha) + "deg)";
-});
-```
+  - alpha ：在围绕 z轴旋转时（即左右旋转时），y 轴的度数差；是一个介于 0 到 360 之间的浮点数。
+  - beta ：在围绕 x轴旋转时（即前后旋转时），z轴的度数差；是一个介于180到 180之间的浮点数。
+  - gamma ：在围绕 y轴旋转时（即扭转设备时），z轴的度数差；是一个介于90到 90之间的浮点数。
+  - absolute ：布尔值，表示设备是否返回一个绝对值。
+  - compassCalibrated ：布尔值，表示设备的指南针是否校准过。
 
-![图片]()
+  下图是 alpha 、 beta 和 gamma 值含义的示意图。
 
-这个例子只能在移动 WebKit 浏览器中运行，因为它使用了专有的 webkitTransform 属性（即 CSS
-标准属性 transform 的临时版）。元素“arrow”会随着 event.alpha 值的变化而旋转，给人一种指南
-针的感觉。为了保证旋转平滑，这里的 CSS3 变换使用了舍入之后的值。
-到 2011 年，支持 deviceorientation 事件的浏览器有 iOS 4.2+中的 Safari、Chrome 和 Android 版
-WebKit。
+  下面是一个输出 alpha 、 beta 和 gamma 值的例子。
+
+  ```js
+  EventUtil.addHandler(window, "deviceorientation", function(event){
+    var output = document.getElementById("output");
+    output.innerHTML = "Alpha=" + event.alpha + ", Beta=" + event.beta +
+    ", Gamma=" + event.gamma + "<br>";
+  });
+  ```
+  通过这些信息，可以响应设备的方向，重新排列或修改屏幕上的元素。要响应设备方向的改变而旋转元素，可以参考如下代码。
+
+  ```js
+  EventUtil.addHandler(window, "deviceorientation", function(event){
+    var arrow = document.getElementById("arrow");
+    arrow.style.webkitTransform = "rotate(" + Math.round(event.alpha) + "deg)";
+  });
+  ```
+
+  ![示意图](http://p9myzkds7.bkt.clouddn.com/%E8%AE%BE%E5%A4%87%E6%96%B9%E5%90%91%E6%97%8B%E8%BD%AC.png)
+
+  这个例子只能在移动 WebKit 浏览器中运行，因为它使用了专有的 webkitTransform 属性（即 CSS标准属性 transform 的临时版）。元素“arrow”会随着 event.alpha 值的变化而旋转，给人一种指南针的感觉。为了保证旋转平滑，这里的 CSS3 变换使用了舍入之后的值。
+
+  到 2011 年，支持 deviceorientation 事件的浏览器有 iOS 4.2+中的 Safari、Chrome 和 Android 版 WebKit。
 
 - #### devicemotion 事件
-DeviceOrientation Event 规范还定义了一个 devicemotion 事件。这个事件是要告诉开发人员设备
-什么时候移动，而不仅仅是设备方向如何改变。例如，通过 devicemotion 能够检测到设备是不是正在
-往下掉，或者是不是被走着的人拿在手里。
-触发 devicemotion 事件时，事件对象包含以下属性。
- acceleration ：一个包含 x 、 y 和 z 属性的对象，在不考虑重力的情况下，告诉你在每个方向
-上的加速度。
- accelerationIncludingGravity ：一个包含 x 、 y 和 z 属性的对象，在考虑 z 轴自然重力加
-速度的情况下，告诉你在每个方向上的加速度。
- interval ：以毫秒表示的时间值，必须在另一个 devicemotion 事件触发前传入。这个值在每
-个事件中应该是一个常量。
 
- rotationRate ：一个包含表示方向的 alpha 、 beta 和 gamma 属性的对象。
-如果读取不到 acceleration 、 accelerationIncludingGravity 和 rotationRate 值，则它们
-的值为 null 。因此，在使用这三个属性之前，应该先检测确定它们的值不是 null 。例如：
-EventUtil.addHandler(window, "devicemotion", function(event){
-var output = document.getElementById("output");
-if (event.rotationRate !== null){
-output.innerHTML += "Alpha=" + event.rotationRate.alpha + ", Beta=" +
-event.rotationRate.beta + ", Gamma=" +
-event.rotationRate.gamma;
-}
-});
-DeviceMotionEventExample01.htm
-与 deviceorientation 事件类似，只有 iOS 4.2+中的 Safari、Chrome 和 Android 版 WebKit 实现了
-devicemotion 事件。
+  DeviceOrientation Event 规范还定义了一个 **devicemotion 事件** 。这个事件是 **要告诉开发人员设备什么时候移动** ，而 **不仅仅是设备方向如何改变** 。例如，通过 **devicemotion 能够检测到设备是不是正在往下掉** ，或者 **是不是被走着的人拿在手里** 。
 
-#### 触摸与手势事件
-iOS 版 Safari 为了向开发人员传达一些特殊信息，新增了一些专有事件。因为 iOS 设备既没有鼠标
-也没有键盘，所以在为移动 Safari 开发交互性网页时，常规的鼠标和键盘事件根本不够用。随着 Android
-中的 WebKit 的加入，很多这样的专有事件变成了事实标准，导致 W3C 开始制定 Touch Events 规范（参
-见 https://dvcs.w3.org/hg/webevents/raw-file/tip/touchevents.html）。以下介绍的事件只针对触摸设备。
+  触发 devicemotion 事件时，事件对象包含以下属性。
+
+  - acceleration ：一个包含 x 、 y 和 z 属性的对象，在不考虑重力的情况下，告诉你在每个方向上的加速度。
+
+  - accelerationIncludingGravity ：一个包含 x 、 y 和 z 属性的对象，在考虑 z 轴自然重力加速度的情况下，告诉你在每个方向上的加速度。
+
+  - interval ：以毫秒表示的时间值，必须在另一个 devicemotion 事件触发前传入。这个值在每个事件中应该是一个常量。
+
+  - rotationRate ：一个包含表示方向的 alpha 、 beta 和 gamma 属性的对象。
+
+  如果读取不到 acceleration 、 accelerationIncludingGravity 和 rotationRate 值，则它们的值为 null 。因此，在使用这三个属性之前，应该先检测确定它们的值不是 null 。例如：
+
+  ```js
+  EventUtil.addHandler(window, "devicemotion", function(event){
+    var output = document.getElementById("output");
+    if (event.rotationRate !== null){
+      output.innerHTML += "Alpha=" + event.rotationRate.alpha + ", Beta=" +
+      event.rotationRate.beta + ", Gamma=" +
+      event.rotationRate.gamma;
+    }
+  });
+  ```
+  与 deviceorientation 事件类似，只有 iOS 4.2+中的 Safari、Chrome 和 Android 版 WebKit 实现了 devicemotion 事件。
+
+### 触摸与手势事件
+
+iOS 版 Safari 为了向开发人员传达一些特殊信息，新增了一些专有事件。因为 iOS 设备既没有鼠标也没有键盘，所以在为移动 Safari 开发交互性网页时，常规的鼠标和键盘事件根本不够用。随着 Android 中的 WebKit 的加入，很多这样的专有事件变成了事实标准，导致 W3C 开始制定 Touch Events 规范（参见 https://dvcs.w3.org/hg/webevents/raw-file/tip/touchevents.html ）。以下介绍的事件只针对触摸设备。
 
 - #### 触摸事件
-包含 iOS 2.0 软件的 iPhone 3G 发布时，也包含了一个新版本的 Safari 浏览器。这款新的移动 Safari
-提供了一些与触摸（touch）操作相关的新事件。后来，Android 上的浏览器也实现了相同的事件。触摸
-事件会在用户手指放在屏幕上面时、在屏幕上滑动时或从屏幕上移开时触发。具体来说，有以下几个触
-摸事件。
- touchstart ：当手指触摸屏幕时触发；即使已经有一个手指放在了屏幕上也会触发。
- touchmove ：当手指在屏幕上滑动时连续地触发。在这个事件发生期间，调用 preventDefault()
-可以阻止滚动。
- touchend ：当手指从屏幕上移开时触发。
- touchcancel ：当系统停止跟踪触摸时触发。关于此事件的确切触发时间，文档中没有明确说明。
-上面这几个事件都会冒泡，也都可以取消。虽然这些触摸事件没有在 DOM 规范中定义，但它们却
-是以兼容 DOM的方式实现的。因此，每个触摸事件的 event 对象都提供了在鼠标事件中常见的属性：
-bubbles 、 cancelable 、 view 、 clientX 、 clientY 、 screenX 、 screenY 、 detail 、 altKey 、 shiftKey 、
-ctrlKey 和 metaKey 。
-除了常见的 DOM属性外，触摸事件还包含下列三个用于跟踪触摸的属性。
- touches ：表示当前跟踪的触摸操作的 Touch 对象的数组。
- targetTouchs ：特定于事件目标的 Touch 对象的数组。
- changeTouches ：表示自上次触摸以来发生了什么改变的 Touch 对象的数组。
-每个 Touch 对象包含下列属性。
 
- clientX ：触摸目标在视口中的 x 坐标。
- clientY ：触摸目标在视口中的 y 坐标。
- identifier ：标识触摸的唯一 ID。
- pageX ：触摸目标在页面中的 x 坐标。
- pageY ：触摸目标在页面中的 y 坐标。
- screenX ：触摸目标在屏幕中的 x 坐标。
- screenY ：触摸目标在屏幕中的 y 坐标。
- target ：触摸的 DOM 节点目标。
-使用这些属性可以跟踪用户对屏幕的触摸操作。来看下面的例子。
+  包含 iOS 2.0 软件的 iPhone 3G 发布时，也包含了一个新版本的 Safari 浏览器。这款新的移动 Safari 提供了一些与触摸（touch）操作相关的新事件。后来，Android 上的浏览器也实现了相同的事件。**触摸事件会在用户手指放在屏幕上面时、在屏幕上滑动时或从屏幕上移开时触发** 。具体来说，有以下几个触摸事件。
 
-```js
-function handleTouchEvent(event){
-//只跟踪一次触摸
-if (event.touches.length == 1){
-var output = document.getElementById("output");
-switch(event.type){
-case "touchstart":
-output.innerHTML = "Touch started (" + event.touches[0].clientX +
-"," + event.touches[0].clientY + ")";
-break;
-case "touchend":
-output.innerHTML += "<br>Touch ended (" +
-event.changedTouches[0].clientX + "," +
-event.changedTouches[0].clientY + ")";
-break;
-case "touchmove":
-event.preventDefault(); //阻止滚动
-output.innerHTML += "<br>Touch moved (" +
-event.changedTouches[0].clientX + "," +
-event.changedTouches[0].clientY + ")";
-break;
-}
-}
-}
-EventUtil.addHandler(document, "touchstart", handleTouchEvent);
-EventUtil.addHandler(document, "touchend", handleTouchEvent);
-EventUtil.addHandler(document, "touchmove", handleTouchEvent);
-```
-以上代码会跟踪屏幕上发生的一次触摸操作。为简单起见，只会在有一次活动触摸操作的情况下输
-出信息。当 touchstart 事件发生时，会将触摸的位置信息输出到 <div> 元素中。当 touchmove 事件
-发生时，会取消其默认行为，阻止滚动（触摸移动的默认行为是滚动页面），然后输出触摸操作的变化
-信息。而 touchend 事件则会输出有关触摸操作的最终信息。注意，在 touchend 事件发生时， touches
-集合中就没有任何 Touch 对象了，因为不存在活动的触摸操作；此时，就必须转而使用 changeTouchs
-集合。
-这些事件会在文档的所有元素上面触发，因而可以分别操作页面的不同部分。在触摸屏幕上的元素
-时，这些事件（包括鼠标事件）发生的顺序如下：
-  
-(1)  touchstart
-(2)  mouseover
-(3)  mousemove （一次）
-(4)  mousedown
-(5)  mouseup
-(6)  click
-(7)  touchend
-支持触摸事件的浏览器包括 iOS 版 Safari、Android 版 WebKit、bada 版 Dolfin、OS6+中的 BlackBerry
-WebKit、Opera Mobile 10.1+和 LG 专有 OS 中的 Phantom浏览器。目前只有 iOS 版 Safari 支持多点触摸。
-桌面版 Firefox 6+和 Chrome 也支持触摸事件。
+  - touchstart ：当手指触摸屏幕时触发；即使已经有一个手指放在了屏幕上也会触发。
+  - touchmove ：当手指在屏幕上滑动时连续地触发。在这个事件发生期间，调用 preventDefault()可以阻止滚动。
+  - touchend ：当手指从屏幕上移开时触发。
+  - touchcancel ：当系统停止跟踪触摸时触发。关于此事件的确切触发时间，文档中没有明确说明。
+
+  上面这几个事件都会冒泡，也都可以取消。**虽然这些触摸事件没有在 DOM 规范中定义，但它们却是以兼容 DOM的方式实现的** 。因此，每个触摸事件的 event 对象都提供了在鼠标事件中常见的属性：bubbles 、 cancelable 、 view 、 clientX 、 clientY 、 screenX 、 screenY 、 detail 、 altKey 、 shiftKey 、
+  ctrlKey 和 metaKey 。
+
+  除了常见的 DOM属性外，触摸事件还包含下列三个用于跟踪触摸的属性。
+
+  - touches ：表示当前跟踪的触摸操作的 Touch 对象的数组。
+  - targetTouchs ：特定于事件目标的 Touch 对象的数组。
+  - changeTouches ：表示自上次触摸以来发生了什么改变的 Touch 对象的数组。
+
+  每个 Touch 对象包含下列属性。
+
+  - clientX ：触摸目标在视口中的 x 坐标。
+  - clientY ：触摸目标在视口中的 y 坐标。
+  - identifier ：标识触摸的唯一 ID。
+  - pageX ：触摸目标在页面中的 x 坐标。
+  - pageY ：触摸目标在页面中的 y 坐标。
+  - screenX ：触摸目标在屏幕中的 x 坐标。
+  - screenY ：触摸目标在屏幕中的 y 坐标。
+  - target ：触摸的 DOM 节点目标。
+
+  **使用这些属性可以跟踪用户对屏幕的触摸操作** 。来看下面的例子。
+
+  ```js
+  function handleTouchEvent(event){
+
+    //只跟踪一次触摸
+    if (event.touches.length == 1){
+      var output = document.getElementById("output");
+      switch(event.type){
+        case "touchstart":
+          output.innerHTML = "Touch started (" + event.touches[0].clientX + "," + event.touches[0].clientY + ")";
+          break;
+        case "touchend":
+          output.innerHTML += "<br>Touch ended (" + event.changedTouches[0].clientX + "," + event.changedTouches[0].clientY + ")";
+          break;
+        case "touchmove":
+          event.preventDefault(); //阻止滚动
+          output.innerHTML += "<br>Touch moved (" + event.changedTouches[0].clientX + "," + event.changedTouches[0].clientY + ")";
+          break;
+      }
+    }
+  }
+
+  EventUtil.addHandler(document, "touchstart", handleTouchEvent);
+  EventUtil.addHandler(document, "touchend", handleTouchEvent);
+  EventUtil.addHandler(document, "touchmove", handleTouchEvent);
+  ```
+  以上代码会跟踪屏幕上发生的一次触摸操作。为简单起见，只会在有一次活动触摸操作的情况下输出信息。当 touchstart 事件发生时，会将触摸的位置信息输出到 <div> 元素中。当 touchmove 事件发生时，会取消其默认行为，阻止滚动（触摸移动的默认行为是滚动页面），然后输出触摸操作的变化信息。而 touchend 事件则会输出有关触摸操作的最终信息。注意，在 touchend 事件发生时， touches 集合中就没有任何 Touch 对象了，因为不存在活动的触摸操作；此时，就必须转而使用 changeTouchs 集合。
+
+  这些事件会在文档的所有元素上面触发，因而可以分别操作页面的不同部分。在触摸屏幕上的元素时，这些事件（包括鼠标事件）发生的顺序如下：
+
+  ```
+  (1)  touchstart
+  (2)  mouseover
+  (3)  mousemove （一次）
+  (4)  mousedown
+  (5)  mouseup
+  (6)  click
+  (7)  touchend
+  ```
+  支持触摸事件的浏览器包括 iOS 版 Safari、Android 版 WebKit、bada 版 Dolfin、OS6+中的 BlackBerry WebKit、Opera Mobile 10.1+和 LG 专有 OS 中的 Phantom浏览器。目前只有 iOS 版 Safari 支持多点触摸。桌面版 Firefox 6+和 Chrome 也支持触摸事件。
 
 - #### 手势事件
-iOS 2.0 中的 Safari 还引入了一组手势事件。当两个手指触摸屏幕时就会产生手势，手势通常会改变
-显示项的大小，或者旋转显示项。有三个手势事件，分别介绍如下。
- gesturestart ：当一个手指已经按在屏幕上而另一个手指又触摸屏幕时触发。
- gesturechange ：当触摸屏幕的任何一个手指的位置发生变化时触发。
- gestureend ：当任何一个手指从屏幕上面移开时触发。
-只有两个手指都触摸到事件的接收容器时才会触发这些事件。在一个元素上设置事件处理程序，意
-味着两个手指必须同时位于该元素的范围之内，才能触发手势事件（这个元素就是目标）。由于这些事
-件冒泡，所以将事件处理程序放在文档上也可以处理所有手势事件。此时，事件的目标就是两个手指都
-位于其范围内的那个元素。
-触摸事件和手势事件之间存在某种关系。当一个手指放在屏幕上时，会触发 touchstart 事件。如
-果另一个手指又放在了屏幕上，则会先触发 gesturestart 事件，随后触发基于该手指的 touchstart
-事件。如果一个或两个手指在屏幕上滑动，将会触发 gesturechange 事件。但只要有一个手指移开，
-就会触发 gestureend 事件，紧接着又会触发基于该手指的 touchend 事件。
-与触摸事件一样，每个手势事件的 event 对象都包含着标准的鼠标事件属性： bubbles 、
-cancelable 、 view 、 clientX 、 clientY 、 screenX 、 screenY 、 detail 、 altKey 、 shiftKey 、
-ctrlKey 和 metaKey 。此外，还包含两个额外的属性： rotation 和 scale 。其中， rotation 属性表
-示手指变化引起的旋转角度，负值表示逆时针旋转，正值表示顺时针旋转（该值从 0 开始）。而 scale
-属性表示两个手指间距离的变化情况（例如向内收缩会缩短距离）；这个值从 1 开始，并随距离拉大而
-增长，随距离缩短而减小。
-下面是使用手势事件的一个示例。
 
-```js
-function handleGestureEvent(event){
-var output = document.getElementById("output");
-switch(event.type){
-case "gesturestart":
-output.innerHTML = "Gesture started (rotation=" + event.rotation +
-",scale=" + event.scale + ")";
-break;
-case "gestureend":
-output.innerHTML += "<br>Gesture ended (rotation=" + event.rotation +
-",scale=" + event.scale + ")";
-break;
-case "gesturechange":
-output.innerHTML += "<br>Gesture changed (rotation=" + event.rotation +
-",scale=" + event.scale + ")";
-break;
-}
-}
-document.addEventListener("gesturestart", handleGestureEvent, false);
-document.addEventListener("gestureend", handleGestureEvent, false);
-document.addEventListener("gesturechange", handleGestureEvent, false);
-```
-与前面演示触摸事件的例子一样，这里的代码只是将每个事件都关联到同一个函数中，然后通过该
-函数输出每个事件的相关信息。
-触摸事件也会返回 rotation 和 scale 属性，但这两个属性只会在两个手指与
-屏幕保持接触时才会发生变化。一般来说，使用基于两个手指的手势事件，要比管理
-触摸事件中的所有交互要容易得多。
+  iOS 2.0 中的 Safari 还引入了一组手势事件。**当两个手指触摸屏幕时就会产生手势** ，**手势通常会改变显示项的大小** ，或者 **旋转显示项** 。有三个手势事件，分别介绍如下。
+
+  - gesturestart ：当一个手指已经按在屏幕上而另一个手指又触摸屏幕时触发。
+  - gesturechange ：当触摸屏幕的任何一个手指的位置发生变化时触发。
+  - gestureend ：当任何一个手指从屏幕上面移开时触发。
+
+  **只有两个手指都触摸到事件的接收容器时才会触发这些事件** 。在一个元素上设置事件处理程序，意味着两个手指必须同时位于该元素的范围之内，才能触发手势事件（这个元素就是目标）。由于这些事件冒泡，所以将事件处理程序放在文档上也可以处理所有手势事件。此时，事件的目标就是两个手指都位于其范围内的那个元素。
+
+  触摸事件和手势事件之间存在某种关系。当一个手指放在屏幕上时，会触发 touchstart 事件。如果另一个手指又放在了屏幕上，则会先触发 gesturestart 事件，随后触发基于该手指的 touchstart 事件。如果一个或两个手指在屏幕上滑动，将会触发 gesturechange 事件。但只要有一个手指移开，就会触发 gestureend 事件，紧接着又会触发基于该手指的 touchend 事件。
+
+  与触摸事件一样，每个手势事件的 event 对象都包含着标准的鼠标事件属性： bubbles 、cancelable 、 view 、 clientX 、 clientY 、 screenX 、 screenY 、 detail 、 altKey 、 shiftKey 、ctrlKey 和 metaKey 。此外，还包含两个额外的属性： rotation 和 scale 。其中， rotation 属性表示手指变化引起的旋转角度，负值表示逆时针旋转，正值表示顺时针旋转（该值从 0 开始）。而 scale 属性表示两个手指间距离的变化情况（例如向内收缩会缩短距离）；这个值从 1 开始，并随距离拉大而增长，随距离缩短而减小。
+
+  下面是使用手势事件的一个示例。
+
+  ```js
+  function handleGestureEvent(event){
+    var output = document.getElementById("output");
+    switch(event.type){
+      case "gesturestart":
+        output.innerHTML = "Gesture started (rotation=" + event.rotation + ",scale=" + event.scale + ")";
+        break;
+      case "gestureend":
+        output.innerHTML += "<br>Gesture ended (rotation=" + event.rotation + ",scale=" + event.scale + ")";
+        break;
+      case "gesturechange":
+        output.innerHTML += "<br>Gesture changed (rotation=" + event.rotation + ",scale=" + event.scale + ")";
+        break;
+    }
+  }
+
+  document.addEventListener("gesturestart", handleGestureEvent, false);
+  document.addEventListener("gestureend", handleGestureEvent, false);
+  document.addEventListener("gesturechange", handleGestureEvent, false);
+  ```
+  与前面演示触摸事件的例子一样，这里的代码只是将每个事件都关联到同一个函数中，然后通过该函数输出每个事件的相关信息。
+
+  > 触摸事件也会返回 rotation 和 scale 属性，但这两个属性只会在两个手指与屏幕保持接触时才会发生变化。一般来说，使用基于两个手指的手势事件，要比管理触摸事件中的所有交互要容易得多。
 
 ## 内存和性能
-由于事件处理程序可以为现代 Web 应用程序提供交互能力，因此许多开发人员会不分青红皂白地
-向页面中添加大量的处理程序。在创建 GUI 的语言（如 C#）中，为 GUI 中的每个按钮添加一个 onclick
-事件处理程序是司空见惯的事，而且这样做也不会导致什么问题。可是在 JavaScript 中，添加到页面上
-的事件处理程序数量将直接关系到页面的整体运行性能。导致这一问题的原因是多方面的。首先，每个
-函数都是对象，都会占用内存；内存中的对象越多，性能就越差。其次，必须事先指定所有事件处理程
-序而导致的 DOM访问次数，会延迟整个页面的交互就绪时间。事实上，从如何利用好事件处理程序的
-角度出发，还是有一些方法能够提升性能的。
+
+由于事件处理程序可以为现代 Web 应用程序提供交互能力，因此许多开发人员会不分青红皂白地向页面中添加大量的处理程序。在创建 GUI 的语言（如 C#）中，为 GUI 中的每个按钮添加一个 onclick 事件处理程序是司空见惯的事，而且这样做也不会导致什么问题。可是在 JavaScript 中，添加到页面上的事件处理程序数量将直接关系到页面的整体运行性能。导致这一问题的原因是多方面的。首先，**每个函数都是对象** ，**都会占用内存** ；**内存中的对象越多，性能就越差** 。其次，**必须事先指定所有事件处理程序而导致的 DOM访问次数** ，**会延迟整个页面的交互就绪时间** 。事实上，从如何利用好事件处理程序的角度出发，还是有一些方法能够提升性能的。
 
 ### 事件委托
-对“事件处理程序过多”问题的解决方案就是事件委托。事件委托利用了事件冒泡，只指定一个事
-件处理程序，就可以管理某一类型的所有事件。例如， click 事件会一直冒泡到 document 层次。也就
-是说，我们可以为整个页面指定一个 onclick 事件处理程序，而不必给每个可单击的元素分别添加事
-件处理程序。以下面的 HTML 代码为例。
+
+对“**事件处理程序过多** ”问题的解决方案就是 **事件委托** 。**事件委托利用了事件冒泡** ，**只指定一个事件处理程序** ，**就可以管理某一类型的所有事件** 。例如， click 事件会一直冒泡到 document 层次。也就是说，我们可以为整个页面指定一个 onclick 事件处理程序，而不必给每个可单击的元素分别添加事件处理程序。以下面的 HTML 代码为例。
 
 ```html
 <ul id="myLinks">
-<li id="goSomewhere">Go somewhere</li>
-<li id="doSomething">Do something</li>
-<li id="sayHi">Say hi</li>
+  <li id="goSomewhere">Go somewhere</li>
+  <li id="doSomething">Do something</li>
+  <li id="sayHi">Say hi</li>
 </ul>
 ```
-其中包含 3 个被单击后会执行操作的列表项。按照传统的做法，需要像下面这样为它们添加 3 个事
-件处理程序。
+其中包含 3 个被单击后会执行操作的列表项。按照 **传统的做法** ，需要像下面这样为它们添加 3 个事件处理程序。
 
 ```js
 var item1 = document.getElementById("goSomewhere");
 var item2 = document.getElementById("doSomething");
 var item3 = document.getElementById("sayHi");
+
 EventUtil.addHandler(item1, "click", function(event){
-location.href = "http://www.wrox.com";
+  location.href = "http://www.wrox.com";
 });
+
 EventUtil.addHandler(item2, "click", function(event){
-document.title = "I changed the document's title";
+  document.title = "I changed the document's title";
 });
+
 EventUtil.addHandler(item3, "click", function(event){
-alert("hi");
+  alert("hi");
 });
 ```
-如果在一个复杂的 Web 应用程序中，对所有可单击的元素都采用这种方式，那么结果就会有数不
-清的代码用于添加事件处理程序。此时，可以利用事件委托技术解决这个问题。使用事件委托，只需在
-DOM 树中尽量最高的层次上添加一个事件处理程序，如下面的例子所示。
+如果在一个复杂的 Web 应用程序中，对所有可单击的元素都采用这种方式，那么结果就会有数不清的代码用于添加事件处理程序。此时，可以 **利用事件委托技术解决这个问题** 。使用事件委托，**只需在 DOM 树中尽量最高的层次上添加一个事件处理程序** ，如下面的例子所示。
 
 ```js
 var list = document.getElementById("myLinks");
+
 EventUtil.addHandler(list, "click", function(event){
-event = EventUtil.getEvent(event);
-var target = EventUtil.getTarget(event);
-switch(target.id){
-case "doSomething":
-document.title = "I changed the document's title";
-break;
-case "goSomewhere":
-location.href = "http://www.wrox.com";
-break;
-case "sayHi":
-alert("hi");
-break;
-}
+  event = EventUtil.getEvent(event);
+  var target = EventUtil.getTarget(event);
+  
+  switch(target.id){
+    case "doSomething":
+      document.title = "I changed the document's title";
+      break;
+      
+    case "goSomewhere":
+      location.href = "http://www.wrox.com";
+      break;
+      
+    case "sayHi":
+      alert("hi");
+      break;
+  }
 });
 ```
-在这段代码里，我们使用事件委托只为 <ul> 元素添加了一个 onclick 事件处理程序。由于所有列
-表项都是这个元素的子节点，而且它们的事件会冒泡，所以单击事件最终会被这个函数处理。我们知道，
-事件目标是被单击的列表项，故而可以通过检测 id 属性来决定采取适当的操作。与前面未使用事件委
-托的代码比一比，会发现这段代码的事前消耗更低，因为只取得了一个 DOM 元素，只添加了一个事件
-处理程序。虽然对用户来说最终的结果相同，但这种技术需要占用的内存更少。所有用到按钮的事件（多
-数鼠标事件和键盘事件）都适合采用事件委托技术。
-如果可行的话，也可以考虑为 document 对象添加一个事件处理程序，用以处理页面上发生的某种
-特定类型的事件。这样做与采取传统的做法相比具有如下优点。
+在这段代码里，我们 **使用事件委托只为 `<ul>` 元素添加了一个 onclick 事件处理程序** 。由于所有列表项都是这个元素的子节点，而且它们的事件会冒泡，所以单击事件最终会被这个函数处理。我们知道，事件目标是被单击的列表项，故而可以通过检测 id 属性来决定采取适当的操作。与前面未使用事件委托的代码比一比，会发现这段代码的事前消耗更低，因为只取得了一个 DOM 元素，只添加了一个事件处理程序。虽然对用户来说最终的结果相同，但这种技术需要占用的内存更少。**所有用到按钮的事件（多
+数鼠标事件和键盘事件）都适合采用事件委托技术** 。
+
+如果可行的话，也可以 **考虑为 document 对象添加一个事件处理程序** ，**用以处理页面上发生的某种特定类型的事件** 。这样做与采取传统的做法相比具有如下优点。
  
-  document 对象很快就可以访问，而且可以在页面生命周期的任何时点上为它添加事件处理程序
-（无需等待 DOMContentLoaded 或 load 事件）。换句话说，只要可单击的元素呈现在页面上，
-就可以立即具备适当的功能。
-  在页面中设置事件处理程序所需的时间更少。只添加一个事件处理程序所需的 DOM引用更少，
-所花的时间也更少。
-  整个页面占用的内存空间更少，能够提升整体性能。
-最适合采用事件委托技术的事件包括 click 、 mousedown 、 mouseup 、 keydown 、 keyup 和 keypress 。
-虽然 mouseover 和 mouseout 事件也冒泡，但要适当处理它们并不容易，而且经常需要计算元素的位置。
+ - document 对象很快就可以访问，而且可以在页面生命周期的任何时点上为它添加事件处理程序（无需等待 DOMContentLoaded 或 load 事件）。换句话说，只要可单击的元素呈现在页面上，就可以立即具备适当的功能。
+ 
+-  在页面中设置事件处理程序所需的时间更少。只添加一个事件处理程序所需的 DOM引用更少，所花的时间也更少。
+
+-  整个页面占用的内存空间更少，能够提升整体性能。
+
+最适合采用事件委托技术的事件包括 **click** 、 **mousedown** 、 **mouseup** 、 **keydown** 、 **keyup** 和 **keypress** 。**虽然 mouseover 和 mouseout 事件也冒泡** ，**但要适当处理它们并不容易** ，而且 **经常需要计算元素的位置** 。
 （因为当鼠标从一个元素移到其子节点时，或者当鼠标移出该元素时，都会触发 mouseout 事件。）
 
 ### 移除事件处理程序
-每当将事件处理程序指定给元素时，运行中的浏览器代码与支持页面交互的 JavaScript 代码之间就
-会建立一个连接。这种连接越多，页面执行起来就越慢。如前所述，可以采用事件委托技术，限制建立
-的连接数量。另外，在不需要的时候移除事件处理程序，也是解决这个问题的一种方案。内存中留有那
-些过时不用的“空事件处理程序”（dangling event handler），也是造成 Web 应用程序内存与性能问题的
-主要原因。
-在两种情况下，可能会造成上述问题。第一种情况就是从文档中移除带有事件处理程序的元素时。
-这可能是通过纯粹的 DOM 操作，例如使用 removeChild() 和 replaceChild() 方法，但更多地是发
-生在使用 innerHTML 替换页面中某一部分的时候。如果带有事件处理程序的元素被 innerHTML 删除
-了，那么原来添加到元素中的事件处理程序极有可能无法被当作垃圾回收。来看下面的例子。
+
+每当将事件处理程序指定给元素时，运行中的浏览器代码与支持页面交互的 JavaScript 代码之间就会建立一个连接。这种连接越多，页面执行起来就越慢。如前所述，**可以采用事件委托技术，限制建立的连接数量** 。另外，**在不需要的时候移除事件处理程序，也是解决这个问题的一种方案** 。**内存中留有那些过时不用的“空事件处理程序”（dangling event handler），也是造成 Web 应用程序内存与性能问题的主要原因** 。
+
+在两种情况下，可能会造成上述问题。第一种情况就是 **从文档中移除带有事件处理程序的元素时** 。这可能是通过纯粹的 DOM 操作，例如使用 removeChild() 和 replaceChild() 方法，但更多地是发生在使用 innerHTML 替换页面中某一部分的时候。如果 **带有事件处理程序的元素被 innerHTML 删除了** ，那么 **原来添加到元素中的事件处理程序极有可能无法被当作垃圾回收** 。来看下面的例子。
 
 ```html
 <div id="myDiv">
-<input type="button" value="Click Me" id="myBtn">
+  <input type="button" value="Click Me" id="myBtn">
 </div>
 <script type="text/javascript">
-var btn = document.getElementById("myBtn");
-btn.onclick = function(){
-//先执行某些操作
-document.getElementById("myDiv").innerHTML = "Processing..."; //麻烦了！
-};
+  var btn = document.getElementById("myBtn");
+  btn.onclick = function(){
+  
+    //先执行某些操作
+  
+    document.getElementById("myDiv").innerHTML = "Processing..."; //麻烦了！
+  };
 </script>
 ```
-这里，有一个按钮被包含在 <div> 元素中。为避免双击，单击这个按钮时就将按钮移除并替换成一
-条消息；这是网站设计中非常流行的一种做法。但问题在于，当按钮被从页面中移除时，它还带着一个
-事件处理程序呢。在 <div> 元素上设置 innerHTML 可以把按钮移走，但事件处理程序仍然与按钮保持
-着引用关系。有的浏览器（尤其是 IE）在这种情况下不会作出恰当地处理，它们很有可能会将对元素和
-对事件处理程序的引用都保存在内存中。如果你知道某个元素即将被移除，那么最好手工移除事件处理
-程序，如下面的例子所示。
+这里，有一个按钮被包含在 `<div>` 元素中。为避免双击，单击这个按钮时就将按钮移除并替换成一条消息；这是网站设计中非常流行的一种做法。但问题在于，当按钮被从页面中移除时，它还带着一个事件处理程序呢。在 `<div>` 元素上设置 innerHTML 可以把按钮移走，但事件处理程序仍然与按钮保持着引用关系。有的浏览器（尤其是 IE）在这种情况下不会作出恰当地处理，它们很有可能会将对元素和对事件处理程序的引用都保存在内存中。**如果你知道某个元素即将被移除，那么最好手工移除事件处理程序** ，如下面的例子所示。
   
 ```html
 <div id="myDiv">
-<input type="button" value="Click Me" id="myBtn">
+  <input type="button" value="Click Me" id="myBtn">
 </div>
 <script type="text/javascript">
-var btn = document.getElementById("myBtn");
-btn.onclick = function(){
-//先执行某些操作
-btn.onclick = null; // 移除事件处理程序
-document.getElementById("myDiv").innerHTML = "Processing...";
-};
+  var btn = document.getElementById("myBtn");
+  btn.onclick = function(){
+  
+    //先执行某些操作
+  
+    btn.onclick = null; // 移除事件处理程序
+    document.getElementById("myDiv").innerHTML = "Processing...";
+  };
 </script>
 ```
 
-在此，我们在设置 <div> 的 innerHTML 属性之前，先移除了按钮的事件处理程序。这样就确保了
-内存可以被再次利用，而从 DOM 中移除按钮也做到了干净利索。
-注意，在事件处理程序中删除按钮也能阻止事件冒泡。目标元素在文档中是事件冒泡的前提。
-采用事件委托也有助于解决这个问题。如果事先知道将来有可能使用 innerHTML
-替换掉页面中的某一部分，那么就可以不直接把事件处理程序添加到该部分的元素
-中。而通过把事件处理程序指定给较高层次的元素，同样能够处理该区域中的事件。
-导致“空事件处理程序”的另一种情况，就是卸载页面的时候。毫不奇怪，IE8 及更早版本在这种
-情况下依然是问题最多的浏览器，尽管其他浏览器或多或少也有类似的问题。如果在页面被卸载之前没
-有清理干净事件处理程序，那它们就会滞留在内存中。每次加载完页面再卸载页面时（可能是在两个页
-面间来回切换，也可以是单击了“刷新”按钮），内存中滞留的对象数目就会增加，因为事件处理程序
-占用的内存并没有被释放。
-一般来说，最好的做法是在页面卸载之前，先通过 onunload 事件处理程序移除所有事件处理程序。
-在此，事件委托技术再次表现出它的优势——需要跟踪的事件处理程序越少，移除它们就越容易。对这
-种类似撤销的操作，我们可以把它想象成：只要是通过 onload 事件处理程序添加的东西，最后都要通
-过 onunload 事件处理程序将它们移除。
-不要忘了，使用 onunload 事件处理程序意味着页面不会被缓存在 bfcache 中。
-如果你在意这个问题，那么就只能在 IE中通过 onunload 来移除事件处理程序了。
+在此，我们在设置 `<div>` 的 innerHTML 属性之前，先移除了按钮的事件处理程序。这样就确保了内存可以被再次利用，而从 DOM 中移除按钮也做到了干净利索。
+
+注意，**在事件处理程序中删除按钮也能阻止事件冒泡** 。目标元素在文档中是事件冒泡的前提。
+  
+> 采用事件委托也有助于解决这个问题。如果事先知道将来有可能使用 innerHTML 替换掉页面中的某一部分，那么就可以不直接把事件处理程序添加到该部分的元素中。而通过把事件处理程序指定给较高层次的元素，同样能够处理该区域中的事件。
+
+导致“空事件处理程序”的另一种情况，就是卸载页面的时候。毫不奇怪，IE8 及更早版本在这种情况下依然是问题最多的浏览器，尽管其他浏览器或多或少也有类似的问题。如果在页面被卸载之前没有清理干净事件处理程序，那它们就会滞留在内存中。每次加载完页面再卸载页面时（可能是在两个页面间来回切换，也可以是单击了“刷新”按钮），内存中滞留的对象数目就会增加，因为事件处理程序占用的内存并没有被释放。
+
+一般来说，最好的做法是在页面卸载之前，先 **通过 onunload 事件处理程序移除所有事件处理程序** 。在此，**事件委托技术再次表现出它的优势** —— **需要跟踪的事件处理程序越少** ，**移除它们就越容易** 。对这种类似撤销的操作，我们可以把它想象成：只要是通过 onload 事件处理程序添加的东西，最后都要通过 onunload 事件处理程序将它们移除。
+
+>不要忘了，使用 onunload 事件处理程序意味着页面不会被缓存在 bfcache 中。如果你在意这个问题，那么就只能在 IE中通过 onunload 来移除事件处理程序了。
 
 ## 模拟事件
-事件，就是网页中某个特别值得关注的瞬间。事件经常由用户操作或通过其他浏览器功能来触发。
-但很少有人知道，也可以使用 JavaScript 在任意时刻来触发特定的事件，而此时的事件就如同浏览器创
-建的事件一样。也就是说，这些事件该冒泡还会冒泡，而且照样能够导致浏览器执行已经指定的处理它
-们的事件处理程序。在测试 Web 应用程序，模拟触发事件是一种极其有用的技术。DOM2 级规范为此
-规定了模拟特定事件的方式，IE9、Opera、Firefox、Chrome 和 Safari 都支持这种方式。IE 有它自己模拟
-事件的方式。
+
+**事件，就是网页中某个特别值得关注的瞬间** 。事件经常由用户操作或通过其他浏览器功能来触发。但很少有人知道，也 **可以使用 JavaScript 在任意时刻来触发特定的事件** ，而 **此时的事件就如同浏览器创建的事件一样** 。也就是说，这些事件该冒泡还会冒泡，而且照样能够导致浏览器执行已经指定的处理它们的事件处理程序。在测试 Web 应用程序，模拟触发事件是一种极其有用的技术。DOM2 级规范为此规定了模拟特定事件的方式，IE9、Opera、Firefox、Chrome 和 Safari 都支持这种方式。IE 有它自己模拟事件的方式。
 
 ### DOM中的事件模拟
-可以在 document 对象上使用 createEvent() 方法创建 event 对象。这个方法接收一个参数，即
-表示要创建的事件类型的字符串。在 DOM2 级中，所有这些字符串都使用英文复数形式，而在 DOM3  
 
-级中都变成了单数。这个字符串可以是下列几字符串之一。
- UIEvents ：一般化的 UI 事件。鼠标事件和键盘事件都继承自 UI 事件。DOM3 级中是 UIEvent 。
- MouseEvents ：一般化的鼠标事件。DOM3 级中是 MouseEvent 。
- MutationEvents ：一般化的 DOM 变动事件。DOM3 级中是 MutationEvent 。
- HTMLEvents ：一般化的 HTML 事件。没有对应的 DOM3 级事件（HTML 事件被分散到其他类
-别中）。
-要注意的是，“DOM2 级事件”并没有专门规定键盘事件，后来的“DOM3 级事件”中才正式将其
-作为一种事件给出规定。IE9 是目前唯一支持 DOM3 级键盘事件的浏览器。不过，在其他浏览器中，在
-现有方法的基础上，可以通过几种方式来模拟键盘事件。
-在创建了 event 对象之后，还需要使用与事件有关的信息对其进行初始化。每种类型的 event 对
-象都有一个特殊的方法，为它传入适当的数据就可以初始化该 event 对象。不同类型的这个方法的名
-字也不相同，具体要取决于 createEvent() 中使用的参数。
-模拟事件的最后一步就是触发事件。这一步需要使用 dispatchEvent() 方法，所有支持事件的
-DOM 节点都支持这个方法。调用 dispatchEvent() 方法时，需要传入一个参数，即表示要触发事件
-的 event 对象。触发事件之后，该事件就跻身“官方事件”之列了，因而能够照样冒泡并引发相应事
-件处理程序的执行。
+可以在 document 对象上使用 createEvent() 方法创建 event 对象。这个方法接收一个参数，即表示要创建的事件类型的字符串。在 DOM2 级中，所有这些字符串都使用英文复数形式，而在 DOM3 级中都变成了单数。这个字符串可以是下列几字符串之一。
+
+- UIEvents ：一般化的 UI 事件。鼠标事件和键盘事件都继承自 UI 事件。DOM3 级中是 UIEvent 。
+- MouseEvents ：一般化的鼠标事件。DOM3 级中是 MouseEvent 。
+- MutationEvents ：一般化的 DOM 变动事件。DOM3 级中是 MutationEvent 。
+- HTMLEvents ：一般化的 HTML 事件。没有对应的 DOM3 级事件（HTML 事件被分散到其他类别中）。
+
+要注意的是，“DOM2 级事件”并没有专门规定键盘事件，后来的“DOM3 级事件”中才正式将其作为一种事件给出规定。IE9 是目前唯一支持 DOM3 级键盘事件的浏览器。不过，在其他浏览器中，在现有方法的基础上，可以通过几种方式来模拟键盘事件。
+
+在创建了 event 对象之后，还需要使用与事件有关的信息对其进行初始化。每种类型的 event 对象都有一个特殊的方法，为它传入适当的数据就可以初始化该 event 对象。不同类型的这个方法的名字也不相同，具体要取决于 createEvent() 中使用的参数。
+
+模拟事件的最后一步就是触发事件。这一步需要使用 dispatchEvent() 方法，所有支持事件的DOM 节点都支持这个方法。调用 dispatchEvent() 方法时，需要传入一个参数，即表示要触发事件的 event 对象。触发事件之后，该事件就跻身“官方事件”之列了，因而能够照样冒泡并引发相应事件处理程序的执行。
+
 - #### 模拟鼠标事件
-创建新的鼠标事件对象并为其指定必要的信息，就可以模拟鼠标事件。创建鼠标事件对象的方法是
-为 createEvent() 传入字符串 "MouseEvents" 。返回的对象有一个名为 initMouseEvent() 方法，
-用于指定与该鼠标事件有关的信息。这个方法接收 15 个参数，分别与鼠标事件中每个典型的属性一一
-对应；这些参数的含义如下。
- type （字符串）：表示要触发的事件类型，例如 "click" 。
- bubbles （布尔值）：表示事件是否应该冒泡。为精确地模拟鼠标事件，应该把这个参数设置为
-true 。
- cancelable （布尔值）：表示事件是否可以取消。为精确地模拟鼠标事件，应该把这个参数设
-置为 true 。
- view （AbstractView）：与事件关联的视图。这个参数几乎总是要设置为 document.defaultView 。
- detail （整数）：与事件有关的详细信息。这个值一般只有事件处理程序使用，但通常都设置为 0 。
- screenX （整数）：事件相对于屏幕的 X 坐标。
- screenY （整数）：事件相对于屏幕的 Y 坐标。
- clientX （整数）：事件相对于视口的 X 坐标。
- clientY （整数）：事件想对于视口的 Y 坐标。
- ctrlKey （布尔值）：表示是否按下了 Ctrl 键。默认值为 false 。
- altKey （布尔值）：表示是否按下了 Alt 键。默认值为 false 。
- shiftKey （布尔值）：表示是否按下了 Shift 键。默认值为 false 。
- metaKey （布尔值）：表示是否按下了 Meta 键。默认值为 false 。
- button （整数）：表示按下了哪一个鼠标键。默认值为 0 。
- relatedTarget （对象）：表示与事件相关的对象。这个参数只在模拟 mouseover 或 mouseout
-时使用。
 
-显而易见， initMouseEvent() 方法的这些参数是与鼠标事件的 event 对象所包含的属性一一对
-应的。其中，前 4 个参数对正确地激发事件至关重要，因为浏览器要用到这些参数；而剩下的所有参数
-只有在事件处理程序中才会用到。当把 event 对象传给 dispatchEvent() 方法时，这个对象的 target
-属性会自动设置。下面，我们就通过一个例子来了解如何模拟对按钮的单击事件。
-var btn = document.getElementById("myBtn");
-//创建事件对象
-var event = document.createEvent("MouseEvents");
-//初始化事件对象
-event.initMouseEvent("click", true, true, document.defaultView, 0, 0, 0, 0, 0,
-false, false, false, false, 0, null);
-//触发事件
-btn.dispatchEvent(event);
-SimulateDOMClickExample01.htm
-在兼容 DOM 的浏览器中，也可以通过相同的方式来模拟其他鼠标事件（例如 dblclick ）。
+  **创建新的鼠标事件对象并为其指定必要的信息** ，**就可以模拟鼠标事件** 。创建鼠标事件对象的方法是为 **createEvent()** 传入字符串 "**MouseEvents** " 。返回的对象有一个名为 **initMouseEvent() 方法** ，**用于指定与该鼠标事件有关的信息** 。这个方法接收 15 个参数，分别与鼠标事件中每个典型的属性一一对应；这些参数的含义如下。
+
+  - type （字符串）：表示要触发的事件类型，例如 "click" 。
+  - bubbles （布尔值）：表示事件是否应该冒泡。为精确地模拟鼠标事件，应该把这个参数设置为true 。
+  - cancelable （布尔值）：表示事件是否可以取消。为精确地模拟鼠标事件，应该把这个参数设置为 true 。
+  - view （AbstractView）：与事件关联的视图。这个参数几乎总是要设置为 document.defaultView 。
+  - detail （整数）：与事件有关的详细信息。这个值一般只有事件处理程序使用，但通常都设置为 0 。
+  - screenX （整数）：事件相对于屏幕的 X 坐标。
+  - screenY （整数）：事件相对于屏幕的 Y 坐标。
+  - clientX （整数）：事件相对于视口的 X 坐标。
+  - clientY （整数）：事件想对于视口的 Y 坐标。
+  - ctrlKey （布尔值）：表示是否按下了 Ctrl 键。默认值为 false 。
+  - altKey （布尔值）：表示是否按下了 Alt 键。默认值为 false 。
+  - shiftKey （布尔值）：表示是否按下了 Shift 键。默认值为 false 。
+  - metaKey （布尔值）：表示是否按下了 Meta 键。默认值为 false 。
+  - button （整数）：表示按下了哪一个鼠标键。默认值为 0 。
+  - relatedTarget （对象）：表示与事件相关的对象。这个参数只在模拟 mouseover 或 mouseout时使用。
+
+  显而易见， **initMouseEvent() 方法的这些参数是与鼠标事件的 event 对象所包含的属性一一对应的** 。其中，前 4 个参数对正确地激发事件至关重要，因为浏览器要用到这些参数；而剩下的所有参数只有在事件处理程序中才会用到。当把 event 对象传给 dispatchEvent() 方法时，这个对象的 target 属性会自动设置。下面，我们就通过一个例子来了解如何 **模拟对按钮的单击事件** 。
+
+  ```js
+  var btn = document.getElementById("myBtn");
+
+  //创建事件对象
+  var event = document.createEvent("MouseEvents");
+
+  //初始化事件对象
+  event.initMouseEvent("click", true, true, document.defaultView, 0, 0, 0, 0, 0,
+  false, false, false, false, 0, null);
+
+  //触发事件
+  btn.dispatchEvent(event);
+  ```
+  在兼容 DOM 的浏览器中，也可以通过相同的方式来模拟其他鼠标事件（例如 dblclick ）。
 
 - #### 模拟键盘事件
-前面曾经提到过，“DOM2 级事件”中没有就键盘事件作出规定，因此模拟键盘事件并没有现成的
-思路可循。“DOM2 级事件”的草案中本来包含了键盘事件，但在定稿之前又被删除了；Firefox 根据其
-草案实现了键盘事件。需要提请大家注意的是，“DOM3 级事件”中的键盘事件与曾包含在“DOM2 级
-事件”草案中的键盘事件有很大区别。
-DOM3 级规定，调用 createEvent() 并传入 "KeyboardEvent" 就可以创建一个键盘事件。返回的
-事件对象会包含一个 initKeyEvent() 方法，这个方法接收下列参数。
- type （字符串）：表示要触发的事件类型，如 "keydown" 。
- bubbles （布尔值）：表示事件是否应该冒泡。为精确模拟鼠标事件，应该设置为 true 。
- cancelable （布尔值）：表示事件是否可以取消。为精确模拟鼠标事件，应该设置为 true 。
- view （ AbstractView ）：与事件关联的视图。这个参数几乎总是要设置为 document.
-defaultView 。
- key （布尔值）：表示按下的键的键码。
- location （整数）：表示按下了哪里的键。0 表示默认的主键盘，1 表示左，2 表示右，3 表示
-数字键盘，4 表示移动设备（即虚拟键盘），5 表示手柄。
- modifiers （字符串）：空格分隔的修改键列表，如 "Shift" 。
- repeat （整数）：在一行中按了这个键多少次。
-由于DOM3级不提倡使用 keypress 事件，因此只能利用这种技术来模拟 keydown 和 keyup 事件。
 
-```js
-var textbox = document.getElementById("myTextbox"),
-event;
-//以 DOM3 级方式创建事件对象
-if (document.implementation.hasFeature("KeyboardEvents", "3.0")){
-event = document.createEvent("KeyboardEvent");
-//初始化事件对象
-event.initKeyboardEvent("keydown", true, true, document.defaultView, "a",
-0, "Shift", 0);
-}
-//触发事件
-textbox.dispatchEvent(event);
-```
-这 个 例 子 模 拟 的 是 按 住 Shift 的 同 时 又 按 下 A 键 。 在 使 用 document.createEvent
-("KeyboardEvent") 之前，应该先检测浏览器是否支持 DOM3 级事件；其他浏览器返回一个非标准的
-KeyboardEvent 对象。
-在 Firefox 中，调用 createEvent() 并传入 "KeyEvents" 就可以创建一个键盘事件。返回的事件
-对象会包含一个 initKeyEvent() 方法，这个方法接受下列 10 个参数。
- type （字符串）：表示要触发的事件类型，如 "keydown" 。
- bubbles （布尔值）：表示事件是否应该冒泡。为精确模拟鼠标事件，应该设置为 true 。
- cancelable （布尔值）：表示事件是否可以取消。为精确模拟鼠标事件，应该设置为 true 。
- view （ AbstractView ）：与事件关联的视图。这个参数几乎总是要设置为 document.default-
-View 。
- ctrlKey （布尔值）：表示是否按下了 Ctrl 键。默认值为 false 。
- altKey （布尔值）：表示是否按下了 Alt 键。默认值为 false 。
- shiftKey （布尔值）：表示是否按下了 Shift 键。默认值为 false 。
- metaKey （布尔值）：表示是否按下了 Meta 键。默认值为 false 。
- keyCode （整数）：被按下或释放的键的键码。这个参数对 keydown 和 keyup 事件有用，默认
-值为 0 。
- charCode （整数）：通过按键生成的字符的 ASCII 编码。这个参数对 keypress 事件有用，默
-认值为 0 。
-将创建的 event 对象传入到 dispatchEvent() 方法就可以触发键盘事件，如下面的例子所示。
+  前面曾经提到过，“DOM2 级事件”中没有就键盘事件作出规定，因此模拟键盘事件并没有现成的思路可循。“DOM2 级事件”的草案中本来包含了键盘事件，但在定稿之前又被删除了；Firefox 根据其草案实现了键盘事件。需要提请大家注意的是，“DOM3 级事件”中的键盘事件与曾包含在“DOM2 级事件”草案中的键盘事件有很大区别。
 
-```js
-//只适用于 Firefox
-var textbox = document.getElementById("myTextbox")
-// 创建事件对象
-var event = document.createEvent("KeyEvents");
-// 初始化事件对象
-event.initKeyEvent("keypress", true, true, document.defaultView, false, false,
-false, false, 65, 65);
-//触发事件
-textbox.dispatchEvent(event);
-```
-在 Firefox 中运行上面的代码，会在指定的文本框中输入字母 A。同样，也可以依此模拟 keyup 和
-keydown 事件。
-在其他浏览器中，则需要创建一个通用的事件，然后再向事件对象中添加键盘事件特有的信息。
-例如：
+  DOM3 级规定，调用 **createEvent()** 并传入 " **KeyboardEvent** " 就可以创建一个键盘事件。返回的事件对象会包含一个 **initKeyEvent() 方法** ，这个方法接收下列参数。
+  
+   - type （字符串）：表示要触发的事件类型，如 "keydown" 。
+   - bubbles （布尔值）：表示事件是否应该冒泡。为精确模拟鼠标事件，应该设置为 true 。
+   - cancelable （布尔值）：表示事件是否可以取消。为精确模拟鼠标事件，应该设置为 true 。
+   - view （ AbstractView ）：与事件关联的视图。这个参数几乎总是要设置为 document.defaultView 。
+   - key （布尔值）：表示按下的键的键码。
+   - location （整数）：表示按下了哪里的键。0 表示默认的主键盘，1 表示左，2 表示右，3 表示数字键盘，4 表示移动设备（即虚拟键盘），5 表示手柄。
+   - modifiers （字符串）：空格分隔的修改键列表，如 "Shift" 。
+   - repeat （整数）：在一行中按了这个键多少次。
 
-```js
-var textbox = document.getElementById("myTextbox");
-// 创建事件对象
-var event = document.createEvent("Events");
-// 初始化事件对象
-event.initEvent(type, bubbles, cancelable);
-event.view = document.defaultView;
-event.altKey = false;
-event.ctrlKey = false;
-event.shiftKey = false;
-event.metaKey = false;
-event.keyCode = 65;
-event.charCode = 65;
-//触发事件
-textbox.dispatchEvent(event);
-```
-以上代码首先创建了一个通用事件，然后调用 initEvent() 对其进行初始化，最后又为其添加了
-键盘事件的具体信息。在此必须要使用通用事件，而不能使用 UI 事件，因为 UI 事件不允许向 event
-对象中再添加新属性（Safari 除外）。像这样模拟事件虽然会触发键盘事件，但却不会向文本框中写入文
-本，这是由于无法精确模拟键盘事件所造成的。
+  由于DOM3级不提倡使用 keypress 事件，因此 **只能利用这种技术来模拟 keydown 和 keyup 事件** 。
+
+  ```js
+  var textbox = document.getElementById("myTextbox"),
+     event;
+
+  //以 DOM3 级方式创建事件对象
+  if (document.implementation.hasFeature("KeyboardEvents", "3.0")){
+    event = document.createEvent("KeyboardEvent");
+
+    //初始化事件对象
+    event.initKeyboardEvent("keydown", true, true, document.defaultView, "a", 0, "Shift", 0);
+  }
+  //触发事件
+  textbox.dispatchEvent(event);
+  ```
+  这个例子模拟的是按住 Shift 的同 时又按下 A 键 。 在使用 document.createEvent("KeyboardEvent") 之前，应该先检测浏览器是否支持 DOM3 级事件；其他浏览器返回一个非标准的KeyboardEvent 对象。
+
+  在 Firefox 中，调用 **createEvent()** 并传入 "**KeyEvents** " 就可以创建一个键盘事件。返回的事件对象会包含一个 **initKeyEvent() 方法** ，这个方法接受下列 10 个参数。
+   - type （字符串）：表示要触发的事件类型，如 "keydown" 。
+   - bubbles （布尔值）：表示事件是否应该冒泡。为精确模拟鼠标事件，应该设置为 true 。
+   - cancelable （布尔值）：表示事件是否可以取消。为精确模拟鼠标事件，应该设置为 true 。
+   - view （ AbstractView ）：与事件关联的视图。这个参数几乎总是要设置为 document.defaultView 。
+   - ctrlKey （布尔值）：表示是否按下了 Ctrl 键。默认值为 false 。
+   - altKey （布尔值）：表示是否按下了 Alt 键。默认值为 false 。
+   - shiftKey （布尔值）：表示是否按下了 Shift 键。默认值为 false 。
+   - metaKey （布尔值）：表示是否按下了 Meta 键。默认值为 false 。
+   - keyCode （整数）：被按下或释放的键的键码。这个参数对 keydown 和 keyup 事件有用，默认值为 0 。
+   - charCode （整数）：通过按键生成的字符的 ASCII 编码。这个参数对 keypress 事件有用，默认值为 0 。
+
+  **将创建的 event 对象传入到 dispatchEvent() 方法就可以触发键盘事件** ，如下面的例子所示。
+
+  ```js
+  //只适用于 Firefox
+  var textbox = document.getElementById("myTextbox")
+
+  // 创建事件对象
+  var event = document.createEvent("KeyEvents");
+
+  // 初始化事件对象
+  event.initKeyEvent("keypress", true, true, document.defaultView, false, false, false, false, 65, 65);
+
+  //触发事件
+  textbox.dispatchEvent(event);
+  ```
+  在 Firefox 中运行上面的代码，会在指定的文本框中输入字母 A。同样，也可以依此模拟 keyup 和 keydown 事件。
+
+  **在其他浏览器中** ，则 **需要创建一个通用的事件** ，然后 **再向事件对象中添加键盘事件特有的信息** 。例如：
+
+  ```js
+  var textbox = document.getElementById("myTextbox");
+
+  // 创建事件对象
+  var event = document.createEvent("Events");
+
+  // 初始化事件对象
+  event.initEvent(type, bubbles, cancelable);
+  event.view = document.defaultView;
+  event.altKey = false;
+  event.ctrlKey = false;
+  event.shiftKey = false;
+  event.metaKey = false;
+  event.keyCode = 65;
+  event.charCode = 65;
+
+  //触发事件
+  textbox.dispatchEvent(event);
+  ```
+  以上代码首先创建了一个通用事件，然后调用 initEvent() 对其进行初始化，最后又为其添加了键盘事件的具体信息。在此必须要使用通用事件，而不能使用 UI 事件，因为 UI 事件不允许向 event 对象中再添加新属性（Safari 除外）。像这样模拟事件虽然会触发键盘事件，但却不会向文本框中写入文本，这是由于无法精确模拟键盘事件所造成的。
 
 - #### 模拟其他事件
-虽然鼠标事件和键盘事件是在浏览器中最经常模拟的事件，但有时候同样需要模拟变动事件和
-HTML 事件。要模拟变动事件，可以使用 createEvent("MutationEvents") 创建一个包含
-initMutationEvent() 方法的变动事件对象。这个方法接受的参数包括： type 、 bubbles 、
-cancelable 、 relatedNode 、 preValue 、 newValue 、 attrName 和 attrChange 。下面来看一个模
-拟变动事件的例子。
-var event = document.createEvent("MutationEvents");
-event.initMutationEvent("DOMNodeInserted", true, false, someNode, "","","",0);
-target.dispatchEvent(event);
-以上代码模拟了 DOMNodeInserted 事件。其他变动事件也都可以照这个样子来模拟，只要改一改
-参数就可以了。
-要模拟 HTML 事件，同样需要先创建一个 event 对象——通过 createEvent("HTMLEvents") ，
-然后再使用这个对象的 initEvent() 方法来初始化它即可，如下面的例子所示。
-var event = document.createEvent("HTMLEvents");
-event.initEvent("focus", true, false);
-target.dispatchEvent(event);
-这个例子展示了如何在给定目标上模拟 focus 事件。模拟其他 HTML 事件的方法也是这样。
-浏览器中很少使用变动事件和 HTML 事件，因为使用它们会受到一些限制。
+
+  虽然鼠标事件和键盘事件是在浏览器中最经常模拟的事件，但有时候同样需要模拟变动事件和 HTML 事件。要模拟变动事件，可以使用 createEvent("MutationEvents") 创建一个包含 initMutationEvent() 方法的变动事件对象。这个方法接受的参数包括： type 、 bubbles 、cancelable 、 relatedNode 、 preValue 、 newValue 、 attrName 和 attrChange 。下面来看一个模拟变动事件的例子。
+
+  ```js
+  var event = document.createEvent("MutationEvents");
+  event.initMutationEvent("DOMNodeInserted", true, false, someNode, "","","",0);
+  target.dispatchEvent(event);
+  ```
+  以上代码模拟了 DOMNodeInserted 事件。其他变动事件也都可以照这个样子来模拟，只要改一改参数就可以了。
+
+  要模拟 HTML 事件，同样需要先创建一个 event 对象——通过 createEvent("HTMLEvents") ，然后再使用这个对象的 initEvent() 方法来初始化它即可，如下面的例子所示。
+
+  ```js
+  var event = document.createEvent("HTMLEvents");
+  event.initEvent("focus", true, false);
+  target.dispatchEvent(event);
+  ```
+  这个例子展示了如何在给定目标上模拟 focus 事件。模拟其他 HTML 事件的方法也是这样。
+
+  > 浏览器中很少使用变动事件和 HTML 事件，因为使用它们会受到一些限制。
 
 - #### 自定义 DOM 事件
-DOM3 级还定义了“自定义事件”。自定义事件不是由 DOM 原生触发的，它的目的是让开发人员
-创建自己的事件。要创建新的自定义事件，可以调用 createEvent("CustomEvent") 。返回的对象有
-一个名为 initCustomEvent() 的方法，接收如下 4 个参数。
 
- type （字符串）：触发的事件类型，例如 "keydown" 。
- bubbles （布尔值）：表示事件是否应该冒泡。
- cancelable （布尔值）：表示事件是否可以取消。
- detail （对象）：任意值，保存在 event 对象的 detail 属性中。
-可以像分派其他事件一样在 DOM 中分派创建的自定义事件对象。例如：
+  DOM3 级还定义了“自定义事件”。**自定义事件不是由 DOM 原生触发的** ，它的目的是 **让开发人员创建自己的事件** 。要创建新的自定义事件，可以调用 createEvent("CustomEvent") 。返回的对象有一个名为 initCustomEvent() 的方法，接收如下 4 个参数。
 
-```js
-var div = document.getElementById("myDiv"),
-event;
-EventUtil.addHandler(div, "myevent", function(event){
-alert("DIV: " + event.detail);
-});
-EventUtil.addHandler(document, "myevent", function(event){
-alert("DOCUMENT: " + event.detail);
-});
-if (document.implementation.hasFeature("CustomEvents", "3.0")){
-event = document.createEvent("CustomEvent");
-event.initCustomEvent("myevent", true, false, "Hello world!");
-div.dispatchEvent(event);
-}
-```
-这个例子创建了一个冒泡事件 "myevent" 。而 event.detail 的值被设置成了一个简单的字符串，
-然后在 <div> 元素和 document 上侦听这个事件。因为 initCustomEvent() 方法已经指定这个事件应
-该冒泡，所以浏览器会负责将事件向上冒泡到 document 。
-支持自定义 DOM事件的浏览器有 IE9+和 Firefox 6+。
+  - type （字符串）：触发的事件类型，例如 "keydown" 。
+  - bubbles （布尔值）：表示事件是否应该冒泡。
+  - cancelable （布尔值）：表示事件是否可以取消。
+  - detail （对象）：任意值，保存在 event 对象的 detail 属性中。
+
+  可以像分派其他事件一样在 DOM 中分派创建的自定义事件对象。例如：
+
+  ```js
+  var div = document.getElementById("myDiv"),
+  event;
+
+  EventUtil.addHandler(div, "myevent", function(event){
+    alert("DIV: " + event.detail);
+  });
+  EventUtil.addHandler(document, "myevent", function(event){
+    alert("DOCUMENT: " + event.detail);
+  });
+
+  if (document.implementation.hasFeature("CustomEvents", "3.0")){
+    event = document.createEvent("CustomEvent");
+    event.initCustomEvent("myevent", true, false, "Hello world!");
+    div.dispatchEvent(event);
+  }
+  ```
+  这个例子创建了一个冒泡事件 "myevent" 。而 event.detail 的值被设置成了一个简单的字符串，然后在 `<div>` 元素和 document 上侦听这个事件。因为 initCustomEvent() 方法已经指定这个事件应该冒泡，所以浏览器会负责将事件向上冒泡到 document 。
+
+  支持自定义 DOM事件的浏览器有 IE9+和 Firefox 6+。
   
 ### IE中的事件模拟
 
-在 IE8 及之前版本中模拟事件与在 DOM 中模拟事件的思路相似：先创建 event 对象，然后为其指
-定相应的信息，然后再使用该对象来触发事件。当然，IE 在实现每个步骤时都采用了不一样的方式。
-调用 document.createEventObject() 方法可以在 IE 中创建 event 对象。但与 DOM方式不同
-的是，这个方法不接受参数，结果会返回一个通用的 event 对象。然后，你必须手工为这个对象添加
-所有必要的信息（没有方法来辅助完成这一步骤）。最后一步就是在目标上调用 fireEvent() 方法，这
-个方法接受两个参数：事件处理程序的名称和 event 对象。在调用 fireEvent() 方法时，会自动为
-event 对象添加 srcElement 和 type 属性；其他属性则都是必须通过手工添加的。换句话说，模拟任
-何 IE支持的事件都采用相同的模式。例如，下面的代码模拟了在一个按钮上触发 click 事件过程。
+在 IE8 及之前版本中模拟事件与在 DOM 中模拟事件的思路相似：先 **创建 event 对象** ，然后 **为其指定相应的信息** ，然后 **再使用该对象来触发事件** 。当然，IE 在实现每个步骤时都采用了不一样的方式。
+
+**调用 document.createEventObject() 方法可以在 IE 中创建 event 对象** 。但与 DOM方式不同的是，这个方法不接受参数，结果会返回一个通用的 event 对象。然后，你必须手工为这个对象添加所有必要的信息（没有方法来辅助完成这一步骤）。最后一步就是在目标上调用 fireEvent() 方法，这个方法接受两个参数：事件处理程序的名称和 event 对象。在调用 fireEvent() 方法时，会自动为 event 对象添加 srcElement 和 type 属性；其他属性则都是必须通过手工添加的。换句话说，模拟任何 IE支持的事件都采用相同的模式。例如，下面的代码模拟了在一个按钮上触发 click 事件过程。
 
 ```js
 var btn = document.getElementById("myBtn");
+
 //创建事件对象
 var event = document.createEventObject();
+
 //初始化事件对象
 event.screenX = 100;
 event.screenY = 0;
@@ -2588,41 +2459,43 @@ event.ctrlKey = false;
 event.altKey = false;
 event.shiftKey = false;
 event.button = 0;
+
 //触发事件
 btn.fireEvent("onclick", event);
 ```
-这个例子先创建了一个 event 对象，然后又用一些信息对其进行了初始化。注意，这里可以为对
-象随意添加属性，不会有任何限制——即使添加的属性 IE8 及更早版本并不支持也无所谓。在此添加的
-属性对事件没有什么影响，因为只有事件处理程序才会用到它们。
+这个例子先创建了一个 event 对象，然后又用一些信息对其进行了初始化。注意，这里可以为对象随意添加属性，不会有任何限制——即使添加的属性 IE8 及更早版本并不支持也无所谓。在此添加的属性对事件没有什么影响，因为只有事件处理程序才会用到它们。
+
 采用相同的模式也可以模拟触发 keypress 事件，如下面的例子所示。
 
 ```js
 var textbox = document.getElementById("myTextbox");
+
 //创建事件对象
 var event = document.createEventObject();
+
 //初始化事件对象
 event.altKey = false;
 event.ctrlKey = false;
 event.shiftKey = false;
 event.keyCode = 65;
+
 //触发事件
 textbox.fireEvent("onkeypress", event);
 ```
-由于鼠标事件、键盘事件以及其他事件的 event 对象并没有什么不同，所以可以使用通用对象来
-触发任何类型的事件。不过，正如在DOM中模拟键盘事件一样，运行这个例子也不会因模拟了 keypress
-而在文本框中看到任何字符，即使触发了事件处理程序也没有用。
+由于鼠标事件、键盘事件以及其他事件的 event 对象并没有什么不同，所以可以使用通用对象来触发任何类型的事件。不过，正如在DOM中模拟键盘事件一样，运行这个例子也不会因模拟了 keypress 而在文本框中看到任何字符，即使触发了事件处理程序也没有用。
 
 ## 小结
-事件是将 JavaScript 与网页联系在一起的主要方式。“DOM3 级事件”规范和 HTML5 定义了常见的
-大多数事件。即使有规范定义了基本事件，但很多浏览器仍然在规范之外实现了自己的专有事件，从而
-为开发人员提供更多掌握用户交互的手段。有些专有事件与特定设备关联，例如移动 Safari 中的
-orientationchange 事件就是特定关联 iOS 设备的。
-在使用事件时，需要考虑如下一些内存与性能方面的问题。
-  有必要限制一个页面中事件处理程序的数量，数量太多会导致占用大量内存，而且也会让用户
-感觉页面反应不够灵敏。
-  建立在事件冒泡机制之上的事件委托技术，可以有效地减少事件处理程序的数量。
-  建议在浏览器卸载页面之前移除页面中的所有事件处理程序。
-可以使用 JavaScript 在浏览器中模拟事件。“DOM2 级事件”和“DOM3 级事件”规范规定了模拟事
-件的方法，为模拟各种有定义的事件提供了方便。此外，通过组合使用一些技术，还可以在某种程度上
-模拟键盘事件。IE8及之前版本同样支持事件模拟，只不过模拟的过程有些差异。
+
+事件是将 JavaScript 与网页联系在一起的主要方式。“DOM3 级事件”规范和 HTML5 定义了常见的大多数事件。即使有规范定义了基本事件，但很多浏览器仍然在规范之外实现了自己的专有事件，从而为开发人员提供更多掌握用户交互的手段。有些专有事件与特定设备关联，例如移动 Safari 中的 orientationchange 事件就是特定关联 iOS 设备的。
+
+在使用事件时，需要考虑如下一些 **内存与性能方面的问题** 。
+
+- 有必要限制一个页面中事件处理程序的数量，数量太多会导致占用大量内存，而且也会让用户感觉页面反应不够灵敏。
+
+- 建立在事件冒泡机制之上的事件委托技术，可以有效地减少事件处理程序的数量。
+
+- 建议在浏览器卸载页面之前移除页面中的所有事件处理程序。
+
+**可以使用 JavaScript 在浏览器中模拟事件** 。“DOM2 级事件”和“DOM3 级事件”规范规定了模拟事件的方法，为模拟各种有定义的事件提供了方便。此外，通过组合使用一些技术，还可以在某种程度上模拟键盘事件。IE8及之前版本同样支持事件模拟，只不过模拟的过程有些差异。
+
 事件是 JavaScript中最重要的主题之一，深入理解事件的工作机制以及它们对性能的影响至关重要。
