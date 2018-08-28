@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/works" class="menu-item-link"><i class="iconfont icon-works"></i>作品</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="intro">
+          写文章，做分享
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <section class="posts">
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/06/15/WeChat-Basics/">微信小程序基础学习</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-15</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/微信小程序/">微信小程序</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/06/15/WeChat-Basics/"
+                   data-title="微信小程序基础学习">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><ul>
+<li><h4 id="模板的作用"><a href="#模板的作用" class="headerlink" title="模板的作用"></a>模板的作用</h4><p> 避免重复开发，提升效率。</p>
+<p> 模板类似与React的组件思想提高重用性，但是模板只是只是包括视图和样式，并且两者需要分别引入对应的目标文件中。</p>
+</li>
+<li><h4 id="模板的定义"><a href="#模板的定义" class="headerlink" title="模板的定义"></a>模板的定义</h4><ol>
+<li><p>创建模板文件</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6.png" alt="模板文件"></p>
+<ul>
+<li>一个模板wxml文件中可以创建多个template，通过name进行区分。</li>
+<li>ES6的扩展语法：<strong>…</strong> , 可以用于将数据解构之后传给模板使用。</li>
+</ul>
+</li>
+<li><p>.xml文件中定义模板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template name=&quot;list-item&quot;&gt;</span><br><span class="line">   &lt;view class=&quot;kind-list-item&quot;&gt;&lt;/view&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+          <div id="read-more">
+            <a href="/2018/06/15/WeChat-Basics/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/WeChat/">WeChat</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/06/13/nodejs-blog-build/">NodeJS博客搭建</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-13</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/博客搭建/">博客搭建</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/06/13/nodejs-blog-build/"
+                   data-title="NodeJS博客搭建">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h3 id="pm2启动服务"><a href="#pm2启动服务" class="headerlink" title="pm2启动服务"></a>pm2启动服务</h3><p> <a href="http://pm2.keymetrics.io/docs/usage/cluster-mode/" target="_blank" rel="noopener">pm2官网</a></p>
+<ul>
+<li><p>安装pm2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g pm2</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.cnblogs.com/liusixin/p/7007340.html" target="_blank" rel="noopener">使用 PM2 管理nodejs进程</a></p>
+</li>
+<li><p>启动服务</p>
+<p>配置pm2.json文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">&quot;name&quot;: &quot;dynablog.songxingguo.com&quot;,</span><br><span class="line">&quot;script&quot;: &quot;bin/www&quot;,</span><br><span class="line">&quot;log_date_format&quot;: &quot;YYYY-MM-DD HH:mm Z&quot;,</span><br><span class="line">&quot;exec_mode&quot;: &quot;cluster&quot;,</span><br><span class="line">&quot;instances&quot;: 2,</span><br><span class="line">&quot;error_file&quot;: &quot;logs/stderr.log&quot;,</span><br><span class="line">&quot;out_file&quot;: &quot;logs/stdout.log&quot;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>加载pm2.json文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 reload pm2.json</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start pm2.json</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>常用命令</p>
+<p><a href="https://www.cnblogs.com/jtnote/p/6230720.html" target="_blank" rel="noopener">常用命令</a></p>
+</li>
+</ul>
+
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/Node/">Node</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/06/06/hexo-theme/">Hexo主题修改</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-06</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/博客搭建/">博客搭建</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/06/06/hexo-theme/"
+                   data-title="Hexo主题修改">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <ul>
+<li><h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>&emsp;&emsp;已经使用Hexo搭建一个博客</p>
+</li>
+<li><h3 id="选取自己喜欢的主题"><a href="#选取自己喜欢的主题" class="headerlink" title="选取自己喜欢的主题"></a>选取自己喜欢的主题</h3><p>&emsp;&emsp;在Hexo <a href="https://hexo.io/themes/" target="_blank" rel="noopener">主题列表</a> 中选取一个自己喜欢的主题，</p>
+<p>&emsp;&emsp;我这儿选取的是 hiker 主题</p></li></ul>
+          <div id="read-more">
+            <a href="/2018/06/06/hexo-theme/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/Hexo/">Hexo</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/06/06/deploy-github-pages/">博客部署到Github Pages</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-06</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/博客搭建/">博客搭建</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/06/06/deploy-github-pages/"
+                   data-title="博客部署到Github Pages">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <ul>
+<li><h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>拥有github账号<br>已经搭建了一个Hexo博客</p>
+</li>
+<li><h3 id="前景知识"><a href="#前景知识" class="headerlink" title="前景知识"></a>前景知识</h3><p>Github Pages是一个静态页面服务器，可以用来展示托管在gitbub仓库的静态页面。</p>
+<p>Github Pages 提供了三种方式展示静态页面。</p>
+<ul>
+<li>仓库以 <strong> xx.github.io </strong> 命名</li>
+<li>仓库创建gh-pages分支</li>
+</ul>
+<p>下面以第一种方式推送到Gitbub Pages</p>
+</li>
+</ul>
+          <div id="read-more">
+            <a href="/2018/06/06/deploy-github-pages/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/Hexo/">Hexo</a> <a class="tag-link" href="/tags/github/">github</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/06/06/linux-install-mysql/">Linux安装Mysql数据库</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-06</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/操作系统/">操作系统</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/06/06/linux-install-mysql/"
+                   data-title="Linux安装Mysql数据库">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h3 id="安装Mysql数据库"><a href="#安装Mysql数据库" class="headerlink" title="安装Mysql数据库"></a>安装Mysql数据库</h3><ol>
+<li><p>wget 命令下载mysql压缩包（大约300M）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.11-linux-glibc2.5-x86_64.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>2.解压压缩包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf mysql-5.7.11-linux-glibc2.5-x86_64.tar.gz</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -f mysql-5.7.11-linux-glibc2.5-x86_64.tar.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv mysql-5.7.11-linux-glibc2.5-x86_64/ mysql</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groups mysql</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupadd mysql</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -r -g mysql mysql`</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd database/mysql-5.7</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R mysql:mysql ./</span><br></pre></td></tr></table></figure>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><ul>
+<li><p>查看Mysql服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof -i:3306</span><br></pre></td></tr></table></figure>
+<p> 或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld status</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按名称查找</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name mysql</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除所有查询的mysql</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name mysql|xargs rm -rf</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/Linux/">Linux</a> <a class="tag-link" href="/tags/mysql/">mysql</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/06/06/linux-node/">Linux配置Node环境</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-06</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/操作系统/">操作系统</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/06/06/linux-node/"
+                   data-title="Linux配置Node环境">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h2 id="配置node环境"><a href="#配置node环境" class="headerlink" title="配置node环境"></a>配置node环境</h2><ol>
+<li><p>wget命令下载Node.js安装包（下载到当前目录）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://nodejs.org/dist/v6.9.5/node-v6.9.5-linux-x64.tar.xz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解压文件（解压到当前目录）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xvf node-v6.9.5-linux-x64.tar.xz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建软链接，使node和npm命令全局有效。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s /root/node-v6.9.5-linux-x64/bin/node /usr/<span class="built_in">local</span>/bin/node</span><br><span class="line">ln -s /root/node-v6.9.5-linux-x64/bin/npm /usr/<span class="built_in">local</span>/bin/npm</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看node、npm版本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+          <div id="read-more">
+            <a href="/2018/06/06/linux-node/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/Linux/">Linux</a> <a class="tag-link" href="/tags/Node/">Node</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/06/04/linux-command/">Linux常用命令</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-04</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/常用命令/">常用命令</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/06/04/linux-command/"
+                   data-title="Linux常用命令">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><ul>
+<li><p>创建文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch example.js</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim example.js</span><br></pre></td></tr></table></figure>
+<p>输入 i，进入编辑模式。</p>
+<p>输入为v进入视图模式，可进行多行选择。</p>
+<p>使用Esc按钮，退出编辑模式，输入:wq，回车，保存文件内容并退出。</p>
+</li>
+<li><p>查看文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /var/<span class="built_in">log</span>/mysqld.log</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm example.js</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+          <div id="read-more">
+            <a href="/2018/06/04/linux-command/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/Linux/">Linux</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/06/02/blog-build/">博客搭建</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-02</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/博客搭建/">博客搭建</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/06/02/blog-build/"
+                   data-title="博客搭建">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>大三的我，做过项目，平时也看了不少的书，但是能记住却少之有少。于是我希望通过博客将学过的知识整理下来，形成自己的知识体系。在今年上半年开始就打算搭建博客，在网上百度了各种资料，找到博客三种搭建方式: Wordpress、Jekyll、Hexo。其中Wordpress是需要服务器的，作为学生党的我当然没钱买服务器了，于是果断放弃了Wordpress,那就再看看Jekeyll吧，就来到了<a href="https://www.jekyll.com.cn" target="_blank" rel="noopener">Jekyll的官网</a> ，看了一下是不需要服务器的 ，那就撸起袖子开干吧，按着官方的教程往下弄，但Jekyll是设计是基于Ruby的，而我又没有Ruby的环境，那就顺理成章的来到了<a href="http://www.ruby-lang.org/en/downloads/" target="_blank" rel="noopener">Ruby的官网</a>找到了Windows系统的<a href="https://rubyinstaller.org/downloads" target="_blank" rel="noopener">下载连接</a>。但说起最气的就是安装Ruby了，下载一个只有8兆左右的却怎么也下载不下来，下载了一半结果进度就不动了，接着试了几次，都没下载下来。那个真是把我气的那是不要不要的。这东西光是下载下来就花了我接近一个小时。最后在千辛万苦下终于还是弄出来了一个<a href="http://blog.songxingguo.com" target="_blank" rel="noopener">Jekeyll的博客</a>。当然了，前面的说所的一切都是我们今天的主角Hexo做铺垫的。下面我们正式进入正题吧。</p>
+<h3 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h3><ul>
+<li><a href="https://www.songxingguo.com/2018/05/18/hello-world/">Hello Wrold</a></li>
+<li><a href="https://www.songxingguo.com/2018/06/06/%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0github-pages/">博客部署到Github Pages</a></li>
+<li><a href="">更换主题</a></li>
+<li><a href="">可视化编写文档</a></li>
+<li><a href="">将源代码推送到github相同仓库的不同分支</a></li>
+<li><a href="">使用Travis CI 进行自动发布代码</a></li>
+<li><a href="">将博客推送给百度</a></li>
+<li><a href="">使用Coding作为国内访问站点</a></li>
+<li><a href="">实现windows开机启动Hexo 服务</a></li>
+<li><a href="">图床七牛云</a></li>
+</ul>
+<h3 id="优秀教程"><a href="#优秀教程" class="headerlink" title="优秀教程"></a>优秀教程</h3><ul>
+<li><h4 id="统计访问量"><a href="#统计访问量" class="headerlink" title="统计访问量"></a>统计访问量</h4><p><a href="https://www.jianshu.com/p/702a7aec4d00" target="_blank" rel="noopener">Hexo搭建博客系列：（五）Hexo添加不蒜子和LeanCloud统计无标题文章</a></p>
+</li>
+<li><h4 id="gh-pages-展示项目"><a href="#gh-pages-展示项目" class="headerlink" title="gh-pages 展示项目"></a>gh-pages 展示项目</h4><p><a href="https://www.cnblogs.com/MuYunyun/p/6082359.html" target="_blank" rel="noopener">如何用Github的gh-pages分支展示自己的项目</a></p>
+</li>
+<li><h4 id="Travis-CI-自动部署"><a href="#Travis-CI-自动部署" class="headerlink" title="Travis CI 自动部署"></a>Travis CI 自动部署</h4><p><a href="https://notes.iissnan.com/2016/publishing-github-pages-with-travis-ci/" target="_blank" rel="noopener">使用 Travis CI 自动更新 GitHub Pages</a></p>
+</li>
+</ul>
+
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/Hexo/">Hexo</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/06/02/Hexo-problem/">Hexo问题解决</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-02</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/博客搭建/">博客搭建</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/06/02/Hexo-problem/"
+                   data-title="Hexo问题解决">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h5 id="服务busy"><a href="#服务busy" class="headerlink" title="服务busy"></a>服务busy</h5><p>结束服务，使用命令清除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure></p>
+<p>重新启动服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure></p>
+
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/Hexo/">Hexo</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/05/19/avisCI/">TravisCI</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-05-19</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/博客搭建/">博客搭建</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/05/19/avisCI/"
+                   data-title="TravisCI">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <p>#TravisCI学习入门</p>
+
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/TravisCI/">TravisCI</a>
+      
+    </div>
+    </article>
+  
+</section>
+
+          
+     <nav class="pagination">
+    
+      <a href="/page/5/">
+        <span class="prev"><i class="iconfont icon-back"></i>上一页</span>
+      </a>
+    
+    
+      <a href="/page/7/">
+        <span class="next">下一页<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/works" class="mobile-nav-link"><i class="iconfont icon-works"></i>作品</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.2.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+        appId: "MNdCoL1O2i2njgRy8WVYgAwf-gzGzoHsz",
+        appKey: "hil0yQTQDbO8nzaxFKqeSqyK"
+      });
+  </script>
+  <script>
+  (function (window) {
+      $(document).ready(function () {
+        visits();
+      });
+    function visits() {
+      var $visits = $('.post-visits');
+
+      function updateVisits(dom, time) {
+        var text = dom.text() + ' ' + time;
+        dom.text(text);
+      }
+
+      function addCounter(Counter) {
+        var query = new AV.Query(Counter);
+
+        var url = $visits.data('url').trim();
+        var title = $visits.data('title').trim();
+
+        query.equalTo('url', url);
+        query.find().then(function (results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.save(null, {
+              fetchWhenSave: true
+            }).then(function (counter) {
+              counter.increment('time', 1);
+              return counter.save();
+            }).then(function (counter) {
+              updateVisits($visits, counter.get('time'));
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set('title', title);
+            newcounter.set('url', url);
+            newcounter.set('time', 1);
+
+            newcounter.save().then(function (counter) {
+              updateVisits($visits, newcounter.get('time'));
+            });
+          }
+        }, function (error) {
+          console.log('Error:' + error.code + " " + error.message);
+        });
+      }
+
+      function showTime(Counter) {
+        $visits.each(function () {
+          var $this = $(this);
+          var query = new AV.Query(Counter);
+          var url = $this.data('url').trim();
+
+          query.equalTo('url', url);
+          query.find().then(function (results) {
+            if (results.length === 0) {
+              updateVisits($this, 0);
+            } else {
+              var counter = results[0];
+              updateVisits($this, counter.get('time'));
+            }
+          }, function (error) {
+            console.log('Error:' + error.code + " " + error.message);
+          });
+        })
+      }
+
+      if (typeof AV === 'object') {
+        var Counter = AV.Object.extend('Counter');
+        if ($visits.length === 1) {
+          addCounter(Counter);
+        } else {
+          showTime(Counter);
+        }
+      }
+    }
+  })(window);
+  </script>
+
+
+  <script src="/js/ztopic.js"></script>
+</body>
+</html>
