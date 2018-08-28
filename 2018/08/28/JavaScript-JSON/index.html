@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>《JavaScript 高级程序设计》学习笔记-JSON | 阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/works" class="menu-item-link"><i class="iconfont icon-works"></i>作品</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="post-title">
+          《JavaScript 高级程序设计》学习笔记-JSON
+            <div class="post-tags">
+    		    
+              <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+            
+    	      </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <article class="post">
+  
+
+  <header>
+    <div class="post-title mobile-post-title">
+      <h1>《JavaScript 高级程序设计》学习笔记-JSON</h1>
+        <div class="post-tags">
+        
+          <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+        
+        </div>
+    </div>
+    <div class="post-meta">
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2018-08-28</span>
+      
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/读书笔记/">读书笔记</a>
+          
+      
+      <!----------------------------------->
+        
+          <i class="iconfont icon-divide"></i>
+          <div class="post-visits"
+               data-url="/2018/08/28/JavaScript-JSON/"
+               data-title="《JavaScript 高级程序设计》学习笔记-JSON">
+              阅读次数
+            </div>
+        
+      <!----------------------------------->
+    </div>
+  </header>
+  
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JSON"><span class="toc-text">JSON</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单值"><span class="toc-text">简单值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象"><span class="toc-text">对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组"><span class="toc-text">数组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解析与序列化"><span class="toc-text">解析与序列化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JSON对象"><span class="toc-text">JSON对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#过滤结果"><span class="toc-text">过滤结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串缩进"><span class="toc-text">字符串缩进</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#toJSON-方法"><span class="toc-text">toJSON() 方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解析选项"><span class="toc-text">解析选项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+  <div class="post-content">
+    <h1 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h1><p>曾经有一段时间，XML 是互联网上传输结构化数据的事实标准。Web 服务的第一次浪潮很大程<br>度上都是建立在 XML 之上的，突出的特点是服务器与服务器间通信。然而，业界一直不乏质<br>疑 XML 的声音。不少人认为 XML 过于烦琐、冗长。为解决这个问题，也涌现了一些方案。不过，Web<br>的发展方向已经改变了。<br>2006 年，Douglas Crockford 把 JSON（JavaScript Object Notation，JavaScript 对象表示法）作为 IETF<br>RFC 4627 提交给 IETF，而 JSON 的应用早在 2001 年就已经开始了。JSON 是 JavaScript 的一个严格的子<br>集，利用了JavaScript中的一些模式来表示结构化数据。Crockford认为与XML相比，JSON是在JavaScript<br>中读写结构化数据的更好的方式。因为可以把 JSON 直接传给 eval() ，而且不必创建 DOM 对象。<br>关于 JSON，最重要的是要理解它是一种数据格式，不是一种编程语言。虽然具有相同的语法形式，<br>但 JSON 并不从属于 JavaScript。而且，并不是只有 JavaScript 才使用 JSON，毕竟 JSON 只是一种数据<br>格式。很多编程语言都有针对 JSON 的解析器和序列化器。</p>
+<a id="more"></a>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>JSON 的语法可以表示以下三种类型的值。<br>  简单值：使用与 JavaScript 相同的语法，可以在 JSON 中表示字符串、数值、布尔值和 null 。<br>但 JSON 不支持 JavaScript 中的特殊值 undefined 。<br>  对象：对象作为一种复杂数据类型，表示的是一组无序的键值对儿。而每个键值对儿中的值可<br>以是简单值，也可以是复杂数据类型的值。<br>  数组：数组也是一种复杂数据类型，表示一组有序的值的列表，可以通过数值索引来访问其中<br>的值。数组的值也可以是任意类型——简单值、对象或数组。<br>JSON 不支持变量、函数或对象实例，它就是一种表示结构化数据的格式，虽然与 JavaScript 中表示<br>数据的某些语法相同，但它并不局限于 JavaScript 的范畴。</p>
+<h3 id="简单值"><a href="#简单值" class="headerlink" title="简单值"></a>简单值</h3><p>最简单的 JSON 数据形式就是简单值。例如，下面这个值是有效的 JSON 数据：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>这是 JSON 表示数值 5 的方式。类似地，下面是 JSON 表示字符串的方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"Hello world!"</span></span><br></pre></td></tr></table></figure>
+<p>JavaScript 字符串与 JSON 字符串的最大区别在于，JSON 字符串必须使用双引号（单引号会导致语<br>法错误）。<br>布尔值和 null 也是有效的 JSON 形式。但是，在实际应用中，JSON 更多地用来表示更复杂的数据<br>结构，而简单值只是整个数据结构中的一部分。</p>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>JSON 中的对象与 JavaScript 字面量稍微有一些不同。下面是一个 JavaScript 中的对象字面量：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">name: <span class="string">"Nicholas"</span>,</span><br><span class="line">age: <span class="number">29</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这虽然是开发人员在 JavaScript 中创建对象字面量的标准方式，但 JSON 中的对象要求给属性加引<br>号。实际上，在 JavaScript 中，前面的对象字面量完全可以写成下面这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> object = &#123;</span><br><span class="line"><span class="string">"name"</span>: <span class="string">"Nicholas"</span>,</span><br><span class="line"><span class="string">"age"</span>: <span class="number">29</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>JSON 表示上述对象的方式如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">"name"</span>: <span class="string">"Nicholas"</span>,</span><br><span class="line"><span class="string">"age"</span>: <span class="number">29</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与 JavaScript 的对象字面量相比，JSON 对象有两个地方不一样。首先，没有声明变量（JSON 中没<br>有变量的概念）。其次，没有末尾的分号（因为这不是 JavaScript 语句，所以不需要分号）。再说一遍，<br>对象的属性必须加双引号，这在 JSON 中是必需的。属性的值可以是简单值，也可以是复杂类型值，因<br>此可以像下面这样在对象中嵌入对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">"name"</span>: <span class="string">"Nicholas"</span>,</span><br><span class="line"><span class="string">"age"</span>: <span class="number">29</span>,</span><br><span class="line"><span class="string">"school"</span>: &#123;</span><br><span class="line"><span class="string">"name"</span>: <span class="string">"Merrimack College"</span>,</span><br><span class="line"><span class="string">"location"</span>: <span class="string">"North Andover, MA"</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个例子在顶级对象中嵌入了学校（ “school” ）信息。虽然有两个 “name” 属性，但由于它们分别<br>属于不同的对象，因此这样完全没有问题。不过，同一个对象中绝对不应该出现两个同名属性。<br>与 JavaScript 不同，JSON 中对象的属性名任何时候都必须加双引号。手工编写 JSON 时，忘了给对<br>象属性名加双引号或者把双引号写成单引号都是常见的错误。</p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>JSON 中的第二种复杂数据类型是数组。JSON 数组采用的就是 JavaScript 中的数组字面量形式。例<br>如，下面是 JavaScript 中的数组字面量：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> values = [<span class="number">25</span>, <span class="string">"hi"</span>, <span class="literal">true</span>];</span><br></pre></td></tr></table></figure>
+<p>在 JSON 中，可以采用同样的语法表示同一个数组：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">25</span>, <span class="string">"hi"</span>, <span class="literal">true</span>]</span><br></pre></td></tr></table></figure>
+<p>同样要注意，JSON 数组也没有变量和分号。把数组和对象结合起来，可以构成更复杂的数据集合，<br>例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">&#123;</span><br><span class="line"><span class="string">"title"</span>: <span class="string">"Professional JavaScript"</span>,</span><br><span class="line"><span class="string">"authors"</span>: [</span><br><span class="line"><span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">],</span><br><span class="line">edition: <span class="number">3</span>,</span><br><span class="line">year: <span class="number">2011</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line"><span class="string">"title"</span>: <span class="string">"Professional JavaScript"</span>,</span><br><span class="line"><span class="string">"authors"</span>: [</span><br><span class="line"><span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">],</span><br><span class="line">edition: <span class="number">2</span>,</span><br><span class="line">year: <span class="number">2009</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line"><span class="string">"title"</span>: <span class="string">"Professional Ajax"</span>,</span><br><span class="line"><span class="string">"authors"</span>: [</span><br><span class="line"><span class="string">"Nicholas C. Zakas"</span>,</span><br><span class="line"><span class="string">"Jeremy McPeak"</span>,</span><br><span class="line"><span class="string">"Joe Fawcett"</span></span><br><span class="line">],</span><br><span class="line">edition: <span class="number">2</span>,</span><br><span class="line">year: <span class="number">2008</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line"><span class="string">"title"</span>: <span class="string">"Professional Ajax"</span>,</span><br><span class="line"><span class="string">"authors"</span>: [</span><br><span class="line"><span class="string">"Nicholas C. Zakas"</span>,</span><br><span class="line"><span class="string">"Jeremy McPeak"</span>,</span><br><span class="line"><span class="string">"Joe Fawcett"</span></span><br><span class="line">],</span><br><span class="line">edition: <span class="number">1</span>,</span><br><span class="line">year: <span class="number">2007</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line"><span class="string">"title"</span>: <span class="string">"Professional JavaScript"</span>,</span><br><span class="line"><span class="string">"authors"</span>: [</span><br><span class="line"><span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">],</span><br><span class="line">edition: <span class="number">1</span>,</span><br><span class="line">year: <span class="number">2006</span></span><br><span class="line">&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>这个数组中包含一些表示图书的对象。每个对象都有几个属性，其中一个属性是 “authors” ，这个<br>属性的值又是一个数组。对象和数组通常是 JSON 数据结构的最外层形式（当然，这不是强制规定的），<br>利用它们能够创造出各种各样的数据结构。</p>
+<h2 id="解析与序列化"><a href="#解析与序列化" class="headerlink" title="解析与序列化"></a>解析与序列化</h2><p>JSON 之所以流行，拥有与 JavaScript 类似的语法并不是全部原因。更重要的一个原因是，可以把<br>JSON 数据结构解析为有用的 JavaScript 对象。与 XML 数据结构要解析成 DOM 文档而且从中提取数据<br>极为麻烦相比，JSON 可以解析为 JavaScript 对象的优势极其明显。就以上一节中包含一组图书的 JSON<br>数据结构为例，在解析为 JavaScript 对象后，只需要下面一行简单的代码就可以取得第三本书的书名：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">books[<span class="number">2</span>].title</span><br></pre></td></tr></table></figure>
+<p>当然，这里是假设把解析 JSON 数据结构后得到的对象保存到了变量 books 中。再看看下面在 DOM<br>结构中查找数据的代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doc.getElementsByTagName(<span class="string">"book"</span>)[<span class="number">2</span>].getAttribute(<span class="string">"title"</span>)</span><br></pre></td></tr></table></figure>
+<p>看看这些多余的方法调用，就不难理解为什么 JSON 能得到 JavaScript 开发人员的热烈欢迎了。从<br>此以后，JSON 就成了 Web 服务开发中交换数据的事实标准。</p>
+<h3 id="JSON对象"><a href="#JSON对象" class="headerlink" title="JSON对象"></a>JSON对象</h3><p>早期的 JSON 解析器基本上就是使用 JavaScript 的 eval() 函数。由于 JSON 是 JavaScript 语法的子<br>集，因此 eval() 函数可以解析、解释并返回 JavaScript 对象和数组。ECMAScript 5 对解析 JSON 的行<br>为进行规范，定义了全局对象 JSON 。支持这个对象的浏览器有 IE 8+、Firefox 3.5+、Safari 4+、Chrome<br>和 Opera 10.5+。对于较早版本的浏览器，可以使用一个 shim：<a href="https://github.com/douglascrockford/JSON-js。" target="_blank" rel="noopener">https://github.com/douglascrockford/JSON-js。</a><br>在旧版本的浏览器中，使用 eval() 对 JSON 数据结构求值存在风险，因为可能会执行一些恶意代码。<br>对于不能原生支持 JSON 解析的浏览器，使用这个 shim 是最佳选择。<br>JSON 对象有两个方法： stringify() 和 parse() 。在最简单的情况下，这两个方法分别用于把<br>JavaScript 对象序列化为 JSON 字符串和把 JSON 字符串解析为原生 JavaScript 值。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var book = &#123;</span><br><span class="line">title: &quot;Professional JavaScript&quot;,</span><br><span class="line">authors: [</span><br><span class="line">&quot;Nicholas C. Zakas&quot;</span><br><span class="line">],</span><br><span class="line">edition: 3,</span><br><span class="line">year: 2011</span><br><span class="line">&#125;;</span><br><span class="line">var jsonText = JSON.stringify(book);</span><br></pre></td></tr></table></figure>
+<p>这个例子使用 JSON.stringify() 把一个 JavaScript 对象序列化为一个 JSON 字符串，然后将它保<br>存在变量 jsonText 中。默认情况下， JSON.stringify() 输出的 JSON 字符串不包含任何空格字符或<br>缩进，因此保存在 jsonText 中的字符串如下所示：<br>{“title”:”Professional JavaScript”,”authors”:[“Nicholas C. Zakas”],”edition”:3,<br>“year”:2011}<br>在序列化 JavaScript 对象时，所有函数及原型成员都会被有意忽略，不体现在结果中。此外，值为<br>undefined 的任何属性也都会被跳过。结果中最终都是值为有效 JSON 数据类型的实例属性。<br>将 JSON 字符串直接传递给 JSON.parse() 就可以得到相应的 JavaScript 值。例如，使用下列代码<br>就可以创建与 book 类似的对象：<br>var bookCopy = JSON.parse(jsonText);<br>注意，虽然 book 与 bookCopy 具有相同的属性，但它们是两个独立的、没有任何关系的对象。<br>如果传给 JSON.parse() 的字符串不是有效的 JSON，该方法会抛出错误。<br>20.2.2 序列化选项<br>实际上， JSON.stringify() 除了要序列化的 JavaScript 对象外，还可以接收另外两个参数，这两<br>个参数用于指定以不同的方式序列化 JavaScript 对象。第一个参数是个过滤器，可以是一个数组，也可<br>以是一个函数；第二个参数是一个选项，表示是否在 JSON 字符串中保留缩进。单独或组合使用这两个<br>参数，可以更全面深入地控制 JSON 的序列化。</p>
+<ul>
+<li><h4 id="过滤结果"><a href="#过滤结果" class="headerlink" title="过滤结果"></a>过滤结果</h4></li>
+</ul>
+<p>如果过滤器参数是数组，那么 JSON.stringify() 的结果中将只包含数组中列出的属性。来看下<br>面的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line"><span class="string">"title"</span>: <span class="string">"Professional JavaScript"</span>,</span><br><span class="line"><span class="string">"authors"</span>: [</span><br><span class="line"><span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">],</span><br><span class="line">edition: <span class="number">3</span>,</span><br><span class="line">year: <span class="number">2011</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book, [<span class="string">"title"</span>, <span class="string">"edition"</span>]);</span><br></pre></td></tr></table></figure>
+<p>JSON.stringify() 的第二个参数是一个数组，其中包含两个字符串： “title” 和 “edition” 。这<br>两个属性与将要序列化的对象中的属性是对应的，因此在返回的结果字符串中，就只会包含这两个属性：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">"title"</span>:<span class="string">"Professional JavaScript"</span>,<span class="string">"edition"</span>:<span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>如果第二个参数是函数，行为会稍有不同。传入的函数接收两个参数，属性（键）名和属性值。根<br>据属性（键）名可以知道应该如何处理要序列化的对象中的属性。属性名只能是字符串，而在值并非键<br>值对儿结构的值时，键名可以是空字符串。<br>为了改变序列化对象的结果，函数返回的值就是相应键的值。不过要注意，如果函数返回了undefined ，那么相应的属性会被忽略。还是看一个例子吧。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line"><span class="string">"title"</span>: <span class="string">"Professional JavaScript"</span>,</span><br><span class="line"><span class="string">"authors"</span>: [</span><br><span class="line"><span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">],</span><br><span class="line">edition: <span class="number">3</span>,</span><br><span class="line">year: <span class="number">2011</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book, <span class="function"><span class="keyword">function</span>(<span class="params">key, value</span>)</span>&#123;</span><br><span class="line"><span class="keyword">switch</span>(key)&#123;</span><br><span class="line"><span class="keyword">case</span> <span class="string">"authors"</span>:</span><br><span class="line"><span class="keyword">return</span> value.join(<span class="string">","</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"year"</span>:</span><br><span class="line"><span class="keyword">return</span> <span class="number">5000</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="string">"edition"</span>:</span><br><span class="line"><span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line"><span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这里，函数过滤器根据传入的键来决定结果。如果键为 “authors” ，就将数组连接为一个字符串；<br>如果键为 “year” ，则将其值设置为 5000 ；如果键为 “edition” ，通过返回 undefined 删除该属性。<br>最后，一定要提供 default 项，此时返回传入的值，以便其他值都能正常出现在结果中。实际上，第<br>一次调用这个函数过滤器，传入的键是一个空字符串，而值就是 book 对象。序列化后的 JSON 字符串<br>如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">"title"</span>:<span class="string">"Professional JavaScript"</span>,<span class="string">"authors"</span>:<span class="string">"Nicholas C. Zakas"</span>,<span class="string">"year"</span>:<span class="number">5000</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>要序列化的对象中的每一个对象都要经过过滤器，因此数组中的每个带有这些属性的对象经过过滤<br>之后，每个对象都只会包含 “title” 、 “authors” 和 “year” 属性。<br>Firefox 3.5 和 3.6 对 JSON.stringify() 的实现有一个 bug，在将函数作为该方法的第二个参数时<br>这个 bug 就会出现，即这个函数只能作为过滤器：返回 undefined 意味着要跳过某个属性，而返回其<br>他任何值都会在结果中包含相应的属性。Firefox 4 修复了这个 bug。</p>
+<ul>
+<li><h4 id="字符串缩进"><a href="#字符串缩进" class="headerlink" title="字符串缩进"></a>字符串缩进</h4></li>
+</ul>
+<p>JSON.stringify() 方法的第三个参数用于控制结果中的缩进和空白符。如果这个参数是一个数<br>值，那它表示的是每个级别缩进的空格数。例如，要在每个级别缩进 4 个空格，可以这样写代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line"><span class="string">"title"</span>: <span class="string">"Professional JavaScript"</span>,</span><br><span class="line"><span class="string">"authors"</span>: [</span><br><span class="line"><span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">],</span><br><span class="line">edition: <span class="number">3</span>,</span><br><span class="line">year: <span class="number">2011</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book, <span class="literal">null</span>, <span class="number">4</span>);</span><br><span class="line">JSONStringifyExample03.htm</span><br><span class="line">保存在 jsonText 中的字符串如下所示：</span><br><span class="line">&#123;</span><br><span class="line"><span class="string">"title"</span>: <span class="string">"Professional JavaScript"</span>,</span><br><span class="line"><span class="string">"authors"</span>: [</span><br><span class="line"><span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">],</span><br><span class="line"><span class="string">"edition"</span>: <span class="number">3</span>,</span><br><span class="line"><span class="string">"year"</span>: <span class="number">2011</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不知道读者注意到没有， JSON.stringify() 也在结果字符串中插入了换行符以提高可读性。只要<br>传入有效的控制缩进的参数值，结果字符串就会包含换行符。（只缩进而不换行意义不大。）最大缩进空<br>格数为 10，所有大于 10 的值都会自动转换为 10。<br>如果缩进参数是一个字符串而非数值，则这个字符串将在 JSON 字符串中被用作缩进字符（不再使<br>用空格）。在使用字符串的情况下，可以将缩进字符设置为制表符，或者两个短划线之类的任意字符。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book, <span class="literal">null</span>, <span class="string">" - -"</span>);</span><br></pre></td></tr></table></figure>
+<p>这样， jsonText 中的字符串将变成如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">--<span class="string">"title"</span>: <span class="string">"Professional JavaScript"</span>,</span><br><span class="line">--<span class="string">"authors"</span>: [</span><br><span class="line">----<span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">--],</span><br><span class="line">--<span class="string">"edition"</span>: <span class="number">3</span>,</span><br><span class="line">--<span class="string">"year"</span>: <span class="number">2011</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>缩进字符串最长不能超过 10 个字符长。如果字符串长度超过了 10 个，结果中将只出现前 10 个字<br>符。</p>
+<ul>
+<li><h4 id="toJSON-方法"><a href="#toJSON-方法" class="headerlink" title="toJSON() 方法"></a>toJSON() 方法</h4></li>
+</ul>
+<p>有时候， JSON.stringify() 还是不能满足对某些对象进行自定义序列化的需求。在这些情况下，<br>可以给对象定义 toJSON() 方法，返回其自身的 JSON 数据格式。原生 Date 对象有一个 toJSON() 方法，<br>能够将JavaScript的 Date 对象自动转换成ISO 8601日期字符串（与在 Date 对象上调用 toISOString()<br>的结果完全一样）。<br>可以为任何对象添加 toJSON() 方法，比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line"><span class="string">"title"</span>: <span class="string">"Professional JavaScript"</span>,</span><br><span class="line"><span class="string">"authors"</span>: [</span><br><span class="line"><span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">],</span><br><span class="line">edition: <span class="number">3</span>,</span><br><span class="line">year: <span class="number">2011</span>,</span><br><span class="line">toJSON: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>.title;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book);</span><br></pre></td></tr></table></figure>
+<p>以上代码在 book 对象上定义了一个 toJSON() 方法，该方法返回图书的书名。与 Date 对象类似，<br>这个对象也将被序列化为一个简单的字符串而非对象。可以让 toJSON() 方法返回任何值，它都能正常<br>工作。比如，可以让这个方法返回 undefined ，此时如果包含它的对象嵌入在另一个对象中，会导致<br>它的值变成 null ，而如果它是顶级对象，结果就是 undefined 。<br>toJSON() 可以作为函数过滤器的补充，因此理解序列化的内部顺序十分重要。假设把一个对象传<br>入 JSON.stringify() ，序列化该对象的顺序如下。<br>(1) 如果存在 toJSON() 方法而且能通过它取得有效的值，则调用该方法。否则，返回对象本身。<br>(2) 如果提供了第二个参数，应用这个函数过滤器。传入函数过滤器的值是第(1)步返回的值。<br>(3) 对第(2)步返回的每个值进行相应的序列化。<br>(4) 如果提供了第三个参数，执行相应的格式化。<br>无论是考虑定义 toJSON() 方法，还是考虑使用函数过滤器，亦或需要同时使用两者，理解这个顺<br>序都是至关重要的。</p>
+<h3 id="解析选项"><a href="#解析选项" class="headerlink" title="解析选项"></a>解析选项</h3><p>JSON.parse() 方法也可以接收另一个参数，该参数是一个函数，将在每个键值对儿上调用。为了<br>区别 JSON.stringify() 接收的替换（过滤）函数（replacer），这个函数被称为还原函数（reviver），<br>但实际上这两个函数的签名是相同的——它们都接收两个参数，一个键和一个值，而且都需要返回一<br>个值。<br>如果还原函数返回 undefined ，则表示要从结果中删除相应的键；如果返回其他值，则将该值插<br>入到结果中。在将日期字符串转换为 Date 对象时，经常要用到还原函数。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var book = &#123;</span><br><span class="line">&quot;title&quot;: &quot;Professional JavaScript&quot;,</span><br><span class="line">&quot;authors&quot;: [</span><br><span class="line">&quot;Nicholas C. Zakas&quot;</span><br><span class="line">],</span><br><span class="line">edition: 3,</span><br><span class="line">year: 2011,</span><br><span class="line">releaseDate: new Date(2011, 11, 1)</span><br><span class="line">&#125;;</span><br><span class="line">var jsonText = JSON.stringify(book);</span><br><span class="line">var bookCopy = JSON.parse(jsonText, function(key, value)&#123;</span><br><span class="line">if (key == &quot;releaseDate&quot;)&#123;</span><br><span class="line">return new Date(value);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">return value;</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br><span class="line">alert(bookCopy.releaseDate.getFullYear());</span><br></pre></td></tr></table></figure>
+<p>以上代码先是为 book 对象新增了一个 releaseDate 属性，该属性保存着一个 Date 对象。这个<br>对象在经过序列化之后变成了有效的 JSON 字符串，然后经过解析又在 bookCopy 中还原为一个 Date<br>对象。还原函数在遇到 “releaseDate” 键时，会基于相应的值创建一个新的 Date 对象。结果就是<br>bookCopy.releaseDate 属性中会保存一个 Date 对象。正因为如此，才能基于这个对象调用<br>getFullYear() 方法。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>JSON 是一个轻量级的数据格式，可以简化表示复杂数据结构的工作量。JSON 使用 JavaScript 语法<br>的子集表示对象、数组、字符串、数值、布尔值和 null 。即使 XML 也能表示同样复杂的数据结果，但<br>JSON 没有那么烦琐，而且在 JavaScript 中使用更便利。<br>ECMAScript 5 定义了一个原生的 JSON 对象，可以用来将对象序列化为 JSON 字符串或者将 JSON<br>数据解析为 JavaScript 对象。 JSON.stringify() 和 JSON.parse() 方法分别用来实现上述两项功能。<br>这两个方法都有一些选项，通过它们可以改变过滤的方式，或者改变序列化的过程。<br>原生的 JSON 对象也得到了很多浏览器的支持，比如 IE8+、Firefox 3.5+、Safari 4+、Opera 10.5 和<br>Chrome。</p>
+
+  </div>
+  <div class="post-footer">the end</div>
+</article>
+
+          
+  <nav class="pagination post-nav">
+    
+    
+      <a href="/2018/08/28/JavaScript-HTML5-script-programming/">
+        <span class="next-post">《JavaScript 高级程序设计》学习笔记-HTML5 脚本编程<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+  
+
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/works" class="mobile-nav-link"><i class="iconfont icon-works"></i>作品</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.2.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+        appId: "MNdCoL1O2i2njgRy8WVYgAwf-gzGzoHsz",
+        appKey: "hil0yQTQDbO8nzaxFKqeSqyK"
+      });
+  </script>
+  <script>
+  (function (window) {
+      $(document).ready(function () {
+        visits();
+      });
+    function visits() {
+      var $visits = $('.post-visits');
+
+      function updateVisits(dom, time) {
+        var text = dom.text() + ' ' + time;
+        dom.text(text);
+      }
+
+      function addCounter(Counter) {
+        var query = new AV.Query(Counter);
+
+        var url = $visits.data('url').trim();
+        var title = $visits.data('title').trim();
+
+        query.equalTo('url', url);
+        query.find().then(function (results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.save(null, {
+              fetchWhenSave: true
+            }).then(function (counter) {
+              counter.increment('time', 1);
+              return counter.save();
+            }).then(function (counter) {
+              updateVisits($visits, counter.get('time'));
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set('title', title);
+            newcounter.set('url', url);
+            newcounter.set('time', 1);
+
+            newcounter.save().then(function (counter) {
+              updateVisits($visits, newcounter.get('time'));
+            });
+          }
+        }, function (error) {
+          console.log('Error:' + error.code + " " + error.message);
+        });
+      }
+
+      function showTime(Counter) {
+        $visits.each(function () {
+          var $this = $(this);
+          var query = new AV.Query(Counter);
+          var url = $this.data('url').trim();
+
+          query.equalTo('url', url);
+          query.find().then(function (results) {
+            if (results.length === 0) {
+              updateVisits($this, 0);
+            } else {
+              var counter = results[0];
+              updateVisits($this, counter.get('time'));
+            }
+          }, function (error) {
+            console.log('Error:' + error.code + " " + error.message);
+          });
+        })
+      }
+
+      if (typeof AV === 'object') {
+        var Counter = AV.Object.extend('Counter');
+        if ($visits.length === 1) {
+          addCounter(Counter);
+        } else {
+          showTime(Counter);
+        }
+      }
+    }
+  })(window);
+  </script>
+
+
+  <script src="/js/ztopic.js"></script>
+</body>
+</html>
