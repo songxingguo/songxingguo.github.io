@@ -79,13 +79,15 @@ date: 2018-08-07 03:32:00
   
 4. ### 小米
  
+  > 内推：已投递；
+  
   > 秋招；等待笔试；
   
   [校园招聘](https://hr.xiaomi.com/user/index)
  
 5. ### 好未来
  
-  > 内推；暂无状态；
+  > 内推；等待笔试；
   
   > 秋招；等待笔试；
   
@@ -115,7 +117,7 @@ date: 2018-08-07 03:32:00
   
 10. ### 字节跳动
 
-  > 内推：已投递；
+  > 内推：已笔试；
   
   [校园招聘](https://job.bytedance.com/user/profile/)
   
@@ -124,3 +126,9 @@ date: 2018-08-07 03:32:00
   > 内推： 已投递；
   
   [校园招聘](http://campus.xunlei.com/personal_center.html)
+  
+12. ### 拼多多
+ 
+   > 内推：已投递；
+   
+  [校园招聘](https://www.nowcoder.com/profile/178368744/resume)
