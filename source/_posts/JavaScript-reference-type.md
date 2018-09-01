@@ -740,148 +740,140 @@ ECMAScript 通过 RegExp 类型来支持正则表达式。使用下面类似 Per
 ```js
 var expression = / pattern / flags ;
 ```
-其中的模式（pattern）部分可以是任何简单或复杂的正则表达式，可以包含字符类、限定符、分组、向前查找以及反向引用。每个正则表达式都可带有一或多个标志（flags），用以标明正则表达式的行为。
+其中的模式（pattern）部分可以是任何简单或复杂的正则表达式，可以包含 **字符类** 、 **限定符** 、**分组** **、**向前查找** 以及 **反向引用** 。每个正则表达式都可带有一或多个标志（flags），用以标明正则表达式的行为。
 
 正则表达式的匹配模式支持下列 3 个标志。
- g ：表示全局（global）模式，即模式将被应用于所有字符串，而非在发现第一个匹配项时立即
-停止；
- i ：表示不区分大小写（case-insensitive）模式，即在确定匹配项时忽略模式与字符串的大小写；
- m ：表示多行（multiline）模式，即在到达一行文本末尾时还会继续查找下一行中是否存在与模
-式匹配的项。
-因此，一个正则表达式就是一个模式与上述 3 个标志的组合体。不同组合产生不同结果，如下面的
-例子所示。
+
+- g ：表示全局（global）模式，即模式将被应用于所有字符串，而非在发现第一个匹配项时立即停止；
+- i ：表示不区分大小写（case-insensitive）模式，即在确定匹配项时忽略模式与字符串的大小写；
+- m ：表示多行（multiline）模式，即在到达一行文本末尾时还会继续查找下一行中是否存在与模式匹配的项。
+
+因此，一个正则表达式就是一个模式与上述 3 个标志的组合体。**不同组合产生不同结果** ，如下面的例子所示。
 
 ```js
 /*
 * 匹配字符串中所有"at"的实例
 */
 var pattern1 = /at/g;
+
 /*
 * 匹配第一个"bat"或"cat"，不区分大小写
 */
 var pattern2 = /[bc]at/i;
+
 /*
 * 匹配所有以"at"结尾的 3 个字符的组合，不区分大小写
 */
 var pattern3 = /.at/gi;
 ```
-与其他语言中的正则表达式类似，模式中使用的所有元字符都必须转义。正则表达式中的元字符包括：
+与其他语言中的正则表达式类似，模式中使用的 **所有元字符都必须转义** 。正则表达式中的元字符包括：
+
+```js
 ( [ { \ ^ $ | ) ? * + .]}
-这些元字符在正则表达式中都有一或多种特殊用途，因此如果想要匹配字符串中包含的这些字符，
-就必须对它们进行转义。下面给出几个例子。
+```
+这些元字符在正则表达式中都有一或多种特殊用途，因此如果想要匹配字符串中包含的这些字符，就必须对它们进行转义。下面给出几个例子。
 
 ```js
 /*
 * 匹配第一个"bat"或"cat"，不区分大小写
 */
-
 var pattern1 = /[bc]at/i;
+
 /*
 * 匹配第一个" [bc]at"，不区分大小写
 */
 var pattern2 = /\[bc\]at/i;
+
 /*
 * 匹配所有以"at"结尾的 3 个字符的组合，不区分大小写
 */
 var pattern3 = /.at/gi;
+
 /*
 * 匹配所有".at"，不区分大小写
 */
 var pattern4 = /\.at/gi;
 ```
-在上面的例子中， pattern1 匹配第一个 "bat" 或 "cat" ，不区分大小写。而要想直接匹配 "[bc]at"
-的话，就需要像定义 pattern2 一样，对其中的两个方括号进行转义。对于 pattern3 来说，句点表示
-位于 "at" 之前的任意一个可以构成匹配项的字符。但如果想匹配 ".at" ，则必须对句点本身进行转义，
-如 pattern4 所示。
-前面举的这些例子都是以字面量形式来定义的正则表达式。另一种创建正则表达式的方式是使用
-RegExp 构造函数，它接收两个参数：一个是要匹配的字符串模式，另一个是可选的标志字符串。可以
-使用字面量定义的任何表达式，都可以使用构造函数来定义，如下面的例子所示。
+在上面的例子中， pattern1 匹配第一个 "bat" 或 "cat" ，不区分大小写。而要想直接匹配 "[bc]at" 的话，就需要像定义 pattern2 一样，对其中的两个方括号进行转义。对于 pattern3 来说，句点表示位于 "at" 之前的任意一个可以构成匹配项的字符。但如果想匹配 ".at" ，则必须对句点本身进行转义，如 pattern4 所示。
+
+前面举的这些例子都是以字面量形式来定义的正则表达式。另一种创建正则表达式的方式是使用 **RegExp 构造函数** ，它接收两个参数：一个是要 **匹配的字符串模式**  ，另一个是可选的 **标志字符串** 。可以使用字面量定义的任何表达式，都可以使用构造函数来定义，如下面的例子所示。
 
 ```js
 /*
 * 匹配第一个"bat"或"cat"，不区分大小写
 */
 var pattern1 = /[bc]at/i;
+
 /*
 * 与 pattern1 相同，只不过是使用构造函数创建的
 */
 var pattern2 = new RegExp("[bc]at", "i");
 ```
-在此， pattern1 和 pattern2 是两个完全等价的正则表达式。要注意的是，传递给 RegExp 构造
-函数的两个参数都是字符串（不能把正则表达式字面量传递给 RegExp 构造函数）。由于 RegExp 构造
-函数的模式参数是字符串，所以在某些情况下要对字符进行双重转义。所有元字符都必须双重转义，那
-些已经转义过的字符也是如此，例如 \n （字符\在字符串中通常被转义为\\，而在正则表达式字符串中就
-会变成\\\\）。下表给出了一些模式，左边是这些模式的字面量形式，右边是使用 RegExp 构造函数定义
-相同模式时使用的字符串。
+在此， pattern1 和 pattern2 是两个完全等价的正则表达式。要注意的是，传递给 RegExp 构造函数的两个参数都是字符串（不能把正则表达式字面量传递给 RegExp 构造函数）。由于 RegExp 构造函数的模式参数是字符串，所以在某些情况下要对字符进行双重转义。所有元字符都必须双重转义，那些已经转义过的字符也是如此，例如 \n （字符\在字符串中通常被转义为\\，而在正则表达式字符串中就会变成\\\\）。下表给出了一些模式，左边是这些模式的字面量形式，右边是使用 RegExp 构造函数定义相同模式时使用的字符串。
 
-![表格]()
+![相同模式时使用的字符串](http://p9myzkds7.bkt.clouddn.com/JavaScript-reference-type/%E4%BD%BF%E7%94%A8%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2.png)
 
-使用正则表达式字面量和使用 RegExp 构造函数创建的正则表达式不一样。在 ECMAScript 3 中，
-正则表达式字面量始终会共享同一个 RegExp 实例，而使用构造函数创建的每一个新 RegExp 实例都是
-
-一个新实例。来看下面的例子。
+使用正则表达式字面量和使用 RegExp 构造函数创建的正则表达式不一样。在 ECMAScript 3 中，**正则表达式字面量始终会共享同一个 RegExp 实例** ，而使用 **构造函数创建的每一个新 RegExp 实例都是一个新实例** 。来看下面的例子。
 
 ```js
 var re = null,
-i;
+   i;
+   
 for (i=0; i < 10; i++){
-re = /cat/g;
-re.test("catastrophe");
+  re = /cat/g;
+  re.test("catastrophe");
 }
+
 for (i=0; i < 10; i++){
-re = new RegExp("cat", "g");
-re.test("catastrophe");
+  re = new RegExp("cat", "g");
+  re.test("catastrophe");
 }
 ```
-在第一个循环中，即使是循环体中指定的，但实际上只为 /cat/ 创建了一个 RegExp 实例。由于实
-例属性（下一节介绍实例属性）不会重置，所以在循环中再次调用 test() 方法会失败。这是因为第一
-次调用 test() 找到了 "cat" ，但第二次调用是从索引为 3 的字符（上一次匹配的末尾）开始的，所以
-就找不到它了。由于会测试到字符串末尾，所以下一次再调用 test() 就又从开头开始了。
-第二个循环使用 RegExp 构造函数在每次循环中创建正则表达式。因为每次迭代都会创建一个新的
-RegExp 实例，所以每次调用 test() 都会返回 true 。
-ECMAScript 5 明确规定，使用正则表达式字面量必须像直接调用 RegExp 构造函数一样，每次都创
-建新的 RegExp 实例。IE9+、Firefox 4+和 Chrome 都据此做出了修改。
+在第一个循环中，即使是循环体中指定的，但实际上只为 /cat/ 创建了一个 RegExp 实例。由于实例属性（下一节介绍实例属性）不会重置，所以在循环中再次调用 test() 方法会失败。这是因为第一次调用 test() 找到了 "cat" ，但第二次调用是从索引为 3 的字符（上一次匹配的末尾）开始的，所以就找不到它了。由于会测试到字符串末尾，所以下一次再调用 test() 就又从开头开始了。
+
+第二个循环使用 RegExp 构造函数在每次循环中创建正则表达式。因为每次迭代都会创建一个新的 RegExp 实例，所以每次调用 test() 都会返回 true 。
+
+ECMAScript 5 明确规定，使用正则表达式字面量必须像直接调用 RegExp 构造函数一样，每次都创建新的 RegExp 实例。IE9+、Firefox 4+和 Chrome 都据此做出了修改。
 
 ### RegExp 实例属性
 
 RegExp 的每个实例都具有下列属性，通过这些属性可以取得有关模式的各种信息。
- global ：布尔值，表示是否设置了 g 标志。
- ignoreCase ：布尔值，表示是否设置了 i 标志。
- lastIndex ：整数，表示开始搜索下一个匹配项的字符位置，从 0 算起。
- multiline ：布尔值，表示是否设置了 m 标志。
- source ：正则表达式的字符串表示，按照字面量形式而非传入构造函数中的字符串模式返回。
-通过这些属性可以获知一个正则表达式的各方面信息，但却没有多大用处，因为这些信息全都包含
-在模式声明中。例如：
+
+- global ：布尔值，表示是否设置了 g 标志。
+- ignoreCase ：布尔值，表示是否设置了 i 标志。
+- lastIndex ：整数，表示开始搜索下一个匹配项的字符位置，从 0 算起。
+- multiline ：布尔值，表示是否设置了 m 标志。
+- source ：正则表达式的字符串表示，按照字面量形式而非传入构造函数中的字符串模式返回。
+
+通过这些属性可以获知一个正则表达式的各方面信息，但却没有多大用处，因为这些信息全都包含在模式声明中。例如：
 
 ```js
 var pattern1 = /\[bc\]at/i;
+
 alert(pattern1.global); //false
 alert(pattern1.ignoreCase); //true
 alert(pattern1.multiline); //false
 alert(pattern1.lastIndex); //0
 alert(pattern1.source); //"\[bc\]at"
+
 var pattern2 = new RegExp("\\[bc\\]at", "i");
+
 alert(pattern2.global); //false
 alert(pattern2.ignoreCase); //true
 alert(pattern2.multiline); //false
 alert(pattern2.lastIndex); //0
 alert(pattern2.source); //"\[bc\]at"
 ```
-我们注意到，尽管第一个模式使用的是字面量，第二个模式使用了 RegExp 构造函数，但它们的
-source 属性是相同的。可见， source 属性保存的是规范形式的字符串，即字面量形式所用的字符串。
+我们注意到，尽管第一个模式使用的是字面量，第二个模式使用了 RegExp 构造函数，但它们的 source 属性是相同的。可见， source 属性保存的是规范形式的字符串，即 **字面量形式所用的字符串** 。
 
 ### RegExp 实例方法
 
-RegExp 对象的主要方法是 exec() ，该方法是专门为捕获组而设计的。 exec() 接受一个参数，即
-要应用模式的字符串，然后返回包含第一个匹配项信息的数组；或者在没有匹配项的情况下返回 null 。
-返回的数组虽然是 Array 的实例，但包含两个额外的属性： index 和 input 。其中， index 表示匹配
-项在字符串中的位置，而 input 表示应用正则表达式的字符串。在数组中，第一项是与整个模式匹配
-的字符串，其他项是与模式中的捕获组匹配的字符串（如果模式中没有捕获组，则该数组只包含一项）。
-请看下面的例子。
+RegExp 对象的主要方法是 **exec()** ，该方法是专门为 **捕获组** 而设计的。 exec() 接受一个参数，即要应用 **模式的字符串** ，然后返回 **包含第一个匹配项信息的数组** ；或者在 **没有匹配项的情况下返回 null**  。返回的数组虽然是 Array 的实例，但包含两个额外的属性： **index** 和 **input** 。其中， index 表示匹配项在字符串中的位置，而 input 表示应用正则表达式的字符串。在数组中，第一项是与整个模式匹配的字符串，其他项是与模式中的捕获组匹配的字符串（如果模式中没有捕获组，则该数组只包含一项）。请看下面的例子。
 
 ```js
 var text = "mom and dad and baby";
 var pattern = /mom( and dad( and baby)?)?/gi;
+
 var matches = pattern.exec(text);
 alert(matches.index); // 0
 alert(matches.input); // "mom and dad and baby"
@@ -889,566 +881,504 @@ alert(matches[0]); // "mom and dad and baby"
 alert(matches[1]); // " and dad and baby"
 alert(matches[2]); // " and baby"
 ```
-这个例子中的模式包含两个捕获组。最内部的捕获组匹配 "and baby" ，而包含它的捕获组匹配 "and
-dad" 或者 "and dad and baby" 。当把字符串传入 exec() 方法中之后，发现了一个匹配项。因为整个
-字符串本身与模式匹配，所以返回的数组 matchs 的 index 属性值为 0。数组中的第一项是匹配的整个
-字符串，第二项包含与第一个捕获组匹配的内容，第三项包含与第二个捕获组匹配的内容。
-对于 exec() 方法而言，即使在模式中设置了全局标志（ g ），它每次也只会返回一个匹配项。在不
-设置全局标志的情况下，在同一个字符串上多次调用 exec() 将始终返回第一个匹配项的信息。而在设
-置全局标志的情况下，每次调用 exec() 则都会在字符串中继续查找新匹配项，如下面的例子所示。
+这个例子中的模式包含两个捕获组。最内部的捕获组匹配 "and baby" ，而包含它的捕获组匹配 "and dad" 或者 "and dad and baby" 。当把字符串传入 exec() 方法中之后，发现了一个匹配项。因为整个字符串本身与模式匹配，所以返回的数组 matchs 的 index 属性值为 0。数组中的第一项是匹配的整个字符串，第二项包含与第一个捕获组匹配的内容，第三项包含与第二个捕获组匹配的内容。
+
+对于 exec() 方法而言，即使在模式中设置了全局标志（ g ），它每次也只会返回一个匹配项。在不设置全局标志的情况下，在同一个字符串上多次调用 exec() 将始终返回第一个匹配项的信息。而在设置全局标志的情况下，每次调用 exec() 则都会在字符串中继续查找新匹配项，如下面的例子所示。
 
 ```js
 var text = "cat, bat, sat, fat";
 var pattern1 = /.at/;
+
 var matches = pattern1.exec(text);
 alert(matches.index); //0
 alert(matches[0]); //cat
 alert(pattern1.lastIndex); //0
+
 matches = pattern1.exec(text);
 alert(matches.index); //0
 alert(matches[0]); //cat
 alert(pattern1.lastIndex); //0
+
 var pattern2 = /.at/g;
+
 var matches = pattern2.exec(text);
 alert(matches.index); //0
 alert(matches[0]); //cat
 alert(pattern2.lastIndex); //3
+
 matches = pattern2.exec(text);
 alert(matches.index); //5
 alert(matches[0]); //bat
 alert(pattern2.lastIndex); //8
 ```
-这个例子中的第一个模式 pattern1 不是全局模式，因此每次调用 exec() 返回的都是第一个匹配
-项（ "cat" ）。而第二个模式 pattern2 是全局模式，因此每次调用 exec() 都会返回字符串中的下一个
-匹配项，直至搜索到字符串末尾为止。此外，还应该注意模式的 lastIndex 属性的变化情况。在全局
-匹配模式下， lastIndex 的值在每次调用 exec() 后都会增加，而在非全局模式下则始终保持不变。
-IE 的 JavaScript 实现在 lastIndex 属性上存在偏差，即使在非全局模式下，
-lastIndex 属性每次也会变化。
-正则表达式的第二个方法是 test() ，它接受一个字符串参数。在模式与该参数匹配的情况下返回
-true ；否则，返回 false 。在只想知道目标字符串与某个模式是否匹配，但不需要知道其文本内容的
-情况下，使用这个方法非常方便。因此， test() 方法经常被用在 if 语句中，如下面的例子所示。
+这个例子中的第一个模式 pattern1 不是全局模式，因此每次调用 exec() 返回的都是第一个匹配项（ "cat" ）。而第二个模式 pattern2 是全局模式，因此每次调用 exec() 都会返回字符串中的下一个匹配项，直至搜索到字符串末尾为止。此外，还应该注意模式的 lastIndex 属性的变化情况。在全局匹配模式下， lastIndex 的值在每次调用 exec() 后都会增加，而在非全局模式下则始终保持不变。
+
+> IE 的 JavaScript 实现在 lastIndex 属性上存在偏差，即使在非全局模式下，lastIndex 属性每次也会变化。
+
+正则表达式的第二个方法是 **test()** ，它接受一个字符串参数。**在模式与该参数匹配的情况下返回 true** ；否则，**返回 false** 。在只想知道目标字符串与某个模式是否匹配，但不需要知道其文本内容的情况下，使用这个方法非常方便。因此， **test() 方法经常被用在 if 语句中** ，如下面的例子所示。
 
 ```js
 var text = "000-00-0000";
 var pattern = /\d{3}-\d{2}-\d{4}/;
 if (pattern.test(text)){
-alert("The pattern was matched.");
+  alert("The pattern was matched.");
 }
 ```
-在这个例子中，我们使用正则表达式来测试了一个数字序列。如果输入的文本与模式匹配，则显示
-一条消息。这种用法经常出现在验证用户输入的情况下，因为我们只想知道输入是不是有效，至于它为
-什么无效就无关紧要了。
-RegExp 实例继承的 toLocaleString() 和 toString() 方法都会返回正则表达式的字面量，与创
-建正则表达式的方式无关。例如：
+在这个例子中，我们使用正则表达式来测试了一个数字序列。如果输入的文本与模式匹配，则显示一条消息。这种用法经常出现在验证用户输入的情况下，因为我们只想知道输入是不是有效，至于它为什么无效就无关紧要了。
+
+RegExp 实例继承的 toLocaleString() 和 toString() 方法都会返回 **正则表达式的字面量** ，与创建正则表达式的方式无关。例如：
 
 ```js
 var pattern = new RegExp("\\[bc\\]at", "gi");
 alert(pattern.toString()); // /\[bc\]at/gi
 alert(pattern.toLocaleString()); // /\[bc\]at/gi
 ```
-即使上例中的模式是通过调用 RegExp 构造函数创建的，但 toLocaleString() 和 toString()
-方法仍然会像它是以字面量形式创建的一样显示其字符串表示。
-正则表达式的 valueOf() 方法返回正则表达式本身。
+即使上例中的模式是通过调用 RegExp 构造函数创建的，但 toLocaleString() 和 toString()方法仍然会像它是以字面量形式创建的一样显示其字符串表示。
+
+> 正则表达式的 valueOf() 方法返回正则表达式本身。
 
 ### RegExp 构造函数属性
 
-RegExp 构造函数包含一些属性（这些属性在其他语言中被看成是静态属性）。这些属性适用于作用域中的所有正则表达式，并且基于所执行的最近一次正则表达式操作而变化。关于这些属性的另一个独
-特之处，就是可以通过两种方式访问它们。换句话说，这些属性分别有一个长属性名和一个短属性名
-（Opera 是例外，它不支持短属性名）。下表列出了 RegExp 构造函数的属性。
+RegExp 构造函数包含一些属性（这些属性在其他语言中被看成是静态属性）。这些属性适用于作用域中的所有正则表达式，并且基于所执行的最近一次正则表达式操作而变化。关于这些属性的另一个独特之处，就是可以通过两种方式访问它们。换句话说，这些属性分别有一个长属性名和一个短属性名（Opera 是例外，它不支持短属性名）。下表列出了 RegExp 构造函数的属性。
 
-![表格]()
+![RegExp 构造函数的属性](http://p9myzkds7.bkt.clouddn.com/JavaScript-reference-type/RegExp%20%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E5%B1%9E%E6%80%A7.png)
 
 使用这些属性可以从 exec() 或 test() 执行的操作中提取出更具体的信息。请看下面的例子。
 
 ```js
 var text = "this has been a short summer";
 var pattern = /(.)hort/g;
+
 /*
 * 注意：Opera 不支持 input、lastMatch、lastParen 和 multiline 属性
 * Internet Explorer 不支持 multiline 属性
 */
 if (pattern.test(text)){
-alert(RegExp.input); // this has been a short summer
-alert(RegExp.leftContext); // this has been a
-alert(RegExp.rightContext); // summer
-alert(RegExp.lastMatch); // short
-alert(RegExp.lastParen); // s
-alert(RegExp.multiline); // false
+  alert(RegExp.input); // this has been a short summer
+  alert(RegExp.leftContext); // this has been a
+  alert(RegExp.rightContext); // summer
+  alert(RegExp.lastMatch); // short
+  alert(RegExp.lastParen); // s
+  alert(RegExp.multiline); // false
 }
 ```
-以上代码创建了一个模式，匹配任何一个字符后跟 hort ，而且把第一个字符放在了一个捕获组中。
-RegExp 构造函数的各个属性返回了下列值：
- input 属性返回了原始字符串；
- leftContext 属性返回了单词 short 之前的字符串，而 rightContext 属性则返回了 short
-之后的字符串；
- lastMatch 属性返回最近一次与整个正则表达式匹配的字符串，即 short ；
- lastParen 属性返回最近一次匹配的捕获组，即例子中的 s 。
-如前所述，例子使用的长属性名都可以用相应的短属性名来代替。只不过，由于这些短属性名大都
-不是有效的 ECMAScript 标识符，因此必须通过方括号语法来访问它们，如下所示。
+以上代码创建了一个模式，匹配任何一个字符后跟 hort ，而且把第一个字符放在了一个捕获组中。RegExp 构造函数的各个属性返回了下列值：
+
+- input 属性返回了原始字符串；
+- leftContext 属性返回了单词 short 之前的字符串，而 rightContext 属性则返回了 short之后的字符串；
+- lastMatch 属性返回最近一次与整个正则表达式匹配的字符串，即 short ；
+- lastParen 属性返回最近一次匹配的捕获组，即例子中的 s 。
+
+如前所述，例子使用的长属性名都可以用相应的短属性名来代替。只不过，由于这些短属性名大都不是有效的 ECMAScript 标识符，因此必须通过 **方括号语法** 来访问它们，如下所示。
 
 ```js
 var text = "this has been a short summer";
 var pattern = /(.)hort/g;
+
 /*
 * 注意：Opera 不支持 input、lastMatch、lastParen 和 multiline 属性
 * Internet Explorer 不支持 multiline 属性
 */
 if (pattern.test(text)){
-alert(RegExp.$_); // this has been a short summer
-alert(RegExp["$`"]); // this has been a
-alert(RegExp["$'"]); // summer
-alert(RegExp["$&"]); // short
-alert(RegExp["$+"]); // s
-alert(RegExp["$*"]); // false
+  alert(RegExp.$_); // this has been a short summer
+  alert(RegExp["$`"]); // this has been a
+  alert(RegExp["$'"]); // summer
+  alert(RegExp["$&"]); // short
+  alert(RegExp["$+"]); // s
+  alert(RegExp["$*"]); // false
 }
 ```
-除了上面介绍的几个属性之外，还有多达 9 个用于存储捕获组的构造函数属性。访问这些属性的语
-法是 RegExp.$1 、 RegExp.$2 … RegExp.$9 ，分别用于存储第一、第二……第九个匹配的捕获组。在
-调用 exec() 或 test() 方法时，这些属性会被自动填充。然后，我们就可以像下面这样来使用它们。
+除了上面介绍的几个属性之外，还有多达 9 个用于存储捕获组的构造函数属性。访问这些属性的语法是 RegExp.$1 、 RegExp.$2 … RegExp.$9 ，分别用于存储第一、第二……第九个匹配的捕获组。在调用 exec() 或 test() 方法时，这些属性会被自动填充。然后，我们就可以像下面这样来使用它们。
 
 ```js
 var text = "this has been a short summer";
 var pattern = /(..)or(.)/g;
 if (pattern.test(text)){
-alert(RegExp.$1); //sh
-alert(RegExp.$2); //t
+  alert(RegExp.$1); //sh
+  alert(RegExp.$2); //t
 }
 ```
-这里创建了一个包含两个捕获组的模式，并用该模式测试了一个字符串。即使 test() 方法只返回
-一个布尔值，但 RegExp 构造函数的属性 $1 和 $2 也会被匹配相应捕获组的字符串自动填充。
+这里创建了一个包含两个捕获组的模式，并用该模式测试了一个字符串。即使 test() 方法只返回一个布尔值，但 RegExp 构造函数的属性 $1 和 $2 也会被匹配相应捕获组的字符串自动填充。
 
 ### 模式的局限性
 
-尽管 ECMAScript 中的正则表达式功能还是比较完备的，但仍然缺少某些语言（特别是 Perl）所支
-持的高级正则表达式特性。下面列出了 ECMAScript 正则表达式不支持的特性（要了解更多相关信息，
-请访问 www.regular-expressions.info）。
-  匹配字符串开始和结尾的 \A 和 \Z 锚
-（但支持以插入符号（^）和美元符号（$）来匹配字符串的开始和结尾。）
-  向后查找（lookbehind）
-（但完全支持向前查找（lookahead）。）
-  并集和交集类
-  原子组（atomic grouping）
-  Unicode 支持（单个字符除外，如 \uFFFF ）
-  命名的捕获组
-（但支持编号的捕获组。）
- s （single，单行）和 x （free-spacing，无间隔）匹配模式
-  条件匹配
-  正则表达式注释
-即使存在这些限制，ECMAScript 正则表达式仍然是非常强大的，能够帮我们完成绝大多数模式匹
-配任务。
+尽管 ECMAScript 中的正则表达式功能还是比较完备的，但仍然缺少某些语言（特别是 Perl）所支持的高级正则表达式特性。下面列出了 ECMAScript 正则表达式不支持的特性（要了解更多相关信息，请访问 www.regular-expressions.info ）。
+
+- 匹配字符串开始和结尾的 \A 和 \Z 锚（但支持以插入符号（^）和美元符号（$）来匹配字符串的开始和结尾。）
+- 向后查找（lookbehind）（但完全支持向前查找（lookahead）。）
+- 并集和交集类
+- 原子组（atomic grouping）
+- Unicode 支持（单个字符除外，如 \uFFFF ）
+- 命名的捕获组（但支持编号的捕获组。）
+- s （single，单行）和 x （free-spacing，无间隔）匹配模式
+- 条件匹配
+- 正则表达式注释
+
+即使存在这些限制，ECMAScript 正则表达式仍然是非常强大的，能够帮我们完成绝大多数模式匹配任务。
 
 ##  Function 类型
-说起来 ECMAScript 中什么最有意思，我想那莫过于函数了——而有意思的根源，则在于函数实际
-上是对象。每个函数都是 Function 类型的实例，而且都与其他引用类型一样具有属性和方法。由于函
-数是对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。函数通常是使用函
-数声明语法定义的，如下面的例子所示。
+
+说起来 ECMAScript 中什么最有意思，我想那莫过于函数了——而有意思的根源，则在于**函数** 实际上是 **对象** 。**每个函数都是 Function 类型的实例** ，而且都与其他引用类型一样具有属性和方法。由于函数是对象，因此 **函数名** 实际上也是一个**指向函数对象的指针** ，不会与某个函数绑定。函数通常是使用 **函数声明** 语法定义的，如下面的例子所示。
 
 ```js
 function sum (num1, num2) {
-return num1 + num2;
+   return num1 + num2;
 }
 ```
-这与下面使用函数表达式定义函数的方式几乎相差无几。
+这与下面使用 **函数表达式** 定义函数的方式几乎相差无几。
 
 ```js
 var sum = function(num1, num2){
-return num1 + num2;
+  return num1 + num2;
 };
 ```
-以上代码定义了变量 sum 并将其初始化为一个函数。有读者可能会注意到， function 关键字后面
-没有函数名。这是因为在使用函数表达式定义函数时，没有必要使用函数名——通过变量 sum 即可以引
-用函数。另外，还要注意函数末尾有一个分号，就像声明其他变量时一样。
-最后一种定义函数的方式是使用 Function 构造函数。 Function 构造函数可以接收任意数量的参数，
-但最后一个参数始终都被看成是函数体，而前面的参数则枚举出了新函数的参数。来看下面的例子：
+以上代码定义了变量 sum 并将其初始化为一个函数。有读者可能会注意到，**function 关键字后面没有函数名** 。这是因为在使用函数表达式定义函数时，没有必要使用函数名——**通过变量 sum 即可以引用函数** 。另外，还要注意 **函数末尾有一个分号** ，就像 **声明其他变量时一样** 。
+
+最后一种定义函数的方式是使用 **Function 构造函数** 。 Function 构造函数可以接收 **任意数量的参数** ，但 **最后一个参数始终都被看成是函数体** ，而 **前面的参数则枚举出了新函数的参数** 。来看下面的例子：
 
 ```js
 var sum = new Function("num1", "num2", "return num1 + num2"); // 不推荐
 ```
-从技术角度讲，这是一个函数表达式。但是，我们不推荐读者使用这种方法定义函数，因为这种语
-法会导致解析两次代码（第一次是解析常规 ECMAScript代码，第二次是解析传入构造函数中的字符串），
-从而影响性能。不过，这种语法对于理解“函数是对象，函数名是指针”的概念倒是非常直观的。
-由于函数名仅仅是指向函数的指针，因此函数名与包含对象指针的其他变量没有什么不同。换句话
-说，一个函数可能会有多个名字，如下面的例子所示。
+从技术角度讲，这是一个函数表达式。但是，我们 **不推荐** 读者使用这种方法定义函数，因为这种语法会 **导致解析两次代码**（第一次是解析常规 ECMAScript代码，第二次是解析传入构造函数中的字符串），从而影响性能。不过，这种语法对于理解“函数是对象，函数名是指针”的概念倒是非常直观的。
+
+由于函数名仅仅是指向函数的指针，因此函数名与包含对象指针的其他变量没有什么不同。换句话说，**一个函数可能会有多个名字** ，如下面的例子所示。
 
 ```js
 function sum(num1, num2){
-return num1 + num2;
+  return num1 + num2;
 }
 alert(sum(10,10)); //20
+
 var anotherSum = sum;
 alert(anotherSum(10,10)); //20
+
 sum = null;
 alert(anotherSum(10,10)); //20
 ```
-以上代码首先定义了一个名为 sum() 的函数，用于求两个值的和。然后，又声明了变量 anotherSum ，
-并将其设置为与 sum 相等（将 sum 的值赋给 anotherSum ）。注意，使用不带圆括号的函数名是访问函
-数指针，而非调用函数。此时， anotherSum 和 sum 就都指向了同一个函数，因此 anotherSum() 也
-可以被调用并返回结果。即使将 sum 设置为 null ，让它与函数“断绝关系”，但仍然可以正常调用
-anotherSum() 。
+以上代码首先定义了一个名为 sum() 的函数，用于求两个值的和。然后，又声明了变量 anotherSum ，并将其设置为与 sum 相等（将 sum 的值赋给 anotherSum ）。注意，使用不带圆括号的函数名是访问函数指针，而非调用函数。此时， anotherSum 和 sum 就都指向了同一个函数，因此 anotherSum() 也可以被调用并返回结果。即使 **将 sum 设置为 null** ，**让它与函数“断绝关系”** ，但仍然可以正常调用 anotherSum() 。
 
 ### 没有重载（深入理解）
 
-将函数名想象为指针，也有助于理解为什么 ECMAScript 中没有函数重载的概念。以下是曾在第 3
-章使用过的例子。
+将函数名想象为指针，也有助于理解为什么 ECMAScript 中 **没有函数重载** 的概念。以下是曾在第 3章使用过的例子。
 
 ```js
 function addSomeNumber(num){
-return num + 100;
+  return num + 100;
 }
+
 function addSomeNumber(num) {
-return num + 200;
+  return num + 200;
 }
+
 var result = addSomeNumber(100); //300
 ```
-显然，这个例子中声明了两个同名函数，而结果则是后面的函数覆盖了前面的函数。以上代码实际
-上与下面的代码没有什么区别。
+显然，这个例子中声明了两个同名函数，而结果则是 **后面的函数覆盖了前面的函数** 。以上代码实际上与下面的代码没有什么区别。
 
 ```js
 var addSomeNumber = function (num){
-return num + 100;
+  return num + 100;
 };
+
 addSomeNumber = function (num) {
-return num + 200;
+  return num + 200;
 };
+
 var result = addSomeNumber(100); //300
 ```
-通过观察重写之后的代码，很容易看清楚到底是怎么回事儿——在创建第二个函数时，实际上覆盖
-了引用第一个函数的变量 addSomeNumber 。
+通过观察重写之后的代码，很容易看清楚到底是怎么回事儿——**在创建第二个函数时** ，**实际上覆盖了引用第一个函数的变量 addSomeNumber ** 。
 
 ### 函数声明与函数表达式
 
-本节到目前为止，我们一直没有对函数声明和函数表达式加以区别。而实际上，解析器在向执行环
-境中加载数据时，对函数声明和函数表达式并非一视同仁。解析器会率先读取函数声明，并使其在执行
-任何代码之前可用（可以访问）；至于函数表达式，则必须等到解析器执行到它所在的代码行，才会真
-正被解释执行。请看下面的例子。
+本节到目前为止，我们一直没有对函数声明和函数表达式加以区别。而实际上，解析器在向执行环境中加载数据时，对函数声明和函数表达式并非一视同仁。解析器会率 **先读取函数声明** ，并 **使其在执行任何代码之前可用**（可以访问）；至于 **函数表达式** ，则 **必须等到解析器执行到它所在的代码行**，**才会真正被解释执行** 。请看下面的例子。
 
 ```js
 alert(sum(10,10));
 function sum(num1, num2){
-return num1 + num2;
+  return num1 + num2;
 }
 ```
-以上代码完全可以正常运行。因为在代码开始执行之前，解析器就已经通过一个名为函数声明提升
-（function declaration hoisting）的过程，读取并将函数声明添加到执行环境中。对代码求值时，JavaScript
-引擎在第一遍会声明函数并将它们放到源代码树的顶部。所以，即使声明函数的代码在调用它的代码后
-面，JavaScript 引擎也能把函数声明提升到顶部。如果像下面例子所示的，把上面的函数声明改为等价
-的函数表达式，就会在执行期间导致错误。
+以上代码完全可以正常运行。因为在代码开始执行之前，解析器就已经通过一个名为 **函数声明提升**（function declaration hoisting）的过程，**读取并将函数声明添加到执行环境中** 。对代码求值时，JavaScript 引擎在第一遍会声明函数并将它们放到 **源代码树的顶部** 。所以，**即使声明函数的代码在调用它的代码后面** ，**JavaScript 引擎也能把函数声明提升到顶部** 。如果像下面例子所示的，把上面的函数声明改为等价的函数表达式，就会在执行期间导致错误。
 
 ```
 alert(sum(10,10));
 var sum = function(num1, num2){
-return num1 + num2;
+  return num1 + num2;
 };
 ```
-以上代码之所以会在运行期间产生错误，原因在于函数位于一个初始化语句中，而不是一个函数声
-明。换句话说，在执行到函数所在的语句之前，变量 sum 中不会保存有对函数的引用；而且，由于第一
-行代码就会导致“unexpected identifier”（意外标识符）错误，实际上也不会执行到下一行。
-除了什么时候可以通过变量访问函数这一点区别之外，函数声明与函数表达式的语法其实是等价的。
-也可以同时使用函数声明和函数表达式，例如 var sum = function sum(){} 。
-不过，这种语法在 Safari 中会导致错误。
+以上代码之所以会在运行期间产生错误，原因在于函数位于一个初始化语句中，而不是一个函数声明。换句话说，**在执行到函数所在的语句之前** ，**变量 sum 中不会保存有对函数的引用** ；而且，由于 **第一行代码就会导致“unexpected identifier”（意外标识符）错误** ，实际上也不会执行到下一行。
+
+除了 **什么时候可以通过变量访问函数** 这一点区别之外，函数声明与函数表达式的语法其实是等价的。
+
+> 也可以同时使用函数声明和函数表达式，例如 var sum = function sum(){} 。不过，这种语法在 Safari 中会导致错误。
 
 ### 作为值的函数
 
-因为 ECMAScript 中的函数名本身就是变量，所以函数也可以作为值来使用。也就是说，不仅可以
-像传递参数一样把一个函数传递给另一个函数，而且可以将一个函数作为另一个函数的结果返回。来看
-一看下面的函数。
+因为 ECMAScript 中的函数名本身就是变量，所以 **函数也可以作为值来使用** 。也就是说，不仅 **可以像传递参数一样把一个函数传递给另一个函数** ，而且 **可以将一个函数作为另一个函数的结果返回** 。来看一看下面的函数。
+
+```js
 function callSomeFunction(someFunction, someArgument){
-return someFunction(someArgument);
+  return someFunction(someArgument);
 }
-这个函数接受两个参数。第一个参数应该是一个函数，第二个参数应该是要传递给该函数的一个值。
-然后，就可以像下面的例子一样传递函数了。
+```
+这个函数接受两个参数。第一个参数应该是一个函数，第二个参数应该是要传递给该函数的一个值。然后，就可以像下面的例子一样传递函数了。
 
 ```js
 function add10(num){
-return num + 10;
+  return num + 10;
 }
 var result1 = callSomeFunction(add10, 10);
 alert(result1); //20
+
 function getGreeting(name){
-return "Hello, " + name;
+  return "Hello, " + name;
 }
+
 var result2 = callSomeFunction(getGreeting, "Nicholas");
 alert(result2); //"Hello, Nicholas"
 ```
-这里的 callSomeFunction() 函数是通用的，即无论第一个参数中传递进来的是什么函数，它都
-会返回执行第一个参数后的结果。还记得吧，要访问函数的指针而不执行函数的话，必须去掉函数名后
-面的那对圆括号。因此上面例子中传递给 callSomeFunction() 的是 add10 和 getGreeting ，而不
-是执行它们之后的结果。
+这里的 callSomeFunction() 函数是通用的，即无论第一个参数中传递进来的是什么函数，它都会返回执行第一个参数后的结果。还记得吧，要访问函数的指针而不执行函数的话，必须去掉函数名后面的那对圆括号。因此上面例子中传递给 callSomeFunction() 的是 add10 和 getGreeting ，而不是执行它们之后的结果。
 
-当然，可以从一个函数中返回另一个函数，而且这也是极为有用的一种技术。例如，假设有一个
-对象数组，我们想要根据某个对象属性对数组进行排序。而传递给数组 sort() 方法的比较函数要接收
-两个参数，即要比较的值。可是，我们需要一种方式来指明按照哪个属性来排序。要解决这个问题，
-可以定义一个函数，它接收一个属性名，然后根据这个属性名来创建一个比较函数，下面就是这个函
-数的定义。
+当然，可以从一个函数中返回另一个函数，而且这也是极为有用的一种技术。例如，假设有一个对象数组，我们想要根据某个对象属性对数组进行排序。而传递给数组 sort() 方法的比较函数要接收两个参数，即要比较的值。可是，我们需要一种方式来指明按照哪个属性来排序。要解决这个问题，可以定义一个函数，它接收一个属性名，然后根据这个属性名来创建一个比较函数，下面就是这个函数的定义。
 
 ```js
 function createComparisonFunction(propertyName) {
-return function(object1, object2){
-var value1 = object1[propertyName];
-var value2 = object2[propertyName];
-if (value1 < value2){
-return -1;
-} else if (value1 > value2){
-return 1;
-} else {
-return 0;
-}
-};
+  return function(object1, object2){
+    var value1 = object1[propertyName];
+    var value2 = object2[propertyName];
+    
+    if (value1 < value2){
+      return -1;
+    } else if (value1 > value2){
+      return 1;
+    } else {
+      return 0;
+    }
+  };
 }
 ```
-这个函数定义看起来有点复杂，但实际上无非就是在一个函数中嵌套了另一个函数，而且内部函数
-前面加了一个 return 操作符。在内部函数接收到 propertyName 参数后，它会使用方括号表示法来
-取得给定属性的值。取得了想要的属性值之后，定义比较函数就非常简单了。上面这个函数可以像在下
-面例子中这样使用。
+这个函数定义看起来有点复杂，但实际上无非就是在一个函数中嵌套了另一个函数，而且内部函数前面加了一个 return 操作符。在内部函数接收到 propertyName 参数后，它会使用方括号表示法来取得给定属性的值。取得了想要的属性值之后，定义比较函数就非常简单了。上面这个函数可以像在下面例子中这样使用。
 
 ```js
 var data = [{name: "Zachary", age: 28}, {name: "Nicholas", age: 29}];
+
 data.sort(createComparisonFunction("name"));
 alert(data[0].name); //Nicholas
+
 data.sort(createComparisonFunction("age"));
 alert(data[0].name); //Zachary
 ```
-这里，我们创建了一个包含两个对象的数组 data 。其中，每个对象都包含一个 name 属性和一个
-age 属性。在默认情况下， sort() 方法会调用每个对象的 toString() 方法以确定它们的次序；但得
-到的结果往往并不符合人类的思维习惯。因此，我们调用 createComparisonFunction("name") 方
-法创建了一个比较函数，以便按照每个对象的 name 属性值进行排序。而结果排在前面的第一项是 name
-为 "Nicholas" ， age 是 29 的对象。然后，我们又使用了 createComparisonFunction("age") 返回
-的比较函数，这次是按照对象的 age 属性排序。得到的结果是 name 值为 "Zachary" ， age 值是 28的
+这里，我们创建了一个包含两个对象的数组 data 。其中，每个对象都包含一个 name 属性和一个 age 属性。在默认情况下， sort() 方法会调用每个对象的 toString() 方法以确定它们的次序；但得到的结果往往并不符合人类的思维习惯。因此，我们调用 createComparisonFunction("name") 方法创建了一个比较函数，以便按照每个对象的 name 属性值进行排序。而结果排在前面的第一项是 name为 "Nicholas" ， age 是 29 的对象。然后，我们又使用了 createComparisonFunction("age") 返回的比较函数，这次是按照对象的 age 属性排序。得到的结果是 name 值为 "Zachary" ， age 值是 28的
 对象排在了第一位。
 
 ### 函数内部属性
 
-在函数内部，有两个特殊的对象： arguments 和 this 。其中， arguments 在第 3 章曾经介绍过，
-它是一个类数组对象，包含着传入函数中的所有参数。虽然 arguments 的主要用途是保存函数参数，
-但这个对象还有一个名叫 callee 的属性，该属性是一个指针，指向拥有这个 arguments 对象的函数。
-请看下面这个非常经典的阶乘函数。
+在函数内部，有两个特殊的对象： **arguments** 和 **this** 。其中， arguments 在第 3 章曾经介绍过，它是一个 **类数组对象** ，**包含着传入函数中的所有参数** 。虽然 arguments 的主要用途是保存函数参数，但这个对象还有一个名叫 **callee 的属性** ，该属性是一个指针，**指向拥有这个 arguments 对象的函数** 。请看下面这个非常经典的阶乘函数。
 
 ```js
 function factorial(num){
-if (num <=1) {
-return 1;
-} else {
-return num * factorial(num-1)
-}
+  if (num <=1) {
+    return 1;
+  } else {
+    return num * factorial(num-1)
+  }
 }
 ```
-定义阶乘函数一般都要用到递归算法；如上面的代码所示，在函数有名字，而且名字以后也不会变
-的情况下，这样定义没有问题。但问题是这个函数的执行与函数名 factorial 紧紧耦合在了一起。为
-了消除这种紧密耦合的现象，可以像下面这样使用 arguments.callee 。
+定义阶乘函数一般都要用到递归算法；如上面的代码所示，在函数有名字，而且名字以后也不会变的情况下，这样定义没有问题。但问题是这个函数的执行与函数名 factorial 紧紧耦合在了一起。为了 **消除这种紧密耦合的现象**  ，可以像下面这样使用 **arguments.callee** 。
 
 ```js
 function factorial(num){
-if (num <=1) {
-return 1;
-} else {
-return num * arguments.callee(num-1)
-}
+  if (num <=1) {
+    return 1;
+  } else {
+    return num * arguments.callee(num-1)
+  }
 }
 ```
-在这个重写后的 factorial() 函数的函数体内，没有再引用函数名 factorial 。这样，无论引用
-函数时使用的是什么名字，都可以保证正常完成递归调用。例如：
+在这个重写后的 factorial() 函数的函数体内，**没有再引用函数名 factorial** 。这样，无论引用函数时使用的是什么名字，都可以保证正常完成递归调用。例如：
 
 ```js
 var trueFactorial = factorial;
 factorial = function(){
-return 0;
+  return 0;
 };
+
 alert(trueFactorial(5)); //120
 alert(factorial(5)); //0
 ```
-在此，变量 trueFactorial 获得了 factorial 的值，实际上是在另一个位置上保存了一个函数
-的指针。然后，我们又将一个简单地返回 0 的函数赋值给 factorial 变量。如果像原来的 factorial()
-那样不使用 arguments.callee ，调用 trueFactorial() 就会返回 0。可是，在解除了函数体内的代
-码与函数名的耦合状态之后， trueFactorial() 仍然能够正常地计算阶乘；至于 factorial() ，它现
-在只是一个返回 0 的函数。
-函数内部的另一个特殊对象是 this ，其行为与 Java 和 C#中的 this 大致类似。换句话说， this
-引用的是函数据以执行的环境对象——或者也可以说是 this 值（当在网页的全局作用域中调用函数时，
-this 对象引用的就是 window ）。来看下面的例子。
+在此，变量 trueFactorial 获得了 factorial 的值，实际上是在另一个位置上保存了一个函数的指针。然后，我们又将一个简单地返回 0 的函数赋值给 factorial 变量。如果像原来的 factorial()那样不使用 arguments.callee ，调用 trueFactorial() 就会返回 0。可是，在解除了函数体内的代码与函数名的耦合状态之后， trueFactorial() 仍然能够正常地计算阶乘；至于 factorial() ，它现在只是一个返回 0 的函数。
+
+函数内部的另一个特殊对象是 this ，其行为与 Java 和 C#中的 this 大致类似。换句话说， **this** 引用的是 **函数据以执行的环境对象** ——或者也可以说是 this 值（当在网页的  **全局作用域中调用函数** 时，**this 对象引用的就是 window** ）。来看下面的例子。
 
 ```js
 window.color = "red";
 var o = { color: "blue" };
+
 function sayColor(){
-alert(this.color);
+  alert(this.color);
 }
+
 sayColor(); //"red"
+
 o.sayColor = sayColor;
 o.sayColor(); //"blue"
 ```
 
-上面这个函数 sayColor() 是在全局作用域中定义的，它引用了 this 对象。由于在调用函数之前，
-this 的值并不确定，因此 this 可能会在代码执行过程中引用不同的对象。当在全局作用域中调用
-sayColor() 时， this 引用的是全局对象 window ；换句话说，对 this.color 求值会转换成对
-window.color 求值，于是结果就返回了 "red" 。而当把这个函数赋给对象 o 并调用 o.sayColor()
-时， this 引用的是对象 o ，因此对 this.color 求值会转换成对 o.color 求值，结果就返回了 "blue" 。
-请读者一定要牢记，函数的名字仅仅是一个包含指针的变量而已。因此，即使是
-在不同的环境中执行，全局的 sayColor() 函数与 o.sayColor() 指向的仍然是同一
-个函数。
-ECMAScript 5 也规范化了另一个函数对象的属性： caller 。除了 Opera 的早期版本不支持，其他
-浏览器都支持这个 ECMAScript 3 并没有定义的属性。这个属性中保存着调用当前函数的函数的引用，
-如果是在全局作用域中调用当前函数，它的值为 null 。例如：
+上面这个函数 sayColor() 是在全局作用域中定义的，它引用了 this 对象。由于 **在调用函数之前** ，**this 的值并不确定** ，因此 this 可能会在代码执行过程中引用不同的对象。当 **在全局作用域中调用 sayColor()** 时， **this 引用的是全局对象 window** ；换句话说，**对 this.color 求值会转换成对 window.color 求值** ，于是结果就返回了 "red" 。而当 **把这个函数赋给对象 o 并调用 o.sayColor()
+** 时， **this 引用的是对象 o** ，因此对 this.color 求值会转换成对 o.color 求值，结果就返回了 "blue" 。
+
+> 请读者一定要牢记，**函数的名字** 仅仅是 **一个包含指针的变量而已** 。因此，**即使是在不同的环境中执行**，**全局的 sayColor() 函数与 o.sayColor() 指向的仍然是同一个函数** 。
+
+ECMAScript 5 也规范化了另一个函数对象的属性： **caller** 。除了 Opera 的早期版本不支持，其他浏览器都支持这个 ECMAScript 3 并没有定义的属性。这个属性中保存着调用当前函数的函数的引用，如果是 **在全局作用域中调用当前函数** ，它的 **值为 null** 。例如：
 
 ```js
 function outer(){
-inner();
+  inner();
 }
+
 function inner(){
-alert(inner.caller);
+   alert(inner.caller);
 }
+
 outer();
 ```
-以上代码会导致警告框中显示 outer() 函数的源代码。因为 outer() 调用了 inter() ，所以
-inner.caller 就指向 outer() 。为了实现更松散的耦合，也可以通过 arguments.callee.caller
-来访问相同的信息。
+以上代码会导致警告框中显示 outer() 函数的源代码。因为 outer() 调用了 inter() ，所以 inner.caller 就指向 outer() 。为了实现更松散的耦合，也 **可以通过 arguments.callee.caller 来访问相同的信息** 。
 
 ```js
 function outer(){
-inner();
+  inner();
 }
+
 function inner(){
-alert(arguments.callee.caller);
+  alert(arguments.callee.caller);
 }
+
 outer();
 ```
 IE、Firefox、Chrome 和 Safari 的所有版本以及 Opera 9.6 都支持 caller 属性。
-当函数在严格模式下运行时，访问 arguments.callee 会导致错误。ECMAScript 5 还定义了
-arguments.caller 属性，但在严格模式下访问它也会导致错误，而在非严格模式下这个属性始终是
-undefined 。定义这个属性是为了分清 arguments.caller 和函数的 caller 属性。以上变化都是为
-了加强这门语言的安全性，这样第三方代码就不能在相同的环境里窥视其他代码了。
-严格模式还有一个限制：不能为函数的 caller 属性赋值，否则会导致错误。
+当函数在严格模式下运行时，访问 arguments.callee 会导致错误。ECMAScript 5 还定义了 arguments.caller 属性，但在严格模式下访问它也会导致错误，而在非严格模式下这个属性始终是 undefined 。定义这个属性是为了分清 arguments.caller 和函数的 caller 属性。以上变化都是为了加强这门语言的安全性，这样第三方代码就不能在相同的环境里窥视其他代码了。
+
+严格模式还有一个限制：**不能为函数的 caller 属性赋值** ，**否则会导致错误**。
 
 ### 函数属性和方法
 
-前面曾经提到过，ECMAScript 中的函数是对象，因此函数也有属性和方法。每个函数都包含两个
-属性： length 和 prototype 。其中， length 属性表示函数希望接收的命名参数的个数，如下面的例
-子所示。
+前面曾经提到过，ECMAScript 中的 **函数是对象** ，因此 **函数也有属性和方法** 。每个函数都包含两个属性： **length** 和 **prototype** 。其中， **length 属性** 表示 **函数希望接收的命名参数的个数** ，如下面的例子所示。
 
 ```js
 function sayName(name){
-alert(name);
+  alert(name);
 }
 function sum(num1, num2){
-return num1 + num2;
+  return num1 + num2;
 }
 function sayHi(){
-alert("hi");
+   alert("hi");
 }
+
 alert(sayName.length); //1
 alert(sum.length); //2
 alert(sayHi.length); //0
 ```
-以上代码定义了 3 个函数，但每个函数接收的命名参数个数不同。首先， sayName() 函数定义了一
-个参数，因此其 length 属性的值为 1。类似地， sum() 函数定义了两个参数，结果其 length 属性中
-保存的值为 2。而 sayHi() 没有命名参数，所以其 length 值为 0。
-在 ECMAScript 核心所定义的全部属性中，最耐人寻味的就要数 prototype 属性了。对于
-ECMAScript 中的引用类型而言， prototype 是保存它们所有实例方法的真正所在。换句话说，诸如
-toString() 和 valueOf() 等方法实际上都保存在 prototype 名下，只不过是通过各自对象的实例访
-问罢了。在创建自定义引用类型以及实现继承时， prototype 属性的作用是极为重要的（第 6 章将详
-细介绍）。在 ECMAScript 5 中， prototype 属性是不可枚举的，因此使用 for-in 无法发现。
-每个函数都包含两个非继承而来的方法： apply() 和 call() 。这两个方法的用途都是在特定的作
-用域中调用函数，实际上等于设置函数体内 this 对象的值。首先， apply() 方法接收两个参数：一个
-是在其中运行函数的作用域，另一个是参数数组。其中，第二个参数可以是 Array 的实例，也可以是
-arguments 对象。例如：
+以上代码定义了 3 个函数，但每个函数接收的命名参数个数不同。首先， sayName() 函数定义了一个参数，因此其 length 属性的值为 1。类似地， sum() 函数定义了两个参数，结果其 length 属性中保存的值为 2。而 sayHi() 没有命名参数，所以其 length 值为 0。
+
+在 ECMAScript 核心所定义的全部属性中，最耐人寻味的就要数 **prototype 属性** 了。对于 ECMAScript 中的引用类型而言， **prototype 是保存它们所有实例方法的真正所在** 。换句话说，**诸如 toString() 和 valueOf() 等方法实际上都保存在 prototype 名下** ，只不过是通过各自对象的实例访问罢了。在创建自定义引用类型以及实现继承时， prototype 属性的作用是极为重要的（第 6 章将详细介绍）。在 ECMAScript 5 中， prototype 属性是不可枚举的，因此使用 for-in 无法发现。
+
+每个函数都包含两个非继承而来的方法： **apply()** 和 **call()** 。这两个方法的用途都是 **在特定的作用域中调用函数** ，实际上等于 **设置函数体内 this 对象的值** 。首先，** apply() 方法** 接收两个参数：一个是 **在其中运行函数的作用域** ，另一个是 **参数数组** 。其中，第二个参数可以是 **Array 的实例** ，也可以是 **arguments 对象** 。例如：
 
 ```js
 function sum(num1, num2){
-return num1 + num2;
+   return num1 + num2;
 }
+
 function callSum1(num1, num2){
-return sum.apply(this, arguments); // 传入 arguments 对象
+   return sum.apply(this, arguments); // 传入 arguments 对象
 }
+
 function callSum2(num1, num2){
-return sum.apply(this, [num1, num2]); // 传入数组
+   return sum.apply(this, [num1, num2]); // 传入数组
 }
+
 alert(callSum1(10,10)); //20
 alert(callSum2(10,10)); //20
 ```
 
-在上面这个例子中， callSum1() 在执行 sum() 函数时传入了 this 作为 this 值（因为是在全局
-作用域中调用的，所以传入的就是 window 对象）和 arguments 对象。而 callSum2 同样也调用了
-sum() 函数，但它传入的则是 this 和一个参数数组。这两个函数都会正常执行并返回正确的结果。
-在严格模式下，未指定环境对象而调用函数，则 this 值不会转型为 window 。
-除非明确把函数添加到某个对象或者调用 apply() 或 call() ，否则 this 值将是
-undefined 。
-call() 方法与 apply() 方法的作用相同，它们的区别仅在于接收参数的方式不同。对于 call()
-方法而言，第一个参数是 this 值没有变化，变化的是其余参数都直接传递给函数。换句话说，在使用
-call() 方法时，传递给函数的参数必须逐个列举出来，如下面的例子所示。
+在上面这个例子中， callSum1() 在执行 sum() 函数时传入了 this 作为 this 值（因为是在全局作用域中调用的，所以传入的就是 window 对象）和 arguments 对象。而 callSum2 同样也调用了 sum() 函数，但它传入的则是 this 和一个参数数组。这两个函数都会正常执行并返回正确的结果。
+
+> 在 **严格模式** 下，**未指定环境对象而调用函数，则 this 值不会转型为 window** 。除非明确把函数添加到某个对象或者调用 apply() 或 call() ，否则 this 值将是 undefined 。
+
+**call() 方法** 与 apply() 方法的作用相同，它们的区别仅在于接收参数的方式不同。对于 call()方法而言，第一个参数是 **this 值没有变化** ，变化的是 **其余参数都直接传递给函数**  。换句话说，在使用 call() 方法时，**传递给函数的参数必须逐个列举出来** ，如下面的例子所示。
 
 ```js
 function sum(num1, num2){
-return num1 + num2;
+  return num1 + num2;
 }
+
 function callSum(num1, num2){
-return sum.call(this, num1, num2);
+  return sum.call(this, num1, num2);
 }
+
 alert(callSum(10,10)); //20
 ```
-在使用 call() 方法的情况下， callSum() 必须明确地传入每一个参数。结果与使用 apply() 没有
-什么不同。至于是使用 apply() 还是 call() ，完全取决于你采取哪种给函数传递参数的方式最方便。
-如果你打算直接传入 arguments 对象，或者包含函数中先接收到的也是一个数组，那么使用 apply()
-肯定更方便；否则，选择 call() 可能更合适。（在不给函数传递参数的情况下，使用哪个方法都无所
-谓。）
-事实上，传递参数并非 apply() 和 call() 真正的用武之地；它们真正强大的地方是能够扩充函数
-赖以运行的作用域。下面来看一个例子。
+在使用 call() 方法的情况下， callSum() 必须明确地传入每一个参数。结果与使用 apply() 没有什么不同。至于是使用 apply() 还是 call() ，完全取决于你采取哪种给函数传递参数的方式最方便。
+
+如果你打算直接传入 arguments 对象，或者包含函数中先接收到的也是一个数组，那么使用 apply()肯定更方便；否则，选择 call() 可能更合适。（在不给函数传递参数的情况下，使用哪个方法都无所谓。）
+
+事实上，**传递参数** 并非 apply() 和 call() 真正的用武之地；它们真正强大的地方是 **能够扩充函数赖以运行的作用域** 。下面来看一个例子。
 
 ```js
 window.color = "red";
 var o = { color: "blue" };
+
 function sayColor(){
-alert(this.color);
+  alert(this.color);
 }
+
 sayColor(); //red
+
 sayColor.call(this); //red
 sayColor.call(window); //red
 sayColor.call(o); //blue
 ```
-这个例子是在前面说明 this 对象的示例基础上修改而成的。这一次， sayColor() 也是作为全局
-函数定义的，而且当在全局作用域中调用它时，它确实会显示 "red" ——因为对 this.color 的求值会转换成对 window.color 的求值。而 sayColor.call(this) 和 sayColor.call(window) ，则是两
-种显式地在全局作用域中调用函数的方式，结果当然都会显示 "red" 。但是，当运行 sayColor.call(o)
-时，函数的执行环境就不一样了，因为此时函数体内的 this 对象指向了 o ，于是结果显示的是 "blue" 。
-使用 call() （或 apply() ）来扩充作用域的最大好处，就是对象不需要与方法有任何耦合关系。
-在前面例子的第一个版本中，我们是先将 sayColor() 函数放到了对象 o 中，然后再通过 o 来调用它的；
-而在这里重写的例子中，就不需要先前那个多余的步骤了。
-ECMAScript 5 还定义了一个方法： bind() 。这个方法会创建一个函数的实例，其 this 值会被绑
-定到传给 bind() 函数的值。例如：
+这个例子是在前面说明 this 对象的示例基础上修改而成的。这一次， sayColor() 也是作为全局函数定义的，而且当在全局作用域中调用它时，它确实会显示 "red" ——因为对 this.color 的求值会转换成对 window.color 的求值。而 sayColor.call(this) 和 sayColor.call(window) ，则是两种显式地在全局作用域中调用函数的方式，结果当然都会显示 "red" 。但是，当运行 sayColor.call(o) 时，函数的执行环境就不一样了，因为此时函数体内的 this 对象指向了 o ，于是结果显示的是 "blue" 。
+
+使用 call() （或 apply() ）来扩充作用域的最大好处，就是 **对象不需要与方法有任何耦合关系** 。
+
+在前面例子的第一个版本中，我们是先将 sayColor() 函数放到了对象 o 中，然后再通过 o 来调用它的；而在这里重写的例子中，就不需要先前那个多余的步骤了。
+
+ECMAScript 5 还定义了一个方法： **bind()** 。这个方法会 **创建一个函数的实例** ，其 **this 值会被绑定到传给 bind() 函数的值** 。例如：
 
 ```js
 window.color = "red";
 var o = { color: "blue" };
+
 function sayColor(){
-alert(this.color);
+  alert(this.color);
 }
+
 var objectSayColor = sayColor.bind(o);
 objectSayColor(); //blue
 ```
-在这里， sayColor() 调用 bind() 并传入对象 o ，创建了 o bjectSayColor() 函数。 object-
-SayColor() 函数的 this 值等于 o ，因此即使是在全局作用域中调用这个函数，也会看到 "blue" 。这
-种技巧的优点请参考第 22 章。
+在这里， sayColor() 调用 bind() 并传入对象 o ，**创建了 o bjectSayColor() 函数** 。 **objectSayColor() 函数的 this 值等于 o** ，因此 **即使是在全局作用域中调用这个函数** ，也会看到 "blue" 。这种技巧的优点请参考第 22 章。
+
 支持 bind() 方法的浏览器有 IE9+、Firefox 4+、Safari 5.1+、Opera 12+和 Chrome。
-每个函数继承的 toLocaleString() 和 toString() 方法始终都返回函数的代码。返回代码的格
-式则因浏览器而异——有的返回的代码与源代码中的函数代码一样，而有的则返回函数代码的内部表
-示，即由解析器删除了注释并对某些代码作了改动后的代码。由于存在这些差异，我们无法根据这两个
-方法返回的结果来实现任何重要功能；不过，这些信息在调试代码时倒是很有用。另外一个继承的
-valueOf() 方法同样也只返回函数代码。
-5.6 基本包装类型
-为了便于操作基本类型值，ECMAScript 还提供了 3 个特殊的引用类型： Boolean 、 Number 和
-String 。这些类型与本章介绍的其他引用类型相似，但同时也具有与各自的基本类型相应的特殊行为。
-实际上，每当读取一个基本类型值的时候，后台就会创建一个对应的基本包装类型的对象，从而让我们
-能够调用一些方法来操作这些数据。来看下面的例子。
+
+每个函数继承的 toLocaleString() 和 toString() 方法始终都返回函数的代码。返回代码的格式则因浏览器而异——有的返回的代码与源代码中的函数代码一样，而有的则返回函数代码的内部表示，即由解析器删除了注释并对某些代码作了改动后的代码。由于存在这些差异，我们无法根据这两个方法返回的结果来实现任何重要功能；不过，这些信息在调试代码时倒是很有用。另外一个继承的valueOf() 方法同样也只返回函数代码。
+
+## 基本包装类型
+
+为了便于操作基本类型值，ECMAScript 还提供了 3 个特殊的引用类型： **Boolean** 、 **Number** 和 **String** 。这些类型与本章介绍的其他引用类型相似，但同时也具有与各自的基本类型相应的特殊行为。
+
+实际上，**每当读取一个基本类型值的时候** ，后台就会 **创建一个对应的基本包装类型的对象** ，从而让我们 **能够调用一些方法来操作这些数据** 。来看下面的例子。
 
 ```js
 var s1 = "some text";
 var s2 = s1.substring(2);
 ```
-这个例子中的变量 s1 包含一个字符串，字符串当然是基本类型值。而下一行调用了 s1 的
-substring() 方法，并将返回的结果保存在了 s2 中。我们知道，基本类型值不是对象，因而从逻辑上
-讲它们不应该有方法（尽管如我们所愿，它们确实有方法）。其实，为了让我们实现这种直观的操作，
-后台已经自动完成了一系列的处理。当第二行代码访问 s1 时，访问过程处于一种读取模式，也就是要
-从内存中读取这个字符串的值。而在读取模式中访问字符串时，后台都会自动完成下列处理。
+这个例子中的变量 s1 包含一个字符串，字符串当然是基本类型值。而下一行调用了 s1 的 **substring() 方法** ，并将返回的结果保存在了 s2 中。我们知道，基本类型值不是对象，因而从逻辑上讲它们不应该有方法（尽管如我们所愿，它们确实有方法）。其实，为了让我们实现这种直观的操作，后台已经自动完成了一系列的处理。当第二行代码访问 s1 时，访问过程处于一种读取模式，也就是要从内存中读取这个字符串的值。而在读取模式中访问字符串时，后台都会自动完成下列处理。
 
 (1) 创建 String 类型的一个实例；
 (2) 在实例上调用指定的方法；
 (3) 销毁这个实例。
+
 可以将以上三个步骤想象成是执行了下列 ECMAScript 代码。
 
 ```js
@@ -1456,73 +1386,64 @@ var s1 = new String("some text");
 var s2 = s1.substring(2);
 s1 = null;
 ```
-经过此番处理，基本的字符串值就变得跟对象一样了。而且，上面这三个步骤也分别适用于 Boolean
-和 Number 类型对应的布尔值和数字值。
-引用类型与基本包装类型的主要区别就是对象的生存期。使用 new 操作符创建的引用类型的实例，
-在执行流离开当前作用域之前都一直保存在内存中。而自动创建的基本包装类型的对象，则只存在于一
-行代码的执行瞬间，然后立即被销毁。这意味着我们不能在运行时为基本类型值添加属性和方法。来看
-下面的例子：
+经过此番处理，基本的字符串值就变得跟对象一样了。而且，上面这三个步骤也分别适用于 Boolean 和 Number 类型对应的布尔值和数字值。
+
+**引用类型** 与 **基本包装类型** 的主要区别就是 **对象的生存期** 。**使用 new 操作符创建的引用类型的实例** 在 **执行流离开当前作用域之前都一直保存在内存中** 。而 **自动创建的基本包装类型的对象** ，则 **只存在于一行代码的执行瞬间** ，然后 **立即被销毁** 。这意味着我们 **不能在运行时为基本类型值添加属性和方法** 。来看下面的例子：
 
 ```js
 var s1 = "some text";
 s1.color = "red";
 alert(s1.color); //undefined
 ```
-在此，第二行代码试图为字符串 s1 添加一个 color 属性。但是，当第三行代码再次访问 s1 时，
-其 color 属性不见了。问题的原因就是第二行创建的 String 对象在执行第三行代码时已经被销毁了。
+在此，第二行代码试图为字符串 s1 添加一个 color 属性。但是，当第三行代码再次访问 s1 时，其 color 属性不见了。问题的原因就是第二行创建的 String 对象在执行第三行代码时已经被销毁了。
+
 第三行代码又创建自己的 String 对象，而该对象没有 color 属性。
-当然，可以显式地调用 Boolean 、 Number 和 String 来创建基本包装类型的对象。不过，应该在
-绝对必要的情况下再这样做，因为这种做法很容易让人分不清自己是在处理基本类型还是引用类型的
-值。对基本包装类型的实例调用 typeof 会返回 "object" ，而且所有基本包装类型的对象都会被转换
-为布尔值 true 。
+
+当然，**可以显式地调用 Boolean 、 Number 和 String 来创建基本包装类型的对象** 。不过，应该 **在绝对必要的情况下再这样做** ，因为 **这种做法很容易让人分不清自己是在处理基本类型还是引用类型的值** 。对 **基本包装类型的实例** 调用 **typeof 会返回 "object"** ，而且 **所有基本包装类型的对象都会被转换为布尔值 true** 。
+
 Object 构造函数也会像工厂方法一样，根据传入值的类型返回相应基本包装类型的实例。例如：
 
 ```js
 var obj = new Object("some text");
 alert(obj instanceof String); //true
 ```
-把字符串传给 Object 构造函数，就会创建 String 的实例；而传入数值参数会得到 Number 的实
-例，传入布尔值参数就会得到 Boolean 的实例。
-要注意的是，使用 new 调用基本包装类型的构造函数，与直接调用同名的转型函数是不一样的。
-例如：
+把字符串传给 Object 构造函数，就会创建 String 的实例；而传入数值参数会得到 Number 的实例，传入布尔值参数就会得到 Boolean 的实例。
+
+要注意的是，使用 **new 调用基本包装类型的构造函数** ，与直接 **调用同名的转型函数** 是不一样的。例如：
 
 ```js
 var value = "25";
 var number = Number(value); //转型函数
 alert(typeof number); //"number"
+
 var obj = new Number(value); //构造函数
 alert(typeof obj); //"object"
 ```
-在这个例子中，变量 number 中保存的是基本类型的值 25，而变量 obj 中保存的是 Number 的实
-例。要了解有关转型函数的更多信息，请参考第 3 章。
-尽管我们不建议显式地创建基本包装类型的对象，但它们操作基本类型值的能力还是相当重要的。
-而每个基本包装类型都提供了操作相应值的便捷方法。
+在这个例子中，**变量 number 中保存的是基本类型的值 25** ，而 **变量 obj 中保存的是 Number 的实例** 。要了解有关转型函数的更多信息，请参考第 3 章。
+
+尽管我们不建议显式地创建基本包装类型的对象，但它们操作基本类型值的能力还是相当重要的。而每个基本包装类型都提供了操作相应值的便捷方法。
 
 ### Boolean 类型
 
-Boolean 类型是与布尔值对应的引用类型。要创建 Boolean 对象，可以像下面这样调用 Boolean
-构造函数并传入 true 或 false 值。
+Boolean 类型是与布尔值对应的引用类型。要创建 Boolean 对象，可以像下面这样调用 Boolean 构造函数并传入 true 或 false 值。
+
+```js
 var booleanObject = new Boolean(true);
-Boolean 类型的实例重写了 valueOf() 方法，返回基本类型值 true 或 false ；重写了 toString()
-方法，返回字符串 "true" 和 "false" 。可是， Boolean 对象在 ECMAScript 中的用处不大，因为它经
-常会造成人们的误解。其中最常见的问题就是在布尔表达式中使用 Boolean 对象，例如：
+```
+Boolean 类型的实例重写了 **valueOf() 方法** ，返回 **基本类型值 true 或 false** ；重写了 **toString() 方法**  ，**返回字符串 "true" 和 "false"** 。可是， Boolean 对象在 ECMAScript 中的用处不大，因为它经常会造成人们的误解。其中最常见的问题就是在布尔表达式中使用 Boolean 对象，例如：
 
 ```js
 var falseObject = new Boolean(false);
 var result = falseObject && true;
 alert(result); //true
+
 var falseValue = false;
 result = falseValue && true;
 alert(result); //false
 ```
-在这个例子中，我们使用 false 值创建了一个 Boolean 对象。然后，将这个对象与基本类型值 true
-构成了逻辑与表达式。在布尔运算中， false && true 等于 false 。可是，示例中的这行代码是对
-falseObject 而不是对它的值（ false ）进行求值。前面讨论过，布尔表达式中的所有对象都会被转
-换为 true ，因此 falseObject 对象在布尔表达式中代表的是 true 。结果， true && true 当然就等
-于 true 了。
-基本类型与引用类型的布尔值还有两个区别。首先， typeof 操作符对基本类型返回 "boolean" ，
-而对引用类型返回 "object" 。其次，由于 Boolean 对象是 Boolean 类型的实例，所以使用 instanceof
-操作符测试 Boolean 对象会返回 true ，而测试基本类型的布尔值则返回 false 。例如：
+在这个例子中，我们使用 false 值创建了一个 Boolean 对象。然后，将这个对象与基本类型值 true 构成了逻辑与表达式。在布尔运算中， false && true 等于 false 。可是，示例中的这行代码是对 falseObject 而不是对它的值（ false ）进行求值。前面讨论过，布尔表达式中的所有对象都会被转换为 true ，因此 falseObject 对象在布尔表达式中代表的是 true 。结果， true && true 当然就等于 true 了。
+
+基本类型与引用类型的布尔值还有两个区别。首先，**typeof 操作符对基本类型返回 "boolean" ，而对引用类型返回 "object"** 。其次，由于 Boolean 对象是 Boolean 类型的实例，所以 **使用 instanceof 操作符测试 Boolean 对象会返回 true ，而测试基本类型的布尔值则返回 false** 。例如：
 
 ```js
 alert(typeof falseObject); //object
@@ -1530,20 +1451,16 @@ alert(typeof falseValue); //boolean
 alert(falseObject instanceof Boolean); //true
 alert(falseValue instanceof Boolean); //false
 ```
-理解基本类型的布尔值与 Boolean 对象之间的区别非常重要——当然，我们的建议是永远不要使
-用 Boolean 对象。
+理解基本类型的布尔值与 Boolean 对象之间的区别非常重要——当然，我们的建议是 **永远不要使用 Boolean 对象** 。
 
 ###  Number 类型
 
-Number 是与数字值对应的引用类型。要创建 Number 对象，可以在调用 Number 构造函数时向其
-中传递相应的数值。下面是一个例子。
+Number 是与数字值对应的引用类型。要创建 Number 对象，可以在调用 **Number 构造函数时向其中传递相应的数值** 。下面是一个例子。
 
 ```js
 var numberObject = new Number(10);
 ```
-与 Boolean 类型一样， Number 类型也重写了 valueOf() 、 toLocaleString() 和 toString()
-方法。重写后的 valueOf() 方法返回对象表示的基本类型的数值，另外两个方法则返回字符串形式的数值。我们在第 3 章还介绍过，可以为 toString() 方法传递一个表示基数的参数，告诉它返回几进制
-数值的字符串形式，如下面的例子所示。
+与 Boolean 类型一样， Number 类型也重写了 valueOf() 、 toLocaleString() 和 toString() 方法。重写后的 **valueOf() 方法** 返回 **对象表示的基本类型的数值** ，另外两个方法则返回 **字符串形式的数值** 。我们在第 3 章还介绍过，**可以为 toString() 方法传递一个表示基数的参数** ，告诉它返回几进制数值的字符串形式，如下面的例子所示。
 
 ```js
 var num = 10;
@@ -1554,36 +1471,31 @@ alert(num.toString(10)); //"10"
 alert(num.toString(16)); //"a"
 ```
 除了继承的方法之外， Number 类型还提供了一些用于将数值格式化为字符串的方法。
-其中， toFixed() 方法会按照指定的小数位返回数值的字符串表示，例如：
+其中， **toFixed() 方法** 会 **按照指定的小数位返回数值的字符串表示** ，例如：
 
 ```js
 var num = 10;
 alert(num.toFixed(2)); //"10.00"
 ```
-这里给 toFixed() 方法传入了数值 2 ，意思是显示几位小数。于是，这个方法返回了 "10.00" ，即
-以 0 填补了必要的小数位。如果数值本身包含的小数位比指定的还多，那么接近指定的最大小数位的值
-就会舍入，如下面的例子所示。
+这里给 toFixed() 方法传入了数值 2 ，意思是显示几位小数。于是，这个方法返回了 "10.00" ，即以 0 填补了必要的小数位。如果数值本身包含的小数位比指定的还多，那么接近指定的最大小数位的值就会舍入，如下面的例子所示。
 
 ```js
 var num = 10.005;
 alert(num.toFixed(2)); //"10.01"
 ```
-能够自动舍入的特性，使得 toFixed() 方法很适合处理货币值。但需要注意的是，不同浏览器给
-这个方法设定的舍入规则可能会有所不同。在给 toFixed() 传入 0 的情况下，IE8 及之前版本不能正确
-舍入范围在{(-0.94,-0.5],\[ 0.5,0.94)}之间的值。对于这个范围内的值，IE 会返回 0，而不是1 或 1；其他
-浏览器都能返回正确的值。IE9 修复了这个问题。
-toFixed() 方法可以表示带有 0 到 20 个小数位的数值。但这只是标准实现的范
-围，有些浏览器也可能支持更多位数。
-另外可用于格式化数值的方法是 toExponential() ，该方法返回以指数表示法（也称 e 表示法）
-表示的数值的字符串形式。与 toFixed() 一样， toExponential() 也接收一个参数，而且该参数同样
-也是指定输出结果中的小数位数。看下面的例子。
+能够自动舍入的特性，使得 **toFixed() 方法很适合处理货币值** 。但需要注意的是，不**同浏览器给这个方法设定的舍入规则可能会有所不同** 。在给 toFixed() 传入 0 的情况下，IE8 及之前版本不能正确舍入范围在{(-0.94,-0.5],\[ 0.5,0.94)}之间的值。对于这个范围内的值，IE 会返回 0，而不是-1 或 1；其他浏览器都能返回正确的值。IE9 修复了这个问题。
+
+> toFixed() 方法可以表示带有 0 到 20 个小数位的数值。但这只是标准实现的范围，有些浏览器也可能支持更多位数。
+
+另外可用于格式化数值的方法是 **toExponential()** ，该方法返回 **以指数表示法**（也称 e 表示法）表示的数值的字符串形式。与 toFixed() 一样， toExponential() 也接收一个参数，而且该参数同样也是 **指定输出结果中的小数位数** 。看下面的例子。
+
+```js
 var num = 10;
 alert(num.toExponential(1)); //"1.0e+1"
-以上代码输出了 "1.0e+1" ；不过，这么小的数值一般不必使用 e 表示法。如果你想得到表示某个
-数值的最合适的格式，就应该使用 toPrecision() 方法。
-对于一个数值来说， toPrecision() 方法可能会返回固定大小（fixed）格式，也可能返回指数
-（exponential）格式；具体规则是看哪种格式最合适。这个方法接收一个参数，即表示数值的所有数字的
-位数（不包括指数部分）。请看下面的例子。
+```
+以上代码输出了 "1.0e+1" ；不过，这么小的数值一般不必使用 e 表示法。如果你想得到表示 **某个数值的最合适的格式** ，就应该使用 **toPrecision() 方法** 。
+
+对于一个数值来说， **toPrecision() 方法** 可能会返回 **固定大小（fixed）格式** ，也可能返回 **指数（exponential）格式** ；具体规则是看哪种格式最合适。这个方法接收一个参数，即表示 **数值的所有数字的位数**（不包括指数部分）。请看下面的例子。
 
 ```js
 var num = 99;
@@ -1591,17 +1503,13 @@ alert(num.toPrecision(1)); //"1e+2"
 alert(num.toPrecision(2)); //"99"
 alert(num.toPrecision(3)); //"99.0"
 ```
-以上代码首先完成的任务是以一位数来表示 99，结果是 "1e+2" ，即 100。因为一位数无法准确地
-表示 99，因此 toPrecision() 就将它向上舍入为 100，这样就可以使用一位数来表示它了。而接下来的
-用两位数表示 99，当然还是 "99" 。最后，在想以三位数表示 99时， toPrecision() 方法返回了 "99.0" 。
-实际上， toPrecision() 会根据要处理的数值决定到底是调用 toFixed() 还是调用 toExponential() 。
-而这三个方法都可以通过向上或向下舍入，做到以最准确的形式来表示带有正确小数位的值。
-toPrecision() 方法可以表现 1 到 21 位小数。某些浏览器支持的范围更大，但
-这是典型实现的范围。
-与 Boolean 对象类似， Number 对象也以后台方式为数值提供了重要的功能。但与此同时，我们仍
-然不建议直接实例化 Number 类型，而原因与显式创建 Boolean 对象一样。具体来讲，就是在使用
-typeof 和 instanceof 操作符测试基本类型数值与引用类型数值时，得到的结果完全不同，如下面的
-例子所示。
+以上代码首先完成的任务是以一位数来表示 99，结果是 "1e+2" ，即 100。因为一位数无法准确地表示 99，因此 toPrecision() 就将它向上舍入为 100，这样就可以使用一位数来表示它了。而接下来的用两位数表示 99，当然还是 "99" 。最后，在想以三位数表示 99时， toPrecision() 方法返回了 "99.0" 。
+
+实际上， toPrecision() 会根据要处理的数值决定到底是调用 toFixed() 还是调用 toExponential() 。而这三个方法都可以通过向上或向下舍入，做到以最准确的形式来表示带有正确小数位的值。
+
+> toPrecision() 方法可以表现 1 到 21 位小数。某些浏览器支持的范围更大，但这是典型实现的范围。
+
+与 Boolean 对象类似， Number 对象也以后台方式为数值提供了重要的功能。但与此同时，我们仍然不建议直接实例化 Number 类型，而原因与显式创建 Boolean 对象一样。具体来讲，就是在 **使用 typeof 和 instanceof 操作符测试基本类型数值与引用类型数值** 时，**得到的结果完全不同** ，如下面的例子所示。
 
 ```js
 var numberObject = new Number(10);
@@ -1611,8 +1519,7 @@ alert(typeof numberValue); //"number"
 alert(numberObject instanceof Number); //true
 alert(numberValue instanceof Number); //false
 ```
-在使用 typeof 操作符测试基本类型数值时，始终会返回 "number" ，而在测试 Number 对象时，
-则会返回 "object" 。类似地， Number 对象是 Number 类型的实例，而基本类型的数值则不是。
+在使用 typeof 操作符测试基本类型数值时，始终会返回 "number" ，而在测试 Number 对象时，则会返回 "object" 。类似地， Number 对象是 Number 类型的实例，而基本类型的数值则不是。
 
 ###  String 类型
 
@@ -1621,373 +1528,349 @@ String 类型是字符串的对象包装类型，可以像下面这样使用 Str
 ```js
 var stringObject = new String("hello world");
 ```
-String 对象的方法也可以在所有基本的字符串值中访问到。其中，继承的 valueOf() 、 toLocale-
-String() 和 toString() 方法，都返回对象所表示的基本字符串值。
-String 类型的每个实例都有一个 length 属性，表示字符串中包含多个字符。来看下面的例子。
+String 对象的方法也可以在所有基本的字符串值中访问到。其中，继承的 valueOf() 、 toLocaleString() 和 toString() 方法，都返回对象所表示的基本字符串值。
+
+String 类型的每个实例都有一个 **length 属性** ，表示 **字符串中包含多个字符** 。来看下面的例子。
 
 ```js
 var stringValue = "hello world";
 alert(stringValue.length); //"11"
 ```
-这个例子输出了字符串 "hello world" 中的字符数量，即 "11" 。应该注意的是，即使字符串中包
-含双字节字符（不是占一个字节的 ASCII 字符），每个字符也仍然算一个字符。
+这个例子输出了字符串 "hello world" 中的字符数量，即 "11" 。应该注意的是，即使**字符串中包含双字节字符**（不是占一个字节的 ASCII 字符），**每个字符也仍然算一个字符** 。
+
 String 类型提供了很多方法，用于辅助完成对 ECMAScript 中字符串的解析和操作。
 
 - #### 字符方法
-两个用于访问字符串中特定字符的方法是： charAt() 和 charCodeAt() 。这两个方法都接收一个
-参数，即基于 0 的字符位置。其中， charAt() 方法以单字符字符串的形式返回给定位置的那个字符
-（ECMAScript 中没有字符类型）。例如：
 
-```js
-var stringValue = "hello world";
-alert(stringValue.charAt(1)); //"e"
-```
-字符串 "hello world" 位置 1 处的字符是 "e" ，因此调用 charAt(1) 就返回了 "e" 。如果你想得到
-的不是字符而是字符编码，那么就要像下面这样使用 charCodeAt() 了。
+  两个用于 **访问字符串中特定字符** 的方法是： **charAt()** 和 **charCodeAt()** 。这两个方法都接收一个参数，即 **基于 0 的字符位置** 。其中， **charAt() 方法** 以 **单字符字符串** 的形式返回 **给定位置的那个字符**（ECMAScript 中没有字符类型）。例如：
 
-```js
-var stringValue = "hello world";
-alert(stringValue.charCodeAt(1)); // 输出"101"
-```
-这个例子输出的是 "101" ，也就是小写字母 "e" 的字符编码。
-ECMAScript 5还定义了另一个访问个别字符的方法。在支持此方法的浏览器中，可以使用方括号加数
-字索引来访问字符串中的特定字符，如下面的例子所示。
+  ```js
+  var stringValue = "hello world";
+  alert(stringValue.charAt(1)); //"e"
+  ```
+  字符串 "hello world" 位置 1 处的字符是 "e" ，因此调用 charAt(1) 就返回了 "e" 。如果你想得到的不是字符而是 **字符编码** ，那么就要像下面这样使用 **charCodeAt()** 了。
 
-```js
-var stringValue = "hello world";
-alert(stringValue[1]); //"e"
-```
-使用方括号表示法访问个别字符的语法得到了 IE8 及 Firefox、Safari、Chrome 和 Opera 所有版本的
-支持。如果是在 IE7 及更早版本中使用这种语法，会返回 undefined 值（尽管根本不是特殊的
-undefined 值）。
+  ```js
+  var stringValue = "hello world";
+  alert(stringValue.charCodeAt(1)); // 输出"101"
+  ```
+  这个例子输出的是 "101" ，也就是小写字母 "e" 的字符编码。
+
+  ECMAScript 5 还定义了另一个访问个别字符的方法。在支持此方法的浏览器中，可以使用**方括号加数字索引** 来 **访问字符串中的特定字符**，如下面的例子所示。
+
+  ```js
+  var stringValue = "hello world";
+  alert(stringValue[1]); //"e"
+  ```
+  使用方括号表示法访问个别字符的语法得到了 IE8 及 Firefox、Safari、Chrome 和 Opera 所有版本的支持。如果是在 IE7 及更早版本中使用这种语法，会返回 undefined 值（尽管根本不是特殊的 undefined 值）。
 
 - #### 字符串操作方法
 
-下面介绍与操作字符串有关的几个方法。第一个就是 concat() ，用于将一或多个字符串拼接起来，
-返回拼接得到的新字符串。先来看一个例子。
+  下面介绍与操作字符串有关的几个方法。第一个就是 **concat()** ，用于 **将一或多个字符串拼接起来** ，返回 **拼接得到的新字符串** 。先来看一个例子。
 
-```js
-var stringValue = "hello ";
-var result = stringValue.concat("world");
-alert(result); //"hello world"
-alert(stringValue); //"hello"
-```
-在这个例子中，通过 stringValue 调用 concat() 方法返回的结果是 "hello world" ——但
-stringValue 的值则保持不变。实际上， concat() 方法可以接受任意多个参数，也就是说可以通过它
-拼接任意多个字符串。再看一个例子：
+  ```js
+  var stringValue = "hello ";
+  var result = stringValue.concat("world");
+  alert(result); //"hello world"
+  alert(stringValue); //"hello"
+  ```
+  在这个例子中，通过 stringValue 调用 concat() 方法返回的结果是 "hello world" ——但 stringValue 的值则保持不变。实际上， **concat() 方法** 可以接受 **任意多个参数** ，也就是说可以通过它 **拼接任意多个字符串** 。再看一个例子：
 
-```js
-var stringValue = "hello ";
-var result = stringValue.concat("world", "!");
-alert(result); //"hello world!"
-alert(stringValue); //"hello"
-```
-这个例子将 "world" 和 "!" 拼接到了 "hello" 的末尾。虽然 concat() 是专门用来拼接字符串的方
-法，但实践中使用更多的还是加号操作符（+）。而且，使用加号操作符在大多数情况下都比使用 concat()
-方法要简便易行（特别是在拼接多个字符串的情况下）。
-ECMAScript还提供了三个基于子字符串创建新字符串的方法： slice() 、 substr() 和 substring() 。
-这三个方法都会返回被操作字符串的一个子字符串，而且也都接受一或两个参数。第一个参数指定子字
-符串的开始位置，第二个参数（在指定的情况下）表示子字符串到哪里结束。具体来说， slice() 和
-substring() 的第二个参数指定的是子字符串最后一个字符后面的位置。而 substr() 的第二个参数指定的则是返回的字符个数。如果没有给这些方法传递第二个参数，则将字符串的长度作为结束位置。与
-concat() 方法一样， slice() 、 substr() 和 substring() 也不会修改字符串本身的值——它们只是
-返回一个基本类型的字符串值，对原始字符串没有任何影响。请看下面的例子。
+  ```js
+  var stringValue = "hello ";
+  var result = stringValue.concat("world", "!");
+  alert(result); //"hello world!"
+  alert(stringValue); //"hello"
+  ```
+  这个例子将 "world" 和 "!" 拼接到了 "hello" 的末尾。虽然 concat() 是专门用来拼接字符串的方法，但实践中使用更多的还是加号操作符（+）。而且，**使用加号操作符在大多数情况下都比使用 concat()方法要简便易行**（特别是在拼接多个字符串的情况下）。
 
-```js
-var stringValue = "hello world";
-alert(stringValue.slice(3)); //"lo world"
-alert(stringValue.substring(3)); //"lo world"
-alert(stringValue.substr(3)); //"lo world"
-alert(stringValue.slice(3, 7)); //"lo w"
-alert(stringValue.substring(3,7)); //"lo w"
-alert(stringValue.substr(3, 7)); //"lo worl"
-```
-这个例子比较了以相同方式调用 slice() 、 substr() 和 substring() 得到的结果，而且多数情
-况下的结果是相同的。在只指定一个参数 3 的情况下，这三个方法都返回 "lo world" ，因为 "hello"
-中的第二个 "l" 处于位置 3。而在指定两个参数 3 和 7 的情况下， slice() 和 substring() 返回 "lo w"
-（ "world" 中的 "o" 处于位置 7，因此结果中不包含 "o" ），但 substr() 返回 "lo worl" ，因为它的第二
-个参数指定的是要返回的字符个数。
-在传递给这些方法的参数是负值的情况下，它们的行为就不尽相同了。其中， slice() 方法会将传
-入的负值与字符串的长度相加， substr() 方法将负的第一个参数加上字符串的长度，而将负的第二个
-参数转换为 0。最后， substring() 方法会把所有负值参数都转换为 0。下面来看例子。
+  ECMAScript还提供了三个 **基于子字符串创建新字符串** 的方法： **slice()** 、 **substr()** 和 **substring()** 。这三个方法都会返回 **被操作字符串的一个子字符串** ，而且也都接受一或两个参数。第一个参数指定 **子字符串的开始位置** ，第二个参数（在指定的情况下）表示 **子字符串到哪里结束** 。具体来说， slice() 和 substring() 的第二个参数指定的是 **子字符串最后一个字符后面的位置** 。而 substr() 的第二个参数指定的则是返回的 **字符个数** 。如果 **没有给这些方法传递第二个参数** ，则 **将字符串的长度作为结束位置** 。与 concat() 方法一样， slice() 、 substr() 和 substring() 也 **不会修改字符串本身的值** ——它们只是
+  返回 **一个基本类型的字符串值，对原始字符串没有任何影响** 。请看下面的例子。
 
-```js
-var stringValue = "hello world";
-alert(stringValue.slice(-3)); //"rld"
-alert(stringValue.substring(-3)); //"hello world"
-alert(stringValue.substr(-3)); //"rld"
-alert(stringValue.slice(3, -4)); //"lo w"
-alert(stringValue.substring(3, -4)); //"hel"
-alert(stringValue.substr(3, -4)); //"" （空字符串）
-```
-这个例子清晰地展示了上述三个方法之间的不同行为。在给 slice() 和 substr() 传递一个负值
-参数时，它们的行为相同。这是因为 -3 会被转换为 8 （字符串长度加参数 11+(3)=8），实际上相当
-于调用了 slice(8) 和 substr(8) 。但 substring() 方法则返回了全部字符串，因为它将 -3 转换
-成了 0 。
-IE 的 JavaScript 实现在处理向 substr() 方法传递负值的情况时存在问题，它会
-返回原始的字符串。IE9 修复了这个问题。
-当第二个参数是负值时，这三个方法的行为各不相同。 slice() 方法会把第二个参数转换为 7，这
-就相当于调用了 slice(3,7) ，因此返回 "lo w" 。 substring() 方法会把第二个参数转换为 0，使调
-用变成了 substring(3,0) ，而由于这个方法会将较小的数作为开始位置，将较大的数作为结束位置，
-因此最终相当于调用了 substring(0,3) 。 substr() 也会将第二个参数转换为 0，这也就意味着返回
-包含零个字符的字符串，也就是一个空字符串。
+  ```js
+  var stringValue = "hello world";
+  alert(stringValue.slice(3)); //"lo world"
+  alert(stringValue.substring(3)); //"lo world"
+  alert(stringValue.substr(3)); //"lo world"
+  alert(stringValue.slice(3, 7)); //"lo w"
+  alert(stringValue.substring(3,7)); //"lo w"
+  alert(stringValue.substr(3, 7)); //"lo worl"
+  ```
+  这个例子比较了以相同方式调用 slice() 、 substr() 和 substring() 得到的结果，而且多数情况下的结果是相同的。在只指定一个参数 3 的情况下，这三个方法都返回 "lo world" ，因为 "hello"中的第二个 "l" 处于位置 3。而在指定两个参数 3 和 7 的情况下， slice() 和 substring() 返回 "lo w"（ "world" 中的 "o" 处于位置 7，因此结果中不包含 "o" ），但 substr() 返回 "lo worl" ，因为它的第二个参数指定的是要返回的字符个数。
+
+  在传递给这些方法的参数是 **负值** 的情况下，它们的行为就不尽相同了。其中， **slice() 方法** 会将 **传入的负值与字符串的长度相加** ， **substr() 方法** 将 **负的第一个参数加上字符串的长度** ，而将 **负的第二个参数转换为 0** 。最后， **substring() 方法** 会把 **所有负值参数都转换为 0** 。下面来看例子。
+
+  ```js
+  var stringValue = "hello world";
+  alert(stringValue.slice(-3)); //"rld"
+  alert(stringValue.substring(-3)); //"hello world"
+  alert(stringValue.substr(-3)); //"rld"
+  alert(stringValue.slice(3, -4)); //"lo w"
+  alert(stringValue.substring(3, -4)); //"hel"
+  alert(stringValue.substr(3, -4)); //"" （空字符串）
+  ```
+  这个例子清晰地展示了上述三个方法之间的不同行为。在给 slice() 和 substr() 传递一个负值参数时，它们的行为相同。这是因为 -3 会被转换为 8 （字符串长度加参数 11+(-3)=8），实际上相当于调用了 slice(8) 和 substr(8) 。但 substring() 方法则返回了全部字符串，因为它将 -3 转换成了 0 。
+
+  > IE 的 JavaScript 实现在处理向 substr() 方法传递负值的情况时存在问题，它会
+  返回原始的字符串。IE9 修复了这个问题。
+
+  当第二个参数是负值时，这三个方法的行为各不相同。 slice() 方法会把第二个参数转换为 7，这就相当于调用了 slice(3,7) ，因此返回 "lo w" 。 substring() 方法会把第二个参数转换为 0，使调用变成了 substring(3,0) ，而由于这个方法会将较小的数作为开始位置，将较大的数作为结束位置，因此最终相当于调用了 substring(0,3) 。substr() 也会将第二个参数转换为 0，这也就意味着返回包含零个字符的字符串，也就是一个空字符串。
 
 - #### 字符串位置方法
-有两个可以从字符串中查找子字符串的方法： indexOf() 和 lastIndexOf() 。这两个方法都是从
-一个字符串中搜索给定的子字符串，然后返子字符串的位置（如果没有找到该子字符串，则返回 -1 ）。
-这两个方法的区别在于： indexOf() 方法从字符串的开头向后搜索子字符串，而 lastIndexOf() 方法
-是从字符串的末尾向前搜索子字符串。还是来看一个例子吧。
 
-```js
-var stringValue = "hello world";
-alert(stringValue.indexOf("o")); //4
-alert(stringValue.lastIndexOf("o")); //7
-```
-子字符串 "o" 第一次出现的位置是 4，即 "hello" 中的 "o" ；最后一次出现的位置是 7，即 "world" 中的
-"o" 。如果 "o" 在这个字符串中仅出现了一次，那么 indexOf() 和 lastIndexOf() 会返回相同的位置值。
-这两个方法都可以接收可选的第二个参数，表示从字符串中的哪个位置开始搜索。换句话说，
-indexOf() 会从该参数指定的位置向后搜索，忽略该位置之前的所有字符；而 lastIndexOf() 则会从
-指定的位置向前搜索，忽略该位置之后的所有字符。看下面的例子。
+  有两个可以从字符串中查找子字符串的方法： **indexOf()** 和 **lastIndexOf()** 。这两个方法都是 **从一个字符串中搜索给定的子字符串** ，然后 **返子字符串的位置**（如果没有找到该子字符串，则返回 -1 ）。
 
-```js
-var stringValue = "hello world";
-alert(stringValue.indexOf("o", 6)); //7
-alert(stringValue.lastIndexOf("o", 6)); //4
-```
-在将第二个参数 6 传递给这两个方法之后，得到了与前面例子相反的结果。这一次，由于
-indexOf() 是从位置 6（字母 "w" ）开始向后搜索，结果在位置 7 找到了 "o" ，因此它返回 7。而 last-
-IndexOf() 是从位置 6 开始向前搜索。结果找到了 "hello" 中的 "o" ，因此它返回 4。在使用第二个
-参数的情况下，可以通过循环调用 indexOf() 或 lastIndexOf() 来找到所有匹配的子字符串，如下
-面的例子所示：
+  这两个方法的区别在于： **indexOf() 方法从字符串的开头向后搜索子字符串** ，而 **lastIndexOf() 方法是从字符串的末尾向前搜索子字符串** 。还是来看一个例子吧。
 
-```js
-var stringValue = "Lorem ipsum dolor sit amet, consectetur adipisicing elit";
-var positions = new Array();
-var pos = stringValue.indexOf("e");
-while(pos > -1){
-positions.push(pos);
-pos = stringValue.indexOf("e", pos + 1);
-}
-alert(positions); //"3,24,32,35,52"
-```
-这个例子通过不断增加 indexOf() 方法开始查找的位置，遍历了一个长字符串。在循环之外，首
-先找到了 "e" 在字符串中的初始位置；而进入循环后，则每次都给 indexOf() 传递上一次的位置加 1。
-这样，就确保了每次新搜索都从上一次找到的子字符串的后面开始。每次搜索返回的位置依次被保存在
-数组 positions 中，以便将来使用。
+  ```js
+  var stringValue = "hello world";
+  alert(stringValue.indexOf("o")); //4
+  alert(stringValue.lastIndexOf("o")); //7
+  ```
+  子字符串 "o" 第一次出现的位置是 4，即 "hello" 中的 "o" ；最后一次出现的位置是 7，即 "world" 中的"o" 。如果 "o" 在这个字符串中仅出现了一次，那么 indexOf() 和 lastIndexOf() 会返回相同的位置值。
+
+  这两个方法都可以接收可选的第二个参数，表示从字符串中的哪个位置开始搜索。换句话说，indexOf() 会从该参数指定的位置向后搜索，忽略该位置之前的所有字符；而 lastIndexOf() 则会从指定的位置向前搜索，忽略该位置之后的所有字符。看下面的例子。
+
+  ```js
+  var stringValue = "hello world";
+  alert(stringValue.indexOf("o", 6)); //7
+  alert(stringValue.lastIndexOf("o", 6)); //4
+  ```
+  在将第二个参数 6 传递给这两个方法之后，得到了与前面例子相反的结果。这一次，由于 indexOf() 是从位置 6（字母 "w" ）开始向后搜索，结果在位置 7 找到了 "o" ，因此它返回 7。而 lastIndexOf() 是从位置 6 开始向前搜索。结果找到了 "hello" 中的 "o" ，因此它返回 4。在使用第二个参数的情况下，**可以通过循环调用 indexOf() 或 lastIndexOf() 来找到所有匹配的子字符串** ，如下面的例子所示：
+
+  ```js
+  var stringValue = "Lorem ipsum dolor sit amet, consectetur adipisicing elit";
+  var positions = new Array();
+  var pos = stringValue.indexOf("e");
+
+  while(pos > -1){
+    positions.push(pos);
+    pos = stringValue.indexOf("e", pos + 1);
+  }
+
+  alert(positions); //"3,24,32,35,52"
+  ```
+  这个例子通过不断增加 indexOf() 方法开始查找的位置，遍历了一个长字符串。在循环之外，首先找到了 "e" 在字符串中的初始位置；而进入循环后，则每次都给 indexOf() 传递上一次的位置加 1。
+
+  这样，就确保了 **每次新搜索都从上一次找到的子字符串的后面开始** 。每次搜索返回的位置依次被保存在数组 positions 中，以便将来使用。
 
 - #### trim() 方法
 
-ECMAScript 5 为所有字符串定义了 trim() 方法。这个方法会创建一个字符串的副本，删除前置及
-后缀的所有空格，然后返回结果。例如：
+  ECMAScript 5 为所有字符串定义了 **trim() 方法** 。这个方法会 **创建一个字符串的副本** ，**删除前置及后缀的所有空格** ，然后 **返回结果** 。例如：
 
-```js
-var stringValue = " hello world ";
-var trimmedStringValue = stringValue.trim();
-alert(stringValue); //" hello world "
-alert(trimmedStringValue); //"hello world"
-```
-由于 trim() 返回的是字符串的副本，所以原始字符串中的前置及后缀空格会保持不变。支持这个
-方法的浏览器有 IE9+、Firefox 3.5+、Safari 5+、Opera 10.5+和 Chrome。此外，Firefox 3.5+、Safari 5+
-和 Chrome 8+还支持非标准的 trimLeft() 和 trimRight() 方法，分别用于删除字符串开头和末尾的
-空格。
+  ```js
+  var stringValue = " hello world ";
+  var trimmedStringValue = stringValue.trim();
+  alert(stringValue); //" hello world "
+  alert(trimmedStringValue); //"hello world"
+  ```
+  由于 trim() 返回的是字符串的副本，所以原始字符串中的前置及后缀空格会保持不变。支持这个方法的浏览器有 IE9+、Firefox 3.5+、Safari 5+、Opera 10.5+和 Chrome。此外，Firefox 3.5+、Safari 5+和 Chrome 8+还支持非标准的 **trimLeft()** 和 **trimRight()** 方法，分别 **用于删除字符串开头和末尾的空格** 。
 
 - #### 字符串大小写转换方法
 
-接下来我们要介绍的是一组与大小写转换有关的方法。ECMAScript 中涉及字符串大小写转换的方
-法有 4 个： toLowerCase() 、 toLocaleLowerCase() 、 toUpperCase() 和 toLocaleUpperCase() 。
-其中， toLowerCase() 和 toUpperCase() 是两个经典的方法，借鉴自 java.lang.String 中的同名
-方法。而 toLocaleLowerCase() 和 toLocaleUpperCase() 方法则是针对特定地区的实现。对有些地
-区来说，针对地区的方法与其通用方法得到的结果相同，但少数语言（如土耳其语）会为 Unicode 大小
-写转换应用特殊的规则，这时候就必须使用针对地区的方法来保证实现正确的转换。以下是几个例子。
+  接下来我们要介绍的是一组与大小写转换有关的方法。ECMAScript 中涉及字符串大小写转换的方法有 4 个： **toLowerCase()** 、 **toLocaleLowerCase()** 、 **toUpperCase()** 和 **toLocaleUpperCase()** 。
 
-```js
-var stringValue = "hello world";
-alert(stringValue.toLocaleUpperCase()); //"HELLO WORLD"
-alert(stringValue.toUpperCase()); //"HELLO WORLD"
-alert(stringValue.toLocaleLowerCase()); //"hello world"
-alert(stringValue.toLowerCase()); //"hello world"
-```
-以上代码调用的 toLocaleUpperCase() 和 toUpperCase() 都返回了 "HELLO WORLD" ，就像调用
-toLocaleLowerCase() 和 toLowerCase() 都返回 "hello world" 一样。一般来说，在不知道自己的
-代码将在哪种语言环境中运行的情况下，还是使用针对地区的方法更稳妥一些。
+  其中， toLowerCase() 和 toUpperCase() 是两个经典的方法，借鉴自 java.lang.String 中的同名方法。而 **toLocaleLowerCase()** 和 **toLocaleUpperCase()** 方法则是 **针对特定地区的实现** 。对有些地区来说，针对地区的方法与其通用方法得到的结果相同，但少数语言（如土耳其语）会为 Unicode 大小写转换应用特殊的规则，这时候就必须使用针对地区的方法来保证实现正确的转换。以下是几个例子。
+
+  ```js
+  var stringValue = "hello world";
+  alert(stringValue.toLocaleUpperCase()); //"HELLO WORLD"
+  alert(stringValue.toUpperCase()); //"HELLO WORLD"
+  alert(stringValue.toLocaleLowerCase()); //"hello world"
+  alert(stringValue.toLowerCase()); //"hello world"
+  ```
+  以上代码调用的 toLocaleUpperCase() 和 toUpperCase() 都返回了 "HELLO WORLD" ，就像调用 toLocaleLowerCase() 和 toLowerCase() 都返回 "hello world" 一样。一般来说，在不知道自己的代码将在哪种语言环境中运行的情况下，还是使用针对地区的方法更稳妥一些。
 
 - #### 字符串的模式匹配方法
 
-String 类型定义了几个用于在字符串中匹配模式的方法。第一个方法就是 match() ，在字符串上
-调用这个方法，本质上与调用 RegExp 的 exec() 方法相同。 match() 方法只接受一个参数，要么是一
-个正则表达式，要么是一个 RegExp 对象。来看下面的例子。
+  String 类型定义了几个用于 **在字符串中匹配模式** 的方法。第一个方法就是 **match()** ，在字符串上调用这个方法，本质上 **与调用 RegExp 的 exec() 方法相同** 。 **match() 方法** 只接受一个参数，要么是一个 **正则表达式** ，要么是 一个 **RegExp 对象** 。来看下面的例子。
 
-```js
-var text = "cat, bat, sat, fat";
-var pattern = /.at/;
-//与 pattern.exec(text)相同
-var matches = text.match(pattern);
-alert(matches.index); //0
-alert(matches[0]); //"cat"
-alert(pattern.lastIndex); //0
-```
-本例中的 match() 方法返回了一个数组；如果是调用 RegExp 对象的 exec() 方法并传递本例中的
-字符串作为参数，那么也会得到与此相同的数组：数组的第一项是与整个模式匹配的字符串，之后的每
-一项（如果有）保存着与正则表达式中的捕获组匹配的字符串。
+  ```js
+  var text = "cat, bat, sat, fat";
+  var pattern = /.at/;
 
-另一个用于查找模式的方法是 search() 。这个方法的唯一参数与 match() 方法的参数相同：由字
-符串或 RegExp 对象指定的一个正则表达式。 search() 方法返回字符串中第一个匹配项的索引；如果没
-有找到匹配项，则返回 -1 。而且， search() 方法始终是从字符串开头向后查找模式。看下面的例子。
+  //与 pattern.exec(text)相同
+  var matches = text.match(pattern);
+  alert(matches.index); //0
+  alert(matches[0]); //"cat"
+  alert(pattern.lastIndex); //0
+  ```
+  本例中的 match() 方法返回了一个数组；如果是调用 RegExp 对象的 exec() 方法并传递本例中的字符串作为参数，那么也会得到与此相同的数组：**数组的第一项是与整个模式匹配的字符串** ，**之后的每一项（如果有）保存着与正则表达式中的捕获组匹配的字符串** 。
 
-```js
-var text = "cat, bat, sat, fat";
-var pos = text.search(/at/);
-alert(pos); //1
-```
-这个例子中的 search() 方法返回 1 ，即 "at" 在字符串中第一次出现的位置。
-为了简化替换子字符串的操作，ECMAScript 提供了 replace() 方法。这个方法接受两个参数：第
-一个参数可以是一个 RegExp 对象或者一个字符串（这个字符串不会被转换成正则表达式），第二个参
-数可以是一个字符串或者一个函数。如果第一个参数是字符串，那么只会替换第一个子字符串。要想替
-换所有子字符串，唯一的办法就是提供一个正则表达式，而且要指定全局（ g ）标志，如下所示。
+  另一个用于查找模式的方法是 **search()** 。这个方法的唯一参数与 match() 方法的参数相同：由字符串或 RegExp 对象指定的一个 **正则表达式** 。 **search() 方法返回字符串中第一个匹配项的索引** ；如果 **没有找到匹配项** ，则 **返回 -1** 。而且， search() 方法始终是 **从字符串开头向后查找模式** 。看下面的例子。
 
-```js
-var text = "cat, bat, sat, fat";
-var result = text.replace("at", "ond");
-alert(result); //"cond, bat, sat, fat"
-result = text.replace(/at/g, "ond");
-alert(result); //"cond, bond, sond, fond"
-```
-在这个例子中，首先传入 replace() 方法的是字符串 "at" 和替换用的字符串 "ond" 。替换的结果
-是把 "cat" 变成了 "cond" ，但字符串中的其他字符并没有受到影响。然后，通过将第一个参数修改为带
-有全局标志的正则表达式，就将全部 "at" 都替换成了 "ond" 。
-如果第二个参数是字符串，那么还可以使用一些特殊的字符序列，将正则表达式操作得到的值插入
-到结果字符串中。下表列出了 ECMAScript 提供的这些特殊的字符序列。
+  ```js
+  var text = "cat, bat, sat, fat";
+  var pos = text.search(/at/);
+  alert(pos); //1
+  ```
+  这个例子中的 search() 方法返回 1 ，即 "at" 在字符串中第一次出现的位置。
 
-![表格]()
+  为了简化 **替换子字符串** 的操作，ECMAScript 提供了 **replace() 方法** 。这个方法接受两个参数：第一个参数可以是一个 **RegExp 对象** 或者 **一个字符串**（这个字符串不会被转换成正则表达式），第二个参数可以是一个 **字符串** 或者一个 **函数** 。如果第一个参数是字符串，那么只会替换第一个子字符串。**要想替换所有子字符串，唯一的办法就是提供一个正则表达式，而且要指定全局（ g ）标志** ，如下所示。
 
-通过这些特殊的字符序列，可以使用最近一次匹配结果中的内容，如下面的例子所示。
+  ```js
+  var text = "cat, bat, sat, fat";
+  var result = text.replace("at", "ond");
+  alert(result); //"cond, bat, sat, fat"
 
-```js
-var text = "cat, bat, sat, fat";
-result = text.replace(/(.at)/g, "word ($1)");
-alert(result); //word (cat), word (bat), word (sat), word (fat)
-```
+  result = text.replace(/at/g, "ond");
+  alert(result); //"cond, bond, sond, fond"
+  ```
+  在这个例子中，首先传入 replace() 方法的是字符串 "at" 和替换用的字符串 "ond" 。替换的结果是把 "cat" 变成了 "cond" ，但字符串中的其他字符并没有受到影响。然后，通过将第一个参数修改为带有全局标志的正则表达式，就将全部 "at" 都替换成了 "ond" 。
 
-在此，每个以 "at" 结尾的单词都被替换了，替换结果是 "word" 后跟一对圆括号，而圆括号中是被
-字符序列 $1 所替换的单词。
-replace() 方法的第二个参数也可以是一个函数。在只有一个匹配项（即与模式匹配的字符串）的
-情况下，会向这个函数传递 3 个参数：模式的匹配项、模式匹配项在字符串中的位置和原始字符串。在
-正则表达式中定义了多个捕获组的情况下，传递给函数的参数依次是模式的匹配项、第一个捕获组的匹
-配项、第二个捕获组的匹配项……，但最后两个参数仍然分别是模式的匹配项在字符串中的位置和原始
-字符串。这个函数应该返回一个字符串，表示应该被替换的匹配项使用函数作为 replace() 方法的第
-二个参数可以实现更加精细的替换操作，请看下面这个例子。
+  如果第二个参数是字符串，那么还可以使用一些特殊的字符序列，**将正则表达式操作得到的值插入到结果字符串中** 。下表列出了 ECMAScript 提供的这些特殊的字符序列。
 
-```js
-function htmlEscape(text){
-return text.replace(/[<>"&]/g, function(match, pos, originalText){
-switch(match){
-case "<":
-return "&lt;";
-case ">":
-return "&gt;";
-case "&":
-return "&amp;";
-case "\"":
-return "&quot;";
-}
-});
-}
-alert(htmlEscape("<p class=\"greeting\">Hello world!</p>"));
-//&lt;p class=&quot;greeting&quot;&gt;Hello world!&lt;/p&gt;
-```
-这里，我们为插入 HTML 代码定义了函数 htmlEscape() ，这个函数能够转义 4 个字符：小于号、
-大于号、和号以及双引号。实现这种转义的最简单方式，就是使用正则表达式查找这几个字符，然后定
-义一个能够针对每个匹配的字符返回特定 HTML 实体的函数。
-最后一个与模式匹配有关的方法是 split() ，这个方法可以基于指定的分隔符将一个字符串分割成
-多个子字符串，并将结果放在一个数组中。分隔符可以是字符串，也可以是一个 RegExp 对象（这个方
-法不会将字符串看成正则表达式）。 split() 方法可以接受可选的第二个参数，用于指定数组的大小，
-以便确保返回的数组不会超过既定大小。请看下面的例子。
+  ![特殊的字符序列](http://p9myzkds7.bkt.clouddn.com/JavaScript-reference-type/%E7%89%B9%E6%AE%8A%E7%9A%84%E5%AD%97%E7%AC%A6%E5%BA%8F%E5%88%97.png)
 
-```js
-var colorText = "red,blue,green,yellow";
-var colors1 = colorText.split(","); //["red", "blue", "green", "yellow"]
-var colors2 = colorText.split(",", 2); //["red", "blue"]
-var colors3 = colorText.split(/[^\,]+/); //["", ",", ",", ",", ""]
-```
-在这个例子中， colorText 是逗号分隔的颜色名字符串。基于该字符串调用 split(",") 会得到
-一个包含其中颜色名的数组，用于分割字符串的分隔符是逗号。为了将数组截短，让它只包含两项，可
-以为 split() 方法传递第二个参数 2。最后，通过使用正则表达式，还可以取得包含逗号字符的数组。
-需要注意的是，在最后一次调用 split() 返回的数组中，第一项和最后一项是两个空字符串。之所以会这样，是因为通过正则表达式指定的分隔符出现在了字符串的开头（即子字符串 "red" ）和末尾（即子
-字符串 "yellow" ）。
-对 split() 中正则表达式的支持因浏览器而异。尽管对于简单的模式没有什么差别，但对于未发现
-匹配项以及带有捕获组的模式，匹配的行为就不大相同了。以下是几种常见的差别。
-  IE8 及之前版本会忽略捕获组。ECMA-262 规定应该把捕获组拼接到结果数组中。IE9 能正确地
-在结果中包含捕获组。
-  Firefox 3.6 及之前版本在捕获组未找到匹配项时，会在结果数组中包含空字符串；ECMA-262 规
-定没有匹配项的捕获组在结果数组中应该用 undefined 表示。
-在正则表达式中使用捕获组时还有其他微妙的差别。在使用这种正则表达式时，一定要在各种浏览
-器下多做一些测试。
-要了解关于 split() 方法以及捕获组的跨浏览器问题的更多讨论，请参考 Steven
-Levithan 的文章“JavaScript split bugs：Fixed!”（http://blog.stevenlevithan.com/archives/
-cross-browser-split）。
+  通过这些特殊的字符序列，可以使用最近一次匹配结果中的内容，如下面的例子所示。
+
+  ```js
+  var text = "cat, bat, sat, fat";
+  result = text.replace(/(.at)/g, "word ($1)");
+  alert(result); //word (cat), word (bat), word (sat), word (fat)
+  ```
+
+  在此，每个以 "at" 结尾的单词都被替换了，替换结果是 "word" 后跟一对圆括号，而圆括号中是被字符序列 $1 所替换的单词。
+
+  replace() 方法的第二个参数也可以是一个函数。在只有一个匹配项（即与模式匹配的字符串）的情况下，会向这个函数传递 3 个参数：模式的匹配项、模式匹配项在字符串中的位置和原始字符串。在正则表达式中定义了多个捕获组的情况下，传递给函数的参数依次是模式的匹配项、第一个捕获组的匹配项、第二个捕获组的匹配项……，但最后两个参数仍然分别是模式的匹配项在字符串中的位置和原始字符串。这个函数应该返回一个字符串，表示应该被替换的匹配项使用函数作为 replace() 方法的第二个参数可以实现更加精细的替换操作，请看下面这个例子。
+
+  ```js
+  function htmlEscape(text){
+    return text.replace(/[<>"&]/g, function(match, pos, originalText){
+      switch(match){
+        case "<":
+          return "&lt;";
+        case ">":
+          return "&gt;";
+        case "&":
+          return "&amp;";
+        case "\"":
+          return "&quot;";
+      }
+    });
+  }
+  alert(htmlEscape("<p class=\"greeting\">Hello world!</p>"));
+  //&lt;p class=&quot;greeting&quot;&gt;Hello world!&lt;/p&gt;
+  ```
+  这里，我们为插入 HTML 代码定义了函数 htmlEscape() ，这个函数能够转义 4 个字符：小于号、大于号、和号以及双引号。实现这种转义的最简单方式，就是使用正则表达式查找这几个字符，然后定义一个能够针对每个匹配的字符返回特定 HTML 实体的函数。
+
+  最后一个与模式匹配有关的方法是 **split()** ，这个方法可以 **基于指定的分隔符将一个字符串分割成多个子字符串** ，并 **将结果放在一个数组中** 。分隔符可以是 **字符串**，也可以是一个 **RegExp 对象**（这个方法不会将字符串看成正则表达式）。 split() 方法可以接受可选的第二个参数，用于 **指定数组的大小** ，**以便确保返回的数组不会超过既定大小** 。请看下面的例子。
+
+  ```js
+  var colorText = "red,blue,green,yellow";
+  var colors1 = colorText.split(","); //["red", "blue", "green", "yellow"]
+  var colors2 = colorText.split(",", 2); //["red", "blue"]
+  var colors3 = colorText.split(/[^\,]+/); //["", ",", ",", ",", ""]
+  ```
+  在这个例子中， colorText 是逗号分隔的颜色名字符串。基于该字符串调用 split(",") 会得到一个包含其中颜色名的数组，用于分割字符串的分隔符是逗号。为了将数组截短，让它只包含两项，可以为 split() 方法传递第二个参数 2。最后，通过使用正则表达式，还可以取得包含逗号字符的数组。
+
+  需要注意的是，在最后一次调用 split() 返回的数组中，第一项和最后一项是两个空字符串。之所以会这样，是因为通过正则表达式指定的分隔符出现在了字符串的开头（即子字符串 "red" ）和末尾（即子字符串 "yellow" ）。
+
+  对 split() 中正则表达式的支持因浏览器而异。尽管对于简单的模式没有什么差别，但对于未发现匹配项以及带有捕获组的模式，匹配的行为就不大相同了。以下是几种常见的差别。
+
+  - IE8 及之前版本会忽略捕获组。ECMA-262 规定应该把捕获组拼接到结果数组中。IE9 能正确地在结果中包含捕获组。
+  - Firefox 3.6 及之前版本在捕获组未找到匹配项时，会在结果数组中包含空字符串；ECMA-262 规定没有匹配项的捕获组在结果数组中应该用 undefined 表示。
+
+  在正则表达式中使用捕获组时还有其他微妙的差别。在使用这种正则表达式时，一定要在各种浏览器下多做一些测试。
+
+  > 要了解关于 split() 方法以及捕获组的跨浏览器问题的更多讨论，请参考 Steven Levithan 的文章“JavaScript split bugs： Fixed!”（ http://blog.stevenlevithan.com/archives/cross-browser-split ）。
 
 - #### localeCompare() 方法
 
-与操作字符串有关的最后一个方法是 localeCompare() ，这个方法比较两个字符串，并返回下列
-值中的一个：
-  如果字符串在字母表中应该排在字符串参数之前，则返回一个负数（大多数情况下是 -1 ，具体
-的值要视实现而定）；
-  如果字符串等于字符串参数，则返回 0 ；
-  如果字符串在字母表中应该排在字符串参数之后，则返回一个正数（大多数情况下是 1 ，具体的
-值同样要视实现而定）。
-下面是几个例子。
+  与操作字符串有关的最后一个方法是 **localeCompare()** ，这个方法 **比较两个字符串** ，并返回下列值中的一个：
 
-```js
-var stringValue = "yellow";
-alert(stringValue.localeCompare("brick")); //1
-alert(stringValue.localeCompare("yellow")); //0
-alert(stringValue.localeCompare("zoo")); //-1
-```
-这个例子比较了字符串 "yellow" 和另外几个值： "brick" 、 "yellow" 和 "zoo" 。因为 "brick" 在
-字母表中排在 "yellow" 之前，所以 localeCompare() 返回了 1 ；而 "yellow" 等于 "yellow" ，所以
-localeCompare() 返回了 0 ；最后， "zoo" 在字母表中排在 "yellow" 后面，所以 localeCompare()
-返回了 -1 。再强调一次，因为 localeCompare() 返回的数值取决于实现，所以最好是像下面例子所示
-的这样使用这个方法。
+  - 如果字符串在字母表中应该排在字符串参数之前，则返回一个负数（大多数情况下是 -1 ，具体的值要视实现而定）；
+  - 如果字符串等于字符串参数，则返回 0 ；
+  - 如果字符串在字母表中应该排在字符串参数之后，则返回一个正数（大多数情况下是 1 ，具体的值同样要视实现而定）。
 
-```js
-function determineOrder(value) {
-var result = stringValue.localeCompare(value);
-if (result < 0){
-alert("The string 'yellow' comes before the string '" + value + "'.");
-} else if (result > 0) {
-alert("The string 'yellow' comes after the string '" + value + "'.");
-} else {
-alert("The string 'yellow' is equal to the string '" + value + "'.");
-}
-}
-determineOrder("brick");
-determineOrder("yellow");
-determineOrder("zoo");
-```
-使用这种结构，就可以确保自己的代码在任何实现中都可以正确地运行了。
-localeCompare() 方法比较与众不同的地方，就是实现所支持的地区（国家和语言）决定了这个
-方法的行为。比如，美国以英语作为 ECMAScript 实现的标准语言，因此 localeCompare() 就是区分
-大小写的，于是大写字母在字母表中排在小写字母前头就成为了一项决定性的比较规则。不过，在其他
-地区恐怕就不是这种情况了。
+  下面是几个例子。
+
+  ```js
+  var stringValue = "yellow";
+  alert(stringValue.localeCompare("brick")); //1
+  alert(stringValue.localeCompare("yellow")); //0
+  alert(stringValue.localeCompare("zoo")); //-1
+  ```
+  这个例子比较了字符串 "yellow" 和另外几个值： "brick" 、 "yellow" 和 "zoo" 。因为 "brick" 在字母表中排在 "yellow" 之前，所以 localeCompare() 返回了 1 ；而 "yellow" 等于 "yellow" ，所以 localeCompare() 返回了 0 ；最后， "zoo" 在字母表中排在 "yellow" 后面，所以 localeCompare() 返回了 -1 。再强调一次，因为 localeCompare() 返回的数值取决于实现，所以最好是像下面例子所示的这样使用这个方法。
+
+  ```js
+  function determineOrder(value) {
+    var result = stringValue.localeCompare(value);
+    if (result < 0){
+      alert("The string 'yellow' comes before the string '" + value + "'.");
+    } else if (result > 0) {
+      alert("The string 'yellow' comes after the string '" + value + "'.");
+    } else {
+      alert("The string 'yellow' is equal to the string '" + value + "'.");
+    }
+  }
+
+  determineOrder("brick");
+  determineOrder("yellow");
+  determineOrder("zoo");
+  ```
+  使用这种结构，就可以确保自己的代码在任何实现中都可以正确地运行了。
+
+  localeCompare() 方法比较与众不同的地方，就是实现所支持的地区（国家和语言）决定了这个方法的行为。比如，美国以英语作为 ECMAScript 实现的标准语言，因此 localeCompare() 就是区分大小写的，于是大写字母在字母表中排在小写字母前头就成为了一项决定性的比较规则。不过，在其他地区恐怕就不是这种情况了。
 
 - #### fromCharCode() 方法
 
-另外， String 构造函数本身还有一个静态方法： fromCharCode() 。这个方法的任务是接收一或
-多个字符编码，然后将它们转换成一个字符串。从本质上来看，这个方法与实例方法 charCodeAt()
-执行的是相反的操作。来看一个例子：
-alert(String.fromCharCode(104, 101, 108, 108, 111)); //"hello"
-StringTypeFromCharCodeExample01.htm
-在这里，我们给 fromCharCode() 传递的是字符串 "hello" 中每个字母的字符编码。
+  另外， String 构造函数本身还有一个静态方法： **fromCharCode()** 。这个方法的任务是 **接收一或多个字符编码** ，然后 **将它们转换成一个字符串** 。从本质上来看，这个方法 **与实例方法 charCodeAt() 执行的是相反的操作** 。来看一个例子：
+
+  ```js
+  alert(String.fromCharCode(104, 101, 108, 108, 111)); //"hello"
+  ```
+  在这里，我们给 fromCharCode() 传递的是字符串 "hello" 中每个字母的字符编码。
 
 - #### HTML 方法
-早期的 Web 浏览器提供商觉察到了使用 JavaScript 动态格式化 HTML 的需求。于是，这些提供商就
-扩展了标准，实现了一些专门用于简化常见 HTML 格式化任务的方法。下表列出了这些 HTML 方法。
-不过，需要请读者注意的是，应该尽量不使用这些方法，因为它们创建的标记通常无法表达语义。
 
-![表格]()
+  早期的 Web 浏览器提供商觉察到了使用 JavaScript 动态格式化 HTML 的需求。于是，这些提供商就扩展了标准，实现了一些专门用于简化常见 HTML 格式化任务的方法。下表列出了这些 HTML 方法。不过，需要请读者注意的是，应该尽量不使用这些方法，因为它们创建的标记通常无法表达语义。
+
+  ![HTML 方法](http://p9myzkds7.bkt.clouddn.com/JavaScript-reference-type/HTML%20%E6%96%B9%E6%B3%95.png)
 
 ## 单体内置对象
 
+ECMA-262 对 **内置对象** 的定义是：“ **由 ECMAScript 实现提供的、不依赖于宿主环境的对象** ，这些对象 **在 ECMAScript 程序执行之前就已经存在了** 。”意思就是说，开发人员不必显式地实例化内置对象，因为它们已经实例化了。前面我们已经介绍了大多数内置对象，例如 Object 、 Array 和 String 。ECMA-262 还定义了两个单体内置对象： **Global** 和 **Math** 。
+
 ### Global 对象
+
+Global （全局）对象可以说是 ECMAScript 中最特别的一个对象了，因为不管你从什么角度上看，这个对象都是不存在的。ECMAScript 中的 Global 对象在某种意义上是作为一个终极的“兜底儿对象”来定义的。换句话说，不属于任何其他对象的属性和方法，最终都是它的属性和方法。事实上，没有全局变量或全局函数；所有在全局作用域中定义的属性和函数，都是 Global 对象的属性。本书前面介绍过的那些函数，诸如 isNaN() 、 isFinite() 、 parseInt() 以及 parseFloat() ，实际上全都是 Global对象的方法。除此之外， Global 对象还包含其他一些方法。
+
+- #### URI 编码方法
+
+  Global 对象的 **encodeURI()** 和 **encodeURIComponent()** 方法可以 **对 URI（Uniform Resource Identifiers，通用资源标识符）进行编码** ，**以便发送给浏览器** 。有效的 URI 中不能包含某些字符，例如空格。而这两个 URI 编码方法就可以对 URI 进行编码，它们 **用特殊的 UTF-8 编码替换所有无效的字符** ，从而让浏览器能够接受和理解。
+
+  其中， **encodeURI()** 主要用于 **整个 URI**（例如， http://www.wrox.com/illegal value.htm ），而 **encodeURIComponent()** 主要用于**对 URI 中的某一段**（例如前面 URI 中的 illegal value.htm ）进行编码。
+
+  它们的主要区别在于， **encodeURI() 不会对本身属于 URI 的特殊字符进行编码** ，例如冒号、正斜杠、问号和井字号；而 **encodeURIComponent() 则会对它发现的任何非标准字符进行编码** 。来看下面的例子。
+
+  ```js
+  var uri = "http://www.wrox.com/illegal value.htm#start";
+
+  //"http://www.wrox.com/illegal%20value.htm#start"
+  alert(encodeURI(uri));
+
+  //"http%3A%2F%2Fwww.wrox.com%2Fillegal%20value.htm%23start"
+  alert(encodeURIComponent(uri));
+  ```
+  使用 **encodeURI() 编码** 后的结果是除了空格之外的其他字符都原封不动，**只有空格被替换成了 %20** 。而 **encodeURIComponent() 方法** 则会 **使用对应的编码替换所有非字母数字字符** 。这也正是可以对整个 URI使用 encodeURI() ，而只能对附加在现有 URI后面的字符串使用 encodeURIComponent()的原因所在。
+
+  > 一般来说 ，我们使用 encodeURIComponent() 方法的时候要比使用 encodeURI() 更多，因为在实践中更常见的是对查询字符串参数而不是对基础 URI 进行编码。
+
+  与 encodeURI() 和 encodeURIComponent() 方法对应的两个方法分别是 **decodeURI() ** 和 **decodeURIComponent()** 。其中， **decodeURI() 只能对使用 encodeURI() 替换的字符进行解码** 。例如，它可将 %20 替换成一个空格，但不会对 %23 作任何处理，因为 %23 表示井字号（ # ），而井字号不是使用 encodeURI() 替换的。同样地， **decodeURIComponent() 能够解码使用 encodeURIComponent() 编码的所有字符** ，即 **它可以解码任何特殊字符的编码** 。来看下面的例子：
+
+  ```js
+  var uri = "http%3A%2F%2Fwww.wrox.com%2Fillegal%20value.htm%23start";
+
+  //http%3A%2F%2Fwww.wrox.com%2Fillegal value.htm%23start
+  alert(decodeURI(uri));
+
+  //http://www.wrox.com/illegal value.htm#start
+  alert(decodeURIComponent(uri));
+  ```
+  这里，变量 uri 包含着一个由 encodeURIComponent() 编码的字符串。在第一次调用 decodeURI()输出的结果中，只有 %20 被替换成了空格。而在第二次调用 decodeURIComponent() 输出的结果中，所有特殊字符的编码都被替换成了原来的字符，得到了一个未经转义的字符串（但这个字符串并不是一个有效的 URI）。
+
+  > URI 方法 encodeURI() 、 encodeURIComponent() 、 decodeURI() 和 decodeURIComponent() 用于替代已经被ECMA-262第3版废弃的 escape() 和 unescape()方法。URI方法能够编码所有 Unicode字符，而原来的方法只能正确地编码 ASCII字符。因此在开发实践中，特别是在产品级的代码中，一定要使用URI方法，不要使用 escape()和 unescape() 方法。
 
 - #### eval() 方法
 
