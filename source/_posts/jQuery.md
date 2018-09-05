@@ -17,6 +17,8 @@ jQuery是一个JavaScript函数库。
 
 jQuery是一个轻量级的"写的少，做的多"的JavaScript库。
 
+<!-- more -->
+
 jQuery库包含以下功能：
 
   - HTML 元素选取
