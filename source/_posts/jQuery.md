@@ -732,3 +732,1043 @@ Chaining 允许我们在一条语句中运行多个 jQuery 方法（在相同的
     .slideDown(2000);
   ```
   jQuery 会抛掉多余的空格，并当成一行长代码来执行上面的代码行。
+  
+## jQuery HTML
+
+#### 获取内容和属性
+
+jQuery 拥有可操作 HTML 元素和属性的强大方法。
+
+- #### DOM 操作
+
+  jQuery 中非常重要的部分，就是操作 DOM 的能力。
+
+  jQuery 提供一系列与 DOM 相关的方法，这使访问和操作元素和属性变得很容易。
+
+  > DOM = Document Object Model（文档对象模型）
+   DOM 定义访问 HTML 和 XML 文档的标准：
+  "W3C 文档对象模型独立于平台和语言的界面，允许程序和脚本动态访问和更新文档的内容、结构以及样式。"
+
+
+- #### 获得内容 - text()、html() 以及 val()
+
+  三个简单实用的用于 DOM 操作的 jQuery 方法：
+
+  - text() - 设置或返回所选元素的文本内容
+  - html() - 设置或返回所选元素的内容（包括 HTML 标记）
+  - val() - 设置或返回表单字段的值
+  
+  下面的例子演示如何通过 jQuery text() 和 html() 方法来获得内容：
+
+  ```js
+  $("#btn1").click(function(){
+    alert("Text: " + $("#test").text());
+  });
+  $("#btn2").click(function(){
+    alert("HTML: " + $("#test").html());
+  });
+  ```
+  下面的例子演示如何通过 jQuery val() 方法获得输入字段的值：
+
+  ```
+  $("#btn1").click(function(){
+    alert("值为: " + $("#test").val());
+  });
+  ```
+- #### 获取属性 - attr()
+
+  jQuery attr() 方法用于获取属性值。
+
+  下面的例子演示如何获得链接中 href 属性的值：
+
+  ```
+  $("button").click(function(){
+    alert($("#runoob").attr("href"));
+  });
+  ```
+
+### 设置内容和属性
+
+- #### 设置内容 - text()、html() 以及 val()
+
+  我们将使用前一章中的三个相同的方法来设置内容：
+
+  - text() - 设置或返回所选元素的文本内容
+  - html() - 设置或返回所选元素的内容（包括 HTML 标记）
+  - val() - 设置或返回表单字段的值
+
+  下面的例子演示如何通过 text()、html() 以及 val() 方法来设置内容：
+
+  ```js
+  $("#btn1").click(function(){
+      $("#test1").text("Hello world!");
+  });
+  $("#btn2").click(function(){
+      $("#test2").html("<b>Hello world!</b>");
+  });
+  $("#btn3").click(function(){
+      $("#test3").val("RUNOOB");
+  });
+  ```
+- #### text()、html() 以及 val() 的回调函数
+
+  上面的三个 jQuery 方法：text()、html() 以及 val()，同样拥有回调函数。回调函数有两个参数：被选元素列表中当前元素的下标，以及原始（旧的）值。然后以函数新值返回您希望使用的字符串。
+
+  下面的例子演示带有回调函数的 text() 和 html()：
+
+  ```js
+  $("#btn1").click(function(){
+      $("#test1").text(function(i,origText){
+          return "旧文本: " + origText + " 新文本: Hello world! (index: " + i + ")"; 
+      });
+  });
+
+  $("#btn2").click(function(){
+      $("#test2").html(function(i,origText){
+          return "旧 html: " + origText + " 新 html: Hello <b>world!</b> (index: " + i + ")"; 
+      });
+  });
+  ```
+- #### 设置属性 - attr()
+
+  jQuery attr() 方法也用于设置/改变属性值。
+
+  下面的例子演示如何改变（设置）链接中 href 属性的值：
+
+  ```js
+  $("button").click(function(){
+    $("#runoob").attr("href","http://www.runoob.com/jquery");
+  });
+  ```
+  attr() 方法也允许您同时设置多个属性。
+
+  下面的例子演示如何同时设置 href 和 title 属性：
+
+  ```js
+  $("button").click(function(){
+      $("#runoob").attr({
+          "href" : "http://www.runoob.com/jquery",
+          "title" : "jQuery 教程"
+      });
+  });
+  ```
+- #### attr() 的回调函数
+
+  jQuery 方法 attr()，也提供回调函数。回调函数有两个参数：被选元素列表中当前元素的下标，以及原始（旧的）值。然后以函数新值返回您希望使用的字符串。
+
+  下面的例子演示带有回调函数的 attr() 方法：
+
+  ```js
+  $("button").click(function(){
+    $("#runoob").attr("href", function(i,origValue){
+      return origValue + "/jquery"; 
+    });
+  });
+  ```
+### 添加元素
+
+- #### 添加新的 HTML 内容
+
+  我们将学习用于添加新内容的四个 jQuery 方法：
+
+  - append() - 在被选元素的结尾插入内容
+  - prepend() - 在被选元素的开头插入内容
+  - after() - 在被选元素之后插入内容
+  - before() - 在被选元素之前插入内容
+
+- #### jQuery append() 方法
+
+  jQuery append() 方法在被选元素的结尾插入内容（仍然该元素的内部）。
+
+  ```js
+  $("p").append("追加文本");
+  ```
+- #### jQuery prepend() 方法
+
+  jQuery prepend() 方法在被选元素的开头插入内容。
+
+  ```js
+  $("p").prepend("在开头追加文本");
+  ```
+- #### 通过 append() 和 prepend() 方法添加若干新元素
+  
+  在上面的例子中，我们只在被选元素的开头/结尾插入文本/HTML。
+
+  不过，append() 和 prepend() 方法能够通过参数接收无限数量的新元素。可以通过 jQuery 来生成文本/HTML（就像上面的例子那样），或者通过 JavaScript 代码和 DOM 元素。
+
+  在下面的例子中，我们创建若干个新元素。这些元素可以通过 text/HTML、jQuery 或者 JavaScript/DOM 来创建。然后我们通过 append() 方法把这些新元素追加到文本中（对 prepend() 同样有效）：
+
+  ```js
+  function appendText()
+  {
+      var txt1="<p>文本。</p>";              // 使用 HTML 标签创建文本
+      var txt2=$("<p></p>").text("文本。");  // 使用 jQuery 创建文本
+      var txt3=document.createElement("p");
+      txt3.innerHTML="文本。";               // 使用 DOM 创建文本 text with DOM
+      $("body").append(txt1,txt2,txt3);        // 追加新元素
+  }
+  ```
+- #### jQuery after() 和 before() 方法
+
+  jQuery after() 方法在被选元素之后插入内容。
+
+  jQuery before() 方法在被选元素之前插入内容。
+
+  ```js
+  $("img").after("在后面添加文本");
+
+  $("img").before("在前面添加文本");
+  ```
+- #### 通过 after() 和 before() 方法添加若干新元素
+  
+  after() 和 before() 方法能够通过参数接收无限数量的新元素。可以通过 text/HTML、jQuery 或者 JavaScript/DOM 来创建新元素。
+
+  在下面的例子中，我们创建若干新元素。这些元素可以通过 text/HTML、jQuery 或者 JavaScript/DOM 来创建。然后我们通过 after() 方法把这些新元素插到文本中（对 before() 同样有效）：
+
+  ```js
+  function afterText()
+  {
+      var txt1="<b>I </b>";                    // 使用 HTML 创建元素
+      var txt2=$("<i></i>").text("love ");     // 使用 jQuery 创建元素
+      var txt3=document.createElement("big");  // 使用 DOM 创建元素
+      txt3.innerHTML="jQuery!";
+      $("img").after(txt1,txt2,txt3);          // 在图片后添加文本
+  }
+  ```
+### 删除元素
+
+- #### 删除元素/内容
+
+  如需删除元素和内容，一般可使用以下两个 jQuery 方法：
+
+  - remove() - 删除被选元素（及其子元素）
+  - empty() - 从被选元素中删除子元素
+
+- #### jQuery remove() 方法
+
+  jQuery remove() 方法删除被选元素及其子元素。
+
+  ```js
+  $("#div1").remove();
+  ```
+- #### jQuery empty() 方法
+
+  jQuery empty() 方法删除被选元素的子元素。
+
+  ```js
+  $("#div1").empty();
+  ```
+- #### 过滤被删除的元素
+
+  jQuery remove() 方法也可接受一个参数，允许您对被删元素进行过滤。
+
+  该参数可以是任何 jQuery 选择器的语法。
+
+  下面的例子删除 class="italic" 的所有 `<p>` 元素：
+
+  ```js
+  $("p").remove(".italic");
+  ```
+### 获取并设置 CSS 类
+
+- #### jQuery 操作 CSS
+
+  jQuery 拥有若干进行 CSS 操作的方法。我们将学习下面这些：
+
+  - addClass() - 向被选元素添加一个或多个类
+  - removeClass() - 从被选元素删除一个或多个类
+  - toggleClass() - 对被选元素进行添加/删除类的切换操作
+  - css() - 设置或返回样式属性
+
+- #### 实例样式表
+
+  下面的样式表将用于本页的所有例子：
+
+  ```css
+  .important
+  {
+          font-weight:bold;
+          font-size:xx-large;
+  }
+
+  .blue
+  {
+          color:blue;
+  }
+  ```
+- #### jQuery addClass() 方法
+
+  下面的例子展示如何向不同的元素添加 class 属性。当然，在添加类时，您也可以选取多个元素：
+
+  ```js
+  $("button").click(function(){
+    $("h1,h2,p").addClass("blue");
+    $("div").addClass("important");
+  });
+  ```
+  您也可以在 addClass() 方法中规定多个类：
+
+  ```js
+  $("button").click(function(){
+    $("body div:first").addClass("important blue");
+  });
+  ```
+- #### jQuery removeClass() 方法
+
+  下面的例子演示如何在不同的元素中删除指定的 class 属性：
+
+  ```js
+  $("button").click(function(){
+    $("h1,h2,p").removeClass("blue");
+  });
+  ```
+- #### jQuery toggleClass() 方法
+
+  下面的例子将展示如何使用 jQuery toggleClass() 方法。该方法对被选元素进行添加/删除类的切换操作：
+
+  ```js
+  $("button").click(function(){
+    $("h1,h2,p").toggleClass("blue");
+  });
+  ```
+ ###  css() 方法
+ 
+ - #### jQuery css() 方法
+ 
+   css() 方法设置或返回被选元素的一个或多个样式属性。
+
+- #### 返回 CSS 属性
+
+  如需返回指定的 CSS 属性的值，请使用如下语法：
+
+  ```js
+  css("propertyname");
+  ```
+  下面的例子将返回首个匹配元素的 background-color 值：
+
+  ```js
+  $("p").css("background-color");
+  ```
+- #### 设置 CSS 属性
+
+  如需设置指定的 CSS 属性，请使用如下语法：
+
+  ```js
+  css("propertyname","value");
+  ```
+  下面的例子将为所有匹配元素设置 background-color 值：
+
+  ```js
+  $("p").css("background-color","yellow");
+  ```
+- #### 设置多个 CSS 属性
+
+  如需设置多个 CSS 属性，请使用如下语法：
+
+  ```js
+  css({"propertyname":"value","propertyname":"value",...});
+  ```
+  下面的例子将为所有匹配元素设置 background-color 和 font-size：
+
+  ```js
+  $("p").css({"background-color":"yellow","font-size":"200%"});
+  ```
+### 尺寸
+
+通过 jQuery，很容易处理元素和浏览器窗口的尺寸。
+
+- #### jQuery 尺寸方法
+
+  jQuery 提供多个处理尺寸的重要方法：
+
+  - width()
+  - height()
+  - innerWidth()
+  - innerHeight()
+  - outerWidth()
+  - outerHeight()
+
+- #### jQuery 尺寸
+
+  ![jQuery 尺寸](http://p9myzkds7.bkt.clouddn.com/jQuery/jQuery%20Dimensions.png)
+
+- #### jQuery width() 和 height() 方法
+
+  width() 方法设置或返回元素的宽度（不包括内边距、边框或外边距）。
+
+  height() 方法设置或返回元素的高度（不包括内边距、边框或外边距）。
+
+  下面的例子返回指定的 `<div>` 元素的宽度和高度：
+
+  ```js
+  $("button").click(function(){
+    var txt="";
+    txt+="div 的宽度是: " + $("#div1").width() + "</br>";
+    txt+="div 的高度是: " + $("#div1").height();
+    $("#div1").html(txt);
+  });
+  ```
+- #### jQuery innerWidth() 和 innerHeight() 方法
+
+  innerWidth() 方法返回元素的宽度（包括内边距）。
+
+  innerHeight() 方法返回元素的高度（包括内边距）。
+
+  下面的例子返回指定的 `<div>` 元素的 inner-width/height：
+
+  ```js
+  $("button").click(function(){
+    var txt="";
+    txt+="div 宽度，包含内边距: " + $("#div1").innerWidth() + "</br>";
+      txt+="div 高度，包含内边距: " + $("#div1").innerHeight();
+    $("#div1").html(txt);
+  });
+  ```
+- #### jQuery outerWidth() 和 outerHeight() 方法
+
+  outerWidth() 方法返回元素的宽度（包括内边距和边框）。
+
+  outerHeight() 方法返回元素的高度（包括内边距和边框）。
+
+  下面的例子返回指定的 `<div>` 元素的 outer-width/height：
+
+  ```js
+  $("button").click(function(){
+    var txt="";
+    txt+="div 宽度，包含内边距和边框: " + $("#div1").outerWidth() + "</br>";
+    txt+="div 高度，包含内边距和边框: " + $("#div1").outerHeight();
+    $("#div1").html(txt);
+  });
+  ```
+  
+## jQuery 遍历
+
+### 遍历
+
+- #### 什么是遍历？
+
+  jQuery 遍历，意为"移动"，用于根据其相对于其他元素的关系来"查找"（或选取）HTML 元素。以某项选择开始，并沿着这个选择移动，直到抵达您期望的元素为止。
+
+  下图展示了一个家族树。通过 jQuery 遍历，您能够从被选（当前的）元素开始，轻松地在家族树中向上移动（祖先），向下移动（子孙），水平移动（同胞）。这种移动被称为对 DOM 进行遍历。
+
+  ![DOM](http://p9myzkds7.bkt.clouddn.com/jQuery/img_travtree.png)
+
+  图示解析：
+
+  - `<div>` 元素是 `<ul>` 的父元素，同时是其中所有内容的祖先。
+  - `<ul>` 元素是 `<li>` 元素的父元素，同时是 `<div>` 的子元素。
+  - 左边的 `<li>` 元素是 `<span>` 的父元素，`<ul>` 的子元素，同时是 `<div>` 的后代。
+  - `<span>` 元素是 `<li>` 的子元素，同时是 `<ul>` 和 `<div>` 的后代。
+  - 两个 `<li>` 元素是同胞（拥有相同的父元素）。
+  - 右边的 `<li>` 元素是 `<b>` 的父元素，`<ul>` 的子元素，同时是 `<div>` 的后代。
+  - `<b>` 元素是右边的 `<li>` 的子元素，同时是 `<ul>` 和 `<div>` 的后代。
+
+  > 祖先是父、祖父、曾祖父等等。后代是子、孙、曾孙等等。同胞拥有相同的父。
+
+- #### 遍历 DOM
+
+  jQuery 提供了多种遍历 DOM 的方法。
+
+  遍历方法中最大的种类是树遍历（tree-traversal）。
+
+### 祖先
+
+祖先是父、祖父或曾祖父等等。
+
+通过 jQuery，您能够向上遍历 DOM 树，以查找元素的祖先。
+
+- #### 向上遍历 DOM 树
+
+  这些 jQuery 方法很有用，它们用于向上遍历 DOM 树：
+
+  - parent()
+  - parents()
+  - parentsUntil()
+
+- #### jQuery parent() 方法
+
+  parent() 方法返回被选元素的直接父元素。
+
+  该方法只会向上一级对 DOM 树进行遍历。
+
+  下面的例子返回每个 `<span>` 元素的的直接父元素：
+
+  ```js
+  $(document).ready(function(){
+    $("span").parent();
+  });
+  ```
+- #### jQuery parents() 方法
+
+  parents() 方法返回被选元素的所有祖先元素，它一路向上直到文档的根元素 (`<html>`)。
+
+  下面的例子返回所有 `<span>` 元素的所有祖先：
+
+  ```js
+  $(document).ready(function(){
+    $("span").parents();
+  });
+  ```
+  您也可以使用可选参数来过滤对祖先元素的搜索。
+
+  下面的例子返回所有 `<span>` 元素的所有祖先，并且它是 `<ul>` 元素：
+
+  ```js
+  $(document).ready(function(){
+    $("span").parents("ul");
+  });
+  ```
+- #### jQuery parentsUntil() 方法
+
+  parentsUntil() 方法返回介于两个给定元素之间的所有祖先元素。
+
+  下面的例子返回介于 `<span>` 与 `<div>` 元素之间的所有祖先元素：
+
+  ```js
+  $(document).ready(function(){
+    $("span").parentsUntil("div");
+  });
+  ```
+### 后代
+
+后代是子、孙、曾孙等等。
+
+通过 jQuery，您能够向下遍历 DOM 树，以查找元素的后代。
+
+- #### 向下遍历 DOM 树
+
+  下面是两个用于向下遍历 DOM 树的 jQuery 方法：
+
+  - children()
+  - find()
+
+- #### jQuery children() 方法
+
+  children() 方法返回被选元素的所有直接子元素。
+
+  该方法只会向下一级对 DOM 树进行遍历。
+
+  下面的例子返回每个 `<div>` 元素的所有直接子元素：
+
+  ```js
+  $(document).ready(function(){
+    $("div").children();
+  });
+  ```
+  您也可以使用可选参数来过滤对子元素的搜索。
+
+  下面的例子返回类名为 "1" 的所有 `<p>` 元素，并且它们是 `<div>` 的直接子元素：
+
+  ```
+  $(document).ready(function(){
+    $("div").children("p.1");
+  });
+  ```
+- #### jQuery find() 方法
+
+  find() 方法返回被选元素的后代元素，一路向下直到最后一个后代。
+
+  下面的例子返回属于 `<div>` 后代的所有 `<span>` 元素：
+
+  ```js
+  $(document).ready(function(){
+    $("div").find("span");
+  });
+  ```
+  下面的例子返回 `<div>` 的所有后代：
+
+  ```js
+  $(document).ready(function(){
+    $("div").find("*");
+  });
+  ```
+### 同胞(siblings)
+
+同胞拥有相同的父元素。
+
+通过 jQuery，您能够在 DOM 树中遍历元素的同胞元素。
+
+- #### 在 DOM 树中水平遍历
+
+  有许多有用的方法让我们在 DOM 树进行水平遍历：
+
+  - siblings()
+  -next()
+  - nextAll()
+  - nextUntil()
+  - prev()
+  - prevAll()
+  - prevUntil()
+
+- #### jQuery siblings() 方法
+
+  siblings() 方法返回被选元素的所有同胞元素。
+
+  下面的例子返回 `<h2>` 的所有同胞元素：
+
+  ```js
+  $(document).ready(function(){
+    $("h2").siblings();
+  });
+  ```
+  您也可以使用可选参数来过滤对同胞元素的搜索。
+
+  下面的例子返回属于 `<h2>` 的同胞元素的所有 `<p>` 元素：
+
+  ```js
+  $(document).ready(function(){
+    $("h2").siblings("p");
+  });
+  ```
+- #### jQuery next() 方法
+
+  next() 方法返回被选元素的下一个同胞元素。
+
+  该方法只返回一个元素。
+
+  下面的例子返回 `<h2>` 的下一个同胞元素：
+
+  ```js
+  $(document).ready(function(){
+    $("h2").next();
+  });
+  ```
+- #### jQuery nextAll() 方法
+
+  nextAll() 方法返回被选元素的所有跟随的同胞元素。
+
+  下面的例子返回 `<h2>` 的所有跟随的同胞元素：
+
+  ```js
+  $(document).ready(function(){
+    $("h2").nextAll();
+  });
+  ```
+- #### jQuery nextUntil() 方法
+
+  nextUntil() 方法返回介于两个给定参数之间的所有跟随的同胞元素。
+
+  下面的例子返回介于 `<h2>` 与 `<h6>` 元素之间的所有同胞元素：
+
+  ```js
+  $(document).ready(function(){
+    $("h2").nextUntil("h6");
+  });
+  ```
+- #### jQuery prev(), prevAll() & prevUntil() 方法
+
+  prev(), prevAll() 以及 prevUntil() 方法的工作方式与上面的方法类似，只不过方向相反而已：它们返回的是前面的同胞元素（在 DOM 树中沿着同胞之前元素遍历，而不是之后元素遍历）。
+  
+## 过滤
+
+- #### 缩小搜索元素的范围
+
+  三个最基本的过滤方法是：first(), last() 和 eq()，它们允许您基于其在一组元素中的位置来选择一个特定的元素。
+
+  其他过滤方法，比如 filter() 和 not() 允许您选取匹配或不匹配某项指定标准的元素。
+
+- #### jQuery first() 方法
+
+  first() 方法返回被选元素的首个元素。
+
+  下面的例子选取首个 `<div>` 元素内部的第一个 `<p>` 元素：
+
+  ```js
+  $(document).ready(function(){
+    $("div p").first();
+  });
+  ```
+- #### jQuery last() 方法
+
+  last() 方法返回被选元素的最后一个元素。
+
+  下面的例子选择最后一个 `<div>` 元素中的最后一个 `<p>` 元素：
+
+  ```js
+  $(document).ready(function(){
+    $("div p").last();
+  });
+  ```
+- #### jQuery eq() 方法
+
+  eq() 方法返回被选元素中带有指定索引号的元素。
+
+  索引号从 0 开始，因此首个元素的索引号是 0 而不是 1。下面的例子选取第二个 <p> 元素（索引号 1）：
+
+  ```js
+  $(document).ready(function(){
+    $("p").eq(1);
+  });
+  ```
+- #### jQuery filter() 方法
+
+  filter() 方法允许您规定一个标准。不匹配这个标准的元素会被从集合中删除，匹配的元素会被返回。
+
+  下面的例子返回带有类名 "url" 的所有 `<p>` 元素：
+
+  ```js
+  $(document).ready(function(){
+    $("p").filter(".url");
+  });
+  ```
+- #### jQuery not() 方法
+
+  not() 方法返回不匹配标准的所有元素。
+
+  提示：not() 方法与 filter() 相反。
+
+  下面的例子返回不带有类名 "url" 的所有 `<p>` 元素：
+
+  ```js
+  $(document).ready(function(){
+    $("p").not(".url");
+  });
+  ```
+## jQuery Ajax
+
+### AJAX 简介
+
+AJAX 是与服务器交换数据的技术，它在不重载全部页面的情况下，实现了对部分网页的更新。
+
+- #### 什么是 AJAX？
+
+  AJAX = 异步 JavaScript 和 XML（Asynchronous JavaScript and XML）。
+
+  简短地说，在不重载整个网页的情况下，AJAX 通过后台加载数据，并在网页上进行显示。
+
+  使用 AJAX 的应用程序案例：谷歌地图、腾讯微博、优酷视频、人人网等等。
+
+  您可以在我们的 jQuery Ajax 参考手册学会 jQuery Ajax 的具体应用。
+
+  您可以在我们的 AJAX 教程中学到更多有关 AJAX 的知识。
+
+- #### 关于 jQuery 与 AJAX
+
+  jQuery 提供多个与 AJAX 有关的方法。
+
+  通过 jQuery AJAX 方法，您能够使用 HTTP Get 和 HTTP Post 从远程服务器上请求文本、HTML、XML 或 JSON - 同时您能够把这些外部数据直接载入网页的被选元素中。
+
+  > 如果没有 jQuery，AJAX 编程还是有些难度的。
+  > 编写常规的 AJAX 代码并不容易，因为不同的浏览器对 AJAX 的实现并不相同。这意味着您必须编写额外的代码对浏览器进行测试。不过，jQuery 团队为我们解决了这个难题，我们只需要一行简单的代码，就可以实现 AJAX 功能。
+  
+### AJAX load() 方法
+
+- #### jQuery load() 方法
+
+  jQuery load() 方法是简单但强大的 AJAX 方法。
+
+  load() 方法从服务器加载数据，并把返回的数据放入被选元素中。
+
+  语法:
+
+  ```
+  $(selector).load(URL,data,callback);
+  ```
+  必需的 URL 参数规定您希望加载的 URL。
+
+  可选的 data 参数规定与请求一同发送的查询字符串键/值对集合。
+
+  可选的 callback 参数是 load() 方法完成后所执行的函数名称。
+
+  这是示例文件（"demo_test.txt"）的内容：
+
+  ```html
+  <h2>jQuery AJAX 是个非常棒的功能！</h2>
+  <p id="p1">这是段落的一些文本。</p>
+  ```
+  下面的例子会把文件 "demo_test.txt" 的内容加载到指定的 `<div>` 元素中：
+
+  ```js
+  $("#div1").load("demo_test.txt");
+  ```
+  也可以把 jQuery 选择器添加到 URL 参数。
+
+      下面的例子把 "demo_test.txt" 文件中 id="p1" 的元素的内容，加载到指定的 `<div>` 元素中：
+
+  ```js
+  $("#div1").load("demo_test.txt #p1");
+  ```
+  可选的 callback 参数规定当 load() 方法完成后所要允许的回调函数。回调函数可以设置不同的参数：
+
+  - responseTxt - 包含调用成功时的结果内容
+  - statusTXT - 包含调用的状态
+  - xhr - 包含 XMLHttpRequest 对象
+
+  下面的例子会在 load() 方法完成后显示一个提示框。如果 load() 方法已成功，则显示"外部内容加载成功！"，而如果失败，则显示错误消息：
+
+  ```js
+  $("button").click(function(){
+    $("#div1").load("demo_test.txt",function(responseTxt,statusTxt,xhr){
+      if(statusTxt=="success")
+        alert("外部内容加载成功!");
+      if(statusTxt=="error")
+        alert("Error: "+xhr.status+": "+xhr.statusText);
+    });
+  });
+  ```
+### AJAX get() 和 post() 方法
+ 
+ jQuery get() 和 post() 方法用于通过 HTTP GET 或 POST 请求从服务器请求数据。
+
+- #### HTTP 请求：GET vs. POST
+
+  两种在客户端和服务器端进行请求-响应的常用方法是：GET 和 POST。
+
+  - GET - 从指定的资源请求数据
+  - POST - 向指定的资源提交要处理的数据
+
+  GET 基本上用于从服务器获得（取回）数据。注释：GET 方法可能返回缓存数据。
+
+  POST 也可用于从服务器获取数据。不过，POST 方法不会缓存数据，并且常用于连同请求一起发送数据。
+
+  如需学习更多有关 GET 和 POST 以及两方法差异的知识，请阅读我们的 HTTP 方法 - GET 对比 POST。
+
+- #### jQuery $.get() 方法
+
+  $.get() 方法通过 HTTP GET 请求从服务器上请求数据。
+
+  语法：
+
+  ```js
+  $.get(URL,callback);
+  ```
+  必需的 URL 参数规定您希望请求的 URL。
+
+  可选的 callback 参数是请求成功后所执行的函数名。
+
+  下面的例子使用 $.get() 方法从服务器上的一个文件中取回数据：
+
+  ```js
+  $("button").click(function(){
+    $.get("demo_test.php",function(data,status){
+      alert("数据: " + data + "\n状态: " + status);
+    });
+  });
+  ```
+  $.get() 的第一个参数是我们希望请求的 URL（"demo_test.php"）。
+
+  第二个参数是回调函数。第一个回调参数存有被请求页面的内容，第二个回调参数存有请求的状态。
+
+  提示： 这个 PHP 文件 ("demo_test.php") 类似这样：
+
+  demo_test.php 文件代码:
+
+  ```php
+  <?php
+  echo '这是个从PHP文件中读取的数据。';
+  ?>
+  ```
+- #### jQuery $.post() 方法
+
+  $.post() 方法通过 HTTP POST 请求向服务器提交数据。
+
+  语法:
+
+  ```js
+  $.post(URL,data,callback);
+  ```
+  必需的 URL 参数规定您希望请求的 URL。
+
+  可选的 data 参数规定连同请求发送的数据。
+
+  可选的 callback 参数是请求成功后所执行的函数名。
+
+  下面的例子使用 $.post() 连同请求一起发送数据：
+
+  ```js
+  $("button").click(function(){
+      $.post("/try/ajax/demo_test_post.php",
+      {
+          name:"菜鸟教程",
+          url:"http://www.runoob.com"
+      },
+          function(data,status){
+          alert("数据: \n" + data + "\n状态: " + status);
+      });
+  });
+  ```
+  $.post() 的第一个参数是我们希望请求的 URL ("demo_test_post.php")。
+
+  然后我们连同请求（name 和 url）一起发送数据。
+
+  "demo_test_post.php" 中的 PHP 脚本读取这些参数，对它们进行处理，然后返回结果。
+
+  第三个参数是回调函数。第一个回调参数存有被请求页面的内容，而第二个参数存有请求的状态。
+
+  提示： 这个 PHP 文件 ("demo_test_post.php") 类似这样：
+
+  demo_test_post.php 文件代码:
+
+  ```php
+  <?php
+  $name = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
+  $url = isset($_POST['url']) ? htmlspecialchars($_POST['url']) : '';
+  echo '网站名: ' . $name;
+  echo "\n";
+  echo 'URL 地址: ' .$url;
+  ?>
+  ```
+  
+## jQuery 其他
+
+### noConflict() 方法
+
+- #### jQuery 和其他 JavaScript 框架
+
+  正如您已经了解到的，jQuery 使用 $ 符号作为 jQuery 的简写。
+
+  如果其他 JavaScript 框架也使用 $ 符号作为简写怎么办？
+
+  其他一些 JavaScript 框架包括：MooTools、Backbone、Sammy、Cappuccino、Knockout、JavaScript MVC、Google Web Toolkit、Google Closure、Ember、Batman 以及 Ext JS。
+
+  其中某些框架也使用 $ 符号作为简写（就像 jQuery），如果您在用的两种不同的框架正在使用相同的简写符号，有可能导致脚本停止运行。
+
+  jQuery 的团队考虑到了这个问题，并实现了 noConflict() 方法。
+
+- #### jQuery noConflict() 方法
+
+  noConflict() 方法会释放对 $ 标识符的控制，这样其他脚本就可以使用它了。
+
+  当然，您仍然可以通过全名替代简写的方式来使用 jQuery：
+
+  ```js
+  $.noConflict();
+  jQuery(document).ready(function(){
+    jQuery("button").click(function(){
+      jQuery("p").text("jQuery 仍然在工作!");
+    });
+  });
+  ```
+  您也可以创建自己的简写。noConflict() 可返回对 jQuery 的引用，您可以把它存入变量，以供稍后使用。请看这个例子：
+
+  ```js
+  var jq = $.noConflict();
+  jq(document).ready(function(){
+    jq("button").click(function(){
+      jq("p").text("jQuery 仍然在工作!");
+    });
+  });
+  ```
+  如果你的 jQuery 代码块使用 $ 简写，并且您不愿意改变这个快捷方式，那么您可以把 $ 符号作为变量传递给 ready 方法。这样就可以在函数内使用 $ 符号了 - 而在函数外，依旧不得不使用 "jQuery"：
+
+  ```js
+  $.noConflict();
+  jQuery(document).ready(function($){
+    $("button").click(function(){
+      $("p").text("jQuery 仍然在工作!");
+    });
+  });
+  ```
+ ### JSONP 教程
+ 
+本章节我们将向大家介绍 JSONP 的知识。
+
+Jsonp(JSON with Padding) 是 json 的一种"使用模式"，可以让网页从别的域名（网站）那获取资料，即跨域读取数据。
+
+为什么我们从不同的域（网站）访问数据需要一个特殊的技术(JSONP )呢？这是因为同源策略。
+
+同源策略，它是由Netscape提出的一个著名的安全策略，现在所有支持JavaScript 的浏览器都会使用这个策略。
+
+- #### JSONP 应用
+
+  1. 服务端JSONP格式数据
+
+    如客户想访问 : http://www.runoob.com/try/ajax/jsonp.php?jsonp=callbackFunction。
+
+    假设客户期望返回JSON数据：["customername1","customername2"]。
+
+    真正返回到客户端的数据显示为: callbackFunction(["customername1","customername2"])。
+
+    服务端文件jsonp.php代码为：
+
+    ```php
+    // jsonp.php 文件代码
+
+    <?php
+    header('Content-type: application/json');
+    //获取回调函数名
+    $jsoncallback = htmlspecialchars($_REQUEST ['jsoncallback']);
+    //json数据
+    $json_data = '["customername1","customername2"]';
+    //输出jsonp格式的数据
+    echo $jsoncallback . "(" . $json_data . ")";
+    ?>
+    ```
+  2. 客户端实现 callbackFunction 函数
+
+    ```
+    <script type="text/javascript">
+    function callbackFunction(result, methodName)
+    {
+        var html = '<ul>';
+        for(var i = 0; i < result.length; i++)
+        {
+            html += '<li>' + result[i] + '</li>';
+        }
+        html += '</ul>';
+        document.getElementById('divCustomers').innerHTML = html;
+    }
+    </script>
+    ```
+    页面展示
+
+    ```html
+    <div id="divCustomers"></div>
+    ```
+    客户端页面完整代码
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>JSONP 实例</title>
+    </head>
+    <body>
+        <div id="divCustomers"></div>
+        <script type="text/javascript">
+    function callbackFunction(result, methodName)
+            {
+                var html = '<ul>';
+                for(var i = 0; i < result.length; i++)
+                {
+                    html += '<li>' + result[i] + '</li>';
+                }
+                html += '</ul>';
+                document.getElementById('divCustomers').innerHTML = html;
+            }
+    </script>
+    <script type="text/javascript" src="http://www.runoob.com/try/ajax/jsonp.php?jsoncallback=callbackFunction"></script>
+    </body>
+    </html>
+     ```
+- #### jQuery 使用 JSONP
+ 
+  以上代码可以使用 jQuery 代码实例：
+
+  ```html
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <title>JSONP 实例</title>
+      <script src="http://cdn.static.runoob.com/libs/jquery/1.8.3/jquery.js"></script>    
+  </head>
+  <body>
+  <div id="divCustomers"></div>
+  <script>
+  $.getJSON("http://www.runoob.com/try/ajax/jsonp.php?jsoncallback=?", function(data) {
+
+      var html = '<ul>';
+      for(var i = 0; i < data.length; i++)
+      {
+          html += '<li>' + data[i] + '</li>';
+      }
+      html += '</ul>';
+
+      $('#divCustomers').html(html); 
+  });
+  </script>
+  </body>
+  </html>
+  ```
