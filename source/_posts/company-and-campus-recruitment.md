@@ -63,6 +63,8 @@ date: 2018-08-07 03:32:00
  
  > 内推；暂无状态；
  
+ > 秋招：已投递；
+ 
  [校园招聘](https://xiaoyuan.zhaopin.com/IndexForLogin)
 
 2. ### 腾讯
@@ -132,3 +134,35 @@ date: 2018-08-07 03:32:00
    > 内推：已投递；
    
   [校园招聘](https://www.nowcoder.com/profile/178368744/resume)
+  
+13. ### 蘑菇街
+  
+  > 秋招：已投递；
+  
+  [校园招聘](http://job.mogujie.com/?ptp=1.HHDv9.0.0.oUN9qSF#/candidate?_k=34qwzi)
+  
+14. ### 饿了么
+
+  > 秋招：已投递；
+  
+  [校园招聘](https://campus.ele.me/profile/delivery)
+  
+  ![招聘流程](http://p9myzkds7.bkt.clouddn.com/company-and-campus-recruitment/%E6%8B%9B%E8%81%98%E6%B5%81%E7%A8%8B-%E9%A5%BF%E4%BA%86%E4%B9%88.png)
+  
+15. ### 百度
+
+  > 秋招：已投递；
+  
+  [校园招聘](https://talent.baidu.com/external/baidu/campus.html#/individualCenter)
+  
+  ![宣讲会](http://p9myzkds7.bkt.clouddn.com/company-and-campus-recruitment/%E5%AE%A3%E8%AE%B2%E4%BC%9A-%E7%99%BE%E5%BA%A6.png)
+  
+  ![招聘流程](http://p9myzkds7.bkt.clouddn.com/company-and-campus-recruitment/%E6%8B%9B%E8%81%98%E6%B5%81%E7%A8%8B-%E7%99%BE%E5%BA%A6.png)
+  
+16. ### 知乎
+
+  > 秋招：以投递；
+  
+  [校园招聘](https://app.mokahr.com/campus_apply/zhihu#/candidateHome/applications?_k=vm2a5f)
+  
+  ![招聘流程](http://p9myzkds7.bkt.clouddn.com/company-and-campus-recruitment/%E6%A0%A1%E6%8B%9B%E6%B5%81%E7%A8%8B-%E7%9F%A5%E4%B9%8E.png)
