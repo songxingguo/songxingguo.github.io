@@ -72,3 +72,6 @@ disqus_shortname:
 # ==================================
 version: 1.0
 # ==================================
+
+local_search:
+  enable: true

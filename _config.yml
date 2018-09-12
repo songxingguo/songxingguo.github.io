@@ -112,3 +112,8 @@ qiniu:
   prefix: http://p9myzkds7.bkt.clouddn.com/images/
   extend:
 
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
