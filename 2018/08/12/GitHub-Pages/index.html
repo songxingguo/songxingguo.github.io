@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>为 GitHub Pages  配置发布源 | 阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/works" class="menu-item-link"><i class="iconfont icon-works"></i>作品</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+        
+        <form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+        <label>Search</label>
+        <input type="text" class="st-default-search-input" maxlength="20" placeholder="Search" />
+        </form>
+        
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="post-title">
+          为 GitHub Pages  配置发布源
+            <div class="post-tags">
+    		    
+              <a class="tag-link" href="/tags/github/">github</a>
+            
+    	      </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <article class="post">
+  
+
+  <header>
+    <div class="post-title mobile-post-title">
+      <h1>为 GitHub Pages  配置发布源</h1>
+        <div class="post-tags">
+        
+          <a class="tag-link" href="/tags/github/">github</a>
+        
+        </div>
+    </div>
+    <div class="post-meta">
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2018-08-12</span>
+      
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/博客搭建/">博客搭建</a>
+          
+      
+      <!----------------------------------->
+        
+          <i class="iconfont icon-divide"></i>
+          <div class="post-visits"
+               data-url="/2018/08/12/GitHub-Pages/"
+               data-title="为 GitHub Pages  配置发布源">
+              阅读次数
+            </div>
+        
+      <!----------------------------------->
+    </div>
+  </header>
+  
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#写在前面"><span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布站点"><span class="toc-text">发布站点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#没有用户名命名仓库的默认源设置"><span class="toc-text">没有用户名命名仓库的默认源设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#从-master-或-gh-pages-发布资源"><span class="toc-text">从 master 或 gh-pages 发布资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#从-master-分支-docs-目录中发布资源"><span class="toc-text">从 master 分支 /docs 目录中发布资源</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题及解决"><span class="toc-text">问题及解决</span></a></li></ol>
+    </div>
+  </div>
+
+
+  <div class="post-content">
+    <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p> 在 GitHub Pages 的 <a href="https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/" target="_blank" rel="noopener">帮助文档</a> 中已经给我们详细说明了，GitHub Pages 的发布资源的 3 种方式的不同，以及发布的方法。而作为英语文盲的我，只有通过百度翻译才能勉强看懂，而下面我要做的就是将 GitHub Pages 的 3 中方式给出一个中文的说明，供以后需要的时候就不用再翻译了。</p>
+<a id="more"></a>
+<h2 id="发布站点"><a href="#发布站点" class="headerlink" title="发布站点"></a>发布站点</h2><p> GitHub Pages 允许我们从 master 分支、gh-pages 分支 或 master分支下的 /docs 目录来发布我们的资源。</p>
+<p> 而如果仓库名称为 <code>&lt;username&gt;.github.io</code> 或 <code>&lt;orgname&gt;.github.io</code> 就只能从 master 分支发布。</p>
+<h3 id="没有用户名命名仓库的默认源设置"><a href="#没有用户名命名仓库的默认源设置" class="headerlink" title="没有用户名命名仓库的默认源设置"></a>没有用户名命名仓库的默认源设置</h3><p>发布源文件的默认设置取决于仓库的类型以及仓库中的分支。</p>
+<p>如果仓库中没有 master 或没有 gh-pages 分支，则您的 GitHub Pages 发布源将设置为“ 无”，并且不会发布。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/github-pages/none-source-setting.png" alt="不会发布"></p>
+<p>创建了 master 分支 或 gh-pages 分支，可以将其中一个设置为发布源，以便发布站点。</p>
+<p>如果只有 master 或 gh-pages 分支，则将该分支设置为默认发布源。</p>
+<h3 id="从-master-或-gh-pages-发布资源"><a href="#从-master-或-gh-pages-发布资源" class="headerlink" title="从 master 或 gh-pages 发布资源"></a>从 master 或 gh-pages 发布资源</h3><ol>
+<li><p>在GitHub上，进入到代码仓库。</p>
+</li>
+<li><p>点击仓库设置按钮。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/github-pages/repo-actions-settings.png" alt="点击设置按钮"></p>
+</li>
+<li><p>选择 master 或 gh-pages 作为 GitHub Pages 发布源。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/github-pages/select-gh-pages-or-master-as-source.png" alt="选择发布源"></p>
+</li>
+<li><p>点击保存按钮，保存发布源。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/github-pages/click-save-next-to-source-selection.png" alt="保存发布源"></p>
+</li>
+</ol>
+<h3 id="从-master-分支-docs-目录中发布资源"><a href="#从-master-分支-docs-目录中发布资源" class="headerlink" title="从 master 分支 /docs 目录中发布资源"></a>从 master 分支 /docs 目录中发布资源</h3><p>要从 master 分支上的 /docs 目录发布站点的源文件，您必须有 master 分支，并且您的仓库必须：</p>
+<ul>
+<li><p>在根目录中有一个 /docs 文件夹。</p>
+</li>
+<li><p>不遵循存储库命名方案 <code>&lt;username&gt;.github.io</code> 或 <code>&lt;orgname&gt;.github.io</code> 。</p>
+</li>
+</ul>
+<p>GitHub Pages 将从该 /docs 目录中读取发布您网站的所有内容，包括 CNAME 文件。例如，当您通过 GitHub 页面设置编辑自定义域时，自定义域将写入 /docs/CNAME 。</p>
+<blockquote>
+<p><strong>提示：</strong> 如果在启用后 /docs 从 master 分支中删除该文件夹，则您的站点将无法构建，并且您将收到丢失 /docs 文件夹的页面构建错误消息。</p>
+</blockquote>
+<ol>
+<li><p>在GitHub上，进入到代码仓库。</p>
+</li>
+<li><p>在仓库 master 分支的根目录中创建一个名为 /docs 文件夹。</p>
+</li>
+<li><p>点击仓库设置按钮。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/github-pages/repo-actions-settings.png" alt="点击设置按钮"></p>
+</li>
+<li><p>选择 master 分支的 / docs 目录 作为 GitHub Pages 发布源。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/github-pages/select-master-branch-docs-folder-as-source.png" alt="选择发布源"></p>
+<blockquote>
+<p><strong>提示：</strong> 如果分支 /docs 上不存在该文件夹，则 master 分支 / docs 文件夹源设置将不会显示为选项 master。</p>
+</blockquote>
+</li>
+<li><p>点击保存，选择单击保存主分支的文档文件夹。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/github-pages/click-save-next-to-master-branch-docs-folder-source-selection.png" alt="保存发布源"></p>
+</li>
+</ol>
+<h2 id="问题及解决"><a href="#问题及解决" class="headerlink" title="问题及解决"></a>问题及解决</h2>
+  </div>
+  <div class="post-footer">the end</div>
+</article>
+
+          
+  <nav class="pagination post-nav">
+    
+      <a href="/2018/08/12/user-org-project-pages/">
+        <span class="prev-post"><i class="iconfont icon-back"></i>用户、组织以及项目页面</span>
+      </a>
+    
+    
+      <a href="/2018/08/11/ztopic/">
+        <span class="next-post">ztopic 主题更改<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+  
+
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/works" class="mobile-nav-link"><i class="iconfont icon-works"></i>作品</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.2.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+        appId: "MNdCoL1O2i2njgRy8WVYgAwf-gzGzoHsz",
+        appKey: "hil0yQTQDbO8nzaxFKqeSqyK"
+      });
+  </script>
+  <script>
+  (function (window) {
+      $(document).ready(function () {
+        visits();
+      });
+    function visits() {
+      var $visits = $('.post-visits');
+
+      function updateVisits(dom, time) {
+        var text = dom.text() + ' ' + time;
+        dom.text(text);
+      }
+
+      function addCounter(Counter) {
+        var query = new AV.Query(Counter);
+
+        var url = $visits.data('url').trim();
+        var title = $visits.data('title').trim();
+
+        query.equalTo('url', url);
+        query.find().then(function (results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.save(null, {
+              fetchWhenSave: true
+            }).then(function (counter) {
+              counter.increment('time', 1);
+              return counter.save();
+            }).then(function (counter) {
+              updateVisits($visits, counter.get('time'));
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set('title', title);
+            newcounter.set('url', url);
+            newcounter.set('time', 1);
+
+            newcounter.save().then(function (counter) {
+              updateVisits($visits, newcounter.get('time'));
+            });
+          }
+        }, function (error) {
+          console.log('Error:' + error.code + " " + error.message);
+        });
+      }
+
+      function showTime(Counter) {
+        $visits.each(function () {
+          var $this = $(this);
+          var query = new AV.Query(Counter);
+          var url = $this.data('url').trim();
+
+          query.equalTo('url', url);
+          query.find().then(function (results) {
+            if (results.length === 0) {
+              updateVisits($this, 0);
+            } else {
+              var counter = results[0];
+              updateVisits($this, counter.get('time'));
+            }
+          }, function (error) {
+            console.log('Error:' + error.code + " " + error.message);
+          });
+        })
+      }
+
+      if (typeof AV === 'object') {
+        var Counter = AV.Object.extend('Counter');
+        if ($visits.length === 1) {
+          addCounter(Counter);
+        } else {
+          showTime(Counter);
+        }
+      }
+    }
+  })(window);
+  </script>
+
+
+  <script src="/js/ztopic.js"></script>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','ENrrQtqCVAeKcMd7Pd7a','2.0.0');
+</script>
+</body>
+</html>
