@@ -12,5 +12,11 @@
             <% } %>
           </ul>
         </nav>
+        <% if   (theme.swift_search&&theme.swift_search.enable){ %>
+        <form class="search" action="<%- config.root %>search/index.html" method="get" accept-charset="utf-8">
+        <label>Search</label>
+        <input type="text" class="st-default-search-input" maxlength="20" placeholder="Search" />
+        </form>
+        <% } %>
       </div>
 </header>
