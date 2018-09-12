@@ -706,3 +706,291 @@ META 元素通常用于指定网页的描述，关键词，文件的最后修改
 ### HTML head 元素
 
 ![head 元素](http://p9myzkds7.bkt.clouddn.com/HTML/head%20%E5%85%83%E7%B4%A0.png)
+
+## HTML 样式- CSS
+
+CSS (Cascading Style Sheets) 用于渲染HTML元素标签的样式.
+
+### 如何使用CSS
+
+CSS 是在 HTML 4 开始使用的,是为了更好的渲染HTML元素而引入的.
+
+CSS 可以通过以下方式添加到HTML中:
+
+- 内联样式- 在HTML元素中使用"style" 属性
+- 内部样式表 -在HTML文档头部 `<head>` 区域使用`<style>` 元素 来包含CSS
+- 外部引用 - 使用外部 CSS 文件
+  
+最好的方式是通过外部引用CSS文件.
+
+在本站的HTML教程中我们使用了内联CSS样式来介绍实例，这是为了简化的例子，也使得你能更容易在线编辑代码并在线运行实例。
+
+你可以通过本站的CSS教程 [CSS 教程](http://www.runoob.com/css/css-tutorial.html) 学习更多的CSS知识.
+
+### 内联样式
+
+当特殊的样式需要应用到个别元素时，就可以使用内联样式。 使用内联样式的方法是在相关的标签中使用样式属性。样式属性可以包含任何 CSS 属性。以下实例显示出如何改变段落的颜色和左外边距。
+
+```html
+<p style="color:blue;margin-left:20px;">This is a paragraph.</p>
+```
+学习更多样式，请访问 CSS 教程.
+
+### HTML样式实例 - 背景颜色
+
+背景色属性（background-color）定义一个元素的背景颜色：
+
+```html
+<body style="background-color:yellow;">
+<h2 style="background-color:red;">这是一个标题</h2>
+<p style="background-color:green;">这是一个段落。</p>
+</body>
+```
+早期背景色属性（background-color）是使用 bgcolor 属性定义。
+
+尝试一下: 旧版HTML来设置背景方式
+
+### HTML 样式实例 - 字体, 字体颜色 ，字体大小
+
+我们可以使用font-family（字体），color（颜色），和font-size（字体大小）属性来定义字体的样式:
+
+```html
+<h1 style="font-family:verdana;">一个标题</h1>
+<p style="font-family:arial;color:red;font-size:20px;">一个段落。</p>
+```
+现在通常使用font-family（字体），color（颜色），和font-size（字体大小）属性来定义文本样式，而不是使用 `<font>` 标签。
+
+### HTML 样式实例 - 文本对齐方式
+
+使用 text-align（文字对齐）属性指定文本的水平与垂直对齐方式：
+
+```html
+<h1 style="text-align:center;">居中对齐的标题</h1>
+<p>这是一个段落。</p>
+```
+文本对齐属性 text-align取代了旧标签 `<center>` 。
+
+### 内部样式表
+
+当单个文件需要特别样式时，就可以使用内部样式表。你可以在<head> 部分通过 `<style>` 标签定义内部样式表:
+
+```html
+<head>
+<style type="text/css">
+body {background-color:yellow;}
+p {color:blue;}
+</style>
+</head>
+```
+### 外部样式表
+
+当样式需要被应用到很多页面的时候，外部样式表将是理想的选择。使用外部样式表，你就可以通过更改一个文件来改变整个站点的外观。
+
+```html
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+```
+### HTML 样式标签
+
+![HTML 样式标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E6%A0%B7%E5%BC%8F%E6%A0%87%E7%AD%BE.png)
+
+### 已弃用的标签和属性
+
+在HTML 4, 原来支持定义HTML元素样式的标签和属性已被弃用。这些标签将不支持新版本的HTML标签。
+
+不建议使用的标签有: `<font>`, `<center>`, `<strike>`
+
+不建议使用的属性: color 和 bgcolor.
+
+## HTML 图像
+
+### HTML 图像- 图像标签（ `<img>`）和源属性（Src）
+
+在 HTML 中，图像由 `<img>` 标签定义。
+
+`<img>` 是空标签，意思是说，它只包含属性，并且没有闭合标签。
+
+要在页面上显示图像，你需要使用源属性（src）。src 指 "source"。源属性的值是图像的 URL 地址。
+
+定义图像的语法是：
+
+```html
+<img src="url" alt="some_text">
+```
+URL 指存储图像的位置。如果名为 "pulpit.jpg" 的图像位于 www.runoob.com 的 images 目录中，那么其 URL 为 http://www.runoob.com/images/pulpit.jpg 。
+
+浏览器将图像显示在文档中图像标签出现的地方。如果你将图像标签置于两个段落之间，那么浏览器会首先显示第一个段落，然后显示图片，最后显示第二段。
+
+### HTML 图像- Alt属性
+
+alt 属性用来为图像定义一串预备的可替换的文本。
+
+替换文本属性的值是用户定义的。
+
+```html
+<img src="boat.gif" alt="Big Boat">
+```
+在浏览器无法载入图像时，替换文本属性告诉读者她们失去的信息。此时，浏览器将显示这个替代性的文本而不是图像。为页面上的图像都加上替换文本属性是个好习惯，这样有助于更好的显示信息，并且对于那些使用纯文本浏览器的人来说是非常有用的。
+
+### HTML 图像- 设置图像的高度与宽度
+
+height（高度） 与 width（宽度）属性用于设置图像的高度与宽度。
+
+属性值默认单位为像素:
+
+```html
+<img src="pulpit.jpg" alt="Pulpit rock" width="304" height="228">
+```
+提示: 指定图像的高度和宽度的一个很好的习惯。如果图像指定了高度宽度，页面加载时就会保留指定的尺寸。如果没有指定图片的大小，加载页面时有可能会破坏HTML页面的整体布局。
+
+### 基本的注意事项 - 有用的提示：
+
+注意: 假如某个 HTML 文件包含十个图像，那么为了正确显示这个页面，需要加载 11 个文件。加载图片是需要时间的，所以我们的建议是：慎用图片。
+
+注意: 加载页面时，要注意插入页面图像的路径，如果不能正确设置图像的位置，浏览器无法加载图片，图像标签就会显示一个破碎的图片。
+
+### HTML 图像标签
+
+![HTML 图像标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E5%9B%BE%E5%83%8F%E6%A0%87%E7%AD%BE.png)
+
+## HTML 表格
+
+### HTML 表格
+
+表格由 `<table>` 标签来定义。每个表格均有若干行（由 `<tr>` 标签定义），每行被分割为若干单元格（由 `<td>` 标签定义）。字母 td 指表格数据（table data），即数据单元格的内容。数据单元格可以包含文本、图片、列表、段落、表单、水平线、表格等等。
+
+表格实例
+
+```html
+<table border="1">
+    <tr>
+        <td>row 1, cell 1</td>
+        <td>row 1, cell 2</td>
+    </tr>
+    <tr>
+        <td>row 2, cell 1</td>
+        <td>row 2, cell 2</td>
+    </tr>
+</table>
+```
+在浏览器显示如下：
+
+![表格显示](http://p9myzkds7.bkt.clouddn.com/HTML/%E8%A1%A8%E6%A0%BC%E6%98%BE%E7%A4%BA.jpg)
+
+### HTML 表格和边框属性
+
+如果不定义边框属性，表格将不显示边框。有时这很有用，但是大多数时候，我们希望显示边框。
+
+使用边框属性来显示一个带有边框的表格：
+
+```
+<table border="1">
+    <tr>
+        <td>Row 1, cell 1</td>
+        <td>Row 1, cell 2</td>
+    </tr>
+</table>
+```
+### HTML 表格表头
+
+表格的表头使用 `<th>` 标签进行定义。
+
+大多数浏览器会把表头显示为粗体居中的文本：
+
+```html
+<table border="1">
+    <tr>
+        <th>Header 1</th>
+        <th>Header 2</th>
+    </tr>
+    <tr>
+        <td>row 1, cell 1</td>
+        <td>row 1, cell 2</td>
+    </tr>
+    <tr>
+        <td>row 2, cell 1</td>
+        <td>row 2, cell 2</td>
+    </tr>
+</table>
+```
+在浏览器显示如下：
+
+![表头显示](http://p9myzkds7.bkt.clouddn.com/HTML/%E8%A1%A8%E5%A4%B4%E6%98%BE%E7%A4%BAjpg.jpg)
+
+### HTML 表格标签
+
+![HTML 表格标签](http://p9myzkds7.bkt.clouddn.com/HTML/%E8%A1%A8%E6%A0%BC%E6%A0%87%E7%AD%BE.png)
+
+
+## HTML 列表
+
+HTML 支持有序、无序和定义列表:
+
+![HTML 列表](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%E5%88%97%E8%A1%A8.png)
+
+### HTML无序列表
+
+无序列表是一个项目的列表，此列项目使用粗体圆点（典型的小黑圆圈）进行标记。
+
+无序列表使用 `<ul>` 标签
+
+```html
+<ul>
+<li>Coffee</li>
+<li>Milk</li>
+</ul>
+```
+浏览器显示如下：
+
+```
+Coffee
+Milk
+```
+### HTML 有序列表
+
+同样，有序列表也是一列项目，列表项目使用数字进行标记。 有序列表始于 `<ol>` 标签。每个列表项始于 `<li>` 标签。
+
+列表项使用数字来标记。
+
+```html
+<ol>
+<li>Coffee</li>
+<li>Milk</li>
+</ol>
+```
+浏览器中显示如下：
+
+```
+1.Coffee
+2.Milk
+```
+### HTML 自定义列表
+
+自定义列表不仅仅是一列项目，而是项目及其注释的组合。
+
+自定义列表以 `<dl>` 标签开始。每个自定义列表项以 `<dt>` 开始。每个自定义列表项的定义以 `<dd>` 开始。
+
+```html
+<dl>
+<dt>Coffee</dt>
+<dd>- black hot drink</dd>
+<dt>Milk</dt>
+<dd>- white cold drink</dd>
+</dl>
+```
+浏览器显示如下：
+
+```
+Coffee
+- black hot drink
+Milk
+- white cold drink
+```
+### 注意事项 - 有用提示
+
+提示: 列表项内部可以使用段落、换行符、图片、链接以及其他列表等等。
+
+### HTML 列表标签
+
+![HTML 列表标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E5%88%97%E8%A1%A8%E6%A0%87%E7%AD%BE.png)
