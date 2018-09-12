@@ -514,3 +514,195 @@ HTML 使用标签 `<b>`("bold") 与 `<i>`("italic") 对输出的文本进行格�
 
 ![HTML 引文, 引用, 及标签定义](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E5%BC%95%E6%96%87,%20%E5%BC%95%E7%94%A8,%20%E5%8F%8A%E6%A0%87%E7%AD%BE%E5%AE%9A%E4%B9%89.png)
 
+## HTML 链接
+
+HTML 使用超级链接与网络上的另一个文档相连。几乎可以在所有的网页中找到链接。点击链接可以从一张页面跳转到另一张页面。
+
+### HTML 超链接（链接）
+
+HTML使用标签 `<a>`来设置超文本链接。
+
+超链接可以是一个字，一个词，或者一组词，也可以是一幅图像，您可以点击这些内容来跳转到新的文档或者当前文档中的某个部分。
+
+当您把鼠标指针移动到网页中的某个链接上时，箭头会变为一只小手。
+
+在标签 `<a>` 中使用了href属性来描述链接的地址。
+
+默认情况下，链接将以以下形式出现在浏览器中：
+
+- 一个未访问过的链接显示为蓝色字体并带有下划线。
+- 访问过的链接显示为紫色并带有下划线。
+- 点击链接时，链接显示为红色并带有下划线。
+
+> 注意：如果为这些超链接设置了 CSS 样式，展示样式会根据 CSS 的设定而显示。
+
+### HTML 链接语法
+
+链接的 HTML 代码很简单。它类似这样：
+
+```html
+<a href="url">链接文本</a>
+```
+href 属性描述了链接的目标。.
+
+```html
+<a href="http://www.runoob.com/">访问菜鸟教程</a>
+```
+上面这行代码显示为：[访问菜鸟教程](http://www.runoob.com/)
+
+点击这个超链接会把用户带到菜鸟教程的首页。
+
+提示: "链接文本" 不必一定是文本。图片或其他 HTML 元素都可以成为链接。
+
+### HTML 链接 - target 属性
+
+使用 target 属性，你可以定义被链接的文档在何处显示。
+
+下面的这行会在新窗口打开文档：
+
+```html
+<a href="http://www.runoob.com/" target="_blank">访问菜鸟教程!</a>
+```
+### HTML 链接- id 属性
+
+id属性可用于创建在一个HTML文档书签标记。
+
+提示: 书签是不以任何特殊的方式显示，在HTML文档中是不显示的，所以对于读者来说是隐藏的。
+
+在HTML文档中插入ID:
+
+```html
+<a id="tips">有用的提示部分</a>
+```
+在HTML文档中创建一个链接到"有用的提示部分(id="tips"）"：
+
+```html
+<a href="#tips">访问有用的提示部分</a>
+```
+或者，从另一个页面创建一个链接到"有用的提示部分(id="tips"）"：
+
+```html
+<a href="http://www.runoob.com/html/html-links.html#tips">
+访问有用的提示部分 </a>
+```
+### 基本的注意事项 - 有用的提示
+
+注释： 请始终将正斜杠添加到子文件夹。假如这样书写链接：href="http://www.runoob.com/html "，就会向服务器产生两次 HTTP 请求。这是因为服务器会添加正斜杠到这个地址，然后创建一个新的请求，就像这样：href="http://www.runoob.com/html/ "。
+
+### HTML 链接标签
+
+![HTML 链接标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E9%93%BE%E6%8E%A5%E6%A0%87%E7%AD%BE.png)
+
+## HTML `<head>`
+  
+### HTML `<head>` 元素
+
+<head> 元素包含了所有的头部标签元素。在 `<head>` 元素中你可以插入脚本（scripts）, 样式文件（CSS），及各种meta信息。
+
+可以添加在头部区域的元素标签为: `<title>`, `<style>`, `<meta>`, `<link>`, `<script>`, `<noscript>`, and `<base>`.
+
+### HTML `<title>` 元素
+
+`<title>` 标签定义了不同文档的标题。
+
+`<title>` 在 HTML/XHTML 文档中是必须的。
+
+`<title>` 元素:
+
+- 定义了浏览器工具栏的标题
+-  当网页添加到收藏夹时，显示在收藏夹中的标题
+- 显示在搜索引擎结果页面的标题
+
+一个简单的 HTML 文档:
+
+```html
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>文档标题</title>
+</head>
+ 
+<body>
+文档内容......
+</body>
+ 
+</html>
+```
+### HTML `<base>` 元素
+
+`<base>` 标签描述了基本的链接地址/链接目标，该标签作为HTML文档中所有的链接标签的默认链接:
+
+```html
+<head>
+<base href="http://www.runoob.com/images/" target="_blank">
+</head>
+```
+### HTML `<link>` 元素
+
+`<link>` 标签定义了文档与外部资源之间的关系。
+
+`<link>` 标签通常用于链接到样式表:
+
+```html
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+```
+### HTML `<style>` 元素
+
+`<style>` 标签定义了HTML文档的样式文件引用地址.
+
+在 `<style>` 元素中你也可以直接添加样式来渲染 HTML 文档:
+
+```html
+<head>
+<style type="text/css">
+body {background-color:yellow}
+p {color:blue}
+</style>
+</head>
+```
+### HTML `<meta>` 元素
+
+meta标签描述了一些基本的元数据。
+
+`<meta>` 标签提供了元数据.元数据也不显示在页面上，但会被浏览器解析。
+
+META 元素通常用于指定网页的描述，关键词，文件的最后修改时间，作者，和其他元数据。
+
+元数据可以使用于浏览器（如何显示内容或重新加载页面），搜索引擎（关键词），或其他Web服务。
+
+`<meta>` 一般放置于 `<head>` 区域
+
+### `<meta>` 标签- 使用实例
+
+为搜索引擎定义关键词:
+
+```html
+<meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript">
+```
+为网页定义描述内容:
+
+```html
+<meta name="description" content="免费 Web & 编程 教程">
+```
+定义网页作者:
+
+```html
+<meta name="author" content="Runoob">
+```
+每30秒钟刷新当前页面:
+
+```html
+<meta http-equiv="refresh" content="30">
+```
+### HTML `<script>` 元素
+
+`<script>` 标签用于加载脚本文件，如： JavaScript。
+
+`<script>` 元素在以后的章节中会详细描述。
+
+### HTML head 元素
+
+![head 元素](http://p9myzkds7.bkt.clouddn.com/HTML/head%20%E5%85%83%E7%B4%A0.png)
