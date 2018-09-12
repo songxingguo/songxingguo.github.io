@@ -75,3 +75,6 @@ version: 1.0
 
 local_search:
   enable: true
+
+# Swiftype Search Key
+swiftype_key: ENrrQtqCVAeKcMd7Pd7a
