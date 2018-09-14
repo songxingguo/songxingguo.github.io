@@ -8,6 +8,10 @@ date: 2018-06-02 10:23:12
 [水果商店](https://songxingguo.github.io/FruitShop/)
 
 > 该作品是参照 [五星果品](http://www.wuxingguopin.com/) 网站之前的版本开发。
+
+[Web基础](https://songxingguo.github.io/HTML/)
+
+> 该作品用于展示基础的 HTML 网页。
   
 [微信UI](https://github.com/songxingguo/MyWeUI)
 
