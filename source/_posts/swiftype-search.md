@@ -13,6 +13,8 @@ date: 2018-09-12 14:00:00
 
 可以在 [swiftype 官网](https://swiftype.com/) 中注册一个账号，就像下面这样。
 
+<!-- more -->
+
 ![注册账号](http://p9myzkds7.bkt.clouddn.com/swiftype-search/%E6%B3%A8%E5%86%8C%E8%B4%A6%E5%8F%B7.png)
 
 ## 创建搜索引擎
