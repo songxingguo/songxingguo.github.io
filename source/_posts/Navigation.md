@@ -21,6 +21,8 @@ date: 2018-08-12 14:56:00
     </ul>
 </div>
 ```
+<!-- more -->
+
 效果：
 
 ![HTML结构效果](http://p9myzkds7.bkt.clouddn.com/Navigation/HTML%E7%BB%93%E6%9E%84%E6%95%88%E6%9E%9C.png)

@@ -14,6 +14,9 @@ date: 2018-06-06 12:14:00
   ```
   wget http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.11-linux-glibc2.5-x86_64.tar.gz
   ```
+  
+<!-- more -->
+ 
 2.解压压缩包
 ```
 tar -zxvf mysql-5.7.11-linux-glibc2.5-x86_64.tar.gz

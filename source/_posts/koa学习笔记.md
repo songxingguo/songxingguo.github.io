@@ -18,6 +18,8 @@ date: 2018-06-30 08:09:00
  node app.js
 ```
 
+<!-- more -->
+
 ### 使用 Babel 实现 Async 方法
 
   > 要在 node < 7.6 版本的 Koa 中使用 async 方法, 我们推荐使用 [babel's require hook](https://babel.bootcss.com/docs/usage/babel-register/).
@@ -195,6 +197,3 @@ app.on('error', (err, ctx) => {
 });
 ```
 当发生错误 _并且_ 仍然可以响应客户端时，也没有数据被写入 socket 中，Koa 将用一个 500 “内部服务器错误” 进行适当的响应。在任一情况下，为了记录目的，都会发出应用级 “错误”。
-
-
-
