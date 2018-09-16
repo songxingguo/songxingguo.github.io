@@ -1433,3 +1433,464 @@ document.getElementById("demo").style.color="#ff0000";
 ### HTML 脚本标签
 
 ![HTML 脚本标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E8%84%9A%E6%9C%AC%E6%A0%87%E7%AD%BE.png)
+
+## HTML 字符实体
+
+HTML 中的预留字符必须被替换为字符实体。
+
+一些在键盘上找不到的字符也可以使用字符实体来替换。
+
+### HTML 实体
+
+在 HTML 中，某些字符是预留的。
+
+在 HTML 中不能使用小于号（<）和大于号（>），这是因为浏览器会误认为它们是标签。
+
+如果希望正确地显示预留字符，我们必须在 HTML 源代码中使用字符实体（character entities）。 字符实体类似这样：
+
+```
+&entity_name;
+或
+&#entity_number;
+```
+如需显示小于号，我们必须这样写：&lt; 或 &#60; 或 &#060;
+
+> 提示： 使用实体名而不是数字的好处是，名称易于记忆。不过坏处是，浏览器也许并不支持所有实体名称（对实体数字的支持却很好）。
+
+### 不间断空格(Non-breaking Space)
+
+HTML 中的常用字符实体是不间断空格(&nbsp;)。
+
+浏览器总是会截短 HTML 页面中的空格。如果您在文本中写 10 个空格，在显示该页面之前，浏览器会删除它们中的 9 个。如需在页面中增加空格的数量，您需要使用 &nbsp; 字符实体。
+
+### 结合音标符
+
+发音符号是加到字母上的一个"glyph(字形)"。
+
+一些变音符号, 如 尖音符 (  ̀) 和 抑音符 (  ́) 。
+
+变音符号可以出现字母的上面和下面，或者字母里面，或者两个字母间。
+
+变音符号可以与字母、数字字符的组合来使用。
+
+以下是一些实例:
+
+![结合音标符](http://p9myzkds7.bkt.clouddn.com/HTML/%E7%BB%93%E5%90%88%E9%9F%B3%E6%A0%87%E7%AC%A6.png)
+
+### HTML字符实体
+
+>  实体名称对大小写敏感！
+
+![HTML字符实体](http://p9myzkds7.bkt.clouddn.com/HTML/%E5%AE%9E%E4%BD%93%E5%90%8D%E7%A7%B0.png)
+
+查看本站完整的HTML实体：请点击 [HTML 实体参考手册](http://www.runoob.com/tags/ref-entities.html)。
+
+## HTML 统一资源定位器(Uniform Resource Locators)
+
+
+URL 是一个网页地址。
+
+URL可以由字母组成，如"runoob.com"，或互联网协议（IP）地址： 192.68.20.50。大多数人进入网站使用网站域名来访问，因为 名字比数字更容易记住。
+
+### URL - 统一资源定位器
+
+Web浏览器通过URL从Web服务器请求页面。
+
+当您点击 HTML 页面中的某个链接时，对应的 <a> 标签指向万维网上的一个地址。
+
+一个统一资源定位器(URL) 用于定位万维网上的文档。
+
+一个网页地址实例: http://www.runoob.com/html/html-tutorial.html 语法规则:
+
+```
+scheme://host.domain:port/path/filename
+```
+说明:
+
+- scheme - 定义因特网服务的类型。最常见的类型是 http
+- host - 定义域主机（http 的默认主机是 www）
+- domain - 定义因特网域名，比如 runoob.com
+- :port - 定义主机上的端口号（http 的默认端口号是 80）
+- path - 定义服务器上的路径（如果省略，则文档必须位于网站的根目录中）。
+- filename - 定义文档/资源的名称
+
+### 常见的 URL Scheme
+
+以下是一些URL scheme：
+
+![常见的 URL Scheme](http://p9myzkds7.bkt.clouddn.com/HTML/%E5%B8%B8%E8%A7%81%E7%9A%84%20URL%20Scheme.png)
+
+### URL 字符编码
+
+URL 只能使用 [ASCII 字符集](http://www.runoob.com/tags/html-ascii.html).
+
+来通过因特网进行发送。由于 URL 常常会包含 ASCII 集合之外的字符，URL 必须转换为有效的 ASCII 格式。
+
+URL 编码使用 "%" 其后跟随两位的十六进制数来替换非 ASCII 字符。
+
+URL 不能包含空格。URL 编码通常使用 + 来替换空格。
+
+### URL 编码实例
+
+![URL 编码实例](http://p9myzkds7.bkt.clouddn.com/HTML/URL%20%E7%BC%96%E7%A0%81%E5%AE%9E%E4%BE%8B.png)
+
+如需完整的 URL 编码参考，请访问我们的 [URL 编码参考手册](http://www.runoob.com/tags/html-urlencode.html)。
+
+## HTML 速查列表
+
+HTML 速查列表. 你可以打印它，以备日常使用。
+
+### HTML 基本文档
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>文档标题</title>
+</head>
+<body>
+可见文本...
+</body>
+</html>
+```
+### 基本标签（Basic Tags）
+
+```html
+<h1>最大的标题</h1>
+<h2> . . . </h2>
+<h3> . . . </h3>
+<h4> . . . </h4>
+<h5> . . . </h5>
+<h6>最小的标题</h6>
+ 
+<p>这是一个段落。</p>
+<br> （换行）
+<hr> （水平线）
+<!-- 这是注释 -->
+```
+### 文本格式化（Formatting）
+
+```html
+<b>粗体文本</b>
+<code>计算机代码</code>
+<em>强调文本</em>
+<i>斜体文本</i>
+<kbd>键盘输入</kbd> 
+<pre>预格式化文本</pre>
+<small>更小的文本</small>
+<strong>重要的文本</strong>
+ 
+<abbr> （缩写）
+<address> （联系信息）
+<bdo> （文字方向）
+<blockquote> （从另一个源引用的部分）
+<cite> （工作的名称）
+<del> （删除的文本）
+<ins> （插入的文本）
+<sub> （下标文本）
+<sup> （上标文本）
+```
+### 链接（Links）
+
+```
+普通的链接：<a href="http://www.example.com/">链接文本</a>
+图像链接： <a href="http://www.example.com/"><img src="URL" alt="替换文本"></a>
+邮件链接： <a href="mailto:webmaster@example.com">发送e-mail</a>
+```
+### 书签：
+
+```html
+<a id="tips">提示部分</a>
+<a href="#tips">跳到提示部分</a>
+```
+### 图片（Images）
+
+```html
+<img src="URL" alt="替换文本" height="42" width="42">
+```
+### 样式/区块（Styles/Sections）
+
+```html
+<style type="text/css">
+h1 {color:red;}
+p {color:blue;}
+</style>
+<div>文档中的块级元素</div>
+<span>文档中的内联元素</span>
+```
+### 无序列表
+
+```html
+<ul>
+    <li>项目</li>
+    <li>项目</li>
+</ul>
+```
+### 有序列表
+
+```html
+<ol>
+    <li>第一项</li>
+    <li>第二项</li>
+</ol>
+```
+### 定义列表
+
+```html
+<dl>
+  <dt>项目 1</dt>
+    <dd>描述项目 1</dd>
+  <dt>项目 2</dt>
+    <dd>描述项目 2</dd>
+</dl>
+```
+### 表格（Tables）
+
+```html
+<table border="1">
+  <tr>
+    <th>表格标题</th>
+    <th>表格标题</th>
+  </tr>
+  <tr>
+    <td>表格数据</td>
+    <td>表格数据</td>
+  </tr>
+</table>
+```
+### 框架（Iframe）
+
+```html
+<iframe src="demo_iframe.htm"></iframe>
+```
+### 表单（Forms）
+
+```
+<form action="demo_form.php" method="post/get">
+<input type="text" name="email" size="40" maxlength="50">
+<input type="password">
+<input type="checkbox" checked="checked">
+<input type="radio" checked="checked">
+<input type="submit" value="Send">
+<input type="reset">
+<input type="hidden">
+<select>
+<option>苹果</option>
+<option selected="selected">香蕉</option>
+<option>樱桃</option>
+</select>
+<textarea name="comment" rows="60" cols="20"></textarea>
+ 
+</form>
+```
+### 实体（Entities）
+
+```
+&lt; 等同于 <
+&gt; 等同于 >
+&#169; 等同于 ©
+```
+## HTML 总结
+
+本教程已教你如何使用 HTML 创建站点。
+
+HTML 是一种在 Web 上使用的通用标记语言。HTML 允许你格式化文本，添加图片，创建链接、输入表单、框架和表格等等，并可将之存为文本文件，浏览器即可读取和显示。
+
+HTML 的关键是标签，其作用是指示将出现的内容。
+
+如需更多关于 HTML 的信息，请查看我们的 [HTML 教程](https://www.runoob.com/html/html-tutorial.html) 和 [HTML 参考手册](https://www.runoob.com/tags/html-reference.html) 。
+
+## HTML - XHTML
+
+XHTML 是以 XML 格式编写的 HTML。
+
+### 什么是 XHTML?
+
+- XHTML 指的是可扩展超文本标记语言
+- XHTML 与 HTML 4.01 几乎是相同的
+- XHTML 是更严格更纯净的 HTML 版本
+- XHTML 是以 XML 应用的方式定义的 HTML
+- XHTML 是 2001 年 1 月发布的 W3C 推荐标准
+- XHTML 得到所有主流浏览器的支持
+
+### 为什么使用 XHTML?
+
+因特网上的很多页面包含了"糟糕"的 HTML。
+
+如果在浏览器中查看，下面的 HTML 代码运行起来非常正常（即使它并未遵守 HTML 规则）：
+
+```html
+<html>
+<head>
+<meta charset="utf-8">
+<title>这是一个不规范的 HTML</title>
+<body>
+<h1>不规范的 HTML
+<p>这是一个段落
+</body>
+```
+XML 是一种必须正确标记且格式良好的标记语言。
+
+如果希望学习 XML，请阅读我们的 [XML 教程](http://www.runoob.com/xml/xml-tutorial.html)。
+
+今日的科技界存在一些不同的浏览器技术。其中一些在计算机上运行，而另一些可能在移动电话或其他小型设备上运行。小型设备往往缺乏解释"糟糕"的标记语言的资源和能力。
+
+所以 - 通过结合 XML 和 HTML 的长处，开发出了 XHTML。XHTML 是作为 XML 被重新设计的 HTML。
+
+### 与 HTML 相比最重要的区别：
+
+- #### 文档结构
+
+  - XHTML DOCTYPE 是强制性的
+  - `<html>` 中的 XML namespace 属性是强制性的
+  - `<html>`、`<head>`、`<title>` 以及 `<body>` 也是强制性的
+  
+- #### 元素语法
+
+  - XHTML 元素必须正确嵌套
+  - XHTML 元素必须始终关闭
+  - XHTML 元素必须小写
+  - XHTML 文档必须有一个根元素
+
+- #### 属性语法
+
+  - XHTML 属性必须使用小写
+  - XHTML 属性值必须用引号包围
+  - XHTML 属性最小化也是禁止的
+
+### <!DOCTYPE ....>是强制性的
+
+XHTML 文档必须进行 XHTML 文档类型声明（XHTML DOCTYPE declaration）。
+
+您可以在菜鸟教程的标签参考手册中找到完整的 [XHTML 文档类型](http://www.runoob.com/tags/tag-doctype.html)。
+
+`<html>`, `<head>`, `<title>`, 和 `<body>` 元素也必须存在，并且必须使用 `<html>` 中的 xmlns 属性为文档规定 xml 命名空间。
+
+下面的例子展示了带有最少的必需标签的 XHTML 文档：
+
+```html
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml">
+ 
+<head>
+  <meta charset="utf-8">
+  <title>文档标题</title>
+</head>
+ 
+<body>
+文档内容
+</body>
+ 
+</html>
+```
+###  XHTML 元素必须合理嵌套
+
+在 HTML 中，一些元素可以不互相嵌套，像这样：
+
+```
+<b><i>粗体和斜体文本</b></i>
+```
+在 XHTML 中，所有的元素都必须互相合理地嵌套，像这样：
+
+```
+<b><i>粗体和斜体文本</i></b>
+```
+### XHTML 元素必须有关闭标签
+
+错误示例：
+
+```
+<p>这是一个段落
+<p>这是另外一个段落
+```
+正确示例：
+
+```
+<p>这是一个段落</p>
+<p>这是另外一个段落</p>
+```
+### 空元素必须包含关闭标签
+
+错误示例：
+
+```
+分行:<br>
+水平线: <hr>
+图片: <img src="happy.gif" alt="Happy face">
+```
+正确示例：
+
+```
+分行:<br />
+水平线: <hr />
+图片: <img src="happy.gif" alt="Happy face" />
+```
+### XHTML 元素必须是小写
+
+错误示例:
+
+```
+<BODY>
+<P>这是一个段落</P>
+</BODY>
+```
+正确示例：
+
+```
+<body>
+<p>这是一个段落</p>
+</body>
+```
+### 属性名称必须是小写
+
+错误示例：
+
+```
+<table WIDTH="100%">
+```
+正确示例:
+
+```
+<table width="100%">
+```
+### 属性值必须有引号
+
+错误示例：
+
+```
+<table width=100%>
+```
+正确示例：
+
+```
+<table width="100%">
+```
+### 不允许属性简写
+
+错误示例：
+
+```
+<input checked>
+<input readonly>
+<input disabled>
+<option selected>
+```
+正确示例：
+
+```
+<input checked="checked">
+<input readonly="readonly">
+<input disabled="disabled">
+<option selected="selected">
+```
+### 如何将 HTML 转换为 XHTML
+
+1. 添加一个 XHTML <!DOCTYPE> 到你的网页中
+2. 添加 xmlns 属性添加到每个页面的html元素中。
+3. 改变所有的元素为小写
+4. 关闭所有的空元素
+5. 修改所有的属性名称为小写
+6. 所有属性值添加引号
+
