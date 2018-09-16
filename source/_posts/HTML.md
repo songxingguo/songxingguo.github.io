@@ -994,3 +994,442 @@ Milk
 ### HTML 列表标签
 
 ![HTML 列表标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E5%88%97%E8%A1%A8%E6%A0%87%E7%AD%BE.png)
+
+## HTML `<div>` 和 `<span>`
+
+HTML 可以通过 <div> 和 <span>将元素组合起来。
+
+### HTML 区块元素
+
+大多数 HTML 元素被定义为块级元素或内联元素。
+
+块级元素在浏览器显示时，通常会以新行来开始（和结束）。
+
+实例: `<h1>`, `<p>`, `<ul>`, `<table>`
+
+### HTML 内联元素
+
+内联元素在显示时通常不会以新行开始。
+
+实例: `<b>`, `<td>`, `<a>`, `<img>`
+
+### HTML `<div>` 元素
+
+HTML `<div>` 元素是块级元素，它可用于组合其他 HTML 元素的容器。
+
+`<div>` 元素没有特定的含义。除此之外，由于它属于块级元素，浏览器会在其前后显示折行。
+
+如果与 CSS 一同使用，`<div>` 元素可用于对大的内容块设置样式属性。
+
+`<div>` 元素的另一个常见的用途是文档布局。它取代了使用表格定义布局的老式方法。使用 <table> 元素进行文档布局不是表格的正确用法。<table> 元素的作用是显示表格化的数据。
+
+### HTML `<span>` 元素
+
+HTML `<span>` 元素是内联元素，可用作文本的容器
+
+`<span>` 元素也没有特定的含义。
+
+当与 CSS 一同使用时，`<span>` 元素可用于为部分文本设置样式属性。
+
+### HTML 分组标签
+
+![HTML 分组标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E5%88%86%E7%BB%84%E6%A0%87%E7%AD%BE.png)
+
+## HTML 布局
+
+网页布局对改善网站的外观非常重要。
+
+请慎重设计您的网页布局。
+
+### 网站布局
+
+大多数网站会把内容安排到多个列中（就像杂志或报纸那样）。
+
+大多数网站可以使用 `<div>` 或者 `<table>` 元素来创建多列。CSS 用于对元素进行定位，或者为页面创建背景以及色彩丰富的外观。
+
+> 虽然我们可以使用HTML table标签来设计出漂亮的布局，但是table标签是不建议作为布局工具使用的 - 表格不是布局工具。
+
+### HTML 布局 - 使用`<div>` 元素
+  
+div 元素是用于分组 HTML 元素的块级元素。
+
+下面的例子使用五个 div 元素来创建多列布局：
+
+```html
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>菜鸟教程(runoob.com)</title> 
+</head>
+<body>
+ 
+<div id="container" style="width:500px">
+ 
+<div id="header" style="background-color:#FFA500;">
+<h1 style="margin-bottom:0;">主要的网页标题</h1></div>
+ 
+<div id="menu" style="background-color:#FFD700;height:200px;width:100px;float:left;">
+<b>菜单</b><br>
+HTML<br>
+CSS<br>
+JavaScript</div>
+ 
+<div id="content" style="background-color:#EEEEEE;height:200px;width:400px;float:left;">
+内容在这里</div>
+ 
+<div id="footer" style="background-color:#FFA500;clear:both;text-align:center;">
+版权 © runoob.com</div>
+ 
+</div>
+ 
+</body>
+</html>
+```
+上面的 HTML 代码会产生如下结果：
+
+![div 布局](http://p9myzkds7.bkt.clouddn.com/HTML/div%E5%B8%83%E5%B1%80.jpg)
+
+### HTML 布局 - 使用表格
+
+使用 HTML `<table` 标签是创建布局的一种简单的方式。
+
+大多数站点可以使用 `<div>` 或者 `<table>` 元素来创建多列。CSS 用于对元素进行定位，或者为页面创建背景以及色彩丰富的外观。
+
+> 即使可以使用 HTML 表格来创建漂亮的布局，但设计表格的目的是呈现表格化数据 - 表格不是布局工具！
+
+下面的例子使用三行两列的表格 - 第一和最后一行使用 colspan 属性来横跨两列：
+
+```html
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>菜鸟教程(runoob.com)</title> 
+</head>
+<body>
+ 
+<table width="500" border="0">
+<tr>
+<td colspan="2" style="background-color:#FFA500;">
+<h1>主要的网页标题</h1>
+</td>
+</tr>
+ 
+<tr>
+<td style="background-color:#FFD700;width:100px;">
+<b>菜单</b><br>
+HTML<br>
+CSS<br>
+JavaScript
+</td>
+<td style="background-color:#eeeeee;height:200px;width:400px;">
+内容在这里</td>
+</tr>
+ 
+<tr>
+<td colspan="2" style="background-color:#FFA500;text-align:center;">
+版权 © runoob.com</td>
+</tr>
+</table>
+ 
+</body>
+</html>
+```
+上面的 HTML 代码会产生以下结果：
+
+![表格布局](http://p9myzkds7.bkt.clouddn.com/HTML/%E8%A1%A8%E6%A0%BC%E5%B8%83%E5%B1%80.jpg)
+
+### HTML 布局 - 有用的提示
+
+Tip: 使用 CSS 最大的好处是，如果把 CSS 代码存放到外部样式表中，那么站点会更易于维护。通过编辑单一的文件，就可以改变所有页面的布局。如需学习更多有关 CSS 的知识，请访问我们的CSS 教程。
+
+Tip: 由于创建高级的布局非常耗时，使用模板是一个快速的选项。通过搜索引擎可以找到很多免费的网站模板（您可以使用这些预先构建好的网站布局，并优化它们）。
+
+### HTML 布局标签
+
+![HTML 布局标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E5%B8%83%E5%B1%80%E6%A0%87%E7%AD%BE.png)
+
+## HTML 表单和输入
+
+HTML 表单用于收集不同类型的用户输入。
+
+### HTML 表单
+
+表单是一个包含表单元素的区域。
+
+表单元素是允许用户在表单中输入内容,比如：文本域(textarea)、下拉列表、单选框(radio-buttons)、复选框(checkboxes)等等。
+
+表单使用表单标签 `<form>` 来设置:
+
+```html
+<form>
+.
+input 元素
+.
+</form>
+```
+### HTML 表单 - 输入元素
+
+多数情况下被用到的表单标签是输入标签（`<input>`）。
+
+输入类型是由类型属性（type）定义的。大多数经常被用到的输入类型如下：
+
+- #### 文本域（Text Fields）
+
+  文本域通过 `<input type="text">` 标签来设定，当用户要在表单中键入字母、数字等内容时，就会用到文本域。
+
+  ```html
+  <form>
+  First name: <input type="text" name="firstname"><br>
+  Last name: <input type="text" name="lastname">
+  </form>
+  ```
+  浏览器显示如下：
+
+  ![文本域](http://p9myzkds7.bkt.clouddn.com/HTML/%E6%96%87%E6%9C%AC%E5%9F%9F.png)
+
+  注意:表单本身并不可见。同时，在大多数浏览器中，文本域的缺省宽度是20个字符。
+
+- #### 密码字段
+
+  密码字段通过标签 `<input type="password">` 来定义:
+
+  ```html
+  <form>
+  Password: <input type="password" name="pwd">
+  </form>
+  ```
+  浏览器显示效果如下:
+
+  ![密码字段](http://p9myzkds7.bkt.clouddn.com/HTML/%E5%AF%86%E7%A0%81%E5%AD%97%E6%AE%B5.png)
+
+  注意:密码字段字符不会明文显示，而是以星号或圆点替代。
+
+- #### 单选按钮（Radio Buttons）
+
+  `<input type="radio">` 标签定义了表单单选框选项
+
+  ```html
+  <form>
+  <input type="radio" name="sex" value="male">Male<br>
+  <input type="radio" name="sex" value="female">Female
+  </form>
+  ```
+  浏览器显示效果如下:
+
+  ![单选按钮](http://p9myzkds7.bkt.clouddn.com/HTML/%E5%8D%95%E9%80%89%E6%8C%89%E9%92%AE.png)
+
+- #### 复选框（Checkboxes）
+
+  `<input type="checkbox">` 定义了复选框. 用户需要从若干给定的选择中选取一个或若干选项。
+
+  ```html
+  <form>
+  <input type="checkbox" name="vehicle" value="Bike">I have a bike<br>
+  <input type="checkbox" name="vehicle" value="Car">I have a car 
+  </form>
+  ```
+  浏览器显示效果如下:
+
+  ![复选框](http://p9myzkds7.bkt.clouddn.com/HTML/%E5%A4%8D%E9%80%89%E6%A1%86.png)
+
+- #### 提交按钮(Submit Button)
+
+  `<input type="submit">` 定义了提交按钮.
+
+  当用户单击确认按钮时，表单的内容会被传送到另一个文件。表单的动作属性定义了目的文件的文件名。由动作属性定义的这个文件通常会对接收到的输入数据进行相关的处理。:
+
+  ```html
+  <form name="input" action="html_form_action.php" method="get">
+  Username: <input type="text" name="user">
+  <input type="submit" value="Submit">
+  </form>
+  ```
+  浏览器显示效果如下:
+
+  ![提交按钮](http://p9myzkds7.bkt.clouddn.com/HTML/%E6%8F%90%E4%BA%A4%E6%8C%89%E9%92%AE.png)
+
+  假如您在上面的文本框内键入几个字母，然后点击确认按钮，那么输入数据会传送到 "html_form_action.php" 的页面。该页面将显示出输入的结果。
+
+### HTML 表单标签
+
+![HTML 表单标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E8%A1%A8%E5%8D%95%E6%A0%87%E7%AD%BE.png)
+  
+## HTML 框架
+
+通过使用框架，你可以在同一个浏览器窗口中显示不止一个页面。
+
+<iframe src="http://www.runoob.com/html" width="100%" height="400px"></iframe>
+
+iframe语法:
+
+```html
+<iframe src="URL"></iframe>
+```
+该URL指向不同的网页。
+
+### Iframe - 设置高度与宽度
+
+height 和 width 属性用来定义iframe标签的高度与宽度。
+
+属性默认以像素为单位, 但是你可以指定其按比例显示 (如："80%")。
+
+```html
+<iframe src="demo_iframe.htm" width="200" height="200"></iframe>
+```
+### Iframe - 移除边框
+
+frameborder 属性用于定义iframe表示是否显示边框。
+
+设置属性值为 "0" 移除iframe的边框:
+
+```html
+<iframe src="demo_iframe.htm" frameborder="0"></iframe>
+```
+使用iframe来显示目标链接页面
+iframe可以显示一个目标链接的页面
+
+目标链接的属性必须使用iframe的属性，如下实例:
+
+```html
+<iframe src="demo_iframe.htm" name="iframe_a"></iframe>
+<p><a href="http://www.runoob.com" target="iframe_a">RUNOOB.COM</a></p>
+```
+### HTML iframe 标签
+
+![HTML iframe 标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20iframe%20%E6%A0%87%E7%AD%BE.png)
+
+## HTML 颜色
+
+HTML 颜色由红色、绿色、蓝色混合而成。
+
+### 颜色值
+
+HTML 颜色由一个十六进制符号来定义，这个符号由红色、绿色和蓝色的值组成（RGB）。
+
+每种颜色的最小值是0（十六进制：#00）。最大值是255（十六进制：#FF）。
+
+这个表格给出了由三种颜色混合而成的具体效果：
+
+![颜色值](http://p9myzkds7.bkt.clouddn.com/HTML/%E9%A2%9C%E8%89%B2%E5%80%BC.png)
+
+### 1600万种不同颜色
+
+三种颜色 红，绿，蓝的组合从0到255，一共有1600万种不同颜色(256 x 256 x 256)。
+
+在下面的颜色表中你会看到不同的结果，从0到255的红色，同时设置绿色和蓝色的值为0,随着红色的值变化，不同的值都显示了不同的颜色。
+
+[1600万种不同颜色](http://www.runoob.com/html/html-colors.html)
+
+### 灰暗色调
+
+以下展示了灰色到黑色的渐变
+
+[灰暗色调](http://www.runoob.com/html/html-colors.html)
+
+### Web安全色?
+
+数年以前，当大多数计算机仅支持 256 种颜色的时候，一系列 216 种 Web 安全色作为 Web 标准被建议使用。其中的原因是，微软和 Mac 操作系统使用了 40 种不同的保留的固定系统颜色（双方大约各使用 20 种）。
+
+我们不确定如今这么做的意义有多大，因为越来越多的计算机有能力处理数百万种颜色，不过做选择还是你自己。
+
+最初，216 跨平台 web 安全色被用来确保：当计算机使用 256 色调色板时，所有的计算机能够正确地显示所有的颜色。
+
+![Web安全色](http://p9myzkds7.bkt.clouddn.com/HTML/Web%E5%AE%89%E5%85%A8%E8%89%B2.png)
+
+## HTML 颜色名
+
+**目前所有浏览器都支持以下颜色名。**
+
+141个颜色名称是在HTML和CSS颜色规范定义的（17标准颜色，再加124）。下表列出了所有颜色的值，包括十六进制值。
+
+> 提示: 17标准颜色：黑色，蓝色，水，紫红色，灰色，绿色，石灰，栗色，海军，橄榄，橙，紫，红，白，银，蓝绿色，黄色。点击其中一个颜色名称（或一个十六进制值）就可以查看与不同文字颜色搭配的背景颜色。
+
+### 按颜色名排序
+
+按十六进制的值排序
+
+单击一个颜色名或者 16 进制值，就可以查看与不同文字颜色搭配的背景颜色。
+
+[按颜色名排序](http://www.runoob.com/html/html-colornames.html)
+
+
+## HTML 颜色值
+
+颜色由红(R)、绿(G)、蓝(B)组成。
+
+### 颜色值
+
+颜色值由十六进制来表示红、绿、蓝（RGB）。
+
+每个颜色的最低值为 0(十六进制为 00)，最高值为 255(十六进制为FF)。
+
+十六进制值的写法为 # 号后跟三个或六个十六进制字符。
+
+三位数表示法为：#RGB，转换为6位数表示为：#RRGGBB。
+
+![颜色实例](http://p9myzkds7.bkt.clouddn.com/HTML/%E9%A2%9C%E8%89%B2%E5%AE%9E%E4%BE%8B.png)
+
+通过十六进制（Hex）的颜色值排序
+
+[十六进制（Hex）的颜色值排序](http://www.runoob.com/html/html-colorvalues.html)
+
+
+## HTML 脚本
+
+JavaScript 使 HTML 页面具有更强的动态和交互性。
+
+### HTML `<script>` 标签
+  
+`<script>` 标签用于定义客户端脚本，比如 JavaScript。
+
+`<script>` 元素既可包含脚本语句，也可通过 src 属性指向外部脚本文件。
+
+JavaScript 最常用于图片操作、表单验证以及内容动态更新。
+
+下面的脚本会向浏览器输出"Hello World!"：
+
+```html
+<script>
+document.write("Hello World!");
+</script>
+```
+RemarkTip: 学习更多关于Javascript教程，请查看 [JavaScript 教程](http://www.runoob.com/js/js-tutorial.html)!
+
+### HTML `<noscript>` 标签
+
+`<noscript>` 标签提供无法使用脚本时的替代内容，比方在浏览器禁用脚本时，或浏览器不支持客户端脚本时。
+
+`<noscript>` 元素可包含普通 HTML 页面的 body 元素中能够找到的所有元素。
+
+只有在浏览器不支持脚本或者禁用脚本时，才会显示 `<noscript>` 元素中的内容：
+
+```html
+<script>
+document.write("Hello World!")
+</script>
+<noscript>抱歉，你的浏览器不支持 JavaScript!</noscript>
+```
+### JavaScript体验(来自本站javascript教程)
+
+JavaScript实例代码:
+
+JavaScript可以直接在HTML输出:
+
+```js
+document.write("<p>这是一个段落。</p>");
+```
+JavaScript事件响应:
+
+```html
+<button type="button" onclick="myFunction()">点我！</button>
+```
+JavaScript处理 HTML 样式:
+
+```js
+document.getElementById("demo").style.color="#ff0000";
+```
+### HTML 脚本标签
+
+![HTML 脚本标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E8%84%9A%E6%9C%AC%E6%A0%87%E7%AD%BE.png)
