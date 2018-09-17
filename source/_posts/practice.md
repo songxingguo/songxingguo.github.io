@@ -524,16 +524,20 @@ date: 2018-09-16 19:01:00
 
 - #### 练习
 
-  ##### [扭曲的导航](https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E6%89%AD%E6%9B%B2%E7%9A%84%E5%AF%BC%E8%88%AA.html)
+  ##### [倾斜的导航](https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E5%80%BE%E6%96%9C%E7%9A%84%E5%AF%BC%E8%88%AA.html)
 
-     <iframe src="https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E6%89%AD%E6%9B%B2%E7%9A%84%E5%AF%BC%E8%88%AA.html"  width="100%" height="300" frameborder="0" align="middle" ></iframe>
+     <iframe src="https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E5%80%BE%E6%96%9C%E7%9A%84%E5%AF%BC%E8%88%AA.html"  width="100%" height="300" frameborder="0" align="middle" ></iframe>
 
-     **代码：**[扭曲的导航源码](https://github.com/songxingguo/HuaQing/blob/master/CSS3%E5%8A%A8%E7%94%BB/%E6%89%AD%E6%9B%B2%E7%9A%84%E5%AF%BC%E8%88%AA.html)
+     **代码：**[倾斜的导航源码](https://github.com/songxingguo/HuaQing/blob/master/CSS3%E5%8A%A8%E7%94%BB/%E5%80%BE%E6%96%9C%E7%9A%84%E5%AF%BC%E8%88%AA.html)
+     
+  ##### [风车练习](https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E9%A3%8E%E8%BD%A6%E7%BB%83%E4%B9%A0.html)
 
+     <iframe src="https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E9%A3%8E%E8%BD%A6%E7%BB%83%E4%B9%A0.html"  width="100%" height="300" frameborder="0" align="middle" ></iframe>
 
+     **代码：**[风车练习源码](https://github.com/songxingguo/HuaQing/blob/master/CSS3%E5%8A%A8%E7%94%BB/%E9%A3%8E%E8%BD%A6%E7%BB%83%E4%B9%A0.html)
+     
+  ##### [时钟练习](https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E6%97%B6%E9%92%9F%E7%BB%83%E4%B9%A0.html)
 
+     <iframe src="https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E6%97%B6%E9%92%9F%E7%BB%83%E4%B9%A0.html"  width="100%" height="300" frameborder="0" align="middle" ></iframe>
 
-
-
-
-
+     **代码：**[时钟练习源码](https://github.com/songxingguo/HuaQing/blob/master/CSS3%E5%8A%A8%E7%94%BB/%E6%97%B6%E9%92%9F%E7%BB%83%E4%B9%A0.html)
