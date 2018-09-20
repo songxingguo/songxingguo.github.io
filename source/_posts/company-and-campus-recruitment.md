@@ -166,3 +166,12 @@ date: 2018-08-07 03:32:00
   [校园招聘](https://app.mokahr.com/campus_apply/zhihu#/candidateHome/applications?_k=vm2a5f)
   
   ![招聘流程](http://p9myzkds7.bkt.clouddn.com/company-and-campus-recruitment/%E6%A0%A1%E6%8B%9B%E6%B5%81%E7%A8%8B-%E7%9F%A5%E4%B9%8E.png)
+  
+17. ### 猪八戒
+
+  > 秋招：以投递；
+  
+  [校园招聘](https://campus.zbj.com/account/apply.html)
+  
+  [招聘流程](https://campus.zbj.com/main/process/)
+  
