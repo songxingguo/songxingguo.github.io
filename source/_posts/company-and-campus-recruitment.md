@@ -175,3 +175,18 @@ date: 2018-08-07 03:32:00
   
   [招聘流程](https://campus.zbj.com/main/process/)
   
+18. ### keep 
+ 
+   > 秋招，已投递。
+ 
+   [校园招聘](http://campus.gotokeep.com/#/candidateHome/applications?_k=tv2ay4)
+   
+   [招聘流程](http://campus.gotokeep.com/#/?anchorName=3036748595&sourceToken=&_k=5fzz0u)
+ 
+19. ### 有赞 
+ 
+   > 秋招，已投递。
+ 
+   [校园招聘](http://campus.youzan.com/#/candidateHome/applications?_k=kwimtr)
+   
+   [招聘流程](http://campus.youzan.com/#/?anchorName=4846701023&sourceToken=&_k=x6rp0a)
