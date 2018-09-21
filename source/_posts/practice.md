@@ -506,7 +506,7 @@ date: 2018-09-16 19:01:00
 
   ##### [轮播图](https://songxingguo.github.io/HuaQing/HTML%E5%9F%BA%E7%A1%80/%E8%BD%AE%E6%92%AD%E5%9B%BE.html)
 
-    <iframe src="https://songxingguo.github.io/HuaQing/HTML%E5%9F%BA%E7%A1%80/%E8%BD%AE%E6%92%AD%E5%9B%BE.html"  width="100%" height="300" frameborder="0" align="middle" ></iframe>
+    <iframe src="https://songxingguo.github.io/HuaQing/HTML%E5%9F%BA%E7%A1%80/%E8%BD%AE%E6%92%AD%E5%9B%BE.html"  width="100%" height="400" frameborder="0" align="middle" ></iframe>
 
     **代码：**[轮播图源码](https://github.com/songxingguo/HuaQing/blob/master/HTML%E5%9F%BA%E7%A1%80/%E8%BD%AE%E6%92%AD%E5%9B%BE.html)
 
@@ -526,18 +526,139 @@ date: 2018-09-16 19:01:00
 
   ##### [倾斜的导航](https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E5%80%BE%E6%96%9C%E7%9A%84%E5%AF%BC%E8%88%AA.html)
 
-     <iframe src="https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E5%80%BE%E6%96%9C%E7%9A%84%E5%AF%BC%E8%88%AA.html"  width="100%" height="300" frameborder="0" align="middle" ></iframe>
+     <iframe src="https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E5%80%BE%E6%96%9C%E7%9A%84%E5%AF%BC%E8%88%AA.html"  width="100%" height="100" frameborder="0" align="middle" ></iframe>
 
      **代码：**[倾斜的导航源码](https://github.com/songxingguo/HuaQing/blob/master/CSS3%E5%8A%A8%E7%94%BB/%E5%80%BE%E6%96%9C%E7%9A%84%E5%AF%BC%E8%88%AA.html)
      
   ##### [风车练习](https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E9%A3%8E%E8%BD%A6%E7%BB%83%E4%B9%A0.html)
 
-     <iframe src="https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E9%A3%8E%E8%BD%A6%E7%BB%83%E4%B9%A0.html"  width="100%" height="300" frameborder="0" align="middle" ></iframe>
+     <iframe src="https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E9%A3%8E%E8%BD%A6%E7%BB%83%E4%B9%A0.html"  width="100%" height="400" frameborder="0" align="middle" ></iframe>
 
      **代码：**[风车练习源码](https://github.com/songxingguo/HuaQing/blob/master/CSS3%E5%8A%A8%E7%94%BB/%E9%A3%8E%E8%BD%A6%E7%BB%83%E4%B9%A0.html)
      
   ##### [时钟练习](https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E6%97%B6%E9%92%9F%E7%BB%83%E4%B9%A0.html)
 
-     <iframe src="https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E6%97%B6%E9%92%9F%E7%BB%83%E4%B9%A0.html"  width="100%" height="300" frameborder="0" align="middle" ></iframe>
+     <iframe src="https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E6%97%B6%E9%92%9F%E7%BB%83%E4%B9%A0.html"  width="100%" height="600" frameborder="0" align="middle" ></iframe>
 
      **代码：**[时钟练习源码](https://github.com/songxingguo/HuaQing/blob/master/CSS3%E5%8A%A8%E7%94%BB/%E6%97%B6%E9%92%9F%E7%BB%83%E4%B9%A0.html)
+     
+### 第二天
+
+- #### 
+
+
+### 第三天
+
+- ####
+
+
+### 第四天
+
+- #### 学习总结
+ 
+ ##### inline-block、float 和 Flex 的优劣
+ 
+ inline-block、float 和 Flex 都可以进行水平排列元素，inline-block 会存在元素之间有间隙，float 属性则会脱离文档流，使得布局改变，并且需要清除浮动，Flex 是最容易实现的一种方式，也是最好的，但是它会有兼容的问题。总之，如果在项目开发的过程中如果需要兼容 IE8 及其以下的浏览就不建议使用 Flex 弹性盒模型。
+ 
+ ##### 弹性盒模型
+ 
+ - **启动弹性盒模型：**
+
+   display: flex;
+   
+ - **轴**
+ 
+   **flex-direction：**设置主轴的方向。
+    
+    - row：向右。
+    - column：向下。
+    - row-reverse：向左。
+    - column-reverse：向上。
+    
+   交叉轴：主轴沿顺时针方向旋转 90° 就得到了交叉轴。
+   
+ - **父容器：**
+ 
+   **justify-content：**设置项目沿着主轴排列的方式。
+
+   - flex-start：起始端对齐。
+   - flex-end：末尾段对齐。
+   - center：居中对齐。
+   - space-around：等边距均匀分布（即在项目周围添加间距）。
+   - space-between： 等间距均匀分布（即在项目之间添加间距）。
+
+   **align-items：**设置项目沿着交叉轴排列的方式。
+
+   - flex-start：起始端对齐。
+   - flex-end：末尾段对齐。
+   - center：居中对齐。
+   - baseline：基线对齐（即沿项目的第一行文字的基线对）。
+   - stretch：如果项目未设置高度或设为auto，将占满整个容器的高度。
+   
+   **flex-wrap：**设置换行方式。
+   
+   - nowrap：不换行。
+   - wrap：换行。
+   - wrap-reverse：逆序换行（指沿着交叉轴的反方向换行）。
+   
+   **flex-flow：**轴向与换行组合设置（复合属性，`flex-flow = flex-direction + flex-wrap`）。
+   
+   **align-content：**多行沿交叉轴对齐方式（即行与行之间的对齐方式）。
+   
+   - flex-start：起始端对齐。
+   - flex-end：末尾段对齐。
+   - center：居中对齐。
+   - space-around：等边距均匀分布。
+   - space-between：等间距均匀分布。
+   - stretch：拉伸对齐。
+   
+ - **子容器：**
+
+   **flex：**沿主轴如何伸缩（复合属性，`flex = flex-grow + flex-shrink + flex-basis`）。
+   
+   **align-self：**单独设置项目如何沿交叉轴排列。
+   
+   - flex-start：起始端对齐。
+   - flex-end：末尾段对齐。
+   - center：居中对齐。
+   - baseline：基线对齐。
+   - stretch：拉伸对齐。
+   
+   **flex-basis：**设置基准大小（表示在不伸缩的情况下子容器的原始尺寸）。
+   
+   **flex-grow：**设置拉伸比例。
+   
+   **flex-shrink：**设置收缩比例。
+   
+   **order：**设置排列顺序。
+   
+
+   
+    
+
+
+ 
+ 
+
+### 第五天
+
+- ####
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
