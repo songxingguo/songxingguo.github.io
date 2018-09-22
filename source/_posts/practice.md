@@ -130,7 +130,7 @@ date: 2018-09-16 19:01:00
             <meta charset="UTF-8">
             <title>第一个例子</title>
             <style type="text/css">
-
+    
                #root {
                  width: 70%;
                }
@@ -236,9 +236,9 @@ date: 2018-09-16 19:01:00
     </html>
     ```
    ##### [京东导航](https://songxingguo.github.io/HuaQing/HTML%E5%9F%BA%E7%A1%80/JD%E5%AF%BC%E8%88%AA.html)
-   
-    <iframe src="https://songxingguo.github.io/HuaQing/HTML%E5%9F%BA%E7%A1%80/JD%E5%AF%BC%E8%88%AA.html"  width="100%" height="300" frameborder="0" align="middle" ></iframe>
 
+    <iframe src="https://songxingguo.github.io/HuaQing/HTML%E5%9F%BA%E7%A1%80/JD%E5%AF%BC%E8%88%AA.html"  width="100%" height="300" frameborder="0" align="middle" ></iframe>
+    
     **代码：**
     
     ```html
@@ -379,9 +379,9 @@ date: 2018-09-16 19:01:00
     ```
    ##### [表单](https://songxingguo.github.io/HuaQing/HTML%E5%9F%BA%E7%A1%80/%E8%A1%A8%E5%8D%95.html)
   <iframe src="https://songxingguo.github.io/HuaQing/HTML%E5%9F%BA%E7%A1%80/%E8%A1%A8%E5%8D%95.html"  width="100%" height="300" frameborder="0" align="middle" ></iframe>
-  
+
   **代码：**
-  
+
   ```html
   <!DOCTYPE html>
   <html>
@@ -467,23 +467,23 @@ date: 2018-09-16 19:01:00
       </body>
   </html>
   ```
-  
+
 ### 第三天
 
 -  #### 练习
 
   ##### [改变文字大小](https://songxingguo.github.io/HuaQing/HTML%E5%9F%BA%E7%A1%80/%E6%94%B9%E5%8F%98%E6%96%87%E5%AD%97%E5%A4%A7%E5%B0%8F.html)
-  
+
   <iframe src="https://songxingguo.github.io/HuaQing/HTML%E5%9F%BA%E7%A1%80/%E6%94%B9%E5%8F%98%E6%96%87%E5%AD%97%E5%A4%A7%E5%B0%8F.html"  width="100%" height="300" frameborder="0" align="middle" ></iframe>
-  
+
   **代码：**[改变文字大小源码](https://github.com/songxingguo/HuaQing/blob/master/HTML%E5%9F%BA%E7%A1%80/%E6%94%B9%E5%8F%98%E6%96%87%E5%AD%97%E5%A4%A7%E5%B0%8F.html)
-  
+
   ##### [聊天窗口](https://songxingguo.github.io/HuaQing/HTML%E5%9F%BA%E7%A1%80/%E8%81%8A%E5%A4%A9%E7%AA%97%E5%8F%A3.html)
-  
+
   <iframe src="https://songxingguo.github.io/HuaQing/HTML%E5%9F%BA%E7%A1%80/%E8%81%8A%E5%A4%A9%E7%AA%97%E5%8F%A3.html"  width="100%" height="300" frameborder="0" align="middle" ></iframe>
-  
+
   **代码：**[聊天窗口源码](https://github.com/songxingguo/HuaQing/blob/master/HTML%E5%9F%BA%E7%A1%80/%E8%81%8A%E5%A4%A9%E7%AA%97%E5%8F%A3.html)
-   
+
 ### 第四天
 
 - #### 练习
@@ -493,7 +493,7 @@ date: 2018-09-16 19:01:00
     <iframe src="https://songxingguo.github.io/HuaQing/HTML%E5%9F%BA%E7%A1%80/%E5%B9%BB%E7%81%AF%E7%89%87.html"  width="100%" height="300" frameborder="0" align="middle" ></iframe>
 
     **代码：**[幻灯片源码](https://github.com/songxingguo/HuaQing/blob/master/HTML%E5%9F%BA%E7%A1%80/%E5%B9%BB%E7%81%AF%E7%89%87.html)
-    
+  
    ##### [猜图游戏](https://songxingguo.github.io/HuaQing/HTML%E5%9F%BA%E7%A1%80/%E7%8C%9C%E5%9B%BE%E6%B8%B8%E6%88%8F.html)
   
   <iframe src="https://songxingguo.github.io/HuaQing/HTML%E5%9F%BA%E7%A1%80/%E7%8C%9C%E5%9B%BE%E6%B8%B8%E6%88%8F.html"  width="100%" height="300" frameborder="0" align="middle" ></iframe>
@@ -519,7 +519,7 @@ date: 2018-09-16 19:01:00
   - 小程序开发工具，布局知识
   - 动态数据绑定
   - LeanCloud
-  
+
 ### 第一天
 
 - #### 练习
@@ -529,19 +529,19 @@ date: 2018-09-16 19:01:00
      <iframe src="https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E5%80%BE%E6%96%9C%E7%9A%84%E5%AF%BC%E8%88%AA.html"  width="100%" height="100" frameborder="0" align="middle" ></iframe>
 
      **代码：**[倾斜的导航源码](https://github.com/songxingguo/HuaQing/blob/master/CSS3%E5%8A%A8%E7%94%BB/%E5%80%BE%E6%96%9C%E7%9A%84%E5%AF%BC%E8%88%AA.html)
-     
+  
   ##### [风车练习](https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E9%A3%8E%E8%BD%A6%E7%BB%83%E4%B9%A0.html)
 
      <iframe src="https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E9%A3%8E%E8%BD%A6%E7%BB%83%E4%B9%A0.html"  width="100%" height="400" frameborder="0" align="middle" ></iframe>
 
      **代码：**[风车练习源码](https://github.com/songxingguo/HuaQing/blob/master/CSS3%E5%8A%A8%E7%94%BB/%E9%A3%8E%E8%BD%A6%E7%BB%83%E4%B9%A0.html)
-     
+  
   ##### [时钟练习](https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E6%97%B6%E9%92%9F%E7%BB%83%E4%B9%A0.html)
 
      <iframe src="https://songxingguo.github.io/HuaQing/CSS3%E5%8A%A8%E7%94%BB/%E6%97%B6%E9%92%9F%E7%BB%83%E4%B9%A0.html"  width="100%" height="600" frameborder="0" align="middle" ></iframe>
 
      **代码：**[时钟练习源码](https://github.com/songxingguo/HuaQing/blob/master/CSS3%E5%8A%A8%E7%94%BB/%E6%97%B6%E9%92%9F%E7%BB%83%E4%B9%A0.html)
-     
+  
 ### 第二天
 
 - #### 
@@ -555,30 +555,30 @@ date: 2018-09-16 19:01:00
 ### 第四天
 
 - #### 学习总结
- 
+
  ##### inline-block、float 和 Flex 的优劣
- 
+
  inline-block、float 和 Flex 都可以进行水平排列元素，inline-block 会存在元素之间有间隙，float 属性则会脱离文档流，使得布局改变，并且需要清除浮动，Flex 是最容易实现的一种方式，也是最好的，但是它会有兼容的问题。总之，如果在项目开发的过程中如果需要兼容 IE8 及其以下的浏览就不建议使用 Flex 弹性盒模型。
- 
+
  ##### 弹性盒模型
- 
+
  - **启动弹性盒模型：**
 
    display: flex;
    
  - **轴**
- 
+
    **flex-direction：**设置主轴的方向。
-    
+   
     - row：向右。
     - column：向下。
     - row-reverse：向左。
     - column-reverse：向上。
-    
+   
    交叉轴：主轴沿顺时针方向旋转 90° 就得到了交叉轴。
    
  - **父容器：**
- 
+
    **justify-content：**设置项目沿着主轴排列的方式。
 
    - flex-start：起始端对齐。
@@ -631,34 +631,212 @@ date: 2018-09-16 19:01:00
    **flex-shrink：**设置收缩比例。
    
    **order：**设置排列顺序。
-   
-
-   
-    
-
-
- 
- 
 
 ### 第五天
 
-- ####
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+- #### 学习总结
+
+  ##### 字体图标
+
+  1. 访问 [阿里图标库](http://www.iconfont.cn/)。
+
+  2. 将阿里图标添加到我的项目中。
+
+  3. 复制 Font class 代码，放入项目中。
+
+  4. 为元素添加图标的 class属性。
+
+  ##### 相对路径与绝对路径
+
+  - 相对路径：以 `./` 或 `../` 开头。
+  - 绝对路径：以 `/` 开头。
+
+  ##### 小程序
+
+  - **页面生命周期**
+
+    ![页面生命周期](http://p9myzkds7.bkt.clouddn.com/practice/mina-lifecycle.png)
+
+  - **数据更新**
+
+    setData 函数用于将数据从逻辑层发送到视图层（异步），同时改变对应的 this.data 的值（同步）。
+
+    ```js
+    this.setData({
+      num: this.data.num
+    })
+    ```
+    参数以 key: value 的形式表示，将 this.data 中的 key 对应的值改变成 value。
+
+    其中 key 可以以数据路径的形式给出，支持改变数组中的某一项或对象的某个属性，如 array[2].message，a.b.c.d，并且不需要在 this.data 中预先定义。
+
+    注意：
+
+    1. 直接修改 this.data 而不调用 this.setData 是无法改变页面的状态的，还会造成数据不一致。
+    2. 仅支持设置可 JSON 化的数据。
+    3. 单次设置的数据不能超过1024kB，请尽量避免一次设置过多的数据。
+    4. 请不要把 data 中任何一项的 value 设为 undefined ，否则这一项将不被设置并可能遗留一些潜在问题。
+
+  - **数据绑定**
+
+    简单绑定
+
+    数据绑定使用 Mustache 语法（双大括号）将变量包起来。
+
+      ```
+      <view> {{ message }} </view>
+      ```
+      ```js
+      Page({
+        data: {
+          message: 'Hello MINA!'
+        }
+      })
+      ```
+    - 组件属性(需要在双引号之内)。
+
+      ```
+      <view id="item-{{id}}"> </view>
+      ```
+
+    - 控制属性(需要在双引号之内)。
+
+      ```
+      <view wx:if="{{condition}}"> </view>
+      ```
+
+    - 关键字(需要在双引号之内)。
+
+      ```
+      <checkbox checked="{{false}}"> </checkbox>
+      ```
+    运算
+    
+    可以在双大括号内进行简单的运算。
+    
+    - 三元运算
+
+      ```
+      <view hidden="{{flag ? true : false}}"> Hidden </view>
+      ```
+    - 算数运算
+
+      ```
+      <view> {{a + b}} + {{c}} + d </view>
+      ```
+    - 逻辑判断
+
+      ```
+      <view wx:if="{{length > 5}}"> </view>
+      ```
+    - 字符串运算
+
+      ```
+      <view>{{"hello" + name}}</view>
+      ```
+    - 数据路径运算
+
+      ```
+      <view>{{object.key}} {{array[0]}}</view>
+      ```
+    组合
+    
+    也可以在 Mustache 内直接进行组合，构成新的对象或者数组。
+    
+    - 数组
+    
+      ```
+      <view wx:for="{{[zero, 1, 2, 3, 4]}}"> {{item}} </view>
+      ```
+    - 对象
+    
+      ```
+      <template is="objectCombine" data="{{for: a, bar: b}}"></template>
+      ```
+      也可以用扩展运算符 ... 来将一个对象展开。
+      
+      ```
+      <template is="objectCombine" data="{{...obj1, ...obj2, e: 5}}"></template>
+      ```
+      如果对象的 key 和 value 相同，也可以间接地表达。
+      
+      ```
+       <template is="objectCombine" data="{{foo, bar}}"></template>
+      ```
+       ```
+        Page({
+          data: {
+            foo: 'my-foo',
+            bar: 'my-bar'
+          }
+        })
+       ```
+      最终组合成的对象是 `{foo: 'my-foo', bar:'my-bar'}`。
+      
+  - **列表渲染**
+    
+    在组件上使用 wx:for 控制属性绑定一个数组，即可使用数组中各项的数据重复渲染该组件。
+
+    默认数组的当前项的下标变量名默认为 index，数组当前项的变量名默认为 item
+    
+    ```
+    <view wx:for="{{array}}">
+      {{index}}: {{item.message}}
+    </view>
+    ```
+    使用 wx:for-item 可以指定数组当前元素的变量名，
+
+    使用 wx:for-index 可以指定数组当前下标的变量名：
+    
+    ```
+     <view wx:for="{{array}}" wx:for-index="idx" wx:for-item="itemName">
+      {{idx}}: {{itemName.message}}
+    </view>
+    ```
+  - **条件渲染**   
+    
+    在框架中，使用 wx:if="{{condition}}" 来判断是否需要渲染该代码块：
+
+    ```
+    <view wx:if="{{condition}}"> True </view>
+    ```
+    也可以用 wx:elif 和 wx:else 来添加一个 else 块：
+    
+    ```
+    <view wx:if="{{length > 5}}"> 1 </view>
+    <view wx:elif="{{length > 2}}"> 2 </view>
+    <view wx:else> 3 </view>
+    ```
+  - **模块化**
+   
+    - module.exports：对外共享本模块的私有变量与函数。
+    
+    - require：引用其他 wxs 文件模块。
+    
+  - **页面跳转**
+  
+    wx.navigateTo(Object object)
+    
+    ```
+    wx.navigateTo({
+      url: 'test?id=1'
+    })
+    ```
+    ```
+    Page({
+      onLoad: function(option){
+        console.log(option.query)
+      }
+    })
+    ```
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+  
