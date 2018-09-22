@@ -5,7 +5,8 @@ categories:
   - 数据结构
 date: 2018-08-02 05:08:00
 ---
-# 排序
+
+## 排序
 
 - 是否稳定：数据之间发生跳跃式交换，则不稳定；反之，则稳定。（通常用两个相同的数据来判定对否稳定）
 
@@ -15,13 +16,13 @@ date: 2018-08-02 05:08:00
   
 <!-- more -->
 
-## 插入排序
+### 插入排序
 
-### 笔记
+#### 笔记
 
 ![插入排序](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.jpg)
 
-### 代码
+#### 代码
 
 ```java
 package mysort;
@@ -69,20 +70,20 @@ public class InsertSort {
 }
 ```
 
-## 希尔排序
+### 希尔排序
 
 希尔排序（又称缩小增量排序）:
        
   - 是插入排序的一种。
   - 分组进行直接插入排序。
 
-## 冒泡排序
+### 冒泡排序
 
-### 笔记
+#### 笔记
 
 ![冒泡排序](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.jpg)
 
-### 代码
+#### 代码
 
 ```
 package mysort;
@@ -132,13 +133,13 @@ public class BubbleSort {
 
 ```
 
-## 选择排序
+### 选择排序
 
-### 笔记
+#### 笔记
 
 ![选择排序](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.jpg)
 
-### 代码
+#### 代码
 
 ```java
 package mysort;
@@ -201,9 +202,9 @@ public class SelectSort {
 }
 ```
 
-## 堆排序
+### 堆排序
 
-### 笔记
+#### 笔记
 
  - #### 堆
 
@@ -221,11 +222,11 @@ public class SelectSort {
 
   ![堆排序](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E5%A0%86%E6%8E%92%E5%BA%8F.jpg)
 
-### 代码
+#### 代码
 
-- #### 堆
+- ##### 堆
 
-  ##### 最大堆
+  ###### 最大堆
   
   ```java
   package mysort;
@@ -309,7 +310,7 @@ public class SelectSort {
   }
   ```
 
-  ##### 最小堆
+  ###### 最小堆
   
   ```java
   package mysort;
@@ -393,7 +394,7 @@ public class SelectSort {
   }
   ```
 
-- #### 堆排序
+- ##### 堆排序
 
   ```java
   package mysort;
@@ -422,13 +423,13 @@ public class SelectSort {
   }
   ```
 
-## 归并排序
+### 归并排序
 
-### 笔记
+#### 笔记
 
 ![归并排序](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F.jpg)
 
-### 代码
+#### 代码
 
 ```java
 package mysort;
@@ -481,27 +482,27 @@ public class MergeSort {
 }
 ```
 
-## 桶排序和基数排序
+### 桶排序和基数排序
 
-### 笔记
+#### 笔记
 
-- #### 基数排序
+- ##### 基数排序
 
   ![基数排序](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F.jpg)
 
-- #### 桶排序和基数排序
+- ##### 桶排序和基数排序
 
   ![桶排序和基数排序](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E6%A1%B6%E6%8E%92%E5%BA%8F%E4%B8%8E%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F.jpg)
 
   ![桶排序和基数排序-2](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E6%A1%B6%E6%8E%92%E5%BA%8F%E4%B8%8E%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F.jpg)
 
-## 快速排序
+### 快速排序
 
-### 笔记
+#### 笔记
 
 ![快速排序](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F.jpg)
 
-### 代码
+#### 代码
 
 ```java
 package mysort;
@@ -564,3 +565,7 @@ public class QuickSort {
 	}
 }
 ```
+
+## 优秀博客
+
+[十大经典排序算法（动图演示）](https://www.cnblogs.com/onepixel/articles/7674659.html)
