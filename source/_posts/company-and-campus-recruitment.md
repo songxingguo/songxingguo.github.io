@@ -190,3 +190,37 @@ date: 2018-08-07 03:32:00
    [校园招聘](http://campus.youzan.com/#/candidateHome/applications?_k=kwimtr)
    
    [招聘流程](http://campus.youzan.com/#/?anchorName=4846701023&sourceToken=&_k=x6rp0a)
+   
+20. ### 美团
+
+   [校园招聘](https://campus.meituan.com/apply-record)
+   
+   [招聘流程](https://campus.meituan.com/campus-recruit)
+   
+21. ###  墨墨背单词
+
+   [校园招聘](https://www.maimemo.com/join)
+
+22. ###  58 集团
+   
+   [招聘流程](http://campus.58.com/process.html)
+   
+23. ###  作业帮
+   
+   [校园招聘](http://job.zuoyebang.com/Portal/Apply/Index)
+   
+   [招聘流程](http://job.zuoyebang.com/yfxiangqing?jobId=510230102#this)
+   
+24. ### 重庆中冶赛迪
+
+   [校园招聘](http://xym.51job.com/personal/personal_selectjob_direct.aspx?ctmid=38a4a6aa-5dda-4a8f-b95b-80d6948089c1&jobids=efc2e0d4-c3c2-49c6-ae76-89049095d224&prd=&prp=&cd=&cp=&ruid=)
+   
+25. ###  贝壳
+
+   [招聘流程](http://campus.ke.com/a/xuanjiangxingcheng)
+   
+26. ### 陌陌MOMO
+
+   [校园招聘](https://app.mokahr.com/campus_apply/immomo#/candidateHome/applications?_k=nw4ctn)
+   
+   [招聘流程](https://app.mokahr.com/campus_apply/immomo#/?anchorName=7072387898&sourceToken=&_k=m3ufum)
