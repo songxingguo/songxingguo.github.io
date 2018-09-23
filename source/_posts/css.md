@@ -2304,3 +2304,765 @@ li a:hover {
       color: #666;
   }
   ```
+## CSS 下拉菜单
+
+使用 CSS 创建一个鼠标移动上去后显示下拉菜单的效果。
+
+### 基本下拉菜单
+
+当鼠标移动到指定元素上时，会出现下拉菜单。
+
+```html
+<style>
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+</style>
+
+<div class="dropdown">
+  <span>Mouse over me</span>
+  <div class="dropdown-content">
+    <p>Hello World!</p>
+  </div>
+</div>
+```
+### 实例解析
+
+HTML 部分：
+
+我们可以使用任何的 HTML 元素来打开下拉菜单，如：`<span>`, 或 a `<button>` 元素。
+
+使用容器元素 (如： `<div>`) 来创建下拉菜单的内容，并放在任何你想放的位置上。
+
+使用 `<div>` 元素来包裹这些元素，并使用 CSS 来设置下拉内容的样式。
+
+CSS 部分：
+
+.dropdown 类使用 position:relative, 这将设置下拉菜单的内容放置在下拉按钮 (使用 position:absolute) 的右下角位置。
+
+.dropdown-content 类中是实际的下拉菜单。默认是隐藏的，在鼠标移动到指定元素后会显示。 注意 min-width 的值设置为 160px。你可以随意修改它。 注意: 如果你想设置下拉内容与下拉按钮的宽度一致，可设置 width 为 100% ( overflow:auto 设置可以在小尺寸屏幕上滚动)。
+
+我们使用 box-shadow 属性让下拉菜单看起来像一个"卡片"。
+
+:hover 选择器用于在用户将鼠标移动到下拉按钮上时显示下拉菜单。
+
+### 下拉菜单
+
+创建下拉菜单，并允许用户选取列表中的某一项：
+
+![下拉菜单](http://p9myzkds7.bkt.clouddn.com/CSS/%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95.png)
+
+这个实例类似前面的实例，当我们在下拉列表中添加了链接，并设置了样式：
+
+```html
+<style>
+/* 下拉按钮样式 */
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* 容器 <div> - 需要定位下拉内容 */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* 下拉内容 (默认隐藏) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* 下拉菜单的链接 */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* 鼠标移上去后修改下拉菜单链接颜色 */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* 在鼠标移上去后显示下拉菜单 */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* 当下拉内容显示后修改下拉按钮的背景颜色 */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+</style>
+
+<div class="dropdown">
+  <button class="dropbtn">下拉菜单</button>
+  <div class="dropdown-content">
+    <a href="#">菜鸟教程 1</a>
+    <a href="#">菜鸟教程 2</a>
+    <a href="#">菜鸟教程 3</a>
+  </div>
+</div>
+```
+### 下拉内容对齐方式
+
+float:left;
+
+![下拉内容对齐方式-左](http://p9myzkds7.bkt.clouddn.com/CSS/%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F-%E5%B7%A6.png)
+
+float:right;
+
+![下拉内容对齐方式-右](http://p9myzkds7.bkt.clouddn.com/CSS/%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F-%E5%8F%B3.png)
+
+如果你想设置右浮动的下拉菜单内容方向是从右到左，而不是从左到右，可以添加以下代码 right: 0;
+
+```css
+.dropdown-content {
+    right: 0;
+}
+```
+
+## CSS 提示工具(Tooltip)
+
+本文我们为大家介绍如何使用 HTML 与 CSS 来创建提示工具。
+
+提示工具在鼠标移动到指定元素后触发，先看以下四个实例：
+
+![提示工具](http://p9myzkds7.bkt.clouddn.com/%E6%8F%90%E7%A4%BA%E5%B7%A5%E5%85%B7.png)
+
+### 基础提示框(Tooltip)
+
+提示框在鼠标移动到指定元素上显示：
+
+HTML 代码：
+
+```html
+<style>
+/* Tooltip 容器 */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* 悬停元素上显示点线 */
+}
+ 
+/* Tooltip 文本 */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+    /* 定位 */
+    position: absolute;
+    z-index: 1;
+}
+ 
+/* 鼠标移动上去后显示提示框 */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+</style>
+ 
+<div class="tooltip">鼠标移动到这
+  <span class="tooltiptext">提示文本</span>
+</div>
+```
+### 实例解析
+
+HTML) 使用容器元素 (like `<div>`) 并添加 "tooltip" 类。在鼠标移动到 `<div>` 上时显示提示信息。
+
+提示文本放在内联元素上(如 `<span>`) 并使用class="tooltiptext"。
+
+CSS)tooltip 类使用 position:relative, 提示文本需要设置定位值 position:absolute。 注意: 接下来的实例会显示更多的定位效果。
+
+tooltiptext 类用于实际的提示文本。模式是隐藏的，在鼠标移动到元素显示 。设置了一些宽度、背景色、字体色等样式。
+
+CSS3 border-radius 属性用于为提示框添加圆角。
+
+:hover 选择器用于在鼠标移动到到指定元素 `<div>` 上时显示的提示。
+
+### 定位提示工具
+
+以下实例中，提示工具显示在指定元素的右侧(left:105%) 。
+
+注意 top:-5px 同于定位在容器元素的中间。使用数字 5 因为提示文本的顶部和底部的内边距（padding）是 5px。
+
+如果你修改 padding 的值，top 值也要对应修改，这样才可以确保它是居中对齐的。
+
+在提示框显示在左边的情况也是这个原理。
+
+**显示在右侧：**
+
+```css
+.tooltip .tooltiptext {
+    top: -5px;
+    left: 105%; 
+}
+```
+
+**显示在左侧：**
+
+```css
+.tooltip .tooltiptext {
+    top: -5px;
+    right: 105%; 
+}
+```
+如果你想要提示工具显示在头部和底部。我们需要使用 margin-left 属性，并设置为 -60px。 这个数字计算来源是使用宽度的一半来居中对齐，即： width/2 (120/2 = 60)。
+
+**显示在头部：**
+
+```css
+.tooltip .tooltiptext {
+    width: 120px;
+    bottom: 100%;
+    left: 50%; 
+    margin-left: -60px; /* 使用一半宽度 (120/2 = 60) 来居中提示工具 */
+}
+```
+**显示在底部：**
+
+```css
+.tooltip .tooltiptext {
+    width: 120px;
+    top: 100%;
+    left: 50%; 
+    margin-left: -60px; /* 使用一半宽度 (120/2 = 60) 来居中提示工具 */
+}
+```
+### 添加箭头
+
+我们可以用CSS 伪元素 ::after 及 content 属性为提示工具创建一个小箭头标志，箭头是由边框组成的，但组合起来后提示工具像个语音信息框。
+
+以下实例演示了如何为显示在顶部的提示工具添加底部箭头：
+
+**顶部提示框/底部箭头：**
+
+```css
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* 提示工具底部 */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+```
+### 实例解析
+
+在提示工具内定位箭头: top: 100% , 箭头将显示在提示工具的底部。left: 50% 用于居中对齐箭头。
+
+注意：border-width 属性指定了箭头的大小。如果你修改它，也要修改 margin-left 值。这样箭头在能居中显示。
+
+border-color 用于将内容转换为箭头。设置顶部边框为黑色，其他是透明的。如果设置了其他的也是黑色则会显示为一个黑色的四边形。
+
+以下实例演示了如何在提示工具的头部添加箭头，注意设置边框颜色：
+
+**底部提示框/顶部箭头：**
+
+```css
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;  /* 提示工具头部 */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
+```
+以下两个实例是左右两边的箭头实例：
+
+**右侧提示框/左侧箭头：**
+
+```css
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* 提示工具左侧 */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+}
+```
+**左侧提示框/右侧箭头：**
+
+```css
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 100%; /* 提示工具右侧 */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent black;
+}
+```
+### 淡入效果
+
+我们可以使用 CSS3 transition 属性及 opacity 属性来实现提示工具的淡入效果:
+
+**左侧提示框/右侧箭头：**
+
+```css
+.tooltip .tooltiptext {
+    opacity: 0;
+    transition: opacity 1s;
+}
+ 
+.tooltip:hover .tooltiptext {
+    opacity: 1;
+}
+```
+
+## CSS 图片廊
+
+以下是使用CSS创建图片廊：
+
+![图片画廊](http://p9myzkds7.bkt.clouddn.com/CSS/%E5%9B%BE%E7%89%87%E7%94%BB%E5%BB%8A.png)
+
+
+### 图片廊
+
+以下是使用 CSS 创建图片廊：
+
+```html
+<div class="responsive">
+  <div class="img">
+    <a target="_blank" href="http://static.runoob.com/images/demo/demo1.jpg">
+      <img src="http://static.runoob.com/images/demo/demo1.jpg" alt="图片文本描述" width="300" height="200">
+    </a>
+    <div class="desc">这里添加图片文本描述</div>
+  </div>
+</div>
+ 
+<div class="responsive">
+  <div class="img">
+    <a target="_blank" href="http://static.runoob.com/images/demo/demo2.jpg">
+      <img src="http://static.runoob.com/images/demo/demo2.jpg" alt="图片文本描述" width="300" height="200">
+    </a>
+    <div class="desc">这里添加图片文本描述</div>
+  </div>
+</div>
+ 
+<div class="responsive">
+  <div class="img">
+    <a target="_blank" href="http://static.runoob.com/images/demo/demo3.jpg">
+      <img src="http://static.runoob.com/images/demo/demo3.jpg" alt="图片文本描述" width="300" height="200">
+    </a>
+    <div class="desc">这里添加图片文本描述</div>
+  </div>
+</div>
+ 
+<div class="responsive">
+  <div class="img">
+    <a target="_blank" href="http://static.runoob.com/images/demo/demo4.jpg">
+      <img src="http://static.runoob.com/images/demo/demo4.jpg" alt="图片文本描述" width="300" height="200">
+    </a>
+    <div class="desc">这里添加图片文本描述</div>
+  </div>
+</div>
+```
+### 更多实例
+
+**响应式图片廊**
+
+使用 CSS3 的媒体查询来创建响应式图片廊：
+
+```html
+<div class="responsive">
+  <div class="img">
+    <a target="_blank" href="img_fjords.jpg">
+      <img src="http://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg" alt="Trolltunga Norway" width="300" height="200">
+    </a>
+    <div class="desc">这里添加图片文本描述</div>
+  </div>
+</div>
+ 
+ 
+<div class="responsive">
+  <div class="img">
+    <a target="_blank" href="img_forest.jpg">
+      <img src="http://www.runoob.com/wp-content/uploads/2016/04/img_forest.jpg" alt="Forest" width="600" height="400">
+    </a>
+    <div class="desc">这里添加图片文本描述</div>
+  </div>
+</div>
+ 
+<div class="responsive">
+  <div class="img">
+    <a target="_blank" href="img_lights.jpg">
+      <img src="http://www.runoob.com/wp-content/uploads/2016/04/img_lights.jpg" alt="Northern Lights" width="600" height="400">
+    </a>
+    <div class="desc">这里添加图片文本描述</div>
+  </div>
+</div>
+ 
+<div class="responsive">
+  <div class="img">
+    <a target="_blank" href="img_mountains.jpg">
+      <img src="http://www.runoob.com/wp-content/uploads/2016/04/img_mountains.jpg" alt="Mountains" width="600" height="400">
+    </a>
+    <div class="desc">这里添加图片文本描述</div>
+  </div>
+</div>
+ 
+<div class="clearfix"></div>
+ 
+<div style="padding:6px;">
+  
+  <h4>重置浏览器大小查看效果</h4>
+</div>
+```
+
+## CSS 图像透明/不透明
+
+使用CSS很容易创建透明的图像。
+
+注意：CSS Opacity属性是W3C的CSS3建议的一部分。
+
+[创建透明图像 - 悬停效果](http://www.runoob.com/try/try.php?filename=trycss_image_transparency)
+
+[创建一个具有文本的拥有背景图像的透明框](http://www.runoob.com/try/try.php?filename=trycss_transparency)
+
+### 实例1 - 创建一个透明图像
+
+CSS3中属性的透明度是 opacity。
+
+首先，我们将向您展示如何用CSS创建一个透明图像。
+
+正常的图像
+
+![正常图像](http://p9myzkds7.bkt.clouddn.com/CSS/%E6%AD%A3%E5%B8%B8%E7%9A%84%E5%9B%BE%E5%83%8F.png)
+
+相同的图像带有透明度：
+
+![相同的图像带有透明度](http://p9myzkds7.bkt.clouddn.com/CSS/%E7%9B%B8%E5%90%8C%E7%9A%84%E5%9B%BE%E5%83%8F%E5%B8%A6%E6%9C%89%E9%80%8F%E6%98%8E%E5%BA%A6.png)
+
+看看下面的CSS：
+
+```css
+img
+{
+  opacity:0.4;
+  filter:alpha(opacity=40); /* IE8 及其更早版本 */
+}
+```
+IE9，Firefox，Chrome，Opera，和Safari浏览器使用透明度属性可以将图像变的不透明。 Opacity属性值从0.0 - 1.0。值越小，使得元素更加透明。
+
+IE8和早期版本使用滤镜：alpha（opacity= x）。 x可以采取的值是从0 - 100。较低的值，使得元素更加透明。
+
+### 实例2 - 图像的透明度 - 悬停效果
+
+将鼠标移到图像上：
+
+![图像的透明度 - 悬停效果](http://p9myzkds7.bkt.clouddn.com/CSS/%E6%82%AC%E5%81%9C%E6%95%88%E6%9E%9C.png)
+
+CSS样式：
+
+```css
+img
+{
+  opacity:0.4;
+  filter:alpha(opacity=40); /*  IE8 及其更早版本 */
+}
+img:hover
+{
+  opacity:1.0;
+  filter:alpha(opacity=100); /* IE8 及其更早版本 */
+}
+```
+第一个CSS块是和例1中的代码类似。此外，我们还增加了当用户将鼠标悬停在其中一个图像上时发生什么。在这种情况下，当用户将鼠标悬停在图像上时，我们希望图片是清晰的。
+
+此CSS是：opacity=1.
+
+IE8和更早版本使用： filter:alpha(opacity=100).
+
+当鼠标指针远离图像时，图像将重新具有透明度。
+
+### 实例3 - 透明的盒子中的文字
+
+![透明的盒子中的文字](http://p9myzkds7.bkt.clouddn.com/CSS/%E9%80%8F%E6%98%8E%E7%9A%84%E7%9B%92%E5%AD%90%E4%B8%AD%E7%9A%84%E6%96%87%E5%AD%97.png)
+
+源代码如下：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+div.background
+{
+  width:500px;
+  height:250px;
+  background:url(klematis.jpg) repeat;
+  border:2px solid black;
+}
+div.transbox
+{
+  width:400px;
+  height:180px;
+  margin:30px 50px;
+  background-color:#ffffff;
+  border:1px solid black;
+  opacity:0.6;
+  filter:alpha(opacity=60); /* IE8 及更早版本 */
+}
+div.transbox p
+{
+  margin:30px 40px;
+  font-weight:bold;
+  color:#000000;
+}
+</style>
+</head>
+ 
+<body>
+ 
+<div class="background">
+<div class="transbox">
+<p>这些文本在透明框里。这些文本在透明框里。这些文本在透明框里。这些文本在透明框里。这些文本在透明框里。这些文本在透明框里。这些文本在透明框里。这些文本在透明框里。这些文本在透明框里。这些文本在透明框里。这些文本在透明框里。这些文本在透明框里。这些文本在透明框里。
+</p>
+</div>
+</div>
+ 
+</body>
+</html>
+```
+首先，我们创建一个固定的高度和宽度的div元素，带有一个背景图片和边框。然后我们在第一个div内部创建一个较小的div元素。 这个div也有一个固定的宽度，背景颜色，边框 - 而且它是透明的。透明的div里面，我们在P元素内部添加一些文本。
+
+
+## CSS 图像拼合技术
+
+
+图像拼合
+图像拼合就是单个图像的集合。
+
+有许多图像的网页可能需要很长的时间来加载和生成多个服务器的请求。
+
+使用图像拼合会降低服务器的请求数量，并节省带宽。
+
+### 图像拼合 - 简单实例
+
+与其使用三个独立的图像，不如我们使用这种单个图像（"img_navsprites.gif"）：
+
+![图像拼合 - 简单实例](http://p9myzkds7.bkt.clouddn.com/CSS/img_navsprites.gif)
+
+有了CSS，我们可以只显示我们需要的图像的一部分。
+
+在下面的例子CSS指定显示 "img_navsprites.gif" 的图像的一部分：
+
+```css
+img.home
+{
+width:46px;
+height:44px;
+background:url(img_navsprites.gif) 0 0;
+}
+```
+实例解析：
+
+-  `<img class="home" src="img_trans.gif" />` -因为不能为空,src属性只定义了一个小的透明图像。显示的图像将是我们在CSS中指定的背景图像
+- 宽度：46px;高度：44px; - 定义我们使用的那部分图像
+- background:url(img_navsprites.gif) 0 0; - 定义背景图像和它的位置（左0px，顶部0px）
+
+这是使用图像拼合最简单的方法，现在我们使用链接和悬停效果。
+
+### 图像拼合 - 创建一个导航列表
+
+我们想使用拼合图像 ("img_navsprites.gif")，以创建一个导航列表。
+
+我们将使用一个HTML列表，因为它可以链接，同时还支持背景图像：
+
+```css
+#navlist{position:relative;}
+#navlist li{margin:0;padding:0;list-style:none;position:absolute;top:0;}
+#navlist li, #navlist a{height:44px;display:block;}
+
+#home{left:0px;width:46px;}
+#home{background:url('img_navsprites.gif') 0 0;}
+
+#prev{left:63px;width:43px;}
+#prev{background:url('img_navsprites.gif') -47px 0;}
+
+#next{left:129px;width:43px;}
+#next{background:url('img_navsprites.gif') -91px 0;}
+```
+实例解析：
+
+- #navlist{position:relative;} - 位置设置相对定位，让里面的绝对定位
+- #navlist li{margin:0;padding:0;list-style:none;position:absolute;top:0;} - margin和- -- padding设置为0，列表样式被删除，所有列表项是绝对定位
+- #navlist li, #navlist a{height:44px;display:block;} - 所有图像的高度是44px
+
+现在开始每个具体部分的定位和样式：
+
+- #home{left:0px;width:46px;} - 定位到最左边的方式，以及图像的宽度是46px
+- #home{background:url(img_navsprites.gif) 0 0;} - 定义背景图像和它的位置（左0px，顶部0px）
+- #prev{left:63px;width:43px;} - 右侧定位63px（＃home宽46px+项目之间的一些多余的空间），宽度为43px。
+- #prev{background:url('img_navsprites.gif') -47px 0;} - 定义背景图像右侧47px（＃home宽46px+分隔线的1px）
+- #next{left:129px;width:43px;}- 右边定位129px(#prev 63px + #prev宽是43px + 剩余的空间), 宽度是43px.
+- #next{background:url('img_navsprites.gif') no-repeat -91px 0;} - 定义背景图像右边91px（＃home 46px+1px的分割线+＃prev宽43px+1px的分隔线）
+
+### 图像拼合 - 悬停效果
+
+现在，我们希望我们的导航列表中添加一个悬停效果。
+
+> :hover 选择器用于鼠标悬停在元素上的显示的效果
+提示： :hover 选择器可以运用于所有元素。
+
+我们的新图像 ("img_navsprites_hover.gif") 包含三个导航图像和三幅图像：
+
+![图像拼合 - 悬停效果](http://p9myzkds7.bkt.clouddn.com/CSS/img_navsprites_hover.gif)
+
+因为这是一个单一的图像，而不是6个单独的图像文件，当用户停留在图像上不会有延迟加载。
+
+我们添加悬停效果只添加三行代码：
+
+```css
+#home a:hover{background: url('img_navsprites_hover.gif') 0 -45px;}
+#prev a:hover{background: url('img_navsprites_hover.gif') -47px -45px;}
+#next a:hover{background: url('img_navsprites_hover.gif') -91px -45px;}
+```
+实例解析：
+
+- 由于该列表项包含一个链接，我们可以使用：hover伪类
+- #home a:hover{background: transparent url(img_navsprites_hover.gif) 0 -45px;} - 对于所有三个悬停图像，我们指定相同的背景位置，只是每个再向下45px
+
+## CSS 媒体类型
+
+
+媒体类型允许你指定文件将如何在不同媒体呈现。该文件可以以不同的方式显示在屏幕上，在纸张上，或听觉浏览器等等。 
+
+### 媒体类型
+
+一些 CSS 属性只设计了某些媒体。例如 voice-family 属性是专为听觉用户代理。其他一些属性可用于不同的媒体类型。例如， font-size 属性可用于屏幕和印刷媒体，但有不同的值。屏幕和纸上的文件不同，通常需要一个更大的字体，sans-serif 字体比较适合在屏幕上阅读，而 serif 字体更容易在纸上阅读。
+
+### @media 规则
+
+@media 规则允许在相同样式表为不同媒体设置不同的样式。
+
+在下面的例子告诉我们浏览器屏幕上显示一个 14 像素的 Verdana 字体样式。但是如果页面打印，将是 10 个像素的 Times 字体。请注意，font-weight 在屏幕上和纸上设置为粗体：
+
+```css
+@media screen
+{
+    p.test {font-family:verdana,sans-serif;font-size:14px;}
+}
+@media print
+{
+    p.test {font-family:times,serif;font-size:10px;}
+}
+@media screen,print
+{
+    p.test {font-weight:bold;}
+}
+```
+你可以自己尝试看看 ! 如果您使用的是 Mozilla / Firefox 或 IE5+ 打印此页，你会看到，媒体类型将使用另一种比其他文本字体大小小点的字体显示。
+
+### 其他媒体类型
+
+注意：媒体类型名称不区分大小写。
+
+![其他媒体类型](http://p9myzkds7.bkt.clouddn.com/CSS/%E5%85%B6%E4%BB%96%E5%AA%92%E4%BD%93%E7%B1%BB%E5%9E%8B.png)
+
+## CSS 属性 选择器
+
+具有特定属性的HTML元素样式
+具有特定属性的HTML元素样式不仅仅是class和id。
+
+注意：IE7和IE8需声明!DOCTYPE才支持属性选择器！IE6和更低的版本不支持属性选择器。
+
+### 属性选择器
+
+下面的例子是把包含标题（title）的所有元素变为蓝色：
+
+```css
+[title]
+{
+    color:blue;
+}
+```
+### 属性和值选择器
+
+下面的实例改变了标题title='runoob'元素的边框样式:
+
+```css
+[title=runoob]
+{
+    border:5px solid green;
+}
+```
+### 属性和值的选择器 - 多值
+
+下面是包含指定值的title属性的元素样式的例子，使用（~）分隔属性和值:
+
+```css
+[title~=hello] { color:blue; }
+```
+下面是包含指定值的lang属性的元素样式的例子，使用（|）分隔属性和值:
+
+```css
+[lang|=en] { color:blue; }
+```
+### 表单样式
+
+属性选择器样式无需使用class或id的形式:
+
+```css
+input[type="text"]
+{
+    width:150px;
+    display:block;
+    margin-bottom:10px;
+    background-color:yellow;
+}
+input[type="button"]
+{
+    width:120px;
+    margin-left:35px;
+    display:block;
+}
+```
+
+## CSS 总结
+
+本教程已向你讲解了如何创建样式表来同时控制多重页面的样式和布局。
+
+你已经学会如何使用 CSS 来添加背景、格式化文本、以及格式化边框，并定义元素的填充和边距。
+
+同时，你也学会了如何定位元素、控制元素的可见性和尺寸、设置元素的形状、将一个元素置于另一个之后，以及向某些选择器添加特殊的效果，比如链接。
+
+如果需要更多关于 CSS 的信息，请参阅我们的 [CSS 实例](http://www.runoob.com/css/css-examples.html), [CSS 参考手册](http://www.runoob.com/cssref/css-reference.html), and [CSS3 教程](http://www.runoob.com/css3/css3-tutorial.html).
