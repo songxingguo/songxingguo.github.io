@@ -6,11 +6,11 @@ categories:
   - 读书笔记
 date: 2018-09-23 08:30:00
 ---
-## HTML - XHTML
+# XHTML
 
 XHTML 是以 XML 格式编写的 HTML。
 
-### 什么是 XHTML?
+## 什么是 XHTML?
 
 - XHTML 指的是可扩展超文本标记语言
 - XHTML 与 HTML 4.01 几乎是相同的
@@ -21,7 +21,7 @@ XHTML 是以 XML 格式编写的 HTML。
 
 <!-- more -->
 
-### 为什么使用 XHTML?
+## 为什么使用 XHTML?
 
 因特网上的很多页面包含了"糟糕"的 HTML。
 
@@ -45,7 +45,7 @@ XML 是一种必须正确标记且格式良好的标记语言。
 
 所以 - 通过结合 XML 和 HTML 的长处，开发出了 XHTML。XHTML 是作为 XML 被重新设计的 HTML。
 
-### 与 HTML 相比最重要的区别：
+## 与 HTML 相比最重要的区别：
 
 - #### 文档结构
 
@@ -66,7 +66,7 @@ XML 是一种必须正确标记且格式良好的标记语言。
   - XHTML 属性值必须用引号包围
   - XHTML 属性最小化也是禁止的
 
-### <!DOCTYPE ....>是强制性的
+## <!DOCTYPE ....>是强制性的
 
 XHTML 文档必须进行 XHTML 文档类型声明（XHTML DOCTYPE declaration）。
 
@@ -93,7 +93,7 @@ XHTML 文档必须进行 XHTML 文档类型声明（XHTML DOCTYPE declaration）
  
 </html>
 ```
-###  XHTML 元素必须合理嵌套
+##  XHTML 元素必须合理嵌套
 
 在 HTML 中，一些元素可以不互相嵌套，像这样：
 
@@ -105,7 +105,7 @@ XHTML 文档必须进行 XHTML 文档类型声明（XHTML DOCTYPE declaration）
 ```
 <b><i>粗体和斜体文本</i></b>
 ```
-### XHTML 元素必须有关闭标签
+## XHTML 元素必须有关闭标签
 
 错误示例：
 
@@ -119,7 +119,7 @@ XHTML 文档必须进行 XHTML 文档类型声明（XHTML DOCTYPE declaration）
 <p>这是一个段落</p>
 <p>这是另外一个段落</p>
 ```
-### 空元素必须包含关闭标签
+## 空元素必须包含关闭标签
 
 错误示例：
 
@@ -135,7 +135,7 @@ XHTML 文档必须进行 XHTML 文档类型声明（XHTML DOCTYPE declaration）
 水平线: <hr />
 图片: <img src="happy.gif" alt="Happy face" />
 ```
-### XHTML 元素必须是小写
+## XHTML 元素必须是小写
 
 错误示例:
 
@@ -151,7 +151,7 @@ XHTML 文档必须进行 XHTML 文档类型声明（XHTML DOCTYPE declaration）
 <p>这是一个段落</p>
 </body>
 ```
-### 属性名称必须是小写
+## 属性名称必须是小写
 
 错误示例：
 
@@ -163,7 +163,7 @@ XHTML 文档必须进行 XHTML 文档类型声明（XHTML DOCTYPE declaration）
 ```
 <table width="100%">
 ```
-### 属性值必须有引号
+## 属性值必须有引号
 
 错误示例：
 
@@ -175,7 +175,7 @@ XHTML 文档必须进行 XHTML 文档类型声明（XHTML DOCTYPE declaration）
 ```
 <table width="100%">
 ```
-### 不允许属性简写
+## 不允许属性简写
 
 错误示例：
 
@@ -193,7 +193,7 @@ XHTML 文档必须进行 XHTML 文档类型声明（XHTML DOCTYPE declaration）
 <input disabled="disabled">
 <option selected="selected">
 ```
-### 如何将 HTML 转换为 XHTML
+## 如何将 HTML 转换为 XHTML
 
 1. 添加一个 XHTML <!DOCTYPE> 到你的网页中
 2. 添加 xmlns 属性添加到每个页面的html元素中。
