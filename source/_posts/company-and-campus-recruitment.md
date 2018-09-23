@@ -224,3 +224,44 @@ date: 2018-08-07 03:32:00
    [校园招聘](https://app.mokahr.com/campus_apply/immomo#/candidateHome/applications?_k=nw4ctn)
    
    [招聘流程](https://app.mokahr.com/campus_apply/immomo#/?anchorName=7072387898&sourceToken=&_k=m3ufum)
+   
+27. ### 平安科技
+
+   [校园招聘](http://pa-tech.hirede.com/UserCenter/CampusEditResume/Preview?language=1)
+   
+   [招聘流程](http://pa-tech.hirede.com/CareerSite/CampusSchedule)
+  
+28. ### Zoom 
+
+   [校园招聘](https://www.nowcoder.com/profile/178368744/resume)
+   
+   [招聘流程](https://www.nowcoder.com/careers/zoom/388)
+    
+29. ### 点我达 
+   
+   [招聘流程](http://job.dianwoda.com/active.html)
+   
+30. ### 北京多贝兄弟信息技术有限公司 
+
+   [校园招聘](https://www.nowcoder.com/profile/178368744/resume)
+   
+   [招聘流程](https://www.nowcoder.com/careers/duobei/351)
+ 
+31. ### 百词斩 
+
+   [校园招聘](https://app.mokahr.com/campus_apply/baicizhan/120/#/candidateHome/applications?_k=tcesas)
+   
+   [招聘流程](https://app.mokahr.com/campus_apply/baicizhan/120/#/jobs?zhineng=4395&_k=6t114a)
+   
+32. ### 猿辅导 
+
+   [校园招聘](https://app.mokahr.com/campus_apply/fenbi/28#/candidateHome/applications?_k=q2q8uh)
+   
+   [招聘流程](https://app.mokahr.com/campus_apply/fenbi/28#/?anchorName=007&sourceToken=&_k=shrunv)
+   
+33. ### 趣店
+
+  [校园招聘](https://app.mokahr.com/campus_apply/qudian#/candidateHome/applications?_k=82ansy)
+   
+   [招聘流程](https://app.mokahr.com/campus_apply/qudian#/?anchorName=9403859284&sourceToken=&_k=zksr9c)
+   
