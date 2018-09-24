@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>HTTP状态码 | 阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/works" class="menu-item-link"><i class="iconfont icon-works"></i>作品</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="post-title">
+          HTTP状态码
+            <div class="post-tags">
+    		    
+              <a class="tag-link" href="/tags/http/">http</a>
+            
+    	      </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <article class="post">
+  
+
+  <header>
+    <div class="post-title mobile-post-title">
+      <h1>HTTP状态码</h1>
+        <div class="post-tags">
+        
+          <a class="tag-link" href="/tags/http/">http</a>
+        
+        </div>
+    </div>
+    <div class="post-meta">
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2018-08-06</span>
+      
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/前端技术/">前端技术</a>
+          
+      
+      <!----------------------------------->
+        
+          <i class="iconfont icon-divide"></i>
+          <div class="post-visits"
+               data-url="/2018/08/06/http-state-code/"
+               data-title="HTTP状态码">
+              阅读次数
+            </div>
+        
+      <!----------------------------------->
+    </div>
+  </header>
+  
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#写在前面"><span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-状态码"><span class="toc-text">HTTP 状态码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#消息"><span class="toc-text">消息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#100"><span class="toc-text">100</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#成功"><span class="toc-text">成功</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#200"><span class="toc-text">200</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#201"><span class="toc-text">201</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#202"><span class="toc-text">202</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重定向"><span class="toc-text">重定向</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#301"><span class="toc-text">301</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#302"><span class="toc-text">302</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#303"><span class="toc-text">303</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#304"><span class="toc-text">304</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求错误"><span class="toc-text">请求错误</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#400"><span class="toc-text">400</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#401"><span class="toc-text">401</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#403"><span class="toc-text">403</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#404"><span class="toc-text">404</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#服务器错误"><span class="toc-text">服务器错误</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#500"><span class="toc-text">500</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#503"><span class="toc-text">503</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写在后面"><span class="toc-text">写在后面</span></a></li></ol>
+    </div>
+  </div>
+
+
+  <div class="post-content">
+    <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>下面只是对常用的状态码进行罗列，具体可以参看 <a href="https://baike.baidu.com/item/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/5053660?fr=aladdin" target="_blank" rel="noopener">HTTP状态码</a> 百度百科。</p>
+<h2 id="HTTP-状态码"><a href="#HTTP-状态码" class="headerlink" title="HTTP 状态码"></a>HTTP 状态码</h2><blockquote>
+<p>HTTP 状态码共分为 <strong>消息</strong> 、<strong>成功</strong> 、<strong>重定向</strong> 、<strong>请求错误</strong> 以及 <strong>服务器错误</strong> 这五大类，下面将罗列出常用的状态码以及含义。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h3><blockquote>
+<p>这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。</p>
+</blockquote>
+<ul>
+<li><h4 id="100"><a href="#100" class="headerlink" title="100"></a>100</h4><p>Continue：继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息。</p>
+</li>
+</ul>
+<h3 id="成功"><a href="#成功" class="headerlink" title="成功"></a>成功</h3><blockquote>
+<p>这一类型的状态码，代表请求已成功被服务器接收、理解、并接受 。</p>
+</blockquote>
+<ul>
+<li><h4 id="200"><a href="#200" class="headerlink" title="200"></a>200</h4><p>OK：正常返回信息。</p>
+</li>
+<li><h4 id="201"><a href="#201" class="headerlink" title="201"></a>201</h4><p>Created：请求成功并且服务器创建了新的资源。</p>
+</li>
+<li><h4 id="202"><a href="#202" class="headerlink" title="202"></a>202</h4><p>Accepted：服务器已接受请求，但尚未处理。</p>
+</li>
+</ul>
+<h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><blockquote>
+<p>这类状态码代表需要客户端采取进一步的操作才能完成请求。通常，这些状态码用来重定向，后续的请求地址（重定向目标）在本次响应的 Location 域中指明。</p>
+</blockquote>
+<ul>
+<li><h4 id="301"><a href="#301" class="headerlink" title="301"></a>301</h4><p>Moved Permanently：请求的网页已永久移动到新位置。</p>
+</li>
+<li><h4 id="302"><a href="#302" class="headerlink" title="302"></a>302</h4><p>Found：临时性重定向。</p>
+</li>
+<li><h4 id="303"><a href="#303" class="headerlink" title="303"></a>303</h4><p>See Other：临时性重定向，且总是使用 GET 请求新的 URI。</p>
+</li>
+<li><h4 id="304"><a href="#304" class="headerlink" title="304"></a>304</h4><p>Not Modified：自从上次请求后，请求的网页未修改过。</p>
+</li>
+</ul>
+<h3 id="请求错误"><a href="#请求错误" class="headerlink" title="请求错误"></a>请求错误</h3><blockquote>
+<p>这类的状态码代表了客户端看起来可能发生了错误，妨碍了服务器的处理。除非响应的是一个 HEAD 请求，否则服务器就应该返回一个解释当前错误状况的实体，以及这是临时的还是永久性的状况。</p>
+</blockquote>
+<ul>
+<li><h4 id="400"><a href="#400" class="headerlink" title="400"></a>400</h4><p>Bad Request：服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。</p>
+</li>
+<li><h4 id="401"><a href="#401" class="headerlink" title="401"></a>401</h4><p>Unauthorized：请求未授权。</p>
+</li>
+<li><h4 id="403"><a href="#403" class="headerlink" title="403"></a>403</h4><p>Forbidden：禁止访问。</p>
+</li>
+<li><h4 id="404"><a href="#404" class="headerlink" title="404"></a>404</h4><p>Not Found：找不到如何与 URI 相匹配的资源。</p>
+</li>
+</ul>
+<h3 id="服务器错误"><a href="#服务器错误" class="headerlink" title="服务器错误"></a>服务器错误</h3><blockquote>
+<p>这类状态码代表了服务器在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬件资源无法完成对请求的处理 （5、6字头）。</p>
+</blockquote>
+<ul>
+<li><h4 id="500"><a href="#500" class="headerlink" title="500"></a>500</h4><p>Internal Server Error：最常见的服务器端错误。</p>
+</li>
+<li><h4 id="503"><a href="#503" class="headerlink" title="503"></a>503</h4><p>Service Unavailable：服务器端暂时无法处理请求（可能是过载或维护）。</p>
+</li>
+</ul>
+<h2 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h2><p><a href="https://www.cnblogs.com/jf-67/p/6407763.html" target="_blank" rel="noopener">HTTP状态码知道哪些？</a></p>
+<p><a href="https://baike.baidu.com/item/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/5053660?fr=aladdin" target="_blank" rel="noopener">HTTP状态码-百度百科</a></p>
+
+  </div>
+  <div class="post-footer">the end</div>
+</article>
+
+          
+  <nav class="pagination post-nav">
+    
+      <a href="/2018/08/06/web-front-end-interview-relevant/">
+        <span class="prev-post"><i class="iconfont icon-back"></i>Web前端面试题目及详解汇总-前端相关</span>
+      </a>
+    
+    
+      <a href="/2018/08/06/Web-interview/">
+        <span class="next-post">Web前端面试<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+  
+
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/works" class="mobile-nav-link"><i class="iconfont icon-works"></i>作品</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.2.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+        appId: "5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz",
+        appKey: "2oU4tvtGWAXp5i6kWAnhd2rm"
+      });
+  </script>
+  <script>
+  (function (window) {
+      $(document).ready(function () {
+        visits();
+      });
+    function visits() {
+      var $visits = $('.post-visits');
+
+      function updateVisits(dom, time) {
+        var text = dom.text() + ' ' + time;
+        dom.text(text);
+      }
+
+      function addCounter(Counter) {
+        var query = new AV.Query(Counter);
+
+        var url = $visits.data('url').trim();
+        var title = $visits.data('title').trim();
+
+        query.equalTo('url', url);
+        query.find().then(function (results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.save(null, {
+              fetchWhenSave: true
+            }).then(function (counter) {
+              counter.increment('time', 1);
+              return counter.save();
+            }).then(function (counter) {
+              updateVisits($visits, counter.get('time'));
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set('title', title);
+            newcounter.set('url', url);
+            newcounter.set('time', 1);
+
+            newcounter.save().then(function (counter) {
+              updateVisits($visits, newcounter.get('time'));
+            });
+          }
+        }, function (error) {
+          console.log('Error:' + error.code + " " + error.message);
+        });
+      }
+
+      function showTime(Counter) {
+        $visits.each(function () {
+          var $this = $(this);
+          var query = new AV.Query(Counter);
+          var url = $this.data('url').trim();
+
+          query.equalTo('url', url);
+          query.find().then(function (results) {
+            if (results.length === 0) {
+              updateVisits($this, 0);
+            } else {
+              var counter = results[0];
+              updateVisits($this, counter.get('time'));
+            }
+          }, function (error) {
+            console.log('Error:' + error.code + " " + error.message);
+          });
+        })
+      }
+
+      if (typeof AV === 'object') {
+        var Counter = AV.Object.extend('Counter');
+        if ($visits.length === 1) {
+          addCounter(Counter);
+        } else {
+          showTime(Counter);
+        }
+      }
+    }
+  })(window);
+  </script>
+
+
+  <script src="/js/ztopic.js"></script>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','ENrrQtqCVAeKcMd7Pd7a','2.0.0');
+</script>
+<script data-st-module="em_T2wA9sBAcp92ch7MVF6C" src="//s.swiftypecdn.com/modules/v1/embed.js" async defer></script>
+</script>
+</body>
+</html>
