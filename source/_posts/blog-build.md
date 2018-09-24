@@ -38,3 +38,11 @@ date: 2018-06-02 17:11:00
 - #### Travis CI 自动部署
 
   [使用 Travis CI 自动更新 GitHub Pages](https://notes.iissnan.com/2016/publishing-github-pages-with-travis-ci/)
+  
+- #### 阅读量统计
+
+ [为NexT主题添加文章阅读量统计功能](https://notes.doublemine.me/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud)
+ 
+ [Hexo个人免费博客(三) next主题、评论、阅读量统计和站内搜索](https://blog.csdn.net/linshuhe1/article/details/52424573)
+ 
+ [百度统计官网](https://tongji.baidu.com/web/welcome/login)
