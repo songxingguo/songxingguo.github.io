@@ -2032,3 +2032,819 @@ ul.breadcrumb li+li:before {
     content: "/\00a0";
 }
 ```
+## CSS3 框大小
+
+CSS3 box-sizing 属性可以设置 width 和 height 属性中包含了 padding(内边距) 和 border(边框)。
+
+### 浏览器支持
+
+表格中的数字表示支持该属性的第一个浏览器的版本号。
+
+紧跟在数字后面的 -webkit- 或 -moz- 为指定浏览器的前缀。
+
+![浏览器支持](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%A1%86%E5%A4%A7%E5%B0%8F.png)
+
+### 不使用 CSS3 box-sizing 属性
+
+默认情况下，元素的宽度与高度计算方式如下：
+
+width(宽) + padding(内边距) + border(边框) = 元素实际宽度
+
+height(高) + padding(内边距) + border(边框) = 元素实际高度
+
+这就意味着我们在设置元素的 width/height 时，元素真实展示的高度与宽度会更大(因为元素的边框与内边距也会计算在 width/height 中)。
+
+![不使用 CSS3 box-sizing 属性](http://p9myzkds7.bkt.clouddn.com/CSS3/%E4%B8%8D%E4%BD%BF%E7%94%A8%20CSS3%20box-sizing%20%E5%B1%9E%E6%80%A7.png)
+
+以上两个 `<div>` 元素虽然宽度与高度设置一样，但真实展示的大小不一致，因为 div2 指定了内边距:
+
+```css
+.div1 {
+    width: 300px;
+    height: 100px;
+    border: 1px solid blue; 
+}
+
+.div2 {
+    width: 300px;
+    height: 100px;
+    padding: 50px;
+    border: 1px solid red;
+}
+```
+使用这种方式如果想要获得较小的那个框且包含内边距，就不得不考虑到边框和内边距的宽度。
+
+CSS3 的 box-sizing 属性很好的解决了这个问题。
+
+### 使用 CSS3 box-sizing 属性
+
+CSS3 box-sizing 属性在一个元素的 width 和 height 中包含 padding(内边距) 和 border(边框)。
+
+如果在元素上设置了 box-sizing: border-box; 则 padding(内边距) 和 border(边框) 也包含在 width 和 height 中:
+
+![使用 CSS3 box-sizing 属性](http://p9myzkds7.bkt.clouddn.com/CSS3/%E4%BD%BF%E7%94%A8%20CSS3%20box-sizing%20%E5%B1%9E%E6%80%A7.png)
+
+以下是两个 `<div>` 元素添加 box-sizing: border-box; 属性的简单实例。
+
+```css
+.div1 {
+    width: 300px;
+    height: 100px;
+    border: 1px solid blue;
+    box-sizing: border-box;
+}
+
+.div2 {
+    width: 300px;
+    height: 100px;
+    padding: 50px;
+    border: 1px solid red;
+    box-sizing: border-box;
+}
+```
+从结果上看 box-sizing: border-box; 效果更好，也正是很多开发人员需要的效果。
+
+以下代码可以让所有元素以更直观的方式展示大小。很多浏览器已经支持 box-sizing: border-box; (但是并非所有 - 这就是为什么 input 和 text 元素设置了 width: 100%; 后的宽度却不一样)。
+
+所有元素使用 box-sizing 是比较推荐的：
+
+```css
+* {
+    box-sizing: border-box;
+}
+```
+## CSS3 弹性盒子(Flex Box)
+
+弹性盒子是 CSS3 的一种新的布局模式。
+
+CSS3 弹性盒（ Flexible Box 或 flexbox），是一种当页面需要适应不同的屏幕大小以及设备类型时确保元素拥有恰当的行为的布局方式。
+
+引入弹性盒布局模型的目的是提供一种更加有效的方式来对一个容器中的子元素进行排列、对齐和分配空白空间。
+
+### 浏览器支持
+
+表格中的数字表示支持该属性的第一个浏览器的版本号。
+
+紧跟在数字后面的 -webkit- 或 -moz- 为指定浏览器的前缀。
+
+![浏览器支持](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90.png)
+
+### CSS3 弹性盒子内容
+
+弹性盒子由弹性容器(Flex container)和弹性子元素(Flex item)组成。
+
+弹性容器通过设置 display 属性的值为 flex 或 inline-flex将其定义为弹性容器。
+
+弹性容器内包含了一个或多个弹性子元素。
+
+注意： 弹性容器外及弹性子元素内是正常渲染的。弹性盒子只定义了弹性子元素如何在弹性容器内布局。
+
+弹性子元素通常在弹性盒子内一行显示。默认情况每个容器只有一行。
+
+以下元素展示了弹性子元素在一行内显示，从左到右:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    width: 400px;
+    height: 250px;
+    background-color: lightgrey;
+}
+ 
+.flex-item {
+    background-color: cornflowerblue;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+}
+</style>
+</head>
+<body>
+ 
+<div class="flex-container">
+  <div class="flex-item">flex item 1</div>
+  <div class="flex-item">flex item 2</div>
+  <div class="flex-item">flex item 3</div> 
+</div>
+ 
+</body>
+</html>
+```
+当然我们可以修改排列方式。
+
+如果我们设置 direction 属性为 rtl (right-to-left),弹性子元素的排列方式也会改变，页面布局也跟着改变:
+
+```
+body {
+    direction: rtl;
+}
+ 
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    width: 400px;
+    height: 250px;
+    background-color: lightgrey;
+}
+ 
+.flex-item {
+    background-color: cornflowerblue;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+}
+```
+### flex-direction
+
+flex-direction 属性指定了弹性子元素在父容器中的位置。
+
+语法
+
+```
+flex-direction: row | row-reverse | column | column-reverse
+```
+flex-direction的值有:
+
+- row：横向从左到右排列（左对齐），默认的排列方式。
+- row-reverse：反转横向排列（右对齐，从后往前排，最后一项排在最前面。
+- column：纵向排列。
+- column-reverse：反转纵向排列，从后往前排，最后一项排在最上面。
+
+以下实例演示了 row-reverse 的使用:
+
+```css
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+    width: 400px;
+    height: 250px;
+    background-color: lightgrey;
+}
+```
+以下实例演示了 column 的使用:
+
+```css
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    width: 400px;
+    height: 250px;
+    background-color: lightgrey;
+}
+```
+以下实例演示了 column-reverse 的使用:
+
+```css
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+    width: 400px;
+    height: 250px;
+    background-color: lightgrey;
+}
+```
+### justify-content 属性
+
+内容对齐（justify-content）属性应用在弹性容器上，把弹性项沿着弹性容器的主轴线（main axis）对齐。
+
+justify-content 语法如下：
+
+```
+justify-content: flex-start | flex-end | center | space-between | space-around
+```
+各个值解析:
+
+- flex-start：
+
+  弹性项目向行头紧挨着填充。这个是默认值。第一个弹性项的main-start外边距边线被放置在该行的main-start边线，而后续弹性项依次平齐摆放。
+
+- flex-end：
+
+  弹性项目向行尾紧挨着填充。第一个弹性项的main-end外边距边线被放置在该行的main-end边线，而后续弹性项依次平齐摆放。
+
+- center：
+
+  弹性项目居中紧挨着填充。（如果剩余的自由空间是负的，则弹性项目将在两个方向上同时溢出）。
+
+- space-between：
+
+  弹性项目平均分布在该行上。如果剩余空间为负或者只有一个弹性项，则该值等同于flex-start。否则，第1个弹性项的外边距和行的main-start边线对齐，而最后1个弹性项的外边距和行的main-end边线对齐，然后剩余的弹性项分布在该行上，相邻项目的间隔相等。
+
+-  space-around：
+
+   弹性项目平均分布在该行上，两边留有一半的间隔空间。如果剩余空间为负或者只有一个弹性项，则该值等同于center。否则，弹性项目沿该行分布，且彼此间隔相等（比如是20px），同时首尾两边和弹性容器之间留有一半的间隔（1/2*20px=10px）。
+
+效果图展示：
+
+![效果图展示](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%95%88%E6%9E%9C%E5%9B%BE%E5%B1%95%E7%A4%BA.png)
+
+以下实例演示了 flex-end 的使用:
+
+```css
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+    width: 400px;
+    height: 250px;
+    background-color: lightgrey;
+}
+```
+以下实例演示了 center 的使用:
+
+```css
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    width: 400px;
+    height: 250px;
+    background-color: lightgrey;
+}
+```
+以下实例演示了 space-between 的使用:
+
+```css
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    width: 400px;
+    height: 250px;
+    background-color: lightgrey;
+}
+```
+以下实例演示了 space-around 的使用:
+
+```css
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    width: 400px;
+    height: 250px;
+    background-color: lightgrey;
+}
+```
+### align-items 属性
+
+align-items 设置或检索弹性盒子元素在侧轴（纵轴）方向上的对齐方式。
+
+语法
+
+```
+align-items: flex-start | flex-end | center | baseline | stretch
+```
+各个值解析:
+
+- flex-start：弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴起始边界。
+- flex-end：弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴结束边界。
+- center：弹性盒子元素在该行的侧轴（纵轴）上居中放置。（如果该行的尺寸小于弹性盒子元素的尺寸，则会向两个方向溢出相同的长度）。
+- baseline：如弹性盒子元素的行内轴与侧轴为同一条，则该值与'flex-start'等效。其它情况下，该值将参与基线对齐。
+- stretch：如果指定侧轴大小的属性值为'auto'，则其值会使项目的边距盒的尺寸尽可能接近所在行的尺寸，但同时会遵照'min/max-width/height'属性的限制。
+
+以下实例演示了 stretch(默认值) 的使用:
+
+```css
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    width: 400px;
+    height: 250px;
+    background-color: lightgrey;
+}
+```
+以下实例演示了 flex-start 的使用:
+
+```css
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+    width: 400px;
+    height: 250px;
+    background-color: lightgrey;
+}
+```
+以下实例演示了 flex-end 的使用:
+
+```css
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: flex-end;
+    align-items: flex-end;
+    width: 400px;
+    height: 250px;
+    background-color: lightgrey;
+}
+```
+以下实例演示了 center 的使用:
+
+```css
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    width: 400px;
+    height: 250px;
+    background-color: lightgrey;
+}
+```
+以下实例演示了 baseline 的使用:
+
+```css
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: baseline;
+    align-items: baseline;
+    width: 400px;
+    height: 250px;
+    background-color: lightgrey;
+}
+```
+### flex-wrap 属性
+
+flex-wrap 属性用于指定弹性盒子的子元素换行方式。
+
+语法
+
+```
+flex-wrap: nowrap|wrap|wrap-reverse|initial|inherit;
+```
+各个值解析:
+
+- nowrap - 默认， 弹性容器为单行。该情况下弹性子项可能会溢出容器。
+- wrap - 弹性容器为多行。该情况下弹性子项溢出的部分会被放置到新行，子项内部会发生断行
+- wrap-reverse -反转 wrap 排列。
+
+以下1实例演示了 nowrap 的使用:
+
+```css
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    width: 300px;
+    height: 250px;
+    background-color: lightgrey;
+}
+```
+以下实例演示了 wrap 的使用:
+
+```css
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 300px;
+    height: 250px;
+    background-color: lightgrey;
+}
+```
+以下实例演示了 wrap-reverse 的使用:
+
+```css
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap-reverse;
+    flex-wrap: wrap-reverse;
+    width: 300px;
+    height: 250px;
+    background-color: lightgrey;
+}
+```
+### align-content 属性
+
+align-content 属性用于修改 flex-wrap 属性的行为。类似于 align-items, 但它不是设置弹性子元素的对齐，而是设置各个行的对齐。
+
+语法
+
+```css
+align-content: flex-start | flex-end | center | space-between | space-around | stretch
+```
+各个值解析:
+
+- stretch - 默认。各行将会伸展以占用剩余的空间。
+- flex-start - 各行向弹性盒容器的起始位置堆叠。
+- flex-end - 各行向弹性盒容器的结束位置堆叠。
+- center -各行向弹性盒容器的中间位置堆叠。
+- space-between -各行在弹性盒容器中平均分布。
+- space-around - 各行在弹性盒容器中平均分布，两端保留子元素与子元素之间间距大小的一半。
+
+以下实例演示了 center 的使用:
+
+```css
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-align-content: center;
+    align-content: center;
+    width: 300px;
+    height: 300px;
+    background-color: lightgrey;
+}
+```
+### 弹性子元素属性
+
+#### 排序
+
+语法
+
+```
+order: 
+```
+各个值解析:
+
+- `<integer>`：用整数值来定义排列顺序，数值小的排在前面。可以为负值。
+
+order 属性设置弹性容器内弹性子元素的属性:
+
+```css
+.flex-item {
+    background-color: cornflowerblue;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+}
+ 
+.first {
+    -webkit-order: -1;
+    order: -1;
+}
+```
+#### 对齐
+
+设置"margin"值为"auto"值，自动获取弹性容器中剩余的空间。所以设置垂直方向margin值为"auto"，可以使弹性子元素在弹性容器的两上轴方向都完全居中。
+
+以下实例在第一个弹性子元素上设置了 margin-right: auto; 。 它将剩余的空间放置在元素的右侧：
+
+```css
+.flex-item {
+    background-color: cornflowerblue;
+    width: 75px;
+    height: 75px;
+    margin: 10px;
+}
+ 
+.flex-item:first-child {
+    margin-right: auto;
+}
+```
+#### 完美的居中
+
+以下实例将完美解决我们平时碰到的居中问题。
+
+使用弹性盒子，居中变的很简单，只想要设置 margin: auto; 可以使得弹性子元素在两上轴方向上完全居中:
+
+```css
+.flex-item {
+    background-color: cornflowerblue;
+    width: 75px;
+    height: 75px;
+    margin: auto;
+}
+```
+### align-self
+
+align-self 属性用于设置弹性元素自身在侧轴（纵轴）方向上的对齐方式。
+
+语法
+
+```
+align-self: auto | flex-start | flex-end | center | baseline | stretch
+```
+各个值解析:
+
+- auto：如果'align-self'的值为'auto'，则其计算值为元素的父元素的'align-items'值，如果其没有父元素，则计算值为'stretch'。
+- flex-start：弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴起始边界。
+- flex-end：弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴结束边界。
+- center：弹性盒子元素在该行的侧轴（纵轴）上居中放置。（如果该行的尺寸小于弹性盒子元素的尺寸，则会向两个方向溢出相同的长度）。
+- baseline：如弹性盒子元素的行内轴与侧轴为同一条，则该值与'flex-start'等效。其它情况下，该值将参与基线对齐。
+- stretch：如果指定侧轴大小的属性值为'auto'，则其值会使项目的边距盒的尺寸尽可能接近所在行的尺寸，但同时会遵照'min/max-width/height'属性的限制。
+
+以下实例演示了弹性子元素上 align-self 不同值的应用效果：
+
+```css
+.flex-item {
+    background-color: cornflowerblue;
+    width: 60px;
+    min-height: 100px;
+    margin: 10px;
+}
+ 
+.item1 {
+    -webkit-align-self: flex-start;
+    align-self: flex-start;
+}
+.item2 {
+    -webkit-align-self: flex-end;
+    align-self: flex-end;
+}
+ 
+.item3 {
+    -webkit-align-self: center;
+    align-self: center;
+}
+ 
+.item4 {
+    -webkit-align-self: baseline;
+    align-self: baseline;
+}
+ 
+.item5 {
+    -webkit-align-self: stretch;
+    align-self: stretch;
+}
+```
+### flex
+
+flex 属性用于指定弹性子元素如何分配空间。
+
+语法
+
+```
+flex: auto | initial | none | inherit |  [ flex-grow ] || [ flex-shrink ] || [ flex-basis ]
+```
+各个值解析:
+
+- auto: 计算值为 1 1 auto
+- initial: 计算值为 0 1 auto
+- none：计算值为 0 0 auto
+- inherit：从父元素继承
+- [ flex-grow ]：定义弹性盒子元素的扩展比率。
+- [ flex-shrink ]：定义弹性盒子元素的收缩比率。
+- [ flex-basis ]：定义弹性盒子元素的默认基准值。
+
+以下实例中，第一个弹性子元素占用了 2/4 的空间，其他两个各占 1/4 的空间:
+
+```css
+.flex-item {
+    background-color: cornflowerblue;
+    margin: 10px;
+}
+ 
+.item1 {
+    -webkit-flex: 2;
+    flex: 2;
+}
+ 
+.item2 {
+    -webkit-flex: 1;
+    flex: 1;
+}
+ 
+.item3 {
+    -webkit-flex: 1;
+    flex: 1;
+}
+```
+
+[使用弹性盒子创建响应式页面](http://www.runoob.com/try/try.php?filename=trycss3_flexbox_website)
+
+### CSS3 弹性盒子属性
+
+下表列出了在弹性盒子中常用到的属性:
+
+![弹性盒子中常用到的属性](http://p9myzkds7.bkt.clouddn.com/CSS3/CSS3%20%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90%E5%B1%9E%E6%80%A7.png)
+
+### CSS3 多媒体查询
+
+### CSS2 多媒体类型
+
+@media 规则在 CSS2 中有介绍，针对不同媒体类型可以定制不同的样式规则。
+
+例如：你可以针对不同的媒体类型(包括显示器、便携设备、电视机，等等)设置不同的样式规则。
+
+但是这些多媒体类型在很多设备上支持还不够友好。
+
+### CSS3 多媒体查询
+
+CSS3 的多媒体查询继承了 CSS2 多媒体类型的所有思想： 取代了查找设备的类型，CSS3 根据设置自适应显示。
+
+媒体查询可用于检测很多事情，例如：
+
+- viewport(视窗) 的宽度与高度
+- 设备的宽度与高度
+- 朝向 (智能手机横屏，竖屏) 。
+- 分辨率
+
+目前很多针对苹果手机，Android 手机，平板等设备都会使用到多媒体查询。
+
+### 浏览器支持
+
+表格中的数字表示支持该属性的第一个浏览器的版本号。
+
+![浏览器支持](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E5%A4%9A%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2.png)
+
+### 多媒体查询语法
+
+多媒体查询由多种媒体组成，可以包含一个或多个表达式，表达式根据条件是否成立返回 true 或 false。
+
+```css
+@media not|only mediatype and (expressions) {
+    CSS 代码...;
+}
+```
+如果指定的多媒体类型匹配设备类型则查询结果返回 true，文档会在匹配的设备上显示指定样式效果。
+
+除非你使用了 not 或 only 操作符，否则所有的样式会适应在所有设备上显示效果。
+
+- not: not是用来排除掉某些特定的设备的，比如 @media not print（非打印设备）。
+
+- only: 用来定某种特别的媒体类型。对于支持Media Queries的移动设备来说，如果存在only关键字，移动设备的Web浏览器会忽略only关键字并直接根据后面的表达式应用样式文件。对于不支持Media Queries的设备但能够读取Media Type类型的Web浏览器，遇到only关键字时会忽略这个样式文件。
+
+- all: 所有设备，这个应该经常看到。
+
+你也可以在不同的媒体上使用不同的样式文件：
+
+```html
+<link rel="stylesheet" media="mediatype and|not|only (expressions)" href="print.css">
+```
+### CSS3 多媒体类型
+
+![CSS3 多媒体类型](http://p9myzkds7.bkt.clouddn.com/CSS3/CSS3%20%E5%A4%9A%E5%AA%92%E4%BD%93%E7%B1%BB%E5%9E%8B.png)
+
+### 多媒体查询简单实例
+
+使用多媒体查询可以在指定的设备上使用对应的样式替代原有的样式。
+
+以下实例中在屏幕可视窗口尺寸大于 480 像素的设备上修改背景颜色:
+
+```css
+@media screen and (min-width: 480px) {
+    body {
+        background-color: lightgreen;
+    }
+}
+```
+以下实例在屏幕可视窗口尺寸大于 480 像素时将菜单浮动到页面左侧：
+
+```css
+@media screen and (min-width: 480px) {
+    #leftsidebar {width: 200px; float: left;}
+    #main {margin-left:216px;}
+}
+```
+### CSS3 @media 参考
+
+更多多媒体查询内容可以参考 [@media](http://www.runoob.com/cssref/css3-pr-mediaquery.html) 规则。
+
+## CSS3 多媒体查询实例
+
+本章节我们将为大家演示一些多媒体查询实例。
+
+开始之前我们先制作一个电子邮箱的链接列表。HTML 代码如下：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+    list-style-type: none;
+}
+
+ul li a {
+    color: green;
+    text-decoration: none;
+    padding: 3px; 
+    display: block;
+}
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a data-email="johndoe@example.com" href="mailto:johndoe@example.com">John Doe</a></li>
+  <li><a data-email="marymoe@example.com" href="mailto:marymoe@example.com">Mary Moe</a></li>
+  <li><a data-email="amandapanda@example.com" href="mailto:amandapanda@example.com">Amanda Panda</a></li>
+</ul>
+
+</body>
+</html>
+```
+注意 data-email 属性。在 HTML 中我们可以使用带 data- 前缀的属性来存储信息。
+
+### 520 到 699px 宽度 - 添加邮箱图标
+
+当浏览器的宽度在 520 到 699px, 邮箱链接前添加邮件图标：
+
+```css
+@media screen and (max-width: 699px) and (min-width: 520px) {
+    ul li a {
+        padding-left: 30px;
+        background: url(email-icon.png) left center no-repeat;
+    }
+}
+```
+### 700 到 1000px - 添加文本前缀信息
+
+当浏览器的宽度在 700 到 1000px, 会在邮箱链接前添加 "Email: ":
+
+```css
+@media screen and (max-width: 1000px) and (min-width: 700px) {
+    ul li a:before {
+        content: "Email: ";
+        font-style: italic;
+        color: #666666;
+    }
+}
+```
+### 大于 1001px 宽度 - 添加邮件地址
+
+当浏览器的宽度大于 1001px 时，会在链接后添加邮件地址接。
+
+我们会使用 data- 属性来为每个人名后添加邮件地址：
+
+```css
+@media screen and (min-width: 1001px) {
+    ul li a:after {
+        content: " (" attr(data-email) ")";
+        font-size: 12px;
+        font-style: italic;
+        color: #666666;
+    }
+}
+```
+### 大于 1151px 宽度 - 添加图标
+
+当浏览器的宽度大于 1001px 时，会在人名前添加图标。
+
+实例中，我们没有编写额外的查询块，我们可以在已有的查询媒体后使用逗号分隔来添加其他媒体查询 (类似 OR 操作符):
+
+```css
+@media screen and (max-width: 699px) and (min-width: 520px), (min-width: 1151px) {
+    ul li a {
+        padding-left: 30px;
+        background: url(email-icon.png) left center no-repeat;
+    }
+}
+```
+
+[实例地址](http://www.runoob.com/try/try.php?filename=trycss3_mediaqueries_ex5)
