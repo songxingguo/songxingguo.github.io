@@ -1,7 +1,10 @@
 title: 线性表
 author: songxingguo
-date: 2018-09-24 21:41:43
-tags:
+tags: []
+categories:
+  - 数据结构
+  - ''
+date: 2018-09-24 21:41:00
 ---
 ## 线性表
 
