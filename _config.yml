@@ -111,3 +111,5 @@ baidu_url_submit:
 qiniu:
   prefix: http://p9myzkds7.bkt.clouddn.com/images/
   extend:
+
+baidu_analytics: ea29d0cf9dda7fe5403ba0f70fb2c10d
