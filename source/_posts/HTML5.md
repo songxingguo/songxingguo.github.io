@@ -14,6 +14,8 @@ HTML5的设计目的是为了在移动设备上支持多媒体。
 
 HTML5 简单易学。
 
+<!-- more -->
+
 ### 什么是 HTML5?
 
 HTML5 是下一代 HTML 标准。
@@ -2476,4 +2478,793 @@ FALLBACK:
 
 ## HTML5 Web Workers
 
+web worker 是运行在后台的 JavaScript，不会影响页面的性能。
 
+### 什么是 Web Worker？
+
+当在 HTML 页面中执行脚本时，页面的状态是不可响应的，直到脚本已完成。
+
+web worker 是运行在后台的 JavaScript，独立于其他脚本，不会影响页面的性能。您可以继续做任何愿意做的事情：点击、选取内容等等，而此时 web worker 在后台运行。
+
+### 浏览器支持
+
+![浏览器支持](http://p9myzkds7.bkt.clouddn.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%8B%96%E6%94%BE.png)
+
+Internet Explorer 10, Firefox, Chrome, Safari 和 Opera 都支持Web workers.
+
+### HTML5 Web Workers 实例
+
+下面的例子创建了一个简单的 web worker，在后台计数：
+
+[Web Workers 实例](http://www.runoob.com/try/try.php?filename=tryhtml5_webworker)
+
+demo_workers.js 文件代码：
+
+```js
+var i=0;
+
+function timedCount()
+{
+    i=i+1;
+    postMessage(i);
+    setTimeout("timedCount()",500);
+}
+
+timedCount();
+```
+
+### 检测浏览器是否支持 Web Worker
+
+在创建 web worker 之前，请检测用户的浏览器是否支持它：
+
+```js
+if(typeof(Worker)!=="undefined")
+{
+    // 是的! Web worker 支持!
+    // 一些代码.....
+}
+else
+{
+    //抱歉! Web Worker 不支持 
+}
+```
+### 创建 web worker 文件
+
+现在，让我们在一个外部 JavaScript 中创建我们的 web worker。
+
+在这里，我们创建了计数脚本。该脚本存储于 "demo_workers.js" 文件中：
+
+```js
+var i=0;
+
+function timedCount()
+{
+    i=i+1;
+    postMessage(i);
+    setTimeout("timedCount()",500);
+}
+
+timedCount();
+```
+以上代码中重要的部分是 postMessage() 方法 - 它用于向 HTML 页面传回一段消息。
+
+注意: web worker 通常不用于如此简单的脚本，而是用于更耗费 CPU 资源的任务。
+
+### 创建 Web Worker 对象
+
+我们已经有了 web worker 文件，现在我们需要从 HTML 页面调用它。
+
+下面的代码检测是否存在 worker，如果不存在，- 它会创建一个新的 web worker 对象，然后运行 "demo_workers.js" 中的代码：
+
+```js
+if(typeof(w)=="undefined")
+{
+    w=new Worker("demo_workers.js");
+}
+```
+然后我们就可以从 web worker 发生和接收消息了。
+
+向 web worker 添加一个 "onmessage" 事件监听器：
+
+```js
+w.onmessage=function(event){
+    document.getElementById("result").innerHTML=event.data;
+};
+````
+### 终止 Web Worker
+
+当我们创建 web worker 对象后，它会继续监听消息（即使在外部脚本完成之后）直到其被终止为止。
+
+如需终止 web worker，并释放浏览器/计算机资源，请使用 terminate() 方法：
+
+```js
+w.terminate();
+```
+### 完整的 Web Worker 实例代码
+
+我们已经看到了 .js 文件中的 Worker 代码。下面是 HTML 页面的代码：
+
+```html
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>菜鸟教程(runoob.com)</title> 
+</head>
+<body>
+ 
+<p>计数： <output id="result"></output></p>
+<button onclick="startWorker()">开始工作</button> 
+<button onclick="stopWorker()">停止工作</button>
+ 
+<p><strong>注意：</strong> Internet Explorer 9 及更早 IE 版本浏览器不支持 Web Workers.</p>
+ 
+<script>
+var w;
+ 
+function startWorker() {
+    if(typeof(Worker) !== "undefined") {
+        if(typeof(w) == "undefined") {
+            w = new Worker("demo_workers.js");
+        }
+        w.onmessage = function(event) {
+            document.getElementById("result").innerHTML = event.data;
+        };
+    } else {
+        document.getElementById("result").innerHTML = "抱歉，你的浏览器不支持 Web Workers...";
+    }
+}
+ 
+function stopWorker() 
+{ 
+    w.terminate();
+    w = undefined;
+}
+</script>
+ 
+</body>
+</html>
+```
+### Web Workers 和 DOM
+
+由于 web worker 位于外部文件中，它们无法访问下列 JavaScript 对象：
+
+- window 对象
+- document 对象
+- parent 对象
+
+## HTML5 服务器发送事件(Server-Sent Events)
+
+HTML5 服务器发送事件（server-sent event）允许网页获得来自服务器的更新。
+
+### Server-Sent 事件 - 单向消息传递
+
+Server-Sent 事件指的是网页自动获取来自服务器的更新。
+
+以前也可能做到这一点，前提是网页不得不询问是否有可用的更新。通过服务器发送事件，更新能够自动到达。
+
+例子：Facebook/Twitter 更新、股价更新、新的博文、赛事结果等。
+
+### 浏览器支持
+
+![浏览器支持](http://p9myzkds7.bkt.clouddn.com/HTML5/Server-Sent%20Events.png)
+
+所有主流浏览器均支持服务器发送事件，除了 Internet Explorer。
+
+### 接收 Server-Sent 事件通知
+
+EventSource 对象用于接收服务器发送事件通知：
+
+```
+var source=new EventSource("demo_sse.php");
+source.onmessage=function(event)
+{
+    document.getElementById("result").innerHTML+=event.data + "<br>";
+};
+```
+实例解析：
+
+- 创建一个新的 EventSource 对象，然后规定发送更新的页面的 URL（本例中是 "demo_sse.php"）
+- 每接收到一次更新，就会发生 onmessage 事件
+- 当 onmessage 事件发生时，把已接收的数据推入 id 为 "result" 的元素中
+
+### 检测 Server-Sent 事件支持
+
+以下实例，我们编写了一段额外的代码来检测服务器发送事件的浏览器支持情况：
+
+```js
+if(typeof(EventSource)!=="undefined")
+{
+    // 浏览器支持 Server-Sent
+    // 一些代码.....
+}
+else
+{
+    // 浏览器不支持 Server-Sent..
+}
+```
+### 服务器端代码实例
+
+为了让上面的例子可以运行，您还需要能够发送数据更新的服务器（比如 PHP 和 ASP）。
+
+服务器端事件流的语法是非常简单的。把 "Content-Type" 报头设置为 "text/event-stream"。现在，您可以开始发送事件流了。
+
+```js
+<?php 
+header('Content-Type: text/event-stream'); 
+header('Cache-Control: no-cache'); 
+
+$time = date('r'); 
+echo "data: The server time is: {$time}\n\n"; 
+flush(); 
+?>
+ASP 代码 (VB) (demo_sse.asp):
+
+<%
+Response.ContentType="text/event-stream"
+Response.Expires=-1
+Response.Write("data: " & now())
+Response.Flush()
+%>
+```
+代码解释:
+
+- 把报头 "Content-Type" 设置为 "text/event-stream"
+- 规定不对页面进行缓存
+- 输出发送日期（始终以 "data: " 开头）
+- 向网页刷新输出数据
+
+#### EventSource 对象
+
+在上面的例子中，我们使用 onmessage 事件来获取消息。不过还可以使用其他事件：
+
+![EventSource 对象](http://p9myzkds7.bkt.clouddn.com/HTML5/EventSource%20%E5%AF%B9%E8%B1%A1.png)
+
+## HTML5 WebSocket
+
+WebSocket 是 HTML5 开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。
+
+WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在 WebSocket API 中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。
+
+在 WebSocket API 中，浏览器和服务器只需要做一个握手的动作，然后，浏览器和服务器之间就形成了一条快速通道。两者之间就直接可以数据互相传送。
+
+现在，很多网站为了实现推送技术，所用的技术都是 Ajax 轮询。轮询是在特定的的时间间隔（如每1秒），由浏览器对服务器发出HTTP请求，然后由服务器返回最新的数据给客户端的浏览器。这种传统的模式带来很明显的缺点，即浏览器需要不断的向服务器发出请求，然而HTTP请求可能包含较长的头部，其中真正有效的数据可能只是很小的一部分，显然这样会浪费很多的带宽等资源。
+
+HTML5 定义的 WebSocket 协议，能更好的节省服务器资源和带宽，并且能够更实时地进行通讯。
+
+![WebSocket 协议](http://p9myzkds7.bkt.clouddn.com/HTML5/WebSocket%20%E5%8D%8F%E8%AE%AE.png)
+
+浏览器通过 JavaScript 向服务器发出建立 WebSocket 连接的请求，连接建立以后，客户端和服务器端就可以通过 TCP 连接直接交换数据。
+
+当你获取 Web Socket 连接后，你可以通过 send() 方法来向服务器发送数据，并通过 onmessage 事件来接收服务器返回的数据。
+
+以下 API 用于创建 WebSocket 对象。
+
+```js
+var Socket = new WebSocket(url, [protocol] );
+```
+以上代码中的第一个参数 url, 指定连接的 URL。第二个参数 protocol 是可选的，指定了可接受的子协议。
+
+### WebSocket 属性
+
+以下是 WebSocket 对象的属性。假定我们使用了以上代码创建了 Socket 对象：
+
+![WebSocket 属性](http://p9myzkds7.bkt.clouddn.com/HTML5/WebSocket%20%E5%B1%9E%E6%80%A7.png)
+
+### WebSocket 事件
+
+以下是 WebSocket 对象的相关事件。假定我们使用了以上代码创建了 Socket 对象：
+
+![WebSocket 事件](http://p9myzkds7.bkt.clouddn.com/HTML5/WebSocket%20%E4%BA%8B%E4%BB%B6.png)
+
+### WebSocket 方法
+
+以下是 WebSocket 对象的相关方法。假定我们使用了以上代码创建了 Socket 对象：
+
+![WebSocket 方法](http://p9myzkds7.bkt.clouddn.com/HTML5/WebSocket%20%E6%96%B9%E6%B3%95.png)
+
+### WebSocket 实例
+
+WebSocket 协议本质上是一个基于 TCP 的协议。
+
+为了建立一个 WebSocket 连接，客户端浏览器首先要向服务器发起一个 HTTP 请求，这个请求和通常的 HTTP 请求不同，包含了一些附加头信息，其中附加头信息"Upgrade: WebSocket"表明这是一个申请协议升级的 HTTP 请求，服务器端解析这些附加的头信息然后产生应答信息返回给客户端，客户端和服务器端的 WebSocket 连接就建立起来了，双方就可以通过这个连接通道自由的传递信息，并且这个连接会持续存在直到客户端或者服务器端的某一方主动的关闭连接。
+
+### 客户端的 HTML 和 JavaScript
+
+目前大部分浏览器支持 WebSocket() 接口，你可以在以下浏览器中尝试实例： Chrome, Mozilla, Opera 和 Safari。
+
+runoob_websocket.html 文件内容
+
+```html
+<!DOCTYPE HTML>
+<html>
+   <head>
+   <meta charset="utf-8">
+   <title>菜鸟教程(runoob.com)</title>
+    
+      <script type="text/javascript">
+         function WebSocketTest()
+         {
+            if ("WebSocket" in window)
+            {
+               alert("您的浏览器支持 WebSocket!");
+               
+               // 打开一个 web socket
+               var ws = new WebSocket("ws://localhost:9998/echo");
+                
+               ws.onopen = function()
+               {
+                  // Web Socket 已连接上，使用 send() 方法发送数据
+                  ws.send("发送数据");
+                  alert("数据发送中...");
+               };
+                
+               ws.onmessage = function (evt) 
+               { 
+                  var received_msg = evt.data;
+                  alert("数据已接收...");
+               };
+                
+               ws.onclose = function()
+               { 
+                  // 关闭 websocket
+                  alert("连接已关闭..."); 
+               };
+            }
+            
+            else
+            {
+               // 浏览器不支持 WebSocket
+               alert("您的浏览器不支持 WebSocket!");
+            }
+         }
+      </script>
+        
+   </head>
+   <body>
+   
+      <div id="sse">
+         <a href="javascript:WebSocketTest()">运行 WebSocket</a>
+      </div>
+      
+   </body>
+</html>
+```
+### 安装 pywebsocket
+
+在执行以上程序前，我们需要创建一个支持 WebSocket 的服务。从 pywebsocket 下载 mod_pywebsocket ,或者使用 git 命令下载：
+
+```
+git clone https://github.com/google/pywebsocket.git
+```
+mod_pywebsocket 需要 python 环境支持
+
+mod_pywebsocket 是一个 Apache HTTP 的 Web Socket扩展，安装步骤如下：
+
+- 解压下载的文件。
+- 进入 pywebsocket 目录。
+- 执行命令：
+
+```
+$ python setup.py build
+$ sudo python setup.py install
+```
+- 查看文档说明:
+
+```
+$ pydoc mod_pywebsocket
+```
+### 开启服务
+
+在 pywebsocket/mod_pywebsocket 目录下执行以下命令：
+
+```
+$ sudo python standalone.py -p 9998 -w ../example/
+```
+以上命令会开启一个端口号为 9998 的服务，使用 -w 来设置处理程序 echo_wsh.py 所在的目录。
+
+现在我们可以在 Chrome 浏览器打开前面创建的 runoob_websocket.html 文件。如果你的浏览器支持 WebSocket(), 点击"运行 WebSocket"，你就可以看到整个流程各个步骤弹出的窗口，流程 Gif 演示：
+
+![流程 Gif 演示](http://p9myzkds7.bkt.clouddn.com/HTML5/websockert.gif)
+
+在我们停止服务后，会弹出 "连接已关闭..."。
+
+## HTML(5) 代码规范
+
+### HTML 代码约定
+
+很多 Web 开发人员对 HTML 的代码规范知之甚少。
+
+在2000年至2010年，许多Web开发人员从 HTML 转换到 XHTML。
+
+使用 XHTML 开发人员逐渐养成了比较好的 HTML 编写规范。
+
+而针对于 HTML5 ，我们应该形成比较好的代码规范，以下提供了几种规范的建议。
+
+### 使用正确的文档类型
+
+文档类型声明位于HTML文档的第一行：
+
+```html
+<!DOCTYPE html>
+```
+如果你想跟其他标签一样使用小写，可以使用以下代码：
+
+```html
+<!doctype html>
+```
+### 使用小写元素名
+
+HTML5 元素名可以使用大写和小写字母。
+
+推荐使用小写字母：
+
+- 混合了大小写的风格是非常糟糕的。
+- 开发人员通常使用小写 (类似 XHTML)。
+- 小写风格看起来更加清爽。
+- 小写字母容易编写。
+
+不推荐:
+
+```html
+<SECTION> 
+  <p>这是一个段落。</p>
+</SECTION>
+非常糟糕:
+<Section> 
+  <p>这是一个段落。</p>
+</SECTION>
+推荐:
+<section> 
+  <p>这是一个段落。</p>
+</section>
+```
+### 关闭所有 HTML 元素
+
+在 HTML5 中, 你不一定要关闭所有元素 (例如 `<p>` 元素)，但我们建议每个元素都要添加关闭标签。
+
+不推荐:
+
+```html
+<section>
+  <p>这是一个段落。
+  <p>这是一个段落。
+</section>
+```
+推荐:
+
+```html
+<section>
+  <p>这是一个段落。</p>
+  <p>这是一个段落。</p>
+</section>
+```
+### 关闭空的 HTML 元素
+
+在 HTML5 中, 空的 HTML 元素也不一定要关闭：
+
+我们可以这么写：
+
+```html
+<meta charset="utf-8">
+```
+也可以这么写：
+
+```html
+<meta charset="utf-8" />
+```
+在 XHTML 和 XML 中斜线 (/) 是必须的。
+
+如果你期望 XML 软件使用你的页面，使用这种风格是非常好的。
+
+### 使用小写属性名
+
+HTML5 属性名允许使用大写和小写字母。
+
+我们推荐使用小写字母属性名:
+
+- 同时使用大小写是非常不好的习惯。
+- 开发人员通常使用小写 (类似 XHTML)。
+- 小写风格看起来更加清爽。
+- 小写字母容易编写。
+
+不推荐：
+
+```html
+<div CLASS="menu">
+```
+推荐：
+
+```
+<div class="menu">
+```
+### 属性值
+
+HTML5 属性值可以不用引号。
+
+属性值我们推荐使用引号:
+
+- 如果属性值含有空格需要使用引号。
+- 混合风格不推荐的，建议统一风格。
+- 属性值使用引号易于阅读。
+
+以下实例属性值包含空格，没有使用引号，所以不能起作用:
+
+```html
+<table class=table striped>
+```
+以下使用了双引号，是正确的：
+
+```html
+<table class="table striped">
+```
+### 图片属性
+
+图片通常使用 alt 属性。 在图片不能显示时，它能替代图片显示。
+
+```html
+<img src="html5.gif" alt="HTML5" style="width:128px;height:128px">
+```
+定义好图片的尺寸，在加载时可以预留指定空间，减少闪烁。
+
+```html
+<img src="html5.gif" alt="HTML5" style="width:128px;height:128px">
+```
+### 空格和等号
+
+等号前后可以使用空格。
+
+```html
+<link rel = "stylesheet" href = "styles.css">
+```
+但我们推荐少用空格:
+
+```html
+<link rel="stylesheet" href="styles.css">
+```
+### 避免一行代码过长
+
+使用 HTML 编辑器，左右滚动代码是不方便的。
+
+每行代码尽量少于 80 个字符。
+
+### 空行和缩进
+
+不要无缘无故添加空行。
+
+为每个逻辑功能块添加空行，这样更易于阅读。
+
+缩进使用两个空格，不建议使用 TAB。
+
+比较短的代码间不要使用不必要的空行和缩进。
+
+不必要的空行和缩进:
+
+```html
+<body>
+
+  <h1>菜鸟教程</h1>
+
+  <h2>HTML</h2>
+
+  <p>
+    菜鸟教程，学的不仅是技术，更是梦想。
+    菜鸟教程，学的不仅是技术，更是梦想。
+   菜鸟教程，学的不仅是技术，更是梦想,
+    菜鸟教程，学的不仅是技术，更是梦想。
+  </p>
+
+</body>
+推荐:
+<body>
+
+<h1>菜鸟教程</h1>
+
+<h2></h2>
+<p>菜鸟教程，学的不仅是技术，更是梦想。
+菜鸟教程，学的不仅是技术，更是梦想。
+菜鸟教程，学的不仅是技术，更是梦想。
+菜鸟教程，学的不仅是技术，更是梦想。</p>
+
+</body>
+```
+表格实例:
+
+```html
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>A</td>
+    <td>Description of A</td>
+  </tr>
+  <tr>
+    <td>B</td>
+    <td>Description of B</td>
+  </tr>
+</table>
+```
+列表实例:
+
+```html
+<ol>
+  <li>London</li>
+  <li>Paris</li>
+  <li>Tokyo</li>
+</ol>
+```
+### 省略 `<html>` 和 `<body>` ?
+  
+在标准 HTML5 中， `<html>` 和 `<body>` 标签是可以省略的。
+
+以下 HTML5 文档是正确的:
+
+```html
+<!DOCTYPE html>
+<head>
+  <title>页面标题</title>
+</head>
+
+<h1>这是一个标题</h1>
+<p>这是一个段落。</p>
+```
+不推荐省略 `<html>` 和 `<body>` 标签。
+
+`<html>` 元素是文档的根元素，用于描述页面的语言：
+
+```html
+<!DOCTYPE html>
+<html lang="zh">
+```
+声明语言是为了方便屏幕阅读器及搜索引擎。
+
+省略 `<html>` 或 `<body>` 在 DOM 和 XML 软件中会崩溃。
+
+省略 `<body>` 在旧版浏览器 (IE9)会发生错误。
+
+### 省略 `<head>` ?
+
+在标准 HTML5 中， `<head>`标签是可以省略的。
+
+默认情况下，浏览器会将 `<body>` 之前的内容添加到一个默认的 `<head>` 元素上。
+
+```html
+<!DOCTYPE html>
+<html>
+<title>页面标题</title>
+
+<body>
+  <h1>这是一个标题</h1>
+  <p>这是一个段落。</p>
+</body>
+
+</html>
+```
+> 现在省略 head 标签还不推荐使用。
+
+### 元数据
+
+HTML5 中 `<title>` 元素是必须的，标题名描述了页面的主题:
+
+```html
+<title>菜鸟教程</title>
+```
+标题和语言可以让搜索引擎很快了解你页面的主题:
+
+```html
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>菜鸟教程</title>
+</head>
+```
+### HTML 注释
+
+注释可以写在 `<!-- 和 -->` 中:
+
+```html
+<!-- 这是注释 -->
+```
+比较长的评论可以在 `<!-- 和 -->` 中分行写：
+
+```html
+<!-- 
+  这是一个较长评论。 这是 一个较长评论。这是一个较长评论。
+  这是 一个较长评论 这是一个较长评论。 这是 一个较长评论。
+-->
+```
+长评论第一个字符缩进两个空格，更易于阅读。
+
+### 样式表
+
+样式表使用简洁的语法格式 ( type 属性不是必须的):
+
+```html
+<link rel="stylesheet" href="styles.css">
+```
+短的规则可以写成一行:
+
+```css
+p.into {font-family: Verdana; font-size: 16em;}
+```
+长的规则可以写成多行:
+
+```css
+body {
+  background-color: lightgrey;
+  font-family: "Arial Black", Helvetica, sans-serif;
+  font-size: 16em;
+  color: black;
+}
+```
+- 将左花括号与选择器放在同一行。
+- 左花括号与选择器间添加一个空格。
+- 使用两个空格来缩进。
+- 冒号与属性值之间添加一个空格。
+- 逗号和符号之后使用一个空格。
+- 每个属性与值结尾都要使用分号。
+- 只有属性值包含空格时才使用引号。
+- 右花括号放在新的一行。
+- 每行最多 80 个字符。
+
+> 在逗号和冒号后添加空格是常用的一个规则。
+
+### 在 HTML 中载入 JavaScript
+
+使用简洁的语法来载入外部的脚本文件 ( type 属性不是必须的 ):
+
+```html
+<script src="myscript.js">
+```
+### 使用 JavaScript 访问 HTML 元素
+
+一个糟糕的 HTML 格式可能会导致 JavaScript 执行错误。
+
+以下两个 JavaScript 语句会输出不同结果:
+
+```js
+var obj = getElementById("Demo")
+
+var obj = getElementById("demo")
+```
+HTML 中 JavaScript 尽量使用相同的命名规则。
+
+访问 JavaScript 代码规范。
+
+### 使用小写文件名
+
+大多 Web 服务器 (Apache, Unix) 对大小写敏感： london.jpg 不能通过 London.jpg 访问。
+
+其他 Web 服务器 (Microsoft, IIS) 对大小写不敏感： london.jpg 可以通过 London.jpg 或 london.jpg 访问。
+
+你必须保持统一的风格，我们建议统一使用小写的文件名。
+
+### 文件扩展名
+
+HTML 文件后缀可以是 .html (或 .htm)。
+
+CSS 文件后缀是 .css 。
+
+JavaScript 文件后缀是 .js 。
+
+.htm 和 .html 的区别
+.htm 和 .html 的扩展名文件本质上是没有区别的。浏览器和 Web 服务器都会把它们当作 HTML 文件来处理。
+
+区别在于：
+
+.htm 应用在早期 DOS 系统，系统现在或者只能有三个字符。
+
+在 Unix 系统中后缀没有特别限制，一般用 .html。
+
+### 技术上区别
+
+如果一个 URL 没有指定文件名 (如 http://www.runoob.com/css/), 服务器会返回默认的文件名。通常默认文件名为 index.html, index.htm, default.html, 和 default.htm。
+
+如果服务器只配置了 "index.html" 作为默认文件，你必须将文件命名为 "index.html", 而不是 "index.htm"。
+
+但是，通常服务器可以设置多个默认文件，你可以根据需要设置默认文件名。
+
+不管怎样，HTML 完整的后缀是 ".html"。
