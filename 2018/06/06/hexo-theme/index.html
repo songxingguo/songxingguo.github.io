@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>Hexo主题修改 | 阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/works" class="menu-item-link"><i class="iconfont icon-works"></i>作品</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="post-title">
+          Hexo主题修改
+            <div class="post-tags">
+    		    
+              <a class="tag-link" href="/tags/Hexo/">Hexo</a>
+            
+    	      </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <article class="post">
+  
+
+  <header>
+    <div class="post-title mobile-post-title">
+      <h1>Hexo主题修改</h1>
+        <div class="post-tags">
+        
+          <a class="tag-link" href="/tags/Hexo/">Hexo</a>
+        
+        </div>
+    </div>
+    <div class="post-meta">
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2018-06-06</span>
+      
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/博客搭建/">博客搭建</a>
+          
+      
+      <!----------------------------------->
+        
+          <i class="iconfont icon-divide"></i>
+          <div class="post-visits"
+               data-url="/2018/06/06/hexo-theme/"
+               data-title="Hexo主题修改">
+              阅读次数
+            </div>
+        
+      <!----------------------------------->
+    </div>
+  </header>
+  
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前提"><span class="toc-text">前提</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选取自己喜欢的主题"><span class="toc-text">选取自己喜欢的主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将主题clone到themes目录下"><span class="toc-text">将主题clone到themes目录下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改博客-config-yml文件"><span class="toc-text">修改博客_config.yml文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重新启动服务"><span class="toc-text">重新启动服务</span></a></li></ol>
+    </div>
+  </div>
+
+
+  <div class="post-content">
+    <ul>
+<li><h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>&emsp;&emsp;已经使用Hexo搭建一个博客</p>
+</li>
+<li><h3 id="选取自己喜欢的主题"><a href="#选取自己喜欢的主题" class="headerlink" title="选取自己喜欢的主题"></a>选取自己喜欢的主题</h3><p>&emsp;&emsp;在Hexo <a href="https://hexo.io/themes/" target="_blank" rel="noopener">主题列表</a> 中选取一个自己喜欢的主题，</p>
+<p>&emsp;&emsp;我这儿选取的是 hiker 主题</p>
+<a id="more"></a>
+</li>
+<li><h3 id="将主题clone到themes目录下"><a href="#将主题clone到themes目录下" class="headerlink" title="将主题clone到themes目录下"></a>将主题clone到themes目录下</h3><ul>
+<li><p>进入博客根目录，将代码clone到 <strong>themes/hiker</strong> 目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iTimeTraveler/hexo-theme-hiker.git themes/hiker</span><br></pre></td></tr></table></figure>
+<p>效果：<br><img src="http://p9myzkds7.bkt.clouddn.com/clone-hiker.png" alt="clone主题"></p>
+</li>
+<li><p>然后进入主题文件目录下，执行 <strong>npm install</strong> 安装主题依赖的资源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd themes/Hiker</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>效果：<br><img src="http://p9myzkds7.bkt.clouddn.com/%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96.png" alt="安装依赖"></p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h3 id="修改博客-config-yml文件"><a href="#修改博客-config-yml文件" class="headerlink" title="修改博客_config.yml文件"></a>修改博客_config.yml文件</h3><ul>
+<li>打开博客的—config.yml文件，找到 <strong>theme</strong> 字段并修改为 <strong>hiker</strong><br><img src="http://p9myzkds7.bkt.clouddn.com/%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E4%B8%BAhiker.png" alt="修改主题配置"></li>
+</ul>
+</li>
+<li><h3 id="重新启动服务"><a href="#重新启动服务" class="headerlink" title="重新启动服务"></a>重新启动服务</h3><ul>
+<li><p>进入博客根目录，重新启动服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ../../</span><br><span class="line">hexo clean </span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/%E9%87%8D%E5%90%AFHexo%E6%9C%8D%E5%8A%A1.png" alt="重启服务"></p>
+</li>
+<li><p>点击 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 查看<br><img src="http://p9myzkds7.bkt.clouddn.com/hiker%E6%95%88%E6%9E%9C.png" alt="hiker效果"></p>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="post-footer">the end</div>
+</article>
+
+          
+  <nav class="pagination post-nav">
+    
+      <a href="/2018/06/13/nodejs-blog-build/">
+        <span class="prev-post"><i class="iconfont icon-back"></i>NodeJS博客搭建</span>
+      </a>
+    
+    
+      <a href="/2018/06/06/deploy-github-pages/">
+        <span class="next-post">博客部署到Github Pages<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+  
+
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/works" class="mobile-nav-link"><i class="iconfont icon-works"></i>作品</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.2.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+        appId: "MNdCoL1O2i2njgRy8WVYgAwf-gzGzoHsz",
+        appKey: "hil0yQTQDbO8nzaxFKqeSqyK"
+      });
+  </script>
+  <script>
+  (function (window) {
+      $(document).ready(function () {
+        visits();
+      });
+    function visits() {
+      var $visits = $('.post-visits');
+
+      function updateVisits(dom, time) {
+        var text = dom.text() + ' ' + time;
+        dom.text(text);
+      }
+
+      function addCounter(Counter) {
+        var query = new AV.Query(Counter);
+
+        var url = $visits.data('url').trim();
+        var title = $visits.data('title').trim();
+
+        query.equalTo('url', url);
+        query.find().then(function (results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.save(null, {
+              fetchWhenSave: true
+            }).then(function (counter) {
+              counter.increment('time', 1);
+              return counter.save();
+            }).then(function (counter) {
+              updateVisits($visits, counter.get('time'));
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set('title', title);
+            newcounter.set('url', url);
+            newcounter.set('time', 1);
+
+            newcounter.save().then(function (counter) {
+              updateVisits($visits, newcounter.get('time'));
+            });
+          }
+        }, function (error) {
+          console.log('Error:' + error.code + " " + error.message);
+        });
+      }
+
+      function showTime(Counter) {
+        $visits.each(function () {
+          var $this = $(this);
+          var query = new AV.Query(Counter);
+          var url = $this.data('url').trim();
+
+          query.equalTo('url', url);
+          query.find().then(function (results) {
+            if (results.length === 0) {
+              updateVisits($this, 0);
+            } else {
+              var counter = results[0];
+              updateVisits($this, counter.get('time'));
+            }
+          }, function (error) {
+            console.log('Error:' + error.code + " " + error.message);
+          });
+        })
+      }
+
+      if (typeof AV === 'object') {
+        var Counter = AV.Object.extend('Counter');
+        if ($visits.length === 1) {
+          addCounter(Counter);
+        } else {
+          showTime(Counter);
+        }
+      }
+    }
+  })(window);
+  </script>
+
+
+  <script src="/js/ztopic.js"></script>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','ENrrQtqCVAeKcMd7Pd7a','2.0.0');
+</script>
+<script data-st-module="em_T2wA9sBAcp92ch7MVF6C" src="//s.swiftypecdn.com/modules/v1/embed.js" async defer></script>
+</script>
+</body>
+</html>
