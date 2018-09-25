@@ -829,14 +829,127 @@ date: 2018-09-16 19:01:00
       }
     })
     ```
+## 第三周
+
+### 第一天
+
+#### 前后端未分离
+
+前端负责页面布局+JS交互
+PHP后端，在HTML页面中嵌入PHP代码绑定数据
+
+> 弊端：开发周期较长、后期维护要求前端能够一些PHP语法
+
+#### 前后端分离
+
+前端负责：布局+JS交互+数据获取绑定
+后端负责：编写数据接口
+
+#### 前端已经完成，后端接口尚未完成
+
+1. 前端跟后端商定接口及数据格式。
+2. Mock模拟线上数据，进行线上数据的获取与绑定。
+3. 将Mock地址切换为真实服务器地址。
+4. 联调测试。
+
+#### easy-mock的使用流程
+
+1. 注册并登陆 [easy-mock](https://www.easy-mock.com/) 。
+2. 点击easy-mock右下角的加号，新建项目，定义baseURL。
+3. 在当前项目下新建接口：数据包、请求方式（get或post等）、接口附加地址、接口描述	
+4. 复制并得到接口地址。
+5. 在小程序中需要获取数据的页面（如：classify.js）中，
+   通过如下方式请求easy-mock平台获取数据：
+    
+   ```js
+	onLoad: function (options) {
+	    var _This = this;
+	    wx.request({
+	      url: 'https://www.easy-mock.com/mock/5ba99795d7eb4275f939a560/api/student',
+	      method:'get',
+	      success:function(res){
+	        console.log(res.data.data);
+	        _This.setData({ //6，将请求到的数据设置给Page对象的data
+	          sData: res.data.data
+	        })
+	      }
+	    })
+	  },
+     ```
+7. 将数据绑定并显示到classify.wxml中去。
+
+ ```html
+ <view wx:for="{{sData}}">
+  姓名：{{item.name}},分数：{{item.score}}
+</view>	
+```
+#### 在小程序中使用 LeanClond
+
+1. 注册 [Leancloud](https://leancloud.cn) 账号，并新建一个leancloud应用。
+
+2. 将leancloud应用提供给我们的【域名】配置到小程序的域名白名单之下。
+
+3. 下载av-weapp-min.js核心文件（该文件中有leancloud为我们提供的操作leancloud数据库的一些方法）
+
+4. 将av-weapp-min.js复制到小程序项目下的utils文件夹中。
+
+5. 在小程序项目中的app.js中对leancloud核心方法进行初始化。
    
+   ```js
+	var Cloud = require('/utils/av-weapp-min.js'); //引入核心文件
+	Cloud.init({ //基于核心文件提供的对象下的init方法，对该对象进行初始化
+	  appId:'lw0PCyoRcDpekvo6cGcWog2V-gzGzoHsz',
+	  appKey:'yHD6FoFGxSqUAf86g9sE1pRz'
+	})
+   ```
+6. 初始化的时候，appId与appKey来自【leancloud应用】-【设置】-【应用key】。
+
+7. 使用leancloud核心对象提供的方法存储数据。
+
+#### 在小程序中使用 form表单
+
+1. wxml结构中，要有一个完整的form表单组件
+
+  ```html
+  <form bindsubmit="handleSubmit" bindreset="formReset">
+    <view class="section">
+      <view class="section__title">图书分类</view>
+      <input name="classify" placeholder="请输入图书分类" value='1'/>
+    </view>
+
+    <view class="btn-area">
+      <button formType="submit">确定录入</button>
+    </view>
+  </form>
+  ```
+  >【注意】表单三要素：
+  > 1. 为form标签绑定 bindsubmit 事件
+  > 2. from内部所有的input都要设置一个独一无二的name
+  > 3. 要为表单内部的button添加 formType="submit" 属性
+
+2. 在js中通过handleSubmit事件，拿到表单里面的内容
    
-   
-   
-   
-   
-   
-   
-   
-   
+   ```js
+	handleSubmit:function(ev){
+	    console.log(ev.detail.value); //获取表单内容
+	  },
+   ```
+3. 调用Leancloud提供的存储方法，将【表单内容】存储到云端服务器
   
+   ```js
+	handleSubmit:function(ev){
+	    var v = ev.detail.value; //（1），获取到表单中的值
+	    console.log(v)
+	    var Book = Cloud.Object.extend('Book'); //（2）创建表对象
+	    var book = new Book(); //（3）基于表对象，实例化一条具体的数据对象
+	    
+	    for(var attr in v){  // (4)为数据对象设置数据
+	      book.set(attr,v[attr]);
+	    }
+	    book.save().then(function (res) { //（5）执行save方法，提交数据并保存
+	      console.log('objectId is ' + res.id);
+	    }, function (error) {
+	      console.error(error);
+	    });
+	 },
+   ```

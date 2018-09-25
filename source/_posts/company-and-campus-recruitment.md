@@ -274,6 +274,7 @@ date: 2018-08-07 03:32:00
 35. ### 瑞幸咖啡
   
   [招聘流程](https://www.nowcoder.com/careers/luckincoffee/405)
-   
   
-  
+36. ### 小年糕
+
+  [招聘流程](http://www.xiaoniangao.cn/recruit)
