@@ -953,3 +953,75 @@ PHP后端，在HTML页面中嵌入PHP代码绑定数据
 	    });
 	 },
    ```
+  
+### 第二天
+
+#### LeanCloud查询数据流程
+
+1. 在需要查询数据的小程序页面js文件中，引入leanCloud核心模块
+ 
+ ```js
+  var Cloud = require('../../utils/av-weapp-min.js')
+ ```
+2. 通过LeanCloud提供的查询方法，查询数据库并获取数据
+
+  ```js
+  onLoad: function (options) {
+      var _This = this; //修正this指向
+      var query =new Cloud.Query('Book');//2，实例化一个查询对象
+      // query.equalTo('classify','1') //3，为查询对象设置匹配条件，可省略，没有匹配条件会获取所有数据
+      query.find().then(function(res){ //4，执行查询方法，获取查询结果
+        console.log(res);
+        // 5，处理查询结果数据包，提取有用的数据
+        var arr=[];  //为了存储过滤后的数据
+        var Len = res.length;
+        for(var i=0;i<Len;i++){
+          res[i].attributes.id = res[i].id;
+          arr.push(res[i].attributes)
+        }
+        console.log(arr);
+        _This.setData({
+          bookData:arr
+        })
+      })
+    },
+   ```
+3. 查询方法
+ 
+   - **find(optionsopt) → {Promise}**
+   
+     查询任务状态和结果，任务结果为一个 JSON 对象，包括 status 表示任务状态， totalCount 表示总数， results 数组表示任务结果数组，previewCount 表示可以返回的结果总数，任务的开始和截止时间 startTime、endTime 等信息。
+   
+   - **limit(n) → {AV.Query}**
+   
+     设置要返回的结果数量的限制。默认限制为100，一次最多返回1000个结果。
+   
+   - **skip （n）→{ AV.Query }**
+   
+     设置在返回任何结果之前要跳过的结果数。这对于分页很有用。默认是跳过零结果。
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
