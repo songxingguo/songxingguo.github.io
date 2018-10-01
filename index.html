@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>阿有的博客</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">SongXingguo‘s blog</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">SongXingguo‘s blog</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/works" class="menu-item-link"><i class="iconfont icon-works"></i>作品</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="intro">
+          写文章，做分享
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <section class="posts">
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/10/01/TP/">HTTP教程</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-10-01</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/读书笔记/">读书笔记</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/10/01/TP/"
+                   data-title="HTTP教程">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h1 id="HTTP-教程"><a href="#HTTP-教程" class="headerlink" title="HTTP 教程"></a>HTTP 教程</h1><p>HTTP协议（HyperText Transfer Protocol，超文本传输协议）是因特网上应用最为广泛的一种网络传输协议，所有的WWW文件都必须遵守这个标准。</p>
+<p>HTTP是一个基于TCP/IP通信协议来传递数据（HTML 文件, 图片文件, 查询结果等）。</p>
+<!-- mmore -->
+<h2 id="HTTP-简介"><a href="#HTTP-简介" class="headerlink" title="HTTP 简介"></a>HTTP 简介</h2><p>HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写,是用于从万维网（WWW:World Wide Web ）服务器传输超文本到本地浏览器的传送协议。。</p>
+<p>HTTP是一个基于TCP/IP通信协议来传递数据（HTML 文件, 图片文件, 查询结果等）。</p>
+<h3 id="HTTP-工作原理"><a href="#HTTP-工作原理" class="headerlink" title="HTTP 工作原理"></a>HTTP 工作原理</h3><p>HTTP协议工作于客户端-服务端架构上。浏览器作为HTTP客户端通过URL向HTTP服务端即WEB服务器发送所有请求。</p>
+<p>Web服务器有：Apache服务器，IIS服务器（Internet Information Services）等。</p>
+<p>Web服务器根据接收到的请求后，向客户端发送响应信息。</p>
+<p>HTTP默认端口号为80，但是你也可以改为8080或者其他端口。</p>
+<p>HTTP三点注意事项：</p>
+<ul>
+<li>HTTP是无连接：无连接的含义是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。</li>
+<li>HTTP是媒体独立的：这意味着，只要客户端和服务器知道如何处理的数据内容，任何类型的数据都可以通过HTTP发送。客户端以及服务器指定使用适合的MIME-type内容类型。</li>
+<li>HTTP是无状态：HTTP协议是无状态协议。无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的应答就较快。</li>
+</ul>
+<p>以下图表展示了HTTP协议通信流程：</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/HTTP/cgiarch.gif" alt="HTTP协议通信流程"></p>
+<h2 id="HTTP-消息结构"><a href="#HTTP-消息结构" class="headerlink" title="HTTP 消息结构"></a>HTTP 消息结构</h2><p>HTTP是基于客户端/服务端（C/S）的架构模型，通过一个可靠的链接来交换信息，是一个无状态的请求/响应协议。</p>
+<p>一个HTTP”客户端”是一个应用程序（Web浏览器或其他任何客户端），通过连接到服务器达到向服务器发送一个或多个HTTP的请求的目的。</p>
+<p>一个HTTP”服务器”同样也是一个应用程序（通常是一个Web服务，如Apache Web服务器或IIS服务器等），通过接收客户端的请求并向客户端发送HTTP响应数据。</p>
+<p>HTTP使用统一资源标识符（Uniform Resource Identifiers, URI）来传输数据和建立连接。</p>
+<p>一旦建立连接后，数据消息就通过类似Internet邮件所使用的格式[RFC5322]和多用途Internet邮件扩展（MIME）[RFC2045]来传送。</p>
+<h3 id="客户端请求消息"><a href="#客户端请求消息" class="headerlink" title="客户端请求消息"></a>客户端请求消息</h3><p>客户端发送一个HTTP请求到服务器的请求消息包括以下格式：请求行（request line）、请求头部（header）、空行和请求数据四个部分组成，下图给出了请求报文的一般格式。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/HTTP/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E7%9A%84%E4%B8%80%E8%88%AC%E6%A0%BC%E5%BC%8F.png" alt="请求报文的一般格式"></p>
+<h3 id="服务器响应消息"><a href="#服务器响应消息" class="headerlink" title="服务器响应消息"></a>服务器响应消息</h3><p>HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/HTTP/HTTP%E5%93%8D%E5%BA%94%E4%B9%9F%E7%94%B1%E5%9B%9B%E4%B8%AA%E9%83%A8%E5%88%86%E7%BB%84%E6%88%90.jpg" alt="HTTP响应也由四个部分组成"></p>
+<p>下面实例是一点典型的使用GET来传递数据的实例：</p>
+<p>客户端请求：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GET /hello.txt HTTP/1.1</span><br><span class="line">User-Agent: curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3</span><br><span class="line">Host: www.example.com</span><br><span class="line">Accept-Language: en, mi</span><br></pre></td></tr></table></figure>
+<p>服务端响应:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Date: Mon, 27 Jul 2009 12:28:53 GMT</span><br><span class="line">Server: Apache</span><br><span class="line">Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT</span><br><span class="line">ETag: &quot;34aa387-d-1568eb00&quot;</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">Content-Length: 51</span><br><span class="line">Vary: Accept-Encoding</span><br><span class="line">Content-Type: text/plain</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello World! My payload includes a trailing CRLF.</span><br></pre></td></tr></table></figure>
+<h2 id="HTTP请求方法"><a href="#HTTP请求方法" class="headerlink" title="HTTP请求方法"></a>HTTP请求方法</h2><p>根据HTTP标准，HTTP请求可以使用多种请求方法。</p>
+<p>HTTP1.0定义了三种请求方法： GET, POST 和 HEAD方法。</p>
+<p>HTTP1.1新增了五种请求方法：OPTIONS, PUT, DELETE, TRACE 和 CONNECT 方法。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/HTTP%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95.png" alt="HTTP请求方法"></p>
+<h2 id="HTTP-响应头信息"><a href="#HTTP-响应头信息" class="headerlink" title="HTTP 响应头信息"></a>HTTP 响应头信息</h2><p>HTTP请求头提供了关于请求，响应或者其他的发送实体的信息。</p>
+<p>在本章节中我们将具体来介绍HTTP响应头信息。</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/HTTP/HTTP%20%E5%93%8D%E5%BA%94%E5%A4%B4%E4%BF%A1%E6%81%AF.png" alt="HTTP 响应头信息"></p>
+<h2 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h2><p>当浏览者访问一个网页时，浏览者的浏览器会向网页所在服务器发出请求。当浏览器接收并显示网页前，此网页所在的服务器会返回一个包含HTTP状态码的信息头（server header）用以响应浏览器的请求。</p>
+<p>HTTP状态码的英文为HTTP Status Code。</p>
+<p>下面是常见的HTTP状态码：</p>
+<ul>
+<li>200 - 请求成功</li>
+<li>301 - 资源（网页等）被永久转移到其它URL</li>
+<li>404 - 请求的资源（网页等）不存在</li>
+<li>500 - 内部服务器错误</li>
+</ul>
+<h3 id="HTTP状态码分类"><a href="#HTTP状态码分类" class="headerlink" title="HTTP状态码分类"></a>HTTP状态码分类</h3><p>HTTP状态码由三个十进制数字组成，第一个十进制数字定义了状态码的类型，后两个数字没有分类的作用。HTTP状态码共分为5种类型：</p>
+<p>HTTP状态码分类:</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/HTTP/HTTP%E7%8A%B6%E6%80%81%E7%A0%81%E5%88%86%E7%B1%BB.png" alt="HTTP状态码分类"></p>
+<p>HTTP状态码列表:</p>
+<p><a href="http://www.runoob.com/http/http-status-codes.html" target="_blank" rel="noopener">HTTP状态码列表</a></p>
+<h2 id="HTTP-content-type"><a href="#HTTP-content-type" class="headerlink" title="HTTP content-type"></a>HTTP content-type</h2><p>Content-Type，内容类型，一般是指网页中存在的Content-Type，用于定义网络文件的类型和网页的编码，决定浏览器将以什么形式、什么编码读取这个文件，这就是经常看到一些Asp网页点击的结果却是下载到的一个文件或一张图片的原因。</p>
+<p>HTTP content-type 对照表</p>
+<p><a href="http://www.runoob.com/http/http-content-type.html" target="_blank" rel="noopener">HTTP content-type 对照表</a></p>
+
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/HTTP/">HTTP</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/10/01/nterview/">面试考点</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-10-01</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/找工作/">找工作</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/10/01/nterview/"
+                   data-title="面试考点">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h2 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h2><p>我叫宋兴国，来自重庆理工大学软件工程系，家是重庆永川的。在2016年7月到2018年2月期间加入了专业实验室、曾做过一个以AngualrJS为前端框架的新能源物流车综合运营平台项目，离开实验室之后自己搭建了一个个人博客、独立设计和开发了一款微信小程序、以及了解了一下前端的框架 React、Angualr，打包工具 Webpack、ES6、Node（koa）。总的来说，具有一定的项目经验，属性项目开发的整个流程、具有一定的自学能力，以及对前端新技术有一定的敏感度。喜欢电影，打羽毛球。</p>
+<p>优点：够努力。<br>缺点：犹豫、不够坚定。</p>
+          <div id="read-more">
+            <a href="/2018/10/01/nterview/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/09/24/ta-structure/">数据结构</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-09-24</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/数据结构/">数据结构</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/09/24/ta-structure/"
+                   data-title="数据结构">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <p><a href="https://blog.csdn.net/qq_31196849/article/details/78529724" target="_blank" rel="noopener">数据结构基础概念篇</a></p>
+
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/09/24/List/">线性表</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-09-24</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/数据结构/">数据结构</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/09/24/List/"
+                   data-title="线性表">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2>
+          <div id="read-more">
+            <a href="/2018/09/24/List/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/09/24/tree/">树</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-09-24</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/数据结构/">数据结构</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/09/24/tree/"
+                   data-title="树">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li>树高：树根的高度就是树的高度。</li>
+<li>树深：最深的叶结点的深度就是树的深度。</li>
+<li>树深与树高的区别：树的深度是从根节点开始（其深度为1）自顶向下逐层累加的，而高度是从叶节点开始（其高度为1）自底向上逐层累加的。</li>
+</ul>
+<blockquote>
+<p>对整棵树而言，树的高度和深度是相等的；对于树中相同深度的每个结    点来说，它们的高度不一定相同，这取决于每个结点下面的叶结点的深度。  </p>
+</blockquote>
+<ul>
+<li>树的度：树中各结点度的最大值称为该树的度，称度为m的树为m叉    树。</li>
+<li><p>度：结点分支的数目。</p></li></ul>
+          <div id="read-more">
+            <a href="/2018/09/24/tree/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/09/24/CSS3/">CSS3教程</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-09-24</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/读书笔记/">读书笔记</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/09/24/CSS3/"
+                   data-title="CSS3教程">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h1 id="CSS3-教程"><a href="#CSS3-教程" class="headerlink" title="CSS3 教程"></a>CSS3 教程</h1><p>CSS 用于控制网页的样式和布局。<br>CSS3 是最新的 CSS 标准。</p>
+<h2 id="CSS3-简介"><a href="#CSS3-简介" class="headerlink" title="CSS3 简介"></a>CSS3 简介</h2><p>对CSS3已完全向后兼容，所以你就不必改变现有的设计。浏览器将永远支持CSS2。</p>
+          <div id="read-more">
+            <a href="/2018/09/24/CSS3/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/CSS3/">CSS3</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/09/23/HTML5/">HTML5  教程</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-09-23</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/读书笔记/">读书笔记</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/09/23/HTML5/"
+                   data-title="HTML5  教程">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h2 id="HTML5-简介"><a href="#HTML5-简介" class="headerlink" title="HTML5 简介"></a>HTML5 简介</h2><p>HTML5是HTML最新的修订版本，2014年10月由万维网联盟（W3C）完成标准制定。</p>
+<p>HTML5的设计目的是为了在移动设备上支持多媒体。</p>
+<p>HTML5 简单易学。</p>
+          <div id="read-more">
+            <a href="/2018/09/23/HTML5/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/HTML5/">HTML5</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/09/23/XHTML/">XHTML 教程</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-09-23</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/读书笔记/">读书笔记</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/09/23/XHTML/"
+                   data-title="XHTML 教程">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h1 id="XHTML"><a href="#XHTML" class="headerlink" title="XHTML"></a>XHTML</h1><p>XHTML 是以 XML 格式编写的 HTML。</p>
+<h2 id="什么是-XHTML"><a href="#什么是-XHTML" class="headerlink" title="什么是 XHTML?"></a>什么是 XHTML?</h2><ul>
+<li>XHTML 指的是可扩展超文本标记语言</li>
+<li>XHTML 与 HTML 4.01 几乎是相同的</li>
+<li>XHTML 是更严格更纯净的 HTML 版本</li>
+<li>XHTML 是以 XML 应用的方式定义的 HTML</li>
+<li>XHTML 是 2001 年 1 月发布的 W3C 推荐标准</li>
+<li>XHTML 得到所有主流浏览器的支持</li>
+</ul>
+          <div id="read-more">
+            <a href="/2018/09/23/XHTML/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/XHTML/">XHTML</a>
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/09/22/识就是力量/">知识就是力量</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-09-22</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/知识就是力量/">知识就是力量</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/09/22/识就是力量/"
+                   data-title="知识就是力量">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+    </div>
+    </article>
+  
+    <article class="post" id="post-excerpt">
+      <header>
+        <div class="post-title">
+          <h1><a class="post-title-link" href="/2018/09/16/css/">CSS 教程</a></h1>
+        </div>
+        <div class="post-meta">
+          <span class="post-time"><i class="iconfont icon-calendar"></i>2018-09-16</span>
+          
+              
+                <i class="iconfont icon-divide"></i>
+                <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+                <a class="post-category" href="/categories/读书笔记/">读书笔记</a>
+              
+          
+          <!---------------------------------------->
+            
+              <i class="iconfont icon-divide"></i>
+              <div class="post-visits"
+                   data-url="/2018/09/16/css/"
+                   data-title="CSS 教程">
+                  阅读次数
+                </div>
+            
+        <!----------------------------------------->
+        </div>
+      </header>
+      <div class="post-content">
+        <!-------------->
+        
+          <h1 id="CSS-教程"><a href="#CSS-教程" class="headerlink" title="CSS 教程"></a>CSS 教程</h1><p>通过使用 CSS 我们可以大大提升网页开发的工作效率！</p>
+<p>在我们的 CSS 教程中，您会学到如何使用 CSS 同时控制多重网页的样式和布局。</p>
+          <div id="read-more">
+            <a href="/2018/09/16/css/">阅读更多</a>
+          </div>
+        
+        <!-------------->
+      </div>
+      <div class="post-tags">
+      
+        <a class="tag-link" href="/tags/CSS/">CSS</a>
+      
+    </div>
+    </article>
+  
+</section>
+
+          
+     <nav class="pagination">
+    
+    
+      <a href="/page/2/">
+        <span class="next">下一页<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+            <a href="https://github.com/songxingguo"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>专注，极致，快</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 - <a href="https://github.com/wa-ri/hexo-theme-ztopic">ztopic</a>
+          <span>|</span>
+          Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2018
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>songxingguo</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/works" class="mobile-nav-link"><i class="iconfont icon-works"></i>作品</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i>写文章，做分享</div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.2.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+        appId: "5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz",
+        appKey: "2oU4tvtGWAXp5i6kWAnhd2rm"
+      });
+  </script>
+  <script>
+  (function (window) {
+      $(document).ready(function () {
+        visits();
+      });
+    function visits() {
+      var $visits = $('.post-visits');
+
+      function updateVisits(dom, time) {
+        var text = dom.text() + ' ' + time;
+        dom.text(text);
+      }
+
+      function addCounter(Counter) {
+        var query = new AV.Query(Counter);
+
+        var url = $visits.data('url').trim();
+        var title = $visits.data('title').trim();
+
+        query.equalTo('url', url);
+        query.find().then(function (results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.save(null, {
+              fetchWhenSave: true
+            }).then(function (counter) {
+              counter.increment('time', 1);
+              return counter.save();
+            }).then(function (counter) {
+              updateVisits($visits, counter.get('time'));
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set('title', title);
+            newcounter.set('url', url);
+            newcounter.set('time', 1);
+
+            newcounter.save().then(function (counter) {
+              updateVisits($visits, newcounter.get('time'));
+            });
+          }
+        }, function (error) {
+          console.log('Error:' + error.code + " " + error.message);
+        });
+      }
+
+      function showTime(Counter) {
+        $visits.each(function () {
+          var $this = $(this);
+          var query = new AV.Query(Counter);
+          var url = $this.data('url').trim();
+
+          query.equalTo('url', url);
+          query.find().then(function (results) {
+            if (results.length === 0) {
+              updateVisits($this, 0);
+            } else {
+              var counter = results[0];
+              updateVisits($this, counter.get('time'));
+            }
+          }, function (error) {
+            console.log('Error:' + error.code + " " + error.message);
+          });
+        })
+      }
+
+      if (typeof AV === 'object') {
+        var Counter = AV.Object.extend('Counter');
+        if ($visits.length === 1) {
+          addCounter(Counter);
+        } else {
+          showTime(Counter);
+        }
+      }
+    }
+  })(window);
+  </script>
+
+
+  <script src="/js/ztopic.js"></script>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','ENrrQtqCVAeKcMd7Pd7a','2.0.0');
+</script>
+<script data-st-module="em_T2wA9sBAcp92ch7MVF6C" src="//s.swiftypecdn.com/modules/v1/embed.js" async defer></script>
+</script>
+</body>
+</html>
