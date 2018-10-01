@@ -60,3 +60,28 @@ this 对象是在运行时 **基于函数的执行环境绑定的** ；在 **全
 
 
 ## 组成原理
+
+### 清除浮动
+### 事件冒泡 blur 、mouseleave、click
+### display:none 和 visibity:hidden
+### 链式作用域和闭包
+### reflow 和 repeat
+### sessionStorage 、lackstorage canvas iframe iamge 是否支持跨域
+### 原型链
+### 验证码实现
+### xss攻击、SQL注入、
+### 哈夫曼编码
+### 元素默属性
+### 遍历（中序、前序、后序）
+### 绝对路径（_dirname）
+### function（作用域）
+### promise（resolve）
+### 网络五层、OSI、TCP/IP
+### 媒体查询（media）
+### 排序（冒泡、插入、选择、快速、希尔、堆排序）
+### reduce 
+### 事件流
+### setTimeout 和 Intervel 是否中断
+### B树、B+树
+### CSS属性 Flex
+### 圣杯布局

@@ -42,3 +42,4 @@ date: 2018-10-01 13:54:00
 ### jQuery extend fn
 ### SEO 搜索引擎优化、爬虫
 ### 排序算法、树、队列、栈
+### JavaScript API
