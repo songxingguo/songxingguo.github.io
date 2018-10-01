@@ -13,7 +13,7 @@ HTTP协议（HyperText Transfer Protocol，超文本传输协议）是因特网�
 
 HTTP是一个基于TCP/IP通信协议来传递数据（HTML 文件, 图片文件, 查询结果等）。
 
-<!-- mmore -->
+<!-- more -->
 
 ## HTTP 简介
 
