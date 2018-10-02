@@ -312,12 +312,36 @@ Loaders是webpack提供的最激动人心的功能之一了。通过使用不同
 [HTML5教程](https://www.songxingguo.com/2018/09/23/HTML5/)
 
 ## 前端框架
+
 ### AngularJs
 
 [不要被惯性思维骗了，AngularJS真的那么完美？](https://blog.csdn.net/guoshengkai373/article/details/78874935/)
 
+[论AngularJS的优缺点](https://blog.csdn.net/qq_23334071/article/details/80504366)
+
+[浅谈angular优缺点](https://blog.csdn.net/pansayho/article/details/59696964)
+
 ### 框架原理 React Angular AngularJS（双向绑定）
 
+[JavaScript 开发框架横向比对（Vue、React 和 Angular）](https://blog.csdn.net/deniro_li/article/details/80507863)
+
+[Angular vs React 最全面深入对比](https://www.cnblogs.com/powertoolsteam/p/angular_react.html)
+
+[深入比较选择 Angular 还是 React](https://www.cnblogs.com/dadifeihong/p/6958337.html)
+
+[目前流行的前端框架Vue、AngularJS、React的优点和缺点](https://blog.csdn.net/roc1010/article/details/79640328)
+
+[vue, react, angular优缺点](https://blog.csdn.net/cherry_zhang18/article/details/78749329)
+
+[vue 与 react，angular 优缺点对比](https://www.jianshu.com/p/fec5e93158fd)
+
+[Angular、React、Vue.js 等 6 大主流前端框架都有什么优缺点？](https://blog.csdn.net/Jack_zengzhen/article/details/78952765)
+
+[8 大前端安全问题（上）](http://web.jobbole.com/92875/)
+
+[前端三大框架的优缺点](https://www.jianshu.com/p/a85e2634af16)
+
+[常见的框架 优缺点简介](https://blog.csdn.net/qq_33620483/article/details/78062518)
 
 ### MCV和MVM 
 ### jQuery extend fn
