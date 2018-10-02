@@ -142,3 +142,15 @@ Content-Type，内容类型，一般是指网页中存在的Content-Type，用�
 HTTP content-type 对照表
 
 [HTTP content-type 对照表](http://www.runoob.com/http/http-content-type.html)
+
+## 优秀教程
+
+[关于HTTP协议，一篇就够了](https://www.cnblogs.com/ranyonsue/p/5984001.html)
+
+[图解传说中的HTTP协议](https://blog.csdn.net/agzhchren/article/details/79173491)
+
+[http协议学习系列](http://www.blogjava.net/zjusuyong/articles/304788.html)
+
+[网络协议 -- HTTP协议](https://blog.csdn.net/china_jeffery/article/details/79495744)
+
+[彻底搞懂HTTP协议](https://blog.csdn.net/shiyongyue/article/details/77368539)
