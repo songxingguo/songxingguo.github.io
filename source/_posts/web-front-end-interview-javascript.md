@@ -69,6 +69,128 @@ str为要去除空格的字符串，实例如下：
  来自—— [2018年web前端经典面试题及答案]
  
  [2018年web前端经典面试题及答案]:https://www.cnblogs.com/wdlhao/p/8290436.html
+ 
+
+### this 指向
+
+1. this永远指向最后调用它的上级对象。
+
+2. New 关键字可以改变 this 指向。
+
+3. 自行改变 this 指向 call()、apply()、bind()。
+
+4. 返回值是对象，this 指向对象，否则指向函数实例（null 也为对象）。
+
+5. ES6 中箭头函数中 this 指向定义时所在对象。
+
+> 严格模式中默认的 this 不再是 window，而是 undefined。
+
+来自——[彻底理解js中this的指向，不必硬背。] 、 [浅析js之this --- 一次性搞懂this指向]
+
+[彻底理解js中this的指向，不必硬背。]:https://www.cnblogs.com/pssp/p/5216085.html
+[浅析js之this --- 一次性搞懂this指向]:https://www.cnblogs.com/cara-front-end/p/6762086.html
+
+### 写出3个使用this的典型应用
+
+- 在html元素事件属性中使用
+
+  ```html
+  <input type=”button” onclick=”showInfo(this);” value=”点击一下”/>
+  ```
+
+- 构造函数
+
+  ```js
+  function Animal(name, color) {
+    this.name = name;
+    this.color = color;
+  }
+  ```
+
+- 访问当前事件
+
+  ```html
+  <input type=”button” id=”text” value=”点击一下”/>
+
+  ```
+
+  ```js
+  Var btn = document.getElementById(“text”);
+
+  Btn.onclick = function() {
+
+    Alert(this.value); //此处的this是按钮元素
+
+  }
+  ```
+
+- CSS expression表达式中使用this关键字
+
+  ```
+  <table width="100" height="100">
+  <tr>
+  <td>
+  <div style="width: expression(this.parentElement.width); 
+  height: expression(this.parentElement.height);">
+  division element</div>
+  </td>
+  </tr>
+  </table>
+  ```
+  这里的this指代div元素对象实例本身。
+  
+  
+- apply()/call()求数组最值
+
+  ```js
+  var  numbers = [5, 458 , 120 , -215 ]; 
+  var  maxInNumbers = Math.max.apply(this, numbers);  
+  console.log(maxInNumbers);  // 458
+  var maxInNumbers = Math.max.call(this,5, 458 , 120 , -215); 
+  console.log(maxInNumbers);  // 458
+  ```
+
+来自——[四个使用this的典型应用]、[JavaScript中this的9种应用场景及三种复合应用场景]、[3个使用this的典型应用]
+
+[四个使用this的典型应用]:http://www.cnblogs.com/kuangliu/p/3462727.html
+
+[JavaScript中this的9种应用场景及三种复合应用场景]:https://www.jb51.net/article/72146.htm
+
+[3个使用this的典型应用]:https://blog.csdn.net/cai181191/article/details/82718379
+
+
+### 作用域和作用域链
+
+#### 作用域
+
+变量作用域： 全局作用域和局部作用域（在函数内部有用）。
+
+全局作用域： function 声明的函数为全局的、不使用 var 声明的变量。
+
+局部作用域：使用 var 声明的变量。
+
+> JavaScript 没有块级作用域，JavaScript 作用域为函数作用域。
+
+#### 作用域链
+
+内部函数可以访问外部函数变量的机制，用链式查找决定哪些数据能被内部函数访问。
+
+> 执行环境：js 的执行顺序是根据函数的调用来决定，函数被调用，函数环境变量对象就被压入到一个环境栈中，而函数执行之后，函数环境变量对象弹出，把控制权交给之前的执行环境变量对象。（保存在[Scope] 中）。
+
+#### 如何理解闭包？
+
+闭包： 内部函数的作用域链仍然保存这对父函数活动对象的引用。
+
+闭包的作用：
+
+- 可以读取自身函数外部的变量（沿着作用域链寻找）。 
+- 让这些外部变量始终保存在内存中 。
+
+> js函数内的变量值不是在编译的时候就确定的，而是等在运行时期再去寻找的。
+
+来自——[JavaScript关于作用域、作用域链和闭包的理解]
+
+[JavaScript关于作用域、作用域链和闭包的理解]:https://blog.csdn.net/whd526/article/details/70990994
 
 ### 你如何获取浏览器URL中查询字符串中的参数？
 
@@ -76,11 +198,7 @@ str为要去除空格的字符串，实例如下：
 
 ### 怎样添加、移除、移动、复制、创建和查找节点？
 
-### 写出3个使用this的典型应用
-
 ### 比较typeof与instanceof？
-
-### 如何理解闭包？
 
 ### 什么是跨域？跨域请求资源的方法有哪些？
 
