@@ -57,3 +57,10 @@ $ git branch -a
 ```
 git checkout source-code
 ```
+
+配置用户名和邮箱
+
+```
+git config --global user.name "songxingguo"
+git config --global user.email "1328989942@qqc.com"
+```
