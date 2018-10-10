@@ -278,3 +278,49 @@ date: 2018-08-07 03:32:00
 36. ### 小年糕
 
   [招聘流程](http://www.xiaoniangao.cn/recruit)
+  
+37. ### 360
+
+  [招聘流程](http://campus.chinahr.com/2019/qihu360/process_cur.html)
+ 
+38. ### 珍爱网
+  
+   [校园招聘](http://zhenai.zhiye.com/Portal/Apply/Index)
+
+  [招聘流程](http://zhenai.zhiye.com/newsdetail/190000250)
+  
+38. ### 柠檬微趣
+  
+   [校园招聘](https://www.lagou.com/gongsi/138303.html)
+
+40. ### 去哪儿
+  
+   [校园招聘](http://qunar.zhiye.com/Portal/Apply/Index)
+   
+   [招聘流程](http://qunar.zhiye.com/xzxc)
+   
+41. ### 携程
+  
+   [校园招聘](http://ctrip.zhiye.com/Portal/Apply/Index)
+   
+   [招聘流程](http://recruitment.ctrip.com/rec-process)
+   
+42. ### 猫眼电影
+  
+   [校园招聘](https://app.mokahr.com/campus_apply/maoyan#/candidateHome/applications?_k=hxj01g)
+   
+   [招聘流程](https://app.mokahr.com/campus_apply/maoyan#/?anchorName=000&sourceToken=&_k=mazhpi)
+   
+43. ### 滴滴
+  
+   [校园招聘](http://campus.didichuxing.com/oversea/positions/1)
+   
+   [招聘流程](http://campus.didichuxing.com/campus/schedule)
+   
+44. ### 绿盟
+   
+   [招聘流程](http://www.nsfocus.com.cn/campus/3_1.html)
+   
+45. ### 恒生
+  
+   [校园招聘](http://campus.hundsun.com/Portal/Apply/Index)
