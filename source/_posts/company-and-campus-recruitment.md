@@ -324,3 +324,13 @@ date: 2018-08-07 03:32:00
 45. ### 恒生
   
    [校园招聘](http://campus.hundsun.com/Portal/Apply/Index)
+   
+46. ### 小猪短租
+  
+   [校园招聘](http://xiaozhu.zhiye.com/Portal/Apply/Index)
+   
+   [招聘流程](http://xiaozhu.zhiye.com/newsdetail/270000144)
+   
+47. ### 度小满
+  
+   [招聘流程](http://www.hotjob.cn/wt/duxiaoman/web/index/campus)
