@@ -117,8 +117,8 @@ baidu_analytics: ea29d0cf9dda7fe5403ba0f70fb2c10d
 # Algolia Search API Key
 algolia:
   applicationID: '7TUI72DTAH'
-  apiKey: '4d7baef3ddd38daac07e81d5637e196c'
   indexName: 'blog'
+  chunkSize: 5000
 
 search:
     path: search.xml
