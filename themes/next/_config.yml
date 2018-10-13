@@ -170,11 +170,11 @@ social:
 social_icons:
   enable: true
   icons_only: true
-  transition: false
+  transition: true
   # Dependencies: exturl: true in Tags Settings section below.
   # To encrypt links above use https://www.base64encode.org
   # Example encoded link: `GitHub: aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQ= || github`
-  exturl: false
+  exturl: true
 
 # Follow me on GitHub banner in right-top corner.
 # Usage: `permalink || title`
@@ -688,7 +688,7 @@ calendar:
 # See: https://github.com/theme-next/hexo-theme-next/blob/master/docs/ALGOLIA-SEARCH.md
 # Dependencies: https://github.com/theme-next/theme-next-algolia-instant-search
 algolia_search:
-  enable: true
+  enable: false
   hits:
     per_page: 10
   labels:
@@ -711,7 +711,7 @@ local_search:
 # Bookmark Support
 # Dependencies: https://github.com/theme-next/theme-next-bookmark
 bookmark:
-  enable: true
+  enable: false
   # if auto
   #   - save the reading position when closing the page
   #   - or clicking the bookmark-icon
