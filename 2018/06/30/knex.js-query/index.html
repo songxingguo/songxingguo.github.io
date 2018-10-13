@@ -1,0 +1,2351 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '7TUI72DTAH',
+      apiKey: '',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="knexjs 简介 &amp;emsp;&amp;emsp;Knex.js是为Postgres，MSSQL，MySQL，MariaDB，SQLite3，Oracle和Amazon Redshift设计的“包含电池”SQL查询构建器，其设计灵活，便于携带并且使用起来非常有趣。它具有传统的节点样式回调以及用于清洁异步流控制的承诺接口，流接口，全功能查询和模式构建器，事务支持（带保存点），连接池 以及不同查询客户和方言">
+<meta name="keywords" content="knexjs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="knex.js中文文档-查询">
+<meta property="og:url" content="https://www.songxingguo.com/2018/06/30/knex.js-query/index.html">
+<meta property="og:site_name" content="阿有的博客">
+<meta property="og:description" content="knexjs 简介 &amp;emsp;&amp;emsp;Knex.js是为Postgres，MSSQL，MySQL，MariaDB，SQLite3，Oracle和Amazon Redshift设计的“包含电池”SQL查询构建器，其设计灵活，便于携带并且使用起来非常有趣。它具有传统的节点样式回调以及用于清洁异步流控制的承诺接口，流接口，全功能查询和模式构建器，事务支持（带保存点），连接池 以及不同查询客户和方言">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-13T15:20:59.456Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="knex.js中文文档-查询">
+<meta name="twitter:description" content="knexjs 简介 &amp;emsp;&amp;emsp;Knex.js是为Postgres，MSSQL，MySQL，MariaDB，SQLite3，Oracle和Amazon Redshift设计的“包含电池”SQL查询构建器，其设计灵活，便于携带并且使用起来非常有趣。它具有传统的节点样式回调以及用于清洁异步流控制的承诺接口，流接口，全功能查询和模式构建器，事务支持（带保存点），连接池 以及不同查询客户和方言">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/06/30/knex.js-query/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>knex.js中文文档-查询 | 阿有的博客</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">109</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">14</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">33</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/06/30/knex.js-query/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">knex.js中文文档-查询
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-30 08:07:00" itemprop="dateCreated datePublished" datetime="2018-06-30T08:07:00+00:00">2018-06-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-13 15:20:59" itemprop="dateModified" datetime="2018-10-13T15:20:59+00:00">2018-10-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/30/knex.js-query/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/06/30/knex.js-query/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/06/30/knex.js-query/" class="leancloud_visitors" data-flag-title="knex.js中文文档-查询">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="knexjs-简介"><a href="#knexjs-简介" class="headerlink" title="knexjs 简介"></a>knexjs 简介</h3><p> &emsp;&emsp;Knex.js是为Postgres，MSSQL，MySQL，MariaDB，SQLite3，Oracle和Amazon Redshift设计的“包含电池”SQL查询构建器，其设计灵活，便于携带并且使用起来非常有趣。它具有传统的节点样式回调以及用于清洁异步流控制的承诺接口，流接口，全功能查询和模式构建器，事务支持（带保存点），连接池 以及不同查询客户和方言之间的标准化响应。<a href="https://knexjs.org/#Installation-node" target="_blank" rel="noopener">传送门</a></p>
+<ul>
+<li><h4 id="支持"><a href="#支持" class="headerlink" title="支持"></a>支持</h4><p>&emsp;&emsp;Knex的主要目标环境是Node.js，您需要安装该knex库，然后安装适当的数据库库：pg适用于PostgreSQL和Amazon Redshift，mysql适用于MySQL或MariaDB，sqlite3适用于SQLite3或mssql适用于MSSQL。</p>
+</li>
+</ul>
+<hr>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ npm install knex --save</span><br><span class="line"></span><br><span class="line"># Then add one of the following (adding a --save) flag:</span><br><span class="line">$ npm install pg</span><br><span class="line">$ npm install sqlite3</span><br><span class="line">$ npm install mysql</span><br><span class="line">$ npm install mysql2</span><br><span class="line">$ npm install mariasql</span><br><span class="line">$ npm install strong-oracle</span><br><span class="line">$ npm install oracle</span><br><span class="line">$ npm install mssql</span><br></pre></td></tr></table></figure>
+  <a id="more"></a>
+<ul>
+<li><h4 id="初始数据库"><a href="#初始数据库" class="headerlink" title="初始数据库"></a>初始数据库</h4><p>&emsp;&emsp;该knex模块本身是一个为Knex提供配置对象的函数，它接受一些参数。该client参数是必需的，并确定哪个客户端适配器将与该库一起使用。</p>
+<p>mysql数据库初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var knex = require(&apos;knex&apos;)(&#123;</span><br><span class="line">  client: &apos;mysql&apos;,</span><br><span class="line">  connection: &#123;</span><br><span class="line">    host : &apos;127.0.0.1&apos;,</span><br><span class="line">    user : &apos;your_database_user&apos;,</span><br><span class="line">    password : &apos;your_database_password&apos;,</span><br><span class="line">    database : &apos;myapp_test&apos;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="knex-查询构造器"><a href="#knex-查询构造器" class="headerlink" title="knex 查询构造器"></a>knex 查询构造器</h3><p>knex 查询构造器是用于构建和执行标准的SQL查询,例如：select, insert, update, delete.</p>
+<p>在API的许多地方，表名或列名等标识符都可以传递给方法。</p>
+<p>最常见的只需要简单tableName.columnName，tableName或者columnName，但在许多情况下，还需要传递一个别名，以便稍后在查询中引用该标识符。</p>
+<ul>
+<li><h4 id="Identifier-Syntax"><a href="#Identifier-Syntax" class="headerlink" title="Identifier Syntax"></a>Identifier Syntax</h4><p>有两种方法可以为标识符声明别名。可以直接 <code>as aliasName</code> 为标识符提供前缀，也可以传递对象 <code>{ aliasName: &#39;identifierName&#39; }</code> 。</p>
+<p>如果对象具有多个别名 <code>{ alias1: &#39;identifier1&#39;, alias2: &#39;identifier2&#39; }</code> ，则所有别名标识符将扩展为逗号分隔列表。</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   knex(&#123; a: &apos;table&apos;, b: &apos;table&apos; &#125;)</span><br><span class="line">.select(&#123;</span><br><span class="line">  aTitle: &apos;a.title&apos;,</span><br><span class="line">  bTitle: &apos;b.title&apos;</span><br><span class="line">&#125;)</span><br><span class="line">.whereRaw(&apos;?? = ??&apos;, [&apos;a.column_1&apos;, &apos;b.column_2&apos;])</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `table` as `b` where `a`.`column_1` = `b`.`column_2`</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="knex"><a href="#knex" class="headerlink" title="knex"></a>knex</h4><p> -knex(tableName, options={only: boolean}) / knex.[methodName]</p>
+<p>查询构建器通过指定要查询的表名或通过直接在knex对象上调用任何方法来启动。这将启动类似jQuery的链，您可以根据需要调用其他查询构建器方法来构造查询，最终调用任何接口方法，将其转换为toString或返回一个promise对象，回调或链式执行查询。</p>
+</li>
+<li><h4 id="timeout"><a href="#timeout" class="headerlink" title="timeout"></a>timeout</h4><p>-.timeout(ms, options={cancel: boolean})</p>
+<p>设置查询的超时时间，并且如果超时超时，将会引发TimeoutError。该错误包含有关查询，绑定和设置的超时的信息。对于想要确保执行的复杂查询不会花太长时间。传递选项的可选第二个参数：cancel：if ，如果达到超时则取消查询。*注意：目前只支持MySQL和MariaDB。 </p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select().from(&apos;books&apos;).timeout(1000)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `books`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select().from(&apos;books&apos;).timeout(1000, &#123;cancel: true&#125;) // MySQL and MariaDB only</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `books`</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="select"><a href="#select" class="headerlink" title="select"></a>select</h4><p>-.select([*columns])</p>
+<p>创建一个select查询，为查询提供可选的列数组，如果在构建查询时没有指定，则最终默认为*。select调用的响应将使用从数据库中选择的对象数组来解析。</p>
+<p> 例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;title&apos;, &apos;author&apos;, &apos;year&apos;).from(&apos;books&apos;)</span><br></pre></td></tr></table></figure>
+<p> 输出：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select `title`, `author`, `year` from `books`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select().table(&apos;books&apos;)</span><br></pre></td></tr></table></figure>
+<p> 输出：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `books`</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><h4 id="as"><a href="#as" class="headerlink" title="as"></a>as</h4><p>-.as(name)</p>
+<p>允许对子查询进行别名，并取出希望命名当前查询的字符串。如果查询不是子查询，它将被忽略。</p>
+<p>   例:</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.avg(&apos;sum_column1&apos;).from(function() &#123;</span><br><span class="line">  this.sum(&apos;column1 as sum_column1&apos;).from(&apos;t1&apos;).groupBy(&apos;column1&apos;).as(&apos;t1&apos;)</span><br><span class="line">&#125;).as(&apos;ignored_alias&apos;)</span><br></pre></td></tr></table></figure>
+<p>   输出：</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select avg(`sum_column1`) from (select sum(`column1`) as `sum_column1` from `t1` group by `column1`) as `t1`</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="column"><a href="#column" class="headerlink" title="column"></a>column</h4><p>— .column(columns)</p>
+<p>专门设置要在选择查询中选择的列，并获取数组，列表或列名称。传递对象将使用给定的键自动对列进行别名。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.column(&apos;title&apos;, &apos;author&apos;, &apos;year&apos;).select().from(&apos;books&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select `title`, `author`, `year` from `books`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.column([&apos;title&apos;, &apos;author&apos;, &apos;year&apos;]).select().from(&apos;books&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select `title`, `author`, `year` from `books`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.column(&apos;title&apos;, &#123;by: &apos;author&apos;&#125;, &apos;year&apos;).select().from(&apos;books&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select `title`, `author` as `by`, `year` from `books`</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="from"><a href="#from" class="headerlink" title="from"></a>from</h4><p>— .from([tableName], options={only: boolean})</p>
+<p>指定当前查询中使用的表格，如果已经指定了当前表格名称，则替换当前表格名称。这通常用于高级where或union方法中执行的子查询。传递选项的可选第二个参数：only：if ，在放弃继承表数据之前使用ONLY关键字。*注意：目前只支持PostgreSQL。 truetableName</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users`</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="with"><a href="#with" class="headerlink" title="with"></a>with</h4><p>— .with(alias, function|raw)</p>
+<p>为查询添加“with”子句。“With”子句由PostgreSQL，Oracle，SQLite3和MSSQL支持。</p>
+<p>  例:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.with(&apos;with_alias&apos;, knex.raw(&apos;select * from &quot;books&quot; where &quot;author&quot; = ?&apos;, &apos;Test&apos;)).select(&apos;*&apos;).from(&apos;with_alias&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">with `with_alias` as (select * from &quot;books&quot; where &quot;author&quot; = &apos;Test&apos;) select * from `with_alias`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.with(&apos;with_alias&apos;, (qb) =&gt; &#123;</span><br><span class="line">  qb.select(&apos;*&apos;).from(&apos;books&apos;).where(&apos;author&apos;, &apos;Test&apos;)</span><br><span class="line">&#125;).select(&apos;*&apos;).from(&apos;with_alias&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">with `with_alias` as (select * from `books` where `author` = &apos;Test&apos;) select * from `with_alias`</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="withSchema"><a href="#withSchema" class="headerlink" title="withSchema"></a>withSchema</h4><p> — .withSchema([schemaName])</p>
+<p>指定要用作表名前缀的模式。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.withSchema(&apos;public&apos;).select(&apos;*&apos;).from(&apos;users&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `public`.`users`</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h4 id="Where-语句"><a href="#Where-语句" class="headerlink" title="Where 语句"></a>Where 语句</h4><p>  有几种方法可以帮助动态地从句。在很多地方，函数可以用来代替值，构造子查询。在大多数地方，现有的knex查询可能用于组成子查询等。请查看每种使用说明方法的几个示例：</p>
+<p>  重要提示：undefined为任何where函数提供值的knex将导致knex在SQL编译期间抛出错误。这是为了你和我们的缘故。Knex不知道如何处理where子句中的未定义值，并且通常在提供一个开头时会出现编程错误。该错误将引发包含查询类型和已编译的查询字符串的消息。</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;accounts&apos;)</span><br><span class="line">.where(&apos;login&apos;, undefined)</span><br><span class="line">.select()</span><br><span class="line">.toSQL()</span><br></pre></td></tr></table></figure>
+<p>错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Undefined binding(s) detected when compiling SELECT query: select * from `accounts` where `login` = ?</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h5 id="where"><a href="#where" class="headerlink" title="where"></a>where</h5><p>— .where(~mixed~)</p>
+<ul>
+<li><p>对象语法</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).where(&#123;</span><br><span class="line">  first_name: &apos;Test&apos;,</span><br><span class="line">  last_name:  &apos;User&apos;</span><br><span class="line">&#125;).select(&apos;id&apos;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select `id` from `users` where `first_name` = &apos;Test&apos; and `last_name` = &apos;User&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>键值对</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).where(&apos;id&apos;, 1)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where `id` = 1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>函数</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;)</span><br><span class="line">.where((builder) =&gt;</span><br><span class="line">  builder.whereIn(&apos;id&apos;, [1, 11, 15]).whereNotIn(&apos;id&apos;, [17, 19])</span><br><span class="line">)</span><br><span class="line">.andWhere(function() &#123;</span><br><span class="line">  this.where(&apos;id&apos;, &apos;&gt;&apos;, 10)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where (`id` in (1, 11, 15) and `id` not in (17, 19)) and (`id` &gt; 10)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>链式调用</p>
+<p>例:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).where(function() &#123;</span><br><span class="line">  this.where(&apos;id&apos;, 1).orWhere(&apos;id&apos;, &apos;&gt;&apos;, 10)</span><br><span class="line">&#125;).orWhere(&#123;name: &apos;Tester&apos;&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where (`id` = 1 or `id` &gt; 10) or (`name` = &apos;Tester&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分隔符</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).where(&apos;columnName&apos;, &apos;like&apos;, &apos;%rowlikeme%&apos;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where `columnName` like &apos;%rowlikeme%&apos;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>以上查询演示了返回指定列中出现特定模式的所有用户的常见用例。</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).where(&apos;votes&apos;, &apos;&gt;&apos;, 100)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where `votes` &gt; 100</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var subquery = knex(&apos;users&apos;).where(&apos;votes&apos;, &apos;&gt;&apos;, 100).andWhere(&apos;status&apos;, &apos;active&apos;).orWhere(&apos;name&apos;, &apos;John&apos;).select(&apos;id&apos;);</span><br><span class="line"></span><br><span class="line">knex(&apos;accounts&apos;).where(&apos;id&apos;, &apos;in&apos;, subquery)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `accounts` where `id` in (select `id` from `users` where `votes` &gt; 100 and `status` = &apos;active&apos; or `name` = &apos;John&apos;)</span><br></pre></td></tr></table></figure>
+<p>或者与对象一起自动包装声明并创建一个or (and - and - and)子句</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).where(&apos;id&apos;, 1).orWhere(&#123;votes: 100, user: &apos;knex&apos;&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where `id` = 1 or (`votes` = 100 and `user` = &apos;knex&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="whereNot"><a href="#whereNot" class="headerlink" title="whereNot"></a>whereNot</h5><p>— .whereNot(~mixed~)</p>
+<ul>
+<li><p>对象</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).whereNot(&#123;</span><br><span class="line">  first_name: &apos;Test&apos;,</span><br><span class="line">  last_name:  &apos;User&apos;</span><br><span class="line">&#125;).select(&apos;id&apos;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select `id` from `users` where not `first_name` = &apos;Test&apos; and not `last_name` = &apos;User&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>键值对</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).whereNot(&apos;id&apos;, 1)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where not `id` = 1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>链式调用</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).whereNot(function() &#123;</span><br><span class="line">  this.where(&apos;id&apos;, 1).orWhereNot(&apos;id&apos;, &apos;&gt;&apos;, 10)</span><br><span class="line">&#125;).orWhereNot(&#123;name: &apos;Tester&apos;&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where not (`id` = 1 or not `id` &gt; 10) or not `name` = &apos;Tester&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分隔符</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).whereNot(&apos;votes&apos;, &apos;&gt;&apos;, 100)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where not `votes` &gt; 100</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>CAVEAT：WhereNot不适用于“in”和“between”类型的子查询。您应该使用“not in”和“not betwee”之间。</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var subquery = knex(&apos;users&apos;)</span><br><span class="line">  .whereNot(&apos;votes&apos;, &apos;&gt;&apos;, 100)</span><br><span class="line">  .andWhere(&apos;status&apos;, &apos;active&apos;)</span><br><span class="line">  .orWhere(&apos;name&apos;, &apos;John&apos;)</span><br><span class="line">  .select(&apos;id&apos;);</span><br><span class="line"></span><br><span class="line">knex(&apos;accounts&apos;).where(&apos;id&apos;, &apos;not in&apos;, subquery)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `accounts` where `id` not in (select `id` from `users` where not `votes` &gt; 100 and `status` = &apos;active&apos; or `name` = &apos;John&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="whereIn"><a href="#whereIn" class="headerlink" title="whereIn"></a>whereIn</h5><p>— .whereIn(column|columns, array|callback|builder) / .orWhereIn   </p>
+<p>.where（’id’，’in’，obj）的简写，.whereIn和.orWhereIn方法在查询中添加“where in”子句。</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;name&apos;).from(&apos;users&apos;)</span><br><span class="line">.whereIn(&apos;id&apos;, [1, 2, 3])</span><br><span class="line">.orWhereIn(&apos;id&apos;, [4, 5, 6])</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select `name` from `users` where `id` in (1, 2, 3) or `id` in (4, 5, 6)</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;name&apos;).from(&apos;users&apos;)</span><br><span class="line">.whereIn(&apos;account_id&apos;, function() &#123;</span><br><span class="line">  this.select(&apos;id&apos;).from(&apos;accounts&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select `name` from `users` where `account_id` in (select `id` from `accounts`)</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var subquery = knex.select(&apos;id&apos;).from(&apos;accounts&apos;);</span><br><span class="line"></span><br><span class="line">knex.select(&apos;name&apos;).from(&apos;users&apos;)</span><br><span class="line">  .whereIn(&apos;account_id&apos;, subquery)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select `name` from `users` where `account_id` in (select `id` from `accounts`)</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;name&apos;).from(&apos;users&apos;)</span><br><span class="line">.whereIn([&apos;account_id&apos;, &apos;email&apos;], [[3, &apos;test3@example.com&apos;], [4, &apos;test4@example.com&apos;]])</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select `name` from `users` where (`account_id`, `email`) in ((3, &apos;test3@example.com&apos;), (4, &apos;test4@example.com&apos;))</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;name&apos;).from(&apos;users&apos;)</span><br><span class="line">.whereIn([&apos;account_id&apos;, &apos;email&apos;], knex.select(&apos;id&apos;, &apos;email&apos;).from(&apos;accounts&apos;))</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select `name` from `users` where (`account_id`, `email`) in (select `id`, `email` from `accounts`)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="whereNotIn"><a href="#whereNotIn" class="headerlink" title="whereNotIn"></a>whereNotIn</h5><p> — .whereNotIn(column, array|callback|builder) / .orWhereNotIn</p>
+<p> 例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).whereNotIn(&apos;id&apos;, [1, 2, 3])</span><br></pre></td></tr></table></figure>
+<p> 输出：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where `id` not in (1, 2, 3)</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).where(&apos;name&apos;, &apos;like&apos;, &apos;%Test%&apos;).orWhereNotIn(&apos;id&apos;, [1, 2, 3])</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where `name` like &apos;%Test%&apos; or `id` not in (1, 2, 3)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="whereNull"><a href="#whereNull" class="headerlink" title="whereNull"></a>whereNull</h5><p>-.whereNull(column) / .orWhereNull</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).whereNull(&apos;updated_at&apos;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where `updated_at` is null</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="whereNotNull"><a href="#whereNotNull" class="headerlink" title="whereNotNull"></a>whereNotNull</h5><p> -.whereNotNull(column) / .orWhereNotNull</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).whereNotNull(&apos;created_at&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where `created_at` is not null</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="WhereExists"><a href="#WhereExists" class="headerlink" title="WhereExists"></a>WhereExists</h5><p> -.whereExists(builder | callback) / .orWhereExists</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).whereExists(function() &#123;</span><br><span class="line">  this.select(&apos;*&apos;).from(&apos;accounts&apos;).whereRaw(&apos;users.account_id = accounts.id&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where exists (select * from `accounts` where users.account_id = accounts.id)</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).whereExists(knex.select(&apos;*&apos;).from(&apos;accounts&apos;).whereRaw(&apos;users.account_id = accounts.id&apos;))</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where exists (select * from `accounts` where users.account_id = accounts.id)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="whereNotExists"><a href="#whereNotExists" class="headerlink" title="whereNotExists"></a>whereNotExists</h5><p> — .whereNotExists(builder | callback) / .orWhereNotExists</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).whereNotExists(function() &#123;</span><br><span class="line">  this.select(&apos;*&apos;).from(&apos;accounts&apos;).whereRaw(&apos;users.account_id = accounts.id&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where not exists (select * from `accounts` where users.account_id = accounts.id)</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).whereNotExists(knex.select(&apos;*&apos;).from(&apos;accounts&apos;).whereRaw(&apos;users.account_id = accounts.id&apos;))</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where not exists (select * from `accounts` where users.account_id = accounts.id)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="whereBetween"><a href="#whereBetween" class="headerlink" title="whereBetween"></a>whereBetween</h5><p>— .whereBetween(column, range) / .orWhereBetween</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).whereBetween(&apos;votes&apos;, [1, 100])</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where `votes` between 1 and 100</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="whereNotBetween"><a href="#whereNotBetween" class="headerlink" title="whereNotBetween"></a>whereNotBetween</h5><p>— .whereNotBetween(column, range) / .orWhereNotBetween</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).whereNotBetween(&apos;votes&apos;, [1, 100])</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where `votes` not between 1 and 100</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="whereRaw"><a href="#whereRaw" class="headerlink" title="whereRaw"></a>whereRaw</h5><p> — .whereRaw(query, [bindings])</p>
+<p>   .where(knex.raw(query))的简写.</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).whereRaw(&apos;id = ?&apos;, [1])</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where id = 1</span><br><span class="line">Join Me</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h4 id="Join-语句"><a href="#Join-语句" class="headerlink" title="Join 语句"></a>Join 语句</h4><p>提供了几种帮助构建连接的方法。</p>
+<ul>
+<li><h5 id="join"><a href="#join" class="headerlink" title="join"></a>join</h5><p>— .join(table, first, [operator], second)</p>
+<p>连接构建器可用于指定表之间的连接，第一个参数是连接表，后三个参数分别是第一个连接列，连接操作符和第二个连接列。</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;)</span><br><span class="line">.join(&apos;contacts&apos;, &apos;users.id&apos;, &apos;=&apos;, &apos;contacts.user_id&apos;)</span><br><span class="line">.select(&apos;users.id&apos;, &apos;contacts.phone&apos;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select `users`.`id`, `contacts`.`phone` from `users` inner join `contacts` on `users`.`id` = `contacts`.`user_id`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;)</span><br><span class="line">.join(&apos;contacts&apos;, &apos;users.id&apos;, &apos;contacts.user_id&apos;)</span><br><span class="line">.select(&apos;users.id&apos;, &apos;contacts.phone&apos;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select `users`.`id`, `contacts`.`phone` from `users` inner join `contacts` on `users`.`id` = `contacts`.`user_id`</span><br></pre></td></tr></table></figure>
+<p>对于分组连接，指定一个函数作为连接查询的第二个参数，并使用on具有orOn或andOn创建联接所用括号分组。</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).join(&apos;accounts&apos;, function() &#123;</span><br><span class="line">  this.on(&apos;accounts.id&apos;, &apos;=&apos;, &apos;users.account_id&apos;).orOn(&apos;accounts.owner_id&apos;, &apos;=&apos;, &apos;users.id&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` inner join `accounts` on `accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`</span><br></pre></td></tr></table></figure>
+<p>对于加入语句嵌套，指定一个函数作为第一个参数on，orOn或andOn</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).join(&apos;accounts&apos;, function() &#123;</span><br><span class="line">  this.on(function() &#123;</span><br><span class="line">    this.on(&apos;accounts.id&apos;, &apos;=&apos;, &apos;users.account_id&apos;)</span><br><span class="line">    this.orOn(&apos;accounts.owner_id&apos;, &apos;=&apos;, &apos;users.id&apos;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` inner join `accounts` on (`accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`)</span><br></pre></td></tr></table></figure>
+<p>也可以使用对象来表示连接语法。</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).join(&apos;accounts&apos;, &#123;&apos;accounts.id&apos;: &apos;users.account_id&apos;&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` inner join `accounts` on `accounts`.`id` = `users`.`account_id`</span><br></pre></td></tr></table></figure>
+<p>如果需要在连接而不是列中使用文字值（字符串，数字或布尔值），请使用knex.raw。</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).join(&apos;accounts&apos;, &apos;accounts.type&apos;, knex.raw(&apos;?&apos;, [&apos;admin&apos;]))</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` inner join `accounts` on `accounts`.`type` = &apos;admin&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="innerJoin"><a href="#innerJoin" class="headerlink" title="innerJoin"></a>innerJoin</h5><p>-.innerJoin(table, ~mixed~)</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.from(&apos;users&apos;).innerJoin(&apos;accounts&apos;, &apos;users.id&apos;, &apos;accounts.user_id&apos;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` inner join `accounts` on `users`.`id` = `accounts`.`user_id`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.table(&apos;users&apos;).innerJoin(&apos;accounts&apos;, &apos;users.id&apos;, &apos;=&apos;, &apos;accounts.user_id&apos;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` inner join `accounts` on `users`.`id` = `accounts`.`user_id`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).innerJoin(&apos;accounts&apos;, function() &#123;</span><br><span class="line">  this.on(&apos;accounts.id&apos;, &apos;=&apos;, &apos;users.account_id&apos;).orOn(&apos;accounts.owner_id&apos;, &apos;=&apos;, &apos;users.id&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` inner join `accounts` on `accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="leftJoin"><a href="#leftJoin" class="headerlink" title="leftJoin"></a>leftJoin</h5><p>-.leftJoin(table, ~mixed~)</p>
+<p>例：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).leftJoin(&apos;accounts&apos;, &apos;users.id&apos;, &apos;accounts.user_id&apos;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` left join `accounts` on `users`.`id` = `accounts`.`user_id`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).leftJoin(&apos;accounts&apos;, function() &#123;</span><br><span class="line">  this.on(&apos;accounts.id&apos;, &apos;=&apos;, &apos;users.account_id&apos;).orOn(&apos;accounts.owner_id&apos;, &apos;=&apos;, &apos;users.id&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` left join `accounts` on `accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="leftOuterJoin"><a href="#leftOuterJoin" class="headerlink" title="leftOuterJoin"></a>leftOuterJoin</h5><p>-.leftOuterJoin(table, ~mixed~)</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).leftOuterJoin(&apos;accounts&apos;, &apos;users.id&apos;, &apos;accounts.user_id&apos;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` left outer join `accounts` on `users`.`id` = `accounts`.`user_id`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).leftOuterJoin(&apos;accounts&apos;, function() &#123;</span><br><span class="line">  this.on(&apos;accounts.id&apos;, &apos;=&apos;, &apos;users.account_id&apos;).orOn(&apos;accounts.owner_id&apos;, &apos;=&apos;, &apos;users.id&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` left outer join `accounts` on `accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="rightJoin"><a href="#rightJoin" class="headerlink" title="rightJoin"></a>rightJoin</h5><p>— .rightJoin(table, ~mixed~)</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).rightJoin(&apos;accounts&apos;, &apos;users.id&apos;, &apos;accounts.user_id&apos;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` right join `accounts` on `users`.`id` = `accounts`.`user_id`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).rightJoin(&apos;accounts&apos;, function() &#123;</span><br><span class="line">  this.on(&apos;accounts.id&apos;, &apos;=&apos;, &apos;users.account_id&apos;).orOn(&apos;accounts.owner_id&apos;, &apos;=&apos;, &apos;users.id&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` right join `accounts` on `accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="rightOuterJoin"><a href="#rightOuterJoin" class="headerlink" title="rightOuterJoin"></a>rightOuterJoin</h5><p>— .rightOuterJoin(table, ~mixed~) </p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).rightOuterJoin(&apos;accounts&apos;, &apos;users.id&apos;, &apos;accounts.user_id&apos;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` right outer join `accounts` on `users`.`id` = `accounts`.`user_id`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).rightOuterJoin(&apos;accounts&apos;, function() &#123;</span><br><span class="line">  this.on(&apos;accounts.id&apos;, &apos;=&apos;, &apos;users.account_id&apos;).orOn(&apos;accounts.owner_id&apos;, &apos;=&apos;, &apos;users.id&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` right outer join `accounts` on `accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="fullOuterJoin"><a href="#fullOuterJoin" class="headerlink" title="fullOuterJoin"></a>fullOuterJoin</h5><p>-.fullOuterJoin(table, ~mixed~)</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).fullOuterJoin(&apos;accounts&apos;, &apos;users.id&apos;, &apos;accounts.user_id&apos;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` full outer join `accounts` on `users`.`id` = `accounts`.`user_id`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).fullOuterJoin(&apos;accounts&apos;, function() &#123;</span><br><span class="line">  this.on(&apos;accounts.id&apos;, &apos;=&apos;, &apos;users.account_id&apos;).orOn(&apos;accounts.owner_id&apos;, &apos;=&apos;, &apos;users.id&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` full outer join `accounts` on `accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="crossJoin"><a href="#crossJoin" class="headerlink" title="crossJoin"></a>crossJoin</h5><p>-.crossJoin(table, ~mixed~)</p>
+<p>交叉连接条件仅在MySQL和SQLite3中受支持。对于连接条件而不是使用innerJoin。</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).crossJoin(&apos;accounts&apos;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` cross join `accounts`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).crossJoin(&apos;accounts&apos;, &apos;users.id&apos;, &apos;accounts.user_id&apos;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` cross join `accounts` on `users`.`id` = `accounts`.`user_id`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).crossJoin(&apos;accounts&apos;, function() &#123;</span><br><span class="line">  this.on(&apos;accounts.id&apos;, &apos;=&apos;, &apos;users.account_id&apos;).orOn(&apos;accounts.owner_id&apos;, &apos;=&apos;, &apos;users.id&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` cross join `accounts` on `accounts`.`id` = `users`.`account_id` or `accounts`.`owner_id` = `users`.`id`</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="joinRaw"><a href="#joinRaw" class="headerlink" title="joinRaw"></a>joinRaw</h5><p>-.joinRaw(sql, [bindings])   </p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;accounts&apos;).joinRaw(&apos;natural full join table1&apos;).where(&apos;id&apos;, 1)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `accounts` natural full join table1 where `id` = 1</span><br></pre></td></tr></table></figure>
+<hr>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;accounts&apos;).join(knex.raw(&apos;natural full join table1&apos;)).where(&apos;id&apos;, 1)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `accounts` inner join natural full join table1 where `id` = 1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h4 id="Having-语句"><a href="#Having-语句" class="headerlink" title="Having 语句"></a>Having 语句</h4><ul>
+<li><h5 id="having"><a href="#having" class="headerlink" title="having"></a>having</h5><p> -.having(column, operator, value)<br> 向查询添加having子句。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;)</span><br><span class="line">.groupBy(&apos;count&apos;)</span><br><span class="line">.orderBy(&apos;name&apos;, &apos;desc&apos;)</span><br><span class="line">.having(&apos;count&apos;, &apos;&gt;&apos;, 100)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` group by `count` having `count` &gt; 100 order by `name` desc</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="havingIn"><a href="#havingIn" class="headerlink" title="havingIn"></a>havingIn</h5><p> -.havingIn(column, values)<br> 向查询添加havingIn子句。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).havingIn(&apos;id&apos;, [5, 3, 10, 17])</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` having `id` in (5, 3, 10, 17)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="havingNotIn"><a href="#havingNotIn" class="headerlink" title="havingNotIn"></a>havingNotIn</h5><p> -.havingNotIn(column, values)<br> 向查询添加havingNotIn子句。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).havingNotIn(&apos;id&apos;, [5, 3, 10, 17])</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` having `id` not in (5, 3, 10, 17)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="havingNull"><a href="#havingNull" class="headerlink" title="havingNull"></a>havingNull</h5><p> -.havingNull(column)<br> 向查询添加havingNull子句。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).havingNull(&apos;email&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` having `email` is null</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="havingNotNull"><a href="#havingNotNull" class="headerlink" title="havingNotNull"></a>havingNotNull</h5><p> -.havingNotNull(column)<br> 向查询添加havingNotNull子句。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).havingNotNull(&apos;email&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` having `email` is not null</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="havingExists"><a href="#havingExists" class="headerlink" title="havingExists"></a>havingExists</h5><p> -.havingExists(builder | callback)<br> 向查询添加一个havingExists子句。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).havingExists(function() &#123;</span><br><span class="line">  this.select(&apos;*&apos;).from(&apos;accounts&apos;).whereRaw(&apos;users.account_id = accounts.id&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` having exists (select * from `accounts` where users.account_id = accounts.id)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="havingNotExists"><a href="#havingNotExists" class="headerlink" title="havingNotExists"></a>havingNotExists</h5><p> -.havingNotExists(builder | callback)<br> 向查询添加havingNotExists子句。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).havingNotExists(function() &#123;</span><br><span class="line">  this.select(&apos;*&apos;).from(&apos;accounts&apos;).whereRaw(&apos;users.account_id = accounts.id&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` having not exists (select * from `accounts` where users.account_id = accounts.id)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="havingBetween"><a href="#havingBetween" class="headerlink" title="havingBetween"></a>havingBetween</h5><p> -.havingBetween(column, range)<br> 向查询添加一个havingBetween子句。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).havingBetween(&apos;id&apos;, [5, 10])</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` having `id` between 5 and 10</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="havingNotBetween"><a href="#havingNotBetween" class="headerlink" title="havingNotBetween"></a>havingNotBetween</h5><p> -.havingNotBetween(column, range)<br> 向查询添加havingNotBetween子句。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).havingNotBetween(&apos;id&apos;, [5, 10])</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` having `id` not between 5 and 10</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="havingRaw"><a href="#havingRaw" class="headerlink" title="havingRaw"></a>havingRaw</h5><p> -.havingRaw(column, operator, value)<br> 向查询添加havingRaw子句。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;)</span><br><span class="line">.groupBy(&apos;count&apos;)</span><br><span class="line">.orderBy(&apos;name&apos;, &apos;desc&apos;)</span><br><span class="line">.havingRaw(&apos;count &gt; ?&apos;, [100])</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` group by `count` having count &gt; 100 order by `name` desc</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h4 id="On-语句"><a href="#On-语句" class="headerlink" title="On 语句"></a>On 语句</h4><ul>
+<li><h5 id="onIn"><a href="#onIn" class="headerlink" title="onIn"></a>onIn</h5><p> -.onIn(column, values)<br> 向查询添加onIn子句。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).join(&apos;contacts&apos;, function() &#123;</span><br><span class="line">  this.on(&apos;users.id&apos;, &apos;=&apos;, &apos;contacts.id&apos;).onIn(&apos;contacts.id&apos;, [7, 15, 23, 41])</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and `contacts`.`id` in (7, 15, 23, 41)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="onNotIn"><a href="#onNotIn" class="headerlink" title="onNotIn"></a>onNotIn</h5><p> -.onNotIn(column, values)<br> 向查询添加一个onNotIn子句。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).join(&apos;contacts&apos;, function() &#123;</span><br><span class="line">  this.on(&apos;users.id&apos;, &apos;=&apos;, &apos;contacts.id&apos;).onNotIn(&apos;contacts.id&apos;, [7, 15, 23, 41])</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and `contacts`.`id` not in (7, 15, 23, 41)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="onNull"><a href="#onNull" class="headerlink" title="onNull"></a>onNull</h5><p>  -.onNull(column)<br>  向查询添加一个onNull子句。</p>
+<p>  例：      </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).join(&apos;contacts&apos;, function() &#123;</span><br><span class="line">  this.on(&apos;users.id&apos;, &apos;=&apos;, &apos;contacts.id&apos;).onNull(&apos;contacts.email&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and `contacts`.`email` is null</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="onNotNull"><a href="#onNotNull" class="headerlink" title="onNotNull"></a>onNotNull</h5><p> -.onNotNull(column)<br> 向查询添加一个onNotNull子句。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).join(&apos;contacts&apos;, function() &#123;</span><br><span class="line">  this.on(&apos;users.id&apos;, &apos;=&apos;, &apos;contacts.id&apos;).onNotNull(&apos;contacts.email&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and `contacts`.`email` is not null</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="onExists"><a href="#onExists" class="headerlink" title="onExists"></a>onExists</h5><p> -.onExists(builder | callback)<br> 向查询添加一个onExists子句。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).join(&apos;contacts&apos;, function() &#123;</span><br><span class="line">  this.on(&apos;users.id&apos;, &apos;=&apos;, &apos;contacts.id&apos;).onExists(function() &#123;</span><br><span class="line">    this.select(&apos;*&apos;).from(&apos;accounts&apos;).whereRaw(&apos;users.account_id = accounts.id&apos;);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and exists (select * from `accounts` where users.account_id = accounts.id)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="onNotExists"><a href="#onNotExists" class="headerlink" title="onNotExists"></a>onNotExists</h5><p>-.onNotExists(builder | callback)<br>向查询添加一个onNotExists子句。</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).join(&apos;contacts&apos;, function() &#123;</span><br><span class="line">  this.on(&apos;users.id&apos;, &apos;=&apos;, &apos;contacts.id&apos;).onNotExists(function() &#123;</span><br><span class="line">    this.select(&apos;*&apos;).from(&apos;accounts&apos;).whereRaw(&apos;users.account_id = accounts.id&apos;);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and not exists (select * from `accounts` where users.account_id = accounts.id)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="onBetween"><a href="#onBetween" class="headerlink" title="onBetween"></a>onBetween</h5><p>-.onBetween(column, range)<br>向查询添加一个onBetween子句。</p>
+<p> 例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> knex.select(&apos;*&apos;).from(&apos;users&apos;).join(&apos;contacts&apos;, function() &#123;</span><br><span class="line">  this.on(&apos;users.id&apos;, &apos;=&apos;, &apos;contacts.id&apos;).onBetween(&apos;contacts.id&apos;, [5, 30])</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and `contacts`.`id` between 5 and 30</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="onNotBetween"><a href="#onNotBetween" class="headerlink" title="onNotBetween"></a>onNotBetween</h5><p>-.onNotBetween(column, range)<br>向查询添加一个onNotBetween子句。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).join(&apos;contacts&apos;, function() &#123;</span><br><span class="line">  this.on(&apos;users.id&apos;, &apos;=&apos;, &apos;contacts.id&apos;).onNotBetween(&apos;contacts.id&apos;, [5, 30])</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and `contacts`.`id` not between 5 and 30</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h4 id="Clear-语句"><a href="#Clear-语句" class="headerlink" title="Clear 语句"></a>Clear 语句</h4><ul>
+<li><h5 id="clearSelect"><a href="#clearSelect" class="headerlink" title="clearSelect"></a>clearSelect</h5><p>-.clearSelect()<br>清除查询中的所有select子句，不包括子查询。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;email&apos;, &apos;name&apos;).from(&apos;users&apos;).clearSelect()</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users`</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="clearWhere"><a href="#clearWhere" class="headerlink" title="clearWhere"></a>clearWhere</h5><p> -.clearWhere()<br> 清除查询中的所有where子句，不包括子查询。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;email&apos;, &apos;name&apos;).from(&apos;users&apos;).where(&apos;id&apos;, 1).clearWhere()</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select `email`, `name` from `users`</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="clearOrder"><a href="#clearOrder" class="headerlink" title="clearOrder"></a>clearOrder</h5><p> -.clearOrder()<br> 清除查询中的所有订单子句，不包括子查询。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select().from(&apos;users&apos;).orderBy(&apos;name&apos;, &apos;desc&apos;).clearOrder()</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users`</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h4 id="distinct"><a href="#distinct" class="headerlink" title="distinct"></a>distinct</h4><p> -.distinct()<br> 去除重复的记录。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// select distinct &apos;first_name&apos; from customers</span><br><span class="line">knex(&apos;customers&apos;)</span><br><span class="line">  .distinct(&apos;first_name&apos;, &apos;last_name&apos;)</span><br><span class="line">  .select()</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select distinct `first_name`, `last_name` from `customers`</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="groupBy"><a href="#groupBy" class="headerlink" title="groupBy"></a>groupBy</h4><p> -.groupBy(*names)<br> 向查询添加一个group by子句。</p>
+<p>   例：</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).groupBy(&apos;count&apos;)</span><br></pre></td></tr></table></figure>
+<p>   输出：</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` group by `count`</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="groupByRaw"><a href="#groupByRaw" class="headerlink" title="groupByRaw"></a>groupByRaw</h4><p> -.groupByRaw(sql)<br> 向查询添加一个原始的group by子句。</p>
+<p>   例：    </p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;year&apos;, knex.raw(&apos;SUM(profit)&apos;)).from(&apos;sales&apos;).groupByRaw(&apos;year WITH ROLLUP&apos;)</span><br></pre></td></tr></table></figure>
+<p>   输出：</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select `year`, SUM(profit) from `sales` group by year WITH ROLLUP</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="orderBy"><a href="#orderBy" class="headerlink" title="orderBy"></a>orderBy</h4><p> -.orderBy(column, [direction])<br> 向查询添加一个order by子句。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).orderBy(&apos;name&apos;, &apos;desc&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` order by `name` desc</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="orderByRaw"><a href="#orderByRaw" class="headerlink" title="orderByRaw"></a>orderByRaw</h4><p>-.orderByRaw(sql)<br>通过raw子句向查询添加一个订单。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;table&apos;).orderByRaw(&apos;col DESC NULLS LAST&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `table` order by col DESC NULLS LAST</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="offset"><a href="#offset" class="headerlink" title="offset"></a>offset</h4><p> -.offset(value)<br> 为查询添加一个偏移子句。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).offset(10)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` limit 18446744073709551615 offset 10</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="limit"><a href="#limit" class="headerlink" title="limit"></a>limit</h4><p> -.limit(value)<br>向查询添加限制子句。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).limit(10).offset(30)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` limit 10 offset 30</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="union"><a href="#union" class="headerlink" title="union"></a>union</h4><p> -.union([*queries], [wrap])<br> 创建联合查询，采用数组或回调列表构建union语句，并使用可选的布尔换行。查询将使用真正的wrap参数单独包装在括号中。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).whereNull(&apos;last_name&apos;).union(function() &#123;</span><br><span class="line">  this.select(&apos;*&apos;).from(&apos;users&apos;).whereNull(&apos;first_name&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where `last_name` is null union select * from `users` where `first_name` is null</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="unionAll"><a href="#unionAll" class="headerlink" title="unionAll"></a>unionAll</h4><p> -.unionAll(query)<br> 使用与union方法相同的方法签名创建union的所有查询。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex.select(&apos;*&apos;).from(&apos;users&apos;).whereNull(&apos;last_name&apos;).unionAll(function() &#123;</span><br><span class="line">  this.select(&apos;*&apos;).from(&apos;users&apos;).whereNull(&apos;first_name&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `users` where `last_name` is null union all select * from `users` where `first_name` is null</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h4 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h4><p> -.insert(data, [returning])</p>
+<p>  创建插入查询，将要插入行的属性的哈希或插入的数组作为单个插入命令执行。使用包含插入模型的第一个插入标识的数组或者包含所有插入的postgresql标识的数组或Amazon Redshift的行数解析承诺/实现回调。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// Returns [1] in &quot;mysql&quot;, &quot;sqlite&quot;, &quot;oracle&quot;; [] in &quot;postgresql&quot; unless the &apos;returning&apos; parameter is set.</span><br><span class="line">knex(&apos;books&apos;).insert(&#123;title: &apos;Slaughterhouse Five&apos;&#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into `books` (`title`) values (&apos;Slaughterhouse Five&apos;)</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// Normalizes for empty keys on multi-row insert:</span><br><span class="line">knex(&apos;coords&apos;).insert([&#123;x: 20&#125;, &#123;y: 30&#125;,  &#123;x: 10, y: 20&#125;])</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">insert into `coords` (`x`, `y`) values (20, DEFAULT), (DEFAULT, 30), (10, 20)</span><br><span class="line">// Returns [2] in &quot;mysql&quot;, &quot;sqlite&quot;; [2, 3] in &quot;postgresql&quot;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.insert([&#123;title: &apos;Great Gatsby&apos;&#125;, &#123;title: &apos;Fahrenheit 451&apos;&#125;], &apos;id&apos;).into(&apos;books&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into `books` (`title`) values (&apos;Great Gatsby&apos;), (&apos;Fahrenheit 451&apos;)</span><br></pre></td></tr></table></figure>
+<p>  如果一个人更喜欢用一个未定义的键替换NULL而不是DEFAULT一个，可以useNullAsDefault在knex config中给出配置参数。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var knex = require(&apos;knex&apos;)(&#123;</span><br><span class="line">  client: &apos;mysql&apos;,</span><br><span class="line">  connection: &#123;</span><br><span class="line">    host : &apos;127.0.0.1&apos;,</span><br><span class="line">    user : &apos;your_database_user&apos;,</span><br><span class="line">    password : &apos;your_database_password&apos;,</span><br><span class="line">    database : &apos;myapp_test&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  useNullAsDefault: true</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">knex(&apos;coords&apos;).insert([&#123;x: 20&#125;, &#123;y: 30&#125;, &#123;x: 10, y: 20&#125;])</span><br><span class="line">// insert into `coords` (`x`, `y`) values (20, NULL), (NULL, 30), (10, 20)&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h4 id="returning"><a href="#returning" class="headerlink" title="returning"></a>returning</h4><p>-.returning(column) / .returning([column1, column2, …])</p>
+<p>由PostgreSQL，MSSQL和Oracle数据库使用，返回方法指定insert和update方法应返回哪一列。Passed column参数可以是字符串或字符串数​​组。传入字符串时，会将SQL结果报告为指定列中的值数组。传入字符串数组时，会将SQL结果报告为对象数组，每个对象包含每个指定列的单个属性。Amazon Redshift不支持返回方法。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// Returns [1]</span><br><span class="line">knex(&apos;books&apos;)</span><br><span class="line">  .returning(&apos;id&apos;)</span><br><span class="line">  .insert(&#123;title: &apos;Slaughterhouse Five&apos;&#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into `books` (`title`) values (&apos;Slaughterhouse Five&apos;)</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// Returns [2] in &quot;mysql&quot;, &quot;sqlite&quot;; [2, 3] in &quot;postgresql&quot;</span><br><span class="line">knex(&apos;books&apos;)</span><br><span class="line">  .returning(&apos;id&apos;)</span><br><span class="line">  .insert([&#123;title: &apos;Great Gatsby&apos;&#125;, &#123;title: &apos;Fahrenheit 451&apos;&#125;])</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into `books` (`title`) values (&apos;Great Gatsby&apos;), (&apos;Fahrenheit 451&apos;)</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// Returns [ &#123; id: 1, title: &apos;Slaughterhouse Five&apos; &#125; ]</span><br><span class="line">knex(&apos;books&apos;)</span><br><span class="line">  .returning([&apos;id&apos;,&apos;title&apos;])</span><br><span class="line">  .insert(&#123;title: &apos;Slaughterhouse Five&apos;&#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into `books` (`title`) values (&apos;Slaughterhouse Five&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h4 id="update"><a href="#update" class="headerlink" title="update"></a>update</h4><p>-.update(data, [returning]) / .update(key, value, [returning])<br>  创建更新查询，根据其他查询约束更新属性哈希值或键/值对。使用受影响的查询行数解析promise /履行回调。如果要更新的键的值未定义，则忽略该键。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;books&apos;)</span><br><span class="line">.where(&apos;published_date&apos;, &apos;&lt;&apos;, 2000)</span><br><span class="line">.update(&#123;</span><br><span class="line">  status: &apos;archived&apos;,</span><br><span class="line">  thisKeyIsSkipped: undefined</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update `books` set `status` = &apos;archived&apos; where `published_date` &lt; 2000</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// Returns [1] in &quot;mysql&quot;, &quot;sqlite&quot;, &quot;oracle&quot;; [] in &quot;postgresql&quot; unless the &apos;returning&apos; parameter is set.</span><br><span class="line">knex(&apos;books&apos;).update(&apos;title&apos;, &apos;Slaughterhouse Five&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update `books` set `title` = &apos;Slaughterhouse Five&apos;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h4 id="del-delete"><a href="#del-delete" class="headerlink" title="del / delete"></a>del / delete</h4><p> -.del()<br> 别名为del，因为delete是JavaScript中的保留字，此方法将根据查询中指定的其他条件删除一行或多行。使用受影响的查询行数解析promise /履行回调。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;accounts&apos;)</span><br><span class="line">.where(&apos;activated&apos;, false)</span><br><span class="line">.del()</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from `accounts` where `activated` = false</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h4 id="transacting"><a href="#transacting" class="headerlink" title="transacting"></a>transacting</h4><p> -.transacting(transactionObj)<br> 由knex.transaction使用，交易方法可链接到任何查询，并将希望加入查询的对象作为交易的一部分传递给。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var Promise = require(&apos;bluebird&apos;);</span><br><span class="line">knex.transaction(function(trx) &#123;</span><br><span class="line">  knex(&apos;books&apos;).transacting(trx).insert(&#123;name: &apos;Old Books&apos;&#125;)</span><br><span class="line">    .then(function(resp) &#123;</span><br><span class="line">      var id = resp[0];</span><br><span class="line">      return someExternalMethod(id, trx);</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(trx.commit)</span><br><span class="line">    .catch(trx.rollback);</span><br><span class="line">&#125;)</span><br><span class="line">.then(function(resp) &#123;</span><br><span class="line">  console.log(&apos;Transaction complete.&apos;);</span><br><span class="line">&#125;)</span><br><span class="line">.catch(function(err) &#123;</span><br><span class="line">  console.error(err);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h5 id="forUpdate"><a href="#forUpdate" class="headerlink" title="forUpdate"></a>forUpdate</h5><p> -.transacting(t).forUpdate()<br> 在指定事务之后动态添加，forUpdate在select语句期间在PostgreSQL和MySQL中添加FOR UPDATE。由于缺少表锁，在Amazon Redshift上不支持。</p>
+<p> 例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;tableName&apos;)</span><br><span class="line">.transacting(trx)</span><br><span class="line">.forUpdate()</span><br><span class="line">.select(&apos;*&apos;)</span><br></pre></td></tr></table></figure>
+<p> 输出：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `tableName` for update</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="forShare"><a href="#forShare" class="headerlink" title="forShare"></a>forShare</h5><p> -.transacting(t).forShare()<br>   在指定事务后动态添加的forShare在select语句中添加了PostShareSQL中的FOR SHARE和MySQL中的LOCK IN SHARE MODE。由于缺少表锁，在Amazon Redshift上不支持。</p>
+<p>   例：</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;tableName&apos;)</span><br><span class="line">.transacting(trx)</span><br><span class="line">.forShare()</span><br><span class="line">.select(&apos;*&apos;)</span><br></pre></td></tr></table></figure>
+<p>   输出：</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `tableName` lock in share mode</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h4 id="count"><a href="#count" class="headerlink" title="count"></a>count</h4><p> -.count(column|columns|raw)</p>
+<p>  对指定的列或列数组执行计数（请注意，某些驱动程序不支持多列）。还接受原始表达式。请注意，在Postgres中，count会返回一个bigint类型，它将是一个String而不是一个Number（更多信息）。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).count(&apos;active&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(`active`) from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).count(&apos;active as a&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(`active`) as `a` from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).count(&#123; a: &apos;active&apos; &#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(`active`) as `a` from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).count(&apos;id&apos;, &apos;active&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(`id`) from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).count(&#123; count: [&apos;id&apos;, &apos;active&apos;] &#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(`id`, `active`) as `count` from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).count(knex.raw(&apos;??&apos;, [&apos;active&apos;]))</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(`active`) from `users`</span><br></pre></td></tr></table></figure>
+<p>  使用countDistinct在聚合函数内添加一个不同的表达式。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).countDistinct(&apos;active&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(distinct `active`) from `users`</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h4 id="min"><a href="#min" class="headerlink" title="min"></a>min</h4><p> -.min(column|columns|raw)</p>
+<p>  获取指定列或列数组的最小值（请注意，某些驱动程序不支持多列）。还接受原始表达式。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).min(&apos;age&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select min(`age`) from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).min(&apos;age as a&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select min(`age`) as `a` from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).min(&#123; a: &apos;age&apos; &#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select min(`age`) as `a` from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).min(&apos;age&apos;, &apos;logins&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select min(`age`) from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).min(&#123; min: [&apos;age&apos;, &apos;logins&apos;] &#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select min(`age`, `logins`) as `min` from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).min(knex.raw(&apos;??&apos;, [&apos;age&apos;]))</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select min(`age`) from `users`</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h4 id="max"><a href="#max" class="headerlink" title="max"></a>max</h4><p> -.max(column|columns|raw)<br> 获取指定列或列数组的最大值（请注意，有些驱动程序不支持多列）。还接受原始表达式。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).max(&apos;age&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select max(`age`) from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).max(&apos;age as a&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select max(`age`) as `a` from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).max(&#123; a: &apos;age&apos; &#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select max(`age`) as `a` from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).max(&apos;age&apos;, &apos;logins&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select max(`age`) from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).max(&#123; max: [&apos;age&apos;, &apos;logins&apos;] &#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select max(`age`, `logins`) as `max` from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).max(knex.raw(&apos;??&apos;, [&apos;age&apos;]))</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select max(`age`) from `users`</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h4 id="sum"><a href="#sum" class="headerlink" title="sum"></a>sum</h4><p> -.sum(column|columns|raw)<br> 检索给定列或列数组的值的总和（请注意，某些驱动程序不支持多列）。还接受原始表达式。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).sum(&apos;products&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select sum(`products`) from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).sum(&apos;products as p&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select sum(`products`) as `p` from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).sum(&#123; p: &apos;products&apos; &#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select sum(`products`) as `p` from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).sum(&apos;products&apos;, &apos;orders&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select sum(`products`) from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).sum(&#123; sum: [&apos;products&apos;, &apos;orders&apos;] &#125;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select sum(`products`, `orders`) as `sum` from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).sum(knex.raw(&apos;??&apos;, [&apos;products&apos;]))</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select sum(`products`) from `users`</span><br></pre></td></tr></table></figure>
+<p>使用sumDistinct在聚合函数内添加一个不同的表达式。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).sumDistinct(&apos;products&apos;)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select sum(distinct `products`) from `users`</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h4 id="avg"><a href="#avg" class="headerlink" title="avg"></a>avg</h4><p> -.avg(column|columns|raw)<br> 检索给定列或列数组的值的平均值（请注意，有些驱动程序不支持多列）。还接受原始表达式。</p>
+<p> 例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).avg(&apos;age&apos;)</span><br></pre></td></tr></table></figure>
+<p> 输出：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select avg(`age`) from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p> 例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).avg(&apos;age as a&apos;)</span><br></pre></td></tr></table></figure>
+<p> 输出：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select avg(`age`) as `a` from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p> 例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).avg(&#123; a: &apos;age&apos; &#125;)</span><br></pre></td></tr></table></figure>
+<p> 输出：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select avg(`age`) as `a` from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p> 例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).avg(&apos;age&apos;, &apos;logins&apos;)</span><br></pre></td></tr></table></figure>
+<p> 输出：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select avg(`age`) from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p> 例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).avg(&#123; avg: [&apos;age&apos;, &apos;logins&apos;] &#125;)</span><br></pre></td></tr></table></figure>
+<p> 输出：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select avg(`age`, `logins`) as `avg` from `users`</span><br></pre></td></tr></table></figure>
+<hr>
+<p> 例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).avg(knex.raw(&apos;??&apos;, [&apos;age&apos;]))</span><br></pre></td></tr></table></figure>
+<p> 输出：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select avg(`age`) from `users`</span><br></pre></td></tr></table></figure>
+<p> 使用avgDistinct在聚合函数内添加一个不同的表达式。</p>
+<p> 例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).avgDistinct(&apos;age&apos;)</span><br></pre></td></tr></table></figure>
+<p> 输出：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select avg(distinct `age`) from `users`</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h4 id="increment"><a href="#increment" class="headerlink" title="increment"></a>increment</h4><p> -.increment(column, amount)<br> 按指定的量增加列值。</p>
+<p>  例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;accounts&apos;)</span><br><span class="line">.where(&apos;userid&apos;, &apos;=&apos;, 1)</span><br><span class="line">.increment(&apos;balance&apos;, 10)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update `accounts` set `balance` = `balance` + 10 where `userid` = 1</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="decrement"><a href="#decrement" class="headerlink" title="decrement"></a>decrement</h4><p> -.decrement(column, amount)<br> 将列值减少指定的量。</p>
+<p>  例： </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;accounts&apos;).where(&apos;userid&apos;, &apos;=&apos;, 1).decrement(&apos;balance&apos;, 5)</span><br></pre></td></tr></table></figure>
+<p>  输出：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update `accounts` set `balance` = `balance` - 5 where `userid` = 1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h4 id="truncate"><a href="#truncate" class="headerlink" title="truncate"></a>truncate</h4><p>-.truncate()<br>截断当前表。</p>
+<p> 例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;accounts&apos;).truncate()</span><br></pre></td></tr></table></figure>
+<p> 输出：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truncate `accounts`</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="pluck"><a href="#pluck" class="headerlink" title="pluck"></a>pluck</h4><p> -.pluck(id)<br> 这将从结果中的每一行中抽取指定列，产生一个承诺，解析为所选值的数组。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.table(&apos;users&apos;).pluck(&apos;id&apos;).then(function(ids) &#123; console.log(ids); &#125;);</span><br></pre></td></tr></table></figure>
+<p>  第一 -.first([columns])<br>  与select类似，但仅使用查询中的第一条记录检索和解析。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex.table(&apos;users&apos;).first(&apos;id&apos;, &apos;name&apos;).then(function(row) &#123; console.log(row); &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h4><p> -.clone()<br> 克隆当前查询链，可用于在不改变原始查询的情况下在其他查询中重复使用部分查询片段。</p>
+</li>
+<li><h4 id="modify"><a href="#modify" class="headerlink" title="modify"></a>modify</h4><p> -.modify(fn, *arguments)<br> 允许封装并重新使用查询片段和常见行为作为函数。回调函数应接收查询构建器作为其第一个参数，然后接受传递给其修改的其余（可选）参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var withUserName = function(queryBuilder, foreignKey) &#123;</span><br><span class="line">  queryBuilder.leftJoin(&apos;users&apos;, foreignKey, &apos;users.id&apos;).select(&apos;users.user_name&apos;);</span><br><span class="line">&#125;;</span><br><span class="line">knex.table(&apos;articles&apos;).select(&apos;title&apos;, &apos;body&apos;).modify(withUserName, &apos;articles_user.id&apos;).then(function(article) &#123;</span><br><span class="line">  console.log(article.user_name);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>columnInfo -.columnInfo([columnName])<br>返回一个对象，其中包含有关当前表的列信息，如果传递了一个列，则返回一个单独的列，返回一个具有以下键的对象：defaultValue：列类型的默认值：列类型maxLength：为此设置的最大长度列可为空：列是否可以为空</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;users&apos;).columnInfo().then(function(info) &#123; // ... &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="debug"><a href="#debug" class="headerlink" title="debug"></a>debug</h4><p> -.debug([enabled])<br> 覆盖当前查询链的全局调试设置。如果启用省略，查询调试将被打开。</p>
+</li>
+<li><h4 id="connection"><a href="#connection" class="headerlink" title="connection"></a>connection</h4><p>（不完整） - 此功能被错误地记录为功能。<br>如果实现，该方法将设置数据库连接用于查询而不使用连接池。</p>
+</li>
+<li><h4 id="options"><a href="#options" class="headerlink" title="options"></a>options</h4><p>-.options()<br>允许在数据库客户端特定库中定义的其他选项中进行混合：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;accounts as a1&apos;)</span><br><span class="line">.leftJoin(&apos;accounts as a2&apos;, function() &#123;</span><br><span class="line">  this.on(&apos;a1.email&apos;, &apos;&lt;&gt;&apos;, &apos;a2.email&apos;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">.select([&apos;a1.email&apos;, &apos;a2.email&apos;])</span><br><span class="line">.where(knex.raw(&apos;a1.id = 1&apos;))</span><br><span class="line">.options(&#123; nestTables: true, rowMode: &apos;array&apos; &#125;)</span><br><span class="line">.limit(2)</span><br><span class="line">.then(...</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="queryContext"><a href="#queryContext" class="headerlink" title="queryContext"></a>queryContext</h4><p> -.queryContext(context)<br> 允许配置要传递给wrapIdentifier和postProcessResponse挂钩的上下文：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knex(&apos;accounts as a1&apos;)</span><br><span class="line">.queryContext(&#123; foo: &apos;bar&apos; &#125;)</span><br><span class="line">.select([&apos;a1.email&apos;, &apos;a2.email&apos;])</span><br></pre></td></tr></table></figure>
+<p>上下文可以是任何类型的值，并将被传递给钩子而不需要修改。但是请注意，在查询构建器实例被克隆时，对象将被浅层克隆，这意味着它们将包含原始对象的所有属性，但不会是同一个对象引用。这允许修改克隆的查询生成器实例的上下文。</p>
+<p>queryContext不带参数调用将返回为查询构建器实例配置的任何上下文。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/knexjs/" rel="tag"># knexjs</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/29/refresh-boot/" rel="next" title="小米MIX 2线刷步骤">
+                <i class="fa fa-chevron-left"></i> 小米MIX 2线刷步骤
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/30/koa学习笔记/" rel="prev" title="koa学习笔记">
+                koa学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/favicon.ico"
+                alt="songxingguo" />
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">109</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#knexjs-简介"><span class="nav-number">1.</span> <span class="nav-text">knexjs 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#支持"><span class="nav-number">1.1.</span> <span class="nav-text">支持</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始数据库"><span class="nav-number">2.1.</span> <span class="nav-text">初始数据库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#knex-查询构造器"><span class="nav-number">3.</span> <span class="nav-text">knex 查询构造器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Identifier-Syntax"><span class="nav-number">3.1.</span> <span class="nav-text">Identifier Syntax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#knex"><span class="nav-number">3.2.</span> <span class="nav-text">knex</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#timeout"><span class="nav-number">3.3.</span> <span class="nav-text">timeout</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#select"><span class="nav-number">3.4.</span> <span class="nav-text">select</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#as"><span class="nav-number">3.5.</span> <span class="nav-text">as</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#column"><span class="nav-number">3.6.</span> <span class="nav-text">column</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#from"><span class="nav-number">3.7.</span> <span class="nav-text">from</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#with"><span class="nav-number">3.8.</span> <span class="nav-text">with</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#withSchema"><span class="nav-number">3.9.</span> <span class="nav-text">withSchema</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Where-语句"><span class="nav-number">3.10.</span> <span class="nav-text">Where 语句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#where"><span class="nav-number">3.10.1.</span> <span class="nav-text">where</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#whereNot"><span class="nav-number">3.10.2.</span> <span class="nav-text">whereNot</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#whereIn"><span class="nav-number">3.10.3.</span> <span class="nav-text">whereIn</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#whereNotIn"><span class="nav-number">3.10.4.</span> <span class="nav-text">whereNotIn</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#whereNull"><span class="nav-number">3.10.5.</span> <span class="nav-text">whereNull</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#whereNotNull"><span class="nav-number">3.10.6.</span> <span class="nav-text">whereNotNull</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WhereExists"><span class="nav-number">3.10.7.</span> <span class="nav-text">WhereExists</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#whereNotExists"><span class="nav-number">3.10.8.</span> <span class="nav-text">whereNotExists</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#whereBetween"><span class="nav-number">3.10.9.</span> <span class="nav-text">whereBetween</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#whereNotBetween"><span class="nav-number">3.10.10.</span> <span class="nav-text">whereNotBetween</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#whereRaw"><span class="nav-number">3.10.11.</span> <span class="nav-text">whereRaw</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Join-语句"><span class="nav-number">3.11.</span> <span class="nav-text">Join 语句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#join"><span class="nav-number">3.11.1.</span> <span class="nav-text">join</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#innerJoin"><span class="nav-number">3.11.2.</span> <span class="nav-text">innerJoin</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#leftJoin"><span class="nav-number">3.11.3.</span> <span class="nav-text">leftJoin</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#leftOuterJoin"><span class="nav-number">3.11.4.</span> <span class="nav-text">leftOuterJoin</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#rightJoin"><span class="nav-number">3.11.5.</span> <span class="nav-text">rightJoin</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#rightOuterJoin"><span class="nav-number">3.11.6.</span> <span class="nav-text">rightOuterJoin</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#fullOuterJoin"><span class="nav-number">3.11.7.</span> <span class="nav-text">fullOuterJoin</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#crossJoin"><span class="nav-number">3.11.8.</span> <span class="nav-text">crossJoin</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#joinRaw"><span class="nav-number">3.11.9.</span> <span class="nav-text">joinRaw</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Having-语句"><span class="nav-number">3.12.</span> <span class="nav-text">Having 语句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#having"><span class="nav-number">3.12.1.</span> <span class="nav-text">having</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#havingIn"><span class="nav-number">3.12.2.</span> <span class="nav-text">havingIn</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#havingNotIn"><span class="nav-number">3.12.3.</span> <span class="nav-text">havingNotIn</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#havingNull"><span class="nav-number">3.12.4.</span> <span class="nav-text">havingNull</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#havingNotNull"><span class="nav-number">3.12.5.</span> <span class="nav-text">havingNotNull</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#havingExists"><span class="nav-number">3.12.6.</span> <span class="nav-text">havingExists</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#havingNotExists"><span class="nav-number">3.12.7.</span> <span class="nav-text">havingNotExists</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#havingBetween"><span class="nav-number">3.12.8.</span> <span class="nav-text">havingBetween</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#havingNotBetween"><span class="nav-number">3.12.9.</span> <span class="nav-text">havingNotBetween</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#havingRaw"><span class="nav-number">3.12.10.</span> <span class="nav-text">havingRaw</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#On-语句"><span class="nav-number">3.13.</span> <span class="nav-text">On 语句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#onIn"><span class="nav-number">3.13.1.</span> <span class="nav-text">onIn</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#onNotIn"><span class="nav-number">3.13.2.</span> <span class="nav-text">onNotIn</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#onNull"><span class="nav-number">3.13.3.</span> <span class="nav-text">onNull</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#onNotNull"><span class="nav-number">3.13.4.</span> <span class="nav-text">onNotNull</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#onExists"><span class="nav-number">3.13.5.</span> <span class="nav-text">onExists</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#onNotExists"><span class="nav-number">3.13.6.</span> <span class="nav-text">onNotExists</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#onBetween"><span class="nav-number">3.13.7.</span> <span class="nav-text">onBetween</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#onNotBetween"><span class="nav-number">3.13.8.</span> <span class="nav-text">onNotBetween</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Clear-语句"><span class="nav-number">3.14.</span> <span class="nav-text">Clear 语句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#clearSelect"><span class="nav-number">3.14.1.</span> <span class="nav-text">clearSelect</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#clearWhere"><span class="nav-number">3.14.2.</span> <span class="nav-text">clearWhere</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#clearOrder"><span class="nav-number">3.14.3.</span> <span class="nav-text">clearOrder</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#distinct"><span class="nav-number">3.15.</span> <span class="nav-text">distinct</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#groupBy"><span class="nav-number">3.16.</span> <span class="nav-text">groupBy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#groupByRaw"><span class="nav-number">3.17.</span> <span class="nav-text">groupByRaw</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orderBy"><span class="nav-number">3.18.</span> <span class="nav-text">orderBy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orderByRaw"><span class="nav-number">3.19.</span> <span class="nav-text">orderByRaw</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#offset"><span class="nav-number">3.20.</span> <span class="nav-text">offset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#limit"><span class="nav-number">3.21.</span> <span class="nav-text">limit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#union"><span class="nav-number">3.22.</span> <span class="nav-text">union</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unionAll"><span class="nav-number">3.23.</span> <span class="nav-text">unionAll</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#insert"><span class="nav-number">3.24.</span> <span class="nav-text">insert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#returning"><span class="nav-number">3.25.</span> <span class="nav-text">returning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#update"><span class="nav-number">3.26.</span> <span class="nav-text">update</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#del-delete"><span class="nav-number">3.27.</span> <span class="nav-text">del / delete</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#transacting"><span class="nav-number">3.28.</span> <span class="nav-text">transacting</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#forUpdate"><span class="nav-number">3.28.1.</span> <span class="nav-text">forUpdate</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#forShare"><span class="nav-number">3.28.2.</span> <span class="nav-text">forShare</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#count"><span class="nav-number">3.29.</span> <span class="nav-text">count</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#min"><span class="nav-number">3.30.</span> <span class="nav-text">min</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#max"><span class="nav-number">3.31.</span> <span class="nav-text">max</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sum"><span class="nav-number">3.32.</span> <span class="nav-text">sum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#avg"><span class="nav-number">3.33.</span> <span class="nav-text">avg</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#increment"><span class="nav-number">3.34.</span> <span class="nav-text">increment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#decrement"><span class="nav-number">3.35.</span> <span class="nav-text">decrement</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#truncate"><span class="nav-number">3.36.</span> <span class="nav-text">truncate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pluck"><span class="nav-number">3.37.</span> <span class="nav-text">pluck</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#clone"><span class="nav-number">3.38.</span> <span class="nav-text">clone</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#modify"><span class="nav-number">3.39.</span> <span class="nav-text">modify</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#debug"><span class="nav-number">3.40.</span> <span class="nav-text">debug</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#connection"><span class="nav-number">3.41.</span> <span class="nav-text">connection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#options"><span class="nav-number">3.42.</span> <span class="nav-text">options</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#queryContext"><span class="nav-number">3.43.</span> <span class="nav-text">queryContext</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz",
+                'X-LC-Key': "2oU4tvtGWAXp5i6kWAnhd2rm",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":100,"height":200,"hOffset":0,"vOffset":-20},"mobile":{"show":true},"log":false});</script></body>
+</html>
