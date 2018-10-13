@@ -120,3 +120,6 @@ algolia:
   apiKey: '4d7baef3ddd38daac07e81d5637e196c'
   indexName: 'blog'
 
+search:
+    path: search.xml
+    field: post
