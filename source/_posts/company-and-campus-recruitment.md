@@ -135,6 +135,10 @@ date: 2018-08-07 03:32:00
    
   [校园招聘](https://www.nowcoder.com/profile/178368744/resume)
   
+  > 秋招
+  
+  [校园招聘](http://pinduoduo.zhiye.com/Portal/Apply/Index)
+  
 13. ### 蘑菇街
   
   > 秋招：已投递；
@@ -334,3 +338,9 @@ date: 2018-08-07 03:32:00
 47. ### 度小满
   
    [招聘流程](http://www.hotjob.cn/wt/duxiaoman/web/index/campus)
+   
+48. ### 猎豹移动
+    
+   [校园招聘](http://hr.cmcm.com/Portal/Apply/Index)
+    
+   [招聘流程](http://hr.cmcm.com/newsdetail/70000249)
