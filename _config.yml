@@ -114,16 +114,6 @@ qiniu:
 
 baidu_analytics: ea29d0cf9dda7fe5403ba0f70fb2c10d
 
-# Algolia Search API Key
-algolia:
-  applicationID: '7TUI72DTAH'
-  indexName: 'blog'
-  chunkSize: 5000
-
-search:
-    path: search.xml
-    field: post
-
 live2d:
   enable: true
   scriptFrom: local
