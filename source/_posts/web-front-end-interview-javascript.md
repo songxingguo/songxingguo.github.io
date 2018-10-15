@@ -192,6 +192,8 @@ str为要去除空格的字符串，实例如下：
 
 [JavaScript关于作用域、作用域链和闭包的理解]:https://blog.csdn.net/whd526/article/details/70990994
 
+### 函数无 return 返回 undefined
+
 ### 你如何获取浏览器URL中查询字符串中的参数？
 
 ### js 字符串操作函数
