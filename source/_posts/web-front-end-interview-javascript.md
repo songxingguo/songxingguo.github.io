@@ -192,6 +192,19 @@ str为要去除空格的字符串，实例如下：
 
 [JavaScript关于作用域、作用域链和闭包的理解]:https://blog.csdn.net/whd526/article/details/70990994
 
+### 事件循环（异步）
+
+宏任务和微任务。
+
+### 函数防抖和函数节流
+
+来自——[JavaScript函数节流和函数防抖之间的区别]
+
+[JavaScript函数节流和函数防抖之间的区别]:https://www.cnblogs.com/walls/p/6399837.html
+
+
+### asyn 和 wait 
+
 ### 函数无 return 返回 undefined
 
 ### 你如何获取浏览器URL中查询字符串中的参数？
