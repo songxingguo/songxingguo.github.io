@@ -1,4 +1,4 @@
-title: 面试考点
+title: 面试准备
 author: songxingguo
 tags: []
 categories:
@@ -15,98 +15,6 @@ date: 2018-10-01 13:54:00
 <!-- more -->
 
 熟悉HTML、CSS、JavaScript。
-
-## HTTP 协议
-
-### HTTP1.0 HTTP 1.1 HTTP 2.0主要区别
-
-#### HTTP 1.0 与 HTTP 1.1 的区别
-
-- 长连接
-
-  HTTP 1.0需要使用keep-alive参数来告知服务器端要建立一个长连接，而HTTP1.1默认支持长连接。
-
-- 节约带宽
-
-   HTTP 1.1支持只发送header信息(不带任何body信息)，如果服务器认为客户端有权限请求服务器，则返回100，否则返回401。客户端如果接受到100，才开始把请求body发送到服务器。
-   
-- HOST域
-
-  现在可以web server例如tomat，设置虚拟站点是非常常见的，也即是说，web server上的多个虚拟站点可以共享同一个ip和端口。
-  
-#### HTTP1.1 HTTP 2.0主要区别
-
-- 多路复用
-
-  HTTP2.0使用了多路复用的技术，做到同一个连接并发处理多个请求，而且并发请求的数量比HTTP1.1大了好几个数量级。
-
-- 数据压缩
-
-  HTTP1.1不支持header数据的压缩，HTTP2.0使用HPACK算法对header的数据进行压缩，这样数据体积小了，在网络上传输就会更快。
-  
-- 服务器推送
-
-   意思是说，当我们对支持HTTP2.0的web server请求数据的时候，服务器会顺便把一些客户端需要的资源一起推送到客户端，免得客户端再次创建连接发送请求到服务器端获取。这种方式非常合适加载静态资源。
-
-
-[HTTP1.0 HTTP 1.1 HTTP 2.0主要区别](https://blog.csdn.net/linsongbin1/article/details/54980801/)
-
-[深入研究：HTTP2 的真正性能到底如何](https://segmentfault.com/a/1190000007219256)
-
-[HTTP,HTTP2.0,SPDY,HTTPS你应该知道的一些事](http://www.alloyteam.com/2016/07/httphttp2-0spdyhttps-reading-this-is-enough/)
-
-[HTTP2.0的奇妙日常](http://www.alloyteam.com/2015/03/http2-0-di-qi-miao-ri-chang/)
-
-[一分钟预览 HTTP2 特性和抓包分析](https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&mid=2651551351&idx=2&sn=a56ff090060f97e11e856aef2622a717&chksm=8025a1b6b75228a0080fa971222b3cb7c3179ba5474028b8fa4656619073c4c14d76cf83cd86&scene=0#wechat_redirect)
-
-### HTTPS
-
-![http和https的区别](http://p9myzkds7.bkt.clouddn.com/interview/http%E5%92%8Chttps.JPG)
-
-如上图所示 HTTPS 相比 HTTP 多了一层 SSL/TLS
-
-[HTTPS 原理详解](https://baijiahao.baidu.com/s?id=1570143475599137&wfr=spider&for=pc)
-
-[HTTP与HTTPS的区别](https://www.cnblogs.com/wqhwe/p/5407468.html)
-
-[白话图解HTTPS原理](https://www.cnblogs.com/ghjbk/p/6738069.html)
-
-### HTTP缓存
-
-[彻底弄懂HTTP缓存机制及原理](https://www.cnblogs.com/chenqf/p/6386163.html)
-
-[http缓存浅谈](https://www.cnblogs.com/chinajava/p/5705169.html)
-
-[http协议缓存机制](https://segmentfault.com/a/1190000010690320)
-
-[HTTP缓存实现的原理](https://www.cnblogs.com/zikai/p/4973355.html)
-
-### http性能优化
-
-[36条雅虎军规](http://www.mamicode.com/info-detail-139010.html)
-
-[http请求过程及性能优化分析](https://blog.csdn.net/j_bleach/article/details/75215499)
-
-[腾讯HTTPS性能优化实践](https://blog.csdn.net/suhuaiqiang_janlay/article/details/60962697)
-
-[http性能优化的最佳实践](https://blog.csdn.net/Charles_Tian/article/details/80352118)
-
-[网络请求和性能优化](https://www.jianshu.com/p/ab75b24a11e2)
-
-[HTTP之2 HTTP优化(HTTP性能优化、安全的HTTP协议)](http://blog.51cto.com/jasonteach/1760468)
-
-[应用缓慢、卡顿千万不能忽视HTTP请求优化](https://www.sohu.com/a/129178271_496760)
-
-### TCP 和 UDP
-
-[TCP和UDP的优缺点及区别](https://www.cnblogs.com/xiaomayizoe/p/5258754.html)
-
-[TCP/IP和UDP的比较](https://www.cnblogs.com/HPAHPA/p/7737641.html)
-
-[TCP与UDP--图解TCP/IP读书笔记](https://blog.csdn.net/sinat_37138973/article/details/72822229)
-
-[TCP和UDP的最完整的区别](https://blog.csdn.net/li_ning_/article/details/52117463)
-
 
 ## CSS
 

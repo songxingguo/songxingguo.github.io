@@ -409,13 +409,243 @@ UDP（user datagram protocol–用户数据报协议，与TCP特性恰恰相反�
 
 ![应用层协议](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/%E5%BA%94%E7%94%A8%E5%B1%82%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8D%8F%E8%AE%AE)
 
-来自——[应用层常见的协议及对应的端口号]、[常见应用层协议端口号]、[]
+来自——[应用层常见的协议及对应的端口号]、[常见应用层协议端口号]、[TCP/IP协议-应用层协议端口号及各层协议数据单元]]
 
 [应用层常见的协议及对应的端口号]:https://blog.csdn.net/mellymengyan/article/details/51115521
-
 [常见应用层协议端口号]:https://blog.csdn.net/sdnu111111111/article/details/38129109
-
 [TCP/IP协议-应用层协议端口号及各层协议数据单元]:https://blog.csdn.net/baidu_35692628/article/details/77747223
+
+### HTTP 协议
+
+#### HTTP1.0 HTTP 1.1 HTTP 2.0主要区别
+
+##### HTTP 1.0 与 HTTP 1.1 的区别
+
+- 长连接
+
+  HTTP 1.0需要使用keep-alive参数来告知服务器端要建立一个长连接，而HTTP1.1默认支持长连接。
+
+- 节约带宽
+
+   HTTP 1.1支持只发送header信息(不带任何body信息)，如果服务器认为客户端有权限请求服务器，则返回100，否则返回401。客户端如果接受到100，才开始把请求body发送到服务器。
+   
+- HOST域
+
+  现在可以web server例如tomat，设置虚拟站点是非常常见的，也即是说，web server上的多个虚拟站点可以共享同一个ip和端口。
+  
+#### HTTP1.1 HTTP 2.0主要区别
+
+- 多路复用
+
+  HTTP2.0使用了多路复用的技术，做到同一个连接并发处理多个请求，而且并发请求的数量比HTTP1.1大了好几个数量级。
+
+- 数据压缩
+
+  HTTP1.1不支持header数据的压缩，HTTP2.0使用HPACK算法对header的数据进行压缩，这样数据体积小了，在网络上传输就会更快。
+  
+- 服务器推送
+
+   意思是说，当我们对支持HTTP2.0的web server请求数据的时候，服务器会顺便把一些客户端需要的资源一起推送到客户端，免得客户端再次创建连接发送请求到服务器端获取。这种方式非常合适加载静态资源。
+
+来自——[HTTP1.0 HTTP 1.1 HTTP 2.0主要区别]、[深入研究：HTTP2 的真正性能到底如何]、[HTTP2.0的奇妙日常]、[一分钟预览 HTTP2 特性和抓包分析]
+
+[HTTP1.0 HTTP 1.1 HTTP 2.0主要区别]:https://blog.csdn.net/linsongbin1/article/details/54980801/
+[深入研究：HTTP2 的真正性能到底如何]:https://segmentfault.com/a/1190000007219256
+[HTTP,HTTP2.0,SPDY,HTTPS你应该知道的一些事]:http://www.alloyteam.com/2016/07/httphttp2-0spdyhttps-reading-this-is-enough/
+[HTTP2.0的奇妙日常]:http://www.alloyteam.com/2015/03/http2-0-di-qi-miao-ri-chang/
+[一分钟预览 HTTP2 特性和抓包分析]:https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&mid=2651551351&idx=2&sn=a56ff090060f97e11e856aef2622a717&chksm=8025a1b6b75228a0080fa971222b3cb7c3179ba5474028b8fa4656619073c4c14d76cf83cd86&scene=0#wechat_redirect
+
+### HTTPS
+
+![http和https的区别](http://p9myzkds7.bkt.clouddn.com/interview/http%E5%92%8Chttps.JPG)
+
+如上图所示 HTTPS 相比 HTTP 多了一层 SSL/TLS
+
+SSL（Secure Socket Layer，安全套接字层）：1994年为 Netscape 所研发，SSL 协议位于 TCP/IP 协议与各种应用层协议之间，为数据通讯提供安全支持。
+
+TLS（Transport Layer Security，传输层安全）：其前身是 SSL，它最初的几个版本（SSL 1.0、SSL 2.0、SSL 3.0）由网景公司开发，1999年从 3.1 开始被 IETF 标准化并改名，发展至今已经有 TLS 1.0、TLS 1.1、TLS 1.2 三个版本。SSL3.0和TLS1.0由于存在安全漏洞，已经很少被使用到。TLS 1.3 改动会比较大，目前还在草案阶段，目前使用最广泛的是TLS 1.1、TLS 1.2。
+
+#### 加密算法：
+
+据记载，公元前400年，古希腊人就发明了置换密码；在第二次世界大战期间，德国军方启用了“恩尼格玛”密码机，所以密码学在社会发展中有着广泛的用途。
+
+##### 对称加密
+
+有流式、分组两种，加密和解密都是使用的同一个密钥。
+
+例如：DES、AES-GCM、ChaCha20-Poly1305等
+
+##### 非对称加密
+
+加密使用的密钥和解密使用的密钥是不相同的，分别称为：公钥、私钥，公钥和算法都是公开的，私钥是保密的。非对称加密算法性能较低，但是安全性超强，由于其加密特性，非对称加密算法能加密的数据长度也是有限的。
+
+例如：RSA、DSA、ECDSA、 DH、ECDHE
+
+##### 哈希算法
+
+将任意长度的信息转换为较短的固定长度的值，通常其长度要比信息小得多，且算法不可逆。
+
+例如：MD5、SHA-1、SHA-2、SHA-256 等
+
+##### 数字签名
+
+签名就是在信息的后面再加上一段内容（信息经过hash后的值），可以证明信息没有被修改过。hash值一般都会加密后（也就是签名）再和信息一起发送，以保证这个hash值不被修改。
+
+#### 总结
+
+综上所述，相比 HTTP 协议，HTTPS 协议增加了很多握手、加密解密等流程，虽然过程很复杂，但其可以保证数据传输的安全。所以在这个互联网膨胀的时代，其中隐藏着各种看不见的危机，为了保证数据的安全，维护网络稳定，建议大家多多推广HTTPS。
+
+##### HTTP 传输面临的风险有：
+
+（1） 窃听风险：黑客可以获知通信内容。
+
+（2） 篡改风险：黑客可以修改通信内容。
+
+（3） 冒充风险：黑客可以冒充他人身份参与通信。
+
+##### HTTPS 缺点：
+
+（1）SSL 证书费用很高，以及其在服务器上的部署、更新维护非常繁琐
+
+（2）HTTPS 降低用户访问速度（多次握手）
+
+（3）网站改用HTTPS 以后，由HTTP 跳转到 HTTPS 的方式增加了用户访问耗时（多数网站采用302跳转）
+
+（4）HTTPS 涉及到的安全算法会消耗 CPU 资源，需要增加大量机器（https访问过程需要加解密）
+
+来自——[HTTPS 原理详解]、[HTTP与HTTPS的区别]、[白话图解HTTPS原理]
+
+[HTTPS 原理详解]:https://baijiahao.baidu.com/s?id=1570143475599137&wfr=spider&for=pc
+[HTTP与HTTPS的区别]:https://www.cnblogs.com/wqhwe/p/5407468.html
+[白话图解HTTPS原理]:https://www.cnblogs.com/ghjbk/p/6738069.html
+
+### http缓存规则
+
+HTTP缓存有多种规则，根据是否需要重新向服务器发起请求来分类，我将其分为两大类(强制缓存，对比缓存)
+
+在详细介绍这两种规则之前，先通过时序图的方式，让大家对这两种规则有个简单了解。
+
+
+#### 强制缓存
+
+对于强制缓存来说，响应header中会有两个字段来标明失效规则（Expires/Cache-Control）。
+
+##### Expires
+
+Expires的值为服务端返回的到期时间，即下一次请求时，请求时间小于服务端返回的到期时间，直接使用缓存数据。
+  
+  
+不过Expires 是HTTP 1.0的东西，现在默认浏览器均默认使用HTTP 1.1，所以它的作用基本忽略。
+
+另一个问题是，到期时间是由服务端生成的，但是客户端时间可能跟服务端时间有误差，这就会导致缓存命中的误差。
+
+所以HTTP 1.1 的版本，使用Cache-Control替代。
+
+##### Cache-Control
+
+Cache-Control 是最重要的规则。常见的取值有private、public、no-cache、max-age，no-store，默认为private。
+
+- private:             客户端可以缓存
+- public:              客户端和代理服务器都可缓存（前端的同学，可以认为- - public和private是一样的）
+- max-age=xxx:   缓存的内容将在 xxx 秒后失效
+- no-cache:          需要使用对比缓存来验证缓存数据（后面介绍）
+- no-store:           所有内容都不会缓存，强制缓存，对比缓存都不会触发（对于前端开发来说，缓存越多越好，so...基本上和它说886）
+
+![举个板栗](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/%E5%BC%BA%E5%88%B6%E7%BC%93%E5%AD%98.png)
+
+图中Cache-Control仅指定了max-age，所以默认为private，缓存时间为31536000秒（365天）
+
+也就是说，在365天内再次请求这条数据，都会直接获取缓存数据库中的数据，直接使用。
+
+#### 对比缓存
+
+对比缓存，顾名思义，需要进行比较判断是否可以使用缓存。
+
+浏览器第一次请求数据时，服务器会将缓存标识与数据一起返回给客户端，客户端将二者备份至缓存数据库中。
+再次请求数据时，客户端将备份的缓存标识发送给服务器，服务器根据缓存标识进行判断，判断成功后，返回304状态码，通知客户端比较成功，可以使用缓存数据。
+
+![第一次访问](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AE%BF%E9%97%AE.png)
+
+![再次访问](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/%E5%86%8D%E6%AC%A1%E8%AE%BF%E9%97%AE.png)
+
+通过两图的对比，我们可以很清楚的发现，在对比缓存生效时，状态码为304，并且报文大小和请求时间大大减少。
+
+原因是，服务端在进行标识比较后，只返回header部分，通过状态码通知客户端使用缓存，不再需要将报文主体部分返回给客户端。
+
+对于对比缓存来说，缓存标识的传递是我们着重需要理解的，它在请求header和响应header间进行传递，一共分为两种标识传递：
+
+##### Last-Modified  /  If-Modified-Since
+
+Last-Modified：服务器在响应请求时，告诉浏览器资源的最后修改时间。
+
+![Last-Modified](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/Last-Modified.png)
+
+If-Modified-Since：再次请求服务器时，通过此字段通知服务器上次请求时，服务器返回的资源最后修改时间。
+
+- 服务器收到请求后发现有头If-Modified-Since 则与被请求资源的最后修改时间进行比对。
+- 若资源的最后修改时间大于If-Modified-Since，说明资源又被改动过，则响应整片资源内容，返回状态码200；
+- 若资源的最后修改时间小于或等于If-Modified-Since，说明资源无新修改，则响应HTTP 304，告知浏览器继续使用所保存的cache。
+
+![If-Modified-Since](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/If-Modified-Since.png)
+
+##### Etag  /  If-None-Match（优先级高于Last-Modified  /  If-Modified-Since）
+
+Etag：服务器响应请求时，告诉浏览器当前资源在服务器的唯一标识（生成规则由服务器决定）。
+
+![Etag](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/Etag.png)
+
+If-None-Match：再次请求服务器时，通过此字段通知服务器客户段缓存数据的唯一标识。
+
+- 服务器收到请求后发现有头If-None-Match 则与被请求资源的唯一标识进行比对，
+- 不同，说明资源又被改动过，则响应整片资源内容，返回状态码200；
+- 相同，说明资源无新修改，则响应HTTP 304，告知浏览器继续使用所保存的cache。
+
+![If-None-Match](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/If-None-Match.png)
+
+#### 总结
+
+对于强制缓存，服务器通知浏览器一个缓存时间，在缓存时间内，下次请求，直接用缓存，不在时间内，执行比较缓存策略。
+对于比较缓存，将缓存信息中的Etag和Last-Modified通过请求发送给服务器，由服务器校验，返回304状态码时，浏览器直接使用缓存。
+
+浏览器第一次请求：
+
+![第一次请求](http://p9myzkds7.bkt.clouddn.com/%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AF%B7%E6%B1%82.png)
+
+浏览器再次请求时：
+
+![再次请求](http://p9myzkds7.bkt.clouddn.com/%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AF%B7%E6%B1%82.png)
+
+来自——[彻底弄懂HTTP缓存机制及原理]、[http缓存浅谈]、[http协议缓存机制]、[HTTP缓存实现的原理]
+
+[彻底弄懂HTTP缓存机制及原理]:https://www.cnblogs.com/chenqf/p/6386163.html
+
+[http缓存浅谈]:https://www.cnblogs.com/chinajava/p/5705169.html
+
+[http协议缓存机制]:https://segmentfault.com/a/1190000010690320
+
+[HTTP缓存实现的原理]:https://www.cnblogs.com/zikai/p/4973355.html
+
+### http性能优化
+
+
+来自——[36条雅虎军规]、[http请求过程及性能优化分析]、[腾讯HTTPS性能优化实践]、[http性能优化的最佳实践]、[网络请求和性能优化]、[HTTP之2 HTTP优化(HTTP性能优化、安全的HTTP协议)]、[应用缓慢、卡顿千万不能忽视HTTP请求优化]
+
+[36条雅虎军规]:http://www.mamicode.com/info-detail-139010.html
+[http请求过程及性能优化分析]:https://blog.csdn.net/j_bleach/article/details/75215499
+[腾讯HTTPS性能优化实践]:https://blog.csdn.net/suhuaiqiang_janlay/article/details/60962697
+[http性能优化的最佳实践]:https://blog.csdn.net/Charles_Tian/article/details/80352118
+[网络请求和性能优化]:https://www.jianshu.com/p/ab75b24a11e2
+[HTTP之2 HTTP优化(HTTP性能优化、安全的HTTP协议)]:http://blog.51cto.com/jasonteach/1760468
+[应用缓慢、卡顿千万不能忽视HTTP请求优化]:https://www.sohu.com/a/129178271_496760
+
+### TCP 和 UDP
+
+来自——[TCP和UDP的优缺点及区别]、[TCP/IP和UDP的比较]、[TCP与UDP--图解TCP/IP读书笔记]、[TCP和UDP的最完整的区别]
+
+[TCP和UDP的优缺点及区别]:https://www.cnblogs.com/xiaomayizoe/p/5258754.html
+[TCP/IP和UDP的比较]:https://www.cnblogs.com/HPAHPA/p/7737641.html
+[TCP与UDP--图解TCP/IP读书笔记]:https://blog.csdn.net/sinat_37138973/article/details/72822229
+[TCP和UDP的最完整的区别]:https://blog.csdn.net/li_ning_/article/details/52117463
 
 ### AngularJS指令
 
