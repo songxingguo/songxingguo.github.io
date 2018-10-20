@@ -516,6 +516,38 @@ CSS compressors:
 
 [毫秒必争，前端网页性能最佳实践]:http://www.cnblogs.com/developersupport/p/webpage-performance-best-practices.html
 
+### Webpack 
+
+[入门 Webpack，看这篇就够了](https://segmentfault.com/a/1190000006178770)
+
+[Webpack是什么](https://www.cnblogs.com/wymbk/p/6172208.html)
+
+[Webpack 配置详解（含 4）——关注细节](https://segmentfault.com/a/1190000014685887)
+
+[Webpack基本配置介绍](https://blog.csdn.net/mutouafangzi/article/details/79377917)
+
+#### loader 和 plugins
+
+Loaders是webpack提供的最激动人心的功能之一了。通过使用不同的loader，webpack有能力调用外部的脚本或工具，实现对不同格式的文件的处理。
+
+插件（Plugins）是用来拓展Webpack功能的，它们会在整个构建过程中生效，执行相关的任务。
+
+#### 打包流程
+
+[细说webpack之流程篇](https://www.cnblogs.com/yxy99/p/5852987.html)
+
+[Webpack打包流程细节源码解析（P2）](https://www.jianshu.com/p/05222b9f8a8b)
+
+#### Webpack 4.0 （简化配置）
+
+[Webpack 4.0发布了！！](https://www.jianshu.com/p/3a13f1b37300)
+
+[Webpack4.0初体验](https://blog.csdn.net/liwusen/article/details/79424118)
+
+### MCV和MVM 
+### jQuery extend fn
+### SEO 搜索引擎优化、爬虫
+
 ### 常见调试方法
 
 ### 什么是线程？进程和线程的关系是什么？

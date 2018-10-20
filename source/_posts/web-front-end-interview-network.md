@@ -61,6 +61,15 @@ date: 2018-08-06 14:27:00
 
 来自—— [cookies、sessionStorage和localStorage解释及区别]
 
+
+### 异步和同步（JS为单线程）
+
+[Anker—工作学习笔记](https://www.cnblogs.com/Anker/p/5965654.html)
+
+[同步和异步，区别](https://blog.csdn.net/ideality_hunter/article/details/53453285)
+
+[js中的同步和异步的个人理解](https://blog.csdn.net/qq_22855325/article/details/72958345)
+
 ### session和cookie之间的区别
 
 
@@ -665,7 +674,7 @@ UDP又称用户数据包协议，与TCP一样同属于网络传输层。UDP与TC
 
 ### 三次握手
 
-### 28、http和tcp有什么区别？
+### http和tcp有什么区别？
  
 [HTML中href、src区别]: https://blog.csdn.net/annsheshira23/article/details/51133709
 [rel、href、src、url的区别]:https://blog.csdn.net/chengshaolei2012/article/details/72847770

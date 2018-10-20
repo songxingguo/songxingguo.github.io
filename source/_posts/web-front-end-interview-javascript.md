@@ -488,6 +488,40 @@ document.getElementById("debounce").onscroll = function(){
 
 [JavaScript函数节流和函数防抖之间的区别]:https://www.cnblogs.com/walls/p/6399837.html
 
+### 垃圾回收
+
+### 闭包内存（内存泄漏如何处理）
+
+[浅析闭包和内存泄露的问题](https://www.cnblogs.com/yakun/p/3932026.html)
+
+[闭包](https://www.2cto.com/kf/201802/719998.html)
+
+[闭包会造成内存泄漏吗？](https://www.cnblogs.com/developer-ios/p/6014335.html)
+
+### 垃圾回收机制（JC机制、V8）
+
+[JavaScript垃圾回收机制](https://www.cnblogs.com/zhwl/p/4664604.html)
+
+[js垃圾回收机制和引起内存泄漏的操作](https://blog.csdn.net/yingzizizizizizzz/article/details/77333996)
+
+[javascript的垃圾回收机制与内存管理](https://blog.csdn.net/oliver_web/article/details/53957021)
+
+
+### V8 垃圾回收
+
+[浅谈V8引擎中的垃圾回收机制](https://segmentfault.com/a/1190000000440270)
+
+[浅谈Chrome V8引擎中的垃圾回收机制](https://www.cnblogs.com/liangdaye/p/4654734.html)
+
+[V8 JavaScript引擎研究（三）垃圾回收器的实现](https://www.cnblogs.com/wolfx/p/5919574.html)
+
+
+### 冒泡，事件模型
+
+[事件冒泡](https://songxingguo.github.io/2018/08/26/JavaScript-event/)
+
+### JavaScript API
+
 ### asyn 和 wait 
 
 ### 函数无 return 返回 undefined
