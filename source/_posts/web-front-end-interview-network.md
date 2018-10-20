@@ -640,6 +640,10 @@ If-None-Match：再次请求服务器时，通过此字段通知服务器客户�
 
 ### TCP 和 UDP
 
+TCP是面向连接的协议，其显著的特征是在传输之前需要3次握手形成会话。
+
+UDP又称用户数据包协议，与TCP一样同属于网络传输层。UDP与TCP最大的不同是UDP不是面向连接的。
+
 来自——[TCP和UDP的优缺点及区别]、[TCP/IP和UDP的比较]、[TCP与UDP--图解TCP/IP读书笔记]、[TCP和UDP的最完整的区别]
 
 [TCP和UDP的优缺点及区别]:https://www.cnblogs.com/xiaomayizoe/p/5258754.html
