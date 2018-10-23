@@ -488,6 +488,10 @@ document.getElementById("debounce").onscroll = function(){
 
 [JavaScript函数节流和函数防抖之间的区别]:https://www.cnblogs.com/walls/p/6399837.html
 
+### 即时函数
+
+### 浅拷贝和深拷贝
+
 ### 垃圾回收
 
 ### 闭包内存（内存泄漏如何处理）

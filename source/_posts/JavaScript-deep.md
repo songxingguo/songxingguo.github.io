@@ -118,3 +118,29 @@ z-index失效的情况:
 第三种:去除浮动。
 
 第四种:提高父标签的z-index值
+
+### JavaScript 执行过程以及作用域
+
+```js
+var foo = {n: 1}; 
+(function(foo) {
+  console.log(foo.n); 
+  foo.n = 3;
+  var foo = {n: 2}; 
+  console.log(foo.n); 
+})(foo);
+console.log(foo.n); 
+```
+![内存变化]()
+
+第一步：进行预编译，var全局变量foo、匿名函数 function、var局部变量foo
+
+第二步：代码自上而下、自左向右执行计算：
+
+1. 对全局变量foo进行赋值foo={n:1}；注意：此值为对象，属于引用类型；
+2. 匿名函数传入参数foo={n:1}自执行；
+3. console.log(foo);打出数字1；
+4. 由于存在foo局部变量，那么对foo变量进行赋值foo={n:3}，同时更改了引用类型的参数值，全局foo变量被重新赋值foo={n:3}；
+5. 对局部变量foo进行重新赋值foo={n:2};
+6. console.log(foo);打出数字2；
+7. 全局变量foo={n:3},因此，console.log(foo);打出数字3；
