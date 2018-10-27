@@ -965,3 +965,232 @@ import 可以将一个模块中的一个或多个 API 导入到当前作用域�
 
 [理解闭包](https://www.imooc.com/video/6489)
 
+### 动态作用域
+
+![动态作用域](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F-%E9%99%84%E5%BD%95.png)
+
+JavaScript 中的作用域就是词法作用域（事实上大部分语言都是基于词法作用域的）。
+
+实际上动态作用域是 JavaScript 另一个重要机制 this 的表亲。
+
+词法作用域是一套关于引擎如何寻找变量以及会在何处找到变量的规则。**词法作用域最重要的特征是它的定义过程发生在代码的书写阶段**（假设你没有使用eval() 或 with）。
+
+动态作用域似乎暗示有很好的理由让作用域作为一个在运行时就被动态确定的形式，而不
+是在写代码时进行静态确定的形式，事实上也是这样的。我们通过示例代码来说明：
+
+```js
+function foo() {
+  console.log(a); // 2
+}
+function bar() {
+  var a = 3;
+  foo();
+}
+var a = 2;
+bar();
+```
+词法作用域让 foo() 中的 a 通过 RHS 引用到了全局作用域中的 a，因此会输出 2。
+
+而动态作用域并不关心函数和作用域是如何声明以及在何处声明的，只关心它们 **从何处调用**。换句话说，**作用域链是基于调用栈的，而不是代码中的作用域嵌套** 。
+
+因此，如果 JavaScript 具有动态作用域，理论上，下面代码中的 foo() 在执行时将会输出 3。
+
+```js
+function foo() {
+  console.log(a); // 3（不是 2 ！）
+}
+function bar() {
+  var a = 3;
+  foo();
+}
+var a = 2;
+bar();
+```
+需要明确的是，事实上 **JavaScript 并不具有动态作用域** 。它 **只有词法作用域** ，简单明了。但是 **this 机制某种程度上很像动态作用域** 。
+
+主要区别：**词法作用域** 是在写代码或者说 **定义时确定的** ，而 **动态作用域是** 在 **运行时确定的** 。（this 也是！）**词法作用域关注函数在何处声明** ，而 **动态作用域关注函数从何处调用** 。
+
+最后，this 关注函数如何调用，这就表明了 this 机制和动态作用域之间的关系多么紧密。
+
+### 块作用域的替代方案
+
+![块作用域的替代方案](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F-%E9%99%84%E5%BD%95.png)
+
+从 ES3 发布以来，JavaScript 中就有了块作用域，而with 和 catch 分句就是块作用域的两个小例子。
+
+但随着 ES6 中引入了 let，我们的代码终于有了创建完整、不受约束的块作用域的能力。块作用域在功能上和代码风格上都拥有很多激动人心的新特性。
+
+考虑下面的代码：
+
+```js
+{
+  let a = 2;
+  console.log(a); // 2
+}
+console.log(a); // ReferenceError
+```
+这段代码在 ES6 环境中可以正常工作。但是在 ES6 之前的环境中如何才能实现这个效果？答案是使用 catch。
+
+```js
+try {
+  throw 2;
+} catch(a) {
+  console.log(a); // 2
+}
+console.log(a); // ReferenceError
+```
+
+#### Traceur
+
+Traceur 会将我们的代码片段转换成什么样子？你能猜到的！
+
+```
+{
+  try {
+    throw undefined;
+  } catch(a) {
+    a = 2;
+    console.log(a);
+  }
+}
+console.log(a);
+```
+#### 隐式和显式作用域
+
+let 作用域或 let 声明（对比前面的 let 定义）
+
+```js
+let(a = 2) {
+  console.log(a); // 2
+}
+console.log(a); // ReferenceError
+```
+同隐式地劫持一个已经存在的作用域不同，let 声明会创建一个显示的作用域并与其进行绑定。显式作用域不仅更加突出，在代码重构时也表现得更加健壮。在语法上，通过强制性地将所有变量声明提升到块的顶部来产生更简洁的代码。这样更容易判断变量是否属于某个作用域。
+
+但是这里有一个小问题，let 声明并不包含在 ES6 中。官方的 Traceur 编译器也不接受这种形式的代码。
+
+我们有两个选择，使用合法的 ES6 语法并且在代码规范性上做一些妥协。
+
+```js
+/*let*/
+{
+  let a = 2;
+  console.log(a);
+}
+console.log(a); // ReferenceError
+```
+let-er 是一个构建时的代码转换器，但它唯一的作用就是找到 let 声明并对其进行转换。它不会处理包括 let 定义在内的任何其他代码。你可以安全地将 let-er 应用在 ES6 代码转换的第一步，如果有必要，接下来也可以把代码传递给 Traceur 等工具。
+
+此外，let-er 还有一个设置项 --es6，开启它（默认是关闭的）会改变生成代码的种类。开启这个设置项时 let-er 会生成完全标准的 ES6 代码，而不会生成通过try/catch 进行 hack的 ES3 替代方案：
+
+```js
+{
+  let a = 2;
+  console.log(a);
+}
+console.log(a); // ReferenceError
+```
+因此你马上就可以在 ES6 之前的所有环境中使用 let-er，当你只关注 ES6 环境时，可以开启设置项，这样就会生成标准的 ES6 代码。
+
+更重要的，你甚至可以使用尚未成为 ES 官方标准的、更加好用的显式 let 声明。
+
+#### 性能
+
+首先，try/catch 的性能的确很糟糕，但技术层面上没有合理的理由来说明 try/catch 必须这么慢，或者会一直慢下去。
+
+其次，IIFE 和 try/catch 并不是完全等价的，因为如果将一段代码中的任意一部分拿出来用函数进行包裹，会改变这段代码的含义，其中的 this、return、break 和 contine 都会发生变化。IIFE 并不是一个普适的解决方案，它 **只适合在某些情况下进行手动操作** 。
+
+### this词法
+
+![this词法](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/this%E4%BD%9C%E7%94%A8%E5%9F%9F.png)
+
+ES6 中有一个主题用非常重要的方式将 this同词法作用域联系起来了。
+
+ES6 添加了一个特殊的语法形式用于函数声明，叫作箭头函数。它看起来是下面这样的：
+
+```js
+var foo = a = >{
+  console.log(a);
+};
+foo(2); // 2
+```
+这里称作“胖箭头”的写法通常被当作单调乏味且冗长（挖苦）的 function 关键字的简写。
+
+但是箭头函数除了让你在声明函数时少敲几次键盘以外，还有更重要的作用。简单来说，下面的代码有问题：
+
+```js
+var obj = {
+  id: "awesome",
+  cool: function coolFn() {
+    console.log(this.id);
+  }
+};
+var id = "not awesome"obj.cool(); // 酷
+setTimeout(obj.cool, 100); // 不酷
+```
+问题在于 cool() 函数丢失了同 this 之间的绑定。解决这个问题有好几种办法，但最长用的就是 var self = this;
+
+使用起来如下所示：
+
+```js
+var obj = {
+  count: 0,
+  cool: function coolFn() {
+    var self = this;
+    if (self.count < 1) {
+      setTimeout(function timer() {
+        self.count++;
+        console.log("awesome?");
+      },
+      100);
+    }
+  }
+};
+obj.cool(); // 酷吧？
+```
+var self = this 这种解决方案圆满解决了理解和正确使用 this 绑定的问题，并且没有把问题过于复杂化，它使用的是我们非常熟悉的工具：词法作用域。**self 只是一个可以通过词法作用域和闭包进行引用的标识符** ，不关心 this 绑定的过程中发生了什么。
+
+ES6 的一个初衷就是帮助人们减少重复的场景，事实上包括修复某些习惯用法的问题，this 就是其中一个。
+
+ES6 中的箭头函数引入了一个叫作 **this 词法的行为** ：
+
+```js
+var obj = {
+  count: 0,
+  cool: function coolFn() {
+    if (this.count < 1) {
+      setTimeout(() = >{ // 箭头函数是什么鬼东西？
+        this.count++;
+        console.log("awesome?");
+      },
+      100);
+    }
+  }
+};
+obj.cool(); // 很酷吧 ?
+```
+简单来说，箭头函数在涉及 this 绑定时的行为和普通函数的行为完全不一致。它放弃了所有普通 this 绑定的规则，取而代之的是 **用当前的词法作用域覆盖了 this 本来的值** 。
+
+因此，这个代码片段中的箭头函数并非是以某种不可预测的方式同所属的 this 进行了解绑定，而只是“继承”了 cool() 函数的 this 绑定（因此调用它并不会出错）。
+
+这样除了可以少写一些代码，我认为箭头函数将程序员们经常犯的一个错误给标准化了，也就是混淆了 this 绑定规则和词法作用域规则。
+
+另一个导致箭头函数不够理想的原因是它们是匿名而非具名的。具名函数比匿名函数更可取的原因参见第 3 章。
+
+在我看来，解决这个“问题”的另一个更合适的办法是正确使用和包含 this 机制。
+
+```js
+var obj = {
+  count: 0,
+  cool: function coolFn() {
+    if (this.count < 1) {
+      setTimeout(function timer() {
+        this.count++; // this 是安全的
+        // 因为 bind(..)
+        console.log("more awesome");
+      }.bind(this), 100); // look, bind()!
+    }
+  }
+};
+obj.cool(); // 更酷了。
+```
