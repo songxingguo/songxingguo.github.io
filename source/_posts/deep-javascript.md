@@ -1194,3 +1194,212 @@ var obj = {
 };
 obj.cool(); // 更酷了。
 ```
+
+## this和对象原型
+
+### 关于this
+
+![关于this](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E5%85%B3%E4%BA%8Ethis.png)
+
+this 关键字是 JavaScript 中最复杂的机制之一。它是一个很特别的关键字，被自动定义在所有函数的作用域中。
+
+#### 为什么要用this
+
+下面我们来解释一下为什么要使用 this：
+
+```js
+function identify() {
+  return this.name.toUpperCase();
+}
+function speak() {
+  var greeting = "Hello, I'm " + identify.call(this);
+  console.log(greeting);
+}
+var me = {
+  name: "Kyle"
+}
+var you = {
+  name: "Reader"
+};
+identify.call(me); // KYLE
+identify.call(you); // READER
+speak.call(me); // Hello, 我是 KYLE
+speak.call(you); // Hello, 我是 READER
+```
+这段代码可以在不同的上下文对象（me 和 you）中重复使用函数 identify() 和 speak()，不用针对每个对象编写不同版本的函数。
+
+如果不使用 this，那就需要给 identify() 和 speak() 显式传入一个上下文对象。
+
+```js
+function identify(context) {
+  return context.name.toUpperCase();
+}
+function speak(context) {
+  var greeting = "Hello, I'm " + identify(context);
+  console.log(greeting);
+}
+identify(you); // READER
+speak(me); //hello, 我是 KYLE
+```
+然而，**this 提供了一种更优雅的方式来隐式“传递”一个对象引用** ，因此可以 **将 API 设计得更加简洁并且易于复用** 。
+
+#### 误解
+
+##### 指向自身
+
+不过现在我们先来分析一下这个模式，让大家看到 this 并不像我们所想的那样指向函数
+本身。
+我们想要记录一下函数 foo 被调用的次数，思考一下下面的代码：
+
+```js
+function foo(num) {
+  console.log("foo: " + num);
+  // 记录 foo 被调用的次数
+  this.count++;
+}
+foo.count = 0;
+var i;
+for (i = 0; i < 10; i++) {
+  if (i > 5) {
+    foo(i);
+  }
+}
+// foo: 6
+// foo: 7
+// foo: 8
+// foo: 9
+// foo 被调用了多少次？
+console.log(foo.count); // 0 -- WTF?
+```
+console.log 语句产生了 4 条输出，证明 foo(..) 确实被调用了 4 次，但是 foo.count 仍然是 0。显然从字面意思来理解 this 是错误的。
+
+执行 foo.count = 0 时，的确向函数对象 foo 添加了一个属性 count。但是函数内部代码 this.count 中的 this 并不是指向那个函数对象，所以虽然属性名相同，根对象却并不相同，困惑随之产生。
+
+遇到这样的问题时，许多开发者并不会深入思考为什么 this 的行为和预期的不一致，也不会试图回答那些很难解决但却非常重要的问题。他们只会回避这个问题并使用其他方法来达到目的，比如 **创建另一个带有 count 属性的对象** 。
+
+```js
+function foo(num) {
+  console.log("foo: " + num);
+  // 记录 foo 被调用的次数
+  data.count++;
+}
+var data = {
+  count: 0
+};
+var i;
+for (i = 0; i < 10; i++) {
+  if (i > 5) {
+    foo(i);
+  }
+}
+// foo: 6
+// foo: 7
+// foo: 8
+// foo: 9
+// foo 被调用了多少次？
+console.log(data.count); // 4
+```
+无法理解this 的含义和工作原理——而是返回舒适区，使用了一种更熟悉的技术：词法作用域。
+
+如果要从函数对象内部引用它自身，那只使用 this 是不够的。一般来说你需要通过一个指向函数对象的词法标识符（变量）来引用它。
+
+思考一下下面这两个函数：
+
+```js
+function foo() {
+foo.count = 4; // foo 指向它自身
+}
+setTimeout(function() {
+  // 匿名（没有名字的）函数无法指向自身
+},10);
+```
+第一个函数被称为具名函数，在它内部可以使用 foo 来引用自身。
+
+但是在第二个例子中，传入 setTimeout(..) 的回调函数没有名称标识符（这种函数被称为匿名函数），因此无法从函数内部引用自身。
+
+> 还有一种传统的但是现在已经被弃用和批判的用法，是使用 arguments.callee 来引用当前正在运行的函数对象。这是唯一一种可以从匿名函数对象内部引用自身的方法。然而，更好的方式是避免使用匿名函数，至少在需要自引用时使用具名函数（表达式）。arguments.callee 已经被弃用，不应该再使用它。
+
+所以，对于我们的例子来说，另一种解决方法是 **使用 foo 标识符替代 this 来引用函数对象** ：
+
+```js
+function foo(num) {
+  console.log("foo: " + num);
+  // 记录 foo 被调用的次数
+  foo.count++;
+}
+foo.count = 0
+var i;
+for (i = 0; i < 10; i++) {
+  if (i > 5) {
+    foo(i);
+  }
+}关于this｜79
+// foo: 6
+// foo: 7
+// foo: 8
+// foo: 9
+// foo 被调用了多少次？
+console.log(foo.count); // 4
+```
+然而，这种方法同样回避了 this 的问题，并且完全依赖于变量 foo 的词法作用域。
+
+另一种方法是 **强制 this 指向 foo 函数对象** ：
+
+```js
+function foo(num) {
+  console.log("foo: " + num);
+  // 记录 foo 被调用的次数
+  // 注意，在当前的调用方式下（参见下方代码），this 确实指向 foo
+  this.count++;
+}
+foo.count = 0;
+var i;
+for (i = 0; i < 10; i++) {
+  if (i > 5) {
+    // 使用 call(..) 可以确保 this 指向函数对象 foo 本身
+    foo.call(foo, i);
+  }
+}
+// foo: 6
+// foo: 7
+// foo: 8
+// foo: 9
+// foo 被调用了多少次？
+console.log(foo.count); // 4
+```
+
+##### 它的作用域
+
+第二种常见的误解是，this 指向函数的作用域。
+
+需要明确的是，this 在任何情况下都不指向函数的词法作用域。在 JavaScript 内部，作用域确实和对象类似，可见的标识符都是它的属性。但是作用域“对象”无法通过 JavaScript 代码访问，它存在于 JavaScript 引擎内部。
+
+思考一下下面的代码，它试图（但是没有成功）跨越边界，使用 this 来隐式引用函数的词法作用域：
+
+```js
+function foo() {
+  var a = 2;
+  this.bar();
+}
+function bar() {
+  console.log(this.a);
+}
+foo(); // ReferenceError: a is not defined
+```
+首先，这段代码试图通过 this.bar() 来引用 bar() 函数。这是绝对不可能成功的，我们之后会解释原因。调用 bar() 最自然的方法是省略前面的 this，直接使用词法引用标识符。
+
+此外，编写这段代码的开发者还试图使用 this 联通 foo() 和 bar() 的词法作用域，从而让bar() 可以访问 foo() 作用域里的变量 a。这是不可能实现的， **你不能使用 this 来引用一个词法作用域内部的东西** 。
+
+#### this到底是什么
+
+过 this 是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调
+用时的各种条件。this 的绑定和函数声明的位置没有任何关系，**只取决于函数的调用方式** 。
+
+当一个函数被调用时，会创建一个活动记录（有时候也称为执行上下文）。这个记录会包
+含函数在哪里被调用（调用栈）、函数的调用方法、传入的参数等信息。**this 就是记录的其中一个属性** ，**会在函数执行的过程中用到** 。
+
+#### 小结
+
+学习 this 的第一步是明白 this 既不指向函数自身也不指向函数的词法作用域，你也许被这样的解释误导过，但其实它们都是错误的。
+
+this 实际上是在函数被调用时发生的绑定，它指向什么 **完全取决于函数在哪里被调用** 。
