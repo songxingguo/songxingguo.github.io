@@ -344,3 +344,21 @@ date: 2018-08-07 03:32:00
    [校园招聘](http://hr.cmcm.com/Portal/Apply/Index)
     
    [招聘流程](http://hr.cmcm.com/newsdetail/70000249)
+   
+49. ### 同城艺龙
+    
+   [校园招聘](http://job.ly.com/Portal/Apply/Index)
+    
+   [招聘流程](http://join.ly.com/index/cn/campus/yjszp.html?type=zplc)
+   
+50. ### 海康威视
+    
+   [校园招聘](http://campus.hikvision.com/Portal/Apply/Index)
+    
+   [招聘流程](http://campus.hikvision.com/Campus)
+   
+51. ### 斗鱼直播
+    
+   [校园招聘](http://douyu.zhiye.com/Portal/Apply/Index)
+    
+   [招聘流程](http://douyu.zhiye.com/Campus)
