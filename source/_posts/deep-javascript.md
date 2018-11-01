@@ -2792,3 +2792,321 @@ JavaScript 中的对象有字面形式（比如 var a = { .. }）和构造形式
 属性不一定包含值——它们可能是具备 getter/setter 的“访问描述符”。此外，属性可以是可枚举或者不可枚举的，这决定了它们是否会出现在 for..in 循环中。
 
 你可以使用 ES6 的 for..of 语法来遍历数据结构（数组、对象，等等）中的值，for..of会寻找内置或者自定义的 @@iterator 对象并调用它的 next() 方法来遍历数据值。
+
+### 混合对象“类”
+
+面向类的设计模式：实例化（instantiation）、继承（inheritance）和（相对）多态（polymorphism）。
+
+我们将会看到，这些概念实际上无法直接对应到 JavaScript 的对象机制，因此我们会介绍许多 JavaScript 开发者所使用的解决方法（比如混入，mixin）。
+
+![类](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E7%B1%BB.png)
+
+#### 类理论
+
+类 / 继承描述了一种代码的组织结构形式——一种在软件中对真实世界中问题领域的建模方法。
+
+面向对象编程强调的是数据和操作数据的行为本质上是互相关联的（当然，不同的数据有不同的行为），因此好的设计就是把数据以及和它相关的行为打包（或者说封装）起来。
+
+类的另一个核心概念是多态，这个概念是说父类的通用行为可以被子类用更特殊的行为重写。实际上，相对多态性允许我们从重写行为中引用基础行为。
+
+##### “类”设计模式
+
+面向对象设计模式，比如迭代器模式、观察者模式、工厂模式、单例模式。
+
+过程化编程，这种代码只包含过程（函数）调用，没有高层的抽象。或许老师还教过你最好使用类把过程化风格的“意大利面代码”转换成结构清晰、组织良好的代码。
+
+##### JavaScript中的“类”
+
+JavaScript 只有一些近似类的语法元素（比如 new 和 instanceof），不过在后来的 ES6 中新增了一些元素，比如 class 关键字。
+
+#### 类的机制
+
+##### 建造
+
+“类”和“实例”的概念来源于房屋建造。
+
+把类和实例对象之间的关系看作是直接关系而不是间接关系通常更有助于理解。类通过复制操作被实例化为对象形式：
+
+![被实例化为对象形式](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E8%A2%AB%E5%AE%9E%E4%BE%8B%E5%8C%96%E4%B8%BA%E5%AF%B9%E8%B1%A1%E5%BD%A2%E5%BC%8F.png)
+
+如你所见，箭头的方向是从左向右、从上向下，它表示概念和物理意义上发生的复制操作。
+
+##### 构造函数
+
+类实例是由一个特殊的类方法构造的，这个方法名通常和类名相同，被称为构造函数。这个方法的任务就是初始化实例需要的所有信息（状态）。
+
+举例来说，思考下面这个关于类的伪代码（编造出来的语法）：
+
+```js
+class CoolGuy {
+  specialTrick = nothing CoolGuy(trick) {
+    specialTrick = trick
+  }
+  showOff() {
+    output("Here's my trick: ", specialTrick)
+  }
+}
+```
+我们可以调用类构造函数来生成一个CoolGuy实例：
+
+```js
+Joe = new CoolGuy("jumping rope") 
+Joe.showOff() // 这是我的绝技：跳绳
+```
+注意，CoolGuy 类有一个 CoolGuy() 构造函数，执行 new CoolGuy() 时实际上调用的就是它。构造函数会返回一个对象（也就是类的一个实例），之后我们可以在这个对象上调用 showOff() 方法，来输出指定 CoolGuy 的特长。
+
+类构造函数属于类，而且通常和类同名。此外，构造函数大多需要用 new 来调，这样语言引擎才知道你想要构造一个新的类实例。
+
+#### 类的继承
+
+在面向类的语言中，你可以先定义一个类，然后定义一个继承前者的类。
+
+后者通常被称为“子类”，前者通常被称为“父类”。
+
+定义好一个子类之后，相对于父类来说它就是一个独立并且完全不同的类。子类会包含父类行为的原始副本，但是也可以重写所有继承的行为甚至定义新行为。
+
+首先回顾一下本章前面部分提出的 Vehicle 和 Car 类。思考下面关于类继承的伪代码：
+
+```js
+class Vehicle {
+  engines = 1 ignition() {
+    output("Turning on my engine.");
+  }
+  drive() {
+    ignition();
+    output("Steering and moving forward!")
+  }
+}
+class Car inherits Vehicle {
+  wheels = 4 drive() {
+    inherited: drive() output("Rolling on all ", wheels, " wheels!")
+  }
+}
+class SpeedBoat inherits Vehicle {
+  engines = 2 ignition() {
+    output("Turning on my ", engines, " engines.")
+  }
+  pilot() {
+    inherited: drive() output("Speeding through the water with ease!")
+  }
+}
+```
+我们通过定义 Vehicle 类来假设一种发动机，一种点火方式，一种驾驶方法。但是你不可能制造一个通用的“交通工具”，因为这个类只是一个抽象的概念。
+
+接下来我们定义了两类具体的交通工具：Car 和 SpeedBoat。它们都从 Vehicle 继承了通用的特性并根据自身类别修改了某些特性。汽车需要四个轮子，快艇需要两个发动机，因此它必须启动两个发动机的点火装置。
+
+##### 多态
+
+Car 重写了继承自父类的 drive() 方法，但是之后 Car 调用了 inherited:drive() 方法，这表明 Car 可以引用继承来的原始 drive() 方法。快艇的 pilot() 方法同样引用了原始 drive() 方法
+
+这个技术被称为多态或者虚拟多态。在本例中，更恰当的说法是相对多态。
+
+多态是一个非常广泛的话题，我们现在所说的“相对”只是多态的一个方面：任何方法都可以引用继承层次中高层的方法（无论高层的方法名和当前方法名是否相同）。之所以说 “相对”是因为我们并不会定义想要访问的绝对继承层次（或者说类），而是使用相对引用“查找上一层”。
+
+多态的另一个方面是，在继承链的不同层次中一个方法名可以被多次定义，当调用方法时会自动选择合适的定义。
+
+> 在传统的面向类的语言中 super 还有一个功能，就是从子类的构造函数中通过super 可以直接调用父类的构造函数。通常来说这没什么问题，因为对于真正的类来说，构造函数是属于类的。然而，在 JavaScript 中恰好相反——实际上 **“类”是属于构造函数的（类似 Foo.prototype... 这样的类型引用）** 。由于 **JavaScript 中父类和子类的关系只存在于两者构造函数对应的 .prototype 对象中** ，因此 **它们的构造函数之间并不存在直接联系** ，从而 **无法简单地实现两者的相对引用** 。
+
+多态并不表示子类和父类有关联，子类得到的只是父类的一份副本。类的继承其实就是复制。
+
+##### 多重继承
+
+有些面向类的语言允许你继承多个“父类”。多重继承意味着所有父类的定义都会被复制到子类中。
+
+如果两个父类中都定义了 drive() 方法的话，子类引用的是哪个呢？难道每次都需要手动指定具体父类的 drive() 方法吗？这样多态继承的很多优点就存在了。
+
+除此之外，还有一种被称为钻石问题的变种。在钻石问题中，子类 D 继承自两个父类（B和 C），这两个父类都继承自 A。如果 A 中有 drive() 方法并且 B 和 C 都重写了这个方法（多态），那当 D 引用 drive() 时应当选择哪个版本呢（B:drive() 还是C:drive()）？
+
+![为钻石问题的变种](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E9%92%BB%E7%9F%B3%E9%97%AE%E9%A2%98%E7%9A%84%E5%8F%98%E7%A7%8D.png)
+
+#### 混入
+
+使用混入实现多重继承。
+
+在继承或者实例化时，JavaScript 的对象机制并不会自动执行复制行为。简单来说，
+JavaScript 中只有对象，并不存在可以被实例化的“类”。一个对象并不会被复制到其他对象，它们会被关联起来。
+
+由于在其他语言中类表现出来的都是复制行为，因此 JavaScript 开发者也想出了一个方法来模拟类的复制行为，这个方法就是混入。接下来我们会看到两种类型的混入：显式和隐式。
+
+##### 显式混入
+
+首先我们来回顾一下之前提到的 Vehicle 和 Car。由于 JavaScript 不会自动实现 Vehicle 到 Car 的复制行为，所以我们需要手动实现复制功能。这个功能在许多库和框架中被称为 extend(..)，但是为了方便理解我们称之为 mixin(..)。
+
+```js
+// 非常简单的 mixin(..) 例子 :
+function mixin(sourceObj, targetObj) {
+  for (var key in sourceObj) {
+    // 只会在不存在的情况下复制
+    if (! (key in targetObj)) {
+      targetObj[key] = sourceObj[key];
+    }
+  }
+  return targetObj;
+}
+var Vehicle = {
+  engines: 1,
+  ignition: function() {
+    console.log("Turning on my engine.");
+  },
+  drive: function() {
+    this.ignition();
+    console.log("Steering and moving forward!");
+  }
+};
+var Car = mixin(Vehicle, {
+  wheels: 4,
+  drive: function() {
+    Vehicle.drive.call(this);
+    console.log("Rolling on all " + this.wheels + " wheels!");
+  }
+});
+```
+> 有一点需要注意，我们处理的已经不再是类了，因为在 JavaScript 中不存在类，Vehicle 和 Car 都是对象，供我们分别进行复制和粘贴。
+
+###### 再说多态
+
+我们来分析一下这条语句：Vehicle.drive.call( this )。这就是我所说的显式多态。还记得吗，在之前的伪代码中对应的语句是 inherited:drive()，我们称之为相对多态。
+JavaScript（在 ES6 之前；参见附录 A）并没有相对多态的机制。所以，由于 Car 和
+Vehicle 中都有 drive() 函数，为了指明调用对象，我们必须使用绝对（而不是相对）引用。我们通过名称显式指定 Vehicle 对象并调用它的 drive() 函数。
+
+但是如果直接执行 Vehicle.drive()，函数调用中的 this 会被绑定到 Vehicle 对象而不是 Car 对象（参见第 2 章），这并不是我们想要的。因此，我们会使用 .call(this)（参见第 2章）来确保 drive() 在 Car 对象的上下文中执行。
+
+> 如果函数 Car.drive() 的名称标识符并没有和 Vehicle.drive() 重叠（或者说“屏蔽”；参见第 5 章）的话，我们就不需要实现方法多态，因为调用mixin(..) 时会把函数 Vehicle.drive() 的引用复制到 Car 中，因此我们可以直接访问 this.drive()。正是由于存在标识符重叠，所以必须使用更加复杂的显式伪多态方法。
+
+###### 混合复制
+
+回顾一下之前提到的 mixin(..) 函数：
+
+```js
+// 非常简单的 mixin(..) 例子 :
+function mixin(sourceObj, targetObj) {混合对象“类”｜137
+  for (var key in sourceObj) {
+    // 只会在不存在的情况下复制
+    if (! (key in targetObj)) {
+      targetObj[key] = sourceObj[key];
+    }
+  }
+  return targetObj;
+}
+```
+现在我们来分析一下 mixin(..) 的工作原理。它会遍历 sourceObj（本例中是 Vehicle）的属性，如果在 targetObj（本例中是 Car）没有这个属性就会进行复制。由于我们是在目标对象初始化之后才进行复制，因此一定要小心不要覆盖目标对象的原有属性。
+
+如果我们是先进行复制然后对 Car 进行特殊化的话，就可以跳过存在性检查。不过这种方法并不好用并且效率更低，所以不如第一种方法常用：
+
+```js
+// 另一种混入函数，可能有重写风险
+function mixin(sourceObj, targetObj) {
+  for (var key in sourceObj) {
+    targetObj[key] = sourceObj[key];
+  }
+  return targetObj;
+}
+var Vehicle = {
+  // ...
+};
+// 首先创建一个空对象并把 Vehicle 的内容复制进去
+var Car = mixin(Vehicle, {});
+// 然后把新内容复制到 Car 中
+mixin({
+  wheels: 4,
+  drive: function() {
+    // ...
+  }
+},Car);
+```
+这两种方法都可以把不重叠的内容从 Vehicle 中显性复制到 Car 中。“混入”这个名字来源于这个过程的另一种解释：**Car 中混合了 Vehicle 的内容** ，就像你把巧克力片混合到你最喜欢的饼干面团中一样。
+
+复制操作完成后，Car 就和 Vehicle 分离了，向 Car 中添加属性不会影响 Vehicle，反之亦然。
+
+JavaScript 中的函数无法（用标准、可靠的方法）真正地复制，所以你只能复制对共享函数对象的引用（函数就是对象；参见第 3 章）。如果你修改了共享的函数对象（比如ignition()），比如添加了一个属性，那 Vehicle 和 Car 都会受到影响。
+
+###### 寄生继承
+
+显式混入模式的一种变体被称为“寄生继承”，它既是显式的又是隐式的，主要推广者是Douglas Crockford。
+
+下面是它的工作原理：
+
+```js
+//“传统的 JavaScript 类”Vehicle
+function Vehicle() {
+  this.engines = 1;
+}
+Vehicle.prototype.ignition = function() {
+  console.log("Turning on my engine.");
+};
+Vehicle.prototype.drive = function() {
+  this.ignition();
+  console.log("Steering and moving forward!");
+};
+
+//“寄生类”Car
+function Car() {
+  // 首先，car 是一个 Vehicle
+  var car = new Vehicle();
+  // 接着我们对 car 进行定制
+  car.wheels = 4;
+  // 保存到 Vehicle::drive() 的特殊引用
+  var vehDrive = car.drive;
+  // 重写 Vehicle::drive()
+  car.drive = function() {
+    vehDrive.call(this);
+    console.log("Rolling on all " + this.wheels + " wheels!");
+    return car;
+  }
+}
+var myCar = new Car();
+myCar.drive();
+// 发动引擎。
+// 手握方向盘！
+// 全速前进！
+```
+如你所见，首先我们复制一份 Vehicle 父类（对象）的定义，然后混入子类（对象）的定义（如果需要的话保留到父类的特殊引用），然后用这个复合对象构建实例。
+
+##### 隐式混入
+
+隐式混入和之前提到的显式伪多态很像，因此也具备同样的问题。
+
+思考下面的代码：
+
+```js
+var Something = {
+  cool: function() {
+    this.greeting = "Hello World";
+    this.count = this.count ? this.count + 1 : 1;
+  }
+};
+Something.cool();
+Something.greeting; // "Hello World"
+Something.count; // 1
+var Another = {
+  cool: function() {
+    // 隐式把 Something 混入 Another
+    Something.cool.call(this);
+  }
+};
+Another.cool();
+Another.greeting; // "Hello World"
+Another.count; // 1（count 不是共享状态）
+```
+通过在构造函数调用或者方法调用中使用 Something.cool.call( this )，我们实际上“借用”了函数 Something.cool() 并在 Another 的上下文中调用了它（通过 this 绑定；参加第 2 章）。最终的结果是 Something.cool() 中的赋值操作都会应用在 Another 对象上而不是Something 对象上。
+
+#### 小结
+
+类是一种设计模式。许多语言提供了对于面向类软件设计的原生语法。JavaScript 也有类似的语法，但是和其他语言中的类完全不同。
+
+类意味着复制。
+
+传统的类被实例化时，它的行为会被复制到实例中。类被继承时，行为也会被复制到子类中。
+
+多态（在继承链的不同层次名称相同但是功能不同的函数）看起来似乎是从子类引用父类，但是本质上引用的其实是复制的结果。
+
+JavaScript 并不会（像类那样）自动创建对象的副本。
+
+混入模式（无论显式还是隐式）可以用来模拟类的复制行为，但是通常会产生丑陋并且脆弱的语法，比如显式伪多态（OtherObj.methodName.call(this, ...)），这会让代码更加难懂并且难以维护。
+
+此外，显式混入实际上无法完全模拟类的复制行为，因为对象（和函数！别忘了函数也是对象）只能复制引用，无法复制被引用的对象或者函数本身。忽视这一点会导致许多问题。总地来说，在 JavaScript 中模拟类是得不偿失的，虽然能解决当前的问题，但是可能会埋下更多的隐患。
+
+因此，我们把 Something 的行为“混入”到了 Another 中。
+
+虽然这类技术利用了 this 的重新绑定功能，但是 Something.cool.call( this ) 仍然无法变成相对（而且更灵活的）引用，所以使用时千万要小心。通常来说，尽量避免使用这样的结构，以保证代码的整洁和可维护性。
+
