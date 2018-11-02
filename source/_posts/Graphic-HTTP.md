@@ -13,6 +13,8 @@ Web 使用一种名为 HTTP（HyperText Transfer Protocol，超文本传输协�
 
 > HTTP 通常被译为超文本传输协议，但这种译法并不严谨。严谨的译名应该为“超文本转移协议”。
 
+<!-- more -->
+
 ### HTTP 的诞生
 
 #### 为知识共享而规划 Web
