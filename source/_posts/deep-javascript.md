@@ -4564,3 +4564,211 @@ Object.getPrototypeOf(b1) === Bar; // true
 行为委托认为对象之间是兄弟关系，互相委托，而不是父类和子类的关系。JavaScript 的[[Prototype]] 机制本质上就是行为委托机制。也就是说，我们可以选择在 JavaScript 中努力实现类机制（参见第 4 和第 5 章），也可以拥抱更自然的[[Prototype]] 委托机制。
 
 当你只用对象来设计代码时，不仅可以让语法更加简洁，而且可以让代码结构更加清晰。对象关联（对象之前互相关联）是一种编码风格，它倡导的是直接创建和关联对象，不把它们抽象成类。对象关联可以用基于 [[Prototype]] 的行为委托非常自然地实现。
+
+### ES6中的Class
+
+对象关联代码和行为委托（参见第 6 章）使用了 [[Prototype]] 而不是将它藏起来，对比其简洁性可以看出，类并不适用于 JavaScript。
+
+#### class
+
+首先回顾一下第 6 章中的 Widget/Button 例子：
+
+```js
+class Widget {
+  constructor(width, height) {
+    this.width = width || 50;
+    190｜附录A this.height = height || 50;
+    this.$elem = null;
+  }
+  render($where) {
+    if (this.$elem) {
+      this.$elem.css({
+        width: this.width + "px",
+        height: this.height + "px"
+      }).appendTo($where);
+    }
+  }
+}
+class Button extends Widget {
+  constructor(width, height, label) {
+    super(width, height);
+    this.label = label || "Default";
+    this.$elem = $("<button>").text(this.label);
+  }
+  render($where) {
+    super($where);
+    this.$elem.click(this.onClick.bind(this));
+  }
+  onClick(evt) {
+    console.log("Button '" + this.label + "' clicked!");
+  }
+}
+```
+除了语法更好看之外，ES6 还解决了什么问题呢？
+
+1. （基本上，下面会详细介绍）不再引用杂乱的 .prototype 了。
+
+2. Button 声明时直接“继承”了 Widget，不再需要通过 Object.create(..) 来替换 .prototype 对象，也不需要设置 .__proto__ 或者 Object.setPrototypeOf(..)。
+
+3. 可以通过 super(..) 来实现相对多态，这样任何方法都可以引用原型链上层的同名方法。这可以解决第 4 章提到过的那个问题：构造函数不属于类，所以无法互相引用——**super() 可以完美解决构造函数的问题** 。
+
+4. class 字面语法不能声明属性（只能声明方法）。看起来这是一种限制，但是它会排除掉许多不好的情况，如果没有这种限制的话，原型链末端的“实例”可能会意外地获取其他地方的属性（这些属性隐式被所有“实例”所“共享”）。所以，**class 语法实际上可以帮助你避免犯错**。
+
+5. 可以 **通过 extends 很自然地扩展对象（子）类型** ，甚至是 **内置的对象（子）类型** ，比如 Array 或 RegExp。没有 class ..extends 语法时，想实现这一点是非常困难的，基本上只有框架的作者才能搞清楚这一点。但是现在可以轻而易举地做到！
+
+#### class陷阱
+
+首先，你可能会认为 ES6 的 class 语法是向 JavaScript 中引入了一种新的“类”机制，其实不是这样。class 基本上只是 **现有 [[Prototype]]（委托！）机制的一种语法糖** 。
+
+也就是说，class 并不会像传统面向类的语言一样在声明时静态复制所有行为。如果你（有意或无意）修改或者替换了父“类”中的一个方法，那子“类”和所有实例都会受到影响，因为它们在定义时并 **没有进行复制** ，**只是使用基于 [[Prototype]] 的实时委托** ：
+
+```js
+class C {
+  constructor() {
+    this.num = Math.random();
+  }
+  rand() {
+    console.log("Random: " + this.num);
+  }
+}
+
+var c1 = new C();
+c1.rand(); // "Random: 0.4324299..."
+C.prototype.rand = function() {
+  console.log("Random: " + Math.round(this.num * 1000));
+};
+
+var c2 = new C();
+c2.rand(); // "Random: 867"
+
+c1.rand(); // "Random: 432" ——噢！
+```
+如果你已经明白委托的原理所以并不会期望得到“类”的副本的话，那这种行为才看起来
+比较合理。所以你需要问自己：为什么要使用本质上不是类的 class 语法呢？
+
+ES6 中的 class 语法不是会让传统类和委托对象之间的区别更加难以发现和理解吗？
+class 语法无法定义类成员属性（只能定义方法），如果 **为了跟踪实例之间共享状态必须要这么做** ，那你 **只能使用丑陋的 .prototype 语法** ，像这样：
+
+```js
+class C {
+  constructor() {
+    // 确保修改的是共享状态而不是在实例上创建一个屏蔽属性！
+    C.prototype.count++;
+    // this.count 可以通过委托实现我们想要的功能
+    console.log("Hello: " + this.count);
+  }
+}
+
+// 直接向 prototype 对象上添加一个共享状态
+C.prototype.count = 0;
+
+var c1 = new C();
+// Hello: 1
+
+var c2 = new C();
+// Hello: 2
+
+c1.count === 2; // true
+c1.count === c2.count; // true
+```
+这 种 方 法 最 大 的 问 题 是， 它 违 背 了 class 语 法 的 本 意， 在 实 现 中 暴 露（ 泄 露！）了 .prototype。
+
+如果使用 this.count++ 的话，我们会很惊讶地发现在对象 c1 和 c2 上都创建了 .count 属性，而不是更新共享状态。class 没有办法解决这个问题，并且干脆就不提供相应的语法支持，所以你根本就不应该这样做。
+
+此外，class 语法仍然面临意外屏蔽的问题：
+
+```js
+class C {
+  constructor(id) {
+    // 噢，郁闷，我们的 id 属性屏蔽了 id() 方法
+    this.id = id;
+  }
+  id() {
+    console.log("Id: " + id);
+  }
+}
+
+var c1 = new C("c1");
+c1.id(); // TypeError -- c1.id 现在是字符串 "c1"
+```
+除此之外，super 也存在一些非常细微的问题。你可能认为 super 的绑定方法和 this 类似（参见第 2 章），也就是说，无论目前的方法在原型链中处于什么位置，**super 总会绑定到链中的上一层** 。
+
+然而，出于性能考虑（this 绑定已经是很大的开销了），super 并不是动态绑定的，**它会在声明时“静态”绑定** 。
+
+如果你和大多数 JavaScript 开发者一样，会用许多不同的方法把函数应用在不同的（使用 class 定义的）对象上，那你可能不知道，每次执行这些操作时都必须重新绑定 super。
+
+此外，根据应用方式的不同，super 可能不会绑定到合适的对象（至少和你想的不一样），所以你可能（写作本书时，TC39 正在讨论这个话题）需要用 toMethod(..) 来手动绑定 super（类似用 bind(..) 来绑定 this——参见第 2 章）。
+
+你已经习惯了把方法应用到不同的对象上，从而可以自动利用 this 的隐式绑定规则（参见第 2 章）。但是这对于 super 来说是行不通的。
+
+思考下面代码中 super 的行为（D 和 E 上）：
+
+```
+class P {
+  foo() {
+    console.log("P.foo");
+  }
+}
+
+class C extends P {
+  foo() {
+    super();
+  }
+}
+
+var c1 = new C();
+c1.foo(); // "P.foo"
+
+var D = {
+  foo: function() {
+    console.log("D.foo");
+  }
+};
+
+var E = {
+  foo: C.prototype.foo
+};
+
+// 把 E 委托到 D
+Object.setPrototypeOf(E, D);
+E.foo(); // "P.foo"
+```
+如果你认为 super 会动态绑定（非常合理！），那你可能期望 super() 会自动识别出 E 委托了 D，所以 E.foo() 中的 super() 应该调用 D.foo()。
+
+但事实并不是这样。出于性能考虑，super 并不像 this 一样是晚绑定（late bound，或者说动态绑定）的，它在 [[HomeObject]].[[Prototype]] 上，[[HomeObject]] 会在创建时静态绑定。
+
+在本例中，super() 会调用 P.foo()，因为方法的 [[HomeObject]] 仍然是 C，C.[[Prototype]] 是 P。
+
+确实可以手动修改 super 绑定，使用 toMethod(..) 绑定或重新绑定方法的 [[HomeObject]]（就像设置对象的 [[Prototype]] 一样！）就可以解决本例的问题：
+
+```js
+var D = {
+  foo: function() {
+    console.log("D.foo");
+  }
+};
+// 把 E 委托到 D
+var E = Object.create(D);
+
+// 手动把 foo 的 [[HomeObject]] 绑定到 E，E.[[Prototype]] 是 D，所以 super() 是 D.foo()
+E.foo = C.prototype.foo.toMethod(E, "foo");
+
+E.foo(); // "D.foo"
+```
+> toMethod(..) 会复制方法并把 homeObject 当作第一个参数（也就是我们传入的 E），第二个参数（可选）是新方法的名称（默认是原方法名）。
+
+#### 静态大于动态吗
+
+总地来说，ES6 的 class 想伪装成一种很好的语法问题的解决方案，但是实际上却让问题更难解决而且让 JavaScript 更加难以理解。
+
+> 如果你使用 .bind(..) 函数来硬绑定函数（参见第 2 章），那么这个函数不会像普通函数那样被 ES6 的 extend 扩展到子类中。
+
+#### 小结
+
+class 很好地伪装成 JavaScript 中类和继承设计模式的解决方案，但是它实际上起到了反作用：它隐藏了许多问题并且带来了更多更细小但是危险的问题。
+
+class 加深了过去 20 年中对于 JavaScript 中“类”的误解，在某些方面，它产生的问题比解决的多，而且让本来优雅简洁的 [[Prototype]] 机制变得非常别扭。
+
+结论：如果 ES6 的 class 让 [[Prototype]] 变得更加难用而且隐藏了 JavaScript 对象最重要的机制——对象之间的实时委托关联，我们难道不应该认为 class 产生的问题比解决的多吗？难道不应该抵制这种设计模式吗？
+
+我无法替你回答这些问题，但是我希望本书能从前所未有的深度分析这些问题，并且能够为你提供回答问题所需的所有信息。
