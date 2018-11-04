@@ -265,27 +265,27 @@ urn:oasis:names:specification:docbook:dtd:xml:4.1.2
 
 也可使用 data: 或 javascript: 这类指定数据或脚本程序的方案名。
 
-###### 登录信息（认证）
+##### 登录信息（认证）
 
 **指定用户名和密码** 作为 **从服务器端获取资源时必要的登录信息**（身份认证）。此项是可选项。
 
-###### 服务器地址
+##### 服务器地址
 
 使用绝对 URI 必须指定待访问的 **服务器地址** 。地址可以是类似 hackr.jp 这种 **DNS 可解析的名称** ，或是 192.168.1.1 这类 **IPv4 地址名** ，还可以是 [0:0:0:0:0:0:0:1] 这样用方括号括起来的 **IPv6 地址名** 。
 
-###### 服务器端口号
+##### 服务器端口号
 
 **指定服务器连接的网络端口号** 。此项也是可选项，若用户省略则自动使用 **默认端口号** 。
 
-###### 带层次的文件路径
+##### 带层次的文件路径
 
 **指定服务器上的文件路径来定位特指的资源** 。这与 UNIX 系统的文件目录结构相似。
 
-###### 查询字符串
+##### 查询字符串
 
 针对已指定的文件路径内的资源，可以 **使用查询字符串传入任意参数** 。此项可选。
 
-###### 片段标识符
+##### 片段标识符
 
 使用片段标识符通常可标记出已获取资源中的子资源（**文档内的某个位置**）。但在 RFC 中并没有明确规定其使用方法。该项也为可选项。
 
@@ -302,3 +302,312 @@ urn:oasis:names:specification:docbook:dtd:xml:4.1.2
 > 实际在互联网上，已经实现了 HTTP 协议的一些服务器端和客户端里就存在上述情况。说不定它们会与本书介绍的 HTTP 协议的实现情况不一样。
 
 > 本书接下来要介绍的 HTTP 协议内容，除去部分例外，基本上都以 RFC 的标准为准。
+
+
+## 简单的 HTTP 协议
+
+![简单的 HTTP 协议](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%E5%8D%8F%E8%AE%AE.png)
+
+### HTTP 协议用于客户端和服务器端之间的通信
+
+HTTP 协议和 TCP/IP 协议族内的其他众多的协议相同，用于客户端和服务器之间的通信。
+
+请求访问文本或图像等资源的一端称为客户端，而提供资源响应的一端称为服务器端。
+
+![客户端和服务器端](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF.png)
+
+图：应用 HTTP 协议时，必定是一端担任客户端角色，另一端担任服务器端角色
+
+在两台计算机之间使用 HTTP 协议通信时，在一条通信线路上必定有一端是客户端，另一端则是服务器端。
+
+有时候，按实际情况，两台计算机作为客户端和服务器端的角色有可能会互换。但就仅从一条通信路线来说，服务器端和客户端的角色是确定的，而用  **HTTP 协议能够明确区分哪端是客户端，哪端是服务器端** 。
+
+### 通过请求和响应的交换达成通信
+
+![请求和响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94.png)
+
+图：**请求必定由客户端发出，而服务器端回复响应**
+
+**HTTP 协议规定，请求从客户端发出，最后服务器端响应该请求并返回。** 换句话说，肯定是先从客户端开始建立通信的，服务器端在没有接收到请求之前不会发送响应。
+
+下面，我们来看一个具体的示例。
+
+![具体示例](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%85%B7%E4%BD%93%E7%9A%84%E7%A4%BA%E4%BE%8B.png)
+
+下面则是从客户端发送给某个 HTTP 服务器端的请求报文中的内容。
+
+```
+GET /index.htm HTTP/1.1
+Host: hackr.jp
+```
+起始行开头的GET表示请求访问服务器的类型，称为方法（method）。随后的字符串 /index.htm 指明了请求访问的资源对象，也叫做请求 URI（request-URI）。最后的 HTTP/1.1，即 HTTP 的版本号，用来提示客户端使用的 HTTP 协议功能。
+
+综合来看，这段请求内容的意思是：请求访问某台 HTTP 服务器上的 /index.htm 页面资源。
+
+**请求报文** 是由 **请求方法** 、**请求 URI** 、**协议版本** 、**可选的请求首部字段** 和 **内容实体** 构成的。
+
+![请求报文的构成](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E7%9A%84%E6%9E%84%E6%88%90.png)
+
+请求首部字段及内容实体稍后会作详细说明。接下来，我们继续讲解。接收到请求的服务器，会将请求内容的处理结果以响应的形式返回。
+
+```js
+HTTP/1.1 200 OK
+Date: Tue, 10 Jul 2012 06:50:15 GMT
+Content-Length: 362
+Content-Type: text/html
+<html>
+……
+```
+在起始行开头的 HTTP/1.1 表示服务器对应的 HTTP 版本。
+
+紧挨着的 200 OK 表示请求的处理结果的状态码（status code）和原因短语（reason-phrase）。下一行显示了创建响应的日期时间，是首部字段（header field）内的一个属性。
+
+接着以一空行分隔，之后的内容称为资源实体的主体（entity body）。
+
+**响应报文** 基本上由 **协议版本** 、**状态码**（表示请求成功或失败的数字代码）、**用以解释状态码的原因短语** 、**可选的响应首部字段** 以及 **实体主体** 构成。
+
+![响应报文的构成](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E7%9A%84%E6%9E%84%E6%88%90.png)
+
+### HTTP 是不保存状态的协议
+
+HTTP 是一种不保存状态，即 **无状态（stateless）协议** 。HTTP 协议自身不对请求和响应之间的通信状态进行保存。也就是说在 HTTP 这个级别，**协议对于发送过的请求或响应都不做持久化处理** 。
+
+![无状态（stateless）协议](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E6%97%A0%E7%8A%B6%E6%80%81%E5%8D%8F%E8%AE%AE.png)
+
+图：HTTP 协议自身不具备保存之前发送过的请求或响应的功能
+
+使用 HTTP 协议，每当有新的请求发送时，就会有对应的新响应产生。协议本身并不保留之前一切的请求或响应报文的信息。这是为了更快地处理大量事务，确保协议的可伸缩性，而特意把 HTTP 协议设计成如此简单的。
+
+可是，随着 Web 的不断发展，因无状态而导致业务处理变得棘手的情况增多了。比如，用户登录到一家购物网站，即使他跳转到该站的其他页面后，也需要能继续保持登录状态。针对这个实例，网站为了能够掌握是谁送出的请求，需要保存用户的状态。
+
+HTTP/1.1 虽然是无状态协议，但为了实现期望的保持状态功能，于是引入了 **Cookie 技术** 。有了 Cookie 再用 HTTP 协议通信，就可以管理状态了。
+
+### 请求 URI 定位资源
+
+HTTP 协议使用 URI 定位互联网上的资源。正是因为 URI 的特定功能，在互联网上任意位置的资源都能访问到。
+
+![URI 定位资源](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/URI%20%E5%AE%9A%E4%BD%8D%E8%B5%84%E6%BA%90.png)
+
+图：HTTP 协议使用 URI 让客户端定位到资源
+
+当客户端请求访问资源而发送请求时，URI 需要将作为请求报文中的请求 URI 包含在内。指定请求 URI 的方式有很多。
+
+![请求 URI 的方式](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%20URI%20%E7%9A%84%E6%96%B9%E5%BC%8F.png)
+
+图：以 http://hackr.jp/index.htm 作为请求的例子
+
+除此之外，如果不是访问特定资源而是 **对服务器本身发起请求** ，可以 **用一个 * 来代替请求 URI** 。下面这个例子是查询 HTTP 服务器端支持的 HTTP 方法种类。
+
+```
+OPTIONS * HTTP/1.1
+```
+
+### 告知服务器意图的 HTTP 方法
+
+下面，我们介绍 HTTP/1.1 中可使用的方法。
+
+#### GET ：获取资源
+
+GET 方法用来 **请求访问已被 URI 识别的资源** 。**指定的资源经服务器端解析后返回响应内容。** 也就是说，如果请求的资源是文本，那就保持原样返回；如果是像 CGI（Common Gateway Interface，通用网关接口）那样的程序，则返回经过执行后的输出结果。
+
+![GET 方法](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/GET%20%E6%96%B9%E6%B3%95.png)
+
+使用 GET 方法的请求·响应的例子
+
+![GET 方法的请求·响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/GET%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
+
+#### POST：传输实体主体
+
+**POST 方法** 用来 **传输实体的主体** 。
+
+虽然用 GET 方法也可以传输实体的主体，但一般不用 GET 方法进行传输，而是用 POST 方法。虽说 POST 的功能与 GET 很相似，但 **POST 的主要目的并不是获取响应的主体内容** 。
+
+![POST 方法](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/POST%E6%96%B9%E6%B3%95.png)
+
+使用 POST 方法的请求·响应的例子
+
+![POST 方法的请求·响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/POST%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
+
+#### PUT：传输文件
+
+**PUT 方法** 用来 **传输文件** 。就像 FTP 协议的文件上传一样，要求在请求报文的主体中包含文件内容，然后保存到请求 URI 指定的位置。
+
+但是，鉴于 HTTP/1.1 的 PUT 方法自身不带验证机制，任何人都可以上传文件 , **存在安全性问题** ，因此一般的 Web 网站不使用该方法。**若配合 Web 应用程序的验证机制** ，或 **架构设计采用 REST（REpresentational State Transfer，表征状态转移）标准** 的同类 Web 网站，就 **可能会开放使用 PUT 方法** 。
+
+![PUT 方法](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/PUT%20%E6%96%B9%E6%B3%95.png)
+
+使用 PUT 方法的请求·响应的例子
+
+![PUT 方法的请求·响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/PUT%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
+
+> 响应的意思其实是请求执行成功了，但无数据返回。
+
+#### HEAD：获得报文首部
+
+**HEAD 方法和 GET 方法一样**，只是 **不返回报文主体部分** 。用于 **确认 URI 的有效性及资源更新的日期时间等** 。
+
+![HEAD 方法](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HEAD%20%E6%96%B9%E6%B3%95.png)
+
+图：和 GET 一样，但不返回报文主体
+
+使用 HEAD 方法的请求·响应的例子
+
+![HEAD 方法的请求·响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HEAD%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
+
+#### DELETE：删除文件
+
+DELETE 方法用来删除文件，是与 PUT 相反的方法。DELETE 方法按请求 URI 删除指定的资源。
+
+但是，HTTP/1.1 的 DELETE 方法本身 **和 PUT 方法一样不带验证机制** ，所以一般的 Web 网站也不使用 DELETE 方法。当配合 Web 应用程序的验证机制，或遵守 REST 标准时还是有可能会开放使用的。
+
+![DELETE 方法](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/DELETE%20%E6%96%B9%E6%B3%95.png)
+
+使用 DELETE 方法的请求·响应的例子
+
+![DELETE 方法的请求·响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/DELETE%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
+
+#### OPTIONS：询问支持的方法
+
+**OPTIONS 方法** 用来 **查询针对请求 URI 指定的资源支持的方法** 。
+
+![OPTIONS 方法](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/OPTIONS%20%E6%96%B9%E6%B3%95.png)
+
+使用 OPTIONS 方法的请求·响应的例子
+
+![OPTIONS 方法的请求·响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/OPTIONS%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
+
+#### TRACE：追踪路径
+
+**TRACE 方法** 是 **让 Web 服务器端将之前的请求通信环回给客户端的方法** 。
+
+发送请求时，在 Max-Forwards 首部字段中填入数值，每经过一个服务器端就将该数字减 1，当数值刚好减到 0 时，就停止继续传输，最后接收到请求的服务器端则返回状态码 200 OK 的响应。
+
+客户端通过 TRACE 方法可以查询发送出去的请求是怎样被加工修改 / 篡改的。这是因为，请求想要连接到源目标服务器可能会通过代理中转，TRACE 方法就是用来确认连接过程中发生的一系列操作。
+
+但是，TRACE 方法本来就不怎么常用，再加上它 **容易引发 XST**（Cross-Site Tracing，跨站追踪）攻击，通常就更不会用到了。
+
+![TRACE 方法](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/TRACE%20%E6%96%B9%E6%B3%95.png)
+
+使用 TRACE 方法的请求·响应的例子
+
+![TRACE 方法的请求.响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/TRACE%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82.%E5%93%8D%E5%BA%94.png)
+
+![TRACE 方法的请求.响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/TRACE%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82.%E5%93%8D%E5%BA%941.png)
+
+#### CONNECT：要求用隧道协议连接代理
+
+**CONNECT 方法** 要求在与代理服务器通信时建立隧道，实现 **用隧道协议进行 TCP 通信** 。主要使用 **SSL**（Secure Sockets Layer，安全套接层）和 **TLS**（Transport Layer Security，传输层安全）协议 **把通信内容加密后经网络隧道传输** 。
+
+CONNECT 方法的格式如下所示。
+
+```
+CONNECT 代理服务器名:端口号 HTTP版本
+```
+![CONNECT 方法](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/CONNECT%20%E6%96%B9%E6%B3%95%E7%9A%84.png)
+
+使用 CONNECT 方法的请求·响应的例子
+
+![CONNECT 方法的请求·响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/CONNECT%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
+
+### 使用方法下达命令
+
+向请求 URI 指定的资源发送请求报文时，采用称为 **方法的命令** 。
+
+方法的作用在于，可以 **指定请求的资源按期望产生某种行为**  。方法中有 GET、POST 和 HEAD 等。
+
+![方法的命令](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E6%96%B9%E6%B3%95%E7%9A%84%E5%91%BD%E4%BB%A4.png)
+
+下表列出了 HTTP/1.0 和 HTTP/1.1 支持的方法。另外，**方法名区分大小写** ，注意要用 **大写字母** 。
+
+![HTTP/1.0 和 HTTP/1.1 支持的方法](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP-1.0%20%E5%92%8C%20HTTP-1.1%20%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%B9%E6%B3%95.png)
+
+在这里列举的众多方法中，LINK 和 UNLINK 已被 HTTP/1.1 废弃，不再支持。
+
+### 持久连接节省通信量
+
+HTTP 协议的初始版本中，每进行一次 HTTP 通信就要断开一次 TCP连接。
+
+![HTTP 协议的初始版本](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%20%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%88%9D%E5%A7%8B%E7%89%88%E6%9C%AC.png)
+
+以当年的通信情况来说，因为都是些容量很小的文本传输，所以即使这样也没有多大问题。可随着 HTTP 的普及，文档中包含大量图片的情况多了起来。
+
+比如，使用浏览器浏览一个包含多张图片的 HTML页面时，在发送请求访问 HTML页面资源的同时，也会请求该 HTML页面里包含的其他资源。因此，每次的请求都会造成无谓的 TCP 连接建立和断开，增加通信量的开销。
+
+![增加通信量的开销](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%A2%9E%E5%8A%A0%E9%80%9A%E4%BF%A1%E9%87%8F%E7%9A%84%E5%BC%80%E9%94%80.png)
+
+#### 持久连接
+
+为解决上述 TCP 连接的问题，HTTP/1.1 和一部分的 HTTP/1.0 想出了持久连接（HTTP Persistent Connections，也称为 **HTTP keep-alive** 或 **HTTP connection reuse** ）的方法。持久连接的特点是，**只要任意一端没有明确提出断开连接，则保持 TCP 连接状态** 。
+
+![持久连接](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5.png)
+
+图：持久连接旨在建立 1 次 TCP 连接后进行多次请求和响应的交互
+
+持久连接的好处在于 **减少了 TCP 连接的重复建立和断开所造成的额外开销** ，**减轻了服务器端的负载** 。另外，**减少开销的那部分时间** ，**使 HTTP 请求和响应能够更早地结束** ，这样 Web 页面的显示速度也就相应提高了。
+
+在 HTTP/1.1 中，**所有的连接默认都是持久连接** ，但在 HTTP/1.0 内并未标准化。虽然有一部分服务器通过非标准的手段实现了持久连接，但服务器端不一定能够支持持久连接。毫无疑问，除了服务器端，客户端也需要支持持久连接。
+
+#### 管线化
+
+持久连接使得多数请求以管线化（pipelining）方式发送成为可能。从前发送请求后需等待并收到响应，才能发送下一个请求。**管线化技术**出现后，**不用等待响应亦可直接发送下一个请求** 。
+
+这样就能够做到 **同时并行发送多个请求** ，而不需要一个接一个地等待响应了。
+
+![管线化](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E7%AE%A1%E7%BA%BF%E5%8C%96.png)
+
+图：不等待响应，直接发送下一个请求
+
+比如，当请求一个包含 10 张图片的 HTMLWeb 页面，与挨个连接相比，用持久连接可以让请求更快结束。而 **管线化技术则比持久连接还要快** 。**请求数越多，时间差就越明显** 。
+
+### 使用 Cookie 的状态管理
+
+**HTTP 是无状态协议** ，它 **不对之前发生过的请求和响应的状态进行管理** 。也就是说，**无法根据之前的状态进行本次的请求处理** 。
+
+假设要求登录认证的 Web 页面本身无法进行状态的管理（不记录已登录的状态），那么每次跳转新页面不是要再次登录，就是要在每次请求报文中附加参数来管理登录状态。
+
+不可否认，无状态协议当然也有它的优点。由于不必保存状态，自然可减少服务器的 CPU 及内存资源的消耗。从另一侧面来说，也正是因为 HTTP 协议本身是非常简单的，所以才会被应用在各种场景里。
+
+![HTTP 是无状态协议](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%20%E6%98%AF%E6%97%A0%E7%8A%B6%E6%80%81%E5%8D%8F%E8%AE%AE.png)
+
+图：如果让服务器管理全部客户端状态则会成为负担
+
+保留无状态协议这个特征的同时又要解决类似的矛盾问题，于是引入了 Cookie 技术。**Cookie 技术** 通过 **在请求和响应报文中写入 Cookie 信息来控制客户端的状态** 。
+
+Cookie 会根据从服务器端发送的响应报文内的一个叫做 **Set-Cookie 的首部字段信息** ，**通知客户端保存 Cookie** 。当下次客户端再往该服务器发送请求时，**客户端会自动在请求报文中加入 Cookie 值后发送出去** 。
+
+**服务器端发现客户端发送过来的 Cookie** 后，会去 **检查究竟是从哪一个客户端发来的连接请求** ，然后 **对比服务器上的记录** ，最后 **得到之前的状态信息** 。
+
+- 没有 Cookie 信息状态下的请求
+
+ ![没有 Cookie 信息状态](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E6%B2%A1%E6%9C%89%20Cookie%20%E4%BF%A1%E6%81%AF%E7%8A%B6%E6%80%81.png)
+
+- 第 2 次以后（存有 Cookie 信息状态）的请求
+
+ ![存有 Cookie 信息状态](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%AD%98%E6%9C%89%20Cookie%20%E4%BF%A1%E6%81%AF%E7%8A%B6%E6%80%81.png)
+ 
+上图展示了发生 Cookie 交互的情景，HTTP 请求报文和响应报文的内容如下。
+
+1. 请求报文（没有 Cookie 信息的状态）
+
+  ```
+  GET /reader/ HTTP/1.1
+  Host: hackr.jp
+  *首部字段内没有Cookie的相关信息
+  ```
+2. 响应报文（服务器端生成 Cookie 信息）
+
+  ```
+  HTTP/1.1 200 OK
+  Date: Thu, 12 Jul 2012 07:12:20 GMT
+  Server: Apache
+  ＜Set-Cookie: sid=1342077140226724; path=/; expires=Wed,
+  10-Oct-12 07:12:20 GMT＞
+  Content-Type: text/plain; charset=UTF-8
+  ```
+3. 请求报文（自动发送保存着的 Cookie 信息）
+
+  ```
+  GET /image/ HTTP/1.1
+  Host: hackr.jp
+  Cookie: sid=1342077140226724
+  ```
