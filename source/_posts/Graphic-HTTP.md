@@ -828,3 +828,158 @@ Content-Language
 
 **是服务器驱动和客户端驱动的结合体** ，是由服务器端和客户端各自进行内容协商的一种方法。
 
+## 返回结果的 HTTP 状态码
+
+![返回结果的 HTTP 状态码](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%E7%8A%B6%E6%80%81%E7%A0%81.png)
+
+HTTP 状态码负责表示客户端 HTTP 请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等工作。
+
+![HTTP 状态码](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%20%E7%8A%B6%E6%80%81.png)
+
+### 状态码告知从服务器端返回的请求结果
+
+状态码的职责是当客户端向服务器端发送请求时，描述返回的请求结果。借助状态码，用户可以知道服务器端是正常处理了请求，还是出现了错误。
+
+![响应的状态码可描述请求的处理结果](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%93%8D%E5%BA%94%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81%E5%8F%AF%E6%8F%8F%E8%BF%B0%E8%AF%B7%E6%B1%82%E7%9A%84%E5%A4%84%E7%90%86%E7%BB%93%E6%9E%9C.png)
+
+状态码如 200 OK，**以 3 位数字和原因短语组成** 。
+
+数字中的第一位指定了响应类别，后两位无分类。响应类别有以下 5 种。
+
+![状态码的类别](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E7%8A%B6%E6%80%81%E7%A0%81%E7%9A%84%E7%B1%BB%E5%88%AB.png)
+
+只要 **遵守状态码类别的定义** ，即使 **改变 RFC2616 中定义的状态码** ，或 **服务器端自行创建状态码** 都没问题。
+
+仅记录在 RFC2616 上的 HTTP 状态码就达 **40** 种，若再加上 WebDAV（Web-based Distributed Authoring and Versioning，基于万维网的分布式创作和版本控制）（RFC4918、5842） 和附加 HTTP 状态码（RFC6585）等扩展，数量就达 **60** 余种。别看种类繁多，实际上经常使用的大概只有 **14** 种。
+
+### 2XX 成功
+
+2XX 的响应结果 **表明请求被正常处理了** 。
+
+#### 200 OK
+
+![200 OK](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/200%20OK.png)
+
+表示 **从客户端发来的请求在服务器端被正常处理了** 。
+
+在响应报文内，**随状态码一起返回的信息会因方法的不同而发生改变** 。比如，使用 GET 方法时，对应请求资源的实体会作为响应返回；而使用 HEAD 方法时，对应请求资源的实体首部不随报文主体作为响应返回（即在响应中只返回首部，不会返回实体的主体部
+分）。
+
+#### 204 No Content
+
+![204 No Content](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/204%20No%20Content.png)
+
+该状态码代表 **服务器接收的请求已成功处理** ，但 **在返回的响应报文中不含实体的主体部分** 。另外，也不允许返回任何实体的主体。比如，当从浏览器发出请求处理后，返回 204 响应，那么浏览器显示的页面不发生更新。
+
+一般在只需要从客户端往服务器发送信息，而对客户端不需要发送新信息内容的情况下使用。
+
+#### 206 Partial Content
+
+![206 Partial Content](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/206%20Partial%20Content.png)
+
+该状态码表示 **客户端进行了范围请求** ，而 **服务器成功执行了这部分的 GET 请求** 。响应报文中包含由 **Content-Range 指定范围的实体内容** 。
+
+### 3XX 重定向
+
+3XX 响应结果表明浏览器需要执行某些特殊的处理以正确处理请求。
+
+####  301 Moved Permanently
+
+![301 Moved Permanently](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/301%20Moved%20Permanently.png)
+
+永久性重定向。该状态码表示 **请求的资源已被分配了新的 URI** ，**以后应使用资源现在所指的 URI** 。也就是说，如果 **已经把资源对应的 URI 保存为书签了** ，这时应该按 **Location 首部字段** 提示的 URI 重新保存。
+
+像下方给出的请求 URI，当指定资源路径的最后 **忘记添加斜杠“/”** ，就会 **产生 301 状态码** 。
+
+```
+http://example.com/sample
+```
+
+#### 302 Found
+
+![302 Found](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/302%20Found.png)
+
+临时性重定向。该状态码表示 **请求的资源已被分配了新的 URI** ，**希望用户（本次）能使用新的 URI 访问** 。
+
+和 301 Moved Permanently 状态码相似，但 302 状态码代表的资源不是被永久移动，只是临时性质的。换句话说，**已移动的资源对应的 URI 将来还有可能发生改变** 。比如，用户把 URI 保存成书签，但 **不会** 像 301 状态码出现时那样去 **更新书签** ，而是仍旧保留返回 302 状态码的页面对应的 URI。
+
+#### 303 See Other
+
+![303 See Other](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/303%20See%20Other.png)
+
+该状态码表示 **由于请求对应的资源存在着另一个 URI** ，**应使用 GET方法定向获取请求的资源** 。
+
+303 状态码和 302 Found 状态码有着相同的功能，但 303 状态码 **明确表示客户端应当采用 GET 方法获取资源** ，这点与 302 状态码有区别。
+
+比如，当使用 POST 方法访问 CGI 程序，其执行后的处理结果是希望客户端能以 GET 方法重定向到另一个 URI 上去时，返回 303 状态码。虽然 302 Found 状态码也可以实现相同的功能，但这里使用 303 状态码是最理想的。
+
+> 本书采用的是 HTTP/1.1，而许多 HTTP/1.1 版以前的浏览器不能正确理解 303 状态码。虽然 RFC 1945 和 RFC 2068 规范不允许客户端在重定向时改变请求的方法，但是很多现存的浏览器将 302 响应视为 303 响应，并且使用 GET方式访问在 Location 中规定的 URI，而无视原先请求的方法。所以作者说这里使用 303 是最理想的。
+
+> 当 301、302、303 响应状态码返回时，几乎所有的浏览器都会把 POST 改成 GET，并删除请求报文内的主体，之后请求会自动再次发送。
+301、302 标准是禁止将 POST 方法改变成 GET 方法的，但实际使用时大家都会这么做。
+
+#### 304 Not Modified
+
+![304 Not Modified](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/304%20Not%20Modified.png)
+
+该状态码表示客户端发送附带条件的请求时，**服务器端允许请求访问资源** ，但 **未满足条件的情况** 。304 状态码返回时，不包含任何响应的主体部分。304 虽然被划分在 3XX 类别中，但是和重定向没有关系。
+
+> 附带条件的请求是指采用 GET方法的请求报文中包含 **If-Match** ，**If-ModifiedSince** ，**If-None-Match** ，**If-Range** ，**If-Unmodified-Since** 中任一首部。
+
+#### 307 Temporary Redirect
+
+临时重定向。该状态码与 302 Found 有着相同的含义。尽管 302 标准禁止 POST 变换成 GET，但实际使用时大家并不遵守。
+
+**307 会遵照浏览器标准**  ，**不会从 POST 变成 GET** 。但是，对于处理响应时的行为，**每种浏览器有可能出现不同的情况** 。
+
+### 4XX 客户端错误
+
+4XX 的响应结果表明 **客户端是发生错误的原因所在** 。
+
+#### 400 Bad Request
+
+![400 Bad Request](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/400%20Bad%20Request.png)
+
+该状态码表示 **请求报文中存在语法错误** 。当错误发生时，**需修改请求的内容后再次发送请求** 。另外，**浏览器会像 200 OK 一样对待该状态码** 。
+
+#### 401 Unauthorized
+
+![401 Unauthorized](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/401%20Unauthorized.png)
+
+该状态码表示 **发送的请求需要有通过 HTTP 认证**（BASIC 认证、DIGEST 认证）的认证信息。另外若之前已进行过 1 次请求，则表示用户认证失败。
+
+返回含有 401 的响应必须包含一个适用于被请求资源的 WWWAuthenticate 首部用以质询（challenge）用户信息。当浏览器初次接收到 401 响应，会弹出认证用的对话窗口。
+
+#### 403 Forbidden
+
+![403 Forbidden](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/403%20Forbidden.png)
+
+该状态码表明 **对请求资源的访问被服务器拒绝了** 。服务器端没有必要给出拒绝的详细理由，但如果想作说明的话，可以在实体的主体部分对原因进行描述，这样就能让用户看到了。
+
+未获得文件系统的访问授权，访问权限出现某些问题（从未授权的发送源 IP 地址试图访问）等列举的情况都可能是发生 403 的原因。
+
+#### 404 Not Found
+
+![404 Not Found](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/404%20Not%20Found.png)
+
+该状态码表明 **服务器上无法找到请求的资源** 。除此之外，也可以 **在服务器端拒绝请求且不想说明理由时使用** 。
+
+### 5XX 服务器错误
+
+5XX 的响应结果表明服务器本身发生错误。
+
+#### 500 Internal Server Erro
+
+![500 Internal Server Erro](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/500%20Internal%20Server%20Erro.png)
+
+该状态码表明 **服务器端在执行请求时发生了错误** 。也有可能是 **Web应用存在的 bug** 或 **某些临时的故障** 。
+
+#### 503 Service Unavailable
+
+![503 Service Unavailable](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/503%20Service%20Unavailable.png)
+
+该状态码表明 **服务器暂时处于超负载** 或 **正在进行停机维护** ，现在无法处理请求。如果 **事先得知解除以上状况需要的时间** ，最好写入 **RetryAfter** 首部字段再返回给客户端。
+
+> **状态码和状况的不一致**
+不少返回的状态码响应都是错误的，但是用户可能察觉不到这点。比如 Web 应用程序内部发生错误，状态码依然返回 200 OK，这种情况也经常遇到。
+
