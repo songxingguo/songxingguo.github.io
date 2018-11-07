@@ -1124,7 +1124,477 @@ HTTP 通信时，除 **客户端** 和 **服务器** 以外，还有一些 **用
 以关键词检索多个数据库使用的协议。1991 年前后出现。由于现在已经被 HTTP 协议替代，也已经不怎么使用了。
 
 > Gopher
-查找与互联网连接的计算机内信息的协议。1991 年前后出现，由于现在已经被 HTTP 协议替代，也已经不怎么使用了
+查找与互联网连接的计算机内信息的协议。1991 年前后出现，由于现在已经被 HTTP 协议替代，也已经不怎么使用了。
+
+## HTTP 首部
+
+HTTP 协议的请求和响应报文中必定包含 HTTP 首部，只是我们平时在使用 Web 的过程中感受不到它。
+
+![HTTP 首部]()
+
+### HTTP 报文首部
+
+![HTTP 报文的结构]()
+
+HTTP 协议的请求和响应报文中必定包含 HTTP 首部。首部内容为客户端和服务器分别处理请求和响应提供所需要的信息。对于客户端用户来说，这些信息中的大部分内容都无须亲自查看。
+
+报文首部由几个字段构成。
+
+#### HTTP 请求报文
+
+在请求中，HTTP 报文由 **方法** 、**URI**  、**HTTP 版本** 、**HTTP 首部字段** 等部分构成。
+
+![请求报文]()
+
+下面的示例是访问 http://hackr.jp 时，请求报文的首部信息。
+
+```
+GET / HTTP/1.1
+Host: hackr.jp
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:13.0) Gecko/20100101 Firefox/13.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*; q=0.8
+Accept-Language: ja,en-us;q=0.7,en;q=0.3
+Accept-Encoding: gzip, deflate
+DNT: 1
+Connection: keep-alive
+If-Modified-Since: Fri, 31 Aug 2007 02:02:20 GMT
+If-None-Match: "45bae1-16a-46d776ac"
+Cache-Control: max-age=0
+```
+#### HTTP 响应报文
+
+在响应中，HTTP 报文由 **HTTP 版本** 、**状态码**（数字和原因短语）、**HTTP 首部字段**  3 部分构成。
+
+![响应报文]()
+
+以下示例是之前请求访问 http://hackr.jp/ 时，返回的响应报文的首部信息。
+
+```js
+HTTP/1.1 304 Not Modified
+Date: Thu, 07 Jun 2012 07:21:36 GMT
+Server: Apache
+Connection: close
+Etag: "45bae1-16a-46d776ac"
+```
+在报文众多的字段当中，HTTP 首部字段包含的信息最为丰富。首部字段同时存在于请求和响应报文内，并涵盖 HTTP 报文相关的内容信息。
+
+因 HTTP 版本或扩展规范的变化，首部字段可支持的字段内容略有不同。本书主要涉及 HTTP/1.1 及常用的首部字段。
+
+### HTTP 首部字段
+
+#### HTTP 首部字段传递重要信息
+
+HTTP 首部字段是构成 HTTP 报文的要素之一。在客户端与服务器之间以 HTTP 协议进行通信的过程中，**无论是请求还是响应都会使用首部字段，它能起到传递额外重要信息的作用** 。
+
+使用首部字段是为了给浏览器和服务器提供 **报文主体大小** 、**所使用的语言** 、**认证信息** 等内容。
+
+![首部字段内可使用的附加信息较多]()
+
+#### HTTP 首部字段结构
+
+HTTP 首部字段是由首部 **字段名** 和 **字段值** 构成的，中间用冒号“:” 分隔。
+
+```
+首部字段名: 字段值
+```
+
+例如，在 HTTP 首部中以 Content-Type 这个字段来表示报文主体的 对象类型。
+
+```
+Content-Type: text/html
+```
+就以上述示例来看，首部字段名为 Content-Type，字符串 text/html 是字段值。
+
+另外，字段值对应单个 HTTP 首部字段可以 **有多个值** ，如下所示。
+
+```
+Keep-Alive: timeout=15, max=100
+```
+>若 **HTTP 首部字段重复** 了会如何
+当 HTTP 报文首部中出现了两个或两个以上具有相同首部字段名时会怎么样？这种情况在规范内尚未明确，根据浏览器内部处理逻辑的不同，结果可能并不一致。有些浏览器会优先处理第一次出现的首部字段，而有些则会优先处理最后出现的首部字段。
+
+#### 4 种 HTTP 首部字段类型
+
+HTTP 首部字段根据实际用途被分为以下 4 种类型。
+
+##### 通用首部字段（General Header Fields）
+
+**请求报文** 和 **响应报文** 两方都会使用的首部。
+
+##### 请求首部字段（Request Header Fields）
+
+从 **客户端向服务器端发送请求报文** 时使用的首部。补充了请求的附加内容、客户端信息、响应内容相关优先级等信息。
+
+##### 响应首部字段（Response Header Fields）
+
+从 **服务器端向客户端返回响应报文** 时使用的首部。补充了响应的附加内容，也会要求客户端附加额外的内容信息。
+
+##### 实体首部字段（Entity Header Fields）
+
+针对 **请求报文和响应报文的实体部分** 使用的首部。补充了资源内容更新时间等与实体有关的信息。
+
+#### HTTP/1.1 首部字段一览
+
+HTTP/1.1 规范定义了如下 47 种首部字段。
+
+![通用首部字段]()
+
+![请求首部字段]()
+
+![响应首部字段]()
+
+![实体首部字段]()
+
+#### 非 HTTP/1.1 首部字段
+
+在 HTTP 协议通信交互中使用到的首部字段，不限于 RFC2616 中定义的 47 种首部字段。还有 **Cookie** 、**Set-Cookie** 和 **Content-Disposition** 等在其他 RFC 中定义的首部字段，它们的使用频率也很高。
+
+这些非正式的首部字段统一归纳在 RFC4229 HTTP Header Field Registrations 中。
+
+#### End-to-end 首部和 Hop-by-hop 首部
+
+HTTP 首部字段将定义成缓存代理和非缓存代理的行为，分成 2 种类型。
+
+#### 端到端首部（End-to-end Header）
+
+分在此类别中的首部会转发给请求 / 响应对应的最终接收目标，且必须保存在由缓存生成的响应中，另外规定它必须被转发。
+
+#### 逐跳首部（Hop-by-hop Header）
+
+分在此类别中的首部只对单次转发有效，会因通过缓存或代理而不再转发。HTTP/1.1 和之后版本中，如果要使用 **hop-by-hop 首部** ，需提供 **Connection 首部字段** 。
+
+下面列举了 HTTP/1.1 中的逐跳首部字段。除这 8 个首部字段之外，其他所有字段都属于端到端首部。
+
+- Connection
+- Keep-Alive
+- Proxy-Authenticate
+- Proxy-Authorization
+- Trailer
+- TE
+- Transfer-Encoding
+- Upgrade
+
+### HTTP/1.1 通用首部字段
+
+通用首部字段是指， **请求报文和响应报文双方都会使用的首部** 。
+
+#### Cache-Control
+
+通过指定首部字段 Cache-Control 的指令，就能 **操作缓存的工作机制** 。
+
+![Cache-Control]()
+
+图：首部字段 Cache-Control 能够控制缓存的行为
+
+指令的参数是可选的，多个指令之间通过“,”分隔。首部字段 CacheControl 的指令可用于请求及响应时。
+
+```
+Cache-Control: private, max-age=0, no-cache
+```
+##### Cache-Control 指令一览
+
+可用的指令按请求和响应分类如下所示。
+
+![缓存请求指令]()
+
+![缓存响应指令]()
+
+##### 表示是否能缓存的指令
+
+###### public 指令
+
+```
+Cache-Control: public
+```
+当指定使用 public 指令时，则明确表明 **其他用户也可利用缓存** 。
+
+###### private 指令
+
+![private 指令]()
+
+```
+Cache-Control: private
+```
+当指定 private 指令后，**响应只以特定的用户作为对象** ，这与 public 指令的行为相反。
+
+**缓存服务器会对该特定用户提供资源缓存的服务** ，对于其他用户发送过来的请求，代理服务器则不会返回缓存。
+
+###### no-cache 指令
+
+![no-cache 指令]()
+
+```
+Cache-Control: no-cache
+```
+使用 no-cache 指令的目的是 **为了防止从缓存中返回过期的资源** 。
+
+客户端发送的请求中如果包含 no-cache 指令，则表示客户端将不会接收缓存过的响应。于是，“中间”的缓存服务器必须把客户端请求转发给源服务器。
+
+如果服务器返回的响应中包含 no-cache 指令，那么缓存服务器不能对资源进行缓存。源服务器以后也将不再对缓存服务器请求中提出的资源有效性进行确认，且禁止其对响应资源进行缓存操作。
+
+```
+Cache-Control: no-cache=Location
+```
+由服务器返回的响应中，若报文首部字段 Cache-Control 中对 no-cache字段名具体指定参数值，那么客户端在接收到这个被指定参数值的首部字段对应的响应报文后，就不能使用缓存。换言之，**无参数值的首部字段可以使用缓存** 。**只能在响应指令中指定该参数** 。
+
+##### 控制可执行缓存的对象的指令
+
+###### no-store 指令
+
+```
+Cache-Control: no-store
+```
+当使用 no-store 指令时，**暗示请求（和对应的响应）或响应中包含机密信息** 。
+
+> 从字面意思上很容易把 no-cache 误解成为不缓存，但事实上 **no-cache 代表不缓存过期的资源** ，缓存会向源服务器进行有效期确认后处理资源，也许称为 **do-notserve-from-cache-without-revalidation** 更合适。**no-store 才是真正地不进行缓存** ，请读者注意区别理解。
+
+因此，该指令规定缓存不能在本地存储请求或响应的任一部分。
 
 
+##### 指定缓存期限和认证的指令
 
+###### s-maxage 指令
+
+```
+Cache-Control: s-maxage=604800（单位 ：秒）
+```
+s-maxage 指令的功能和 max-age 指令的相同，它们的不同点是 **smaxage 指令只适用于供多位用户使用的公共缓存服务器**（这里一般指代理）。也就是说，**对于向同一用户重复返回响应的服务器** 来说，这个指令没有任何作用。
+
+另外，当 **使用 s-maxage 指令** 后，则直接 **忽略** 对 **Expires 首部字段** 及 **max-age 指令** 的处理。
+
+###### max-age 指令
+
+![max-age 指令]()
+
+当客户端发送的请求中包含 max-age 指令时，如果 **判定缓存资源的缓存时间数值比指定时间的数值更小** ，那么 **客户端就接收缓存的资源** 。
+
+另外，当指定 **max-age 值为 0** ，那么 **缓存服务器通常需要将请求转发给源服务器** 。
+
+当服务器返回的响应中 **包含 max-age 指令** 时，**缓存服务器将不对资源的有效性再作确认** ，而 **max-age 数值代表资源保存为缓存的最长时间** 。
+
+应用 HTTP/1.1 版本的缓存服务器遇到 **同时存在 Expires 首部字段** 的情况时，会**优先处理 max-age 指令** ，而 **忽略掉 Expires 首部字段** 。而 **HTTP/1.0 版本** 的缓存服务器的情况却相反，**max-age 指令会被忽略掉** 。
+
+###### min-fresh 指令
+
+![min-fresh 指令]()
+
+```
+Cache-Control: min-fresh=60（单位：秒）
+```
+min-fresh 指令 **要求缓存服务器返回至少还未过指定时间的缓存资源** 。比如，当指定 min-fresh 为 60 秒后，过了 60 秒的资源都无法作为响应返回了。
+
+###### max-stale 指令
+
+```
+Cache-Control: max-stale=3600（单位：秒）
+```
+使用 max-stale 可指示缓存资源，**即使过期也照常接收** 。
+
+如果指令未指定参数值，那么无论经过多久，客户端都会接收响应；如果指令中指定了具体数值，那么 **即使过期** ，**只要仍处于 max-stale 指定的时间内** ，**仍旧会被客户端接收** 。
+
+###### only-if-cached 指令
+
+```
+Cache-Control: only-if-cached
+```
+使用 only-if-cached 指令表示 **客户端仅在缓存服务器本地缓存目标资源的情况下才会要求其返回** 。换言之，该指令要求缓存服务器不重新加载响应，也不会再次确认资源有效性。若发生请求缓存服务器的本地缓存无响应，则返回状态码 504 Gateway Timeout。
+
+###### must-revalidate 指令
+
+```
+Cache-Control: must-revalidate
+```
+使用 must-revalidate 指令，**代理会向源服务器再次验证即将返回的响应缓存目前是否仍然有效** 。
+
+若 **代理无法连通源服务器再次获取有效资源**  的话，缓存必须给客户端一条 **504（Gateway Timeout）状态码** 。
+
+另外，使用 **must-revalidate 指令** 会 **忽略** 请求的 **max-stale 指令**（即使已经在首部使用了 max-stale，也不会再有效果）。
+
+###### proxy-revalidate 指令
+
+```
+Cache-Control: proxy-revalidate
+```
+proxy-revalidate 指令 **要求所有的缓存服务器在接收到客户端带有该指令的请求返回响应之前** ，必须 **再次验证缓存的有效性** 。
+
+###### no-transform 指令
+
+```
+Cache-Control: no-transform
+```
+使用 no-transform 指令规定 **无论是在请求还是响应中，缓存都不能改变实体主体的媒体类型** 。
+
+这样做可 **防止缓存或代理压缩图片** 等类似操作。
+
+##### Cache-Control 扩展
+
+cache-extension token
+
+```
+Cache-Control: private, community="UCI"
+```
+通过 cache-extension 标记（token），可以扩展 Cache-Control 首部字段内的指令。
+
+如上例，Cache-Control 首部字段本身没有 community 这个指令。借助 extension tokens 实现了该指令的添加。如果缓存服务器不能理解 community 这个新指令，就会直接忽略。因此，**extension tokens 仅对能理解它的缓存服务器来说是有意义的** 。
+
+#### Connection
+
+Connection 首部字段具备如下两个作用。
+
+- 控制不再转发给代理的首部字段
+- 管理持久连接
+
+##### 控制不再转发给代理的首部字段
+
+![不再转发的首部字段名]()
+
+```
+Connection: 不再转发的首部字段名
+```
+
+在客户端发送请求和服务器返回响应内，使用 Connection 首部字段，**可控制不再转发给代理的首部字段**（即 **Hop-by-hop 首部** ）。
+
+##### 管理持久连接
+
+![管理持久连接]()
+
+```
+Connection: close
+```
+HTTP/1.1 版本的 **默认连接** 都是 **持久连接** 。为此，**客户端会在持久连接上连续发送请求** 。**当服务器端想明确断开连接时，则指定Connection 首部字段的值为 Close。**
+
+![Connection: Keep-Alive]()
+
+**HTTP/1.1 之前** 的 HTTP 版本的 **默认连接** 都是 **非持久连接**。为此，如果想在旧版本的 HTTP 协议上 **维持持续连接** ，则 **需要指定 Connection 首部字段的值为 Keep-Alive** 。
+
+如上图①所示，客户端发送请求给服务器时，服务器端会像上图②那样加上首部字段 Keep-Alive 及首部字段 Connection 后返回响应。
+
+#### Date
+
+首部字段 Date 表明创建 HTTP 报文的日期和时间。
+
+![创建 HTTP 报文的日期和时间]()
+
+HTTP/1.1 协议使用在 RFC1123 中规定的日期时间的格式，如下 示例。
+
+```
+Date: Tue, 03 Jul 2012 04:40:59 GMT
+```
+之前的 HTTP 协议版本中使用在 RFC850 中定义的格式，如下所示。
+
+```
+Date: Tue, 03-Jul-12 04:40:59 GMT
+```
+除此之外，还有一种格式。它与 C 标准库内的 asctime() 函数的输出格式一致。
+
+```
+Date: Tue Jul 03 04:40:59 2012
+```
+#### Pragma
+
+Pragma 是 **HTTP/1.1 之前版本的历史遗留字段** ，**仅作为与 HTTP/1.0的向后兼容而定义** 。
+
+规范定义的形式唯一，如下所示。
+
+```
+Pragma: no-cache
+```
+该首部字段属于通用首部字段，但只用在客户端发送的请求中。**客户端会要求所有的中间服务器不返回缓存的资源。**
+
+![中间服务器不返回缓存的资源]()
+
+所有的中间服务器如果都能 **以 HTTP/1.1 为基准** ，那 **直接采用 CacheControl: no-cache 指定缓存** 的处理方式是最为理想的。但要整体掌握全部中间服务器使用的 HTTP 协议版本却是不现实的。因此，**发送的请求会同时含有下面两个首部字段** 。
+
+```
+Cache-Control: no-cache
+Pragma: no-cache
+```
+#### Trailer
+
+![Trailer]()
+
+首部字段 Trailer 会 **事先说明在报文主体后记录了哪些首部字段** 。该首部字段可应用在 **HTTP/1.1 版本分块传输编码** 时。
+
+```
+HTTP/1.1 200 OK
+Date: Tue, 03 Jul 2012 04:40:56 GMT
+Content-Type: text/html
+...
+Transfer-Encoding: chunked
+Trailer: Expires
+...(报文主体)...
+0
+Expires: Tue, 28 Sep 2004 23:59:59 GMT
+```
+以上用例中，**指定首部字段 Trailer 的值为 Expires** ，在报文主体之后（分块长度 0 之后）出现了首部字段 Expires。
+
+#### Transfer-Encoding
+
+![Transfer-Encoding]()
+
+首部字段 Transfer-Encoding 规定了 **传输报文主体时采用的编码方式** 。
+
+HTTP/1.1 的传输编码方式 **仅对分块传输编码有效** 。
+
+```
+HTTP/1.1 200 OK
+Date: Tue, 03 Jul 2012 04:40:56 GMT
+Cache-Control: public, max-age=604800
+Content-Type: text/javascript; charset=utf-8
+Expires: Tue, 10 Jul 2012 04:40:56 GMT
+X-Frame-Options: DENY
+X-XSS-Protection: 1; mode=block
+Content-Encoding: gzip
+Transfer-Encoding: chunked
+Connection: keep-alive
+cf0 ←16进制(10进制为3312)
+...3312字节分块数据...
+392 ←16进制(10进制为914)
+...914字节分块数据...
+0
+```
+以上用例中，正如在首部字段 Transfer-Encoding 中指定的那样，有效使用分块传输编码，且分别被分成 3312 字节和 914 字节大小的分块数据。
+
+#### Upgrade
+
+首部字段 Upgrade 用于 **检测 HTTP 协议及其他协议是否可使用更高的版本进行通信** ，其参数值可以用来 **指定一个完全不同的通信协议** 。
+
+![Upgrade]()
+
+上图用例中，首部字段 Upgrade 指定的值为 **TLS/1.0**  。请注意此处两个字段首部字段的对应关系，**Connection 的值被指定为 Upgrade** 。
+
+Upgrade 首部字段产生作用的 **Upgrade 对象仅限于客户端和邻接服务器之间** 。因此，**使用首部字段 Upgrade** 时，还需要 **额外指定 Connection:Upgrade** 。
+
+对于附有首部字段 Upgrade 的请求，服务器可用 **101 Switching Protocols 状态码** 作为响应返回。
+
+#### Via
+
+使用首部字段 Via 是为了 **追踪客户端与服务器之间的请求和响应报文的传输路径** 。
+
+报文经过代理或网关时，会先 **在首部字段 Via 中附加该服务器的信息** ，然后再 **进行转发** 。这个做法和 traceroute 及电子邮件的 Received 首部的工作机制很类似。
+
+首部字段 Via 不仅用于 **追踪报文的转发** ，还可 **避免请求回环的发生** 。所以必须在经过代理时附加该首部字段内容。
+
+![首部字段 Via]()
+
+上图用例中，在经过代理服务器 A 时，Via 首部附加了“1.0 gw.hackr.jp (Squid/3.1)”这样的字符串值。行头的 1.0 是指接收请求的服务器上应用的 HTTP 协议版本。接下来经过代理服务器 B 时亦是如此，在 Via 首部附加服务器信息，也可增加 1 个新的 Via 首部写入服务器信息。
+
+Via 首部是为了追踪传输路径，所以经常会和 **TRACE 方法** 一起使用。比如，代理服务器接收到由 TRACE 方法发送过来的请求（其中 Max-Forwards: 0）时，代理服务器就不能再转发该请求了。这种情况下，**代理服务器会将自身的信息附加到 Via 首部后，返回该请求的响应** 。
+
+#### Warning
+
+HTTP/1.1 的 Warning 首部是从 **HTTP/1.0 的响应首部（Retry-After）演变过来的** 。该首部通常会 **告知用户一些与缓存相关的问题的警告** 。
+
+```
+Warning: 113 gw.hackr.jp:8080 "Heuristic expiration" Tue, 03 Jul 2012 05:09:44 GMT
+```
+**Warning 首部的格式** 如下。最后的日期时间部分可省略。
+
+```
+Warning: [警告码][警告的主机:端口号]“[警告内容]”([日期时间])
+```
+HTTP/1.1 中定义了 7 种警告。警告码对应的警告内容仅推荐参考。另外，警告码具备扩展性，今后有可能追加新的警告码。
+
+![HTTP/1.1 警告码]()
+
+### 请求首部字段

@@ -362,3 +362,23 @@ date: 2018-08-07 03:32:00
    [校园招聘](http://douyu.zhiye.com/Portal/Apply/Index)
     
    [招聘流程](http://douyu.zhiye.com/Campus)
+ 
+52. ### 人人网
+    
+   [校园招聘](http://i.51job.com/userset/my_apply.php?type=xy&lang=c)
+    
+   [招聘流程](http://campus.51job.com/renren/job.html)
+
+53. ### 三七互娱
+    
+   [校园招聘](http://zhaopin.37.com/index.php?m=Home&c=campus&a=post_info&id=1240)
+
+54. ### 图森未来
+    
+   [招聘流程](https://app.mokahr.com/campus_apply/tusenweilai#/?anchorName=9607464987&sourceToken=&_k=r0dhjs)
+ 
+55. ### 易幻网络
+    
+   [校园招聘](http://www.efun.com/campus/recruitment_detail.html?type=1&child=0)
+   
+ 
