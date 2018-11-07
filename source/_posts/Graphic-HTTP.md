@@ -1128,13 +1128,17 @@ HTTP 通信时，除 **客户端** 和 **服务器** 以外，还有一些 **用
 
 ## HTTP 首部
 
+![通用首部和请求首部](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E9%80%9A%E7%94%A8%E9%A6%96%E9%83%A8%E5%92%8C%E8%AF%B7%E6%B1%82%E9%A6%96%E9%83%A8.png)
+
+![响应首部和实体首部](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%93%8D%E5%BA%94%E9%A6%96%E9%83%A8%E5%92%8C%E5%AE%9E%E4%BD%93%E9%A6%96%E9%83%A8.png)
+
 HTTP 协议的请求和响应报文中必定包含 HTTP 首部，只是我们平时在使用 Web 的过程中感受不到它。
 
-![HTTP 首部]()
+![HTTP 首部](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%20%E9%A6%96%E9%83%A8.png)
 
 ### HTTP 报文首部
 
-![HTTP 报文的结构]()
+![HTTP 报文的结构](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%20%E6%8A%A5%E6%96%87%E7%9A%84%E7%BB%93%E6%9E%84.png)
 
 HTTP 协议的请求和响应报文中必定包含 HTTP 首部。首部内容为客户端和服务器分别处理请求和响应提供所需要的信息。对于客户端用户来说，这些信息中的大部分内容都无须亲自查看。
 
@@ -1144,7 +1148,7 @@ HTTP 协议的请求和响应报文中必定包含 HTTP 首部。首部内容为
 
 在请求中，HTTP 报文由 **方法** 、**URI**  、**HTTP 版本** 、**HTTP 首部字段** 等部分构成。
 
-![请求报文]()
+![请求报文](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87.png)
 
 下面的示例是访问 http://hackr.jp 时，请求报文的首部信息。
 
@@ -1165,7 +1169,7 @@ Cache-Control: max-age=0
 
 在响应中，HTTP 报文由 **HTTP 版本** 、**状态码**（数字和原因短语）、**HTTP 首部字段**  3 部分构成。
 
-![响应报文]()
+![响应报文](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87.png)
 
 以下示例是之前请求访问 http://hackr.jp/ 时，返回的响应报文的首部信息。
 
@@ -1188,7 +1192,7 @@ HTTP 首部字段是构成 HTTP 报文的要素之一。在客户端与服务器
 
 使用首部字段是为了给浏览器和服务器提供 **报文主体大小** 、**所使用的语言** 、**认证信息** 等内容。
 
-![首部字段内可使用的附加信息较多]()
+![首部字段内可使用的附加信息较多](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%E5%86%85%E5%8F%AF%E4%BD%BF%E7%94%A8%E7%9A%84%E9%99%84%E5%8A%A0%E4%BF%A1%E6%81%AF%E8%BE%83%E5%A4%9A.png)
 
 #### HTTP 首部字段结构
 
@@ -1237,13 +1241,13 @@ HTTP 首部字段根据实际用途被分为以下 4 种类型。
 
 HTTP/1.1 规范定义了如下 47 种首部字段。
 
-![通用首部字段]()
+![通用首部字段](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E9%80%9A%E7%94%A8%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
 
-![请求首部字段]()
+![请求首部字段](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
 
-![响应首部字段]()
+![响应首部字段](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%93%8D%E5%BA%94%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
 
-![实体首部字段]()
+![实体首部字段](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%AE%9E%E4%BD%93%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
 
 #### 非 HTTP/1.1 首部字段
 
@@ -1282,7 +1286,7 @@ HTTP 首部字段将定义成缓存代理和非缓存代理的行为，分成 2 
 
 通过指定首部字段 Cache-Control 的指令，就能 **操作缓存的工作机制** 。
 
-![Cache-Control]()
+![Cache-Control](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Cache-Control.png)
 
 图：首部字段 Cache-Control 能够控制缓存的行为
 
@@ -1295,9 +1299,9 @@ Cache-Control: private, max-age=0, no-cache
 
 可用的指令按请求和响应分类如下所示。
 
-![缓存请求指令]()
+![缓存请求指令](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E7%BC%93%E5%AD%98%E8%AF%B7%E6%B1%82%E6%8C%87%E4%BB%A4.png)
 
-![缓存响应指令]()
+![缓存响应指令](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E7%BC%93%E5%AD%98%E5%93%8D%E5%BA%94%E6%8C%87%E4%BB%A4.png)
 
 ##### 表示是否能缓存的指令
 
@@ -1310,7 +1314,7 @@ Cache-Control: public
 
 ###### private 指令
 
-![private 指令]()
+![private 指令](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/private%20%E6%8C%87%E4%BB%A4.png)
 
 ```
 Cache-Control: private
@@ -1321,7 +1325,7 @@ Cache-Control: private
 
 ###### no-cache 指令
 
-![no-cache 指令]()
+![no-cache 指令](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/no-cache%20%E6%8C%87%E4%BB%A4.png)
 
 ```
 Cache-Control: no-cache
@@ -1364,7 +1368,7 @@ s-maxage 指令的功能和 max-age 指令的相同，它们的不同点是 **sm
 
 ###### max-age 指令
 
-![max-age 指令]()
+![max-age 指令](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/max-age%20%E6%8C%87%E4%BB%A4.png)
 
 当客户端发送的请求中包含 max-age 指令时，如果 **判定缓存资源的缓存时间数值比指定时间的数值更小** ，那么 **客户端就接收缓存的资源** 。
 
@@ -1376,7 +1380,7 @@ s-maxage 指令的功能和 max-age 指令的相同，它们的不同点是 **sm
 
 ###### min-fresh 指令
 
-![min-fresh 指令]()
+![min-fresh 指令](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/min-fresh%20%E6%8C%87%E4%BB%A4.png)
 
 ```
 Cache-Control: min-fresh=60（单位：秒）
@@ -1446,7 +1450,7 @@ Connection 首部字段具备如下两个作用。
 
 ##### 控制不再转发给代理的首部字段
 
-![不再转发的首部字段名]()
+![不再转发的首部字段名](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E4%B8%8D%E5%86%8D%E8%BD%AC%E5%8F%91%E7%9A%84%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%E5%90%8D.png)
 
 ```
 Connection: 不再转发的首部字段名
@@ -1456,7 +1460,7 @@ Connection: 不再转发的首部字段名
 
 ##### 管理持久连接
 
-![管理持久连接]()
+![管理持久连接](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E7%AE%A1%E7%90%86%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5.png)
 
 ```
 Connection: close
@@ -1473,7 +1477,7 @@ HTTP/1.1 版本的 **默认连接** 都是 **持久连接** 。为此，**客户
 
 首部字段 Date 表明创建 HTTP 报文的日期和时间。
 
-![创建 HTTP 报文的日期和时间]()
+![创建 HTTP 报文的日期和时间](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%88%9B%E5%BB%BA%20HTTP%20%E6%8A%A5%E6%96%87%E7%9A%84%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4.png)
 
 HTTP/1.1 协议使用在 RFC1123 中规定的日期时间的格式，如下 示例。
 
@@ -1501,7 +1505,7 @@ Pragma: no-cache
 ```
 该首部字段属于通用首部字段，但只用在客户端发送的请求中。**客户端会要求所有的中间服务器不返回缓存的资源。**
 
-![中间服务器不返回缓存的资源]()
+![中间服务器不返回缓存的资源](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E4%B8%AD%E9%97%B4%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8D%E8%BF%94%E5%9B%9E%E7%BC%93%E5%AD%98%E7%9A%84%E8%B5%84%E6%BA%90.png)
 
 所有的中间服务器如果都能 **以 HTTP/1.1 为基准** ，那 **直接采用 CacheControl: no-cache 指定缓存** 的处理方式是最为理想的。但要整体掌握全部中间服务器使用的 HTTP 协议版本却是不现实的。因此，**发送的请求会同时含有下面两个首部字段** 。
 
@@ -1511,7 +1515,7 @@ Pragma: no-cache
 ```
 #### Trailer
 
-![Trailer]()
+![Trailer](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Trailer.png)
 
 首部字段 Trailer 会 **事先说明在报文主体后记录了哪些首部字段** 。该首部字段可应用在 **HTTP/1.1 版本分块传输编码** 时。
 
@@ -1530,7 +1534,7 @@ Expires: Tue, 28 Sep 2004 23:59:59 GMT
 
 #### Transfer-Encoding
 
-![Transfer-Encoding]()
+![Transfer-Encoding](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Transfer-Encoding.png)
 
 首部字段 Transfer-Encoding 规定了 **传输报文主体时采用的编码方式** 。
 
@@ -1559,7 +1563,7 @@ cf0 ←16进制(10进制为3312)
 
 首部字段 Upgrade 用于 **检测 HTTP 协议及其他协议是否可使用更高的版本进行通信** ，其参数值可以用来 **指定一个完全不同的通信协议** 。
 
-![Upgrade]()
+![Upgrade](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Upgrade.png)
 
 上图用例中，首部字段 Upgrade 指定的值为 **TLS/1.0**  。请注意此处两个字段首部字段的对应关系，**Connection 的值被指定为 Upgrade** 。
 
@@ -1575,7 +1579,7 @@ Upgrade 首部字段产生作用的 **Upgrade 对象仅限于客户端和邻接�
 
 首部字段 Via 不仅用于 **追踪报文的转发** ，还可 **避免请求回环的发生** 。所以必须在经过代理时附加该首部字段内容。
 
-![首部字段 Via]()
+![首部字段 Via](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%20Via.png)
 
 上图用例中，在经过代理服务器 A 时，Via 首部附加了“1.0 gw.hackr.jp (Squid/3.1)”这样的字符串值。行头的 1.0 是指接收请求的服务器上应用的 HTTP 协议版本。接下来经过代理服务器 B 时亦是如此，在 Via 首部附加服务器信息，也可增加 1 个新的 Via 首部写入服务器信息。
 
@@ -1595,17 +1599,17 @@ Warning: [警告码][警告的主机:端口号]“[警告内容]”([日期时�
 ```
 HTTP/1.1 中定义了 7 种警告。警告码对应的警告内容仅推荐参考。另外，警告码具备扩展性，今后有可能追加新的警告码。
 
-![HTTP/1.1 警告码]()
+![HTTP/1.1 警告码](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP-1.1%20%E8%AD%A6%E5%91%8A%E7%A0%81.png)
 
 ### 请求首部字段
 
 请求首部字段是 **从客户端往服务器端发送请求报文中所使用的字段** ，用于补充请求的附加信息、客户端信息、对响应内容相关的优先级等内容。
 
-![HTTP 请求报文中使用的首部字段]()
+![HTTP 请求报文中使用的首部字段](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%20%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%9A%84%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
 
 #### Accept
 
-![Accept]()
+![Accept](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Accept.png)
 
 ```
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
@@ -1650,7 +1654,7 @@ Accept-Charset 首部字段可用来 **通知服务器用户代理支持的字�
 
 #### Accept-Encoding
 
-![Accept-Encoding]()
+![Accept-Encoding](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Accept-Encoding.png)
 
 ```
 Accept-Encoding: gzip, deflate
@@ -1677,7 +1681,7 @@ Accept-Encoding 首部字段用来告知服务器用户代理支持的内容编�
 
 #### Accept-Language
 
-![Accept-Language]()
+![Accept-Language](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Accept-Language.png)
 
 ```
 Accept-Language: zh-cn,zh;q=0.7,en-us,en;q=0.3
@@ -1688,7 +1692,7 @@ Accept-Language: zh-cn,zh;q=0.7,en-us,en;q=0.3
 
 #### Authorization
 
-![Authorization]()
+![Authorization](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Authorization.png)
 
 ```
 Authorization: Basic dWVub3NlbjpwYXNzd29yZA==
@@ -1699,7 +1703,7 @@ Authorization: Basic dWVub3NlbjpwYXNzd29yZA==
 
 #### Expect
 
-![Expect]()
+![Expect](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Expect.png)
 
 ```
 Expect: 100-continue
@@ -1712,13 +1716,13 @@ Expect: 100-continue
 
 #### From
 
-![From]()
+![From](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/From.png)
 
 首部字段 From 用来告知 **服务器使用用户代理的用户的电子邮件地址** 。通常，其使用目的就是为了显示搜索引擎等用户代理的负责人的电子邮件联系方式。使用代理时，应尽可能包含 From 首部字段（但可能会因代理不同，将电子邮件地址记录在 **User-Agent 首部字段** 内）。
 
 #### Host
 
-![Host]()
+![Host](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Host.png)
 
 图：虚拟主机运行在同一个 IP 上，因此使用首部字段 Host 加以区分
 
@@ -1736,13 +1740,13 @@ Host:
 ```
 #### If-Match
 
-![If-Match]()
+![If-Match](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/If-Match.png)
 
 图：附带条件请求
 
 形如 **If-xxx 这种样式的请求首部字段** ，都可称为 **条件请求** 。服务器接收到附带条件的请求后，**只有判断指定条件为真时** ，**才会执行请求** 。
 
-![匹配一致]()
+![匹配一致](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%8C%B9%E9%85%8D%E4%B8%80%E8%87%B4.png)
 
 图：只有当 If-Match 的字段值跟 ETag 值匹配一致时，服务器才会接受请求
 
@@ -1755,7 +1759,7 @@ If-Match: "123456"
 
 #### If-Modified-Since
 
-![If-Modified-Since]()
+![If-Modified-Since](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/If-Modified-Since.png)
 
 图：如果在 If-Modified-Since 字段指定的日期时间后，资源发生了更新，服务器会接受请求
 
@@ -1770,7 +1774,7 @@ If-Modified-Since 用于 **确认代理或客户端拥有的本地资源的有�
 
 #### If-None-Match
 
-![If-None-Match]()
+![If-None-Match](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/If-None-Match.png)
 
 图：只有在 If-None-Match 的字段值与 ETag 值不一致时，可处理该请求。与 If-Match 首部字段的作用相反
 
@@ -1780,11 +1784,11 @@ If-Modified-Since 用于 **确认代理或客户端拥有的本地资源的有�
 
 #### If-Range
 
-![If-Range]()
+![If-Range](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/If-Range.png)
 
 首部字段 If-Range 属于附带条件之一。它告知服务器 **若指定的 IfRange 字段值（ETag 值或者时间）和请求资源的 ETag 值或时间相一致** 时，则 **作为范围请求处理** 。反之，则 **返回全体资源** 。
 
-![不使用首部字段 If-Range]()
+![不使用首部字段 If-Range](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E4%B8%8D%E4%BD%BF%E7%94%A8%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%20If-Range.png)
 
 下面我们思考一下不使用首部字段 If-Range 发送请求的情况。服务器端的资源如果更新，那客户端持有资源中的一部分也会随之无效，当然，范围请求作为前提是无效的。这时，服务器会暂且以 **状态码 412 Precondition Failed** 作为响应返回，其目的是**催促客户端再次发送请求** 。这样一来，**与使用首部字段 If-Range 比起来，就需要花费两倍的功夫** 。
 
@@ -1797,7 +1801,7 @@ If-Unmodified-Since: Thu, 03 Jul 2012 00:00:00 GMT
 
 #### Max-Forwards
 
-![Max-Forwards]()
+![Max-Forwards](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Max-Forwards.png)
 
 图：每次转发数值减 1。当数值变 0 时返回响应
 
@@ -1810,11 +1814,11 @@ Max-Forwards: 10
 
 可以灵活使用首部字段 Max-Forwards，针对以上问题产生的原因展开调查。由于 **当 Max-Forwards 字段值为 0** 时，**务器就会立即返回响应** ，由此我们至少可以 **对以那台服务器为终点的传输路径的通信状况有所把握** 。
 
-![代理 B 到源服务器的请求失败了]()
+![代理 B 到源服务器的请求失败了](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E4%BB%A3%E7%90%86%20B%20%E5%88%B0%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E8%AF%B7%E6%B1%82%E5%A4%B1%E8%B4%A5%E4%BA%86.png)
 
 图：代理 B 到源服务器的请求失败了，但客户端不知道
 
-![陷入代理之间的循环]()
+![陷入代理之间的循环](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E9%99%B7%E5%85%A5%E4%BB%A3%E7%90%86%E4%B9%8B%E9%97%B4%E7%9A%84%E5%BE%AA%E7%8E%AF.png)
 
 图：由于未知原因，导致请求陷入代理之间的循环，但客户端不知道
 
@@ -1838,7 +1842,7 @@ Range: bytes=5001-10000
 
 #### Referer
 
-![Referer]()
+![Referer](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Referer.png)
 
 ```
 Referer: http://www.hackr.jp/index.htm
@@ -1863,7 +1867,7 @@ TE: trailers
 ```
 #### User-Agent
 
-![User-Agent]()
+![User-Agent](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/User-Agent.png)
 
 图：User-Agent 用于传达浏览器的种类
 
@@ -1878,11 +1882,11 @@ User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:13.0) Gecko/20100101 Firefox/
 
 响应首部字段是由服务器端向客户端返回响应报文中所使用的字段，用于补充响应的附加信息、服务器信息，以及对客户端的附加要求等信息。
 
-![HTTP 响应报文中使用的首部字段]()
+![HTTP 响应报文中使用的首部字段](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%20%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%9A%84%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
 
 #### Accept-Ranges
 
-![Accept-Ranges]()
+![Accept-Ranges](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Accept-Ranges.png)
 
 图：当不能处理范围请求时，Accept-Ranges: none
 
@@ -1895,7 +1899,7 @@ Accept-Ranges: bytes
 
 #### Age
 
-![Age]()
+![Age](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Age.png)
 
 ```
 Age: 600
@@ -1906,7 +1910,7 @@ Age: 600
 
 #### ETag
 
-![ETag]()
+![ETag](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/ETag.png)
 
 ```
 ETag: "82e22293907ce725faf67773957acd12"
@@ -1915,7 +1919,7 @@ ETag: "82e22293907ce725faf67773957acd12"
 
 另外，当 **资源更新** 时，**ETag 值也需要更新** 。生成 ETag 值时，并没有统一的算法规则，而仅仅是 **由服务器来分配** 。
 
-![被分配唯一性标识]()
+![被分配唯一性标识](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E8%A2%AB%E5%88%86%E9%85%8D%E5%94%AF%E4%B8%80%E6%80%A7%E6%A0%87%E8%AF%86.png)
 
 **资源被缓存时** ，就会 **被分配唯一性标识** 。例如，当使用中文版的浏览器访问 http://www.google.com/ 时，就会返回中文版对应的资源，而使用英文版的浏览器访问时，则会返回英文版对应的资源。**两者的 URI 是相同的** ，所以 **仅凭 URI 指定缓存的资源是相当困难的** 。若在下载过程中出现连接中断、再连接的情况，都会 **依照 ETag 值来指定资源** 。
 
@@ -1939,7 +1943,7 @@ ETag: W/"usagi-1234"
 ```
 #### Location
 
-![Location]()
+![Location](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Location.png)
 
 ```
 Location: http://www.usagidesign.jp/sample.html
@@ -1961,7 +1965,7 @@ Proxy-Authenticate: Basic realm="Usagidesign Auth"
 
 #### Retry-After
 
-![Retry-After]()
+![Retry-After](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Retry-After.png)
 
 ```
 Retry-After: 120
@@ -1972,7 +1976,7 @@ Retry-After: 120
 
 #### Server
 
-![Server]()
+![Server](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Server.png)
 
 ```
 Server: Apache/2.2.17 (Unix)
@@ -1984,7 +1988,7 @@ Server: Apache/2.2.6 (Unix) PHP/5.2.5
 ```
 #### Vary
 
-![Vary]()
+![Vary](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Vary.png)
 
 图：当代理服务器接收到带有 Vary 首部字段指定获取资源的请求时，如果使用的 Accept-Language 字段的值相同，那么就直接从缓存返回响应。反之，则需要先从源服务器端获取资源后才能作为响应返回
 
@@ -2008,13 +2012,13 @@ WWW-Authenticate: Basic realm="Usagidesign Auth"
 
 实体首部字段是包含在请求报文和响应报文中的实体部分所使用的首部，用于补充内容的更新时间等与实体相关的信息。
 
-![实体相关的首部字段]()
+![实体相关的首部字段](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%AE%9E%E4%BD%93%E7%9B%B8%E5%85%B3%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
 
 图：在请求和响应两方的 HTTP 报文中都含有与实体相关的首部字段
 
 #### Allow
 
-![Allow]()
+![Allow](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Allow.png)
 
 ```
 Allow: GET, HEAD
@@ -2028,7 +2032,7 @@ Content-Encoding: gzip
 ```
 首部字段 Content-Encoding 会告知客户端服务器对实体的主体部分选用的内容编码方式。内容编码是指在不丢失实体信息的前提下所进行的压缩
 
-![Content-Encoding]()
+![Content-Encoding](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Content-Encoding.png)
 
 主要采用以下 4 种内容编码的方式。（各方式的说明请参考 6.4.3 节 Accept-Encoding 首部字段）。
 
@@ -2039,7 +2043,7 @@ Content-Encoding: gzip
 
 #### Content-Language
 
-![Content-Language]()
+![Content-Language](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Content-Language.png)
 
 ```
 Content-Language: zh-CN
@@ -2048,7 +2052,7 @@ Content-Language: zh-CN
 
 #### Content-Length
 
-![Content-Length]()
+![Content-Length](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Content-Length.png)
 
 ```
 Content-Length: 15000
@@ -2066,7 +2070,7 @@ Content-Location: http://www.hackr.jp/index-ja.html
 
 #### Content-MD5
 
-![Content-MD5]()
+![Content-MD5](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Content-MD5.png)
 
 图：客户端会对接收的报文主体执行相同的 MD5 算法，然后与首部字段 Content-MD5 的字段值比较
 
@@ -2081,7 +2085,7 @@ Content-MD5: OGFkZDUwNGVhNGY3N2MxMDIwZmQ4NTBmY2IyTY==
 
 #### Content-Range
 
-![Content-Range]()
+![Content-Range](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Content-Range.png)
 
 ```
 Content-Range: bytes 5001-10000/10000
@@ -2097,7 +2101,7 @@ Content-Type: text/html; charset=UTF-8
 
 #### Expires
 
-![Expires]()
+![Expires](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Expires.png)
 
 ```
 Expires: Wed, 04 Jul 2012 08:26:05 GMT
@@ -2110,9 +2114,188 @@ Expires: Wed, 04 Jul 2012 08:26:05 GMT
 
 #### Last-Modified
 
-![Last-Modified]()
+![Last-Modified](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Last-Modified.png)
 
 ```
 Last-Modified: Wed, 23 May 2012 09:59:55 GMT
 ```
 首部字段 Last-Modified 指明 **资源最终修改的时间** 。一般来说，这个值就是 **Request-URI 指定资源被修改的时间** 。但类似 **使用 CGI 脚本进行动态数据处理** 时，该值  **有可能会变成数据最终修改时的时间** 。
+
+### 为 Cookie 服务的首部字段
+
+管理服务器与客户端之间状态的 Cookie，虽然没有被编入标准化HTTP/1.1 的 RFC2616 中，但在 Web 网站方面得到了广泛的应用。Cookie 的工作机制是用户识别及状态管理。Web 网站为了管理用户的状态会通过 Web 浏览器，把一些数据临时写入用户的计算机内。接着当用户访问该Web网站时，可通过通信方式取回之前发放的Cookie。
+
+调用 Cookie 时，由于可校验 Cookie 的有效期，以及发送方的域、路径、协议等信息，所以正规发布的 Cookie 内的数据不会因来自其他Web 站点和攻击者的攻击而泄露。
+
+至 2013 年 5 月，Cookie 的规格标准文档有以下 4 种。
+
+#### 由网景公司颁布的规格标准
+
+网景通信公司设计并开发了 Cookie，并制定相关的规格标准。1994年前后，Cookie 正式应用在网景浏览器中。目前最为普及的 Cookie 方式也是以此为基准的。
+
+##### RFC2109
+
+某企业尝试以独立技术对 Cookie 规格进行标准化统筹。原本的意图是想和网景公司制定的标准交互应用，可惜发生了微妙的差异。现在该标准已淡出了人们的视线。
+
+#### RFC2965
+
+为终结 Internet Explorer 浏览器与 Netscape Navigator 的标准差异而导致的浏览器战争，RFC2965 内定义了新的 HTTP 首部 Set-Cookie2 和 Cookie2。可事实上，它们几乎没怎么投入使用。
+
+##### RFC6265
+
+将网景公司制定的标准作为业界事实标准（De facto standard），重定义 Cookie 标准后的产物。
+
+目前使用最广泛的 Cookie 标准却不是 RFC 中定义的任何一个。而是在网景公司制定的标准上进行扩展后的产物。
+
+本节接下来就对目前使用最为广泛普及的标准进行说明。
+
+下面的表格内列举了与 Cookie 有关的首部字段。
+
+![为 Cookie 服务的首部字段](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E4%B8%BA%20Cookie%20%E6%9C%8D%E5%8A%A1%E7%9A%84%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
+
+![Cookie](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Cookie.png)
+
+#### Set-Cookie
+
+```
+Set-Cookie: status=enable; expires=Tue, 05 Jul 2011 07:26:31 GMT; path=/; domain=.hackr.jp;
+```
+当服务器准备开始管理客户端的状态时，会事先告知各种信息。
+
+下面的表格列举了 Set-Cookie 的字段值。
+
+![Set-Cookie 字段的属性](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Set-Cookie%20%E5%AD%97%E6%AE%B5%E7%9A%84%E5%B1%9E%E6%80%A7.png)
+
+##### expires 属性
+
+Cookie 的 expires 属性指定 **浏览器可发送 Cookie 的有效期** 。当 **省略 expires 属性** 时，其 **有效期仅限于维持浏览器会话**（Session）时间段内。这通常限于 **浏览器应用程序被关闭之前**。
+
+另外，一旦 Cookie 从服务器端发送至客户端，服务器端就 **不存在可以显式删除 Cookie 的方法** 。但 **可通过覆盖已过期的 Cookie** ，**实现对客户端 Cookie 的实质性删除操作** 。
+
+##### path 属性
+
+Cookie 的 path 属性可用于 **限制指定 Cookie 的发送范围的文件目录** 。不过另有办法可避开这项限制，看来对其作为安全机制的效果不能抱有期待。
+
+##### domain 属性
+
+通过 Cookie 的 domain 属性指定的 **域名可做到与结尾匹配一致** 。比如，当指定 example.com 后，除 example.com 以外，www.example.com 或 www2.example.com 等都可以发送 Cookie。
+
+因此，除了针对具体指定的多个域名发送 Cookie 之外，**不指定domain 属性显得更安全** 。
+
+##### secure 属性
+
+Cookie 的 secure 属性用于限制 Web 页面 **仅在 HTTPS 安全连接** 时，**才可以发送 Cookie** 。
+
+发送 Cookie 时，指定 secure 属性的方法如下所示。
+
+```
+Set-Cookie: name=value; secure
+```
+以上例子 **仅当在 https://www.example.com/（HTTPS）安全连接的情况下才会进行 Cookie 的回收** 。也就是说，即使域名相同，http://www.example.com/（HTTP）也不会发生 Cookie 回收行为。
+
+当 **省略 secure 属性** 时，**不论 HTTP 还是 HTTPS，都会对 Cookie 进行回收** 。
+
+##### HttpOnly 属性
+
+Cookie 的 HttpOnly 属性是 **Cookie 的扩展功能** ，它 **使 JavaScript 脚本无法获得 Cookie** 。其主要目的 **为防止跨站脚本攻击（Cross-sitescripting，XSS）对 Cookie 的信息窃取** 。
+
+发送指定 HttpOnly 属性的 Cookie 的方法如下所示。
+
+```
+Set-Cookie: name=value; HttpOnly
+```
+通过上述设置，通常从 Web 页面内还 **可以对 Cookie 进行读取操作** 。但使用 JavaScript 的 **document.cookie 就无法读取附加 HttpOnly 属性后的 Cookie 的内容了** 。因此，也就 **无法在 XSS 中利用 JavaScript 劫持Cookie 了** 。
+
+虽然是独立的扩展功能，但 Internet Explorer 6 SP1 以上版本等当下的主流浏览器都已经支持该扩展了。另外顺带一提，该扩展并非是为了防止 XSS 而开发的。
+
+#### Cookie
+
+```
+Cookie: status=enable
+```
+首部字段 Cookie 会告知服务器，当客户端想获得 HTTP 状态管理支持时，就会 **在请求中包含从服务器接收到的 Cookie** 。接收到 **多个 Cookie** 时，同样可以 **以多个 Cookie 形式发送** 。
+
+### 其他首部字段
+
+HTTP 首部字段是可以自行扩展的。所以在 Web 服务器和浏览器的应用上，会出现各种非标准的首部字段。
+
+接下来，我们就一些最为常用的首部字段进行说明。
+
+- X-Frame-Options
+- X-XSS-Protection
+- DNT
+- P3P
+
+####  X-Frame-Options
+
+```
+X-Frame-Options: DENY
+```
+首部字段 X-Frame-Options 属于 HTTP 响应首部，用于 **控制网站内容在其他 Web 网站的 Frame 标签内的显示问题** 。其主要目的是 **为了防止点击劫持（clickjacking）攻击** 。
+
+首部字段 X-Frame-Options 有以下两个可指定的字段值。
+
+- DENY ：拒绝
+- SAMEORIGIN ：仅同源域名下的页面（Top-level-browsingcontext）匹配时许可。（比如，当指定http://hackr.jp/sample.html 页面为 SAMEORIGIN 时，那么 hackr.jp 上所有页面的 frame 都被允许可加载该页面，而 example.com 等其他域名的页面就不行了）
+
+支持该首部字段的浏览器有：Internet Explorer 8、Firefox 3.6.9+、Chrome 4.1.249.1042+、Safari 4+ 和 Opera 10.50+ 等。现在主流的浏览器都已经支持。能在所有的 Web 服务器端预先设定好 X-Frame-Options 字段值是最理想的状态。
+
+对 apache2.conf 的配置实例
+
+```
+<IfModule mod_headers.c>
+  Header append X-FRAME-OPTIONS "SAMEORIGIN"
+</IfModule>
+```
+#### X-XSS-Protection
+
+```
+X-XSS-Protection: 1
+```
+首部字段 X-XSS-Protection 属于 HTTP 响应首部，它是 **针对跨站脚本攻击（XSS）的一种对策** ，用于 **控制浏览器 XSS 防护机制的开关** 。
+
+首部字段 X-XSS-Protection 可指定的字段值如下。
+
+- 0 ：将 XSS 过滤设置成无效状态
+- 1 ：将 XSS 过滤设置成有效状态
+
+#### DNT
+
+![DNT](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/DNT.png)
+
+```
+DNT: 1
+```
+首部字段 DNT 属于 **HTTP 请求首部** ，其中 DNT 是 **Do Not Track** 的简称，意为 **拒绝个人信息被收集** ，是表示 **拒绝被精准广告追踪的一种方法** 。
+
+首部字段 DNT 可指定的字段值如下。
+
+- 0 ：同意被追踪
+- 1 ：拒绝被追踪
+
+由于首部字段 DNT 的功能具备有效性，所以 Web 服务器需要对 DNT做对应的支持。
+
+#### P3P
+
+```
+P3P: CP="CAO DSP LAW CURa ADMa DEVa TAIa PSAa PSDa IVAa IVDa OUR BUS IND UNI COM NAV INT"
+```
+首部字段 P3P 属于 **HTTP 响应首部**，通过利用 P3P（ The Platform for Privacy Preferences，**在线隐私偏好平台** ）技术，可以 **让 Web 网站上的个人隐私变成一种仅供程序可理解的形式** ，**以达到保护用户隐私的目的** 。
+
+要进行 P3P 的设定，需按以下操作步骤进行。
+
+步骤 1：创建 P3P 隐私
+步骤 2：创建 P3P 隐私对照文件后，保存命名在 /w3c/p3p.xml
+步骤 3：从 P3P 隐私中新建 Compact policies 后，输出到 HTTP 响应
+中
+
+有关 P3P 的详细规范标准请参看下方链接。
+
+- The Platform for Privacy Preferences 1.0（P3P1.0）Specification 
+  
+  http://www.w3.org/TR/P3P/
+
+> **协议中对 X- 前缀的废除**
+
+> 在 HTTP 等多种协议中，**通过给非标准参数加上前缀 X-，来区别于标准参数，并使那些非标准的参数作为扩展变成可能。** 但是 **这种简单粗暴的做法有百害而无一益** ，因此在“RFC 6648 - Deprecating the "X-" Prefix and Similar Constructs in Application Protocols”中提议停止该做法。
+然而，对已经在使用中的 X- 前缀来说，不应该要求其变更
