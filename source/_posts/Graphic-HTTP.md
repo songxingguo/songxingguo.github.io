@@ -1876,3 +1876,243 @@ User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:13.0) Gecko/20100101 Firefox/
 
 ### 响应首部字段
 
+响应首部字段是由服务器端向客户端返回响应报文中所使用的字段，用于补充响应的附加信息、服务器信息，以及对客户端的附加要求等信息。
+
+![HTTP 响应报文中使用的首部字段]()
+
+#### Accept-Ranges
+
+![Accept-Ranges]()
+
+图：当不能处理范围请求时，Accept-Ranges: none
+
+```
+Accept-Ranges: bytes
+```
+首部字段 Accept-Ranges 是用来告知客户端服务器是否能处理范围请求，以指定获取服务器端某个部分的资源。
+
+可指定的字段值有两种，**可处理范围请求** 时指定其为 **bytes** ，反之则指定其为 **none** 。
+
+#### Age
+
+![Age]()
+
+```
+Age: 600
+```
+首部字段 Age 能告知客户端，**源服务器在多久前创建了响应** 。字段值的单位为秒。
+
+若创建该响应的服务器是缓存服务器，Age 值是指 **缓存后的响应再次发起认证到认证完成的时间值** 。**代理创建响应时必须加上首部字段 Age** 。
+
+#### ETag
+
+![ETag]()
+
+```
+ETag: "82e22293907ce725faf67773957acd12"
+```
+首部字段 ETag 能告知客户端 **实体标识** 。它是 **一种可将资源以字符串形式做唯一性标识的方式** 。**服务器会为每份资源分配对应的 ETag值** 。
+
+另外，当 **资源更新** 时，**ETag 值也需要更新** 。生成 ETag 值时，并没有统一的算法规则，而仅仅是 **由服务器来分配** 。
+
+![被分配唯一性标识]()
+
+**资源被缓存时** ，就会 **被分配唯一性标识** 。例如，当使用中文版的浏览器访问 http://www.google.com/ 时，就会返回中文版对应的资源，而使用英文版的浏览器访问时，则会返回英文版对应的资源。**两者的 URI 是相同的** ，所以 **仅凭 URI 指定缓存的资源是相当困难的** 。若在下载过程中出现连接中断、再连接的情况，都会 **依照 ETag 值来指定资源** 。
+
+##### 强 ETag 值和弱 Tag 值
+
+ETag 中有强 ETag 值和弱 ETag 值之分。
+
+###### 强 ETag 值
+
+强 ETag 值，不论实体发生多么 **细微的变化** 都会 **改变其值** 。
+
+```
+ETag: "usagi-1234"
+```
+###### 弱 ETag 值
+
+弱 ETag 值 **只用于提示资源是否相同** 。只有资源发生了 **根本改变** ，**产生差异** 时才会 **改变 ETag 值** 。这时，**会在字段值最开始处附加 W/** 。
+
+```
+ETag: W/"usagi-1234"
+```
+#### Location
+
+![Location]()
+
+```
+Location: http://www.usagidesign.jp/sample.html
+```
+使用首部字段 Location 可以 **将响应接收方引导至某个与请求 URI 位置不同的资源** 。
+
+基本上，该字段会配合 **3xx ：Redirection** 的响应，提供 **重定向的URI** 。
+
+几乎所有的浏览器在 **接收到包含首部字段 Location 的响应** 后，都会 **强制性地尝试对已提示的重定向资源的访问** 。
+
+#### Proxy-Authenticate
+
+```
+Proxy-Authenticate: Basic realm="Usagidesign Auth"
+```
+首部字段 Proxy-Authenticate 会 **把由代理服务器所要求的认证信息发送给客户端** 。
+
+它 **与客户端和服务器之间的 HTTP 访问认证的行为相似** ，不同之处在于其认证行为是在 **客户端与代理之间** 进行的。而 **客户端与服务器** 之间进行认证时，首部字段 **WWW-Authorization** 有着相同的作用。有关HTTP 访问认证，后面的章节会再进行详尽阐述。
+
+#### Retry-After
+
+![Retry-After]()
+
+```
+Retry-After: 120
+```
+首部字段 Retry-After 告知 **客户端应该在多久之后再次发送请求** 。主要配合状态码 **503 Service Unavailable** 响应，或 **3xx Redirect** 响应一起使用。
+
+字段值可以指定为 **具体的日期时间**（Wed, 04 Jul 2012 06：34：24GMT 等格式），也可以是创建响应后的秒数。
+
+#### Server
+
+![Server]()
+
+```
+Server: Apache/2.2.17 (Unix)
+```
+首部字段 Server 告知 **客户端当前服务器上安装的 HTTP 服务器应用程序的信息** 。不单单会标出服务器上的 **软件应用名称** ，还有可能包括 **版本号** 和 **安装时启用的可选项** 。
+
+```
+Server: Apache/2.2.6 (Unix) PHP/5.2.5
+```
+#### Vary
+
+![Vary]()
+
+图：当代理服务器接收到带有 Vary 首部字段指定获取资源的请求时，如果使用的 Accept-Language 字段的值相同，那么就直接从缓存返回响应。反之，则需要先从源服务器端获取资源后才能作为响应返回
+
+```
+Vary: Accept-Language
+```
+首部字段 Vary 可 **对缓存进行控制** 。源服务器会向代理服务器 **传达关于本地缓存使用方法的命令** 。
+
+从代理服务器接收到源服务器返回包含 Vary 指定项的响应之后，若再要进行缓存，**仅对请求中含有相同 Vary 指定首部字段的请求返回缓存** 。即使 **对相同资源发起请求** ，但由于 **Vary 指定的首部字段不相同** ，因此 **必须要从源服务器重新获取资源** 。
+
+#### WWW-Authenticate
+
+```
+WWW-Authenticate: Basic realm="Usagidesign Auth"
+```
+首部字段 WWW-Authenticate 用于 **HTTP 访问认证** 。它会告知 **客户端适用于访问请求 URI 所指定资源的认证方案**（Basic 或是 Digest）和 **带参数提示的质询**（challenge）。状态码 **401 Unauthorized** 响应中，肯定带有首部字段 **WWW-Authenticate** 。
+
+上述示例中，realm 字段的字符串是为了辨别请求 URI 指定资源所受到的保护策略。
+
+### 实体首部字段
+
+实体首部字段是包含在请求报文和响应报文中的实体部分所使用的首部，用于补充内容的更新时间等与实体相关的信息。
+
+![实体相关的首部字段]()
+
+图：在请求和响应两方的 HTTP 报文中都含有与实体相关的首部字段
+
+#### Allow
+
+![Allow]()
+
+```
+Allow: GET, HEAD
+```
+首部字段 Allow 用于 **通知客户端能够支持 Request-URI 指定资源的所有 HTTP 方法** 。当服务器接收到不支持的 HTTP 方法时，会以状态码 **405 Method Not Allowed** 作为响应返回。与此同时，还会 **把所有能支持的 HTTP 方法写入首部字段 Allow 后返回** 。
+
+#### Content-Encoding
+
+```
+Content-Encoding: gzip
+```
+首部字段 Content-Encoding 会告知客户端服务器对实体的主体部分选用的内容编码方式。内容编码是指在不丢失实体信息的前提下所进行的压缩
+
+![Content-Encoding]()
+
+主要采用以下 4 种内容编码的方式。（各方式的说明请参考 6.4.3 节 Accept-Encoding 首部字段）。
+
+- gzip
+- compress
+- deflate
+- identity
+
+#### Content-Language
+
+![Content-Language]()
+
+```
+Content-Language: zh-CN
+```
+首部字段 Content-Language 会告知客户端，**实体主体使用的自然语言**（指中文或英文等语言）。
+
+#### Content-Length
+
+![Content-Length]()
+
+```
+Content-Length: 15000
+```
+首部字段 Content-Length 表明了 **实体主体部分的大小**（单位是字节）。对实体主体进行 **内容编码传输** 时，**不能再使用 Content-Length 首部字段** 。由于实体主体大小的计算方法略微复杂，所以在此不再展开。读者若想一探究竟，可参考 RFC2616 的 4.4。
+
+#### Content-Location
+
+```
+Content-Location: http://www.hackr.jp/index-ja.html
+```
+首部字段 Content-Location 给出 **与报文主体部分相对应的 URI** 。和首部字段 Location 不同，Content-Location 表示的是 **报文主体返回资源对应的 URI** 。
+
+比如，对于使用首部字段 Accept-Language 的服务器驱动型请求，当返回的页面内容与实际请求的对象不同时，首部字段 Content-Location 内会写明 URI。（访问 http://www.hackr.jp/ 返回的对象却是 http://www.hackr.jp/index-ja.html 等类似情况）
+
+#### Content-MD5
+
+![Content-MD5]()
+
+图：客户端会对接收的报文主体执行相同的 MD5 算法，然后与首部字段 Content-MD5 的字段值比较
+
+```
+Content-MD5: OGFkZDUwNGVhNGY3N2MxMDIwZmQ4NTBmY2IyTY==
+```
+首部字段 Content-MD5 是一串由 **MD5 算法生成的值** ，其目的在于 **检查报文主体在传输过程中是否保持完整** ，以及 **确认传输到达** 。
+
+对报文主体执行 MD5 算法获得的 **128 位二进制数** ，再 **通过 Base64 编码** 后将结果写入 **Content-MD5 字段值** 。由于 HTTP 首部无法记录二进制值，所以要通过 Base64 编码处理。为确保报文的有效性，作为接收方的客户端会对报文主体再执行一次相同的 MD5 算法。计算出的值与字段值作比较后，即可判断出报文主体的准确性。
+
+采用这种方法，对内容上的 **偶发性改变是无从查证** 的，也 **无法检测出恶意篡改** 。其中一个原因在于，**内容如果能够被篡改** ，那么同时 **意味着 Content-MD5 也可重新计算然后被篡改** 。所以处在接收阶段的客户端是无法意识到报文主体以及首部字段 Content-MD5 是已经被篡改过的。
+
+#### Content-Range
+
+![Content-Range]()
+
+```
+Content-Range: bytes 5001-10000/10000
+```
+针对范围请求，返回响应时使用的首部字段 Content-Range，能告知 **客户端作为响应返回的实体的哪个部分符合范围请求** 。字段值以字节为单位，表示 **当前发送部分** 及 **整个实体大小** 。
+
+#### Content-Type
+
+```
+Content-Type: text/html; charset=UTF-8
+```
+首部字段 Content-Type 说明了 **实体主体内对象的媒体类型** 。和首部字段 Accept 一样，字段值用 type/subtype 形式赋值。参数 charset 使用 iso-8859-1 或 euc-jp 等字符集进行赋值。
+
+#### Expires
+
+![Expires]()
+
+```
+Expires: Wed, 04 Jul 2012 08:26:05 GMT
+```
+首部字段 Expires 会 **将资源失效的日期告知客户端** 。缓存服务器在接收到含有首部字段 Expires 的响应后，会以缓存来应答请求，**在 Expires 字段值指定的时间** 之前，**响应的副本会一直被保存** 。当 **超过指定的时间后** ，**缓存服务器在请求发送过来时，会转向源服务器请求资源** 。
+
+源服务器不希望缓存服务器对资源缓存时，**最好在 Expires 字段内写入与首部字段 Date 相同的时间值** 。
+
+但是，当 **首部字段 Cache-Control 有指定 max-age 指令** 时，比起首部字段 Expires，会**优先处理 max-age 指令** 。
+
+#### Last-Modified
+
+![Last-Modified]()
+
+```
+Last-Modified: Wed, 23 May 2012 09:59:55 GMT
+```
+首部字段 Last-Modified 指明 **资源最终修改的时间** 。一般来说，这个值就是 **Request-URI 指定资源被修改的时间** 。但类似 **使用 CGI 脚本进行动态数据处理** 时，该值  **有可能会变成数据最终修改时的时间** 。
