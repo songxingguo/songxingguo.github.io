@@ -15,9 +15,9 @@ date: 2018-06-15 16:45:00
 - #### 模板的定义
 
  1. 创建模板文件
-  
-   ![模板文件](http://p9myzkds7.bkt.clouddn.com/%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6.png)
- 
+
+   ![模板文件](https://graphbed.qiniu.songxingguo.com/%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6.png)
+
    - 一个模板wxml文件中可以创建多个template，通过name进行区分。
    -  ES6的扩展语法：**...** , 可以用于将数据解构之后传给模板使用。
 
@@ -42,5 +42,5 @@ date: 2018-06-15 16:45:00
  3. 在.wxss文件中引入模板的.wxss文件
  ```
  @import "../../components/list-item/list-item.wxss";
- ```  
+ ```
 ---

@@ -20,17 +20,17 @@ date: 2018-09-16 19:01:00
 
 - #### 笔记
 
-  ![第一天-01](http://p9myzkds7.bkt.clouddn.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-01.png)
-  ![第一天-02](http://p9myzkds7.bkt.clouddn.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-02.png)
-  ![第一天-03](http://p9myzkds7.bkt.clouddn.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-03.png)
-  ![第一天-04](http://p9myzkds7.bkt.clouddn.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-04.png)
-  ![第一天-05](http://p9myzkds7.bkt.clouddn.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-05.png)
-  ![第一天-06](http://p9myzkds7.bkt.clouddn.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-06.png)
-  ![第一天-07](http://p9myzkds7.bkt.clouddn.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-07.png)
-  ![第一天-08](http://p9myzkds7.bkt.clouddn.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-08.png)
-  ![第一天-09](http://p9myzkds7.bkt.clouddn.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-09.png)
-  ![第一天-10](http://p9myzkds7.bkt.clouddn.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-10.png)
-  ![第一天-11](http://p9myzkds7.bkt.clouddn.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-11.png)
+  ![第一天-01](https://graphbed.qiniu.songxingguo.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-01.png)
+  ![第一天-02](https://graphbed.qiniu.songxingguo.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-02.png)
+  ![第一天-03](https://graphbed.qiniu.songxingguo.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-03.png)
+  ![第一天-04](https://graphbed.qiniu.songxingguo.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-04.png)
+  ![第一天-05](https://graphbed.qiniu.songxingguo.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-05.png)
+  ![第一天-06](https://graphbed.qiniu.songxingguo.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-06.png)
+  ![第一天-07](https://graphbed.qiniu.songxingguo.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-07.png)
+  ![第一天-08](https://graphbed.qiniu.songxingguo.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-08.png)
+  ![第一天-09](https://graphbed.qiniu.songxingguo.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-09.png)
+  ![第一天-10](https://graphbed.qiniu.songxingguo.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-10.png)
+  ![第一天-11](https://graphbed.qiniu.songxingguo.com/tractice-huaqing/1/%E7%AC%AC%E4%B8%80%E5%A4%A9-11.png)
 
 - #### 练习
 
@@ -655,7 +655,7 @@ date: 2018-09-16 19:01:00
 
   - **页面生命周期**
 
-    ![页面生命周期](http://p9myzkds7.bkt.clouddn.com/practice/mina-lifecycle.png)
+    ![页面生命周期](https://graphbed.qiniu.songxingguo.com/practice/mina-lifecycle.png)
 
   - **数据更新**
 
@@ -772,7 +772,7 @@ date: 2018-09-16 19:01:00
         })
        ```
       最终组合成的对象是 `{foo: 'my-foo', bar:'my-bar'}`。
-      
+    
   - **列表渲染**
     
     在组件上使用 wx:for 控制属性绑定一个数组，即可使用数组中各项的数据重复渲染该组件。
@@ -808,7 +808,7 @@ date: 2018-09-16 19:01:00
     <view wx:else> 3 </view>
     ```
   - **模块化**
-   
+  
     - module.exports：对外共享本模块的私有变量与函数。
     
     - require：引用其他 wxs 文件模块。
@@ -856,11 +856,11 @@ PHP后端，在HTML页面中嵌入PHP代码绑定数据
 
 1. 注册并登陆 [easy-mock](https://www.easy-mock.com/) 。
 2. 点击easy-mock右下角的加号，新建项目，定义baseURL。
-3. 在当前项目下新建接口：数据包、请求方式（get或post等）、接口附加地址、接口描述	
+	. 在当前项目下新建接口：数据包、请求方式（get或post等）、接口附加地址、接口描述	
 4. 复制并得到接口地址。
 5. 在小程序中需要获取数据的页面（如：classify.js）中，
    通过如下方式请求easy-mock平台获取数据：
-    
+   
    ```js
 	onLoad: function (options) {
 	    var _This = this;
@@ -875,14 +875,14 @@ PHP后端，在HTML页面中嵌入PHP代码绑定数据
 	      }
 	    })
 	  },
-     ```
+   ```
 7. 将数据绑定并显示到classify.wxml中去。
 
  ```html
  <view wx:for="{{sData}}">
   姓名：{{item.name}},分数：{{item.score}}
 </view>	
-```
+ ```
 #### 在小程序中使用 LeanClond
 
 1. 注册 [Leancloud](https://leancloud.cn) 账号，并新建一个leancloud应用。
@@ -953,13 +953,13 @@ PHP后端，在HTML页面中嵌入PHP代码绑定数据
 	    });
 	 },
    ```
-  
+
 ### 第二天
 
 #### LeanCloud查询数据流程
 
 1. 在需要查询数据的小程序页面js文件中，引入leanCloud核心模块
- 
+
  ```js
   var Cloud = require('../../utils/av-weapp-min.js')
  ```
@@ -985,9 +985,9 @@ PHP后端，在HTML页面中嵌入PHP代码绑定数据
         })
       })
     },
-   ```
+  ```
 3. 查询方法
- 
+
    - **find(optionsopt) → {Promise}**
    
      查询任务状态和结果，任务结果为一个 JSON 对象，包括 status 表示任务状态， totalCount 表示总数， results 数组表示任务结果数组，previewCount 表示可以返回的结果总数，任务的开始和截止时间 startTime、endTime 等信息。
@@ -999,29 +999,29 @@ PHP后端，在HTML页面中嵌入PHP代码绑定数据
    - **skip （n）→{ AV.Query }**
    
      设置在返回任何结果之前要跳过的结果数。这对于分页很有用。默认是跳过零结果。
+   
     
+   
     
+   
     
+   
     
+   
     
+   
     
+   
     
+   
     
+   
     
+   
     
+   
     
+   
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
     

@@ -25,7 +25,7 @@ date: 2018-08-12 14:56:00
 
 效果：
 
-![HTML结构效果](http://p9myzkds7.bkt.clouddn.com/Navigation/HTML%E7%BB%93%E6%9E%84%E6%95%88%E6%9E%9C.png)
+![HTML结构效果](https://graphbed.qiniu.songxingguo.com/Navigation/HTML%E7%BB%93%E6%9E%84%E6%95%88%E6%9E%9C.png)
 
 > 实例中导航菜单的 HTML 结构中元素 `<ul>` 用来定位导航菜单，.active 表示当前活动的导航项。
 
@@ -79,7 +79,7 @@ date: 2018-08-12 14:56:00
 ```
 效果;
 
-![简单样式](http://p9myzkds7.bkt.clouddn.com/Navigation/%E7%AE%80%E5%8D%95%E6%A0%B7%E5%BC%8F.png)
+![简单样式](https://graphbed.qiniu.songxingguo.com/Navigation/%E7%AE%80%E5%8D%95%E6%A0%B7%E5%BC%8F.png)
 
 ### 媒体查询
 
@@ -162,7 +162,7 @@ date: 2018-08-12 14:56:00
 }
 ```
 
-![媒体查询](http://p9myzkds7.bkt.clouddn.com/Navigation/%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2.png)
+![媒体查询](https://graphbed.qiniu.songxingguo.com/Navigation/%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2.png)
 
 ### 基础样式
 
@@ -282,7 +282,7 @@ a:active,a:hover {
 ```
 效果：
 
-![基础样式](http://p9myzkds7.bkt.clouddn.com/Navigation/%E5%9F%BA%E7%A1%80%E6%A0%B7%E5%BC%8F.png)
+![基础样式](https://graphbed.qiniu.songxingguo.com/Navigation/%E5%9F%BA%E7%A1%80%E6%A0%B7%E5%BC%8F.png)
 
 ## 多层导航
 
@@ -330,7 +330,7 @@ a:active,a:hover {
 ```
 效果：
 
-![多层导航 HTML 结构](http://p9myzkds7.bkt.clouddn.com/Navigation/%E5%A4%9A%E5%B1%82%E5%AF%BC%E8%88%AAHTML%E7%BB%93%E6%9E%84.png)
+![多层导航 HTML 结构](https://graphbed.qiniu.songxingguo.com/Navigation/%E5%A4%9A%E5%B1%82%E5%AF%BC%E8%88%AAHTML%E7%BB%93%E6%9E%84.png)
 
 ### 多层导航样式
 
@@ -381,7 +381,7 @@ a:active,a:hover {
 
 效果：
 
-![多层导航样式](http://p9myzkds7.bkt.clouddn.com/Navigation/%E5%A4%9A%E5%B1%82%E5%AF%BC%E8%88%AA%E6%A0%B7%E5%BC%8F.png)
+![多层导航样式](https://graphbed.qiniu.songxingguo.com/Navigation/%E5%A4%9A%E5%B1%82%E5%AF%BC%E8%88%AA%E6%A0%B7%E5%BC%8F.png)
 
 ### 重置默认样式
 
@@ -415,7 +415,7 @@ a{ text-decoration:none;}
 ```
 效果：
 
-![重置默认样式](http://p9myzkds7.bkt.clouddn.com/Navigation/%E9%87%8D%E7%BD%AE%E9%BB%98%E8%AE%A4%E6%A0%B7%E5%BC%8F.png)
+![重置默认样式](https://graphbed.qiniu.songxingguo.com/Navigation/%E9%87%8D%E7%BD%AE%E9%BB%98%E8%AE%A4%E6%A0%B7%E5%BC%8F.png)
 
 ### 添加动态效果
 
@@ -432,7 +432,7 @@ $(function() {
 ```
 效果：
 
-![动态效果](http://p9myzkds7.bkt.clouddn.com/Navigation/%E5%8A%A8%E6%80%81%E6%95%88%E6%9E%9C%20.png)
+![动态效果](https://graphbed.qiniu.songxingguo.com/Navigation/%E5%8A%A8%E6%80%81%E6%95%88%E6%9E%9C%20.png)
 
 
 ## 导航效果

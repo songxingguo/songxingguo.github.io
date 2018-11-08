@@ -134,11 +134,11 @@ Node带来的最大特性莫过于 **基于事件驱动的非阻塞I/O模型** �
 
 **非阻塞I/O可以使CPU与I/O并不相互依赖等待，让资源得到更好的利用** 。对于网络应用而言，并行带来的想象空间更大，延展而开的是分布式和云。并行使得各个单点之间能够更有效地组织起来，这也是Node在云计算厂商中广受青睐的原因，下图为异步I/O调用的示意图。
 
-![异步I/O调用的示意图](http://p9myzkds7.bkt.clouddn.com/Node-async-program/%E5%BC%82%E6%AD%A5IO%E8%B0%83%E7%94%A8%E7%9A%84%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
+![异步I/O调用的示意图](https://graphbed.qiniu.songxingguo.com/Node-async-program/%E5%BC%82%E6%AD%A5IO%E8%B0%83%E7%94%A8%E7%9A%84%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
 
 如果采用传统的同步I/O模型，分布式计算中性能的折扣将会是明显的，如下图所示。
 
-![同步I/O调用的示意图](http://p9myzkds7.bkt.clouddn.com/Node-async-program/%E5%90%8C%E6%AD%A5IO%E8%B0%83%E7%94%A8%E7%9A%84%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
+![同步I/O调用的示意图](https://graphbed.qiniu.songxingguo.com/Node-async-program/%E5%90%8C%E6%AD%A5IO%E8%B0%83%E7%94%A8%E7%9A%84%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
 
 在第3章中，我们讨论过Node实现异步I/O的原理。**利用事件循环的方式，JavaScript线程像一个分配任务和处理结果的大管家，I/O线程池里的各个I/O线程都是小二，负责兢兢业业地完成分配来的任务，小二与管家之间互不依赖** ，所以 **可以保持整体的高效率** 。这个利用事件循环的经典调度方式在很多地方都存在应用，最典型的是UI编程，如iOS应用开发等。
 
@@ -286,7 +286,7 @@ while (new Date() - start < 1000) {
 
 我们在谈论JavaScript的时候，通常谈的是单一线程上执行的代码，这在浏览器中指的是JavaScript执行线程与UI渲染共用的一个线程；在Node中，只是没有UI渲染的部分，模型基本相同。对于服务器端而言，如果服务器是多核CPU，单个Node进程实质上是没有充分利用多核CPU的。随着现今业务的复杂化，对于多核CPU利用的要求也越来越高。浏览器提出了Web Workers，它通过将JavaScript执行与UI渲染分离，可以很好地利用多核CPU为大量计算服务。同时前端Web Workers也是一个利用消息机制合理使用多核CPU的理想模型。下图为Web Workers的工作示意图。
 
-![Web Workers的工作示意图](http://p9myzkds7.bkt.clouddn.com/Node-async-program/Web%20Workers%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
+![Web Workers的工作示意图](https://graphbed.qiniu.songxingguo.com/Node-async-program/Web%20Workers%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
 
 遗憾在于前端浏览器存在对标准的滞后性，Web Workers并没有广泛应用起来。另外Web Workers能解决利用CPU和减少阻塞UI渲染，但是不能解决UI渲染的效率问题。Node借鉴了这个模式，child_process是其基础API，cluster模块是更深层次的应用。借助Web Workers的模式，开发人员要更多地去面临跨线程的编程，这对于以往的JavaScript编程经验是较少考虑的。
 
@@ -714,7 +714,7 @@ Promises/A提议对单个异步操作做出了这样的抽象定义，具体如�
 
 Promise的状态转化示意图如下图所示。
 
-![Promise的状态转化示意图](http://p9myzkds7.bkt.clouddn.com/Node-async-program/Promise%E7%9A%84%E7%8A%B6%E6%80%81%E8%BD%AC%E5%8C%96%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
+![Promise的状态转化示意图](https://graphbed.qiniu.songxingguo.com/Node-async-program/Promise%E7%9A%84%E7%8A%B6%E6%80%81%E8%BD%AC%E5%8C%96%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
 
 在API的定义上，Promises/A提议是比较简单的。一个Promise对象只要具备then()方法即可。但是对于then()方法，有以下简单的要求。
 
@@ -771,7 +771,7 @@ Deferred.prototype.progress = function (data) {
 ```
 这里的状态和方法之间的对应关系如下图所示。
 
-![状态和方法之间的对应关系](http://p9myzkds7.bkt.clouddn.com/Node-async-program/%E7%8A%B6%E6%80%81%E5%92%8C%E6%96%B9%E6%B3%95%E4%B9%8B%E9%97%B4%E7%9A%84%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB.jpg)
+![状态和方法之间的对应关系](https://graphbed.qiniu.songxingguo.com/Node-async-program/%E7%8A%B6%E6%80%81%E5%92%8C%E6%96%B9%E6%B3%95%E4%B9%8B%E9%97%B4%E7%9A%84%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB.jpg)
 
 利用Promises/A提议的模式，我们可以对一个典型的响应对象进行封装，相关代码如下：
 
@@ -831,7 +831,7 @@ promisify(res).then(function () {
 ```
 这里回到Promise和Deferred的差别上。从上面的代码可以看出，Deferred主要是用于内部，用于维护异步模型的状态；Promise则作用于外部，通过then()方法暴露给外部以添加自定义逻辑。Promise和Deferred的整体关系如下图所示。
 
-![Promise和Deferred的整体关系](http://p9myzkds7.bkt.clouddn.com/Node-async-program/Promise%E5%92%8CDeferred%E7%9A%84%E6%95%B4%E4%BD%93%E5%85%B3%E7%B3%BB.jpg)
+![Promise和Deferred的整体关系](https://graphbed.qiniu.songxingguo.com/Node-async-program/Promise%E5%92%8CDeferred%E7%9A%84%E6%95%B4%E4%BD%93%E5%85%B3%E7%B3%BB.jpg)
 
 与事件发布/订阅模式相比，Promise/Deferred模式的API接口和抽象模型都十分简洁。从上图中也可以看出，它将业务中不可变的部分封装在了Deferred中，将可变的部分交给了Promise。此时问题就来了，对于不同的场景，都需要去封装和改造其Deferred部分，然后才能得到简洁的接口。如果场景不常用，封装花费的时间与带来的简洁相比并不一定划算。
 
@@ -1178,7 +1178,7 @@ function (req, res, next) {
 ```
 每个中间件传递请求对象、响应对象和尾触发函数，通过队列形成一个处理流，如下图所示。
 
-![中间件通过队列形成一个处理流](http://p9myzkds7.bkt.clouddn.com/Node-async-program/%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%80%9A%E8%BF%87%E9%98%9F%E5%88%97%E5%BD%A2%E6%88%90%E4%B8%80%E4%B8%AA%E5%A4%84%E7%90%86%E6%B5%81.jpg)
+![中间件通过队列形成一个处理流](https://graphbed.qiniu.songxingguo.com/Node-async-program/%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%80%9A%E8%BF%87%E9%98%9F%E5%88%97%E5%BD%A2%E6%88%90%E4%B8%80%E4%B8%AA%E5%A4%84%E7%90%86%E6%B5%81.jpg)
 
 **中间件机制使得在处理网络请求** 时，可以像 **面向切面编程** 一样 **进行过滤、验证、日志等功能，而不与具体业务逻辑产生关联，以致产生耦合。** 
 
@@ -1274,7 +1274,7 @@ function(callback) {
 });  
 ```
 这段代码等价于：
-  
+
 ```js
 fs.readFile('file1.txt', 'utf-8',
 function(err, content) {

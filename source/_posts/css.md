@@ -52,7 +52,7 @@ HTML 标签原本被设计为用于定义文档内容，如下实例：
 
 CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明:
 
-![CSS 实例](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/CSS%20%E5%AE%9E%E4%BE%8B.png)
+![CSS 实例](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/CSS%20%E5%AE%9E%E4%BE%8B.png)
 
 选择器通常是您需要改变样式的 HTML 元素。
 
@@ -362,7 +362,7 @@ body {background:#ffffff url('img_tree.png') no-repeat right top;}
 
 ### CSS 背景属性
 
-![CSS 背景属性](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/CSS%20%E8%83%8C%E6%99%AF%E5%B1%9E%E6%80%A7.png)
+![CSS 背景属性](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/CSS%20%E8%83%8C%E6%99%AF%E5%B1%9E%E6%80%A7.png)
 
 ## CSS 文本格式
 
@@ -440,7 +440,7 @@ p {text-indent:50px;}
 
 ### 所有CSS文本属性。
 
-![所有CSS文本属性](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E6%89%80%E6%9C%89CSS%E6%96%87%E6%9C%AC%E5%B1%9E%E6%80%A7.png)
+![所有CSS文本属性](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/%E6%89%80%E6%9C%89CSS%E6%96%87%E6%9C%AC%E5%B1%9E%E6%80%A7.png)
 
 ## CSS 字体
 
@@ -448,7 +448,7 @@ CSS字体属性定义字体，加粗，大小，文字样式。
 
 serif和sans-serif字体之间的区别
 
-![serif和sans-serif字体之间的区别](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/serif%E5%92%8Csans-serif%E5%AD%97%E4%BD%93%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB.png)
+![serif和sans-serif字体之间的区别](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/serif%E5%92%8Csans-serif%E5%AD%97%E4%BD%93%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB.png)
 
 >  在计算机屏幕上，sans-serif字体被认为是比serif字体容易阅读
 
@@ -459,7 +459,7 @@ serif和sans-serif字体之间的区别
 - 通用字体系列 - 拥有相似外观的字体系统组合（如 "Serif" 或 "Monospace"）
 - 特定字体系列 - 一个特定的字体系列（如 "Times" 或 "Courier"）
 
-![CSS字型](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/CSS%E5%AD%97%E5%9E%8B.png)
+![CSS字型](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/CSS%E5%AD%97%E5%9E%8B.png)
 
 ### 字体系列
 
@@ -560,10 +560,10 @@ font-size 属性设置文本的大小。
   我们的代码非常有效。在所有浏览器中，可以显示相同的文本大小，并允许所有浏览器缩放文本的大小。
   
 ### 所有CSS字体属性
- 
- ![所有CSS字体属性](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E6%89%80%E6%9C%89CSS%E5%AD%97%E4%BD%93%E5%B1%9E%E6%80%A7.png)
-  
-  
+
+ ![所有CSS字体属性](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/%E6%89%80%E6%9C%89CSS%E5%AD%97%E4%BD%93%E5%B1%9E%E6%80%A7.png)
+
+
 ## CSS 链接
 
 不同的链接可以有不同的样式。
@@ -719,7 +719,7 @@ list-style-image
 
 ### 所有的CSS列表属性
 
-![所有的CSS列表属性](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E6%89%80%E6%9C%89%E7%9A%84CSS%E5%88%97%E8%A1%A8%E5%B1%9E%E6%80%A7.png)
+![所有的CSS列表属性](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/%E6%89%80%E6%9C%89%E7%9A%84CSS%E5%88%97%E8%A1%A8%E5%B1%9E%E6%80%A7.png)
 
 ## CSS 表格
 
@@ -819,7 +819,7 @@ CSS盒模型本质上是一个盒子，封装周围的HTML元素，它包括：�
 
 下面的图片说明了盒子模型(Box Model)：
 
-![CSS 盒子模型](http://p9myzkds7.bkt.clouddn.com/CSS/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B.png)
+![CSS 盒子模型](https://graphbed.qiniu.songxingguo.com/CSS/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B.png)
 
 不同部分的说明：
 
@@ -886,7 +886,7 @@ IE8 及更早IE版本不支持设置填充的宽度和边框的宽度属性。
 
 CSS边框属性允许你指定一个元素边框的样式和颜色。
 
-![CSS 边框属性](http://p9myzkds7.bkt.clouddn.com/CSS/css%E8%BE%B9%E6%A1%86%E5%B1%9E%E6%80%A7.png)
+![CSS 边框属性](https://graphbed.qiniu.songxingguo.com/CSS/css%E8%BE%B9%E6%A1%86%E5%B1%9E%E6%80%A7.png)
 
 ### 边框样式
 
@@ -896,7 +896,7 @@ CSS边框属性允许你指定一个元素边框的样式和颜色。
 
 border-style 值:
 
-![border-style 值](http://p9myzkds7.bkt.clouddn.com/CSS/border-style%20%E5%80%BC.png)
+![border-style 值](https://graphbed.qiniu.songxingguo.com/CSS/border-style%20%E5%80%BC.png)
 
 ### 边框宽度
 
@@ -1001,7 +1001,7 @@ border-style属性可以有1-4个值：
 ```
 border:5px solid red;
 ```
-![CSS 边框属性](http://p9myzkds7.bkt.clouddn.com/CSS/%E6%89%80%E6%9C%89CSS%E8%BE%B9%E6%A1%86%E5%B1%9E%E6%80%A7.png)
+![CSS 边框属性](https://graphbed.qiniu.songxingguo.com/CSS/%E6%89%80%E6%9C%89CSS%E8%BE%B9%E6%A1%86%E5%B1%9E%E6%80%A7.png)
 
 ## CSS 轮廓（outline）
 
@@ -1013,7 +1013,7 @@ border:5px solid red;
 
 轮廓（outline）是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用。
 
-![CSS 轮廓](http://p9myzkds7.bkt.clouddn.com/CSS/CSS%20%E8%BD%AE%E5%BB%93.png)
+![CSS 轮廓](https://graphbed.qiniu.songxingguo.com/CSS/CSS%20%E8%BD%AE%E5%BB%93.png)
 
 ### 所有CSS 轮廓（outline）属性
 
@@ -1021,7 +1021,7 @@ border:5px solid red;
 
 CSS outline 属性规定元素轮廓的样式、颜色和宽度。
 
-![所有CSS 轮廓（outline）属性](http://p9myzkds7.bkt.clouddn.com/CSS/%E6%89%80%E6%9C%89CSS%20%E8%BD%AE%E5%BB%93%EF%BC%88outline%EF%BC%89%E5%B1%9E%E6%80%A7.png)
+![所有CSS 轮廓（outline）属性](https://graphbed.qiniu.songxingguo.com/CSS/%E6%89%80%E6%9C%89CSS%20%E8%BD%AE%E5%BB%93%EF%BC%88outline%EF%BC%89%E5%B1%9E%E6%80%A7.png)
 
 ## CSS margin(外边距)
 
@@ -1033,11 +1033,11 @@ margin 清除周围的（外边框）元素区域。margin 没有背景颜色，
 
 margin 可以单独改变元素的上，下，左，右边距，也可以一次改变所有的属性。
 
-![margin](http://p9myzkds7.bkt.clouddn.com/CSS/margin.png)
+![margin](https://graphbed.qiniu.songxingguo.com/CSS/margin.png)
 
 可能的值
 
-![可能的值](http://p9myzkds7.bkt.clouddn.com/CSS/%E5%8F%AF%E8%83%BD%E7%9A%84%E5%80%BC.png)
+![可能的值](https://graphbed.qiniu.songxingguo.com/CSS/%E5%8F%AF%E8%83%BD%E7%9A%84%E5%80%BC.png)
 
 > Margin可以使用负值，重叠的内容。
 
@@ -1087,7 +1087,7 @@ margin属性可以有一到四个值。/p>
 
 ### 所有的CSS边距属性
 
-![所有的CSS边距属性](http://p9myzkds7.bkt.clouddn.com/CSS/%E6%89%80%E6%9C%89%E7%9A%84CSS%E8%BE%B9%E8%B7%9D%E5%B1%9E%E6%80%A7.png)
+![所有的CSS边距属性](https://graphbed.qiniu.songxingguo.com/CSS/%E6%89%80%E6%9C%89%E7%9A%84CSS%E8%BE%B9%E8%B7%9D%E5%B1%9E%E6%80%A7.png)
 
 ## CSS padding（填充）
 
@@ -1099,11 +1099,11 @@ CSS padding（填充）是一个简写属性，定义元素边框与元素内容
 
 单独使用 padding 属性可以改变上下左右的填充。
 
-![padding](http://p9myzkds7.bkt.clouddn.com/CSS/padding.png)
+![padding](https://graphbed.qiniu.songxingguo.com/CSS/padding.png)
 
 ### 可能的值
 
-![padding可能的值](http://p9myzkds7.bkt.clouddn.com/CSS/padding%E5%8F%AF%E8%83%BD%E7%9A%84%E5%80%BC.png)
+![padding可能的值](https://graphbed.qiniu.songxingguo.com/CSS/padding%E5%8F%AF%E8%83%BD%E7%9A%84%E5%80%BC.png)
 
 
 ### 填充- 单边内边距属性
@@ -1156,7 +1156,7 @@ Padding属性，可以有一到四个值。
 
 ### 所有的CSS填充属性
 
-![所有的CSS填充属性](http://p9myzkds7.bkt.clouddn.com/CSS/%E6%89%80%E6%9C%89%E7%9A%84CSS%E5%A1%AB%E5%85%85%E5%B1%9E%E6%80%A7.png)
+![所有的CSS填充属性](https://graphbed.qiniu.songxingguo.com/CSS/%E6%89%80%E6%9C%89%E7%9A%84CSS%E5%A1%AB%E5%85%85%E5%B1%9E%E6%80%A7.png)
 
 ## CSS 分组 和 嵌套 选择器
 
@@ -1225,7 +1225,7 @@ CSS 尺寸 (Dimension) 属性允许你控制元素的高度和宽度。同样，
 
 所有CSS 尺寸 (Dimension)属性
 
-![所有CSS 尺寸 (Dimension)属性](http://p9myzkds7.bkt.clouddn.com/CSS/%E6%89%80%E6%9C%89CSS%20%E5%B0%BA%E5%AF%B8%20%28Dimension%29%E5%B1%9E%E6%80%A7.png)
+![所有CSS 尺寸 (Dimension)属性](https://graphbed.qiniu.songxingguo.com/CSS/%E6%89%80%E6%9C%89CSS%20%E5%B0%BA%E5%AF%B8%20%28Dimension%29%E5%B1%9E%E6%80%A7.png)
 
 ## CSS Display(显示) 与 Visibility（可见性）
 
@@ -1429,7 +1429,7 @@ CSS overflow 属性可以控制内容溢出元素框时在对应的元素区间�
 
 overflow属性有以下值：
 
-![overflow属性的值](http://p9myzkds7.bkt.clouddn.com/CSS/overflow%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC.png)
+![overflow属性的值](https://graphbed.qiniu.songxingguo.com/CSS/overflow%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC.png)
 
 **注意:overflow 属性只工作于指定高度的块元素上。**
 
@@ -1524,7 +1524,7 @@ clear 属性指定元素两侧不能出现浮动元素。
 
 "CSS" 列中的数字表示不同的 CSS 版本（CSS1 或 CSS2）定义了该属性。
 
-![CSS 中所有的浮动属性](http://p9myzkds7.bkt.clouddn.com/CSS/CSS%20%E4%B8%AD%E6%89%80%E6%9C%89%E7%9A%84%E6%B5%AE%E5%8A%A8%E5%B1%9E%E6%80%A7.png)
+![CSS 中所有的浮动属性](https://graphbed.qiniu.songxingguo.com/CSS/CSS%20%E4%B8%AD%E6%89%80%E6%9C%89%E7%9A%84%E6%B5%AE%E5%8A%A8%E5%B1%9E%E6%80%A7.png)
 
 ## CSS 布局 - 水平 & 垂直对齐
 
@@ -1536,7 +1536,7 @@ clear 属性指定元素两侧不能出现浮动元素。
 
 元素通过指定宽度，并将两边的空外边距平均分配：
 
-![元素居中对齐](http://p9myzkds7.bkt.clouddn.com/CSS/%E5%85%83%E7%B4%A0%E5%B1%85%E4%B8%AD.png)
+![元素居中对齐](https://graphbed.qiniu.songxingguo.com/CSS/%E5%85%83%E7%B4%A0%E5%B1%85%E4%B8%AD.png)
 
 ```css
 .center {
@@ -1552,7 +1552,7 @@ clear 属性指定元素两侧不能出现浮动元素。
 
 如果仅仅是为了文本在元素内居中对齐，可以使用 text-align: center;
 
-![文本居中对齐](http://p9myzkds7.bkt.clouddn.com/CSS/%E6%96%87%E6%9C%AC%E5%B1%85%E4%B8%AD%E5%AF%B9%E9%BD%90.png)
+![文本居中对齐](https://graphbed.qiniu.songxingguo.com/CSS/%E6%96%87%E6%9C%AC%E5%B1%85%E4%B8%AD%E5%AF%B9%E9%BD%90.png)
 
 ```cs
 .center {
@@ -1565,7 +1565,7 @@ clear 属性指定元素两侧不能出现浮动元素。
 
 要让图片居中对齐, 可以使用 margin: auto; 并将它放到 **块** 元素中:
 
-![图片居中对齐](http://p9myzkds7.bkt.clouddn.com/CSS/%E5%9B%BE%E7%89%87%E5%B1%85%E4%B8%AD.png)
+![图片居中对齐](https://graphbed.qiniu.songxingguo.com/CSS/%E5%9B%BE%E7%89%87%E5%B1%85%E4%B8%AD.png)
 
 ```css
 img {
@@ -1578,7 +1578,7 @@ img {
 
 我们可以使用 position: absolute; 属性来对齐元素:
 
-![使用定位方式](http://p9myzkds7.bkt.clouddn.com/CSS/%E5%B7%A6%E5%8F%B3%E5%AF%B9%E9%BD%90.png)
+![使用定位方式](https://graphbed.qiniu.songxingguo.com/CSS/%E5%B7%A6%E5%8F%B3%E5%AF%B9%E9%BD%90.png)
 
 ```css
 .right {
@@ -1656,7 +1656,7 @@ body {
 
 CSS 中有很多方式可以实现垂直居中对齐。 一个简单的方式就是头部顶部使用 padding:
 
-![使用 padding](http://p9myzkds7.bkt.clouddn.com/CSS/padding%E5%AE%9E%E7%8E%B0.png)
+![使用 padding](https://graphbed.qiniu.songxingguo.com/CSS/padding%E5%AE%9E%E7%8E%B0.png)
 
 ```css
 .center {
@@ -1666,7 +1666,7 @@ CSS 中有很多方式可以实现垂直居中对齐。 一个简单的方式就
 ```
 如果要水平和垂直都居中，可以使用 padding 和 text-align: center:
 
-![水平和垂直都居中](http://p9myzkds7.bkt.clouddn.com/CSS/%E6%B0%B4%E5%B9%B3%E5%92%8C%E5%9E%82%E7%9B%B4%E9%83%BD%E5%B1%85.png)
+![水平和垂直都居中](https://graphbed.qiniu.songxingguo.com/CSS/%E6%B0%B4%E5%B9%B3%E5%92%8C%E5%9E%82%E7%9B%B4%E9%83%BD%E5%B1%85.png)
 
 ```css
 .center {
@@ -1677,7 +1677,7 @@ CSS 中有很多方式可以实现垂直居中对齐。 一个简单的方式就
 ```
 ### 垂直居中 - 使用 line-height
 
-![使用 line-height](http://p9myzkds7.bkt.clouddn.com/CSS/%E4%BD%BF%E7%94%A8%20line-height.png)
+![使用 line-height](https://graphbed.qiniu.songxingguo.com/CSS/%E4%BD%BF%E7%94%A8%20line-height.png)
 
 ```css
 .center {
@@ -1819,7 +1819,7 @@ a:active {color:#0000FF;} /* 已选中的链接 */
 伪类可以与 CSS 类配合使用：
 
 a.red:visited {color:#FF0000;}
- 
+
 ```html
 <a class="red" href="css-syntax.html">CSS 语法</a>
 ```
@@ -2007,18 +2007,18 @@ h1:after
 
 ### 所有CSS伪类/元素
 
-![所有CSS伪类/元素](http://p9myzkds7.bkt.clouddn.com/CSS/%E6%89%80%E6%9C%89CSS%E4%BC%AA%E7%B1%BB%E5%85%83%E7%B4%A0.png)
+![所有CSS伪类/元素](https://graphbed.qiniu.songxingguo.com/CSS/%E6%89%80%E6%9C%89CSS%E4%BC%AA%E7%B1%BB%E5%85%83%E7%B4%A0.png)
 
 
 ## CSS 导航栏
 
 **垂直**
 
-![垂直](http://p9myzkds7.bkt.clouddn.com/CSS/%E5%9E%82%E7%9B%B4.png)
+![垂直](https://graphbed.qiniu.songxingguo.com/CSS/%E5%9E%82%E7%9B%B4.png)
 
 **水平**
 
-![水平](http://p9myzkds7.bkt.clouddn.com/CSS/%E6%B0%B4%E5%B9%B3.png)
+![水平](https://graphbed.qiniu.songxingguo.com/CSS/%E6%B0%B4%E5%B9%B3.png)
 
 ### 导航栏
 
@@ -2080,7 +2080,7 @@ a
 
 创建一个简单的垂直导航条实例，在鼠标移动到选项时，修改背景颜色：
 
-![垂直导航条实例](http://p9myzkds7.bkt.clouddn.com/CSS/%E5%9E%82%E7%9B%B4%E5%AF%BC%E8%88%AA%E6%9D%A1%E5%AE%9E%E4%BE%8B.png)
+![垂直导航条实例](https://graphbed.qiniu.songxingguo.com/CSS/%E5%9E%82%E7%9B%B4%E5%AF%BC%E8%88%AA%E6%9D%A1%E5%AE%9E%E4%BE%8B.png)
 
 ```css
 ul {
@@ -2108,7 +2108,7 @@ li a:hover {
 
 在点击了选项后，我们可以添加 "active" 类来标准哪个选项被选中：
 
-![激活/当前导航条实例](http://p9myzkds7.bkt.clouddn.com/CSS/%E6%BF%80%E6%B4%BB%E3%80%81%E5%BD%93%E5%89%8D%E5%AF%BC%E8%88%AA%E6%9D%A1%E5%AE%9E%E4%BE%8B.png)
+![激活/当前导航条实例](https://graphbed.qiniu.songxingguo.com/CSS/%E6%BF%80%E6%B4%BB%E3%80%81%E5%BD%93%E5%89%8D%E5%AF%BC%E8%88%AA%E6%9D%A1%E5%AE%9E%E4%BE%8B.png)
 
 ```css
 .active {
@@ -2365,7 +2365,7 @@ CSS 部分：
 
 创建下拉菜单，并允许用户选取列表中的某一项：
 
-![下拉菜单](http://p9myzkds7.bkt.clouddn.com/CSS/%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95.png)
+![下拉菜单](https://graphbed.qiniu.songxingguo.com/CSS/%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95.png)
 
 这个实例类似前面的实例，当我们在下拉列表中添加了链接，并设置了样式：
 
@@ -2431,11 +2431,11 @@ CSS 部分：
 
 float:left;
 
-![下拉内容对齐方式-左](http://p9myzkds7.bkt.clouddn.com/CSS/%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F-%E5%B7%A6.png)
+![下拉内容对齐方式-左](https://graphbed.qiniu.songxingguo.com/CSS/%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F-%E5%B7%A6.png)
 
 float:right;
 
-![下拉内容对齐方式-右](http://p9myzkds7.bkt.clouddn.com/CSS/%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F-%E5%8F%B3.png)
+![下拉内容对齐方式-右](https://graphbed.qiniu.songxingguo.com/CSS/%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F-%E5%8F%B3.png)
 
 如果你想设置右浮动的下拉菜单内容方向是从右到左，而不是从左到右，可以添加以下代码 right: 0;
 
@@ -2451,7 +2451,7 @@ float:right;
 
 提示工具在鼠标移动到指定元素后触发，先看以下四个实例：
 
-![提示工具](http://p9myzkds7.bkt.clouddn.com/%E6%8F%90%E7%A4%BA%E5%B7%A5%E5%85%B7.png)
+![提示工具](https://graphbed.qiniu.songxingguo.com/%E6%8F%90%E7%A4%BA%E5%B7%A5%E5%85%B7.png)
 
 ### 基础提示框(Tooltip)
 
@@ -2651,7 +2651,7 @@ border-color 用于将内容转换为箭头。设置顶部边框为黑色，其�
 
 以下是使用CSS创建图片廊：
 
-![图片画廊](http://p9myzkds7.bkt.clouddn.com/CSS/%E5%9B%BE%E7%89%87%E7%94%BB%E5%BB%8A.png)
+![图片画廊](https://graphbed.qiniu.songxingguo.com/CSS/%E5%9B%BE%E7%89%87%E7%94%BB%E5%BB%8A.png)
 
 
 ### 图片廊
@@ -2765,11 +2765,11 @@ CSS3中属性的透明度是 opacity。
 
 正常的图像
 
-![正常图像](http://p9myzkds7.bkt.clouddn.com/CSS/%E6%AD%A3%E5%B8%B8%E7%9A%84%E5%9B%BE%E5%83%8F.png)
+![正常图像](https://graphbed.qiniu.songxingguo.com/CSS/%E6%AD%A3%E5%B8%B8%E7%9A%84%E5%9B%BE%E5%83%8F.png)
 
 相同的图像带有透明度：
 
-![相同的图像带有透明度](http://p9myzkds7.bkt.clouddn.com/CSS/%E7%9B%B8%E5%90%8C%E7%9A%84%E5%9B%BE%E5%83%8F%E5%B8%A6%E6%9C%89%E9%80%8F%E6%98%8E%E5%BA%A6.png)
+![相同的图像带有透明度](https://graphbed.qiniu.songxingguo.com/CSS/%E7%9B%B8%E5%90%8C%E7%9A%84%E5%9B%BE%E5%83%8F%E5%B8%A6%E6%9C%89%E9%80%8F%E6%98%8E%E5%BA%A6.png)
 
 看看下面的CSS：
 
@@ -2788,7 +2788,7 @@ IE8和早期版本使用滤镜：alpha（opacity= x）。 x可以采取的值是
 
 将鼠标移到图像上：
 
-![图像的透明度 - 悬停效果](http://p9myzkds7.bkt.clouddn.com/CSS/%E6%82%AC%E5%81%9C%E6%95%88%E6%9E%9C.png)
+![图像的透明度 - 悬停效果](https://graphbed.qiniu.songxingguo.com/CSS/%E6%82%AC%E5%81%9C%E6%95%88%E6%9E%9C.png)
 
 CSS样式：
 
@@ -2814,7 +2814,7 @@ IE8和更早版本使用： filter:alpha(opacity=100).
 
 ### 实例3 - 透明的盒子中的文字
 
-![透明的盒子中的文字](http://p9myzkds7.bkt.clouddn.com/CSS/%E9%80%8F%E6%98%8E%E7%9A%84%E7%9B%92%E5%AD%90%E4%B8%AD%E7%9A%84%E6%96%87%E5%AD%97.png)
+![透明的盒子中的文字](https://graphbed.qiniu.songxingguo.com/CSS/%E9%80%8F%E6%98%8E%E7%9A%84%E7%9B%92%E5%AD%90%E4%B8%AD%E7%9A%84%E6%96%87%E5%AD%97.png)
 
 源代码如下：
 
@@ -2879,7 +2879,7 @@ div.transbox p
 
 与其使用三个独立的图像，不如我们使用这种单个图像（"img_navsprites.gif"）：
 
-![图像拼合 - 简单实例](http://p9myzkds7.bkt.clouddn.com/CSS/img_navsprites.gif)
+![图像拼合 - 简单实例](https://graphbed.qiniu.songxingguo.com/CSS/img_navsprites.gif)
 
 有了CSS，我们可以只显示我们需要的图像的一部分。
 
@@ -2945,7 +2945,7 @@ background:url(img_navsprites.gif) 0 0;
 
 我们的新图像 ("img_navsprites_hover.gif") 包含三个导航图像和三幅图像：
 
-![图像拼合 - 悬停效果](http://p9myzkds7.bkt.clouddn.com/CSS/img_navsprites_hover.gif)
+![图像拼合 - 悬停效果](https://graphbed.qiniu.songxingguo.com/CSS/img_navsprites_hover.gif)
 
 因为这是一个单一的图像，而不是6个单独的图像文件，当用户停留在图像上不会有延迟加载。
 
@@ -2996,7 +2996,7 @@ background:url(img_navsprites.gif) 0 0;
 
 注意：媒体类型名称不区分大小写。
 
-![其他媒体类型](http://p9myzkds7.bkt.clouddn.com/CSS/%E5%85%B6%E4%BB%96%E5%AA%92%E4%BD%93%E7%B1%BB%E5%9E%8B.png)
+![其他媒体类型](https://graphbed.qiniu.songxingguo.com/CSS/%E5%85%B6%E4%BB%96%E5%AA%92%E4%BD%93%E7%B1%BB%E5%9E%8B.png)
 
 ## CSS 属性 选择器
 

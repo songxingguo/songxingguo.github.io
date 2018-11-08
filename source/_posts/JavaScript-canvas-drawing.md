@@ -38,7 +38,7 @@ if (drawing.getContext){
 在使用 `<canvas>` 元素之前，首先 **要检测 getContext() 方法是否存在** ，这一步非常重要。有些浏览器会为 HTML 规范之外的元素创建默认的 HTML 元素对象（假设你想在 Firefox 3 中使用 `<canvas>` 元素。虽然浏览器会为该标签创建一个 DOM 对象，而且也可以引用它，但这个对象中并没有 getContext()方法。） 。在这种情况下，即使 drawing 变量中保存着一个有效的元素引用，也检测不到 getContext() 方法。
 
 **使用 toDataURL() 方法，可以导出在 `<canvas>` 元素上绘制的图像** 。这个方法接受一个参数，即 **图像的 MIME 类型格式** ，而且 **适合用于创建图像的任何上下文** 。比如，**要取得画布中的一幅 PNG 格式的图像** ，可以使用以下代码。
-  
+
 ```js
 var drawing = document.getElementById("drawing");
 
@@ -110,7 +110,7 @@ if (drawing.getContext){
 ```
 以上代码首先将 fillStyle 设置为红色，然后从(10,10)处开始绘制矩形，矩形的宽和高均为 50 像素。然后，通过 rgba() 格式再将 fillStyle 设置为半透明的蓝色，在第一个矩形上面绘制第二个矩形。结果就是可以透过蓝色的矩形看到红色的矩形（见下图）。
 
-![fillRect() 方法](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/fillReact%28%29.png)
+![fillRect() 方法](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/fillReact%28%29.png)
 
 **strokeRect() 方法在画布上绘制的矩形会使用指定的颜色描边** 。 **描边颜色通过 strokeStyle 属性指定** 。比如：
 
@@ -138,7 +138,7 @@ if (drawing.getContext){
 ```
 以上代码绘制了两个重叠的矩形。不过，这两个矩形都只有框线，内部并没有填充颜色（见下图）。
 
-![strokeRect() 方法](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/strokeRect%28%29.png)
+![strokeRect() 方法](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/strokeRect%28%29.png)
 
 > 描边线条的宽度由 lineWidth 属性控制，该属性的值可以是任意整数。另外，通过 lineCap 属性可以控制线条末端的形状是平头、圆头还是方头（ "butt" 、"round" 或 "square" ），通过 lineJoin 属性可以控制线条相交的方式是圆交、斜交还是斜接（ "round" 、 "bevel" 或 "miter" ）。
 
@@ -171,7 +171,7 @@ if (drawing.getContext){
 ```
 如下图所示，两个填充矩形重叠在一起，而重叠的地方又被清除了一个小矩形区域。
 
-![clearRect() 方法](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/clearRect%28%29.png)
+![clearRect() 方法](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/clearRect%28%29.png)
 
 ### 绘制路径
 
@@ -226,7 +226,7 @@ if (drawing.getContext){
 ```
 这个例子使用 arc() 方法绘制了两个圆形：一个外圆和一个内圆，构成了表盘的边框。外圆的半径是 99 像素，圆心位于点(100,100)，也是画布的中心点。为了绘制一个完整的圆形，我们从 0 弧度开始，绘制 2π 弧度（通过 Math.PI 来计算）。在绘制内圆之前，必须把路径移动到内圆上的某一点，以避免绘制出多余的线条。第二次调用 arc() 使用了小一点的半径，以便创造边框的效果。然后，组合使用 moveTo() 和 lineTo() 方法来绘制时针和分针。最后一步是调用 stroke() 方法，这样才能把图形绘制到画布上，如下图所示。
 
-![两个圆形](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/%E4%B8%A4%E4%B8%AA%E5%9C%86%E5%BD%A2.png)
+![两个圆形](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E4%B8%A4%E4%B8%AA%E5%9C%86%E5%BD%A2.png)
 
 **在 2D 绘图上下文中，路径是一种主要的绘图方式，因为路径能为要绘制的图形提供更多控制** 。由于路径的使用很频繁，所以就有了一个名为 **isPointInPath() 的方法** 。这个方法 **接收 x 和 y 坐标作为参数** ，**用于在路径被关闭之前确定画布上的某一点是否位于路径上** ，例如：
 
@@ -257,7 +257,7 @@ context.fillText("12", 100, 20);
 ```
 结果如下图所示。
 
-![绘制12](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/%E4%B8%A4%E4%B8%AA%E5%9C%86%E5%BD%A2%EF%BC%88%E6%95%B0%E5%AD%9712%EF%BC%89.png)
+![绘制12](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E4%B8%A4%E4%B8%AA%E5%9C%86%E5%BD%A2%EF%BC%88%E6%95%B0%E5%AD%9712%EF%BC%89.png)
 
 因为这里把 textAlign 设置为 "center" ，把 textBaseline 设置为 "middle" ，所以坐标(100,20) 表示的是文本水平和垂直中点的坐标。如果将 textAlign 设置为 "start" ，则 x 坐标表示的是文本左端的位置（从左到右阅读的语言）；设置为 "end" ，则 x 坐标表示的是文本右端的位置（从左到右阅读的语言）。例如：
 
@@ -278,7 +278,7 @@ context.fi llText("12", 100, 60);
 ```
 这一回绘制了三个字符串 "12" ，每个字符串的 x 坐标值相同，但 textAlign 值不同。另外，后两个字符串的 y 坐标依次增大，以避免相互重叠。结果如下图所示。
 
-![绘制了三个字符串 "12"](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/%E4%B8%A4%E4%B8%AA%E5%9C%86%E5%BD%A2%EF%BC%88%E4%B8%89%E4%B8%AA12%EF%BC%89.png)
+![绘制了三个字符串 "12"](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E4%B8%A4%E4%B8%AA%E5%9C%86%E5%BD%A2%EF%BC%88%E4%B8%89%E4%B8%AA12%EF%BC%89.png)
 
 **表盘中的分针恰好位于正中间，因此文本的水平对齐方式如何变化也能够一目了然** 。类似地，修改 textBaseline 属性的值可以调整文本的垂直对齐方式：值为 "top" ，y 坐标表示文本顶端；值为 "bottom" ，y 坐标表示文本底端；值为 "hanging" 、 "alphabetic" 和 "ideographic" ，则 y 坐标分别指向字体的特定基线坐标。
 
@@ -300,7 +300,7 @@ context.fillText("Font size is " + fontSize + "px", 10, 50);
 ```
 前面提到过， **fillText 和 strokeText() 方法** 都可以接收第四个参数，也就是 **文本的最大像素宽度** 。不过，这个可选的参数尚未得到所有浏览器支持（最早支持它的是 Firefox 4）。提供这个参数后，调用 fillText() 或 strokeText() 时如果传入的字符串大于最大宽度，则绘制的文本字符的高度正确，但宽度会收缩以适应最大宽度。下图展示了这个效果。
 
-![效果展示](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA.png)
+![效果展示](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA.png)
 
 绘制文本还是相对比较复杂的操作，因此支持 `<canvas>` 元素的浏览器也并未完全实现所有与绘制文本相关的 API。
 
@@ -397,7 +397,7 @@ if (drawing.getContext){
 ```
 **因为原点已经变换到了时钟表盘的中心点，所以旋转也是以该点为圆心的** 。结果就像是表针真地被固定在表盘中心一样，然后向右旋转了一定角度。结果如下图所示。
 
-![原点变换](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/%E4%B8%A4%E4%B8%AA%E5%9C%86%E5%BD%A2%EF%BC%88%E4%B8%80%E5%AE%9A%E8%A7%92%E5%BA%A6%EF%BC%89.png)
+![原点变换](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E4%B8%A4%E4%B8%AA%E5%9C%86%E5%BD%A2%EF%BC%88%E4%B8%80%E5%AE%9A%E8%A7%92%E5%BA%A6%EF%BC%89.png)
 
 **无论是刚才执行的变换** ，还是 **fillStyle 、 strokeStyle 等属性** ，**都会在当前上下文中一直有效** ，**除非再对上下文进行什么修改** 。虽然没有什么办法把上下文中的一切都重置回默认值，但有两个方法可以跟踪上下文的状态变化。如果你知道将来还要返回某组属性与变换的组合，可以 **调用 save() 方法** 。调用这个方法后，**当时的所有设置都会进入一个栈结构** ，**得以妥善保管** 。然后 **可以对上下文进行其他修改** 。等想要 **回到之前保存的设置** 时，可以 **调用 restore() 方法** ，**在保存设置的栈结构中向前返回一级** ，**恢复之前的状态** 。**连续调用 save() 可以把更多设置保存到栈结构中** ，**之后再连续调用 restore() 则可以一级一级返回** 。下面来看一个例子。
 
@@ -442,7 +442,7 @@ context.drawImage(image, 0, 10, 50, 50, 0, 100, 40, 60);
 ```
 这行代码只会把原始图像的一部分绘制到画布上。原始图像的这一部分的起点为(0,10)，宽和高都是 50 像素。最终绘制到上下文中的图像的起点是(0,100)，而大小变成了 40×60 像素。这种调用方式可以创造出很有意思的效果，如下图所示。
 
-![绘制图像](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/%E7%BB%98%E5%88%B6%E5%9B%BE%E5%83%8F.png)
+![绘制图像](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E7%BB%98%E5%88%B6%E5%9B%BE%E5%83%8F.png)
 
 除了给 drawImage() 方法传入 HTML `<img>` 元素外，还 **可以传入另一个 `<canvas>` 元素作为其第一个参数** 。这样，就 **可以把另一个画布内容绘制到当前画布上**  。
 
@@ -478,7 +478,7 @@ context.ficontext.fillRect(30, 30, 50, 50);
 ```
 两个矩形的阴影样式相同，结果如下图所示。
 
-![阴影](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/%E5%BD%B1%E9%98%B4.png)
+![阴影](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E5%BD%B1%E9%98%B4.png)
 
 **不同浏览器对阴影的支持有一些差异** 。IE9、Firefox 4 和 Opera 11 的行为最为规范，其他浏览器多多少少会有一些奇怪的现象，甚至根本不支持阴影。Chrome（直至第 10 版）不能正确地为描边的形状应用实心阴影。Chrome 和 Safari（直至第 5 版）在为带透明像素的图像应用阴影时也会有问题：不透明部分的下方本来是该有阴影的，但此时则一概不见了。Safari 也不能给渐变图形应用阴影，其他浏览器都可以。
 
@@ -507,7 +507,7 @@ context.fillRect(30, 30, 50, 50);
 ```
 **为了让渐变覆盖整个矩形** ，而不是仅应用到矩形的一部分，**矩形和渐变对象的坐标必须匹配才行** 。以上代码会得到如下图所示的结果。
 
-![渐变](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/%E6%B8%90%E5%8F%98.png)
+![渐变](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E6%B8%90%E5%8F%98.png)
 
 如果没有把矩形绘制到恰当的位置，那可能就只会显示部分渐变效果。例如：
 
@@ -552,7 +552,7 @@ context.fillRect(30, 30, 50, 50);
 ```
 运行代码，会得到如下图所示的结果。
 
-![径向渐变](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/%E5%BE%84%E5%90%91%E6%B8%90%E5%8F%98.png)
+![径向渐变](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E5%BE%84%E5%90%91%E6%B8%90%E5%8F%98.png)
 
 因为创建比较麻烦，所以径向渐变并不那么容易控制。不过，一般来说，**让起点圆和终点圆保持为同心圆的情况比较多** ，这时候 **只要考虑给两个圆设置不同的半径就好了** 。
 
@@ -570,7 +570,7 @@ context.fillRect(10, 10, 150, 150);
 ```
 需要注意的是，模式与渐变一样，都是从画布的原点(0,0)开始的。将填充样式（ fillStyle ）设置为模式对象，只表示在某个特定的区域内显示重复的图像，而不是要从某个位置开始绘制重复的图像。上面的代码会得到如下图所示的结果。
 
-![模式](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/%E6%A8%A1%E5%BC%8F.png)
+![模式](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E6%A8%A1%E5%BC%8F.png)
 
 **createPattern() 方法** 的第一个参数也 **可以是一个 `<video>` 元素** ，或者 **另一个 `<canvas>` 元素** 。
 
@@ -722,10 +722,10 @@ var bytes = buffer.byteLength;
 
   //创建一个从字节 9 开始到字节 18 的新视图
   var view = new DataView(buffer, 9, 10);
-  ````
+  ​````
   实例化之后， **DataView 对象会把字节偏移量以及字节长度信息分别保存在 byteOffset 和 byteLength 属性中** 。
 
-  ```js
+  ​```js
   alert(view.byteOffset);
   alert(view.byteLength);
   ```
@@ -733,9 +733,9 @@ var bytes = buffer.byteLength;
 
   读取和写入 DataView 的时候，要根据实际操作的数据类型，选择相应的 getter 和 setter 方法。下表列出了 **DataView 支持的数据类型以及相应的读写方法** 。
 
-  ![数据类型及读写方法](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%BB%E5%86%99%E6%96%B9%E6%B3%95.png)
+  ![数据类型及读写方法](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%BB%E5%86%99%E6%96%B9%E6%B3%95.png)
 
-  ![数据类型及读写方法（续）](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%BB%E5%86%99%E6%96%B9%E6%B3%95%EF%BC%88%E7%BB%AD%EF%BC%89.png)
+  ![数据类型及读写方法（续）](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%BB%E5%86%99%E6%96%B9%E6%B3%95%EF%BC%88%E7%BB%AD%EF%BC%89.png)
 
   所有 **这些方法的第一个参数** 都是一个 **字节偏移量** ，**表示要从哪个字节开始读取或写入** 。不要忘了，**要保存有些数据类型的数据** ，**可能需要不止 1B** 。比如，无符号 8 位整数要用 1B，而 32 位浮点数则要用 4B。**使用 DataView ，就需要你自己来管理这些细节** ，即 **要明确知道自己的数据需要多少字节** ，**并选择正确的读写方法** 。例如：
 
@@ -766,7 +766,7 @@ var bytes = buffer.byteLength;
   ```
   在这个例子中，数值 25 以 16 位无符号整数的形式被写入，字节偏移量为 0。然后，再以 8 位有符号整数的方式读取该数据，得到的结果是 0。这是因为 25 的二进制形式的前 8 位（第一个字节）全部是 0，如下图所示。
 
-  ![字节偏移量](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/%E5%AD%97%E8%8A%82%E5%81%8F%E7%A7%BB%E9%87%8F.png)
+  ![字节偏移量](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E5%AD%97%E8%8A%82%E5%81%8F%E7%A7%BB%E9%87%8F.png)
 
   可见，虽然 **DataView 能让我们在字节级别上读写数组缓冲器中的数据** ，但 **我们必须自己记住要将数据保存到哪里，需要占用多少字节** 。这样一来，就会带来很多工作量，因此类型化视图也就应运而生。
 
@@ -954,7 +954,7 @@ if (drawing.getContext){
   ```
   视口坐标与我们通常熟悉的网页坐标不一样。**视口坐标的原点(0,0)在 `<canvas>` 元素的左下角** ，**x 轴和 y 轴的正方向分别是向右和向上** ，可以定义为(width-1, height-1)，如下图所示。
 
-  ![视口坐标](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/%E8%A7%86%E5%8F%A3%E5%9D%90%E6%A0%87.png)
+  ![视口坐标](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E8%A7%86%E5%8F%A3%E5%9D%90%E6%A0%87.png)
 
   **知道怎么定义视口大小，就可以只在 `<canvas>` 元素的部分区域中绘图** 。来看下面的例子。
 
@@ -970,7 +970,7 @@ if (drawing.getContext){
   ```
   另外，**视口内部的坐标系与定义视口的坐标系也不一样** 。**在视口内部，坐标原点(0,0)是视口的中心点** ，因此 **视口左下角坐标为(-1,-1)** ，而 **右上角坐标为(1,1)** ，如下图所示。
 
-  ![视口内部的坐标系](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/%E8%A7%86%E5%8F%A3%E5%86%85%E9%83%A8%E7%9A%84%E5%9D%90%E6%A0%87%E7%B3%BB.png)
+  ![视口内部的坐标系](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E8%A7%86%E5%8F%A3%E5%86%85%E9%83%A8%E7%9A%84%E5%9D%90%E6%A0%87%E7%B3%BB.png)
 
   **如果在视口内部绘图时使用视口外部的坐标，结果可能会被视口剪切** 。比如，要绘制的形状有一个顶点在(1,2)，那么该形状在视口右侧的部分会被剪切掉。
 
@@ -1210,11 +1210,11 @@ if (drawing.getContext){
 
   最后一步就是使用 gl.drawArrays() 绘制三角形。传入 gl.TRIANGLES 作为第一个参数，表示在(0,1)、(1,-1)和(-1,-1)点之间绘制三角形，并使用传给片段着色器的颜色来填充它。第二个参数是缓冲区中的起点偏移量，最后一个参数是要读取的顶点总数。这次绘图操作的结果如图 15-17 所示。
 
-  ![绘图操作结果](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/%E7%BB%98%E5%9B%BE%E6%93%8D%E4%BD%9C%E7%BB%93%E6%9E%9C.png)
+  ![绘图操作结果](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E7%BB%98%E5%9B%BE%E6%93%8D%E4%BD%9C%E7%BB%93%E6%9E%9C.png)
 
   通过修改 gl.drawArrays() 的第一个参数，可以修改绘制三角形的方式。图 15-18 展示了传入不同的参数后可能得到的结果。
 
-  ![绘制三角形方式](http://p9myzkds7.bkt.clouddn.com/JavaScript-canvas-drawing/%E7%BB%98%E5%88%B6%E4%B8%89%E8%A7%92%E5%BD%A2%E6%96%B9%E5%BC%8F.png)
+  ![绘制三角形方式](https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E7%BB%98%E5%88%B6%E4%B8%89%E8%A7%92%E5%BD%A2%E6%96%B9%E5%BC%8F.png)
 
 - #### 纹理
 

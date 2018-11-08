@@ -40,7 +40,7 @@ JavaScript 从一个简单的输入验证器发展成为一门强大的编程语
 - 文档对象模型（DOM）
 - 浏览器对象模型（BOM）
 
-![三个不同的部分组成](http://p9myzkds7.bkt.clouddn.com/JavaScript-brief/JavaScript%E4%B8%89%E9%83%A8%E5%88%86%E6%9E%84%E6%88%90.png)
+![三个不同的部分组成](https://graphbed.qiniu.songxingguo.com/JavaScript-brief/JavaScript%E4%B8%89%E9%83%A8%E5%88%86%E6%9E%84%E6%88%90.png)
 
 ### ECMAScript
 
@@ -102,7 +102,7 @@ ECMAScript 就是对实现该标准规定的各个方面内容的语言的描述
 
   到了 2008 年，五大主流 Web 浏览器（IE、Firefox、Safari、Chrome 和 Opera）全部做到了与 ECMA-262 兼容。IE8 是第一个着手实现 ECMA-262 第 5 版的浏览器，并在 IE9 中提供了完整的支持。Firefox 4也紧随其后做到兼容。下表列出了 ECMAScript 受主流 Web 浏览器支持的情况。
 
-  ![Web 浏览器支持的情况](http://p9myzkds7.bkt.clouddn.com/JavaScript-brief/Web%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5.png)
+  ![Web 浏览器支持的情况](https://graphbed.qiniu.songxingguo.com/JavaScript-brief/Web%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5.png)
 
 ### 文档对象模型（DOM）
 
@@ -128,7 +128,7 @@ ECMAScript 就是对实现该标准规定的各个方面内容的语言的描述
 
   对开发人员而言，如果想继续保持 Web 跨平台的天性，就必须额外多做一些工作。而人们真正担心的是，如果不对 Netscape 和微软加以控制，Web 开发领域就会出现技术上两强割据，浏览器互不兼容的局面。此时，负责制定 Web 通信标准的 W3C（World Wide Web Consortium，万维网联盟）开始着手规划 DOM。
 
-  ![DOM](http://p9myzkds7.bkt.clouddn.com/JavaScript-brief/DOM.png)
+  ![DOM](https://graphbed.qiniu.songxingguo.com/JavaScript-brief/DOM.png)
 
 - #### DOM 级别
 
@@ -168,7 +168,7 @@ ECMAScript 就是对实现该标准规定的各个方面内容的语言的描述
 
   目前，支持 DOM已经成为浏览器开发商的首要目标，主流浏览器每次发布新版本都会改进对 DOM的支持。下表列出了主流浏览器对 DOM 标准的支持情况。
 
-  ![DOM 标准的支持情况](http://p9myzkds7.bkt.clouddn.com/JavaScript-brief/DOM%E6%A0%87%E5%87%86%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5.png)
+  ![DOM 标准的支持情况](https://graphbed.qiniu.songxingguo.com/JavaScript-brief/DOM%E6%A0%87%E5%87%86%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5.png)
 
 ### 浏览器对象模型（BOM）
 
@@ -190,7 +190,7 @@ Internet Explorer 3 和 Netscape Navigator 3 有一个共同的特色，那就�
 
 作为 Netscape“继承人”的 Mozilla 公司，是目前唯一还在沿用最初的 JavaScript 版本编号序列的浏览器开发商。在 Netscape 将源代码提交给开源的 Mozilla 项目的时候，JavaScript 在浏览器中的最后一个版本号是 1.3。（如前所述，1.4版是只针对服务器的实现。）后来，随着 Mozilla基金会继续开发 JavaScript，添加新的特性、关键字和语法，JavaScript 的版本号继续递增。下表列出了 Netscape/Mozilla 浏览器中 JavaScript 版本号的递增过程：
 
-![JavaScript 版本号](http://p9myzkds7.bkt.clouddn.com/JavaScript-brief/JavaScript%E7%89%88%E6%9C%AC%E5%8F%B7.png)
+![JavaScript 版本号](https://graphbed.qiniu.songxingguo.com/JavaScript-brief/JavaScript%E7%89%88%E6%9C%AC%E5%8F%B7.png)
 
 实际上，上表中的编号方案源自 Firefox 4 将内置 JavaScript 2.0 这一共识。因此，2.0 版之前每个递增的版本号，表示的是相应实现与 JavaScript 2.0 开发目标还有多大的距离。虽然原计划是这样，但 JavaScript 的这种发展速度让这个计划不再可行。目前，JavaScript 2.0还没有目标实现。
 

@@ -48,7 +48,7 @@ var supportsDOM2XML = document.implementation.hasFeature("XML", "2.0");
 **有了 XML 命名空间** ，**不同 XML 文档的元素就可以混合在一起** ，**共同构成格式良好的文档** ，**而不必担心发生命名冲突** 。从技术上说，**HTML 不支持 XML 命名空间** ，但 **XHTML 支持 XML 命名空间** 。因此，本节给出的都是 XHTML 的示例。
 
 命名空间要使用 xmlns 特性来指定。XHTML 的命名空间是 http://www.w3.org/1999/xhtml ，**在任何格式良好 XHTML 页面中** ，**都应该将其包含在 `<html>` 元素中** ，如下面的例子所示。
-  
+
 ```html
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -98,7 +98,7 @@ var supportsDOM2XML = document.implementation.hasFeature("XML", "2.0");
 </html>
 ```
 在这个例子中，通过设置命名空间，**将 `<svg>` 标识为了与包含文档无关的元素** 。此时， **`<svg>` 元素的所有子元素** ，**以及这些元素的所有特性** ，**都被认为属于 http://www.w3.org/2000/svg 命名空间** 。即使这个文档从技术上说是一个 XHTML文档，但因为有了命名空间，其中的 SVG代码也仍然是有效的。对于类似这样的文档来说，最有意思的事发生在调用方法操作文档节点的情况下。例如，在创建一个元素时，这个元素属于哪个命名空间呢？在查询一个特殊标签名时，应该将结果包含在哪个命名空间中呢？“DOM2 级核心”通过为大多数 DOM1 级方法提供特定于命名空间的版本解决了这个问题。
-  
+
 - ####  Node 类型的变化
 
   在 DOM2 级中， Node 类型包含下列特定于命名空间的属性。
@@ -347,7 +347,7 @@ var supportsDOM2CSS2 = document.implementation.hasFeature("CSS2", "2.0");
 
 **任何支持 style 特性的 HTML 元素在 JavaScript 中都有一个对应的 style 属性** 。这个 **style 对象** 是 **CSSStyleDeclaration 的实例** ，包含着通过 HTML 的 **style 特性指定的所有样式信息** ，但 **不包含与外部样式表或嵌入样式表经层叠而来的样式** 。在 style 特性中指定的任何 CSS 属性都将表现为这个 style 对象的相应属性。**对于使用短划线（分隔不同的词汇，例如 background-image ）的 CSS 属性名** ，**必须将其转换成驼峰大小写形式** ，**才能通过 JavaScript 来访问** 。下表列出了几个常见的 CSS 属性及其在 style 对象中对应的属性名。
 
-![style 对象的属性名](http://p9myzkds7.bkt.clouddn.com/JavaScript-DOM2-and-DOM3/style%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png)
+![style 对象的属性名](https://graphbed.qiniu.songxingguo.com/JavaScript-DOM2-and-DOM3/style%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png)
 
 **多数情况下，都可以通过简单地转换属性名的格式来实现转换** 。其中一个不能直接转换的 CSS 属性就是 float 。由于 float 是 JavaScript 中的保留字，因此不能用作属性名。**“DOM2 级样式”规范规定样式对象上相应的属性名应该是 cssFloat** ；Firefox、Safari、Opera 和 Chrome 都支持这个属性，而 IE 支持的则是 styleFloat 。
 
@@ -510,7 +510,7 @@ alert(myDiv.style.height); //"25px"
 ### 操作样式表
 
 **CSSStyleSheet 类型表示的是样式表** ，包括 **通过 `<link>` 元素包含的样式表** 和 **在 `<style>` 元素中定义的样式表** 。有读者可能记得，这两个元素本身分别是由 **HTMLLinkElement** 和 **HTMLStyleElement** 类型表示的。但是，**CSSStyleSheet 类型相对更加通用一些** ，**它只表示样式表**，**而不管这些样式表在 HTML 中是如何定义的** 。此外，**上述两个针对元素的类型允许修改 HTML特性** ，但 **CSSStyleSheet 对象则是一套只读的接口**（有一个属性例外）。使用下面的代码可以确定浏览器是否支持 DOM2级样式表。
- 
+
 ```js
 var supportsDOM2StyleSheets = document.implementation.hasFeature("StyleSheets", "2.0");
 ```
@@ -698,8 +698,8 @@ var sheet = getStylesheet(link);
 其中， **offsetLeft** 和 **offsetTop**  属性 **与包含元素有关** ，**包含元素的引用保存在 offsetParent 属性中** 。 **offsetParent 属性不一定与 parentNode 的值相等** 。例如， `<td>` 元素的 offsetParent 是作为其祖先元素的 `<table>` 元素，因为 `<table>` 是在 DOM层次中距 `<td>` 最近的一个具有大小的元素。
 
 下图形象地展示了上面几个属性表示的不同大小。
-  
-![属性表示的不同大小](http://p9myzkds7.bkt.clouddn.com/JavaScript-DOM2-and-DOM3/%E5%B1%9E%E6%80%A7%E8%A1%A8%E7%A4%BA.png)
+
+![属性表示的不同大小](https://graphbed.qiniu.songxingguo.com/JavaScript-DOM2-and-DOM3/%E5%B1%9E%E6%80%A7%E8%A1%A8%E7%A4%BA.png)
 
 **要想知道某个元素在页面上的偏移量** ，**将这个元素的 offsetLeft 和 offsetTop 与其 offsetParent 的相同属性相加** ，**如此循环直至根元素** ，**就可以得到一个基本准确的值** 。以下两个函数就可以用于分别取得元素的左和上偏移量。
 
@@ -733,7 +733,7 @@ function getElementTop(element){
 
   **元素的客户区大小**（client dimension），指的是 **元素内容及其内边距所占据的空间大小** 。有关客户区大小的属性有两个： **clientWidth** 和 **clientHeight** 。其中， **clientWidth 属性是元素内容区宽度加上左右内边距宽度** ； **clientHeight 属性是元素内容区高度加上上下内边距高度** 。下图形象地说明了这些属性表示的大小。
 
-  ![属性表示的大小](http://p9myzkds7.bkt.clouddn.com/JavaScript-DOM2-and-DOM3/%E5%B1%9E%E6%80%A7%E8%A1%A8%E7%A4%BA%E5%A4%A7%E5%B0%8F.png)
+  ![属性表示的大小](https://graphbed.qiniu.songxingguo.com/JavaScript-DOM2-and-DOM3/%E5%B1%9E%E6%80%A7%E8%A1%A8%E7%A4%BA%E5%A4%A7%E5%B0%8F.png)
 
   从字面上看，**客户区大小就是元素内部的空间大小** ，因此 **滚动条占用的空间不计算在内** 。最常用到这些属性的情况，就是像第 8 章讨论的确定浏览器视口大小的时候。如下面的例子所示，要确定浏览器视口大小，可以使用 **document.documentElement** 或 **document.body** （在 IE7 之前的版本中）的 **clientWidth** 和 **clientHeight** 。
 
@@ -777,7 +777,7 @@ function getElementTop(element){
 
   -  IE（在标准模式）中的这两组属性不相等，其中 scrollWidth 和 scrollHeight 等于文档内容区域的大小，而 clientWidth 和 clientHeight 等于视口大小。
 
-  ![滚动属性大小](http://p9myzkds7.bkt.clouddn.com/JavaScript-DOM2-and-DOM3/%E6%BB%9A%E5%8A%A8%E5%B1%9E%E6%80%A7%E5%A4%A7%E5%B0%8F.png)
+  ![滚动属性大小](https://graphbed.qiniu.songxingguo.com/JavaScript-DOM2-and-DOM3/%E6%BB%9A%E5%8A%A8%E5%B1%9E%E6%80%A7%E5%A4%A7%E5%B0%8F.png)
 
   **在确定文档的总高度时（包括基于视口的最小高度时），必须取得 scrollWidth/clientWidth 和 scrollHeight/clientHeight 中的最大值** ，**才能保证在跨浏览器的环境下得到精确的结果** 。下面就是这样一个例子。
 
@@ -893,12 +893,12 @@ var supportsTreeWalker = (typeof document.createTreeWalker == "function");
 ```
 下图展示了这个页面的 DOM树。
 
-![DOM树](http://p9myzkds7.bkt.clouddn.com/JavaScript-DOM2-and-DOM3/DOM%E6%A0%91.png)
+![DOM树](https://graphbed.qiniu.songxingguo.com/JavaScript-DOM2-and-DOM3/DOM%E6%A0%91.png)
 
 **任何节点都可以作为遍历的根节点** 。如果假设 `<body>` 元素为根节点，那么遍历的第一步就是访问 `<p>`元素，然后再访问同为 `<body>` 元素后代的两个文本节点。不过，这次遍历永远不会到达 `<html>` 、 `<head>` 元素，也不会到达不属于 `<body>` 元素子树的任何节点。而以 document 为根节点的遍历则可以访问到文档中的全部节点。下图展示了对 **以 document 为根节点的 DOM树进行深度优先遍历的先后顺序** 。
-  
- ![深度优先遍历](http://p9myzkds7.bkt.clouddn.com/JavaScript-DOM2-and-DOM3/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86.png) 
- 
+
+ ![深度优先遍历](https://graphbed.qiniu.songxingguo.com/JavaScript-DOM2-and-DOM3/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86.png) 
+
  从 document 开始依序向前，访问的第一个节点是 document ，访问的最后一个节点是包含"world!" 的文本节点。从文档最后的文本节点开始，遍历可以反向移动到 DOM 树的顶端。此时，访问的第一个节点是包含 "Hello" 的文本节点，访问的最后一个节点是 document 节点。 NodeIterator 和 TreeWalker 都以这种方式执行遍历。
 
 ###  NodeIterator
@@ -932,7 +932,7 @@ NodeIterator 类型是两者中比较简单的一个，可以使用 document.cre
 var whatToShow = NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT;
 ```
 可以通过 **createNodeIterator() 方法** 的 filter 参数来 **指定自定义的 NodeFilter 对象** ，或者 **指定一个功能类似节点过滤器（node filter）的函数** 。**每个 NodeFilter 对象只有一个方法** ，即 **acceptNode()** ；如果 **应该访问给定的节点** ，该方法返回 **NodeFilter.FILTER_ACCEPT** ，如果 **不应该访问给定的节点** ，该方法返回 **NodeFilter.FILTER_SKIP** 。由于 NodeFilter 是一个抽象的类型，因此不能直接创建它的实例。在必要时，**只要创建一个包含 acceptNode() 方法的对象** ，然后 **将这个对象传入 createNodeIterator() 中即可** 。例如，下列代码展示了如何创建一个只显示 `<p>` 元素的节点迭代器。
-  
+
 ```js
 var filter = {
   acceptNode: function(node){
@@ -978,7 +978,7 @@ var iterator = document.createNodeIterator(document, NodeFilter.SHOW_ALL, null, 
 </div>
 ```
 假设我们想要 **遍历 `<div>` 元素中的所有元素** ，那么可以使用下列代码。
-  
+
 ```js
 var div = document.getElementById("div1");
 var iterator = document.createNodeIterator(div, NodeFilter.SHOW_ELEMENT, null, false);
@@ -991,7 +991,7 @@ var node = iterator.nextNode();
 在这个例子中，第一次调用 nextNode() 返回 `<p>` 元素。因为在到达 DOM子树末端时 nextNode() 返回 null ，所以 **这里使用了 while 语句在每次循环时检查对 nextNode() 的调用是否返回了 null** 。
 
 执行上面的代码会显示如下标签名：
-  
+
 ```
 DIV
 P
@@ -1002,7 +1002,7 @@ LI
 LI 
 ```
 也许用不着显示那么多信息，你 **只想返回遍历中遇到的 `<li>` 元素** 。很简单，只要使用一个过滤器即可，如下面的例子所示。
-  
+
 ```js
 var div = document.getElementById("div1");
 var filter = function(node){
@@ -1054,9 +1054,9 @@ while (node !== null) {
 }
 ```
 在这里，**filter 可以返回的值有所不同**。**除了 NodeFilter.FILTER_ACCEPT 和 NodeFilter.FILTER_SKIP 之外** ，**还可以使用 NodeFilter.FILTER_REJECT** 。在使用 NodeIterator 对象时，NodeFilter.FILTER_SKIP 与 NodeFilter.FILTER_REJECT 的作用相同：跳过指定的节点。但在使用 TreeWalker 对象时， NodeFilter.FILTER_SKIP 会跳过相应节点继续前进到子树中的下一个节点，而 NodeFilter.FILTER_REJECT 则会跳过相应节点及该节点的整个子树。例如，将前面例子中的 NodeFilter.FILTER_SKIP 修改成 NodeFilter.FILTER_REJECT ，结果就是不会访问任何节点。这是因为第一个返回的节点是 `<div>` ，它的标签名不是 "li" ，于是就会返回 NodeFilter.FILTER_REJECT ，这意味着遍历会跳过整个子树。在这个例子中， `<div>` 元素是遍历的根节点，于是结果就会停止遍历。
-  
+
 当然，**TreeWalker 真正强大的地方在于能够在 DOM 结构中沿任何方向移动** 。使用 TreeWalker 遍历 DOM 树，即使不定义过滤器，也可以取得所有 `<li>` 元素，如下面的代码所示。
-  
+
 ```js
 var div = document.getElementById("div1");
 var walker = document.createTreeWalker(div, NodeFilter.SHOW_ELEMENT, null, false);
@@ -1136,7 +1136,7 @@ var range = document.createRange();
   ```
   这里创建的两个范围包含文档中不同的部分： **rang1 包含 `<p/>` 元素及其所有子元素** ，而 **rang2 包含 `<b/>` 元素** 、**文本节点 "Hello" 和文本节点 "world!" **（如下图所示）。
 
-  ![两个范围](http://p9myzkds7.bkt.clouddn.com/JavaScript-DOM2-and-DOM3/%E8%8C%83%E5%9B%B4.png)
+  ![两个范围](https://graphbed.qiniu.songxingguo.com/JavaScript-DOM2-and-DOM3/%E8%8C%83%E5%9B%B4.png)
 
   在调用 selectNode() 时， startContainer 、 endContainer 和 commonAncestorContainer 都等于传入节点的父节点，也就是这个例子中的 document.body 。而 startOffset 属性等于给定节点在其父节点的 childNodes 集合中的索引（在这个例子中是 1——因为兼容 DOM 的浏览器将空格算作一个文本节点）， endOffset 等于 startOffset 加 1（因为只选择了一个节点）。
 
@@ -1199,7 +1199,7 @@ var range = document.createRange();
   ```
   因为这个范围的选区应该从 "Hello" 中 "e" 的后面开始，所以在 setStart() 中传入 helloNode 的同时，传入了偏移量 2（即 "e" 的下一个位置； "H" 的位置是 0）。设置选区的终点时，在 setEnd() 中传入 worldNode 的同时传入了偏移量 3，表示选区之外的第一个字符的位置，这个字符是 "r" ，它的位置是 3（位置 0 上还有一个空格）。如下图所示。
 
-   ![范围](http://p9myzkds7.bkt.clouddn.com/JavaScript-DOM2-and-DOM3/range%E8%8C%83%E5%9B%B4.png)
+   ![范围](https://graphbed.qiniu.songxingguo.com/JavaScript-DOM2-and-DOM3/range%E8%8C%83%E5%9B%B4.png)
 
    由于 helloNode 和 worldNode 都是文本节点，因此它们分别变成了新建范围的 startContainer 和 endContainer 。此时 startOffset 和 endOffset 分别用以确定两个节点所包含的文本中的位置，而不是用以确定子节点的位置（就像传入的参数为元素节点时那样）。此时的 commonAncestorContainer 是 `<p>` 元素，也就是同时包含这两个节点的第一个祖先元素。
 
@@ -1232,7 +1232,7 @@ var range = document.createRange();
   range.deleteContents();
   ```
 
-  ![最终的DOM树](http://p9myzkds7.bkt.clouddn.com/JavaScript-DOM2-and-DOM3/%E6%9C%80%E7%BB%88DOM%E6%A0%91.png)
+  ![最终的DOM树](https://graphbed.qiniu.songxingguo.com/JavaScript-DOM2-and-DOM3/%E6%9C%80%E7%BB%88DOM%E6%A0%91.png)
 
   执行以上代码后，页面中会显示如下 HTML 代码：
 
@@ -1353,7 +1353,7 @@ var range = document.createRange();
   range.collapse(true); //折叠到起点
   alert(range.collapsed); //输出 true
   ```
-  ![折叠范围](http://p9myzkds7.bkt.clouddn.com/JavaScript-DOM2-and-DOM3/%E6%8A%98%E5%8F%A0%E8%8C%83%E5%9B%B4.png)
+  ![折叠范围](https://graphbed.qiniu.songxingguo.com/JavaScript-DOM2-and-DOM3/%E6%8A%98%E5%8F%A0%E8%8C%83%E5%9B%B4.png)
 
   检测某个范围是否处于折叠状态，可以帮我们确定范围中的两个节点是否紧密相邻。例如，对于下面的 HTML 代码：
 
@@ -1399,7 +1399,7 @@ var range = document.createRange();
 
   在这个例子中，**两个范围的起点实际上是相同的** ，因为它们的起点都是由 **selectNodeContents() 方法设置的默认值来指定的** 。因此，第一次比较返回 0 。但是， range2 的终点由于调用 setEndBefore() 已经改变了，结果是 range1 的终点位于 range2 的终点后面（见下图），因此第二次比较返回 1 。
 
-  ![范围返回值](http://p9myzkds7.bkt.clouddn.com/JavaScript-DOM2-and-DOM3/%E8%8C%83%E5%9B%B4%E8%BF%94%E5%9B%9E%E5%80%BC.png)
+  ![范围返回值](https://graphbed.qiniu.songxingguo.com/JavaScript-DOM2-and-DOM3/%E8%8C%83%E5%9B%B4%E8%BF%94%E5%9B%9E%E5%80%BC.png)
 
 - #### 复制 DOM 范围
 

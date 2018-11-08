@@ -19,7 +19,7 @@ date: 2018-08-28 13:30:00
 **XDM 的核心是 postMessage() 方法** 。在 HTML5 规范中，除了 XDM部分之外的其他部分也会提到这个方法名，但都是为了同一个目的：**向另一个地方传递数据** 。**对于 XDM 而言，“另一个地方”指的是包含在当前页面中的 `<iframe>` 元素** ，或者 **由当前页面弹出的窗口** 。
 
 **postMessage() 方法** 接收两个参数：**一条消息** 和 **一个表示消息接收方来自哪个域的字符串** 。**第二个参数对保障安全通信非常重要** ，**可以防止浏览器把消息发送到不安全的地方** 。来看下面的例子。
-  
+
 ```js
 //注意：所有支持 XDM 的浏览器也支持 iframe 的 contentWindow 属性
 var iframeWindow = document.getElementById("myframe").contentWindow;
@@ -90,7 +90,7 @@ XDM 还有一些怪异之处。首先， postMessage() 的第一个参数最早�
 ### 自定义放置目标
 
 **在拖动元素经过某些无效放置目标时** ，**可以看到一种特殊的光标**（圆环中有一条反斜线），**表示不能放置** 。虽然 **所有元素都支持放置目标事件** ，但 **这些元素默认是不允许放置的** 。**如果拖动元素经过不允许放置的元素** ，**无论用户如何操作** ，**都不会发生 drop 事件** 。不过，**你可以把任何元素变成有效的放置目标** ，**方法是重写 dragenter 和 dragover 事件的默认行为** 。例如，假设有一个 ID 为 "droptarget"的 `<div>` 元素，可以用如下代码将它变成一个放置目标。
-  
+
 ```js
 var droptarget = document.getElementById("droptarget");
 EventUtil.addHandler(droptarget, "dragover", function(event){
@@ -176,7 +176,7 @@ var text = dataTransfer.getData("Text");
 **必须在 ondragstart 事件处理程序中设置 effectAllowed 属性** 。
 
 假设你想允许用户把文本框中的文本拖放到一个 `<div>` 元素中。首先，必须将 dropEffect 和 effectAllowed 设置为 "move" 。但是，由于 `<div>` 元素的放置事件的默认行为是什么也不做，所以文本不可能自动移动。**重写这个默认行为，就能从文本框中移走文本** 。然后 **你就可以自己编写代码将文本插入到 `<div>` 中，这样整个拖放操作就完成了** 。**如果你将 dropEffect 和 effectAllowed 的值设置为 "copy" ，那就不会自动移走文本框中的文本** 。
-  
+
 > Firefox 5 及之前的版本在处理 effectAllowed 属性时有一个问题，即如果你在代码中设置了这个属性的值，那不一定会触发 drop 事件。
 
 ### 可拖动
@@ -184,7 +184,7 @@ var text = dataTransfer.getData("Text");
 **默认情况下，图像、链接和文本是可以拖动的** ，也就是说，**不用额外编写代码，用户就可以拖动它们** 。**文本只有在被选中的情况下才能拖动** ，而 **图像和链接在任何时候都可以拖动** 。
 
 **让其他元素可以拖动也是可能的** 。**HTML5 为所有 HTML 元素规定了一个 draggable 属性** ，**表示元素是否可以拖动** 。**图像和链接的 draggable 属性自动被设置成了 true** ，而 **其他元素这个属性的默认值都是 false** 。要想让其他元素可拖动，或者让图像或链接不能拖动，都可以设置这个属性。例如：
-  
+
 ```js
 <!-- 让这个图像不可以拖动 -->
 <img src="smile.gif" draggable="false" alt="Smiley face">
@@ -214,7 +214,7 @@ HTML5 规范规定 dataTransfer 对象还应该包含下列方法和属性。
 随着音频和视频在 Web 上的迅速流行，大多数提供富媒体内容的站点为了保证跨浏览器兼容性，不得不选择使用 Flash。**HTML5 新增了两个与媒体相关的标签** ，**开发人员不必依赖任何插件就能在网页中嵌入跨浏览器的音频和视频内容** 。这两个标签就是 `<audio>` 和 `<video>` 。
 
 这两个标签 **除了能让开发人员方便地嵌入媒体文件之外** ，**都提供了用于实现常用功能的 JavaScript API** ，**允许为媒体创建自定义的控件** 。这两个元素的用法如下。
-  
+
 ```html
 <!-- 嵌入视频 -->
 <video src="conference.mpg" id="myVideo">Video player not available.</video>
@@ -245,16 +245,16 @@ HTML5 规范规定 dataTransfer 对象还应该包含下列方法和属性。
 关于视频和音频编解码器的内容超出了本书讨论的范围。作者在此只想告诉大家，**不同的浏览器支持不同的编解码器** ，**因此一般来说指定多种格式的媒体来源是必需的** 。支持这两个媒体元素的浏览器有 IE9+、Firefox 3.5+、Safari 4+、Opera 10.5+、Chrome、iOS 版 Safari 和 Android 版 WebKit。
 
 **`<video>` 和 `<audio>` 元素都提供了完善的 JavaScript 接口** 。下表列出了这两个元素共有的属性，**通过这些属性可以知道媒体的当前状态** 。
-  
-![共有的属性](http://p9myzkds7.bkt.clouddn.com/JavaScript-HTML5-script-programming/%E5%85%B1%E6%9C%89%E7%9A%84%E5%B1%9E%E6%80%A7.png)
+
+![共有的属性](https://graphbed.qiniu.songxingguo.com/JavaScript-HTML5-script-programming/%E5%85%B1%E6%9C%89%E7%9A%84%E5%B1%9E%E6%80%A7.png)
 
 其中很多属性也可以直接在 `<audio>` 和 `<video>` 元素中设置。
-  
+
 ### 事件
 
 **除了大量属性之外，这两个媒体元素还可以触发很多事件** 。**这些事件监控着不同的属性的变化，这些变化可能是媒体播放的结果，也可能是用户操作播放器的结果** 。下表列出了媒体元素相关的事件。
 
-![事件](http://p9myzkds7.bkt.clouddn.com/JavaScript-HTML5-script-programming/%E4%BA%8B%E4%BB%B6.png)
+![事件](https://graphbed.qiniu.songxingguo.com/JavaScript-HTML5-script-programming/%E4%BA%8B%E4%BB%B6.png)
 
 这些事件之所以如此具体，就是 **为了让开发人员只使用少量 HTML 和 JavaScript（与创建 Flash 影片相比）即可编写出自定义的音频/视频播放器** 。
 
@@ -317,7 +317,7 @@ if (audio.canPlayType("audio/mpeg")){
 而 "probably" 和 "maybe" 都是真值，因此在 if 语句的条件测试中可以转换成 true 。
 
 **如果给 canPlayType() 传入了一种 MIME 类型，则返回值很可能是 "maybe" 或空字符串** 。这是因为 **媒体文件本身只不过是音频或视频的一个容器** ，而 **真正决定文件能否播放的还是编码的格式** 。**在同时传入 MIME 类型和编解码器的情况下，可能性就会增加，返回的字符串会变成 "probably" ** 。下面来看几个例子。
-  
+
 ```js
 var audio = document.getElementById("audio-player");
 
@@ -332,12 +332,12 @@ if (audio.canPlayType("audio/ogg; codecs=\"vorbis\"")){
 }
 ```
 注意，**编解码器必须用引号引起来才行** 。下表列出了已知的已得到支持的音频格式和编解码器。
-  
-![音频格式和编解码器](http://p9myzkds7.bkt.clouddn.com/%E9%9F%B3%E9%A2%91%E6%A0%BC%E5%BC%8F%E5%92%8C%E7%BC%96%E7%A0%81%E5%99%A8.png)
-  
+
+![音频格式和编解码器](https://graphbed.qiniu.songxingguo.com/%E9%9F%B3%E9%A2%91%E6%A0%BC%E5%BC%8F%E5%92%8C%E7%BC%96%E7%A0%81%E5%99%A8.png)
+
 当然，也可以使用 canPlayType() 来检测视频格式。下表列出了已知的已得到支持的视频格式和编解码器。
 
-![视频格式和编解码器](http://p9myzkds7.bkt.clouddn.com/%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F%E5%92%8C%E7%BC%96%E7%A0%81%E5%99%A8.png)
+![视频格式和编解码器](https://graphbed.qiniu.songxingguo.com/%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F%E5%92%8C%E7%BC%96%E7%A0%81%E5%99%A8.png)
 
 ###  Audio 类型
 

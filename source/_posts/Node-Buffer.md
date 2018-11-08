@@ -36,7 +36,7 @@ Buffer是一个像Array的对象，但它主要用于操作字节。下面我们
 
 Buffer是一个典型的JavaScript与C++结合的模块，它将性能相关部分用C++实现，将非性能相关的部分用JavaScript实现，如下图所示。
 
-![Buffer分工](http://p9myzkds7.bkt.clouddn.com/Node-Buffer/Buffer%E5%88%86%E5%B7%A5.jpg)
+![Buffer分工](https://graphbed.qiniu.songxingguo.com/Node-Buffer/Buffer%E5%88%86%E5%B7%A5.jpg)
 
 第5章揭示了Buffer所占用的内存不是通过V8分配的，属于堆外内存。由于V8垃圾回收性能的影响，将常用的操作对象用更高效和专有的内存分配回收策略来管理是个不错的思路。
 
@@ -118,7 +118,7 @@ function allocPool() {
 ```
 下图为一个新构造的slab单元示例。
 
-![新构造的slab单元示例](http://p9myzkds7.bkt.clouddn.com/Node-Buffer/%E6%96%B0%E6%9E%84%E9%80%A0%E7%9A%84slab%E5%8D%95%E5%85%83%E7%A4%BA%E4%BE%8B.jpg)
+![新构造的slab单元示例](https://graphbed.qiniu.songxingguo.com/Node-Buffer/%E6%96%B0%E6%9E%84%E9%80%A0%E7%9A%84slab%E5%8D%95%E5%85%83%E7%A4%BA%E4%BE%8B.jpg)
 
 在上图中，slab处于empty状态。
 
@@ -142,7 +142,7 @@ if (pool.used & 7) pool.used = (pool.used + 8) & ~7;
 ```
 下图为从一个新的slab单元中初次分配一个Buffer对象的示意图。
 
-![从一个新的slab单元中初次分配一个Buffer对象的示意图](http://p9myzkds7.bkt.clouddn.com/Node-Buffer/%E4%BB%8E%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84slab%E5%8D%95%E5%85%83%E4%B8%AD%E5%88%9D%E6%AC%A1%E5%88%86%E9%85%8D%E4%B8%80%E4%B8%AABuffer%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
+![从一个新的slab单元中初次分配一个Buffer对象的示意图](https://graphbed.qiniu.songxingguo.com/Node-Buffer/%E4%BB%8E%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84slab%E5%8D%95%E5%85%83%E4%B8%AD%E5%88%9D%E6%AC%A1%E5%88%86%E9%85%8D%E4%B8%80%E4%B8%AABuffer%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
 
 这时候的slab状态为partial。
 
@@ -153,7 +153,7 @@ new Buffer(3000);
 ```
 下图为再次分配的示意图。
 
-![从slab单元中再次分配一个Buffer对象的示意图](http://p9myzkds7.bkt.clouddn.com/Node-Buffer/%E4%BB%8Eslab%E5%8D%95%E5%85%83%E4%B8%AD%E5%86%8D%E6%AC%A1%E5%88%86%E9%85%8D%E4%B8%80%E4%B8%AABuffer%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
+![从slab单元中再次分配一个Buffer对象的示意图](https://graphbed.qiniu.songxingguo.com/Node-Buffer/%E4%BB%8Eslab%E5%8D%95%E5%85%83%E4%B8%AD%E5%86%8D%E6%AC%A1%E5%88%86%E9%85%8D%E4%B8%80%E4%B8%AABuffer%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
 
 如果slab剩余的空间不够，将会构造新的slab，原slab中剩余的空间会造成浪费。例如，第一次构造1字节的Buffer对象，第二次构造8192字节的Buffer对象，由于第二次分配时slab中的空间不够，所以创建并使用新的slab，第一个slab的8 KB将会被第一个1字节的Buffer对象独占。下面的代码一共使用了两个slab单元：
 

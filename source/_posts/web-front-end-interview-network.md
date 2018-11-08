@@ -14,7 +14,7 @@ date: 2018-08-06 14:27:00
 - 同步
   
   > 使用者通过 **单个线程** 调用服务；该线程发送请求，在服务 **运行时阻塞**，并且 **等待响应** 。
- 
+
   同步就是指一个进程在执行某个请求的时候，若该请求需要一段时间才能返回信息，那么这个 **进程将会一直等待** 下去，直到收到 **返回信息才继续执行下去** 。
   
 <!-- more -->
@@ -134,7 +134,7 @@ date: 2018-08-06 14:27:00
 3. 对流媒体还有移动设备的支持不是太好等
 
 ![AJAX工作原理]
- 
+
 1. 创建ajax对象（XMLHttpRequest/ActiveXObject(Microsoft.XMLHttp)）
 
 2. 判断数据传输方式(GET/POST)
@@ -166,9 +166,9 @@ Ajax其核心有JavaScript、XMLHTTPRequest、DOM对象组成，通过XmlHttpReq
 4. XML
 
     可扩展的标记语言（Extensible Markup Language）具有一种开放的、可扩展的、可自描述的语言结构，它已经成为网上数据和文档传输的标准,用于其他应用程序交换数据 。
- 
+
  来自—— [AJAX 简介]、[Ajax的优缺点及工作原理？]、[AJAX工作原理及其优缺点]
- 
+
 ### Ajax 原生JavaScritp实现
 
 ```js
@@ -220,7 +220,7 @@ $.ajax({
     }
 })
 ```
- 
+
 来自——[原生js实现Ajax]
 
 [原生js实现Ajax]:https://www.cnblogs.com/colima/p/5339227.html
@@ -242,7 +242,7 @@ HTTP 请求的状态.当一个 XMLHttpRequest 初次创建时，这个属性的�
 
 5 个状态中每一个都有一个相关联的非正式的名称，下表列出了状态、名称和含义：
 
-![5 个状态](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/5%20%E4%B8%AA%E7%8A%B6%E6%80%81.png)
+![5 个状态](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-network/5%20%E4%B8%AA%E7%8A%B6%E6%80%81.png)
 
 readyState 的值不会递减，除非当一个请求在处理过程中的时候调用了 abort() 或 open() 方法。每次这个属性的值增加的时候，都会触发 onreadystatechange 事件句柄。
 
@@ -307,7 +307,7 @@ readyState 的值不会递减，除非当一个请求在处理过程中的时候
 来自——[XML DOM - XMLHttpRequest 对象]
 
 [XML DOM - XMLHttpRequest 对象]:http://www.w3school.com.cn/xmldom/dom_http.asp
- 
+
 
 ### HTTP 头部子字段
 
@@ -339,9 +339,9 @@ OSI七层协议模型主要是：应用层（Application）、表示层（Presen
 
 TCP/IP是一个四层的体系结构，主要包括：应用层、运输层、网际层和网络接口层。从实质上讲，只有上边三层，网络接口层没有什么具体的内容。
 
-![四层的体系结构](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/%E5%9B%9B%E5%B1%82%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png)
+![四层的体系结构](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-network/%E5%9B%9B%E5%B1%82%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png)
 
-![四层的体系结构](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/%E5%9B%9B%E5%B1%82%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%842.png)
+![四层的体系结构](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-network/%E5%9B%9B%E5%B1%82%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%842.png)
 
 #### 五层体系结构
 
@@ -351,9 +351,9 @@ TCP/IP是一个四层的体系结构，主要包括：应用层、运输层、�
 
 三种模型结构： 
 
-![三种模型结构](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84%EF%BC%9A%20.png)
+![三种模型结构](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-network/%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84%EF%BC%9A%20.png)
 
-![三种模型结构](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%842.png)
+![三种模型结构](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-network/%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%842.png)
 
 #### 各层的作用
 
@@ -409,14 +409,14 @@ UDP（user datagram protocol–用户数据报协议，与TCP特性恰恰相反�
 
 ##### 基于TCP的应用层协议
 
-![基于TCP的应用层协议](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/%E5%9F%BA%E4%BA%8ETCP%E7%9A%84%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE.png)
+![基于TCP的应用层协议](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-network/%E5%9F%BA%E4%BA%8ETCP%E7%9A%84%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE.png)
 
 ##### 基于UDP的应用层协议
 
-![基于UDP的应用层协议](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/%E5%9F%BA%E4%BA%8EUDP%E7%9A%84%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE.png)
+![基于UDP的应用层协议](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-network/%E5%9F%BA%E4%BA%8EUDP%E7%9A%84%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE.png)
 
 
-![应用层协议](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/%E5%BA%94%E7%94%A8%E5%B1%82%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8D%8F%E8%AE%AE)
+![应用层协议](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-network/%E5%BA%94%E7%94%A8%E5%B1%82%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8D%8F%E8%AE%AE)
 
 来自——[应用层常见的协议及对应的端口号]、[常见应用层协议端口号]、[TCP/IP协议-应用层协议端口号及各层协议数据单元]]
 
@@ -462,11 +462,11 @@ UDP（user datagram protocol–用户数据报协议，与TCP特性恰恰相反�
 [深入研究：HTTP2 的真正性能到底如何]:https://segmentfault.com/a/1190000007219256
 [HTTP,HTTP2.0,SPDY,HTTPS你应该知道的一些事]:http://www.alloyteam.com/2016/07/httphttp2-0spdyhttps-reading-this-is-enough/
 [HTTP2.0的奇妙日常]:http://www.alloyteam.com/2015/03/http2-0-di-qi-miao-ri-chang/
-[一分钟预览 HTTP2 特性和抓包分析]:https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&mid=2651551351&idx=2&sn=a56ff090060f97e11e856aef2622a717&chksm=8025a1b6b75228a0080fa971222b3cb7c3179ba5474028b8fa4656619073c4c14d76cf83cd86&scene=0#wechat_redirect
+[一分钟预览 HTTP2 特性和抓包分析]:https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&amp;mid=2651551351&amp;idx=2&amp;sn=a56ff090060f97e11e856aef2622a717&amp;chksm=8025a1b6b75228a0080fa971222b3cb7c3179ba5474028b8fa4656619073c4c14d76cf83cd86&amp;scene=0#wechat_redirect
 
 ### HTTPS
 
-![http和https的区别](http://p9myzkds7.bkt.clouddn.com/interview/http%E5%92%8Chttps.JPG)
+![http和https的区别](https://graphbed.qiniu.songxingguo.com/interview/http%E5%92%8Chttps.JPG)
 
 如上图所示 HTTPS 相比 HTTP 多了一层 SSL/TLS
 
@@ -524,7 +524,7 @@ TLS（Transport Layer Security，传输层安全）：其前身是 SSL，它最�
 
 来自——[HTTPS 原理详解]、[HTTP与HTTPS的区别]、[白话图解HTTPS原理]
 
-[HTTPS 原理详解]:https://baijiahao.baidu.com/s?id=1570143475599137&wfr=spider&for=pc
+[HTTPS 原理详解]:https://baijiahao.baidu.com/s?id=1570143475599137&amp;wfr=spider&amp;for=pc
 [HTTP与HTTPS的区别]:https://www.cnblogs.com/wqhwe/p/5407468.html
 [白话图解HTTPS原理]:https://www.cnblogs.com/ghjbk/p/6738069.html
 
@@ -542,8 +542,8 @@ HTTP缓存有多种规则，根据是否需要重新向服务器发起请求来�
 ##### Expires
 
 Expires的值为服务端返回的到期时间，即下一次请求时，请求时间小于服务端返回的到期时间，直接使用缓存数据。
-  
-  
+
+
 不过Expires 是HTTP 1.0的东西，现在默认浏览器均默认使用HTTP 1.1，所以它的作用基本忽略。
 
 另一个问题是，到期时间是由服务端生成的，但是客户端时间可能跟服务端时间有误差，这就会导致缓存命中的误差。
@@ -560,7 +560,7 @@ Cache-Control 是最重要的规则。常见的取值有private、public、no-ca
 - no-cache:          需要使用对比缓存来验证缓存数据（后面介绍）
 - no-store:           所有内容都不会缓存，强制缓存，对比缓存都不会触发（对于前端开发来说，缓存越多越好，so...基本上和它说886）
 
-![举个板栗](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/%E5%BC%BA%E5%88%B6%E7%BC%93%E5%AD%98.png)
+![举个板栗](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-network/%E5%BC%BA%E5%88%B6%E7%BC%93%E5%AD%98.png)
 
 图中Cache-Control仅指定了max-age，所以默认为private，缓存时间为31536000秒（365天）
 
@@ -573,9 +573,9 @@ Cache-Control 是最重要的规则。常见的取值有private、public、no-ca
 浏览器第一次请求数据时，服务器会将缓存标识与数据一起返回给客户端，客户端将二者备份至缓存数据库中。
 再次请求数据时，客户端将备份的缓存标识发送给服务器，服务器根据缓存标识进行判断，判断成功后，返回304状态码，通知客户端比较成功，可以使用缓存数据。
 
-![第一次访问](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AE%BF%E9%97%AE.png)
+![第一次访问](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-network/%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AE%BF%E9%97%AE.png)
 
-![再次访问](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/%E5%86%8D%E6%AC%A1%E8%AE%BF%E9%97%AE.png)
+![再次访问](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-network/%E5%86%8D%E6%AC%A1%E8%AE%BF%E9%97%AE.png)
 
 通过两图的对比，我们可以很清楚的发现，在对比缓存生效时，状态码为304，并且报文大小和请求时间大大减少。
 
@@ -587,7 +587,7 @@ Cache-Control 是最重要的规则。常见的取值有private、public、no-ca
 
 Last-Modified：服务器在响应请求时，告诉浏览器资源的最后修改时间。
 
-![Last-Modified](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/Last-Modified.png)
+![Last-Modified](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-network/Last-Modified.png)
 
 If-Modified-Since：再次请求服务器时，通过此字段通知服务器上次请求时，服务器返回的资源最后修改时间。
 
@@ -595,13 +595,13 @@ If-Modified-Since：再次请求服务器时，通过此字段通知服务器上
 - 若资源的最后修改时间大于If-Modified-Since，说明资源又被改动过，则响应整片资源内容，返回状态码200；
 - 若资源的最后修改时间小于或等于If-Modified-Since，说明资源无新修改，则响应HTTP 304，告知浏览器继续使用所保存的cache。
 
-![If-Modified-Since](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/If-Modified-Since.png)
+![If-Modified-Since](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-network/If-Modified-Since.png)
 
 ##### Etag  /  If-None-Match（优先级高于Last-Modified  /  If-Modified-Since）
 
 Etag：服务器响应请求时，告诉浏览器当前资源在服务器的唯一标识（生成规则由服务器决定）。
 
-![Etag](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/Etag.png)
+![Etag](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-network/Etag.png)
 
 If-None-Match：再次请求服务器时，通过此字段通知服务器客户段缓存数据的唯一标识。
 
@@ -609,7 +609,7 @@ If-None-Match：再次请求服务器时，通过此字段通知服务器客户�
 - 不同，说明资源又被改动过，则响应整片资源内容，返回状态码200；
 - 相同，说明资源无新修改，则响应HTTP 304，告知浏览器继续使用所保存的cache。
 
-![If-None-Match](http://p9myzkds7.bkt.clouddn.com/web-front-end-interview-network/If-None-Match.png)
+![If-None-Match](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-network/If-None-Match.png)
 
 #### 总结
 
@@ -618,11 +618,11 @@ If-None-Match：再次请求服务器时，通过此字段通知服务器客户�
 
 浏览器第一次请求：
 
-![第一次请求](http://p9myzkds7.bkt.clouddn.com/%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AF%B7%E6%B1%82.png)
+![第一次请求](https://graphbed.qiniu.songxingguo.com/%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AF%B7%E6%B1%82.png)
 
 浏览器再次请求时：
 
-![再次请求](http://p9myzkds7.bkt.clouddn.com/%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AF%B7%E6%B1%82.png)
+![再次请求](https://graphbed.qiniu.songxingguo.com/%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AF%B7%E6%B1%82.png)
 
 来自——[彻底弄懂HTTP缓存机制及原理]、[http缓存浅谈]、[http协议缓存机制]、[HTTP缓存实现的原理]
 
@@ -675,7 +675,7 @@ UDP又称用户数据包协议，与TCP一样同属于网络传输层。UDP与TC
 ### 三次握手
 
 ### http和tcp有什么区别？
- 
+
 [HTML中href、src区别]: https://blog.csdn.net/annsheshira23/article/details/51133709
 [rel、href、src、url的区别]:https://blog.csdn.net/chengshaolei2012/article/details/72847770
 [史上最全的CSS hack方式一览]:https://blog.csdn.net/freshlover/article/details/12132801

@@ -157,7 +157,7 @@ $(document).ready(function(){
 ```
 ### 更多实例
 
-![更多实例](http://p9myzkds7.bkt.clouddn.com/jquery/%E6%9B%B4%E5%A4%9A%E5%AE%9E%E4%BE%8B.png)
+![更多实例](https://graphbed.qiniu.songxingguo.com/jquery/%E6%9B%B4%E5%A4%9A%E5%AE%9E%E4%BE%8B.png)
 
 ## jQuery 事件
 
@@ -177,7 +177,7 @@ $(document).ready(function(){
 
 常见 DOM 事件：
 
-![常见 DOM 事件](http://p9myzkds7.bkt.clouddn.com/jQuery/%E5%B8%B8%E8%A7%81%E4%BA%8B%E4%BB%B6.png)
+![常见 DOM 事件](https://graphbed.qiniu.songxingguo.com/jQuery/%E5%B8%B8%E8%A7%81%E4%BA%8B%E4%BB%B6.png)
 
 ### jQuery 事件方法语法
 
@@ -439,14 +439,14 @@ fadeTo()
 
   ```js
   $(selector).fadeToggle(speed,callback);
-  ````
+  ​````
   可选的 speed 参数规定效果的时长。它可以取以下值："slow"、"fast" 或毫秒。
 
   可选的 callback 参数是 fading 完成后所执行的函数名称。
 
   下面的例子演示了带有不同参数的 fadeToggle() 方法：
 
-  ```js
+  ​```js
   $("button").click(function(){
     $("#div1").fadeToggle();
     $("#div2").fadeToggle("slow");
@@ -1032,9 +1032,9 @@ jQuery 拥有可操作 HTML 元素和属性的强大方法。
   });
   ```
  ###  css() 方法
- 
+
  - #### jQuery css() 方法
- 
+
    css() 方法设置或返回被选元素的一个或多个样式属性。
 
 - #### 返回 CSS 属性
@@ -1090,7 +1090,7 @@ jQuery 拥有可操作 HTML 元素和属性的强大方法。
 
 - #### jQuery 尺寸
 
-  ![jQuery 尺寸](http://p9myzkds7.bkt.clouddn.com/jQuery/jQuery%20Dimensions.png)
+  ![jQuery 尺寸](https://graphbed.qiniu.songxingguo.com/jQuery/jQuery%20Dimensions.png)
 
 - #### jQuery width() 和 height() 方法
 
@@ -1151,7 +1151,7 @@ jQuery 拥有可操作 HTML 元素和属性的强大方法。
 
   下图展示了一个家族树。通过 jQuery 遍历，您能够从被选（当前的）元素开始，轻松地在家族树中向上移动（祖先），向下移动（子孙），水平移动（同胞）。这种移动被称为对 DOM 进行遍历。
 
-  ![DOM](http://p9myzkds7.bkt.clouddn.com/jQuery/img_travtree.png)
+  ![DOM](https://graphbed.qiniu.songxingguo.com/jQuery/img_travtree.png)
 
   图示解析：
 
@@ -1507,7 +1507,7 @@ AJAX 是与服务器交换数据的技术，它在不重载全部页面的情况
   });
   ```
 ### AJAX get() 和 post() 方法
- 
+
  jQuery get() 和 post() 方法用于通过 HTTP GET 或 POST 请求从服务器请求数据。
 
 - #### HTTP 请求：GET vs. POST
@@ -1660,7 +1660,7 @@ AJAX 是与服务器交换数据的技术，它在不重载全部页面的情况
   });
   ```
  ### JSONP 教程
- 
+
 本章节我们将向大家介绍 JSONP 的知识。
 
 Jsonp(JSON with Padding) 是 json 的一种"使用模式"，可以让网页从别的域名（网站）那获取资料，即跨域读取数据。
@@ -1741,9 +1741,9 @@ Jsonp(JSON with Padding) 是 json 的一种"使用模式"，可以让网页从�
     <script type="text/javascript" src="http://www.runoob.com/try/ajax/jsonp.php?jsoncallback=callbackFunction"></script>
     </body>
     </html>
-     ```
+    ```
 - #### jQuery 使用 JSONP
- 
+
   以上代码可以使用 jQuery 代码实例：
 
   ```html

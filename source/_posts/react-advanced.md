@@ -209,7 +209,7 @@ class Comment extends Component {
 
 虽然 propTypes 帮我们指定了参数类型，但是并没有说这个参数一定要传入，事实上，这些参数默认都是可选的。可选参数我们可以通过配置 defaultProps，让它在不传入的时候有默认值。但是我们这里并没有配置 defaultProps，所以如果直接用 <Comment /> 而不传入任何参数的话，comment 就会是 undefined，comment.username 会导致程序报错：
 
-![程序报错](http://p9myzkds7.bkt.clouddn.com/pasted-4.png)
+![程序报错](https://graphbed.qiniu.songxingguo.com/pasted-4.png)
 
 这个出错信息并不够友好。我们可以通过 isRequired 关键字来强制组件某个参数必须传入：
 ```bash

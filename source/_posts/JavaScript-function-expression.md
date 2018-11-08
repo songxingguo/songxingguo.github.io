@@ -189,7 +189,7 @@ var result = compare(5, 10);
 ```
 以上代码先定义了 compare() 函数，然后又在全局作用域中调用它。当调用 compare() 时，会创建一个包含 arguments、value1 和 value2 的活动对象。全局执行环境的变量对象（包含 result 和 compare）在 compare() 执行环境的作用域链中则处于第二位。下图展示了包含上述关系的 compare() 函数执行时的作用域链。
 
-![作用域链](http://p9myzkds7.bkt.clouddn.com/JavaScript-function-expression/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE.jpg)
+![作用域链](https://graphbed.qiniu.songxingguo.com/JavaScript-function-expression/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE.jpg)
 
 后台的每个执行环境都有一个表示变量的对象 —— 变量对象。全局环境的变量对象始终存在，而像 compare() 函数这样的局部变量的对象，则只是函数执行的过程中存在。在创建 compare() 函数时，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在内部的 [[Scope]] 属性中。当调用 compare() 函数时，会为函数创建一个执行环境，然后通过复制函数的 [[Scope]] 属性中的对象构建起执行环境的作用域链。此后，又有一个活动对象（在此作为变量对象使用）被创建并被堆入执行环境作用域链的前端。对于这个例子中 compare() 函数的执行环境而言，其作用域链中包含两个变量对象：本地活动对象和全局变量对象。显然，作用域链本质上是一个指向变量对象的指针列表，它只是引用但不实际包含变量对象。
 
@@ -215,14 +215,14 @@ compareNames = null;
 ```
 首先，创建的比较函数被保存在变量 compareNames 中。而通过将 compareNames 设置为等于 null 解除该函数的引用，就等于通知垃圾回收例程将其清除。随着匿名函数的作用域链被销毁，其他作用域（除了全局作用域）也都可以安全地销毁了。下图展示了调用 compareNames() 的过程中产生的作用域链之间的关系。
 
-![代码执行](http://p9myzkds7.bkt.clouddn.com/JavaScript-function-expression/%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C.%20.jpg)
+![代码执行](https://graphbed.qiniu.songxingguo.com/JavaScript-function-expression/%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C.%20.jpg)
 
 > 由于 **闭包会携带包含他的函数的作用域** ，因此 **会比其他函数占用更多的内存** 。过度使用闭包可能会导致内存占用过多，我们建议读者只在绝对必要时再考虑使用闭包。虽然像 V8 等优化后的 JavaScript 引擎会尝试回收被闭包占用的内存，但请大家还是 **慎重使用闭包** 。
 
 ### 闭包和变量
 
  作用域链的这种配置机制引出了一个值得注意的副作用，即闭包只能取得包含函数中任何变量的最后一个值。别忘了闭包所保存的是整个变量对象，而不是某个特殊的变量。下面这个例子可以清晰地说明这个问题。
- 
+
  ```js
  function createFunctions() {
    var result = new Array();
@@ -237,7 +237,7 @@ compareNames = null;
  }
  ```
  这个函数会返回一个函数数组。表面上看，似乎每个函数都应该返回自己的索引值，即位置 0 的函数返回 0，位置 1 的函数返回1，以此内推。但实际上，每个函数都返回 10。因为每个函数的作用域链中都保存着 createFunctions() 函数的活动对象，所以它们引用的都是同一个变量 i。当对象，所以在每个函数内部 i 的值都是 10。但是，我们可以通过创建另一个匿名函数强制让闭包的行为符合预期，如下所示。
- 
+
  ```js
  function createFunctions() {
    var result = new Array();
@@ -254,11 +254,11 @@ compareNames = null;
  }
  ```
  在重写了前面的 createFunctions() 函数后，每个函数就会返回各自不同索引值了。在这个版本中，我们没有直接把闭包赋值给数组，而是定义了一个匿名函数，并将立即执行该匿名函数的值赋值给数组。这里的匿名函数有一个参数 num, 也就是最终的函数要返回的值。在调用每个匿名函数时，我们传入了变量 i.由于函数参数是按值传递的，所以就会将变量 i 的当前值复制给参数 num。而在这个匿名的内部，又创建并返回了一个返回 num 的闭包。这样一来，result 数组中的每个函数都有自己 num 变量的一个副本，因此就可以返回各自不同的数组了。
- 
+
  ### 关于 this 对象
- 
+
  在闭包中使用 this 对象也可能会导致一些问题。我们知道，this 对象是在运行时 **基于函数的执行环境绑定的** ；在 **全局函数** 中，**this 等于 window** ，而当 **函数被作为某个对象的方法调用** 时，**this 等于那个对象** 。不过，**匿名函数的执行环境具有全局性** ，因此其 **this 对象通常指向 window** 。但有时候由于编写闭包的方式不同，这一点可能不会那么明显。下面来看一个例子。
- 
+
  ```js
  var name = "The window";
  
@@ -273,11 +273,11 @@ compareNames = null;
  };
  
  alert(object.getNameFunc()()); // "The window" （在非严格模式下）
-```
+ ```
 以上代码先创建了一个全局变量 name，又创建了一个包含 name 属性的对象。这个对象还包含一个方法 —— getNameFunc()，它返回一个匿名函数，而匿名函数又返回 this.name。由于 getNameFunc() 返回一个函数，因此调用 object.getNameFunc() 就会立即调用它返回的函数，结果就是返回一个字符串。然而，这个例子返回的字符串是“The Window”，即全局 name 变量的值。为什么匿名函数没有取得其包含作用域（或外部作用域）的 this 对象呢？
 
 前面曾经提到过，每个函数在被调用时都会自动取得两个特殊变量：this 和 arguments。内部函数在搜索这两个变量时，只会 **搜索到其活动对象为止** ，因此永远不可能直接访问外部函数中的这两个变量（这一点通过上图可以看得很清楚）。不过，**把外部作用域中的 this 对象保存在一个闭包能够访问到的变量** 里，就可以 **让闭包访问该对象** 了，如下所示。
- 
+
  ```js
  var name = "The window";
  
@@ -319,9 +319,9 @@ compareNames = null;
 object.getName()； // "My  Object"
 (object.getName)(); //"My Object"
 (object.getName = object.getName)(); // "The window" 在非严格模式下
- ```
+```
  第一行代码跟平常一样调用了 object.getName()，返回的是“My Object”，因为 this.name 就是  object.name 。第二行代码在调用这个方法前先给它加上了括号。虽然加上括号之后，就好像只是在引用一个函数，但 this 的值是得到了维持，结果就返回了“The Window”。
- 
+
  当然，你不大可能会像第二行和第三行代码一样调用这个方法。不过，这个例子 **有助于说明即使是语法的细微变化** ，**都有可能意外改变 this 的值**。
 
 ### 内存泄漏
@@ -583,7 +583,7 @@ var singleton = {
 
 模块模式通过为单例加私有变量和特权方法能够使其得到增强，其语法形式如下：
 
-```js
+​```js
 var singleton = function() {
   // 私有变量和私有函数
   

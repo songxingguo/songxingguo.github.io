@@ -26,11 +26,11 @@ TCP全名为传输控制协议，在OSI模型（由七层组成，分别为物�
 
 许多应用层协议基于TCP构建，典型的是HTTP、SMTP、IMAP等协议。七层协议示意图如下图所示。
 
-![七层协议示意图](http://p9myzkds7.bkt.clouddn.com/Node-network/%E4%B8%83%E5%B1%82%E5%8D%8F%E8%AE%AE%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
+![七层协议示意图](https://graphbed.qiniu.songxingguo.com/Node-network/%E4%B8%83%E5%B1%82%E5%8D%8F%E8%AE%AE%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
 
 TCP是面向连接的协议，其显著的特征是在传输之前需要3次握手形成会话，如下图所示。
 
-![TCP在传输之前的3次握手](http://p9myzkds7.bkt.clouddn.com/Node-network/TCP%E5%9C%A8%E4%BC%A0%E8%BE%93%E4%B9%8B%E5%89%8D%E7%9A%843%E6%AC%A1%E6%8F%A1%E6%89%8B.jpg)
+![TCP在传输之前的3次握手](https://graphbed.qiniu.songxingguo.com/Node-network/TCP%E5%9C%A8%E4%BC%A0%E8%BE%93%E4%B9%8B%E5%89%8D%E7%9A%843%E6%AC%A1%E6%8F%A1%E6%89%8B.jpg)
 
 只有会话形成之后，服务器端和客户端之间才能互相发送数据。在创建会话的过程中，服务器端和客户端分别提供一个套接字，这两个套接字共同形成一个连接。服务器端与客户端则通过套接字实现两者之间连接的操作。
 
@@ -312,11 +312,11 @@ Hello World
 
 Node的http模块包含对HTTP处理的封装。在Node中，HTTP服务继承自TCP服务器（net模块），它能够与多个客户端保持连接，由于其采用事件驱动的形式，并不为每一个连接创建额外的线程或进程，保持很低的内存占用，所以能实现高并发。HTTP服务与TCP服务模型有区别的地方在于，在开启keepalive后，一个TCP会话可以用于多次请求和响应。TCP服务以connection为单位进行服务，HTTP服务以request为单位进行服务。http模块即是将connection到request的过程进行了封装，示意图如下图所示。
 
-![http模块即是将connection到request的过程进行了封装](http://p9myzkds7.bkt.clouddn.com/Node-network/http%E6%A8%A1%E5%9D%97%E5%8D%B3%E6%98%AF%E5%B0%86connection%E5%88%B0request%E7%9A%84%E8%BF%87%E7%A8%8B%E8%BF%9B%E8%A1%8C%E4%BA%86%E5%B0%81%E8%A3%85.jpg)
+![http模块即是将connection到request的过程进行了封装](https://graphbed.qiniu.songxingguo.com/Node-network/http%E6%A8%A1%E5%9D%97%E5%8D%B3%E6%98%AF%E5%B0%86connection%E5%88%B0request%E7%9A%84%E8%BF%87%E7%A8%8B%E8%BF%9B%E8%A1%8C%E4%BA%86%E5%B0%81%E8%A3%85.jpg)
 
 除此之外，http模块将连接所用套接字的读写抽象为ServerRequest和ServerResponse对象，它们分别对应请求和响应操作。在请求产生的过程中，http模块拿到连接中传来的数据，调用二进制模块http_parser进行解析，在解析完请求报文的报头后，触发request事件，调用用户的业务逻辑。该流程的示意图如下图所示。
 
-![http模块产生的请求的流程](http://p9myzkds7.bkt.clouddn.com/Node-network/http%E6%A8%A1%E5%9D%97%E4%BA%A7%E7%94%9F%E7%9A%84%E8%AF%B7%E6%B1%82%E7%9A%84%E6%B5%81%E7%A8%8B.jpg)
+![http模块产生的请求的流程](https://graphbed.qiniu.songxingguo.com/Node-network/http%E6%A8%A1%E5%9D%97%E4%BA%A7%E7%94%9F%E7%9A%84%E8%AF%B7%E6%B1%82%E7%9A%84%E6%B5%81%E7%A8%8B.jpg)
 
 上图中的处理程序对应到示例中的代码就是响应Hello World这部分，代码如下：
 
@@ -477,7 +477,7 @@ function(res) {
 
 如同服务器端的实现一般，http提供的ClientRequest对象也是基于TCP层实现的，在keepalive的情况下，一个底层会话连接可以多次用于请求。为了重用TCP连接，http模块包含一个默认的客户端代理对象http.globalAgent。它对每个服务器端（host + port）创建的连接进行了管理，默认情况下，通过ClientRequest对象对同一个服务器端发起的HTTP请求最多可以创建5个连接。它的实质是一个连接池，示意图如下图所示。
 
-![HTTP代理对服务器端创建的连接进行管理](http://p9myzkds7.bkt.clouddn.com/Node-network/HTTP%E4%BB%A3%E7%90%86%E5%AF%B9%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E5%88%9B%E5%BB%BA%E7%9A%84%E8%BF%9E%E6%8E%A5%E8%BF%9B%E8%A1%8C%E7%AE%A1%E7%90%86.jpg)
+![HTTP代理对服务器端创建的连接进行管理](https://graphbed.qiniu.songxingguo.com/Node-network/HTTP%E4%BB%A3%E7%90%86%E5%AF%B9%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E5%88%9B%E5%BB%BA%E7%9A%84%E8%BF%9E%E6%8E%A5%E8%BF%9B%E8%A1%8C%E7%AE%A1%E7%90%86.jpg)
 
 调用HTTP客户端同时对一个服务器发起10次HTTP请求时，其实质只有5个请求处于并发状态，后续的请求需要等待某个请求完成服务后才真正发出。这与浏览器对同一个域名有下载连接数的限制是相同的行为。
 
@@ -669,7 +669,7 @@ function(req, socket, upgradeHead) {
 
 在握手顺利完成后，当前连接将不再进行HTTP的交互，而是开始WebSocket的数据帧协议，实现客户端与服务器端的数据交换。下图为协议升级过程示意图。
 
-![协议升级过程示意图](http://p9myzkds7.bkt.clouddn.com/Node-network/%E5%8D%8F%E8%AE%AE%E5%8D%87%E7%BA%A7%E8%BF%87%E7%A8%8B%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
+![协议升级过程示意图](https://graphbed.qiniu.songxingguo.com/Node-network/%E5%8D%8F%E8%AE%AE%E5%8D%87%E7%BA%A7%E8%BF%87%E7%A8%8B%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
 
 握手完成后，客户端的onopen()将会被触发执行，代码如下：
 
@@ -701,7 +701,7 @@ WebSocket.prototype.send = function(data) {
 
 下图中为WebSocket数据帧的定义，每8位为一列，也即1个字节。其中每一位都有它的意义。
 
-![WebSocket数据帧的定义](http://p9myzkds7.bkt.clouddn.com/Node-network/WebSocket%E6%95%B0%E6%8D%AE%E5%B8%A7%E7%9A%84%E5%AE%9A%E4%B9%89.jpg)
+![WebSocket数据帧的定义](https://graphbed.qiniu.songxingguo.com/Node-network/WebSocket%E6%95%B0%E6%8D%AE%E5%B8%A7%E7%9A%84%E5%AE%9A%E4%B9%89.jpg)
 
 - fin：如果这个数据帧是最后一帧，这个fin位为1，其余情况为0。当一个数据没有被分为多帧时，它既是第一帧也是最后一帧。
 - rsv1、rsv2、rsv3：各为1位长，3个标识用于扩展，当有已协商的扩展时，这些值可能为1，其余情况为0。
@@ -758,7 +758,7 @@ Node在网络安全上提供了3个模块，分别为crypto、tls、https。其�
 
 TLS/SSL是一个公钥/私钥的结构，它是一个非对称的结构，每个服务器端和客户端都有自己的公私钥。公钥用来加密要传输的数据，私钥用来解密接收到的数据。公钥和私钥是配对的，通过公钥加密的数据，只有通过私钥才能解密，所以在建立安全传输之前，客户端和服务器端之间需要互换公钥。客户端发送数据时要通过服务器端的公钥进行加密，服务器端发送数据时则需要客户端的公钥进行加密，如此才能完成加密解密的过程，如下图所示。
 
-![客户端和服务器交换密钥](http://p9myzkds7.bkt.clouddn.com/Node-network/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BA%A4%E6%8D%A2%E5%AF%86%E9%92%A5.jpg)
+![客户端和服务器交换密钥](https://graphbed.qiniu.songxingguo.com/Node-network/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BA%A4%E6%8D%A2%E5%AF%86%E9%92%A5.jpg)
 
 Node在底层采用的是openssl实现TLS/SSL的，为此要生成公钥和私钥可以通过openssl完成。我们分别为服务器端和客户端生成私钥，如下所示：
 
@@ -776,7 +776,7 @@ $ openssl rsa -in client.key -pubout -out client.pem
 ```
 公私钥的非对称加密虽好，但是网络中依然可能存在窃听的情况，典型的例子是中间人攻击。客户端和服务器端在交换公钥的过程中，中间人对客户端扮演服务器端的角色，对服务器端扮演客户端的角色，因此客户端和服务器端几乎感受不到中间人的存在。为了解决这种问题，数据传输过程中还需要对得到的公钥进行认证，以确认得到的公钥是出自目标服务器。如果不能保证这种认证，中间人可能会将伪造的站点响应给用户，从而造成经济损失。下图是中间人攻击的示意图。
 
-![中间人攻击的示意图](http://p9myzkds7.bkt.clouddn.com/Node-network/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB%E7%9A%84%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
+![中间人攻击的示意图](https://graphbed.qiniu.songxingguo.com/Node-network/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB%E7%9A%84%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
 
 为了解决这个问题，TLS/SSL引入了数字证书来进行认证。与直接用公钥不同，数字证书中包含了服务器的名称和主机名、服务器的公钥、签名颁发机构的名称、来自签名颁发机构的签名。在连接建立前，会通过证书中的签名确认收到的公钥是来自目标服务器的，从而产生信任关系。
 
@@ -796,7 +796,7 @@ $ openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt
 ```
 其流程如下图所示。
 
-![生成自签名证书示意图](http://p9myzkds7.bkt.clouddn.com/Node-network/%E7%94%9F%E6%88%90%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
+![生成自签名证书示意图](https://graphbed.qiniu.songxingguo.com/Node-network/%E7%94%9F%E6%88%90%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
 
 上述步骤完成了扮演CA角色需要的文件。接下来回到服务器端，服务器端需要向CA机构申请签名证书。在申请签名证书之前依然是要创建自己的CSR文件。值得注意的是，这个过程中的Common Name要匹配服务器域名，否则在后续的认证过程中会出错。如下是生成CSR文件所用的命令：
 
@@ -813,7 +813,7 @@ server.csr -out server.crt
 ```
 客户端在发起安全连接前会去获取服务器端的证书，并通过CA的证书验证服务器端证书的真伪。除了验证真伪外，通常还含有对服务器名称、IP地址等进行验证的过程。这个验证过程如下图所示。
 
-![客户端通过CA验证服务器端的证书真伪过程示意图](http://p9myzkds7.bkt.clouddn.com/Node-network/%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%80%9A%E8%BF%87CA%E9%AA%8C%E8%AF%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%9A%84%E8%AF%81%E4%B9%A6%E7%9C%9F%E4%BC%AA%E8%BF%87%E7%A8%8B%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
+![客户端通过CA验证服务器端的证书真伪过程示意图](https://graphbed.qiniu.songxingguo.com/Node-network/%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%80%9A%E8%BF%87CA%E9%AA%8C%E8%AF%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%9A%84%E8%AF%81%E4%B9%A6%E7%9C%9F%E4%BC%AA%E8%BF%87%E7%A8%8B%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
 
 CA机构将证书颁发给服务器端后，证书在请求的过程中会被发送给客户端，客户端需要通过CA的证书验证真伪。如果是知名的CA机构，它们的证书一般预装在浏览器中。如果是自己扮演CA机构，颁发自有签名证书则不能享受这个福利，客户端需要获取到CA的证书才能进行验证。
 

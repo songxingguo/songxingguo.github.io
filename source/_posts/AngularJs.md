@@ -124,7 +124,7 @@ ng-app是AngularJS的一个内置指令，可以出现在任意位置，并有�
 - 表达式中的逻辑运算
 
 	AngularJS表达式除了支持算术运算外，还支持逻辑运算。
-    
+  
 > 我们又接触了一个新指令ng-init。该指令用于初始化作用域，在上面的代码中，我们通过ng-init指令向作用域中增加一个person对象和arr数组，然后通过表达式输出person对象的name属性和arr数组的第一个元素。
 
 ## 双向数据绑定
@@ -137,7 +137,7 @@ ng-app是AngularJS的一个内置指令，可以出现在任意位置，并有�
 
 作用域可以被视为一个容器，里面有一些基于key-value的数据。当用户输入内容发生变化时，AngularJS框架就把表单内容同步到作用域中对应的变量中，而当我们改变作用域中的变量值时，AngularJS又会把修改后的变量值同步到表单中，这就是AngularJS的双向数据绑定。
 
-![AngularJS双向数据绑定图解](http://p9myzkds7.bkt.clouddn.com/AngularJS/%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A.jpg)
+![AngularJS双向数据绑定图解](https://graphbed.qiniu.songxingguo.com/AngularJS/%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A.jpg)
 
 ### ng-model指令
 
@@ -197,7 +197,7 @@ ng-bind指令是和数据绑定相关的另一个指令，其作用是实现作�
 
 MVC是Model（模型）、View（视图）、Controller（控制器）的首字母缩写，MVC的核心思想是把数据的管理、业务逻辑控制和数据的展示分离开，使程序的逻辑性和可维护性更强。它们之间的关系可以用图3.1表示。
 
-![模型、视图、控制器关系图](http://p9myzkds7.bkt.clouddn.com/AngularJS/MVC%E5%85%B3%E7%B3%BB%E5%9B%BE.jpg)
+![模型、视图、控制器关系图](https://graphbed.qiniu.songxingguo.com/AngularJS/MVC%E5%85%B3%E7%B3%BB%E5%9B%BE.jpg)
 
 - View（视图）为用户可操作的软件界面，用户通过视图和程序进行交互，在视图中会触发不同的事件，例如单击按钮、输入文字等，不同的事件能够触发控制器执行相应的业务逻辑处理。
 
@@ -325,7 +325,7 @@ angular.module()方法返回一个模块实例对象，我们可以调用该对�
 
 在实际项目中，随着项目的进展代码会越来越多，我们需要以一种更加合理的方式组织这些代码。假设我们的项目名称为app，下面有两个模块，分别为login和register，参考AngularJS官方的建议，可以按照如下目录结构组织项目，对4.2.2小节案例进行重构。
 
-![目录结构](http://p9myzkds7.bkt.clouddn.com/AngularJS/%E4%BB%A3%E7%A0%81%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.jpg)
+![目录结构](https://graphbed.qiniu.songxingguo.com/AngularJS/%E4%BB%A3%E7%A0%81%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.jpg)
 
 ## 作用域与事件
 
@@ -391,7 +391,7 @@ JavaScript语言为我们提供了几个内置的构造方法，例如Object、A
 1. ##### 构造方法原型链继承
 
    每个JavaScript构造方法都有一个名称为prototype的属性，可以指向另一个对象。当我们访问对象属性时（例如obj.name），JavaScript引擎会从对象的所有属性中查找该属性，如果找到就返回属性值，如果没有找到就继续从prototype属性指向的对象属性中查找，如果仍然没有找到，则会沿着prototype链一直查找下去，直到prototype链结束或找到对象为止。接下来我们看一个原型链继承的案例，代码如下：
-    
+   
        ```js
         function Animal(){
           this.eat = function(){
@@ -547,7 +547,7 @@ AngularJS作用域支持下面两种事件传播方式：
 - 事件从子作用域路由到父作用域中。
 - 事件从父作用域广播到所有子作用域中。
 
-![两种事件传播方式](http://p9myzkds7.bkt.clouddn.com/AngularJS/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E6%92%AD%E6%96%B9%E5%BC%8F.jpg)
+![两种事件传播方式](https://graphbed.qiniu.songxingguo.com/AngularJS/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E6%92%AD%E6%96%B9%E5%BC%8F.jpg)
 
 与AngularJS作用域事件相关的方法有$on()、$emit()、$broadcast()，接下来以实际案例对作用域两种事件传播机制进行介绍。
 
@@ -590,7 +590,7 @@ $scope.$on（"infoEvent",function（event,data）{
 
 图6.1能够帮助我们直观地理解AngularJS路由机制。在图6.1中，我们有两个URL，分别为ShowOrders和AddNewOrder，使用路由机制分别将这两个URL映射到订单列表视图和新增订单视图，这两个视图分别由两个不同的控制器进行管理，当访问ShowOrders时，界面中会加载订单列表视图，而访问AddNewOrder时则会显示新增订单视图的内容。
 
-![路由图解](http://p9myzkds7.bkt.clouddn.com/AngularJS/AngularJS%E8%B7%AF%E7%94%B1%E6%9C%BA%E5%88%B6%E5%9B%BE%E8%A7%A3.jpg)
+![路由图解](https://graphbed.qiniu.songxingguo.com/AngularJS/AngularJS%E8%B7%AF%E7%94%B1%E6%9C%BA%E5%88%B6%E5%9B%BE%E8%A7%A3.jpg)
 
 ### 创建多视图应用
 
@@ -681,7 +681,7 @@ $location服务提供了一些setter和getter方法，用于获取或修改URL�
 
 下图来自AngularJS官方网站，详细地描述了URL的各个部分。
 
-![URL的各个部分](http://p9myzkds7.bkt.clouddn.com/AngularJS/URL%E7%9A%84%E4%B8%8D%E5%90%8C%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86.jpg)
+![URL的各个部分](https://graphbed.qiniu.songxingguo.com/AngularJS/URL%E7%9A%84%E4%B8%8D%E5%90%8C%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86.jpg)
 
 以地址http://foo.com:8080/bar?bar=23#baz为例，该URL主要由以下几部分构成：
 - Protocol：协议名，通过$location.protocol()方法获取，该方法会返回字符串http。
@@ -838,7 +838,7 @@ routeModule.config（function（$stateProvider, $urlRouterProvider） {
 
 对于这些CSS样式，AngularJS在作用域中会维护一个状态属性与之对应。表7.1为CSS样式与状态属性对应关系。
 
-![CSS样式与状态属性对应关系](http://p9myzkds7.bkt.clouddn.com/AngularJS/CSS%E6%A0%B7%E5%BC%8F%E4%B8%8E%E7%8A%B6%E6%80%81%E5%B1%9E%E6%80%A7%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB.jpg)
+![CSS样式与状态属性对应关系](https://graphbed.qiniu.songxingguo.com/AngularJS/CSS%E6%A0%B7%E5%BC%8F%E4%B8%8E%E7%8A%B6%E6%80%81%E5%B1%9E%E6%80%A7%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB.jpg)
 
 这些状态属性的值是AngularJS框架维护的，我们只需关注这些状态的值即可知道表单输入数据是否合法。
 
@@ -906,7 +906,7 @@ ngMessages模块是AngularJS 1.3版本之后新增的表单验证相关的模块
 ngMessages模块的主要作用是对这些提示信息展示功能进行增强，这里以一个具体案例介绍ngMessages模块的使用。
 
 ngMessages模块的全部内容定义在一个单独的angular-messages.js文件中，我们下载的AngularJS Release包中已经包含了该模块的内容，在使用之前只需要通过`<script>`标签引入页面中，代码如下：
-  
+
   ```js
   <script src="/angular-1.5.5/angular.js"></script>
   <script src="/angular-1.5.5/angular-messages.js"></script>
@@ -1134,7 +1134,7 @@ irective()方法接收两个参数：第一个参数为指令名称，采用驼�
 
 - restrict属性，前面已经提到过，AngularJS指令使用形式有4种，该属性用于约束我们自定义的指令可以以什么形式出现，如下表所示，取值有E（元素）、A（属性）、C（类）、M（注释），其中默认值为A。
 
-  ![restrict属性值对应含义](http://p9myzkds7.bkt.clouddn.com/AngularJS/restrict%E5%B1%9E%E6%80%A7%E5%80%BC%E5%AF%B9%E5%BA%94%E5%90%AB%E4%B9%89.jpg)
+  ![restrict属性值对应含义](https://graphbed.qiniu.songxingguo.com/AngularJS/restrict%E5%B1%9E%E6%80%A7%E5%80%BC%E5%AF%B9%E5%BA%94%E5%90%AB%E4%B9%89.jpg)
 
   需要注意的是，这些标志可以组合使用，例如restrict:'AEC'表示该指令可以同时作为HTML元素、属性、CSS样式使用，当我们不想让该指令以CSS样式出现时，去掉字母'C'即可。
 
@@ -1228,7 +1228,7 @@ compile()方法的主要作用是在link()方法执行之前对DOM元素进行�
 <hello-world></hello-world>
 </div>
 我们使用ng-controller指令实例化控制器对象时，AngularJS会创建一个新的作用域对象$scope。我们在<div>标签中使用了hello-world指令，如果不做处理，那么hello-world指令的作用域就和MainController控制器实例化时创建的作用域对象是同一个对象。有些时候这并不是我们想要的结果，因为某个指令对作用域模型数据的修改会对其他指令有影响。我们希望指令能够彻底摆脱父控制器的作用域，这样我们就可以对作用域中的数据进行任意修改。而且在一些情况下我们需要在作用域中添加一些模型数据仅供指令内部使用，例如，需要有一个属性控制指令元素的显示与隐藏，如果直接使用父作用域对象，这个属性在其他指令或控制器中也就能够被访问与修改，这显然是不合理的，我们用以下两种方案摆脱父作用域：
-  
+
 - 使用子作用域从父作用域原型继承。
 - 使用孤立作用域，即创建一个新的作用域对象，和父作用域没有任何关系。
 
@@ -1262,7 +1262,7 @@ app.directive（'helloWorld', function() {
 ```
 创建孤立作用域只需要将指令定义对象的scope属性设置为{}即可。图8.3能够直观地反映指令原型继承作用域与孤立作用域的区别。
 
-![指令原型继承作用域与孤立作用域区别](http://p9myzkds7.bkt.clouddn.com/AngularJS/%E6%8C%87%E4%BB%A4%E5%8E%9F%E5%9E%8B%E7%BB%A7%E6%89%BF%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E5%AD%A4%E7%AB%8B%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%8C%BA%E5%88%AB.jpg)
+![指令原型继承作用域与孤立作用域区别](https://graphbed.qiniu.songxingguo.com/AngularJS/%E6%8C%87%E4%BB%A4%E5%8E%9F%E5%9E%8B%E7%BB%A7%E6%89%BF%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E5%AD%A4%E7%AB%8B%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%8C%BA%E5%88%AB.jpg)
 
 如上图所示，假如父作用域中有两个模型数据name、age，如果将指令定义对象的scope属性设置为true，指令作用域就会从父作用域原型继承，用于name和age属性，而如果将scope指令定义对象的属性值设置为{}，则指令作用域是一个全新的对象，不会继承父作用域的任何模型数据。
 
@@ -1271,15 +1271,15 @@ app.directive（'helloWorld', function() {
 前面我们已经提到过，孤立作用域无法继承父作用域的模型数据。这点在我们需要为指令创建大量供指令内部使用的模型数据时是非常有用的，但是有时候出于某种目的，我们不得不在孤立作用域中访问父作用域中的模型数据。幸运的是，AngularJS提供了比较灵活的方式供我们在孤立作用域与父作用域之间建立模型数据绑定。
 
  下面我们就来看一下如何在孤立作用域与父作用域之间建立模型数据绑定以解决这个问题。AngularJS支持以下3种绑定方式。
- 
+
  1. 使用@符号建立基于属性的绑定
- 
+
     在上面的案例中，控制器作用域中有一个name属性，如果需要访问父作用域中的name属性，可以使用@符号建立基于属性的绑定。图8.5能够详细地说明这一过程。
 
-    ![使用@符号建立基于属性的绑定过程](http://p9myzkds7.bkt.clouddn.com/AngularJS/%E4%BD%BF%E7%94%A8@%E7%AC%A6%E5%8F%B7%E5%BB%BA%E7%AB%8B%E5%9F%BA%E4%BA%8E%E5%B1%9E%E6%80%A7%E7%9A%84%E7%BB%91%E5%AE%9A%E8%BF%87%E7%A8%8B.jpg)
- 
+    ![使用@符号建立基于属性的绑定过程](https://graphbed.qiniu.songxingguo.com/AngularJS/%E4%BD%BF%E7%94%A8@%E7%AC%A6%E5%8F%B7%E5%BB%BA%E7%AB%8B%E5%9F%BA%E4%BA%8E%E5%B1%9E%E6%80%A7%E7%9A%84%E7%BB%91%E5%AE%9A%E8%BF%87%E7%A8%8B.jpg)
+
  2. 使用=符号建立双向绑定
- 
+
   使用@符号在指令的孤立作用域与父作用域之间建立基于属性的绑定是单向的，而且无法对对象、数组等复杂数据模型进行绑定，接下来我们学习如何使用‘=’符号建立双向绑定，方法和@符号建立单向绑定基本相同，差异如下。
 
   这里我们不再需要使用AngularJS表达式{{name}}输出模型数据内容，而是直接指定属性名称，接下来将@符号换成=符号即可
@@ -1301,10 +1301,10 @@ Transclusion是AngularJS自定义指令中一个比较重要的概念，如果�
 
 在计算机科学中，Transclusion是指将整个或部分文档通过超文本引用包含到其他单个或多个文档中。
 
-![Transclusion含义图解](http://p9myzkds7.bkt.clouddn.com/AngularJS/Transclusion%E5%90%AB%E4%B9%89%E5%9B%BE%E8%A7%A3.jpg)
+![Transclusion含义图解](https://graphbed.qiniu.songxingguo.com/AngularJS/Transclusion%E5%90%AB%E4%B9%89%E5%9B%BE%E8%A7%A3.jpg)
 
 1. 指令定义对象transclude属性介绍
- 
+
     AngularJS指令中也提供了Transclusion特性。
 
     能够进行“嵌入”的前提是将指令定义对象的transclude属性设置为true，该属性默认情况下为false。除此之外，transclude属性值还可以为‘element’，接下来我们看一下属性值‘element’和true之间有什么区别。
@@ -1483,7 +1483,7 @@ AngularJS过滤器有3种使用方法，第一种是在表达式双大括号中�
    原生的JavaScript对日期的处理能力是比较弱的，当我们需要将一个日期格式化输出时编写较多的JavaScript代码，AngularJS为我们提供了一个date过滤器，用于简化日期格式化操作。该过滤器可以接收一个参数，为日期字符串格式。
 
    它可以接收一个参数为日期格式化模板，其中yyyy、MM、dd为日期格式占位符，分别表示年、月、日，hh、mm、ss分别表示时、分、秒。
-    
+   
 6. json
 
    json过滤器用于将JavaScript对象转换为json字符串，该过滤器不接收任何参数，使用较为简单，可用作调试用途。
@@ -1689,7 +1689,7 @@ transform:rotate（20deg）;
 
 了上面案例中用到的Transform属性的一些变换方法外，还有一些不常用的。表12.1中列举了Transform属性所有的变换方法，读者可以自行尝试它们的使用效果。
 
-![CSS3 Transform属性的所有变换方法](http://p9myzkds7.bkt.clouddn.com/AngularJS/CSS3%20Transform%E5%B1%9E%E6%80%A7%E7%9A%84%E6%89%80%E6%9C%89%E5%8F%98%E6%8D%A2%E6%96%B9%E6%B3%95.jpg)
+![CSS3 Transform属性的所有变换方法](https://graphbed.qiniu.songxingguo.com/AngularJS/CSS3%20Transform%E5%B1%9E%E6%80%A7%E7%9A%84%E6%89%80%E6%9C%89%E5%8F%98%E6%8D%A2%E6%96%B9%E6%B3%95.jpg)
 
 需要注意的是，这些变化方法可以同时作用于同一个HTML元素，最终效果是几种变化叠加后的效果。
 
@@ -1707,7 +1707,7 @@ transition：[ transition-property ] || [ transition-duration ]
 2. transition-duration用于指定渐变所用的时间，单位为秒。
 3. transition-timing-function用于指定渐变的方式，例如平滑过渡、淡入淡出等，有几个固定的效果可供我们选择，如下表。
 
-   ![transition-timing-function属性值](http://p9myzkds7.bkt.clouddn.com/AngularJS/transition-timing-function%E5%B1%9E%E6%80%A7%E5%80%BC.jpg)
+   ![transition-timing-function属性值](https://graphbed.qiniu.songxingguo.com/AngularJS/transition-timing-function%E5%B1%9E%E6%80%A7%E5%80%BC.jpg)
 
    当然我们可以使用cubic-bezier（n,n,n,n）方法自定义过渡效果，其中每个参数取值范围为0～1。
 
@@ -1715,7 +1715,7 @@ transition：[ transition-property ] || [ transition-duration ]
 
 在CSS3中一般通过鼠标事件或者鼠标状态定义动画，通常我们可以使用CSS中的伪类或者用JavaScript修改元素的样式属性，或者追加/删除CSS样式来触发定义的CSS3动画。在CSS中执行动画的伪类如下表所示。
 
-![CSS中执行动画的伪类](http://p9myzkds7.bkt.clouddn.com/AngularJS/CSS%E4%B8%AD%E6%89%A7%E8%A1%8C%E5%8A%A8%E7%94%BB%E7%9A%84%E4%BC%AA%E7%B1%BB.jpg)
+![CSS中执行动画的伪类](https://graphbed.qiniu.songxingguo.com/AngularJS/CSS%E4%B8%AD%E6%89%A7%E8%A1%8C%E5%8A%A8%E7%94%BB%E7%9A%84%E4%BC%AA%E7%B1%BB.jpg)
 
 #### CSS3中的Animation属性
 
@@ -1728,11 +1728,11 @@ transition：[ transition-property ] || [ transition-duration ]
 - animation-play-state，取值为[paused|running]，paused表示动画暂停，running表示正在播放。
 - animation-fill-mode，各属性值含义如下表所示。
 
-  ![animation-fill-mode属性值](http://p9myzkds7.bkt.clouddn.com/AngularJS/animation-fill-mode%E5%B1%9E%E6%80%A7%E5%80%BC.jpg)
+  ![animation-fill-mode属性值](https://graphbed.qiniu.songxingguo.com/AngularJS/animation-fill-mode%E5%B1%9E%E6%80%A7%E5%80%BC.jpg)
 
 - animation-timing-function，指定动画的过渡效果，和12.2.2小节中的transition-timing-function属性类似，取值如下表所示。
 
-  ![transition-timing-function取值](http://p9myzkds7.bkt.clouddn.com/AngularJS/transition-timing-function%E5%8F%96%E5%80%BC.jpg)
+  ![transition-timing-function取值](https://graphbed.qiniu.songxingguo.com/AngularJS/transition-timing-function%E5%8F%96%E5%80%BC.jpg)
 
 了解这些属性的含义后，我们还需要了解一下CSS3中的关键帧定义。@keyframes支持两种设置方式，分别用于简单动画和复杂动画，简单动画设置方式如下：
 
@@ -1818,7 +1818,7 @@ var myApp = angular.module（'myApp',['ngAnimate']）;
 
 AngularJS中能够用于添加或移除CSS样式的指令如表12.6所示。
 
-![用于添加或移除CSS样式的指令](http://p9myzkds7.bkt.clouddn.com/AngularJs/%E7%94%A8%E4%BA%8E%E6%B7%BB%E5%8A%A0%E6%88%96%E7%A7%BB%E9%99%A4CSS%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%8C%87%E4%BB%A4.jpg)
+![用于添加或移除CSS样式的指令](https://graphbed.qiniu.songxingguo.com/AngularJs/%E7%94%A8%E4%BA%8E%E6%B7%BB%E5%8A%A0%E6%88%96%E7%A7%BB%E9%99%A4CSS%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%8C%87%E4%BB%A4.jpg)
 
 以ng-if指令为例，当HTML元素显示时会触发enter事件，AngularJS会为HTML元素的class属性添加上ng-enter样式，当HTML元素显示完毕后AngularJS会为该元素的class标记ng-enter-active属性，其他指令的情况也与此类似，因此我们要做的就是自定义ng-enter和ng-enter-active样式的内容。
 
@@ -1996,7 +1996,7 @@ AngularJS的Promise机制主要用在和Web应用服务器通信中，当我们�
 Web应用的页面数据通常都不会是一成不变的，这些数据一般保存在服务器端，我们需要向Web服务器发送HTTP请求，服务器接收到请求后将数据以特定的格式返回给客户端应用，返回数据格式通常为XML或JSON，然后我们就可以对返回的数据进行处理，将它们动态显示到页面中，当服务器端数据发生变化时，页面显示的内容也就跟着发生变化。
 
 在AngularJS应用中，主要通过XHR和JSONP两种方式向服务器端发送HTTP请求。读者应该对XHR比较熟悉，它是利用浏览器内置的XMLHttpRequest对象向服务器发送Ajax请求。JSONP是一种可以绕过浏览器的安全限制、从不同域请求数据的方法，原理是利用`<script>`标签的src属性发起一个GET请求，例如：
-  
+
 ```js
 <script src="GetUserInfo.do?UserId=41102"></script>
 ```
@@ -2066,7 +2066,7 @@ npm install -gd express-generator
 #### $resource服务
 
 前面我们学习了$http服务，本小节我们再来了解一个用于和RESTful API交互的服务$resource。它在$http服务的基础上做了一层封装，为RESTful API的CRUD（增删改查）操作提供了方便。$resource服务是在ngResource模块中定义的。ngResource模块的代码封装在一个单独的angular-resource.js文件中，为了使用$resource服务，首先需要通过`<script>`标签将angular-resource.js文件引入到页面中，例如：
-  
+
 ```html
 <script src="/angular-1.5.5/angular-resource.js"></script>
 ```
@@ -2077,7 +2077,7 @@ var app = angular.module（"app", ['ngResource']）;
 ```
 然后我们就可以将$resource服务注入控制器中使用了。$resource服务虽然可以方便AngularJS应用对RESTful API进行CRUD操作，但是它对RESTful API的设计也有一定的要求，请求的URL必须满足如表14.1所示的格式要求。
 
-![URL格式要求](http://p9myzkds7.bkt.clouddn.com/AngularJs/URL%E6%A0%BC%E5%BC%8F%E8%A6%81%E6%B1%82.jpg)
+![URL格式要求](https://graphbed.qiniu.songxingguo.com/AngularJs/URL%E6%A0%BC%E5%BC%8F%E8%A6%81%E6%B1%82.jpg)
 
 $resource服务返回一个对象，该对象是与RESTful的后端服务进行交互的接口，具有如下几个方法：
 
@@ -2164,10 +2164,10 @@ https://angular-ui.github.io/bootstrap/
 
 ```
 npm install angular-ui-bootstrap
-````
+​````
 使用UI Bootstrap模块我们首先需要使用`<script>`标签将库文件引入到页面中：
   
-```html
+​```html
 <script src="/angular-extends/ui-bootstrap/ui-bootstrap.js"></script>
 <script src="/angular-extends/ui-bootstrap/ui-bootstrap-tpls.js">
 </script>

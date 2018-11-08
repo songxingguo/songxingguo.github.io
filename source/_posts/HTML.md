@@ -118,14 +118,14 @@ Web浏览器（如谷歌浏览器，Internet Explorer，Firefox，Safari）是�
 
 浏览器并不是直接显示的HTML标签，但可以使用标签来决定如何展现HTML页面的内容给用户：
 
-![第一个页面](http://p9myzkds7.bkt.clouddn.com/HTML/html-first.png)
+![第一个页面](https://graphbed.qiniu.songxingguo.com/HTML/html-first.png)
 
 
 ### HTML 网页结构
 
 下面是一个可视化的HTML页面结构：
 
-![HTML页面结构](http://p9myzkds7.bkt.clouddn.com/HTML/html%E7%BB%93%E6%9E%84.png)
+![HTML页面结构](https://graphbed.qiniu.songxingguo.com/HTML/html%E7%BB%93%E6%9E%84.png)
 
 > 只有 `<body>` -区域 (-白色部分) -才会在浏览器中显示。
 
@@ -133,7 +133,7 @@ Web浏览器（如谷歌浏览器，Internet Explorer，Firefox，Safari）是�
 
 从初期的网络诞生后，已经出现了许多HTML版本:
 
-![HTML版本](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%E7%89%88%E6%9C%AC.png)
+![HTML版本](https://graphbed.qiniu.songxingguo.com/HTML/HTML%E7%89%88%E6%9C%AC.png)
 
 ### <!DOCTYPE> 声明
 
@@ -239,7 +239,7 @@ HTML 文档由 HTML 元素定义。
 
 ### HTML 元素
 
-![HTML元素](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%E5%85%83%E7%B4%A0.png)
+![HTML元素](https://graphbed.qiniu.songxingguo.com/HTML/HTML%E5%85%83%E7%B4%A0.png)
 
 *开始标签常被称为起始标签（opening tag），结束标签常称为闭合标签（closing tag）。
 
@@ -379,7 +379,7 @@ Remark提示: 在某些个别的情况下，比如属性值本身就含有双引
 
 下面列出了适用于大多数 HTML 元素的属性：
 
-![HTML属性](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%E5%B1%9E%E6%80%A7.png)
+![HTML属性](https://graphbed.qiniu.songxingguo.com/HTML/HTML%E5%B1%9E%E6%80%A7.png)
 
 ## HTML 标题
 
@@ -504,15 +504,15 @@ HTML 使用标签 `<b>`("bold") 与 `<i>`("italic") 对输出的文本进行格�
 
 ### HTML 文本格式化标签
 
-![HTML 文本格式化标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%A0%87%E7%AD%BE.png)
+![HTML 文本格式化标签](https://graphbed.qiniu.songxingguo.com/HTML/HTML%20%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%A0%87%E7%AD%BE.png)
 
 ### HTML "计算机输出" 标签
 
-![HTML "计算机输出" 标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%BE%93%E5%87%BA%E6%A0%87%E7%AD%BE.png)
+![HTML "计算机输出" 标签](https://graphbed.qiniu.songxingguo.com/HTML/HTML%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%BE%93%E5%87%BA%E6%A0%87%E7%AD%BE.png)
 
 ### HTML 引文, 引用, 及标签定义
 
-![HTML 引文, 引用, 及标签定义](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E5%BC%95%E6%96%87,%20%E5%BC%95%E7%94%A8,%20%E5%8F%8A%E6%A0%87%E7%AD%BE%E5%AE%9A%E4%B9%89.png)
+![HTML 引文, 引用, 及标签定义](https://graphbed.qiniu.songxingguo.com/HTML/HTML%20%E5%BC%95%E6%96%87,%20%E5%BC%95%E7%94%A8,%20%E5%8F%8A%E6%A0%87%E7%AD%BE%E5%AE%9A%E4%B9%89.png)
 
 ## HTML 链接
 
@@ -591,10 +591,10 @@ id属性可用于创建在一个HTML文档书签标记。
 
 ### HTML 链接标签
 
-![HTML 链接标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E9%93%BE%E6%8E%A5%E6%A0%87%E7%AD%BE.png)
+![HTML 链接标签](https://graphbed.qiniu.songxingguo.com/HTML/HTML%20%E9%93%BE%E6%8E%A5%E6%A0%87%E7%AD%BE.png)
 
 ## HTML `<head>`
-  
+
 ### HTML `<head>` 元素
 
 <head> 元素包含了所有的头部标签元素。在 `<head>` 元素中你可以插入脚本（scripts）, 样式文件（CSS），及各种meta信息。
@@ -705,7 +705,7 @@ META 元素通常用于指定网页的描述，关键词，文件的最后修改
 
 ### HTML head 元素
 
-![head 元素](http://p9myzkds7.bkt.clouddn.com/HTML/head%20%E5%85%83%E7%B4%A0.png)
+![head 元素](https://graphbed.qiniu.songxingguo.com/HTML/head%20%E5%85%83%E7%B4%A0.png)
 
 ## HTML 样式- CSS
 
@@ -793,7 +793,7 @@ p {color:blue;}
 ```
 ### HTML 样式标签
 
-![HTML 样式标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E6%A0%B7%E5%BC%8F%E6%A0%87%E7%AD%BE.png)
+![HTML 样式标签](https://graphbed.qiniu.songxingguo.com/HTML/HTML%20%E6%A0%B7%E5%BC%8F%E6%A0%87%E7%AD%BE.png)
 
 ### 已弃用的标签和属性
 
@@ -852,7 +852,7 @@ height（高度） 与 width（宽度）属性用于设置图像的高度与宽�
 
 ### HTML 图像标签
 
-![HTML 图像标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E5%9B%BE%E5%83%8F%E6%A0%87%E7%AD%BE.png)
+![HTML 图像标签](https://graphbed.qiniu.songxingguo.com/HTML/HTML%20%E5%9B%BE%E5%83%8F%E6%A0%87%E7%AD%BE.png)
 
 ## HTML 表格
 
@@ -876,7 +876,7 @@ height（高度） 与 width（宽度）属性用于设置图像的高度与宽�
 ```
 在浏览器显示如下：
 
-![表格显示](http://p9myzkds7.bkt.clouddn.com/HTML/%E8%A1%A8%E6%A0%BC%E6%98%BE%E7%A4%BA.jpg)
+![表格显示](https://graphbed.qiniu.songxingguo.com/HTML/%E8%A1%A8%E6%A0%BC%E6%98%BE%E7%A4%BA.jpg)
 
 ### HTML 表格和边框属性
 
@@ -916,18 +916,18 @@ height（高度） 与 width（宽度）属性用于设置图像的高度与宽�
 ```
 在浏览器显示如下：
 
-![表头显示](http://p9myzkds7.bkt.clouddn.com/HTML/%E8%A1%A8%E5%A4%B4%E6%98%BE%E7%A4%BAjpg.jpg)
+![表头显示](https://graphbed.qiniu.songxingguo.com/HTML/%E8%A1%A8%E5%A4%B4%E6%98%BE%E7%A4%BAjpg.jpg)
 
 ### HTML 表格标签
 
-![HTML 表格标签](http://p9myzkds7.bkt.clouddn.com/HTML/%E8%A1%A8%E6%A0%BC%E6%A0%87%E7%AD%BE.png)
+![HTML 表格标签](https://graphbed.qiniu.songxingguo.com/HTML/%E8%A1%A8%E6%A0%BC%E6%A0%87%E7%AD%BE.png)
 
 
 ## HTML 列表
 
 HTML 支持有序、无序和定义列表:
 
-![HTML 列表](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%E5%88%97%E8%A1%A8.png)
+![HTML 列表](https://graphbed.qiniu.songxingguo.com/HTML/HTML%E5%88%97%E8%A1%A8.png)
 
 ### HTML无序列表
 
@@ -993,7 +993,7 @@ Milk
 
 ### HTML 列表标签
 
-![HTML 列表标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E5%88%97%E8%A1%A8%E6%A0%87%E7%AD%BE.png)
+![HTML 列表标签](https://graphbed.qiniu.songxingguo.com/HTML/HTML%20%E5%88%97%E8%A1%A8%E6%A0%87%E7%AD%BE.png)
 
 ## HTML `<div>` 和 `<span>`
 
@@ -1033,7 +1033,7 @@ HTML `<span>` 元素是内联元素，可用作文本的容器
 
 ### HTML 分组标签
 
-![HTML 分组标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E5%88%86%E7%BB%84%E6%A0%87%E7%AD%BE.png)
+![HTML 分组标签](https://graphbed.qiniu.songxingguo.com/HTML/HTML%20%E5%88%86%E7%BB%84%E6%A0%87%E7%AD%BE.png)
 
 ## HTML 布局
 
@@ -1050,7 +1050,7 @@ HTML `<span>` 元素是内联元素，可用作文本的容器
 > 虽然我们可以使用HTML table标签来设计出漂亮的布局，但是table标签是不建议作为布局工具使用的 - 表格不是布局工具。
 
 ### HTML 布局 - 使用`<div>` 元素
-  
+
 div 元素是用于分组 HTML 元素的块级元素。
 
 下面的例子使用五个 div 元素来创建多列布局：
@@ -1088,7 +1088,7 @@ JavaScript</div>
 ```
 上面的 HTML 代码会产生如下结果：
 
-![div 布局](http://p9myzkds7.bkt.clouddn.com/HTML/div%E5%B8%83%E5%B1%80.jpg)
+![div 布局](https://graphbed.qiniu.songxingguo.com/HTML/div%E5%B8%83%E5%B1%80.jpg)
 
 ### HTML 布局 - 使用表格
 
@@ -1138,7 +1138,7 @@ JavaScript
 ```
 上面的 HTML 代码会产生以下结果：
 
-![表格布局](http://p9myzkds7.bkt.clouddn.com/HTML/%E8%A1%A8%E6%A0%BC%E5%B8%83%E5%B1%80.jpg)
+![表格布局](https://graphbed.qiniu.songxingguo.com/HTML/%E8%A1%A8%E6%A0%BC%E5%B8%83%E5%B1%80.jpg)
 
 ### HTML 布局 - 有用的提示
 
@@ -1148,7 +1148,7 @@ Tip: 由于创建高级的布局非常耗时，使用模板是一个快速的选
 
 ### HTML 布局标签
 
-![HTML 布局标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E5%B8%83%E5%B1%80%E6%A0%87%E7%AD%BE.png)
+![HTML 布局标签](https://graphbed.qiniu.songxingguo.com/HTML/HTML%20%E5%B8%83%E5%B1%80%E6%A0%87%E7%AD%BE.png)
 
 ## HTML 表单和输入
 
@@ -1187,7 +1187,7 @@ input 元素
   ```
   浏览器显示如下：
 
-  ![文本域](http://p9myzkds7.bkt.clouddn.com/HTML/%E6%96%87%E6%9C%AC%E5%9F%9F.png)
+  ![文本域](https://graphbed.qiniu.songxingguo.com/HTML/%E6%96%87%E6%9C%AC%E5%9F%9F.png)
 
   注意:表单本身并不可见。同时，在大多数浏览器中，文本域的缺省宽度是20个字符。
 
@@ -1202,7 +1202,7 @@ input 元素
   ```
   浏览器显示效果如下:
 
-  ![密码字段](http://p9myzkds7.bkt.clouddn.com/HTML/%E5%AF%86%E7%A0%81%E5%AD%97%E6%AE%B5.png)
+  ![密码字段](https://graphbed.qiniu.songxingguo.com/HTML/%E5%AF%86%E7%A0%81%E5%AD%97%E6%AE%B5.png)
 
   注意:密码字段字符不会明文显示，而是以星号或圆点替代。
 
@@ -1218,7 +1218,7 @@ input 元素
   ```
   浏览器显示效果如下:
 
-  ![单选按钮](http://p9myzkds7.bkt.clouddn.com/HTML/%E5%8D%95%E9%80%89%E6%8C%89%E9%92%AE.png)
+  ![单选按钮](https://graphbed.qiniu.songxingguo.com/HTML/%E5%8D%95%E9%80%89%E6%8C%89%E9%92%AE.png)
 
 - #### 复选框（Checkboxes）
 
@@ -1232,7 +1232,7 @@ input 元素
   ```
   浏览器显示效果如下:
 
-  ![复选框](http://p9myzkds7.bkt.clouddn.com/HTML/%E5%A4%8D%E9%80%89%E6%A1%86.png)
+  ![复选框](https://graphbed.qiniu.songxingguo.com/HTML/%E5%A4%8D%E9%80%89%E6%A1%86.png)
 
 - #### 提交按钮(Submit Button)
 
@@ -1248,14 +1248,14 @@ input 元素
   ```
   浏览器显示效果如下:
 
-  ![提交按钮](http://p9myzkds7.bkt.clouddn.com/HTML/%E6%8F%90%E4%BA%A4%E6%8C%89%E9%92%AE.png)
+  ![提交按钮](https://graphbed.qiniu.songxingguo.com/HTML/%E6%8F%90%E4%BA%A4%E6%8C%89%E9%92%AE.png)
 
   假如您在上面的文本框内键入几个字母，然后点击确认按钮，那么输入数据会传送到 "html_form_action.php" 的页面。该页面将显示出输入的结果。
 
 ### HTML 表单标签
 
-![HTML 表单标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E8%A1%A8%E5%8D%95%E6%A0%87%E7%AD%BE.png)
-  
+![HTML 表单标签](https://graphbed.qiniu.songxingguo.com/HTML/HTML%20%E8%A1%A8%E5%8D%95%E6%A0%87%E7%AD%BE.png)
+
 ## HTML 框架
 
 通过使用框架，你可以在同一个浏览器窗口中显示不止一个页面。
@@ -1298,7 +1298,7 @@ iframe可以显示一个目标链接的页面
 ```
 ### HTML iframe 标签
 
-![HTML iframe 标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20iframe%20%E6%A0%87%E7%AD%BE.png)
+![HTML iframe 标签](https://graphbed.qiniu.songxingguo.com/HTML/HTML%20iframe%20%E6%A0%87%E7%AD%BE.png)
 
 ## HTML 颜色
 
@@ -1312,7 +1312,7 @@ HTML 颜色由一个十六进制符号来定义，这个符号由红色、绿色
 
 这个表格给出了由三种颜色混合而成的具体效果：
 
-![颜色值](http://p9myzkds7.bkt.clouddn.com/HTML/%E9%A2%9C%E8%89%B2%E5%80%BC.png)
+![颜色值](https://graphbed.qiniu.songxingguo.com/HTML/%E9%A2%9C%E8%89%B2%E5%80%BC.png)
 
 ### 1600万种不同颜色
 
@@ -1336,7 +1336,7 @@ HTML 颜色由一个十六进制符号来定义，这个符号由红色、绿色
 
 最初，216 跨平台 web 安全色被用来确保：当计算机使用 256 色调色板时，所有的计算机能够正确地显示所有的颜色。
 
-![Web安全色](http://p9myzkds7.bkt.clouddn.com/HTML/Web%E5%AE%89%E5%85%A8%E8%89%B2.png)
+![Web安全色](https://graphbed.qiniu.songxingguo.com/HTML/Web%E5%AE%89%E5%85%A8%E8%89%B2.png)
 
 ## HTML 颜色名
 
@@ -1369,7 +1369,7 @@ HTML 颜色由一个十六进制符号来定义，这个符号由红色、绿色
 
 三位数表示法为：#RGB，转换为6位数表示为：#RRGGBB。
 
-![颜色实例](http://p9myzkds7.bkt.clouddn.com/HTML/%E9%A2%9C%E8%89%B2%E5%AE%9E%E4%BE%8B.png)
+![颜色实例](https://graphbed.qiniu.songxingguo.com/HTML/%E9%A2%9C%E8%89%B2%E5%AE%9E%E4%BE%8B.png)
 
 通过十六进制（Hex）的颜色值排序
 
@@ -1381,7 +1381,7 @@ HTML 颜色由一个十六进制符号来定义，这个符号由红色、绿色
 JavaScript 使 HTML 页面具有更强的动态和交互性。
 
 ### HTML `<script>` 标签
-  
+
 `<script>` 标签用于定义客户端脚本，比如 JavaScript。
 
 `<script>` 元素既可包含脚本语句，也可通过 src 属性指向外部脚本文件。
@@ -1432,7 +1432,7 @@ document.getElementById("demo").style.color="#ff0000";
 ```
 ### HTML 脚本标签
 
-![HTML 脚本标签](http://p9myzkds7.bkt.clouddn.com/HTML/HTML%20%E8%84%9A%E6%9C%AC%E6%A0%87%E7%AD%BE.png)
+![HTML 脚本标签](https://graphbed.qiniu.songxingguo.com/HTML/HTML%20%E8%84%9A%E6%9C%AC%E6%A0%87%E7%AD%BE.png)
 
 ## HTML 字符实体
 
@@ -1475,13 +1475,13 @@ HTML 中的常用字符实体是不间断空格(&nbsp;)。
 
 以下是一些实例:
 
-![结合音标符](http://p9myzkds7.bkt.clouddn.com/HTML/%E7%BB%93%E5%90%88%E9%9F%B3%E6%A0%87%E7%AC%A6.png)
+![结合音标符](https://graphbed.qiniu.songxingguo.com/HTML/%E7%BB%93%E5%90%88%E9%9F%B3%E6%A0%87%E7%AC%A6.png)
 
 ### HTML字符实体
 
 >  实体名称对大小写敏感！
 
-![HTML字符实体](http://p9myzkds7.bkt.clouddn.com/HTML/%E5%AE%9E%E4%BD%93%E5%90%8D%E7%A7%B0.png)
+![HTML字符实体](https://graphbed.qiniu.songxingguo.com/HTML/%E5%AE%9E%E4%BD%93%E5%90%8D%E7%A7%B0.png)
 
 查看本站完整的HTML实体：请点击 [HTML 实体参考手册](http://www.runoob.com/tags/ref-entities.html)。
 
@@ -1518,7 +1518,7 @@ scheme://host.domain:port/path/filename
 
 以下是一些URL scheme：
 
-![常见的 URL Scheme](http://p9myzkds7.bkt.clouddn.com/HTML/%E5%B8%B8%E8%A7%81%E7%9A%84%20URL%20Scheme.png)
+![常见的 URL Scheme](https://graphbed.qiniu.songxingguo.com/HTML/%E5%B8%B8%E8%A7%81%E7%9A%84%20URL%20Scheme.png)
 
 ### URL 字符编码
 
@@ -1532,7 +1532,7 @@ URL 不能包含空格。URL 编码通常使用 + 来替换空格。
 
 ### URL 编码实例
 
-![URL 编码实例](http://p9myzkds7.bkt.clouddn.com/HTML/URL%20%E7%BC%96%E7%A0%81%E5%AE%9E%E4%BE%8B.png)
+![URL 编码实例](https://graphbed.qiniu.songxingguo.com/HTML/URL%20%E7%BC%96%E7%A0%81%E5%AE%9E%E4%BE%8B.png)
 
 如需完整的 URL 编码参考，请访问我们的 [URL 编码参考手册](http://www.runoob.com/tags/html-urlencode.html)。
 

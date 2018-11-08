@@ -486,7 +486,7 @@ if (div.dataset.myname){
   结果，就是新创建的 `<p>` 元素会取代 DOM 树中的 `<div>` 元素。
 
   支持 outerHTML 属性的浏览器有 IE4+、Safari 4+、Chrome和 Opera 8+。Firefox 7 及之前版本都不支持 outerHTML 属性。
- 
+
 - #### insertAdjacentHTML() 方法
 
   插入标记的最后一个新增方式是 **insertAdjacentHTML() 方法** 。这个方法最早也是在IE中出现的，它接收两个参数：**插入位置** 和 **要插入的 HTML 文本**。第一个参数必须是下列值之一：
@@ -623,7 +623,7 @@ alert(document.documentElement.contains(document.body)); //true
 
 使用 DOM Level 3 compareDocumentPosition() 也能够确定节点间的关系。支持这个方法的浏览器有 IE9+、Firefox、Safari、Opera 9.5+和 Chrome。如前所述，**这个方法用于确定两个节点间的关系** ，**回一个表示该关系的位掩码**（ bitmask）。下表列出了这个位掩码的值。
 
-![位掩码的值](http://p9myzkds7.bkt.clouddn.com/JavaScript-DOM-extend/%E4%BD%8D%E6%8E%A9%E7%A0%81%E7%9A%84%E5%80%BC.png)
+![位掩码的值](https://graphbed.qiniu.songxingguo.com/JavaScript-DOM-extend/%E4%BD%8D%E6%8E%A9%E7%A0%81%E7%9A%84%E5%80%BC.png)
 
 为模仿 contains() 方法，应该关注的是掩码 16。可以对 ** compareDocumentPosition()** 的结果执行按位与，以确定参考节点（调用 compareDocumentPosition() 方法的当前节点）是否包含给定的节点（传入的节点）。来看下面的例子：
 

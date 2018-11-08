@@ -453,7 +453,7 @@ module.exports = {
 #### 单个入口（简写）语法
 
 用法：`entry: string|Array<string>`
-  
+
 ```js
 const config = {
   entry: './path/to/my/entry/file.js'
@@ -599,7 +599,7 @@ webpack --mode=production
 ```
 支持以下字符串值：
 
-![mode字符串值](http://p9myzkds7.bkt.clouddn.com/Wepack/mode.png)
+![mode字符串值](https://graphbed.qiniu.songxingguo.com/Wepack/mode.png)
 
 > 记住，只设置 NODE_ENV，则不会自动设置 mode。
 

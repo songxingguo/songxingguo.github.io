@@ -33,7 +33,7 @@ JavaScript 最初的一个应用，就是分担服务器处理表单的责任，
 var form = document.getElementById("form1");
 ```
 其次，**通过 document.forms 可以取得页面中所有的表单** 。在这个集合中，**可以通过数值索引或 name 值来取得特定的表单** ，如下面的例子所示。
-  
+
 ```js
 var firstForm = document.forms[0]; //取得页面中的第一个表单
 var myForm = document.forms["form2"]; //取得页面中名称为"form2"的表单
@@ -45,7 +45,7 @@ var myForm = document.forms["form2"]; //取得页面中名称为"form2"的表单
 ### 提交表单
 
 **用户单击提交按钮或图像按钮时，就会提交表单** 。**使用 `<input>` 或 `<button>` 都可以定义提交按钮** ，**只要将其 type 特性的值设置为 "submit" 即可** ，而 **图像按钮则是通过将 `<input>` 的 type 特性值设置为 "image" 来定义的** 。因此，只要我们单击以下代码生成的按钮，就可以提交表单。
-  
+
 ```js
 <!-- 通用提交按钮 -->
 <input type="submit" value="Submit Form">
@@ -88,7 +88,7 @@ form.submit();
 ### 重置表单
 
 **在用户单击重置按钮时，表单会被重置** 。**使用 type 特性值为 "reset" 的 `<input>` 或 `<button>` 都可以创建重置按钮** ，如下面的例子所示。
-  
+
 ```js
 <!-- 通用重置按钮 -->
 <input type="reset" value="Reset Form">
@@ -126,7 +126,7 @@ form.reset();
 ### 表单字段
 
 **可以像访问页面中的其他元素一样，使用原生 DOM 方法访问表单元素** 。此外，**每个表单都有elements 属性** ，该属性是 **表单中所有表单元素（字段）的集合** 。这个**elements 集合是一个有序列表** ，其中 **包含着表单中的所有字段** ，例如 `<input>` 、 `<textarea>` 、 `<button>` 和 `<fieldset>` 。**每个表单字段在 elements 集合中的顺序** ，**与它们出现在标记中的顺序相同** ，**可以按照位置和 name 特性来访问它们** 。下面来看一个例子。
-  
+
 ```js
 var form = document.getElementById("form1");
 
@@ -218,7 +218,7 @@ alert(firstColorField === firstFormField); //true
 
   **除了 `<fieldset>` 之外** ，**所有表单字段都有 type 属性** 。**对于 `<input>` 元素** ，**这个值等于 HTML 特性 type 的值** 。对于其他元素，这个 type 属性的值如下表所列。
 
-    ![其他元素的type属性](http://p9myzkds7.bkt.clouddn.com/JavaScript-form-script/%E5%85%B6%E4%BB%96%E5%85%83%E7%B4%A0%E7%9A%84type%E5%B1%9E%E6%80%A7.png)
+    ![其他元素的type属性](https://graphbed.qiniu.songxingguo.com/JavaScript-form-script/%E5%85%B6%E4%BB%96%E5%85%83%E7%B4%A0%E7%9A%84type%E5%B1%9E%E6%80%A7.png)
 
   此外， **`<input>` 和 `<button>` 元素的 type 属性是可以动态修改的** ，而 **`<select>` 元素的 type 属性则是只读的** 。
 
@@ -322,7 +322,7 @@ EventUtil.addHandler(textbox, "change", function(event){
 另一个与 `<input>` 的区别在于，**不能在 HTML 中给 `<textarea>` 指定最大字符数** 。
 
 无论这两种文本框在标记中有什么区别，但 **它们都会将用户输入的内容保存在 value 属性中** 。**可以通过这个属性读取和设置文本框的值** ，如下面的例子所示：
-  
+
 ```js
 var textbox = document.forms[0].elements["textbox1"];
 alert(textbox.value);
@@ -811,7 +811,7 @@ EventUtil.addHandler(textbox3, "keyup", tabForward);
 -  如果有多个选中项，则选择框的 value 属性将依据前两条规则取得第一个选中项的值。
 
 以下面的选择框为例：
-  
+
  ```html
 <select name="location" id="selLocation">
   <option value="Sunnyvale, CA">Sunnyvale</option>
@@ -820,11 +820,11 @@ EventUtil.addHandler(textbox3, "keyup", tabForward);
   <option value="">China</option>
   <option>Australia</option>
 </select>
-```
+ ```
 如果用户选择了其中第一项，则选择框的值就是 "Sunnyvale, CA" 。如果文本为 "China" 的选项被选中，则选择框的值就是一个空字符串，因为其 value 特性是空的。如果选择了最后一项，那么由于 `<option>` 中没有指定 value 特性，则选择框的值就是 "Australia" 。
 
 在 DOM 中，每个 `<option>` 元素都有一个 HTMLOptionElement 对象表示。为便于访问数据，HTMLOptionElement 对象添加了下列属性：
-  
+
 - index ：当前选项在 options 集合中的索引。
 - label ：当前选项的标签；等价于 HTML 中的 label 特性。
 - selected ：布尔值，表示当前选项是否被选中。将这个属性设置为 true 可以选中当前选项。
@@ -923,9 +923,9 @@ newOption.setAttribute("value", "Option value");
 selectbox.appendChild(newOption);
 ```
 以上代码创建了一个新的 `<option>` 元素，然后为它添加了一个文本节点，并设置其 value 特性，最后将它添加到了选择框中。添加到选择框之后，用户立即就可以看到新选项。
-  
+
 第二种方式是 **使用 Option 构造函数来创建新选项** ，这个构造函数是 DOM 出现之前就有的，一直遗留到现在。 **Option 构造函数** 接受两个参数：**文本**（ text ）和 **值**（ value ）；**第二个参数可选** 。虽然这个构造函数会创建一个 Object 的实例，但兼容 DOM 的浏览器会返回一个 `<option>` 元素。换句话说，**在这种情况下，我们仍然可以使用 appendChild() 将新选项添加到选择框中** 。来看下面的例子。
-  
+
 ```js
 var newOption = new Option("Option text", "Option value");
 selectbox.appendChild(newOption); //在 IE8 及之前版本中有问题
@@ -1011,7 +1011,7 @@ selectbox.insertBefore(optionToMove, selectbox.options[optionToMove.index+2]);
 - `<select>` 元素的值，就是选中的 `<option>` 元素的 value 特性的值。如果 `<option>` 元素没有 value 特性，则是 `<option>` 元素的文本值。
   
 在表单序列化过程中，一般不包含任何按钮字段，因为结果字符串很可能是通过其他方式提交的。除此之外的其他上述规则都应该遵循。以下就是 **实现表单序列化** 的代码。
-  
+
 ```
 function serialize(form){
   var parts = [],
@@ -1083,7 +1083,7 @@ function serialize(form){
 富文本编辑，又称为 WYSIWYG（What You See Is What You Get，所见即所得）。**在网页中编辑富文本内容，是人们对 Web 应用程序最大的期待之一** 。虽然也没有规范，但在 IE 最早引入的这一功能基础上，已经出现了事实标准。而且，Opera、Safari、Chrome 和 Firefox 都已经支持这一功能。这一技术的本质，就是在页面中嵌入一个包含空 HTML 页面的 iframe 。通过设置 designMode 属性，这个空白的 HTML 页面可以被编辑，而编辑对象则是该页面 `<body>` 元素的 HTML 代码。 designMode 属性有两个可能的值： "off" （默认值）和 "on" 。在设置为 "on" 时，整个文档都会变得可以编辑（显示插入符号），然后就可以像使用字处理软件一样，通过键盘将文本内容加粗、变成斜体，等等。
 
 **可以给 iframe 指定一个非常简单的 HTML 页面作为其内容来源** 。例如：
-  
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -1117,7 +1117,7 @@ function serialize(form){
 <div class="editable" id="richedit" contenteditable></div>  
 ```
 这样，元素中包含的任何文本内容就都可以编辑了，就好像这个元素变成了 <textarea> 元素一样。通过在这个元素上设置 contenteditable 属性，也能打开或关闭编辑模式。
-  
+
 ```js
 var div = document.getElementById("richedit");
 div.contentEditable = "true";
@@ -1130,9 +1130,9 @@ contenteditable 属性有三个可能的值： **"true" 表示打开** 、 **"fa
 
 不同浏览器支持的预定义命令也不一样。下表列出了那些被支持最多的命令。
 
-![预定义命令](http://p9myzkds7.bkt.clouddn.com/JavaScript-form-script/%E9%A2%84%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4.png)
+![预定义命令](https://graphbed.qiniu.songxingguo.com/JavaScript-form-script/%E9%A2%84%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4.png)
 
-![预定义命令（续）](http://p9myzkds7.bkt.clouddn.com/JavaScript-form-script/%E9%A2%84%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4%EF%BC%88%E7%BB%AD%EF%BC%89.png)
+![预定义命令（续）](https://graphbed.qiniu.songxingguo.com/JavaScript-form-script/%E9%A2%84%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4%EF%BC%88%E7%BB%AD%EF%BC%89.png)
 
 其中，与剪贴板有关的命令在不同浏览器中的差异极大。Opera 根本没有实现任何剪贴板命令，而 Firefox 在默认情况下会禁用它们（必须修改用户的首选项来启用它们）。Safari 和 Chrome 实现了 cut 和 copy ，但没有实现 paste 。不过，即使不能通过 document.execCommand() 来执行这些命令，但却可以通过相应的快捷键来实现同样的操作。
 
@@ -1215,7 +1215,7 @@ Selection 对象的这些属性并没有包含多少有用的信息。好在，�
 - toString() ：返回选区所包含的文本内容。
 
 Selection 对象的这些方法都极为实用，它们利用了（第 12 章讨论过的）DOM 范围来管理选区。由于可以直接操作选择文本的 DOM 表现，因此访问 DOM范围与使用 execCommand() 相比，能够对富文本编辑器进行更加细化的控制。下面来看一个例子。
-  
+
 ```js
 var selection = frames["richedit"].getSelection();
 
@@ -1231,11 +1231,11 @@ span.style.backgroundColor = "yellow";
 range.surroundContents(span);
 ```
 以上代码会为富文本编辑器中被选择的文本添加黄色的背景。这里使用了默认选区中的 DOM 范围，通过 surroundContents() 方法将选区添加到了带有黄色背景的 <span> 元素中。
-  
+
 HTML5 将 getSelection() 方法纳入了标准，而且 IE9、Firefox、Safari、Chrome 和 Opera 8 都实现了它。由于历史原因，在 Firefox 3.6+中调用 document.getSelection() 会返回一个字符串。为此，可以在 Firefox 3.6+中改作调用 window.getSelection() ，从而返回 selection 对象。Firefox 8 修复了 document.getSelection() 的 bug，能返回与 window.getSelection() 相同的值。
 
 IE8 及更早的版本不支持 DOM范围，但我们可以通过它支持的 selection 对象操作选择的文本。IE 中的 selection 对象是 document 的属性，本章前面曾经讨论过。要取得富文本编辑器中选择的文本，首先必须创建一个文本范围（请参考第 12 章中的相关内容），然后再像下面这样访问其 text 属性。
-  
+
 ```js
 var range = frames["richedit"].document.selection.createRange();
 var selectedText = range.text;

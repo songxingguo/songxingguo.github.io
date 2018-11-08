@@ -59,7 +59,7 @@ Chrome浏览器和Node的组件构成如下图所示。
 
 avaScript作为一门图灵完备的语言，长久以来却限制在浏览器的沙箱中运行，它的能力取决于浏览器中间层提供的支持有多少。
 
-![Chrome浏览器和Node的组件构成](http://p9myzkds7.bkt.clouddn.com/Node-brief/Chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CNode%E7%9A%84%E7%BB%84%E4%BB%B6%E6%9E%84%E6%88%90.jpg)
+![Chrome浏览器和Node的组件构成](https://graphbed.qiniu.songxingguo.com/Node-brief/Chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CNode%E7%9A%84%E7%BB%84%E4%BB%B6%E6%9E%84%E6%88%90.jpg)
 
 除了HTML、WebKit和显卡这些UI相关技术没有支持外，Node的结构与Chrome十分相似。
 
@@ -101,7 +101,7 @@ console.log('发送Ajax结束');
 
 下图是一个经典的Ajax调用。
 
-![经典的Ajax调用](http://p9myzkds7.bkt.clouddn.com/Node-brief/%E7%BB%8F%E5%85%B8%E7%9A%84Ajax%E8%B0%83%E7%94%A8.jpg)
+![经典的Ajax调用](https://graphbed.qiniu.songxingguo.com/Node-brief/%E7%BB%8F%E5%85%B8%E7%9A%84Ajax%E8%B0%83%E7%94%A8.jpg)
 
 在Node中，异步I/O也很常见。
 
@@ -116,7 +116,7 @@ console.log('发起读取文件');
 ```
 这里的“发起读取文件”是在“读取文件完成”之前输出的。同样，“读取文件完成”的执行也取决于读取文件的异步调用何时结束。下图是一个经典的异步调用。
 
-![经典的异步调用](http://p9myzkds7.bkt.clouddn.com/Node-brief/%E7%BB%8F%E5%85%B8%E7%9A%84%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8.jpg)
+![经典的异步调用](https://graphbed.qiniu.songxingguo.com/Node-brief/%E7%BB%8F%E5%85%B8%E7%9A%84%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8.jpg)
 
 在Node中，绝大多数的操作都以异步的方式进行调用。
 
@@ -201,7 +201,7 @@ Node采用了与Web Workers相同的思路来解决单线程中大计算量的�
 
 下图是Node基于libuv实现跨平台的架构示意图。
 
-![Node基于libuv实现跨平台的架构示意图](http://p9myzkds7.bkt.clouddn.com/Node-brief/Node%E5%9F%BA%E4%BA%8Elibuv%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%9A%84%E6%9E%B6%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
+![Node基于libuv实现跨平台的架构示意图](https://graphbed.qiniu.songxingguo.com/Node-brief/Node%E5%9F%BA%E4%BA%8Elibuv%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%9A%84%E6%9E%B6%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
 
 兼容Windows和*nix平台主要得益于Node在架构层面的改动，它在操作系统与Node上层模块系统之间构建了一层平台层架构，即libuv。目前，libuv已经成为许多系统实现跨平台的基础组件。
 
@@ -221,7 +221,7 @@ Node面向网络且擅长并行I/O，能够有效地组织起更多的硬件资�
 
 我们将相同的斐波那契数列计算（F0=0，F1=1，Fn=F(n-1)+F(n-2)(n≥2)）分别用各种脚本语言写了算法实现，并进行了n=40的计算，以比较性能。这个测试主要偏重CPU栈操作，下表是其中一次运算耗时的排行。在这些脚本语言中（其中C和Go语言是静态语言，用于参考），Node是足够高效的，它优秀的运算能力主要来自V8的深度性能优化。
 
-![计算斐波那契数列耗时排行](http://p9myzkds7.bkt.clouddn.com/Node-brief/%E8%AE%A1%E7%AE%97%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E8%80%97%E6%97%B6%E6%8E%92%E8%A1%8C.jpg)
+![计算斐波那契数列耗时排行](https://graphbed.qiniu.songxingguo.com/Node-brief/%E8%AE%A1%E7%AE%97%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E8%80%97%E6%97%B6%E6%8E%92%E8%A1%8C.jpg)
 
 这样的测试结果尽管不能完全反映出各个语言的性能优劣，但已经可以表明Node在性能上不俗的表现。从另一个角度来说，这可以表明CPU密集型应用其实并不可怕。CPU密集型应用给Node带来的挑战主要是：**由于JavaScript单线程的原因，如果有长时间运行的计算（比如大循环），将会导致CPU时间片不能释放，使得后续I/O无法发起** 。但是 **适当调整和分解大型运算任务为多个小任务，使得运算能够适时释放，不阻塞I/O调用的发起，这样既可同时享受到并行异步I/O的好处，又能充分利用CPU** 。
 

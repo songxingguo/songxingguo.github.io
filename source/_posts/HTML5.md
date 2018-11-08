@@ -118,7 +118,7 @@ HTML5 `<audio>`
 
 HTML5 添加了很多语义元素如下所示：
 
-![语义元素](http://p9myzkds7.bkt.clouddn.com/HTML5/%E8%AF%AD%E4%B9%89%E5%85%83%E7%B4%A0.png)
+![语义元素](https://graphbed.qiniu.songxingguo.com/HTML5/%E8%AF%AD%E4%B9%89%E5%85%83%E7%B4%A0.png)
 
 ### HTML5 表单
 
@@ -166,7 +166,7 @@ HTML5 添加了很多语义元素如下所示：
 
 最新版本的 Safari、Chrome、Firefox 以及 Opera 支持某些 HTML5 特性。Internet Explorer 9 将支持某些 HTML5 特性。
 
-![HTML5 浏览器支持](http://p9myzkds7.bkt.clouddn.com/HTML5/browsers_say.png)
+![HTML5 浏览器支持](https://graphbed.qiniu.songxingguo.com/HTML5/browsers_say.png)
 
 IE9 以下版本浏览器兼容HTML5的方法，使用本站的静态资源的html5shiv包：
 
@@ -308,21 +308,21 @@ html5shiv.js 引用代码必须放在 <head> 元素中，因为 IE 浏览器在�
 
 ### `<canvas>` 新元素
 
-![<canvas> 新元素](http://p9myzkds7.bkt.clouddn.com/HTML5/canvas%20%E6%96%B0%E5%85%83%E7%B4%A0.png)
-  
+![<canvas> 新元素](https://graphbed.qiniu.songxingguo.com/HTML5/canvas%20%E6%96%B0%E5%85%83%E7%B4%A0.png)
+
 ### 新多媒体元素
 
-![新多媒体元素](http://p9myzkds7.bkt.clouddn.com/HTML5/%E6%96%B0%E5%A4%9A%E5%AA%92%E4%BD%93%E5%85%83%E7%B4%A0.png)
+![新多媒体元素](https://graphbed.qiniu.songxingguo.com/HTML5/%E6%96%B0%E5%A4%9A%E5%AA%92%E4%BD%93%E5%85%83%E7%B4%A0.png)
 
 ### 新表单元素
 
-![新表单元素](http://p9myzkds7.bkt.clouddn.com/HTML5/%E6%96%B0%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0.png)
+![新表单元素](https://graphbed.qiniu.songxingguo.com/HTML5/%E6%96%B0%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0.png)
 
 ### 新的语义和结构元素
 
 HTML5提供了新的元素来创建更好的页面结构：
 
-![新的语义和结构元素](http://p9myzkds7.bkt.clouddn.com/HTML5/%E6%96%B0%E7%9A%84%E8%AF%AD%E4%B9%89%E5%92%8C%E7%BB%93%E6%9E%84%E5%85%83%E7%B4%A0.png)
+![新的语义和结构元素](https://graphbed.qiniu.songxingguo.com/HTML5/%E6%96%B0%E7%9A%84%E8%AF%AD%E4%B9%89%E5%92%8C%E7%BB%93%E6%9E%84%E5%85%83%E7%B4%A0.png)
 
 ### 已移除的元素
 
@@ -347,7 +347,7 @@ HTML5提供了新的元素来创建更好的页面结构：
 
 在画布上（Canvas）画一个红色矩形，渐变矩形，彩色矩形，和一些彩色的文字。
 
-![Canvas](http://p9myzkds7.bkt.clouddn.com/HTML5/%E5%BD%A9%E8%89%B2%E6%96%87%E5%AD%97.png)
+![Canvas](https://graphbed.qiniu.songxingguo.com/HTML5/%E5%BD%A9%E8%89%B2%E6%96%87%E5%AD%97.png)
 
 ### 什么是 canvas?
 
@@ -359,8 +359,8 @@ HTML5 `<canvas>` 元素用于图形的绘制，通过脚本 (通常是JavaScript
 
 浏览器支持
 表格中的数字表示支持 `<canvas>` 元素的第一个浏览器版本号。
-  
-![浏览器版本号](http://p9myzkds7.bkt.clouddn.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%89%88%E6%9C%AC%E5%8F%B7.png)
+
+![浏览器版本号](https://graphbed.qiniu.songxingguo.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%89%88%E6%9C%AC%E5%8F%B7.png)
 
 ### 创建一个画布（Canvas）
 
@@ -432,7 +432,7 @@ canvas 的左上角坐标为 (0,0)
 
 如下图所示，画布的 X 和 Y 坐标用于在画布上对绘画进行定位。鼠标移动的矩形框上，显示定位坐标。
 
-![定位坐标](http://p9myzkds7.bkt.clouddn.com/HTML5/%E5%AE%9A%E4%BD%8D%E5%9D%90%E6%A0%87.png)
+![定位坐标](https://graphbed.qiniu.songxingguo.com/HTML5/%E5%AE%9A%E4%BD%8D%E5%9D%90%E6%A0%87.png)
 
 ### Canvas - 路径
 
@@ -446,7 +446,7 @@ canvas 的左上角坐标为 (0,0)
 实例
 定义开始坐标(0,0), 和结束坐标 (200,100)。然后使用 stroke() 方法来绘制线条:
 
-![绘制线条](http://p9myzkds7.bkt.clouddn.com/HTML5/%E7%BB%98%E5%88%B6%E7%BA%BF%E6%9D%A1.png)
+![绘制线条](https://graphbed.qiniu.songxingguo.com/HTML5/%E7%BB%98%E5%88%B6%E7%BA%BF%E6%9D%A1.png)
 
 JavaScript:
 
@@ -468,7 +468,7 @@ arc(x,y,r,start,stop)
 
 使用 arc() 方法 绘制一个圆:
 
-![绘制一个圆](http://p9myzkds7.bkt.clouddn.com/HTML5/%E7%BB%98%E5%88%B6%E5%9C%86%E5%BD%A2.png)
+![绘制一个圆](https://graphbed.qiniu.songxingguo.com/HTML5/%E7%BB%98%E5%88%B6%E5%9C%86%E5%BD%A2.png)
 
 JavaScript:
 
@@ -491,7 +491,7 @@ ctx.stroke();
 
   使用 "Arial" 字体在画布上绘制一个高 30px 的文字（实心）：
 
-  ![高 30px 的文字](http://p9myzkds7.bkt.clouddn.com/HTML5/%E9%AB%98%2030px%20%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%AE%9E%E5%BF%83%EF%BC%89.png)
+  ![高 30px 的文字](https://graphbed.qiniu.songxingguo.com/HTML5/%E9%AB%98%2030px%20%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%AE%9E%E5%BF%83%EF%BC%89.png)
 
   JavaScript:
 
@@ -505,7 +505,7 @@ ctx.stroke();
 
   使用 "Arial" 字体在画布上绘制一个高 30px 的文字（空心）：
 
-  ![高 30px 的文字（空心）](http://p9myzkds7.bkt.clouddn.com/HTML5/%E9%AB%98%2030px%20%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E7%A9%BA%E5%BF%83%EF%BC%89.png)
+  ![高 30px 的文字（空心）](https://graphbed.qiniu.songxingguo.com/HTML5/%E9%AB%98%2030px%20%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E7%A9%BA%E5%BF%83%EF%BC%89.png)
 
   JavaScript:
 
@@ -535,7 +535,7 @@ addColorStop()方法指定颜色停止，参数使用坐标来描述，可以是
 
 创建一个线性渐变。使用渐变填充矩形:
 
-![渐变填充矩形](http://p9myzkds7.bkt.clouddn.com/HTML5/%E4%BD%BF%E7%94%A8%E6%B8%90%E5%8F%98%E5%A1%AB%E5%85%85%E7%9F%A9%E5%BD%A2.png)
+![渐变填充矩形](https://graphbed.qiniu.songxingguo.com/HTML5/%E4%BD%BF%E7%94%A8%E6%B8%90%E5%8F%98%E5%A1%AB%E5%85%85%E7%9F%A9%E5%BD%A2.png)
 
 JavaScript:
 
@@ -557,7 +557,7 @@ ctx.fillRect(10,10,150,80);
 实例
 创建一个径向/圆渐变。使用渐变填充矩形：
 
-![使用渐变填充矩形](http://p9myzkds7.bkt.clouddn.com/HTML5/%E5%BE%84%E5%90%91%E3%80%81%E5%9C%86%E6%B8%90%E5%8F%98.png)
+![使用渐变填充矩形](https://graphbed.qiniu.songxingguo.com/HTML5/%E5%BE%84%E5%90%91%E3%80%81%E5%9C%86%E6%B8%90%E5%8F%98.png)
 
 JavaScript:
 
@@ -582,11 +582,11 @@ ctx.fillRect(10,10,150,80);
 
 使用图像:
 
-![使用图像](http://p9myzkds7.bkt.clouddn.com/HTML5/%E4%BD%BF%E7%94%A8%E5%9B%BE%E5%83%8F.jpg)
+![使用图像](https://graphbed.qiniu.songxingguo.com/HTML5/%E4%BD%BF%E7%94%A8%E5%9B%BE%E5%83%8F.jpg)
 
 把一幅图像放置到画布上:
 
-![把一幅图像放置到画布上](http://p9myzkds7.bkt.clouddn.com/HTML5/%E5%9B%BE%E5%83%8F%E6%94%BE%E7%BD%AE%E5%88%B0%E7%94%BB%E5%B8%83%E4%B8%8A.png)
+![把一幅图像放置到画布上](https://graphbed.qiniu.songxingguo.com/HTML5/%E5%9B%BE%E5%83%8F%E6%94%BE%E7%BD%AE%E5%88%B0%E7%94%BB%E5%B8%83%E4%B8%8A.png)
 
 JavaScript:
 
@@ -602,13 +602,13 @@ ctx.drawImage(img,10,10);
 
 ### HTML `<canvas>` 标签
 
-![<canvas> 标签](http://p9myzkds7.bkt.clouddn.com/HTML5/HTMLcanvas%E6%A0%87%E7%AD%BE.png)
-  
+![<canvas> 标签](https://graphbed.qiniu.songxingguo.com/HTML5/HTMLcanvas%E6%A0%87%E7%AD%BE.png)
+
 ## HTML5 内联 SVG
 
 HTML5 支持内联 SVG。
 
-![内联 SVG](http://p9myzkds7.bkt.clouddn.com/HTML5/%E5%86%85%E8%81%94%20SVG.png)
+![内联 SVG](https://graphbed.qiniu.songxingguo.com/HTML5/%E5%86%85%E8%81%94%20SVG.png)
 
 ### 什么是SVG？
 
@@ -630,7 +630,7 @@ HTML5 支持内联 SVG。
 
 ### 浏览器支持
 
-![浏览器支持](http://p9myzkds7.bkt.clouddn.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81.gif)
+![浏览器支持](https://graphbed.qiniu.songxingguo.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81.gif)
 
 Internet Explorer 9+, Firefox, Opera, Chrome, 和 Safari 支持内联SVG。
 
@@ -672,7 +672,7 @@ Canvas 是逐像素进行渲染的。在 canvas 中，一旦图形被绘制完�
 
 下表列出了 canvas 与 SVG 之间的一些不同之处。
 
-![不同之处](http://p9myzkds7.bkt.clouddn.com/HTML5/Canvas%20%E4%B8%8E%20SVG%20%E7%9A%84%E6%AF%94%E8%BE%83.png)
+![不同之处](https://graphbed.qiniu.songxingguo.com/HTML5/Canvas%20%E4%B8%8E%20SVG%20%E7%9A%84%E6%AF%94%E8%BE%83.png)
 
 ## HTML5 MathML
 
@@ -715,7 +715,7 @@ MathML 是数学标记语言，是一种基于XML（标准通用标记语言的�
 ```
 运行结果图，如下所示：
 
-![运行结果图](http://p9myzkds7.bkt.clouddn.com/HTML5/mathml1.jpg)
+![运行结果图](https://graphbed.qiniu.songxingguo.com/HTML5/mathml1.jpg)
 
 以下实例添加了一些运算符：
 
@@ -763,7 +763,7 @@ MathML 是数学标记语言，是一种基于XML（标准通用标记语言的�
 ```
 运行结果图，如下所示：
 
-![运行结果](http://p9myzkds7.bkt.clouddn.com/HTML5/mathml2-1.jpg)
+![运行结果](https://graphbed.qiniu.songxingguo.com/HTML5/mathml2-1.jpg)
 
 以下实例是一个 2×2 矩阵，可以在 Firefox 3.5 以上版本查看到效果：
 
@@ -805,13 +805,13 @@ MathML 是数学标记语言，是一种基于XML（标准通用标记语言的�
 ```
 运行结果图，如下所示：
 
-![运行结果图](http://p9myzkds7.bkt.clouddn.com/HTML5/mathml3.jpg)
+![运行结果图](https://graphbed.qiniu.songxingguo.com/HTML5/mathml3.jpg)
 
 ## HTML5 拖放（Drag 和 Drop）
 
 拖放（Drag 和 drop）是 HTML5 标准的组成部分。
 
-![拖放](http://p9myzkds7.bkt.clouddn.com/HTML5/%E6%8B%96%E6%94%BE.png)
+![拖放](https://graphbed.qiniu.songxingguo.com/HTML5/%E6%8B%96%E6%94%BE.png)
 
 将 RUNOOB.COM 图标拖动到矩形框中。
 
@@ -823,7 +823,7 @@ MathML 是数学标记语言，是一种基于XML（标准通用标记语言的�
 
 ### 浏览器支持
 
-![浏览器支持](http://p9myzkds7.bkt.clouddn.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%8B%96%E6%94%BE.png)
+![浏览器支持](https://graphbed.qiniu.songxingguo.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%8B%96%E6%94%BE.png)
 
 Internet Explorer 9+, Firefox, Opera, Chrome, 和 Safari 支持拖动。
 
@@ -941,7 +941,7 @@ HTML5 Geolocation API 用于获得用户的地理位置。
 
 ### 浏览器支持
 
-![浏览器支持](http://p9myzkds7.bkt.clouddn.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%8B%96%E6%94%BE.png)
+![浏览器支持](https://graphbed.qiniu.songxingguo.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%8B%96%E6%94%BE.png)
 
 Internet Explorer 9+, Firefox, Chrome, Safari 和 Opera 支持Geolocation（地理定位）.
 
@@ -1046,7 +1046,7 @@ function showPosition(position)
 
 若成功，则 getCurrentPosition() 方法返回对象。始终会返回 latitude、longitude 以及 accuracy 属性。如果可用，则会返回其他下面的属性。
 
-![返回的属性](http://p9myzkds7.bkt.clouddn.com/HTML5/%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE.png)
+![返回的属性](https://graphbed.qiniu.songxingguo.com/HTML5/%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE.png)
 
 ### Geolocation 对象 - 其他有趣的方法
 
@@ -1089,12 +1089,12 @@ HTML5 规定了一种通过 video 元素来包含视频的标准方法。
 
 ### 浏览器支持
 
-![浏览器支持](http://p9myzkds7.bkt.clouddn.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%8B%96%E6%94%BE.png)
+![浏览器支持](https://graphbed.qiniu.songxingguo.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%8B%96%E6%94%BE.png)
 
 Internet Explorer 9+, Firefox, Opera, Chrome, 和 Safari 支持 `<video>` 元素.
 
 注意: Internet Explorer 8 或者更早的IE版本不支持 `<video>` 元素。
- 
+
 ### HTML5 (视频)- 如何工作
 
 如需在 HTML5 中显示视频，您所有需要的是：
@@ -1117,7 +1117,7 @@ Internet Explorer 9+, Firefox, Opera, Chrome, 和 Safari 支持 `<video>` 元素
 视频格式与浏览器的支持
 当前， `<video>` 元素支持三种视频格式： MP4, WebM, 和 Ogg:
 
-![视频格式](http://p9myzkds7.bkt.clouddn.com/HTML5/%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F%E4%B8%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E6%94%AF%E6%8C%81.png)
+![视频格式](https://graphbed.qiniu.songxingguo.com/HTML5/%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F%E4%B8%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E6%94%AF%E6%8C%81.png)
 
 - MP4 = 带有 H.264 视频编码和 AAC 音频编码的 MPEG 4 文件
 - WebM = 带有 VP8 视频编码和 Vorbis 音频编码的 WebM 文件
@@ -1125,7 +1125,7 @@ Internet Explorer 9+, Firefox, Opera, Chrome, 和 Safari 支持 `<video>` 元素
 
 ### 视频格式
 
-![视频格式](http://p9myzkds7.bkt.clouddn.com/HTML5/%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F.png)
+![视频格式](https://graphbed.qiniu.songxingguo.com/HTML5/%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F.png)
 
 ### HTML5 `<video>` - 使用 DOM 进行控制
 
@@ -1147,7 +1147,7 @@ HTML5 `<video>` 和 `<audio>` 元素同样拥有方法、属性和事件。
 
 ### HTML5 Video 标签
 
-![HTML5 Video 标签](http://p9myzkds7.bkt.clouddn.com/HTML5/HTML5%20Video%20%E6%A0%87%E7%AD%BE.png)
+![HTML5 Video 标签](https://graphbed.qiniu.songxingguo.com/HTML5/HTML5%20Video%20%E6%A0%87%E7%AD%BE.png)
 
 ## HTML5 Audio(音频)
 
@@ -1163,7 +1163,7 @@ HTML5 规定了在网页上嵌入音频元素的标准，即使用 `<audio>` 元
 
 ### 浏览器支持
 
-![浏览器支持](http://p9myzkds7.bkt.clouddn.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%8B%96%E6%94%BE.png)
+![浏览器支持](https://graphbed.qiniu.songxingguo.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%8B%96%E6%94%BE.png)
 
 Internet Explorer 9+, Firefox, Opera, Chrome, 和 Safari 都支持 `<audio>` 元素.
 
@@ -1190,15 +1190,15 @@ control 属性供添加播放、暂停和音量控件。
 
 目前, `<audio>`元素支持三种音频格式文件: MP3, Wav, 和 Ogg:
 
-![音频格式及浏览器支持](http://p9myzkds7.bkt.clouddn.com/HTML5/%E9%9F%B3%E9%A2%91%E6%A0%BC%E5%BC%8F%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81.png)
+![音频格式及浏览器支持](https://graphbed.qiniu.songxingguo.com/HTML5/%E9%9F%B3%E9%A2%91%E6%A0%BC%E5%BC%8F%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81.png)
 
 ### 音频格式的MIME类型
 
-![音频格式的MIME类型](http://p9myzkds7.bkt.clouddn.com/HTML5/%E9%9F%B3%E9%A2%91%E6%A0%BC%E5%BC%8F%E7%9A%84MIME%E7%B1%BB%E5%9E%8B.png)
+![音频格式的MIME类型](https://graphbed.qiniu.songxingguo.com/HTML5/%E9%9F%B3%E9%A2%91%E6%A0%BC%E5%BC%8F%E7%9A%84MIME%E7%B1%BB%E5%9E%8B.png)
 
 ### HTML5 Audio 标签
 
-![HTML5 Audio 标签](http://p9myzkds7.bkt.clouddn.com/HTML5/HTML5%20Audio%20%E6%A0%87%E7%AD%BE.png)
+![HTML5 Audio 标签](https://graphbed.qiniu.songxingguo.com/HTML5/HTML5%20Audio%20%E6%A0%87%E7%AD%BE.png)
 
 ## HTML5 新的 Input 类型
 
@@ -1292,7 +1292,7 @@ number 类型用于应该包含数值的输入域。
 ```
 使用下面的属性来规定对数字类型的限定：
 
-![数字类型的限定](http://p9myzkds7.bkt.clouddn.com/HTML5/%E6%95%B0%E5%AD%97%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%99%90%E5%AE%9A.png)
+![数字类型的限定](https://graphbed.qiniu.songxingguo.com/HTML5/%E6%95%B0%E5%AD%97%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%99%90%E5%AE%9A.png)
 
 尝试一下带有所有限定属性的例子 [尝试一下](http://www.runoob.com/try/try.php?filename=tryhtml5_form_number_adv)
 
@@ -1362,7 +1362,7 @@ week 类型允许你选择周和年。
 
 ### HTML5 `<input>` 标签
 
-![HTML5 <input> 标签](http://p9myzkds7.bkt.clouddn.com/HTML5/HTML5%20input%20%E6%A0%87%E7%AD%BE.png)
+![HTML5 <input> 标签](https://graphbed.qiniu.songxingguo.com/HTML5/HTML5%20input%20%E6%A0%87%E7%AD%BE.png)
 
 ## HTML5 表单元素
 
@@ -1431,7 +1431,7 @@ HTML5 有以下新的表单元素:
 ```
 ### HTML5 新表单元素
 
-![HTML5 新表单元素](http://p9myzkds7.bkt.clouddn.com/HTML5/HTML5%20%E6%96%B0%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0.png)
+![HTML5 新表单元素](https://graphbed.qiniu.songxingguo.com/HTML5/HTML5%20%E6%96%B0%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0.png)
 
 ## HTML5 表单属性
 
@@ -1453,7 +1453,7 @@ HTML5 的 `<form>` 和 `<input>`标签添加了几个新属性.
 - formenctype
 - formmethod
 - formnovalidate
-- formtarget	
+	 formtarget	
 - height 与 width
 - list
 - min 与 max
@@ -1743,7 +1743,7 @@ step 属性为输入域规定合法的数字间隔。
 
 ### HTML5 `<input>` 标签
 
-![HTML5 <input> 标签](http://p9myzkds7.bkt.clouddn.com/HTML5/HTML5%20input%20%E6%A0%87%E7%AD%BE-1.png)
+![HTML5 <input> 标签](https://graphbed.qiniu.songxingguo.com/HTML5/HTML5%20input%20%E6%A0%87%E7%AD%BE-1.png)
 
 ## HTML5 语义元素
 
@@ -1761,7 +1761,7 @@ step 属性为输入域规定合法的数字间隔。
 
 ### 浏览器支持
 
-![浏览器支持](http://p9myzkds7.bkt.clouddn.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%8B%96%E6%94%BE.png)
+![浏览器支持](https://graphbed.qiniu.songxingguo.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%8B%96%E6%94%BE.png)
 
 Internet Explorer 9+, Firefox, Chrome, Safari 和 Opera 支持语义元素。
 
@@ -1782,7 +1782,7 @@ HTML5 提供了新的语义元素来明确一个Web页面的不同部分:
 - `<figure>`
 - `<footer>`
 
-![Web页面的不同部分](http://p9myzkds7.bkt.clouddn.com/HTML5/img_sem_elements.gif)
+![Web页面的不同部分](https://graphbed.qiniu.songxingguo.com/HTML5/img_sem_elements.gif)
 
 ### HTML5 `<section>` 元素
 
@@ -1936,7 +1936,7 @@ HTML5 web 存储,一个比cookie更好的本地存储方式。
 
 ### 浏览器支持
 
-![浏览器支持](http://p9myzkds7.bkt.clouddn.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%8B%96%E6%94%BE.png)
+![浏览器支持](https://graphbed.qiniu.songxingguo.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%8B%96%E6%94%BE.png)
 
 Internet Explorer 8+, Firefox, Opera, Chrome, 和 Safari支持Web 存储。
 
@@ -2077,7 +2077,7 @@ function find(){
 ```
 实现效果截图：
 
-![实现效果截图](http://p9myzkds7.bkt.clouddn.com/HTML5/local11.png)
+![实现效果截图](https://graphbed.qiniu.songxingguo.com/HTML5/local11.png)
 
 以上实例只是演示了简单的 localStorage 存储与查找，更多情况下我们存储的数据会更复杂。
 
@@ -2143,7 +2143,7 @@ function find(){
 
 输出结果演示：
 
-![输出结果演示](http://p9myzkds7.bkt.clouddn.com/HTML5/08572F9A-A2E7-4752-BE1B-D66E2C3B36C9.jpg)
+![输出结果演示](https://graphbed.qiniu.songxingguo.com/HTML5/08572F9A-A2E7-4752-BE1B-D66E2C3B36C9.jpg)
 
 ## HTML5 Web SQL 数据库
 
@@ -2269,7 +2269,7 @@ tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
 ```
 以上实例运行结果如下图所示：
 
-![以上实例运行结果](http://p9myzkds7.bkt.clouddn.com/HTML5/websql.jpg)
+![以上实例运行结果](https://graphbed.qiniu.songxingguo.com/HTML5/websql.jpg)
 
 ### 删除记录
 
@@ -2344,7 +2344,7 @@ var msg;
 ```
 以上实例运行结果如下图所示：
 
-![实例运行结果](http://p9myzkds7.bkt.clouddn.com/HTML5/8E8CF48D-A590-4577-B338-715C0034D029.png)
+![实例运行结果](https://graphbed.qiniu.songxingguo.com/HTML5/8E8CF48D-A590-4577-B338-715C0034D029.png)
 
 ## HTML5 应用程序缓存
 
@@ -2362,7 +2362,7 @@ HTML5 引入了应用程序缓存，这意味着 web 应用可进行缓存，并
 
 ### 浏览器支持
 
-![浏览器支持](http://p9myzkds7.bkt.clouddn.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%8B%96%E6%94%BE.png)
+![浏览器支持](https://graphbed.qiniu.songxingguo.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%8B%96%E6%94%BE.png)
 
 Internet Explorer 10, Firefox, Chrome, Safari 和 Opera 支持应用程序缓存.
 
@@ -2390,7 +2390,7 @@ Internet Explorer 10, Firefox, Chrome, Safari 和 Opera 支持应用程序缓存
 <html manifest="demo.appcache">
 ...
 </html>
-````
+​````
 每个指定了 manifest 的页面在用户对其访问时都会被缓存。如果未指定 manifest 属性，则页面不会被缓存（除非在 manifest 文件中直接指定了该页面）。
 
 manifest 文件的建议的文件扩展名是：".appcache"。
@@ -2411,7 +2411,7 @@ manifest 文件可分为三个部分：
 
   第一行，CACHE MANIFEST，是必需的：
 
-  ```
+```
   CACHE MANIFEST
   /theme.css
   /logo.gif
@@ -2453,7 +2453,7 @@ manifest 文件可分为三个部分：
 
 ### 实例 - 完整的 Manifest 文件
 
-```
+  ```
 CACHE MANIFEST
 # 2012-02-21 v1.0.0
 /theme.css
@@ -2488,7 +2488,7 @@ web worker 是运行在后台的 JavaScript，独立于其他脚本，不会影�
 
 ### 浏览器支持
 
-![浏览器支持](http://p9myzkds7.bkt.clouddn.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%8B%96%E6%94%BE.png)
+![浏览器支持](https://graphbed.qiniu.songxingguo.com/HTML5/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%8B%96%E6%94%BE.png)
 
 Internet Explorer 10, Firefox, Chrome, Safari 和 Opera 都支持Web workers.
 
@@ -2500,7 +2500,7 @@ Internet Explorer 10, Firefox, Chrome, Safari 和 Opera 都支持Web workers.
 
 demo_workers.js 文件代码：
 
-```js
+​```js
 var i=0;
 
 function timedCount()
@@ -2570,14 +2570,14 @@ if(typeof(w)=="undefined")
 w.onmessage=function(event){
     document.getElementById("result").innerHTML=event.data;
 };
-````
+​````
 ### 终止 Web Worker
 
 当我们创建 web worker 对象后，它会继续监听消息（即使在外部脚本完成之后）直到其被终止为止。
 
 如需终止 web worker，并释放浏览器/计算机资源，请使用 terminate() 方法：
 
-```js
+​```js
 w.terminate();
 ```
 ### 完整的 Web Worker 实例代码
@@ -2647,7 +2647,7 @@ Server-Sent 事件指的是网页自动获取来自服务器的更新。
 
 ### 浏览器支持
 
-![浏览器支持](http://p9myzkds7.bkt.clouddn.com/HTML5/Server-Sent%20Events.png)
+![浏览器支持](https://graphbed.qiniu.songxingguo.com/HTML5/Server-Sent%20Events.png)
 
 所有主流浏览器均支持服务器发送事件，除了 Internet Explorer。
 
@@ -2718,7 +2718,7 @@ Response.Flush()
 
 在上面的例子中，我们使用 onmessage 事件来获取消息。不过还可以使用其他事件：
 
-![EventSource 对象](http://p9myzkds7.bkt.clouddn.com/HTML5/EventSource%20%E5%AF%B9%E8%B1%A1.png)
+![EventSource 对象](https://graphbed.qiniu.songxingguo.com/HTML5/EventSource%20%E5%AF%B9%E8%B1%A1.png)
 
 ## HTML5 WebSocket
 
@@ -2732,7 +2732,7 @@ WebSocket 使得客户端和服务器之间的数据交换变得更加简单，�
 
 HTML5 定义的 WebSocket 协议，能更好的节省服务器资源和带宽，并且能够更实时地进行通讯。
 
-![WebSocket 协议](http://p9myzkds7.bkt.clouddn.com/HTML5/WebSocket%20%E5%8D%8F%E8%AE%AE.png)
+![WebSocket 协议](https://graphbed.qiniu.songxingguo.com/HTML5/WebSocket%20%E5%8D%8F%E8%AE%AE.png)
 
 浏览器通过 JavaScript 向服务器发出建立 WebSocket 连接的请求，连接建立以后，客户端和服务器端就可以通过 TCP 连接直接交换数据。
 
@@ -2749,19 +2749,19 @@ var Socket = new WebSocket(url, [protocol] );
 
 以下是 WebSocket 对象的属性。假定我们使用了以上代码创建了 Socket 对象：
 
-![WebSocket 属性](http://p9myzkds7.bkt.clouddn.com/HTML5/WebSocket%20%E5%B1%9E%E6%80%A7.png)
+![WebSocket 属性](https://graphbed.qiniu.songxingguo.com/HTML5/WebSocket%20%E5%B1%9E%E6%80%A7.png)
 
 ### WebSocket 事件
 
 以下是 WebSocket 对象的相关事件。假定我们使用了以上代码创建了 Socket 对象：
 
-![WebSocket 事件](http://p9myzkds7.bkt.clouddn.com/HTML5/WebSocket%20%E4%BA%8B%E4%BB%B6.png)
+![WebSocket 事件](https://graphbed.qiniu.songxingguo.com/HTML5/WebSocket%20%E4%BA%8B%E4%BB%B6.png)
 
 ### WebSocket 方法
 
 以下是 WebSocket 对象的相关方法。假定我们使用了以上代码创建了 Socket 对象：
 
-![WebSocket 方法](http://p9myzkds7.bkt.clouddn.com/HTML5/WebSocket%20%E6%96%B9%E6%B3%95.png)
+![WebSocket 方法](https://graphbed.qiniu.songxingguo.com/HTML5/WebSocket%20%E6%96%B9%E6%B3%95.png)
 
 ### WebSocket 实例
 
@@ -2865,7 +2865,7 @@ $ sudo python standalone.py -p 9998 -w ../example/
 
 现在我们可以在 Chrome 浏览器打开前面创建的 runoob_websocket.html 文件。如果你的浏览器支持 WebSocket(), 点击"运行 WebSocket"，你就可以看到整个流程各个步骤弹出的窗口，流程 Gif 演示：
 
-![流程 Gif 演示](http://p9myzkds7.bkt.clouddn.com/HTML5/websockert.gif)
+![流程 Gif 演示](https://graphbed.qiniu.songxingguo.com/HTML5/websockert.gif)
 
 在我们停止服务后，会弹出 "连接已关闭..."。
 
@@ -3096,7 +3096,7 @@ HTML5 属性值可以不用引号。
 </ol>
 ```
 ### 省略 `<html>` 和 `<body>` ?
-  
+
 在标准 HTML5 中， `<html>` 和 `<body>` 标签是可以省略的。
 
 以下 HTML5 文档是正确的:

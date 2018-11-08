@@ -28,9 +28,9 @@ date: 2018-10-16 08:54:00
 ### 为什么要做前端
 
   喜欢前端、可以展示自己、能将学到的东西学以致用，并能马上看到效果，很有成就感。
-  
+
   对前端感兴趣。
-  
+
   我很喜欢写博客，将重要的知识点记录下来，问题记录下来、或者自己的想法记录下来。
 
 ### 简单的自我介绍一下吧
@@ -114,7 +114,7 @@ header、footer、main、nav、video 、audio、canvas、section、article
 
 ### webstorage和cookie有什么区别？
 
-![session和cookie之间的区别](http://p9myzkds7.bkt.clouddn.com/web-interview/cookie%E3%80%81sessionStorage%E4%B8%8ElacalStrage%E7%9A%84%E5%8C%BA%E5%88%AB.png)
+![session和cookie之间的区别](https://graphbed.qiniu.songxingguo.com/web-interview/cookie%E3%80%81sessionStorage%E4%B8%8ElacalStrage%E7%9A%84%E5%8C%BA%E5%88%AB.png)
 
 [session和cookie之间的区别](https://www.songxingguo.com/2018/08/06/web-front-end-interview-network/)
 
@@ -144,9 +144,9 @@ JavaScript 主要通过原型链实现继承。原型链的构建是通过将一
 
 ### 设计一个团队开发流程的git工作流，要求每天发布一个版本,重点就是发布到主分支还是每天的分支上，应该是发布到主分支
 
-![常用 命令流程图](http://p9myzkds7.bkt.clouddn.com/mi/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B5%81%E7%A8%8B%E5%9B%BE.png)
+![常用 命令流程图](https://graphbed.qiniu.songxingguo.com/mi/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B5%81%E7%A8%8B%E5%9B%BE.png)
 
-![发布流程](http://p9myzkds7.bkt.clouddn.com/mi/%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B.png)
+![发布流程](https://graphbed.qiniu.songxingguo.com/mi/%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B.png)
 
 ### this的描述和绑定规则，我回答的是按照《你不知道的js》
 
@@ -257,19 +257,19 @@ Promise对象具有then、catch、finally三个方法，每个方法的调用都
 
 - 域名地址的组成
 
-  ![域名地址的组成](http://p9myzkds7.bkt.clouddn.com/cross-domain/%E8%B7%A8%E5%9F%9F.jpg)
+  ![域名地址的组成](https://graphbed.qiniu.songxingguo.com/cross-domain/%E8%B7%A8%E5%9F%9F.jpg)
 
 - 跨域错误代码
 
-   ![跨域错误代码](http://p9myzkds7.bkt.clouddn.com/cross-domain/%E8%B7%A8%E5%9F%9F%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81.jpg)
- 
+   ![跨域错误代码](https://graphbed.qiniu.songxingguo.com/cross-domain/%E8%B7%A8%E5%9F%9F%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81.jpg)
+
 - 跨域的定义
 
    跨域是JavaScript出于安全方面的考虑，不允许跨域调用其他页面对象。是JavaScript同源策略的限制。
 
 - 常见跨域场景
 
-   ![常见跨域场景](http://p9myzkds7.bkt.clouddn.com/cross-domain/%E8%B7%A8%E5%9F%9F%E7%9A%84%E7%B1%BB%E5%9E%8B.jpg)
+   ![常见跨域场景](https://graphbed.qiniu.songxingguo.com/cross-domain/%E8%B7%A8%E5%9F%9F%E7%9A%84%E7%B1%BB%E5%9E%8B.jpg)
 
 #### 处理跨域的方法
 
@@ -572,8 +572,8 @@ HTTP缓存有多种规则，根据是否需要重新向服务器发起请求来�
 ##### Expires
 
 　　Expires的值为服务端返回的到期时间，即下一次请求时，请求时间小于服务端返回的到期时间，直接使用缓存数据。
-  
-  
+
+
 不过Expires 是HTTP 1.0的东西，现在默认浏览器均默认使用HTTP 1.1，所以它的作用基本忽略。
 另一个问题是，到期时间是由服务端生成的，但是客户端时间可能跟服务端时间有误差，这就会导致缓存命中的误差。
 所以HTTP 1.1 的版本，使用Cache-Control替代。
@@ -612,7 +612,7 @@ Cache-Control 是最重要的规则。常见的取值有private、public、no-ca
 #### 使用 clear: both 清除浮动。
 
   clear属性规定元素的哪一侧不允许其他的浮动元素。如果声明左侧或者右侧不允许浮动，会使元素的上下边框边界刚好在该边上浮动元素的下外边距边距之下。
-  
+
 #### 父级 div 定义： overflow： hidden 。
 
 #### 在浮动元素后面增加 <br/> 标签。

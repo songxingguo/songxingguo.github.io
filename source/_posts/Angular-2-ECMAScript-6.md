@@ -11,7 +11,7 @@ date: 2018-07-25 12:04:00
 
   - #### ECMASript的故事
   
-    ![ECMASript的故事](http://p9myzkds7.bkt.clouddn.com/Angular/ECMAScript%E7%9A%84%E6%95%85%E4%BA%8B.png)
+    ![ECMASript的故事](https://graphbed.qiniu.songxingguo.com/Angular/ECMAScript%E7%9A%84%E6%95%85%E4%BA%8B.png)
     <!-- more -->
    
     可以访问ECMAScript兼容性网站 http://mng.bz/ao59 **查看截至目前ES6的支持情况** 。
@@ -51,9 +51,9 @@ date: 2018-07-25 12:04:00
      Hello Allan Lou
      ```
      **在大括号之间可以使用任何有效的JavaScript表达式。**
-     
+    
     - ##### 多行字符串
-  
+    
       在代码中字符串可以被写成多行。**使用反引号可以编写多行字符串** ，而无须把它们拼接在一起或者使用反斜杠：
     
       ```
@@ -121,7 +121,7 @@ date: 2018-07-25 12:04:00
       You've earned €90!
       ```
       有关带标签的模板字符串的更多详细信息，请参阅由AxelRauschmayer编写的Exploring ES6一书中的Template Literals章节，可从 http://exploringjs.com 获取。
-      
+    
   - #### 可选参数和默认值
   
      在ES6中，可以 **为函数参数指定默认值** ，这对于当函数被调用却没有传参数的情况是非常有用的。假设有一个计算税费的函数，它有两个参数：一个是全年的收入（income）;另一个是居住的州（state）。如果没有传state的值，你希望能够使用Florida。
@@ -226,11 +226,11 @@ date: 2018-07-25 12:04:00
       ```
       使用Chrome浏览器打开这个文件，查看Chrome Developer Tools中控制台输出。正如我们所期望的，全局变量customer在函数的内部和外部都可见的,如下图所示。
       
-      ![变量声明被提升](http://p9myzkds7.bkt.clouddn.com/Angular/%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E%E8%A2%AB%E6%8F%90%E5%8D%87.png)
+      ![变量声明被提升](https://graphbed.qiniu.songxingguo.com/Angular/%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E%E8%A2%AB%E6%8F%90%E5%8D%87.png)
       
       **取消对if语句的注释**，在大括号中初始化customer变量。现在，有两个名字一样的变量，其中 **一个是全局变量** ，而 **另一个变量则在函数的作用域内** 。刷新浏览器页面，控制台的输出与之前不同了，函数中的customer变量为undefined,如下图所示。
       
-      ![变量初始化未被提升](http://p9myzkds7.bkt.clouddn.com/Angular/%E5%8F%98%E9%87%8F%E5%88%9D%E5%A7%8B%E5%8C%96%E6%9C%AA%E8%A2%AB%E6%8F%90%E5%8D%87.png)
+      ![变量初始化未被提升](https://graphbed.qiniu.songxingguo.com/Angular/%E5%8F%98%E9%87%8F%E5%88%9D%E5%A7%8B%E5%8C%96%E6%9C%AA%E8%A2%AB%E6%8F%90%E5%8D%87.png)
       
       这是因为在ES5中，**变量声明** 总是 **被提升到作用域顶部** ，但是 **变量并不会被初始化** 。因此 **第二个没有初始化的变量被提升到了函数顶部** ，console.log()打印的值为 **函数内容部定义的变量的值** ，，而不是全局变量customer的值。
       
@@ -287,13 +287,13 @@ date: 2018-07-25 12:04:00
       
       </body>
       </html>
-       ```
+      ```
        现在两个customer变量有不同的作用域和值，如下图所示。
-       
-       ![let的块级作用域](http://p9myzkds7.bkt.clouddn.com/Angular/let%E7%9A%84%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F.png)
-       
+      
+       ![let的块级作用域](https://graphbed.qiniu.songxingguo.com/Angular/let%E7%9A%84%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F.png)
+      
        如果循环中声明一个变量，它只是循环中可用：
-       
+      
        ```
        for (let i =0; i < 5; i++) {
           console.log("i=" + i);
@@ -302,13 +302,13 @@ date: 2018-07-25 12:04:00
        console.log("i=" + i); //Reference Error: i is not defined
        ```
        在Traceur REPL中测试let关键字，访问Traceur的Transcoding Demo页面（ http://mng.bz/b191 ）,把输入的ES6语法已交互的方式转码为ES5。
-       
+      
        简而言之，如果正在开发新的应用程序，请不要使用var,而是使用let。**let关键字允许为变量无限制地分配值** 。
-       
+      
        如果要声明一个变量，使其 **在分配了值之后不会被重新分配** ，可以使用const关键词。**常量同样支持块级作用域** 。
-       
+      
        let和const的唯一区别是：**const不允许改变已经被分配的值** 。程序中 **优先推荐使用const** ;如果 **变量需要被改变** ，那么 **使用let替换const**。
-       
+      
     - ##### 函数的块级作用域
     
       如果在一个块（一对大括号）中声明了一个函数，那么在快外，该函数是不可见的。下面的代码将抛出错误： “doSomething is note defined”。
@@ -325,16 +325,16 @@ date: 2018-07-25 12:04:00
       在ES5中，doSomething()声明将会被提升，并打印“In doSomething”。在ES5中并不推荐在块中声明一个函数（参加 http://mng.bz/Bvym 中的 “ES5 Implementtation Best Practice”）,这是因为 **不同浏览器会以不同的方式解析此语法** ，产生不一致的结果。
    
   - #### 箭头函数、this和that
-   
+
      ES6引入了箭头函数表达式，**为匿名函数提供了更短的写法** ，**为this变量添加了词法作用域** 。在其他编程语言（如C#和Java）中，类似的语法被称为lambda表达式。
-     
+
      箭头函数表达式的语法包括 **参数** 、**箭头符号**（=>）、以及 **函数体** 。如果 **函数体只有一个表达式**， **可以不写大括号** 。如果 **一个单一表达式函数返回值** ，那么 **可以省略return语句**，结果被隐式地返回：
-     
+
      ```
      let sun = (arg1, arg2) => arg1 + arg2;
      ```
      如果 **函数体是多行的箭头函数表达式** ，那么 **需要使用大括号闭合函数体** ，并 **使用显式的return语句** ：
-     
+
      ```
      (arg1, arg2) => {
        //do something
@@ -342,7 +342,7 @@ date: 2018-07-25 12:04:00
      }
      ```
      如果箭头函数 **没有任何参数** ，**使用空括号** ：
-     
+
      ```
      () => {
        // do something 
@@ -350,14 +350,14 @@ date: 2018-07-25 12:04:00
      }
      ```
      如果箭头函数 **只有一个参数** ，**括号不是必需的** ：
-     
+
      ```
      arg1 => {
        //do something
      }
      ```
      在下面的代码片段中，箭头函数作为参数传入reduce()方法用来计算合计，另一个箭头函数被传入filter()方法用来打印偶数：
-     
+
      ```
      var myArray = [1, 2, 3, 4, 5];
      console.log("The sum if myArray elements is " + 
@@ -366,9 +366,9 @@ date: 2018-07-25 12:04:00
                 myArray.filter(value => value % 2 == 0); prints 2 4
      ```
      在ES5中，搞清楚关键字this是那个对象的引用并不是简单的任务。在线搜索“JavaScript this and that”,会发现很多类似的文章，人们都在抱怨this指向了“错误”的对象。基于函数如何被调用以及是否严格模式（参见 http://mng.bz/VNVL 上有关Mozila Developer NetNork的“Strict Mode”）, **this 引用可以有不同的值** 。
-     
+
      考虑thisAndThat.html文件中的代码，它会每秒调用一次getQuote()函数。getQuote()函数会在StockQuoteGenerator()构造函数中为股票代码打印随机生成的价格。
-     
+
       ```
       <!DOCTYPE html>
       <html>
@@ -391,21 +391,21 @@ date: 2018-07-25 12:04:00
         }
         
         var stockQuoteGenerator = new StockQuoteGenerator("IBM");
-
+     
       </script>
       
       </body>
       </html>
-       ```
+      ```
        上述代码中被注释部分，演示了this的错误用法。当函数需要一个值时，虽然看起来是同一个this引用，但实际上并不是，。如果 **没有把this变量的值保存到that中** ，使用setInterval()或回调函数调用getQuote()函数 **得到的this.symbol的值将是undefined** 。在getQuote()中， **this指向全局对象** ，与StockQuoteGenerator构造函数中定义的this不一致。
-       
+
        另一种可能的解决方式是 **使用JavaScriptcall()、apply()或bind()函数** ，以 **确保函数运行在指定的this对象中** 。
-       
+
        >**提示** 
        如果不了解JavaScript中this问题，详见Richard Bovell的文章“Understand JavaScript s 'this' with Clarity and Master It”（网址为 http://mng.bz/ZQfz ）
-       
+
        fatArrow.html文件演示了箭头函数的解决方案，无须像thisAndThat.html中所做的那样，在that中存储this。
-       
+
       ```
       <!DOCTYPE html>
       <html>
@@ -429,29 +429,29 @@ date: 2018-07-25 12:04:00
         }
         
         var stockQuoteGenerator = new StockQuoteGenerator("IBM");
-
+     
       </script>
       
       </body>
       </html>
-       ```
+      ```
        箭头函数被当成参数传入setInterval()中，它 **使用了封闭上下文中的this值** ，因此可以识别this.symbol的值为IBM。
-       
+
      - ##### rest和扩展运算符
-       
+
         在ES5中， **编写可变长度参数** 的函数需要 **使用特殊的arguments对象** 。这个 **对象类似于数组** ，其中包含了对应传递给函数的参数。隐式的arguments变量 **在任何函数中都可以被视为局部变量** 。
-        
+
          ES6有 **rest** 和 **扩展运算符** ，都 **用三个点（...）来表示** 。rest操作符被 **用于为函数传递可变长度参数** ，该操作符必须是 **参数列表中最后一个参数** 。如果函数参数的名字 **以三个点开始** ，函数将会 **以数组的形式得到参数的剩余部分** 。例如，在rest操作符的作用下只需使用一个变量名便可以向函数传递多个customers:
-        
+
          ```
           function processCustomers(...customers) {
             //implementation of the function goes here
           }
          ```
          在这个函数中，可以 **像处理任何数组一样处理customers数据**  。
-        
+
          想象一下，需要编写一个用来计算税费的函数，第一个参数是income，后面根据客户数量，可以又任意数量的参数来表示顾客的名字。下面代码显示了分别使用老语法和新语法处理可变参数。
-      
+
            ```
             <!DOCTYPE html>
             <html>
@@ -459,44 +459,45 @@ date: 2018-07-25 12:04:00
               <title>rest.html</title>
             </head>
             <body>
-
+        
             <script>
-
+        
               "use strict";
-
+        
                //ES5 and arguments object
                function calcTaxES5() {
                  //income是第一个参数
                  console.log("ES5. Calculating tax for customers with the income ", 
                                  arguments[0]);
-
+        
                  //从第二个元素起提取出一个数组
                  var customers = [].slice.call(arguments, 1);
-
+        
                  customers.forEach(function(customer) {
                    console.log("Processing ", customer);
                  });
                }
-
+        
                calcTaxES5(50000, "Smith", "Johnson", "McDonald");
                calcTaxES5(750000, "Smith", "Olson", "Clinton");
+           ```
 
 
                //ES6 and rest operator
                function calcTaxdES6(income, ...customers) {
                  console.log("ES6. Calculating tax for customers with the income ", 
                     income);
-
+    
                  customers.forEach(function(customer) {
                     console.log("Processing", customer);
                  });
                }
-
+    
                calcTaxdES6(50000, "Smith", "Johnson", "McDonald");
                calcTaxdES6(750000, "Olson", "Clinton");
-
+    
             </script>
-
+    
             </body>
             </html>
            ```
@@ -532,11 +533,11 @@ date: 2018-07-25 12:04:00
               <title>spread.html</title>
             </head>
             <body>
-
+    
             <script>
-
+    
               "use strict";
-
+    
                function calcTaxSpread(customer1, customer2, customer3, income) {
                  console.log("ES6. Caclulating tax for customers with the income ", income);
                  console.log("Processing", customer1, customer2, customer3);
@@ -547,7 +548,7 @@ date: 2018-07-25 12:04:00
                //扩展运算符
                calcTaxSpread(...customers, 50000);
             </script>
-
+    
             </body>
             </html>
            ```
@@ -712,12 +713,12 @@ date: 2018-07-25 12:04:00
                 tradingHours: "9:30am-4pm",
               }
            }
-
+    
            function printStockInfo(stock) {
              let {symbol, exchange: {name}} = stock;
              console.log(`The ${symbol} stock is traded at ${name}`);
            }
-
+    
            printStockInfo(msft);
           ```
          运行这个脚本将会打印如下输出：
@@ -787,13 +788,13 @@ date: 2018-07-25 12:04:00
          Other customers are Lou,Gonzles
          ```
          总而言之，解构的好处是当 **需要从对象属性或数组中初始一些变量** 时，可以 **写更少的代码** 。
-         
+
    - #### 迭代
    
      用forEach()、for-in和for-of进行迭代
      
      可以使用不同的JavaScript关键字和API对对象集合进行遍历。在本节中，将会展示如何使用新的for-of循环，将会对for-of、for-in以及forEach()方法进行比较。
-    
+        
      - ##### 使用forEach()方法
      
        考虑下面的代码，对一个包含了4个数字的数组进行迭代。该数组还有一个额外的desciption属性，这个 **属性会被forEach()忽略** ：
@@ -1136,19 +1137,19 @@ date: 2018-07-25 12:04:00
        > **关于类和继承的警告** 
        ES6中的类 **只是提高代码的可读性的语法糖** 。在底层实现中， **JavaScript仍然使用原型链继承** ，这使得子运行时能够动态替换父级，而类只有一个父级。尽量 **避免** 创建 **深层继承结构** ，因为这会 **降低代码的灵活性** ，也会 **让重构代码变得复杂** 。
        尽管使用super关键字和super()函数能够调用父级的代码，但是应该 **尽量避免使用它们** ，这是因为它们 **会在父类之间产生高度耦合性** 。子类知道关于父类的内容越少越好。如果对象的父类发生了变化，新的父类可能并没有super()试图调用的方法。
-       
+     
   - #### promise处理异步流程
   
      使用promise处理异步流程,在之前的ECMAScript实现中，如果希望 **处理异步流程** ，将不得不使用 **回调** ，把一个函数作为另一个函数的参数传入其中以便调用。回调可以被 **同步** 或 **异步** 的调用。
      
      在上面的章节中，把一个 **回调函数** 传给了 **forEach()函数** 用于 **同步调用** 。向服务器发送一个 **AJAX请求** 时，设置一个 **回调函数** ，当从服务器 **返回结果时该回调函数将会被调用** 。
      
-    - ##### 回调地狱
+        - ##### 回调地狱
      
         假设一种情况：需要从服务器获得若干订单数据，整个流程开始于一个异步调用，用于从服务器获得顾客信息，之后需要为每位顾客调用另一个函数获得订单。根据每一个订单获得产品。调用最后一个方法得到产品详情。
-        
+     
         在 **异步流过程中** ，**无获知每一步操作是否完成** ，因此需要编写回调函数，以便操作完成时调用它。示例中使用setTimeout()函数模拟延迟，每一个操作需要一秒钟的时间来完成。
-        
+     
         ```
         function getProductDetails() {
           setTimeout(function(){
@@ -1169,7 +1170,7 @@ date: 2018-07-25 12:04:00
         getProductDetails();
         ```
         运行代码后将会以每一秒延迟的间隔打印如下信息：
-        
+     
         ```
          Getting customers
          Getting orders
@@ -1177,17 +1178,17 @@ date: 2018-07-25 12:04:00
          Getting products details
         ```
         上面的 **代码嵌套程度已经令人很难阅读了** ，现在想象一下，如果需要向其中添加业务逻辑或错误处理，这样编写代码的方式通常被称为  **回调地狱** 或 **回调金字塔**（代码的空格令其看起来像个三角形）。
-        
-    - ##### ES6 promise
+     
+        - ##### ES6 promise
      
         ES6引入了promise，在 **保持与回调相同功能** 的同时，**消除回调嵌套** 并 **令代码更易阅读** 。Promise对象 **等待并监听异步操作的结果** ，**通知代码执行是否执行成功或失败** ,以便能够相应地处理下一步操作。Promise对象 **表示一个未来结果的操作** ，可能是以下状态之一：
-        
+     
         - Fulfilled: 操作成功完成。
         - Rejected: 操作失败并返回一个错误。
         - Pending: 操作正在处理中，既没有fulfilled,也没有rejected。
-        
+     
         可以通过为构造函数提供两个函数来实例化一个Promise对象：一个函数在 **操作处于fullfilled状态时会被调用** ；另一个函数在 **操作处于rejected时被调用** 。考虑一下带getCustomers()函数的脚本。
-        
+     
         ```
         function getCustomers() {
           return new Promise(function(resolve, reject) {
@@ -1212,20 +1213,20 @@ date: 2018-07-25 12:04:00
         console.log("Invoked getCustomers. Waiting for results");
         ```
         getCustomers()函数返回一个promise对象，这个对象被初始化时，构造函数接收一个函数作为参数，该函数持有resolve和reject。在上面的代码中，如果接收到顾客信息，就调用resolve()。为了简单起见，setTimeout()模拟一个持续一秒钟的异步请求，并且通过硬编码的方式设置success标志为true.在真实场景中，可以利用XMLHttpRequest对象制造一个请求。如果请求结果成功返回，则调用resolve()；如果又异常发生，则调用reject()。
-        
+     
         在上面代码的底部，向Promise()实例附加then()和catch()方法。在这两个方法中只有一个会被调用。当从函数内部调用resolve("John Smith")时，这会导致then()被调用，并接收“John Smith”作为参数。如果把success改为false，catch()方法将会被调用，并接收“Can't get coustomers”作为参数。
-        
+     
         运行代码，会在控制塔打印下面的信息：
-        
+     
         ```
         Getting customers
         Invoked getCustomers. Waiting for results
         John Somith
         ```
         注意信息“Invoked getCustomers. Waiting for results”比“John Somith”更早被打印，这证明getCustomers()函数是异步工作的。
-        
+     
         每个promise表示一个异步操作，通过**链式调用** 来 **保证特定的操作顺序** 。现在添加一个getOrders()函数，该函数能够找到指定的顾客的订单，与getCustomeers()一起链式调用。
-        
+     
         ```
         function getCustomers() {
           let promise = new Promise(function(resolve, reject) {
@@ -1272,7 +1273,7 @@ date: 2018-07-25 12:04:00
         console.log("Invoked getCustomers and getOrders. Waiting for results");
         ```
         上面的代码不仅仅 **声明和链式调用了两个函数** ，还演示了如何在控制台中 **打印中间信息** 。上面代码输出如下（注意getCustomers()返回的顾客数据被正确传给了getOders()）：
-        
+     
         ```
         Getting customers
         Invoked getCustomers and getOrders. Waiting for results
@@ -1280,16 +1281,16 @@ date: 2018-07-25 12:04:00
         Found the order 123 for John Somith
         ```
         可以使用then()链式调用多个函数，而整个链式调用过程中只使用一个错误处理脚本。如果有错误发生，将会 **遍历整个then()方法链** ，直到找到一个错误处理函数。**发生错误后不会再有then()方法被调用** 。
-        
+     
         在上面代码中，把变量success的值改为false将会打印信息“Can't get customers”,并且getOders()方法将不会被调用。如果删除这些控制台打印，检索顾客和订单的 **代码看起来整洁并易于理解** ：
-        
+     
         ```
         getCustomers()
           .then((cust) => getOders(cust))
           .catch((err) => console.error(err));       
         ```
         即使添加更多的then()方法，也不会让代码的可读性降低。
-        
+     
      - ##### 多个promise
      
         一次resolve多个promise,需要考虑的另一种情况是不相互依赖的异步函数。假设需要调用两个函数，这两个函数并没有特定的调用顺序，但是只有在两者完成之后才能执行某些操作。Promise有一个all()方法，可以 **处理一个可迭代的promise集合并执行（resolve）它们** 。因为all()方法返回一个promise对象，所以可以为执行结果添加then()或catch()，或者两者都添加。
@@ -1317,7 +1318,7 @@ date: 2018-07-25 12:04:00
         
         >**注意** 
         用来从网络中获取资源的新推出的 **Fetch API** 可能很快将会取代XMLRequest对象。Fetch API基于promise,有关详细信息，请参阅Mozilla开发人员网络文档（详见 http://mng.bz/mbMe ）。
-        
+     
   - #### 模块
    
      在任何一种编程语言中，把代码拆分到模块中都有助于 **将应用程序组织成具有逻辑的可复用单元** 。模块化应用程序能够 **让软件开发者更有效地拆分开发任务** 。开发者可以决定模块应该暴露 **那些API以提供外部使用** ，**哪些API应该仅在内部使用** 。

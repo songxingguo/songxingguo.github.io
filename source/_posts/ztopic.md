@@ -9,12 +9,12 @@ date: 2018-08-11 12:42:00
 ## 添加文章总条数显示
 
  **效果展示**
- 
- ![效果展示](http://p9myzkds7.bkt.clouddn.com/ztopic/%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E6%80%BB%E6%9D%A1%E6%95%B0.png)
- 
+
+ ![效果展示](https://graphbed.qiniu.songxingguo.com/ztopic/%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E6%80%BB%E6%9D%A1%E6%95%B0.png)
+
  <!-- more-->
  **代码展示**
- 
+
  ```ejs
  <div class="archives-container tags-container"> <!-- 我是新增的 -->
     
@@ -54,7 +54,7 @@ date: 2018-08-11 12:42:00
   </div>
  ```
  上面 `ejs` 代码中添加了 `tags-title` 中的代码, 其中 `site.posts` 为博客变量，想了解更多可以查看 Hexo 文档中的 [变量](https://hexo.io/zh-cn/docs/variables) 。
- 
+
  ```css
  .archives-container{
   min-height: 400px;
@@ -99,7 +99,7 @@ date: 2018-08-11 12:42:00
 }
  ```
  `.archive-body ` 为新增的类，用于设置与标题部分的距离。
- 
+
  ```yml
  counter:
   category:

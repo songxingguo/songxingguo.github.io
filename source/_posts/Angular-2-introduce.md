@@ -11,14 +11,14 @@ date: 2018-07-20 12:20:00
  Angular 2（以下简称Angular）是一个由Google维护的开源JavaScript框架，它完全重写了备受欢迎的AngularJs（Angular 1.x版本）。
 
  - #### JavaScript框架和库
-  
+
   框架能够让你完全控制自己应用程序中的架构、设计模式和代码风格。
-  
+
   Angular是用于开发Web应用程序的众多框架之一。
-  
+
   框架为代码提供了一个结构，并强制按照特定方式编写代码。库通常会提供大量的组件和API接口，它们可以在任何代码中被调用。换句话说，与库相比，框架对应用程序的设计更有用。
  <!-- more -->
-  
+
   - ##### 重量级框架
   
     重量级框架包含了开发一个Web应用程序需要的所有东西。这将为你的代码强加一个结构，并配套UI组件和工具以便开发和部署应用程序。
@@ -41,7 +41,7 @@ date: 2018-07-20 12:20:00
      jQuery是流行的JavaScript。它的用法简单，不需要大幅改变自己的Web编程方式。jQuery用于查找和操作Dom元素，处理浏览器事件以及浏览器兼容性问题。jQuery是一个可扩展库，全世界的开发者为其开发了数以千计的插件。如果找不到符合自己要求的插件，还可以自行开发一个。
      
      Bootstrap是一个由Twitter开发的开源UI组件库。使用响应式Web设计原则构建组件。
-    
+        
      Google基于一系列设计原则开发了一套UI组件库，叫做Material Design,它可能会成为Bootstrap替代品。Material Design对跨屏幕展示做了优化，并搭配了一套漂亮的UI组件。
      
      React是一个由Facebook开发的开源用户界面库。React作为MVC模式中的V(View)层，是非侵入式的，可以与其他任何库和框架结合使用。React创建自有的虚拟DOM对象，最大限度地减少对浏览器DOM的访问，从而达到更好的性能。对于内容的渲染，React引入了JSX格式，这是一个对JavaScript的扩展，看起来像是XML。React建议使用JSX，但这并不是必需的。
@@ -63,10 +63,10 @@ date: 2018-07-20 12:20:00
 - #### AngularJS高级概述
 
   - ##### Angular的故事
-    ![Angular的故事](http://p9myzkds7.bkt.clouddn.com/Angular/Angular%20%E6%95%85%E4%BA%8B.png)
- 
+    ![Angular的故事](https://graphbed.qiniu.songxingguo.com/Angular/Angular%20%E6%95%85%E4%BA%8B.png)
+
   - ##### AngularJS流行原因
- 
+
     - AngularJS具有利用指令概念创建自定义HTML标签和属性的机制，允许根据自己应哟程序的需要扩展HTML标签。
 
     - AngularJS是入侵式的，但不会产生过多的干扰。可以把ng-app属性添加到任何一个 `<div>` 标签上，只有这个 `<div>` 标签里面的内容会被影响，页面中的其他部分仍然是纯粹的HTML和JavaScript。
@@ -82,29 +82,29 @@ date: 2018-07-20 12:20:00
     - AngularJS包含了一个依赖注入模块，使你能够以解耦方式开发应用程序。
   
    与jQuery简化DOM操作相反，AngularJS允许开发者以MVC模式设计应用程序，从而把逻辑从UI层分离出来。下图描述了一个用于处理产品的AngularJS应用程序的工作流示例。
-   
-    ![AngularJS应用程序架构示例](http://p9myzkds7.bkt.clouddn.com/Angular/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%9B%BE.jpg)
+  
+    ![AngularJS应用程序架构示例](https://graphbed.qiniu.songxingguo.com/Angular/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%9B%BE.jpg)
     `AngularJS应用程序架构示例`
-    
+  
    一旦模式中保持的数据发生变化，AngularJS就会自动更新视图。如果用户修改了视图中输入框里的数据，那么UI变化也会传递给模型。这个双向更新机制被称为双向数据绑定。如下图所示。
   
    双向绑定意味着其中一个会自动更新另一个，因此在AngularJS中，模型和视图是紧密绑定在一起的。
   
-    ![双向绑定](http://p9myzkds7.bkt.clouddn.com/Angular/%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A.jpg)
+    ![双向绑定](https://graphbed.qiniu.songxingguo.com/Angular/%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A.jpg)
     `双向绑定`
-    
+  
    模式数据保存在一个特定$scope对象的上下文中，AngularJS作用域是一个有层级结构的对象。$rootScope是为整个应用程序创建的。控制器和指令（自定义组件）有自己的$scope对象。
- 
+
    可以通过创建和加载模块对象来实现模块化。当一个特定模块依赖于其他对象（如控制器、模块或服务）时，Angular的注入机制将会创建这些对象的实例。下面代码片段展示了AngularJS将对象注入其他对象的一种方法：
-   ![依赖注入](http://p9myzkds7.bkt.clouddn.com/Angular/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%20.jpg)
+   ![依赖注入](https://graphbed.qiniu.songxingguo.com/Angular/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%20.jpg)
 
    AngularJS经常被用来创建单页面应用程序，用户操作或服务器返回数据只会更新页面中的指定部分（子视图）。
 
    通过配置ng-route路由组件来设置AngularJS中视图之间的导航。可以根据URL模式指定多个.when选项将应用程序导航到相应的视图。下面代码示例将会演示路由的使用。
-   ![路由使用](http://p9myzkds7.bkt.clouddn.com/Angular/%E8%B7%AF%E7%94%B1%E4%BD%BF%E7%94%A8%20.jpg)
+   ![路由使用](https://graphbed.qiniu.songxingguo.com/Angular/%E8%B7%AF%E7%94%B1%E4%BD%BF%E7%94%A8%20.jpg)
 
    AngularJS支持深度链接，当把页面加入到书签中时，不仅可以收藏整个网页，还可以收藏页面中的某个特定状态。
-   
+  
 - #### Angular高级概述
 
   与AngularJS相比，Angular在很多方面的表现都会更好。Angular更容易学习，应用程序的框架的结构也被简化了，并且代码更容易书写。
@@ -115,13 +115,13 @@ date: 2018-07-20 12:20:00
    
    应用程序的着陆页面HTML文件中包含了Angular模块以及它们的依赖。应用程序的代码通过加载自己的根模块进行引导。所有必需的组件和服务将会根据模块中声明和导入语句进行加载。
    
-   ![index.html文件](http://p9myzkds7.bkt.clouddn.com/Angular/index.jpg)
+   ![index.html文件](https://graphbed.qiniu.songxingguo.com/Angular/index.jpg)
    
    每个组件的HTML片段都可以在组件内部（template属性）或者通过templateURL属性从组件引用的文件中内联得到。
    
    组件是Angular新架构的核心内容。如下图展示了一个由4个组件和2个服务组成的示例Angular应用程序的示意图。所有这些都会被封装到一个模块中。
    
-    ![Angular应用程序的示例框架](http://p9myzkds7.bkt.clouddn.com/Angular/Angular%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F.jpg)
+    ![Angular应用程序的示例框架](https://graphbed.qiniu.songxingguo.com/Angular/Angular%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F.jpg)
    
    声明一个组件的简单方式就是用TypeScript写一个类(当然，也可以使用ES5、ES6或Dart)。
    
@@ -170,7 +170,7 @@ date: 2018-07-20 12:20:00
     ```
    下图为组件内部工作原理。
    
-    ![组件内部实现](http://p9myzkds7.bkt.clouddn.com/Angular/%E7%BB%84%E4%BB%B6%E5%86%85%E9%83%A8%E5%AE%9E%E7%8E%B0.jpg)
+    ![组件内部实现](https://graphbed.qiniu.songxingguo.com/Angular/%E7%BB%84%E4%BB%B6%E5%86%85%E9%83%A8%E5%AE%9E%E7%8E%B0.jpg)
    
    组件从服务中获取数据并用于渲染，这些数据用类的方式来定义。在TypeScript中Product类可以是下面的结构：
    
@@ -206,16 +206,16 @@ date: 2018-07-20 12:20:00
     在上面代码中 `<Product>` 使用了泛型符号，表示TypeScript编译器中只有Product类型的对象被允许存储在这个数组中。
    
     Angular不是一个MVC框架，因此你的应用程序不会有独立的控制器（MVC模式中的C(Controller
-  层））。组件和被注入的服务（如果需要的话）囊括了所有必需的代码。在我们的例子中，SearchProduct类除了包含HTML视图中UI组件的代码，还包含了与控制器有关的代码。
+    层））。组件和被注入的服务（如果需要的话）囊括了所有必需的代码。在我们的例子中，SearchProduct类除了包含HTML视图中UI组件的代码，还包含了与控制器有关的代码。
   
     为了彻底地分离TypeScript代码和HTML片段，在@Component注解中不建议使用template属性，而推荐使用单独的文件存储HTML片段，并使用templaateUrl属性代替template属性引用该文件。
 
     不需要像AngularJS一样处理多层级的scrope对象，因为Angular是基于组件的，属性创建在组件的this.对象上，this对象也在组件的作用域内。
 
     创建对象实例的一种方法是使用new操作符。依赖注入（Dependency Injection, DI）是一种设计模式，能够倒置创建依赖对象的过程。不需要显式地创建对象实例（比如使用new关键字），框架将会创建这些实例对象并把它们注入到代码中。Angualr自带了一个DI模块。
-    
+   
     在AngularJS中，有几种注册依赖的方式，它们经常会令开发者感到困惑。在Angular中，只能通过组件的构造函数向其注入依赖。下面的TypeScript代码片段显示了如何将ProductService组件注入到SearchComponent中。只需要指定一个provider,并把构造函数的参数声明为该provider的类型。
-    
+   
     ```
      @Component({
       selector: 'search-product',
@@ -231,27 +231,27 @@ date: 2018-07-20 12:20:00
      }
     ```
     上面的代码中并没有使用new操作符。Angular将会实例化一个ProductService对象，并在SearchComponent中提供这个对象的引用。
-    
+   
     总而言之，Angular比AngularJS更简单，原因如下：
-    
+   
     - 应用程序的每个构建块(building block)都是一个组件，包括功能封装性良好的视图、控制器和自动生成的属性变更检测器。
-    
+   
     - 组件可以编程为注解类。
-    
+   
     - 不需要处理多层级作用域。
-    
+   
     - 依赖的组件通过组件的构造函数进行注入。
-    
+   
     - 双向绑定功能是默认关闭的。
-    
+   
     - 变更检测机制被重写了，性能更好。
-    
+   
     大多数的企业级软件开发人员都是Java、C#和C++程序员，对他们来说，Angular的概念很容易理解。
-    
+   
  - ##### 性能提升
- 
+
    Repaint Rate Challenge网站（ http://mathieuancelin.github.io/js-repaint-perfs ）对比了各种框架的渲染性能。
-    
+   
    渲染性能的提升主要得益Angular框架内部的重新设计。渲染组件与应用程序的API被解耦到两个层面，使你能够在独立的Web工作线程中允许非UI相关代码。除了同时可以运行不同层面的代码之外，Web浏览器也可能会为这些线程分配不同的CPU内核。有关新渲染框架更多信息可以在Google Docs文档“Angular 2 Rendering Architecture”中找到，网址为 http://mng.bz/K403 。
    
    把渲染层解耦出来还有一个重要的好处：可以根据不同的设备选择不同的渲染引擎。每个组件都包括@Component注解，其中包含了一个定义组件外观的HTML模板。
@@ -323,18 +323,18 @@ date: 2018-07-20 12:20:00
   
   开发Angular应用程序比开发AngularJS应用程序容易，但是**最初的开发环境一定要设置正确，这样才能真正享受开发过程**。
   
-  ![工具](http://p9myzkds7.bkt.clouddn.com/Angular/%E5%B7%A5%E5%85%B7.jpg)
+  ![工具](https://graphbed.qiniu.songxingguo.com/Angular/%E5%B7%A5%E5%85%B7.jpg)
   
 - #### 如何使用Angular
 
-  ![任务列表上](http://p9myzkds7.bkt.clouddn.com/Angular/%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8%E4%B8%8A.jpg)
+  ![任务列表上](https://graphbed.qiniu.songxingguo.com/Angular/%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8%E4%B8%8A.jpg)
 
-  ![任务列表下](http://p9myzkds7.bkt.clouddn.com/Angular/%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8%E4%B8%8B.jpg)
+  ![任务列表下](https://graphbed.qiniu.songxingguo.com/Angular/%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8%E4%B8%8B.jpg)
 
 - #### 在线拍卖示例介绍
 
-  ![在线拍卖工作流](http://p9myzkds7.bkt.clouddn.com/Angular/%E5%B7%A5%E4%BD%9C%E6%B5%81.jpg)
+  ![在线拍卖工作流](https://graphbed.qiniu.songxingguo.com/Angular/%E5%B7%A5%E4%BD%9C%E6%B5%81.jpg)
 
   开发Angular应用程序总结起来就是创建组件和组合组件。
 
-  ![目录结构](http://p9myzkds7.bkt.clouddn.com/Angular/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.jpg)
+  ![目录结构](https://graphbed.qiniu.songxingguo.com/Angular/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.jpg)

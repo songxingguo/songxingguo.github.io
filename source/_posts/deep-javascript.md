@@ -11,11 +11,11 @@ date: 2018-10-23 11:17:00
 
 #### 理解作用域
 
-![理解作用域](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E4%BD%9C%E7%94%A8%E5%9F%9F1.png)
+![理解作用域](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E4%BD%9C%E7%94%A8%E5%9F%9F1.png)
 
 <!-- more -->
 
-![理解作用域](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E7%90%86%E8%A7%A3%E4%BD%9C%E7%94%A8%E5%9F%9F.png)
+![理解作用域](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E7%90%86%E8%A7%A3%E4%BD%9C%E7%94%A8%E5%9F%9F.png)
 
 #### 小结
 
@@ -27,7 +27,7 @@ date: 2018-10-23 11:17:00
 
 简单地说，**词法作用域就是定义在词法阶段的作用域** 。换句话说，**词法作用域** 是 **由你在写代码时将变量和块作用域写在哪里来决定的** ，因此 **当词法分析器处理代码时会保持作用域不变**（大部分情况下是这样的）。
 
-![作用域气泡](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%B0%94%E6%B3%A1.png)
+![作用域气泡](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%B0%94%E6%B3%A1.png)
 
 作用域查找会在找到第一个匹配的标识符时停止。
 
@@ -39,11 +39,11 @@ date: 2018-10-23 11:17:00
 
 词法作用域查找只会查找一级标识符。
 
-![词法阶段](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F.png)
+![词法阶段](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F.png)
 
 #### 欺骗词法
 
-![欺骗词法](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E6%AC%BA%E9%AA%97%E8%AF%8D%E6%B3%95.png)
+![欺骗词法](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E6%AC%BA%E9%AA%97%E8%AF%8D%E6%B3%95.png)
 
 ### 函数作用域和块作用域
 
@@ -52,7 +52,7 @@ date: 2018-10-23 11:17:00
 
 #### 函数作用域
 
-![函数作用域](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F.png)
+![函数作用域](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F.png)
 
 函数作用域的含义是指，属于这个函数的全部变量都可以在整个函数的范围内使用及复
 用（事实上在嵌套的作用域中也可以使用）。
@@ -139,7 +139,7 @@ setTimeout(function timeoutHandler() { // <-- 快看，我有名字了！
 
 #### 立即执行函数表达式
 
-![立即执行函数表达式](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F.png)
+![立即执行函数表达式](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F.png)
 
 ```js
 var a = 2; (function foo() {
@@ -215,7 +215,7 @@ IIFE 还有一种变化的用途是倒置代码的运行顺序，将需要运行
 
 #### 块作用域
 
-![块作用域](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F.png)
+![块作用域](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F.png)
 
 块作用域是一个用来对之前的最小授权原则进行扩展的工具，将代码从在函数中隐藏信息扩展为在块中隐藏信息。
 
@@ -348,7 +348,7 @@ console.log(b); // ReferenceError!
 
 函数作用域和块作用域的行为是一样的，可以总结为：任何声明在某个作用域内的变量，都将附属于这个作用域。
 
-![提升](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E6%8F%90%E5%8D%87.png)
+![提升](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E6%8F%90%E5%8D%87.png)
 
 ```js
 a = 2;
@@ -506,7 +506,7 @@ if (a) {
 
 闭包是基于词法作用域书写代码时所产生的自然结果，不需要为了利用它们而有意识地创建闭包。
 
-![闭包](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E9%97%AD%E5%8C%85.png)
+![闭包](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E9%97%AD%E5%8C%85.png)
 
 **当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行。**
 
@@ -967,7 +967,7 @@ import 可以将一个模块中的一个或多个 API 导入到当前作用域�
 
 ### 动态作用域
 
-![动态作用域](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F-%E9%99%84%E5%BD%95.png)
+![动态作用域](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F-%E9%99%84%E5%BD%95.png)
 
 JavaScript 中的作用域就是词法作用域（事实上大部分语言都是基于词法作用域的）。
 
@@ -1014,7 +1014,7 @@ bar();
 
 ### 块作用域的替代方案
 
-![块作用域的替代方案](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F-%E9%99%84%E5%BD%95.png)
+![块作用域的替代方案](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F-%E9%99%84%E5%BD%95.png)
 
 从 ES3 发布以来，JavaScript 中就有了块作用域，而with 和 catch 分句就是块作用域的两个小例子。
 
@@ -1102,7 +1102,7 @@ console.log(a); // ReferenceError
 
 ### this词法
 
-![this词法](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/this%E4%BD%9C%E7%94%A8%E5%9F%9F.png)
+![this词法](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/this%E4%BD%9C%E7%94%A8%E5%9F%9F.png)
 
 ES6 中有一个主题用非常重要的方式将 this同词法作用域联系起来了。
 
@@ -1199,7 +1199,7 @@ obj.cool(); // 更酷了。
 
 ### 关于this
 
-![关于this](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E5%85%B3%E4%BA%8Ethis.png)
+![关于this](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E5%85%B3%E4%BA%8Ethis.png)
 
 this 关键字是 JavaScript 中最复杂的机制之一。它是一个很特别的关键字，被自动定义在所有函数的作用域中。
 
@@ -1408,7 +1408,7 @@ this 实际上是在函数被调用时发生的绑定，它指向什么 **完全
 
 了每个函数的 this 是在调用时被绑定的，完全取决于函数的调用位置（也就是函数的调用方法）。
 
-![this全面解析](http://p9myzkds7.bkt.clouddn.com/this%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90.png)
+![this全面解析](https://graphbed.qiniu.songxingguo.com/this%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90.png)
 
 #### 调用位置
 
@@ -1984,7 +1984,7 @@ ES6 中的箭头函数并不会使用四条标准的绑定规则，而是根据�
 
 ### 对象
 
-![语法、类型和内容](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E5%AF%B9%E8%B1%A11.png)
+![语法、类型和内容](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E5%AF%B9%E8%B1%A11.png)
 
 #### 语法
 
@@ -2178,7 +2178,7 @@ myObject.foo; // function foo(){..}
 ```
 ##### 数组
 
-![数组、对象复制和属性描述](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E5%AF%B9%E8%B1%A12.png)
+![数组、对象复制和属性描述](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E5%AF%B9%E8%B1%A12.png)
 
 数组也支持 [] 访问形式，不过就像我们之前提到过的，数组有一套更加结构化的值存储
 机制（不过仍然不限制值的类型）。**数组期望的是数值下标，也就是说值存储的位置（通常被称为索引）是整数** ，比如说 0 和 42：
@@ -2397,7 +2397,7 @@ myObject.a; // 2
 
 ##### 不变性
 
-![不可变性](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E5%AF%B9%E8%B1%A13.png)
+![不可变性](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E5%AF%B9%E8%B1%A13.png)
 
 有时候你会希望属性或者对象是不可改变（无论有意还是无意）的，在 ES5 中可以通过很多种方法来实现。
 
@@ -2575,7 +2575,7 @@ myObject.a; // 4
 
 ##### 存在性
 
-![存在性和遍历](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E5%AF%B9%E8%B1%A14.png)
+![存在性和遍历](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E5%AF%B9%E8%B1%A14.png)
 
 myObject.a 的属性访问返回值可能是 undefined，但是这个值有可能是属性中存储的 undefined，也可能是因为属性不存在所以返回 undefined。那么如何区分这两种情况呢？
 
@@ -2592,7 +2592,7 @@ myObject.hasOwnProperty("b"); // false
 in 操作符会检查属性是否在对象及其 [[Prototype]] 原型链中。相比之下，**hasOwnProperty(..) 只会检查属性是否在 myObject 对象中** ，**不会检查[[Prototype]] 链** 。
 
 有的 **普通对象都可以通过对于 Object.prototype 的委托来访问hasOwnProperty(..)** ，但是有的对象可能没有连接到 Object.prototype（通过 Object.create(null) 来创建。在这种情况下，形如 myObejct.hasOwnProperty(..)就会失败。
- 
+
 这时可以使用一种更加强硬的方法来进行判断：**Object.prototype.hasOwnProperty.call(myObject,"a")** ，它 **借用基础的hasOwnProperty(..) 方法并把它显式绑定** 到 myObject 上。
 
 > 看起来 in 操作符可以检查容器内是否有某个值，但是它实际上 **检查的是某个属性名是否存在** 。**对于数组来说这个区别非常重要** ，4 in [2, 4, 6] 的结果并不是你期待的 True，因为 [2, 4, 6] 这个数组中包含的属性名是 0、1、2，没有 4。
@@ -2799,7 +2799,7 @@ JavaScript 中的对象有字面形式（比如 var a = { .. }）和构造形式
 
 我们将会看到，这些概念实际上无法直接对应到 JavaScript 的对象机制，因此我们会介绍许多 JavaScript 开发者所使用的解决方法（比如混入，mixin）。
 
-![类](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E7%B1%BB.png)
+![类](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E7%B1%BB.png)
 
 #### 类理论
 
@@ -2827,7 +2827,7 @@ JavaScript 只有一些近似类的语法元素（比如 new 和 instanceof）�
 
 把类和实例对象之间的关系看作是直接关系而不是间接关系通常更有助于理解。类通过复制操作被实例化为对象形式：
 
-![被实例化为对象形式](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E8%A2%AB%E5%AE%9E%E4%BE%8B%E5%8C%96%E4%B8%BA%E5%AF%B9%E8%B1%A1%E5%BD%A2%E5%BC%8F.png)
+![被实例化为对象形式](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E8%A2%AB%E5%AE%9E%E4%BE%8B%E5%8C%96%E4%B8%BA%E5%AF%B9%E8%B1%A1%E5%BD%A2%E5%BC%8F.png)
 
 如你所见，箭头的方向是从左向右、从上向下，它表示概念和物理意义上发生的复制操作。
 
@@ -2917,7 +2917,7 @@ Car 重写了继承自父类的 drive() 方法，但是之后 Car 调用了 inhe
 
 除此之外，还有一种被称为钻石问题的变种。在钻石问题中，子类 D 继承自两个父类（B和 C），这两个父类都继承自 A。如果 A 中有 drive() 方法并且 B 和 C 都重写了这个方法（多态），那当 D 引用 drive() 时应当选择哪个版本呢（B:drive() 还是C:drive()）？
 
-![为钻石问题的变种](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E9%92%BB%E7%9F%B3%E9%97%AE%E9%A2%98%E7%9A%84%E5%8F%98%E7%A7%8D.png)
+![为钻石问题的变种](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E9%92%BB%E7%9F%B3%E9%97%AE%E9%A2%98%E7%9A%84%E5%8F%98%E7%A7%8D.png)
 
 #### 混入
 
@@ -3112,7 +3112,7 @@ JavaScript 并不会（像类那样）自动创建对象的副本。
 
 ### 原型
 
-![原型](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E5%8E%9F%E5%9E%8B.png)
+![原型](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E5%8E%9F%E5%9E%8B.png)
 
 #### [[Prototype]]
 
@@ -3275,7 +3275,7 @@ Object.getPrototypeOf( a ) === Foo.prototype; // true
 
 在 JavaScript 中，我们并 **不会将一个对象（“类”）复制到另一个对象**（“实例”），**只是将它们关联起来**。从视觉角度来说，[[Prototype]] 机制如下图所示，箭头从右到左，从下到上：
 
-![[[Prototype]] 机制](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%5B%5BPrototype%5D%5D%20%E6%9C%BA%E5%88%B6.png)
+![[[Prototype]] 机制](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%5B%5BPrototype%5D%5D%20%E6%9C%BA%E5%88%B6.png)
 
 这个机制通常被称为 **原型继承**（稍后我们会分析具体代码），它常常被视为动态语言版本的类继承。这个名称主要是为了对应面向类的世界中“继承”的意义，但是违背（写作违背，读作推翻）了动态脚本中对应的语义。
 
@@ -3442,7 +3442,7 @@ a1.constructor 是一个非常不可靠并且不安全的引用。通常来说�
 
 实际上，我们已经了解了通常被称作原型继承的机制，a 可以“继承”Foo.prototype 并访问 Foo.prototype 的 myName() 函数。但是之前我们只把继承看作是类和类之间的关系，并没有把它看作是类和实例之间的关系：
 
-![原型继承](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%5B%5BPrototype%5D%5D%20%E6%9C%BA%E5%88%B6.png)
+![原型继承](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%5B%5BPrototype%5D%5D%20%E6%9C%BA%E5%88%B6.png)
 
 还记得这张图吗，它不仅展示出 **对象（实例）a1 到 Foo.prototype 的委托关系** ，还展示出 **Bar.prototype 到 Foo.prototype 的委托关系** ，而后者和类继承很相似，只有箭头的方向不同。图中由下到上的箭头表明这是委托关联，不是复制操作。
 
@@ -3780,7 +3780,7 @@ myObject.doCool(); // "cool!"
 
 换句话说，JavaScript 中这个机制的本质就是对象之间的关联关系。
 
-![行为委托](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98.png)
+![行为委托](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98.png)
 
 #### 面向委托的设计
 
@@ -3957,7 +3957,7 @@ b2.speak();
 
 首先，类风格代码的思维模型强调实体以及实体间的关系：
 
-![类风格代码的思维模型](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E7%B1%BB%E9%A3%8E%E6%A0%BC%E4%BB%A3%E7%A0%81%E7%9A%84%E6%80%9D%E7%BB%B4%E6%A8%A1%E5%9E%8B%E5%BC%BA.png)
+![类风格代码的思维模型](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E7%B1%BB%E9%A3%8E%E6%A0%BC%E4%BB%A3%E7%A0%81%E7%9A%84%E6%80%9D%E7%BB%B4%E6%A8%A1%E5%9E%8B%E5%BC%BA.png)
 
 实际上这张图有点不清晰 / 误导人，因为它还展示了许多技术角度不需要关注的细节（但是你必须理解它们）！从图中可以看出这是一张十分复杂的关系网。此外，如果你跟着图中的箭头走就会发现，JavaScript 机制有很强的内部连贯性。
 
@@ -3965,13 +3965,13 @@ b2.speak();
 
 好，下面我们来看一张简化版的图，它更“清晰”一些——只展示了必要的对象和关系：
 
-![简化版的图](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E7%AE%80%E5%8C%96%E7%89%88%E7%9A%84%E5%9B%BE%EF%BC%8C.png)
+![简化版的图](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E7%AE%80%E5%8C%96%E7%89%88%E7%9A%84%E5%9B%BE%EF%BC%8C.png)
 
 仍然很复杂，是吧？虚线表示的是 Bar.prototype 继承 Foo.prototype 之后丢失的 .constructor属性引用（参见 5.2.3 节的“回顾‘构造函数’”部分），它们还没有被修复。即使移除这些虚线，这个思维模型在你处理对象关联时仍然非常复杂。
 
 现在我们看看对象关联风格代码的思维模型：
 
-![对象关联风格代码的思维模型](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E5%AF%B9%E8%B1%A1%E5%85%B3%E8%81%94%E9%A3%8E%E6%A0%BC%E4%BB%A3%E7%A0%81%E7%9A%84%E6%80%9D%E7%BB%B4%E6%A8%A1%E5%9E%8B.png)
+![对象关联风格代码的思维模型](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E5%AF%B9%E8%B1%A1%E5%85%B3%E8%81%94%E9%A3%8E%E6%A0%BC%E4%BB%A3%E7%A0%81%E7%9A%84%E6%80%9D%E7%BB%B4%E6%A8%A1%E5%9E%8B.png)
 
 通过比较可以看出，对象关联风格的代码显然更加简洁，因为这种代码只关注一件事：对象之间的关联关系。
 

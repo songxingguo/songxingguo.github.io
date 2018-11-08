@@ -12,7 +12,7 @@ date: 2018-09-24 21:41:00
 
 ### 笔记
 
-![栈和队列的存储](http://p9myzkds7.bkt.clouddn.com/mylist/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%AD%98%E5%82%A8.png)
+![栈和队列的存储](https://graphbed.qiniu.songxingguo.com/mylist/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%AD%98%E5%82%A8.png)
 
 ### 代码
 
@@ -715,17 +715,17 @@ date: 2018-09-24 21:41:00
 
   ```
   package mylist;
-
+  
   import org.omg.CosNaming.NamingContextExtPackage.AddressHelper;
-
+  
   public class TestMyList {
       public static void main(String[] args) {
           testMyLinkedList();
       }
-
+  
       public static void testReMyLinkedList() {
           ReMyLinkedList<Integer> list = new ReMyLinkedList<>();
-
+  
           list.add(0, 1);
           list.add(0, 2);
           list.add(0, 3);
@@ -733,31 +733,32 @@ date: 2018-09-24 21:41:00
           list.add(0, 5);
           list.add(0, 3);
           list.addLast(90);
-
+  
           System.out.println(list.toString());
-
+  
           list.removeFirst();
           System.out.println(list.toString());
-
+  
           list.removeLast();
           System.out.println(list.toString());
-
+  
           System.out.println(list.lastIndexOf(3));
-
+  
           System.out.println("element " + list.get(3));
       }
-
+  
       public static void testiMyLinkedList() {
           MyLinkedList<Integer> list = new MyLinkedList<>();
-
+  
           list.addFirst(30);
           list.addLast(90);
           System.out.println(list.toString());
-
+  
           list.add(1, 40);	
           list.add(2, 50);
           System.out.println(list.toString());
       }
+  ```
 
 
       public static void testMyLinkedList() {
@@ -782,14 +783,14 @@ date: 2018-09-24 21:41:00
           System.out.println("100Ìí¼Ó×îºó");
           list.addLast(100);
           System.out.println(list.toString());
-
+    
           System.out.println();
           System.out.println("»ñÈ¡ÔªËØ");
           System.out.println(list.toString());
           System.out.println("µÚÒ»¸öÔªËØ" +  list.getFirst());
           System.out.println("×îºóÒ»¸öÔªËØ" + list.getLast());
           System.out.println("ÏÂ±êÎª3µÄÔªËØ" + list.get(3));
-
+    
           System.out.println();
           System.out.println();
           System.out.println("ÒÆ³ýÔªËØ");
@@ -807,7 +808,7 @@ date: 2018-09-24 21:41:00
           System.out.println("ÒÆ³ýÏÂ±êÎª1µÄÔªËØ");
           list.remove(1);
           System.out.println(list.toString());
-
+    
           System.out.println();
           System.out.println();
           System.out.println("ÐÞ¸ÄÔªËØ");
@@ -815,7 +816,7 @@ date: 2018-09-24 21:41:00
           System.out.println("½«ÏÂ±êÎª1µÄÔªËØ¸ÄÎª100");
           list.set(1, 100);
           System.out.println(list.toString());
-
+    
           System.out.println();
           System.out.println();
           System.out.println("²éÑ¯ÔªËØ");
@@ -824,7 +825,7 @@ date: 2018-09-24 21:41:00
           System.out.println();
           System.out.println("×îºóÆ¥ÅäµÄ100:" + list.lastIndexOf(100));
           System.out.println("ÊÇ·ñ°üº¬100:" + list.contains(100));
-
+    
           System.out.println("Çå¿Õ");
           list.clear();
   //		System.out.println(list.toString());
@@ -855,169 +856,172 @@ date: 2018-09-24 21:41:00
 
 ### 代码
 
-```
+  ```
 package mylist;
 
 import java.util.Scanner;
 /*
  * 中缀表达式转后缀表达式
- */
-public class InfixToPostfix {
-	
-	//输入表达式
-	public static MyQueue<String> inputExpression() {
-		MyQueue<String> queue = new MyQueue<String>();
-		Scanner input = null;
-		boolean isContinue = true;
-		try {
-			input = new Scanner(System.in);
-			System.out.println("输入表达式：");
-			String string = input.nextLine();
-			
-			while(isContinue) {
-				String[] strings = string.split(" ");
-				
-				
-				for (String e: strings) {
-					if (isOperationChar(e)) {
-						queue.enqueue(e);
-					}
-					else {
-						queue.clear();
-						System.out.println("输入有误！请重新输入：");
-						string = input.nextLine();
-						continue;
-					}
-				}
-				
-				isContinue = false;
-			}
-		}
-		finally {
-			input.close();
-		}
-		
-		return queue;
-	}
-	
-	//中缀转后缀
-	public static MyQueue<String> infixToPostfix(MyQueue<String> queue) {
-		String e = null;
-		MyStack<String> stack = new MyStack<String>();
-		System.out.println(queue.getSize());
-		while (queue.getSize() != 0) {
-			e = queue.dequeue();
-			System.out.print(e + "$");
-			
-			if (isOperand(e)) {
-				queue.enqueue(e);
-			}
-			else if (isOperator(e)){
-				if (stack.getSize() == 0) {
-					stack.push(e);
-				}
-				else {
-					if(isHighPriority(e, stack.peek())) {
-						stack.pop();
-						stack.push(e);
-					}
-					else {
-						stack.push(e);
-					}
-				}
-			}
-			else if (isLeftBracket(e)) {
-				stack.push(e);
-			}else if (isRightBracket(e)) {
-				while (isLeftBracket(stack.pop())) {
-					queue.enqueue(stack.pop());
-				}
-			}
-		}
+    */
+    public class InfixToPostfix {
 
-		return queue;
-	}
-	
-	//打印表达式
-	public static void printExpression(MyQueue<String> queue) {
-		StringBuilder string = new StringBuilder();
-		
-		while (queue.getSize() != 0) {
-			string.append(queue.dequeue() + " ");
-		}
-		
-		System.out.println(string.toString());
-	}
-	
-	//是否是操作符
-	private static boolean isOperator(String e) {
-		if (isMulAndDiv(e) || isAddAndSub(e)) {
-			return true;
-		}
-		
-		return false;
-	}
-	
-	
-	//是否是操作数
-	private static boolean isOperand(String e) {
-		if (e.matches("[0-9]{1}")) {
-			return true;
-		}
-		
-		return false;
-	}
-	
-	//是否是左括号
-	private static boolean isLeftBracket(String e) {
-		if (e.equals("(")) {
-			return true;
-		}
-		return false;
-	}
-	
-	//是否是右括号
-	private static boolean isRightBracket(String e) {
-		if (e.equals(")")) {
-			return true;
-		}
-		return false;
-	}
-	
-	private static boolean isOperationChar(String e) {
-		if(isOperator(e) || isOperand(e) 
-				|| isLeftBracket(e) || isRightBracket(e)) {
-			return true;
-		}
-		
-		return false;
-	}
-	
-	//是否是最高优先级
-	private static boolean isHighPriority(String char1, String char2) {
-		if (isMulAndDiv(char1)) {
-			return true;
-		}
-		else if (isAddAndSub(char1) && isAddAndSub(char2)) {
-			return true;
-		}
-		
-		return false;
-	}
-	
-	
-	private static boolean isAddAndSub(String e) {
-		if (e.equals("+") || e.equals("-")) {
-			return true;
-		}
-		return false;
-	}
-	
-	private static boolean isMulAndDiv(String e) {
-		if (e.equals("*") || e.equals("/")) {
-			return true;
-		}
-		return false;
-	}
-}
+    //输入表达式
+    public static MyQueue<String> inputExpression() {
+    	MyQueue<String> queue = new MyQueue<String>();
+    	Scanner input = null;
+    	boolean isContinue = true;
+    	try {
+    		input = new Scanner(System.in);
+    		System.out.println("输入表达式：");
+    		String string = input.nextLine();
+    		
+    		while(isContinue) {
+    			String[] strings = string.split(" ");
+
+
+    ​			
+    			for (String e: strings) {
+    				if (isOperationChar(e)) {
+    					queue.enqueue(e);
+    				}
+    				else {
+    					queue.clear();
+    					System.out.println("输入有误！请重新输入：");
+    					string = input.nextLine();
+    					continue;
+    				}
+    			}
+    			
+    			isContinue = false;
+    		}
+    	}
+    	finally {
+    		input.close();
+    	}
+    	
+    	return queue;
+    }
+
+    //中缀转后缀
+    public static MyQueue<String> infixToPostfix(MyQueue<String> queue) {
+    	String e = null;
+    	MyStack<String> stack = new MyStack<String>();
+    	System.out.println(queue.getSize());
+    	while (queue.getSize() != 0) {
+    		e = queue.dequeue();
+    		System.out.print(e + "$");
+    		
+    		if (isOperand(e)) {
+    			queue.enqueue(e);
+    		}
+    		else if (isOperator(e)){
+    			if (stack.getSize() == 0) {
+    				stack.push(e);
+    			}
+    			else {
+    				if(isHighPriority(e, stack.peek())) {
+    					stack.pop();
+    					stack.push(e);
+    				}
+    				else {
+    					stack.push(e);
+    				}
+    			}
+    		}
+    		else if (isLeftBracket(e)) {
+    			stack.push(e);
+    		}else if (isRightBracket(e)) {
+    			while (isLeftBracket(stack.pop())) {
+    				queue.enqueue(stack.pop());
+    			}
+    		}
+    	}
+    	
+    	return queue;
+    }
+
+    //打印表达式
+    public static void printExpression(MyQueue<String> queue) {
+    	StringBuilder string = new StringBuilder();
+    	
+    	while (queue.getSize() != 0) {
+    		string.append(queue.dequeue() + " ");
+    	}
+    	
+    	System.out.println(string.toString());
+    }
+
+    //是否是操作符
+    private static boolean isOperator(String e) {
+    	if (isMulAndDiv(e) || isAddAndSub(e)) {
+    		return true;
+    	}
+    	
+    	return false;
+    }
+
+
+    //是否是操作数
+    private static boolean isOperand(String e) {
+    	if (e.matches("[0-9]{1}")) {
+    		return true;
+    	}
+    	
+    	return false;
+    }
+
+    //是否是左括号
+    private static boolean isLeftBracket(String e) {
+    	if (e.equals("(")) {
+    		return true;
+    	}
+    	return false;
+    }
+
+    //是否是右括号
+    private static boolean isRightBracket(String e) {
+    	if (e.equals(")")) {
+    		return true;
+    	}
+    	return false;
+    }
+
+    private static boolean isOperationChar(String e) {
+    	if(isOperator(e) || isOperand(e) 
+    			|| isLeftBracket(e) || isRightBracket(e)) {
+    		return true;
+    	}
+    	
+    	return false;
+    }
+
+    //是否是最高优先级
+    private static boolean isHighPriority(String char1, String char2) {
+    	if (isMulAndDiv(char1)) {
+    		return true;
+    	}
+    	else if (isAddAndSub(char1) && isAddAndSub(char2)) {
+    		return true;
+    	}
+    	
+    	return false;
+    }
+
+
+    private static boolean isAddAndSub(String e) {
+    	if (e.equals("+") || e.equals("-")) {
+    		return true;
+    	}
+    	return false;
+    }
+
+    private static boolean isMulAndDiv(String e) {
+    	if (e.equals("*") || e.equals("/")) {
+    		return true;
+    	}
+    	return false;
+    }
+    }
+```
+
 ```

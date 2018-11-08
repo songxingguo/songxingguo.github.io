@@ -34,7 +34,7 @@ date: 2018-08-21 20:27:00
 
 每一段标记都可以通过树中的一个节点来表示：**HTML 元素通过元素节点表示，特性（attribute）通过特性节点表示，文档类型通过文档类型节点表示，而注释则通过注释节点表示** 。总共有 **12** 种节点类型，这些类型都继承自一个基类型。
 
-  <center>![文档层次结构](http://p9myzkds7.bkt.clouddn.com/JavaScript-DOM/%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84.png)</center>
+  <center>![文档层次结构](https://graphbed.qiniu.songxingguo.com/JavaScript-DOM/%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84.png)</center>
 
 ###  Node 类型
 
@@ -134,7 +134,7 @@ if (someNode.nodeType == 1){ // 适用于所有浏览器
 
   父节点与其第一个和最后一个子节点之间也存在特殊关系。**父节点的 firstChild 和 lastChild 属性分别指向其 childNodes 列表中的第一个和最后一个节点** 。其中，**someNode.firstChild 的值始终等于 someNode.childNodes[0] ** ， 而 **someNode.lastChild 的 值 始 终 等 于 someNode.childNodes [someNode.childNodes.length-1]** 。在只有一个子节点的情况下， firstChild 和lastChild 指向同一个节点。如果没有子节点，那么 firstChild 和 lastChild 的值均为 null 。明确这些关系能够对我们查找和访问文档结构中的节点提供极大的便利。下图 形象地展示了上述关系。
 
-  ![节点关系](http://p9myzkds7.bkt.clouddn.com/JavaScript-DOM/%E8%8A%82%E7%82%B9%E5%85%B3%E7%B3%BB.png)
+  ![节点关系](https://graphbed.qiniu.songxingguo.com/JavaScript-DOM/%E8%8A%82%E7%82%B9%E5%85%B3%E7%B3%BB.png)
 
   在反映这些关系的所有属性当中， childNodes 属性与其他属性相比更方便一些，因为 **只须使用简单的关系指针，就可以通过它访问文档树中的任何节点** 。另外， **hasChildNodes()** 也是一个非常有用的方法，这个方法 **在节点包含一或多个子节点的情况下返回 true ** ；应该说，这是比查询 childNodes 列表的 length 属性更简单的方法。
 
@@ -461,7 +461,7 @@ if (someNode.nodeType == 1){ // 适用于所有浏览器
   ```
   下表列出了可以检测的不同的值及版本号。
 
-  ![检测的不同的值及版本号](http://p9myzkds7.bkt.clouddn.com/JavaScript-DOM/%E6%A3%80%E6%B5%8B%E7%9A%84%E4%B8%8D%E5%90%8C%E5%80%BC%E5%8F%8A%E7%89%88%E6%9C%AC%E5%8F%B7.png)
+  ![检测的不同的值及版本号](https://graphbed.qiniu.songxingguo.com/JavaScript-DOM/%E6%A3%80%E6%B5%8B%E7%9A%84%E4%B8%8D%E5%90%8C%E5%80%BC%E5%8F%8A%E7%89%88%E6%9C%AC%E5%8F%B7.png)
 
   尽管使用 hasFeature() 确实方便，但也有缺点。因为实现者可以自行决定是否与 DOM 规范的不同部分保持一致。事实上，要想让 hasFearture() 方法针对所有值都返回 true 很容易，但返回 true 有时候也不意味着实现与规范一致。例如，Safari 2.x 及更早版本会在没有完全实现某些 DOM 功能的情况下也返回 true 。为此，我们建议多数情况下，在使用 DOM 的某些特殊的功能之前，最好除了检测 hasFeature() 之外，还同时使用能力检测。
 
@@ -617,9 +617,9 @@ if (element.tagName.toLowerCase() == "div"){ //这样最好（适用于任何文
 
   前面提到过，所有 HTML 元素都是由 HTMLElement 或者其更具体的子类型来表示的。下表列出了所有 HTML 元素以及与之关联的类型（以斜体印刷的元素表示已经不推荐使用了）。注意，表中的这些类型在 Opera、Safari、Chrome 和 Firefox 中都可以通过 JavaScript 访问，但在 IE8 之前的版本中不能通过 JavaScript 访问。
 
-  ![所有 HTML 元素以及与之关联的类型](http://p9myzkds7.bkt.clouddn.com/JavaScript-DOM/HTML%E5%85%83%E7%B4%A0%E5%8F%8A%E4%B8%8E%E4%B9%8B%E5%85%B3%E8%81%94%E7%9A%84%E7%B1%BB%E5%9E%8B.png)
+  ![所有 HTML 元素以及与之关联的类型](https://graphbed.qiniu.songxingguo.com/JavaScript-DOM/HTML%E5%85%83%E7%B4%A0%E5%8F%8A%E4%B8%8E%E4%B9%8B%E5%85%B3%E8%81%94%E7%9A%84%E7%B1%BB%E5%9E%8B.png)
 
-  ![所有 HTML 元素以及与之关联的类型（续）](http://p9myzkds7.bkt.clouddn.com/JavaScript-DOM/HTML%E5%85%83%E7%B4%A0%E5%8F%8A%E4%B8%8E%E4%B9%8B%E5%85%B3%E8%81%94%E7%9A%84%E7%B1%BB%E5%9E%8B%EF%BC%88%E7%BB%AD%EF%BC%89.png)
+  ![所有 HTML 元素以及与之关联的类型（续）](https://graphbed.qiniu.songxingguo.com/JavaScript-DOM/HTML%E5%85%83%E7%B4%A0%E5%8F%8A%E4%B8%8E%E4%B9%8B%E5%85%B3%E8%81%94%E7%9A%84%E7%B1%BB%E5%9E%8B%EF%BC%88%E7%BB%AD%EF%BC%89.png)
 
   表中的每一种类型都有与之相关的特性和方法。本书将会讨论其中很多类型。
 
@@ -912,7 +912,7 @@ div.removeAttribute("class");
 <div>Hello World!</div>
 ```
 上面代码给出的第一个 `<div>` 元素没有内容，因此也就不存在文本节点。**开始与结束标签之间只要存在内容** ，**就会创建一个文本节点** 。因此，第二个 `<div>` 元素中虽然 **只包含一个空格** ，但 **仍然有一个文本子节点** ；**文本节点的 nodeValue 值是一个空格** 。第三个 `<div>` 也有一个文本节点，其 **nodeValue 的值为 "Hello World!"** 。可以使用以下代码来访问这些文本子节点。
-  
+
 ```js
 var textNode = div.firstChild; //或者 div.childNodes[0]
 ```
@@ -1029,7 +1029,7 @@ div.firstChild.nodeValue = "Some <strong>other</strong> message";
 <div id="myDiv"><!--A comment --></div>
 ```
 在此，注释节点是 `<div>` 元素的一个子节点，因此可以通过下面的代码来访问它。
-  
+
 ```js
 var div = document.getElementById("myDiv");
 var comment = div.firstChild;
@@ -1066,7 +1066,7 @@ var comment = document.createComment("A comment ");
 
 在 Firefox、Safari、Chrome 和 Opera 中，可以访问 CDATASection 类型的构造函
 数和原型。IE9 及之前版本不支持这个类型。
-  
+
 ###  DocumentType 类型
 
 **DocumentType 类型在 Web 浏览器中并不常用** ，仅有**Firefox**、**Safari** 和 **Opera** 支持它（ Chrome 4.0 也支持 DocumentType 类型。） 。**DocumentType 包含着与文档的 doctype 有关的所有信息** ，它具有下列特征：
@@ -1177,7 +1177,7 @@ script.src = "client.js";
 document.body.appendChild(script);
 ```
 显然，这里的 DOM 代码如实反映了相应的 HTML 代码。不过，**在执行最后一行代码把 `<script>` 元素添加到页面中之前** ，**是不会下载外部文件的** 。也可以把这个元素添加到 `<head>` 元素中，效果相同。整个过程可以使用下面的函数来封装：
-  
+
 ```js
 function loadScript(url){
   var script = document.createElement("script");
@@ -1291,7 +1291,7 @@ loadStyles("styles.css");
 加载外部样式文件的过程是异步的，也就是加载样式与执行 JavaScript 代码的过程没有固定的次序。一般来说，知不知道样式已经加载完成并不重要；不过，也存在几种利用事件来检测这个过程是否完成的技术，这些技术将在第 13 章讨论。
 
 另一种定义样式的方式是使用 `<style>` 元素来包含嵌入式 CSS，如下所示：
-  
+
 ```html
 <style type="text/css">
 body {
@@ -1452,11 +1452,11 @@ tbody.rows[1].cells[1].appendChild(document.createTextNode("Cell 2,2"));
 document.body.appendChild(table);
 ```
 在这次的代码中，创建 `<table>` 和 `<tbody>` 的代码没有变化。**不同的是创建两行的部分**，**其中使用了 HTML DOM 定义的表格属性和方法** 。在创建第一行时，通过 `<tbody>` 元素调用了 **insertRow() 方法** ，传入了参数 0——表示应该将插入的行放在什么位置上。执行这一行代码后，就会自动创建一行并将其插入到 `<tbody>` 元素的位置 0 上，因此就可以马上通过 tbody.rows[0] 来引用新插入的行。
-  
+
 创建单元格的方式也十分相似，即通过 `<tr>` 元素调用 **insertCell() 方法** 并传入放置单元格的位置。然后，就可以通过 tbody.rows[0].cells[0] 来引用新插入的单元格，因为新创建的单元格被插入到了这一行的位置 0 上。
 
 总之，**使用这些属性和方法创建表格的逻辑性更强** ，也 **更容易看懂** ，尽管技术上这两套代码都是正确的。
-  
+
 ### 使用 NodeList
 
 **理解 NodeList 及其“近亲” NamedNodeMap 和 HTMLCollection** ，是从整体上透彻理解 DOM 的关键所在。**这三个集合都是“动态的”** ；换句话说，**每当文档结构发生变化时，它们都会得到更新** 。因此，**它们始终都会保存着最新、最准确的信息** 。从本质上说，**所有 NodeList 对象都是在访问 DOM文档时实时运行的查询** 。例如，下列代码会导致无限循环：
@@ -1473,9 +1473,9 @@ for (i=0; i < divs.length; i++){
 ```
 
 第一行代码会取得文档中所有 `<div>` 元素的 HTMLCollection 。由于这个集合是“动态的”，因此只要有新 `<div>` 元素被添加到页面中，这个元素也会被添加到该集合中。浏览器不会将创建的所有集合都保存在一个列表中，而是在下一次访问集合时再更新集合。结果，在遇到上例中所示的循环代码时，就会导致一个有趣的问题。每次循环都要对条件 i < divs.length 求值，意味着会运行取得所有 `<div>` 元素的查询。考虑到循环体每次都会创建一个新 `<div>` 元素并将其添加到文档中，因此 divs.length 的值在每次循环后都会递增。既然 i 和 divs.length 每次都会同时递增，结果它们的值永远也不会相等。
-  
+
 如果想要迭代一个 NodeList ，最好是使用 length 属性初始化第二个变量，然后将迭代器与该变量进行比较，如下面的例子所示：
-  
+
 ```js
 var divs = document.getElementsByTagName("div"),
    i,

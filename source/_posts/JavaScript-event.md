@@ -47,7 +47,7 @@ date: 2018-08-26 17:43:00
 ```
 也就是说， click 事件首先在 `<div>` 元素上发生，而这个元素就是我们单击的元素。然后， click 事件沿 DOM 树向上传播，在每一级节点上都会发生，直至传播到 document 对象。下图展示了事件冒泡的过程。
 
-![事件冒泡过程](http://p9myzkds7.bkt.clouddn.com/JavaScript-event/%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E8%BF%87%E7%A8%8B.png)
+![事件冒泡过程](https://graphbed.qiniu.songxingguo.com/JavaScript-event/%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E8%BF%87%E7%A8%8B.png)
 
 **所有现代浏览器都支持事件冒泡** ，**但在具体实现上还是有一些差别** 。IE5.5 及更早版本中的事件冒泡会跳过 `<html>` 元素（从 `<body>` 直接跳到 document ）。IE9、Firefox、Chrome 和 Safari 则将事件一直冒泡到 window 对象。
 
@@ -63,7 +63,7 @@ date: 2018-08-26 17:43:00
 ```
 **在事件捕获过程中** ，**document 对象** 首先 **接收到 click 事件**，然后 **事件沿 DOM 树依次向下** ，**一直传播到事件的实际目标** ，即 `<div>` 元素。下图展示了事件捕获的过程。
 
-![事件捕获过程](http://p9myzkds7.bkt.clouddn.com/JavaScript-event/%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E8%BF%87%E7%A8%8B.png)  
+![事件捕获过程](https://graphbed.qiniu.songxingguo.com/JavaScript-event/%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E8%BF%87%E7%A8%8B.png)  
 
 虽然事件捕获是 Netscape Communicator 唯一支持的事件流模型，但 IE9、Safari、Chrome、Opera和 Firefox 目前也都支持这种事件流模型。**尽管“DOM2 级事件”规范要求事件应该从 document 对象开始传播** ，但 **这些浏览器都是从 window 对象开始捕获事件的** 。
 
@@ -73,7 +73,7 @@ date: 2018-08-26 17:43:00
 
 “DOM2级事件”规定的事件流包括三个阶段：**事件捕获阶段** 、**处于目标阶段** 和**事件冒泡阶段** 。首先发生的是 **事件捕获** ，**为截获事件提供了机会** 。然后是实际的 **目标接收到事件** 。最后一个阶段是 **冒泡阶段** ，**可以在这个阶段对事件做出响应** 。以前面简单的 HTML 页面为例，单击 `<div>` 元素会按照下图所示顺序触发事件。
 
-![顺序触发事件](http://p9myzkds7.bkt.clouddn.com/JavaScript-event/%E9%A1%BA%E5%BA%8F%E8%A7%A6%E5%8F%91%E4%BA%8B%E4%BB%B6.png)  
+![顺序触发事件](https://graphbed.qiniu.songxingguo.com/JavaScript-event/%E9%A1%BA%E5%BA%8F%E8%A7%A6%E5%8F%91%E4%BA%8B%E4%BB%B6.png)  
 
 **在 DOM 事件流中，实际的目标（ `<div>` 元素）在捕获阶段不会接收到事件** 。这意味着在 **捕获阶段** ，**事件从 document 到 `<html>` 再到 `<body>` 后就停止了** 。下一个阶段是 **“处于目标”阶段** ，于是 **事件在 `<div>` 上发生** ，**并在事件处理（后面将会讨论这个概念）中被看成冒泡阶段的一部分**。然后，**冒泡阶段发生** ，**事件又传播回文档** 。
 
@@ -396,9 +396,9 @@ btn.addEventListener("click", function(event){
 ```
 **以这种方式提供 event 对象，可以让 HTML 特性事件处理程序与 JavaScript 函数执行相同的操作** 。**event 对象包含与创建它的特定事件有关的属性和方法** 。触发的事件类型不一样，可用的属性和方法也不一样。不过，所有事件都会有下表列出的成员。
 
-![事件属性](http://p9myzkds7.bkt.clouddn.com/JavaScript-event/%E4%BA%8B%E4%BB%B6%E5%B1%9E%E6%80%A7.png)
+![事件属性](https://graphbed.qiniu.songxingguo.com/JavaScript-event/%E4%BA%8B%E4%BB%B6%E5%B1%9E%E6%80%A7.png)
 
-![事件属性（续）](http://p9myzkds7.bkt.clouddn.com/JavaScript-event/%E4%BA%8B%E4%BB%B6%E5%B1%9E%E6%80%A7%EF%BC%88%E7%BB%AD%20%EF%BC%89.png)
+![事件属性（续）](https://graphbed.qiniu.songxingguo.com/JavaScript-event/%E4%BA%8B%E4%BB%B6%E5%B1%9E%E6%80%A7%EF%BC%88%E7%BB%AD%20%EF%BC%89.png)
 
 **在事件处理程序内部，对象 this 始终等于 currentTarget 的值** ，而 **target 则只包含事件的实际目标** 。**如果直接将事件处理程序指定给了目标元素** ，**则 this 、 currentTarget 和 target 包含相同的值** 。来看下面的例子。
 
@@ -516,7 +516,7 @@ btn.attachEvent("onclick", function(event){
 ```
 **IE 的 event 对象同样也包含与创建它的事件相关的属性和方法** 。其中很多属性和方法都有对应的或者相关的 DOM属性和方法。与 DOM 的 event 对象一样，**这些属性和方法也会因为事件类型的不同而不同** ，但 **所有事件对象都会包含下表所列的属性和方法** 。
 
-![事件对象属性和方法](http://p9myzkds7.bkt.clouddn.com/JavaScript-event/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95.png)
+![事件对象属性和方法](https://graphbed.qiniu.songxingguo.com/JavaScript-event/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95.png)
 
 因为 **事件处理程序的作用域是根据指定它的方式来确定的** ，所以 **不能认为 this 会始终等于事件目标** 。故而，**最好还是使用 event.srcElement 比较保险** 。例如：
 
@@ -955,7 +955,7 @@ var isSupported = document.implementation.hasFeature("MouseEvent", "3.0")
 
   鼠标事件都是在浏览器视口中的特定位置上发生的。这个位置信息保存在事件对象的 clientX 和 clientY 属性中。所有浏览器都支持这两个属性，它们的值表示事件发生时鼠标指针在视口中的水平和垂直坐标。下图展示了视口中客户区坐标位置的含义。
 
-  ![客户区坐标位置含义](http://p9myzkds7.bkt.clouddn.com/JavaScript-event/%E5%AE%A2%E6%88%B7%E5%8C%BA%E5%9D%90%E6%A0%87%E4%BD%8D%E7%BD%AE%E5%90%AB%E4%B9%89.png)
+  ![客户区坐标位置含义](https://graphbed.qiniu.songxingguo.com/JavaScript-event/%E5%AE%A2%E6%88%B7%E5%8C%BA%E5%9D%90%E6%A0%87%E4%BD%8D%E7%BD%AE%E5%90%AB%E4%B9%89.png)
 
   可以使用类似下列代码 **取得鼠标事件的客户端坐标信息** ：
 
@@ -1009,7 +1009,7 @@ var isSupported = document.implementation.hasFeature("MouseEvent", "3.0")
 
     **鼠标事件发生时** ，不仅 **会有相对于浏览器窗口的位置** ，还有 **一个相对于整个电脑屏幕的位置** 。而 **通过 screenX 和 screenY 属性就可以确定鼠标事件发生时鼠标指针相对于整个屏幕的坐标信息** 。下图展示了浏览器中屏幕坐标的含义。
 
-    ![浏览器中屏幕坐标含义](http://p9myzkds7.bkt.clouddn.com/JavaScript-event/%E5%B1%8F%E5%B9%95%E5%9D%90%E6%A0%87%E7%9A%84%E5%90%AB%E4%B9%89.png)
+    ![浏览器中屏幕坐标含义](https://graphbed.qiniu.songxingguo.com/JavaScript-event/%E5%B1%8F%E5%B9%95%E5%9D%90%E6%A0%87%E7%9A%84%E5%90%AB%E4%B9%89.png)
 
     可以使用类似下面的代码 **取得鼠标事件的屏幕坐标** ：
 
@@ -1191,7 +1191,7 @@ var isSupported = document.implementation.hasFeature("MouseEvent", "3.0")
 
   **IE 6.0 首先实现了 mousewheel 事件** 。此后，Opera、Chrome 和 Safari 也都实现了这个事件。**当用户通过鼠标滚轮与页面交互、在垂直方向上滚动页面时**（无论向上还是向下），**就会触发 mousewheel 事件** 。这个事件可以在任何元素上面触发，最终会冒泡到 document （IE8）或 window （IE9、Opera、Chrome 及 Safari）对象。与 mousewheel 事件对应的 event 对象除包含鼠标事件的所有标准信息外，还包含一个特殊的 wheelDelta 属性。当用户向前滚动鼠标滚轮时， wheelDelta 是 120 的倍数；当用户向后滚动鼠标滚轮时， wheelDelta 是 -120 的倍数。下图展示了这个属性。
 
-  ![heelDelta  是 -120 的倍数](http://p9myzkds7.bkt.clouddn.com/JavaScript-event/wheelDelta%E5%B1%9E%E6%80%A7.png)
+  ![heelDelta  是 -120 的倍数](https://graphbed.qiniu.songxingguo.com/JavaScript-event/wheelDelta%E5%B1%9E%E6%80%A7.png)
 
   将 mousewheel 事件处理程序指定给页面中的任何元素或 document 对象，即可处理鼠标滚轮的交互操作。来看下面的例子。
 
@@ -1218,7 +1218,7 @@ var isSupported = document.implementation.hasFeature("MouseEvent", "3.0")
 
   Firefox 支持一个名为 DOMMouseScroll 的类似事件，也是在鼠标滚轮滚动时触发。与 mousewheel 事件一样， DOMMouseScroll 也被视为鼠标事件，因而包含与鼠标事件有关的所有属性。而有关鼠标滚 轮的信息则保存在 detail 属性中，当向前滚动鼠标滚轮时，这个属性的值是 -3 的倍数，当向后滚动鼠标滚轮时，这个属性的值是 3 的倍数。x下图展示了这个属性。
 
-  ![heelDelta 属性的值是 -3 的倍数](http://p9myzkds7.bkt.clouddn.com/JavaScript-event/3%20%E7%9A%84%E5%80%8D%E6%95%B0.png)
+  ![heelDelta 属性的值是 -3 的倍数](https://graphbed.qiniu.songxingguo.com/JavaScript-event/3%20%E7%9A%84%E5%80%8D%E6%95%B0.png)
 
   **可以将 DOMMouseScroll 事件添加到页面中的任何元素** ，而且 **该事件会冒泡到 window 对象** 。因此，可以像下面这样针对这个事件来添加事件处理程序。
 
@@ -1325,9 +1325,9 @@ var isSupported = document.implementation.hasFeature("MouseEvent", "3.0")
   ```
   在这个例子中，用户每次在文本框中按键触发 keyup 事件时，都会显示 keyCode 的值。下表列出了所有非字符键的键码。
 
-  ![所有非字符键的键码](http://p9myzkds7.bkt.clouddn.com/%E6%89%80%E6%9C%89%E9%9D%9E%E5%AD%97%E7%AC%A6%E9%94%AE%E7%9A%84%E9%94%AE%E7%A0%81.png)
+  ![所有非字符键的键码](https://graphbed.qiniu.songxingguo.com/%E6%89%80%E6%9C%89%E9%9D%9E%E5%AD%97%E7%AC%A6%E9%94%AE%E7%9A%84%E9%94%AE%E7%A0%81.png)
 
-  ![所有非字符键的键码（续）](http://p9myzkds7.bkt.clouddn.com/%E6%89%80%E6%9C%89%E9%9D%9E%E5%AD%97%E7%AC%A6%E9%94%AE%E7%9A%84%E9%94%AE%E7%A0%81%EF%BC%88%E7%BB%AD%EF%BC%89.png)
+  ![所有非字符键的键码（续）](https://graphbed.qiniu.songxingguo.com/%E6%89%80%E6%9C%89%E9%9D%9E%E5%AD%97%E7%AC%A6%E9%94%AE%E7%9A%84%E9%94%AE%E7%A0%81%EF%BC%88%E7%BB%AD%EF%BC%89.png)
 
   **无论 keydown 或 keyup 事件都会存在的一些特殊情况** 。在Firefox和Opera中，按分号键时 keyCode 值为 59，也就是 ASCII 中分号的编码；但 IE 和 Safari 返回 186，即键盘中按键的键码。
 
@@ -1449,7 +1449,7 @@ var isSupported = document.implementation.hasFeature("MouseEvent", "3.0")
 
   任天堂 Wii 会在用户按下 Wii 遥控器上的按键时触发键盘事件。尽管没有办法访问 Wii遥控器中的所有按键，但还是有一些键可以触发键盘事件。下图展示了一些键的键码，通过这些键码可以知道用户按下了哪个键。
 
-  ![设备键码](http://p9myzkds7.bkt.clouddn.com/JavaScript-event/%E8%AE%BE%E5%A4%87%E9%94%AE%E7%A0%81.png)
+  ![设备键码](https://graphbed.qiniu.songxingguo.com/JavaScript-event/%E8%AE%BE%E5%A4%87%E9%94%AE%E7%A0%81.png)
 
   当用户按下十字键盘（键码为 175～178）、减号（170）、加号（174）、1（172）或 2（173）键时会触发键盘事件。但没有办法得知用户是否按下了电源开关、A、B 或主页键。
 
@@ -1517,10 +1517,10 @@ DOM2 级的变动（mutation）事件能在 DOM中的某一部分发生变化时
 
 ```js
 var isSupported = document.implementation.hasFeature("MutationEvents", "2.0");
-````
+​````
 IE8 及更早版本不支持任何变动事件。下表列出了不同浏览器对不同变动事件的支持情况。
 
-![不同变动事件的支持情况](http://p9myzkds7.bkt.clouddn.com/JavaScript-event/%E4%B8%8D%E5%90%8C%E5%8F%98%E5%8A%A8%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5.png)
+![不同变动事件的支持情况](https://graphbed.qiniu.songxingguo.com/JavaScript-event/%E4%B8%8D%E5%90%8C%E5%8F%98%E5%8A%A8%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5.png)
 
 由于 DOM3 级事件模块作废了很多变动事件，所以本节只介绍那些将来仍然会得到支持的事件。
 
@@ -1548,7 +1548,7 @@ IE8 及更早版本不支持任何变动事件。下表列出了不同浏览器�
       </ul>
     </body>
   </html>
-  ```
+```
   在这个例子中，我们假设要移除 `<ul>` 元素。此时，就会依次触发以下事件。
 
   ```
@@ -1678,7 +1678,7 @@ DOM 规范没有涵盖所有浏览器支持的所有事件。很多浏览器出�
 
   **之所以有发生在 window 对象上的 beforeunload 事件，是为了让开发人员有可能在页面卸载前阻止这一操作** 。这个事件会在浏览器卸载页面之前触发，可以通过它来取消卸载并继续使用原有页面。但是，不能彻底取消这个事件，因为那就相当于让用户无法离开当前页面了。为此，这个事件的意图是将控制权交给用户。显示的消息会告知用户页面行将被卸载（正因为如此才会显示这个消息），询问用户是否真的要关闭页面，还是希望继续留下来（见下图）。
 
-  ![询问用户](http://p9myzkds7.bkt.clouddn.com/JavaScript-event/%E8%AF%A2%E9%97%AE%E7%94%A8%E6%88%B7.png)
+  ![询问用户](https://graphbed.qiniu.songxingguo.com/JavaScript-event/%E8%AF%A2%E9%97%AE%E7%94%A8%E6%88%B7.png)
 
   为了显示这个弹出对话框，必须将 event.returnValue 的值设置为要显示给用户的字符串（对 IE 及 Fiefox 而言），同时作为函数的值返回（对 Safari 和 Chrome 而言），如下面的例子所示。
 
@@ -1898,7 +1898,7 @@ DOM 规范没有涵盖所有浏览器支持的所有事件。很多浏览器出�
   苹果公司为移动 Safari 中添加了 **orientationchange 事件** ，**以便开发人员能够确定用户何时将设备由横向查看模式切换为纵向查看模式** 。移动 Safari 的 **window.orientation 属性** 中可能包含 3 个值：**0 表示肖像模式** ， **90 表示向左旋转的横向模式** （“主屏幕”按钮在右侧）， **-90 表示向右旋转的横向模
   式**（“主屏幕”按钮在左侧）。相关文档中还提到一个值，即 180 表示 iPhone 头朝下；但这种模式至今尚未得到支持。下图展示了 window.orientation 的每个值的含义。
 
-  ![设备模式](http://p9myzkds7.bkt.clouddn.com/JavaScript-event/%E8%AE%BE%E5%A4%87%E6%A8%A1%E5%BC%8F.png)
+  ![设备模式](https://graphbed.qiniu.songxingguo.com/JavaScript-event/%E8%AE%BE%E5%A4%87%E6%A8%A1%E5%BC%8F.png)
 
   **只要用户改变了设备的查看模式，就会触发 orientationchange 事件** 。此时的 event 对象不包含任何有价值的信息，因为唯一相关的信息可以通过 **window.orientation** 访问到。下面是使用这个事件的典型示例。
 
@@ -1942,7 +1942,7 @@ DOM 规范没有涵盖所有浏览器支持的所有事件。很多浏览器出�
 
   设备在三维空间中是靠 x、y 和 z 轴来定位的。当设备静止放在水平表面上时，这三个值都是 0。x轴方向是从左往右，y 轴方向是从下往上，z 轴方向是从后往前（参见下图）。
 
-  ![设备轴向](http://p9myzkds7.bkt.clouddn.com/%E8%AE%BE%E5%A4%87%E6%96%B9%E5%90%91.png)
+  ![设备轴向](https://graphbed.qiniu.songxingguo.com/%E8%AE%BE%E5%A4%87%E6%96%B9%E5%90%91.png)
 
   触发 deviceorientation 事件时，事件对象中包含着每个轴相对于设备静止状态下发生变化的信息。事件对象包含以下 5 个属性。
 
@@ -1972,7 +1972,7 @@ DOM 规范没有涵盖所有浏览器支持的所有事件。很多浏览器出�
   });
   ```
 
-  ![示意图](http://p9myzkds7.bkt.clouddn.com/%E8%AE%BE%E5%A4%87%E6%96%B9%E5%90%91%E6%97%8B%E8%BD%AC.png)
+  ![示意图](https://graphbed.qiniu.songxingguo.com/%E8%AE%BE%E5%A4%87%E6%96%B9%E5%90%91%E6%97%8B%E8%BD%AC.png)
 
   这个例子只能在移动 WebKit 浏览器中运行，因为它使用了专有的 webkitTransform 属性（即 CSS标准属性 transform 的临时版）。元素“arrow”会随着 event.alpha 值的变化而旋转，给人一种指南针的感觉。为了保证旋转平滑，这里的 CSS3 变换使用了舍入之后的值。
 
@@ -2183,9 +2183,9 @@ EventUtil.addHandler(list, "click", function(event){
 数鼠标事件和键盘事件）都适合采用事件委托技术** 。
 
 如果可行的话，也可以 **考虑为 document 对象添加一个事件处理程序** ，**用以处理页面上发生的某种特定类型的事件** 。这样做与采取传统的做法相比具有如下优点。
- 
+
  - document 对象很快就可以访问，而且可以在页面生命周期的任何时点上为它添加事件处理程序（无需等待 DOMContentLoaded 或 load 事件）。换句话说，只要可单击的元素呈现在页面上，就可以立即具备适当的功能。
- 
+
 -  在页面中设置事件处理程序所需的时间更少。只添加一个事件处理程序所需的 DOM引用更少，所花的时间也更少。
 
 -  整个页面占用的内存空间更少，能够提升整体性能。
@@ -2214,7 +2214,7 @@ EventUtil.addHandler(list, "click", function(event){
 </script>
 ```
 这里，有一个按钮被包含在 `<div>` 元素中。为避免双击，单击这个按钮时就将按钮移除并替换成一条消息；这是网站设计中非常流行的一种做法。但问题在于，当按钮被从页面中移除时，它还带着一个事件处理程序呢。在 `<div>` 元素上设置 innerHTML 可以把按钮移走，但事件处理程序仍然与按钮保持着引用关系。有的浏览器（尤其是 IE）在这种情况下不会作出恰当地处理，它们很有可能会将对元素和对事件处理程序的引用都保存在内存中。**如果你知道某个元素即将被移除，那么最好手工移除事件处理程序** ，如下面的例子所示。
-  
+
 ```html
 <div id="myDiv">
   <input type="button" value="Click Me" id="myBtn">
@@ -2234,7 +2234,7 @@ EventUtil.addHandler(list, "click", function(event){
 在此，我们在设置 `<div>` 的 innerHTML 属性之前，先移除了按钮的事件处理程序。这样就确保了内存可以被再次利用，而从 DOM 中移除按钮也做到了干净利索。
 
 注意，**在事件处理程序中删除按钮也能阻止事件冒泡** 。目标元素在文档中是事件冒泡的前提。
-  
+
 > 采用事件委托也有助于解决这个问题。如果事先知道将来有可能使用 innerHTML 替换掉页面中的某一部分，那么就可以不直接把事件处理程序添加到该部分的元素中。而通过把事件处理程序指定给较高层次的元素，同样能够处理该区域中的事件。
 
 导致“空事件处理程序”的另一种情况，就是卸载页面的时候。毫不奇怪，IE8 及更早版本在这种情况下依然是问题最多的浏览器，尽管其他浏览器或多或少也有类似的问题。如果在页面被卸载之前没有清理干净事件处理程序，那它们就会滞留在内存中。每次加载完页面再卸载页面时（可能是在两个页面间来回切换，也可以是单击了“刷新”按钮），内存中滞留的对象数目就会增加，因为事件处理程序占用的内存并没有被释放。

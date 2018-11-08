@@ -20,7 +20,7 @@ date: 2018-08-02 05:08:00
 
 #### 笔记
 
-![插入排序](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.jpg)
+![插入排序](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.jpg)
 
 #### 代码
 
@@ -81,7 +81,7 @@ public class InsertSort {
 
 #### 笔记
 
-![冒泡排序](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.jpg)
+![冒泡排序](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.jpg)
 
 #### 代码
 
@@ -137,7 +137,7 @@ public class BubbleSort {
 
 #### 笔记
 
-![选择排序](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.jpg)
+![选择排序](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.jpg)
 
 #### 代码
 
@@ -208,19 +208,19 @@ public class SelectSort {
 
  - #### 堆
 
-  ![堆-书-1](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E5%A0%86-%E4%B9%A6.jpg)
+  ![堆-书-1](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/%E5%A0%86-%E4%B9%A6.jpg)
 
-  ![堆-书-1](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E5%A0%86-%E4%B9%A6-2.jpg)
+  ![堆-书-1](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/%E5%A0%86-%E4%B9%A6-2.jpg)
 
 - #### 创建堆
 
-  ![创建堆](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E5%88%9B%E5%BB%BA%E5%A0%86.jpg)
+  ![创建堆](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/%E5%88%9B%E5%BB%BA%E5%A0%86.jpg)
 
 - #### 堆排序
 
-  ![创建推和堆排序](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E6%8E%A8%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E5%A0%86%E6%8E%92%E5%BA%8F.jpg)
+  ![创建推和堆排序](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/%E6%8E%A8%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E5%A0%86%E6%8E%92%E5%BA%8F.jpg)
 
-  ![堆排序](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E5%A0%86%E6%8E%92%E5%BA%8F.jpg)
+  ![堆排序](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/%E5%A0%86%E6%8E%92%E5%BA%8F.jpg)
 
 #### 代码
 
@@ -427,7 +427,7 @@ public class SelectSort {
 
 #### 笔记
 
-![归并排序](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F.jpg)
+![归并排序](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F.jpg)
 
 #### 代码
 
@@ -488,19 +488,19 @@ public class MergeSort {
 
 - ##### 基数排序
 
-  ![基数排序](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F.jpg)
+  ![基数排序](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F.jpg)
 
 - ##### 桶排序和基数排序
 
-  ![桶排序和基数排序](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E6%A1%B6%E6%8E%92%E5%BA%8F%E4%B8%8E%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F.jpg)
+  ![桶排序和基数排序](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/%E6%A1%B6%E6%8E%92%E5%BA%8F%E4%B8%8E%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F.jpg)
 
-  ![桶排序和基数排序-2](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E6%A1%B6%E6%8E%92%E5%BA%8F%E4%B8%8E%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F.jpg)
+  ![桶排序和基数排序-2](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/%E6%A1%B6%E6%8E%92%E5%BA%8F%E4%B8%8E%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F.jpg)
 
 ### 快速排序
 
 #### 笔记
 
-![快速排序](http://p9myzkds7.bkt.clouddn.com/sorting-algorithm/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F.jpg)
+![快速排序](https://graphbed.qiniu.songxingguo.com/sorting-algorithm/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F.jpg)
 
 #### 代码
 

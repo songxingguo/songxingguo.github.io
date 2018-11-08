@@ -43,7 +43,7 @@ foo.x = foo = {n: 2};
 console.log(foo.x); // undefined
 ```
 
-![连等赋值](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E8%BF%9E%E7%AD%89%E8%B5%8B%E5%80%BC.png)
+![连等赋值](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E8%BF%9E%E7%AD%89%E8%B5%8B%E5%80%BC.png)
 
 如上图所看到的“连等赋值”分为两步：
 
@@ -55,7 +55,7 @@ console.log(foo.x); // undefined
 然后将 `{n: 2}` 赋值给foo,接着又将 `{n: 2}` 赋值给 `foo.x`的指针。
 
 最后 foo 指针指向的是 `{n: 2}`。
- 
+
 所以 `foo.x` 为 undefined。
 
 参考地址：[深入理解“连等赋值”问题]、[关于js连等赋值的问题]

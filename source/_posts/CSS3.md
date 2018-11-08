@@ -88,7 +88,7 @@ box-shadow: 10px 10px 5px #888888;
 border-image 属性允许你指定一个图片作为边框！ 用于创建上文边框的原始图像：
 在 div 中使用图片创建边框:
 
-![使用图片创建边框](http://p9myzkds7.bkt.clouddn.com/CSS3/border.png)
+![使用图片创建边框](https://graphbed.qiniu.songxingguo.com/CSS3/border.png)
 
 ### 在 div 中使用图片创建边框
 
@@ -103,11 +103,11 @@ border-image:url(border.png) 30 30 round;
 ```
 ### 新边框属性
 
-![新边框属性](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%96%B0%E8%BE%B9%E6%A1%86%E5%B1%9E%E6%80%A7.png)
+![新边框属性](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%96%B0%E8%BE%B9%E6%A1%86%E5%B1%9E%E6%80%A7.png)
 
 ## CSS3 圆角
 
-![CSS3 圆角](http://p9myzkds7.bkt.clouddn.com/CSS3/CSS3%20%E5%9C%86%E8%A7%92.png)
+![CSS3 圆角](https://graphbed.qiniu.songxingguo.com/CSS3/CSS3%20%E5%9C%86%E8%A7%92.png)
 
 ## 浏览器支持
 
@@ -115,7 +115,7 @@ border-image:url(border.png) 30 30 round;
 
 -webkit- 或 -moz- 前面的数字表示支持该前缀的第一个版本。
 
-![浏览器支持](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81.png)
+![浏览器支持](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81.png)
 
 ## CSS3 border-radius 属性
 
@@ -125,15 +125,15 @@ border-image:url(border.png) 30 30 round;
 
 1. 指定背景颜色的元素圆角：
 
-![指定背景颜色的元素圆角](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%8C%87%E5%AE%9A%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2%E7%9A%84%E5%85%83%E7%B4%A0%E5%9C%86%E8%A7%92.png)
+![指定背景颜色的元素圆角](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%8C%87%E5%AE%9A%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2%E7%9A%84%E5%85%83%E7%B4%A0%E5%9C%86%E8%A7%92.png)
 
 2. 指定边框的元素圆角:
 
-![指定边框的元素圆角](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%8C%87%E5%AE%9A%E8%BE%B9%E6%A1%86%E7%9A%84%E5%85%83%E7%B4%A0%E5%9C%86%E8%A7%92.png)
+![指定边框的元素圆角](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%8C%87%E5%AE%9A%E8%BE%B9%E6%A1%86%E7%9A%84%E5%85%83%E7%B4%A0%E5%9C%86%E8%A7%92.png)
 
 3. 指定背景图片的元素圆角:
 
-![指定背景图片的元素圆角](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%8C%87%E5%AE%9A%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E5%85%83%E7%B4%A0%E5%9C%86%E8%A7%92.png)
+![指定背景图片的元素圆角](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%8C%87%E5%AE%9A%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E5%85%83%E7%B4%A0%E5%9C%86%E8%A7%92.png)
 
 代码如下:
 
@@ -179,15 +179,15 @@ border-image:url(border.png) 30 30 round;
 
 1. 四个值 - border-radius: 15px 50px 30px 5px:
 
-![四个值](http://p9myzkds7.bkt.clouddn.com/CSS3/%E5%9B%9B%E4%B8%AA%E5%80%BC.png)
+![四个值](https://graphbed.qiniu.songxingguo.com/CSS3/%E5%9B%9B%E4%B8%AA%E5%80%BC.png)
 
 2. 三个值 - border-radius: 15px 50px 30px:
 
-![三个值](http://p9myzkds7.bkt.clouddn.com/CSS3/%E4%B8%89%E4%B8%AA%E5%80%BC.png)
+![三个值](https://graphbed.qiniu.songxingguo.com/CSS3/%E4%B8%89%E4%B8%AA%E5%80%BC.png)
 
 3. 两个值 - border-radius: 15px 50px:
 
-![两个值](http://p9myzkds7.bkt.clouddn.com/CSS3/%E4%B8%A4%E4%B8%AA%E5%80%BC.png)
+![两个值](https://graphbed.qiniu.songxingguo.com/CSS3/%E4%B8%A4%E4%B8%AA%E5%80%BC.png)
 
 以下为源代码:
 
@@ -245,7 +245,7 @@ border-image:url(border.png) 30 30 round;
 ```
 ### CSS3 圆角属性
 
-![CSS3 圆角属性](http://p9myzkds7.bkt.clouddn.com/CSS3/CSS3%20%E5%9C%86%E8%A7%92%E5%B1%9E%E6%80%A7.png)
+![CSS3 圆角属性](https://graphbed.qiniu.songxingguo.com/CSS3/CSS3%20%E5%9C%86%E8%A7%92%E5%B1%9E%E6%80%A7.png)
 
 ## CSS3 背景
 
@@ -266,7 +266,7 @@ CSS3中包含几个新的背景属性，提供更大背景元素控制。
 
 紧跟在 -webkit-, -ms- 或 -moz- 前的数字为支持该前缀属性的第一个浏览器版本号。
 
-![浏览器支持](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87.png)
+![浏览器支持](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87.png)
 
 ### CSS3 background-image属性
 
@@ -322,7 +322,7 @@ background-Origin属性指定了背景图像的位置区域。
 
 content-box, padding-box,和 border-box区域内可以放置背景图像。
 
-![放置背景图像](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%94%BE%E7%BD%AE%E8%83%8C%E6%99%AF%E5%9B%BE%E5%83%8F.png)
+![放置背景图像](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%94%BE%E7%BD%AE%E8%83%8C%E6%99%AF%E5%9B%BE%E5%83%8F.png)
 
 在 content-box 中定位背景图片：
 
@@ -361,11 +361,11 @@ CSS3中background-clip背景剪裁属性是从指定位置开始绘制。
 ```
 ### 新的背景属性
 
-![新的背景属性](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%96%B0%E7%9A%84%E8%83%8C%E6%99%AF%E5%B1%9E%E6%80%A7.png)
+![新的背景属性](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%96%B0%E7%9A%84%E8%83%8C%E6%99%AF%E5%B1%9E%E6%80%A7.png)
 
 ## CSS3 渐变（Gradients）
 
-![CSS3 渐变（Gradients）](http://p9myzkds7.bkt.clouddn.com/CSS3/CSS3%20%E6%B8%90%E5%8F%98.png)
+![CSS3 渐变（Gradients）](https://graphbed.qiniu.songxingguo.com/CSS3/CSS3%20%E6%B8%90%E5%8F%98.png)
 
 CSS3 渐变（gradients）可以让你在两个或多个指定的颜色之间显示平稳的过渡。
 
@@ -382,7 +382,7 @@ CSS3 定义了两种类型的渐变（gradients）：
 
 后边跟 -webkit-、-moz- 或 -o- 的数字指定了需加上前缀才能支持属性的第一个版本。
 
-![浏览器支持-渐变](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%B8%90%E5%8F%98.png)
+![浏览器支持-渐变](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%B8%90%E5%8F%98.png)
 
 ### CSS3 线性渐变
 
@@ -390,7 +390,7 @@ CSS3 定义了两种类型的渐变（gradients）：
 
 线性渐变的实例：
 
-![线性渐变的实例](http://p9myzkds7.bkt.clouddn.com/CSS3/%E7%BA%BF%E6%80%A7%E6%B8%90%E5%8F%98%E7%9A%84%E5%AE%9E%E4%BE%8B.png)
+![线性渐变的实例](https://graphbed.qiniu.songxingguo.com/CSS3/%E7%BA%BF%E6%80%A7%E6%B8%90%E5%8F%98%E7%9A%84%E5%AE%9E%E4%BE%8B.png)
 
 语法
 
@@ -452,7 +452,7 @@ background: linear-gradient(angle, color-stop1, color-stop2);
 ```
 角度是指水平线和渐变线之间的角度，逆时针方向计算。换句话说，0deg 将创建一个从下到上的渐变，90deg 将创建一个从左到右的渐变。
 
-![从左到右的渐变](http://p9myzkds7.bkt.clouddn.com/CSS3/%E4%BB%8E%E5%B7%A6%E5%88%B0%E5%8F%B3%E7%9A%84%E6%B8%90%E5%8F%98.jpg)
+![从左到右的渐变](https://graphbed.qiniu.songxingguo.com/CSS3/%E4%BB%8E%E5%B7%A6%E5%88%B0%E5%8F%B3%E7%9A%84%E6%B8%90%E5%8F%98.jpg)
 
 但是，请注意很多浏览器(Chrome,Safari,fiefox等)的使用了旧的标准，即 0deg 将创建一个从左到右的渐变，90deg 将创建一个从下到上的渐变。换算公式 90 - x = y 其中 x 为标准角度，y为非标准角度。
 
@@ -540,7 +540,7 @@ repeating-linear-gradient() 函数用于重复线性渐变：
 
 径向渐变的实例：
 
-![径向渐变的实例](http://p9myzkds7.bkt.clouddn.com/CSS3/%E5%BE%84%E5%90%91%E6%B8%90%E5%8F%98%E7%9A%84%E5%AE%9E%E4%BE%8B%EF%BC%9A.jpg)
+![径向渐变的实例](https://graphbed.qiniu.songxingguo.com/CSS3/%E5%BE%84%E5%90%91%E6%B8%90%E5%8F%98%E7%9A%84%E5%AE%9E%E4%BE%8B%EF%BC%9A.jpg)
 
 语法
 
@@ -653,13 +653,13 @@ CSS3中包含几个新的文本特征。
 
 ### 浏览器支持
 
-![浏览器支持](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%96%87%E6%9C%AC%E6%95%88%E6%9E%9C.png)
+![浏览器支持](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%96%87%E6%9C%AC%E6%95%88%E6%9E%9C.png)
 
 ### CSS3 的文本阴影
 
 CSS3 中，text-shadow属性适用于文本阴影。
 
-![文本阴影](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%96%87%E6%9C%AC%E9%98%B4%E5%BD%B1.gif)
+![文本阴影](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%96%87%E6%9C%AC%E9%98%B4%E5%BD%B1.gif)
 
 您指定了水平阴影，垂直阴影，模糊的距离，以及阴影的颜色：
 
@@ -780,11 +780,11 @@ p.test2 {
 ```
 ### 新文本属性
 
-![新文本属性](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%96%B0%E6%96%87%E6%9C%AC%E5%B1%9E%E6%80%A7.png)
+![新文本属性](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%96%B0%E6%96%87%E6%9C%AC%E5%B1%9E%E6%80%A7.png)
 
 ## CSS3 字体
 
-![CSS3 字体](http://p9myzkds7.bkt.clouddn.com/CSS3/CSS3%E5%AD%97%E4%BD%93.gif)
+![CSS3 字体](https://graphbed.qiniu.songxingguo.com/CSS3/CSS3%E5%AD%97%E4%BD%93.gif)
 
 ### CSS3 @font-face 规则
 
@@ -802,7 +802,7 @@ p.test2 {
 
 表格中的数字表示支持该属性的第一个浏览器版本号。
 
-![浏览器支持-字体](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E5%AD%97%E4%BD%93.png)
+![浏览器支持-字体](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E5%AD%97%E4%BD%93.png)
 
 Internet Explorer 9+, Firefox, Chrome, Safari, 和 Opera 支持 WOFF (Web Open Font Format) 字体.
 
@@ -859,7 +859,7 @@ div
 
 下表列出了所有的字体描述和里面的@font-face规则定义：
 
-![@font-face规则定义](http://p9myzkds7.bkt.clouddn.com/CSS3/CSS3%E5%AD%97%E4%BD%93%E5%B1%9E%E6%80%A7.png)
+![@font-face规则定义](https://graphbed.qiniu.songxingguo.com/CSS3/CSS3%E5%AD%97%E4%BD%93%E5%B1%9E%E6%80%A7.png)
 
 ## CSS3 2D 转换
 
@@ -867,7 +867,7 @@ div
 
 CSS3 转换可以可以对元素进行移动、缩放、转动、拉长或拉伸。
 
-![CSS3 转换](http://p9myzkds7.bkt.clouddn.com/CSS3/%E7%A7%BB%E5%8A%A8%E3%80%81%E7%BC%A9%E6%94%BE%E3%80%81%E8%BD%AC%E5%8A%A8%E3%80%81%E6%8B%89%E9%95%BF%E6%88%96%E6%8B%89%E4%BC%B8.gif)
+![CSS3 转换](https://graphbed.qiniu.songxingguo.com/CSS3/%E7%A7%BB%E5%8A%A8%E3%80%81%E7%BC%A9%E6%94%BE%E3%80%81%E8%BD%AC%E5%8A%A8%E3%80%81%E6%8B%89%E9%95%BF%E6%88%96%E6%8B%89%E4%BC%B8.gif)
 
 ### 它是如何工作？
 
@@ -885,7 +885,7 @@ CSS3 转换可以可以对元素进行移动、缩放、转动、拉长或拉伸
 
 紧跟在 -webkit-, -ms- 或 -moz- 前的数字为支持该前缀属性的第一个浏览器版本号。
 
-![浏览器支持-2D转换](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-2D.png)
+![浏览器支持-2D转换](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-2D.png)
 
 Internet Explorer 10, Firefox, 和 Opera支持transform 属性.
 
@@ -915,7 +915,7 @@ transform: rotate(30deg);
 ```
 ## translate() 方法
 
-![translate() 方法](http://p9myzkds7.bkt.clouddn.com/CSS3/translate%28%29%20%E6%96%B9%E6%B3%95.gif)
+![translate() 方法](https://graphbed.qiniu.songxingguo.com/CSS3/translate%28%29%20%E6%96%B9%E6%B3%95.gif)
 
 
 translate()方法，根据左(X轴)和顶部(Y轴)位置给定的参数，从当前元素位置移动。
@@ -933,7 +933,7 @@ translate值（50px，100px）是从左边元素移动50个像素，并从顶部
 
 ### rotate() 方法
 
-![rotate() 方法](http://p9myzkds7.bkt.clouddn.com/CSS3/rotate%28%29%20%E6%96%B9%E6%B3%95.gif)
+![rotate() 方法](https://graphbed.qiniu.songxingguo.com/CSS3/rotate%28%29%20%E6%96%B9%E6%B3%95.gif)
 
 rotate()方法，在一个给定度数顺时针旋转的元素。负值是允许的，这样是元素逆时针旋转。
 
@@ -949,7 +949,7 @@ rotate值（30deg）元素顺时针旋转30度。
 
 ### scale() 方法
 
-![scale() 方法](http://p9myzkds7.bkt.clouddn.com/CSS3/scale%28%29%20%E6%96%B9%E6%B3%95.gif)
+![scale() 方法](https://graphbed.qiniu.songxingguo.com/CSS3/scale%28%29%20%E6%96%B9%E6%B3%95.gif)
 
 scale()方法，该元素增加或减少的大小，取决于宽度（X轴）和高度（Y轴）的参数：
 
@@ -984,7 +984,7 @@ skew(30deg,20deg) 元素在X轴和Y轴上倾斜20度30度。
 
 ### matrix() 方法
 
-![matrix() 方法](http://p9myzkds7.bkt.clouddn.com/CSS3/matrix%28%29%20%E6%96%B9%E6%B3%95.gif)
+![matrix() 方法](https://graphbed.qiniu.songxingguo.com/CSS3/matrix%28%29%20%E6%96%B9%E6%B3%95.gif)
 
 matrix()方法和2D变换方法合并成一个。
 
@@ -1004,11 +1004,11 @@ transform:matrix(0.866,0.5,-0.5,0.866,0,0);
 
 以下列出了所有的转换属性:
 
-![转换属性](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%96%B0%E8%BD%AC%E6%8D%A2%E5%B1%9E%E6%80%A7.png)
+![转换属性](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%96%B0%E8%BD%AC%E6%8D%A2%E5%B1%9E%E6%80%A7.png)
 
 ### 2D 转换方法
 
-![2D 转换方法](http://p9myzkds7.bkt.clouddn.com/CSS3/2D%20%E8%BD%AC%E6%8D%A2%E6%96%B9%E6%B3%95.png)
+![2D 转换方法](https://graphbed.qiniu.songxingguo.com/CSS3/2D%20%E8%BD%AC%E6%8D%A2%E6%96%B9%E6%B3%95.png)
 
 ## CSS3 3D 转换
 
@@ -1031,11 +1031,11 @@ CSS3 允许您使用 3D 转换来对元素进行格式化。
 
 紧跟在 -webkit-, -ms- 或 -moz- 前的数字为支持该前缀属性的第一个浏览器版本号。
 
-![浏览器支持-3D](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-3D.png)
+![浏览器支持-3D](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-3D.png)
 
 ### rotateX() 方法
 
-![rotateX() 方法](http://p9myzkds7.bkt.clouddn.com/CSS3/rotateX%28%29%20%E6%96%B9%E6%B3%95.gif)
+![rotateX() 方法](https://graphbed.qiniu.songxingguo.com/CSS3/rotateX%28%29%20%E6%96%B9%E6%B3%95.gif)
 
 rotateX()方法，围绕其在一个给定度数X轴旋转的元素。
 
@@ -1049,7 +1049,7 @@ div
 
 ### rotateY() 方法
 
-![rotateY() 方法](http://p9myzkds7.bkt.clouddn.com/CSS3/rotateY%28%29%20%E6%96%B9%E6%B3%95.gif)
+![rotateY() 方法](https://graphbed.qiniu.songxingguo.com/CSS3/rotateY%28%29%20%E6%96%B9%E6%B3%95.gif)
 
 rotateY()方法，围绕其在一个给定度数Y轴旋转的元素。
 
@@ -1064,11 +1064,11 @@ div
 
 下表列出了所有的转换属性：
 
-![转换属性](http://p9myzkds7.bkt.clouddn.com/CSS3/%E8%BD%AC%E6%8D%A2%E5%B1%9E%E6%80%A7.png)
+![转换属性](https://graphbed.qiniu.songxingguo.com/CSS3/%E8%BD%AC%E6%8D%A2%E5%B1%9E%E6%80%A7.png)
 
 ### 3D 转换方法
 
-![3D 转换方法](http://p9myzkds7.bkt.clouddn.com/CSS3/3D%E8%BD%AC%E6%8D%A2%E6%96%B9%E6%B3%95.png)
+![3D 转换方法](https://graphbed.qiniu.songxingguo.com/CSS3/3D%E8%BD%AC%E6%8D%A2%E6%96%B9%E6%B3%95.png)
 
 ## CSS3 过渡
 
@@ -1086,7 +1086,7 @@ CSS3中，我们为了添加某种效果可以从一种样式转变到另一个�
 
 紧跟在 -webkit-, -ms- 或 -moz- 前的数字为支持该前缀属性的第一个浏览器版本号。
 
-![浏览器支持-过渡](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E8%BF%87%E6%B8%A1.png)
+![浏览器支持-过渡](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E8%BF%87%E6%B8%A1.png)
 
 ### 它是如何工作？
 
@@ -1137,7 +1137,7 @@ div
 
 下表列出了所有的过渡属性:
 
-![过渡属性](http://p9myzkds7.bkt.clouddn.com/CSS3/%E8%BF%87%E6%B8%A1%E5%B1%9E%E6%80%A7.png)
+![过渡属性](https://graphbed.qiniu.songxingguo.com/CSS3/%E8%BF%87%E6%B8%A1%E5%B1%9E%E6%80%A7.png)
 
 下面的两个例子设置所有过渡属性：
 
@@ -1174,7 +1174,7 @@ div
 
 CSS3，我们可以创建动画，它可以取代许多网页动画图像，Flash动画，和JAVAScripts。
 
-![CSS3 动画](http://p9myzkds7.bkt.clouddn.com/CSS3/CSS3%20%E5%8A%A8%E7%94%BB.png)
+![CSS3 动画](https://graphbed.qiniu.songxingguo.com/CSS3/CSS3%20%E5%8A%A8%E7%94%BB.png)
 
 ### CSS3 @keyframes 规则
 
@@ -1188,7 +1188,7 @@ CSS3，我们可以创建动画，它可以取代许多网页动画图像，Flas
 
 紧跟在 -webkit-, -ms- 或 -moz- 前的数字为支持该前缀属性的第一个浏览器版本号。
 
-![浏览器支持](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E5%8A%A8%E7%94%BB.png)
+![浏览器支持](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E5%8A%A8%E7%94%BB.png)
 
 ```css
 @keyframes myfirst
@@ -1279,7 +1279,7 @@ div
 
 下面的表格列出了 @keyframes 规则和所有动画属性：
 
-![CSS3的动画属性](http://p9myzkds7.bkt.clouddn.com/CSS3/CSS3%E5%8A%A8%E7%94%BB%E5%B1%9E%E6%80%A7.png)
+![CSS3的动画属性](https://graphbed.qiniu.songxingguo.com/CSS3/CSS3%E5%8A%A8%E7%94%BB%E5%B1%9E%E6%80%A7.png)
 
 下面两个例子设置所有动画属性：
 
@@ -1321,7 +1321,7 @@ div
 
 CSS3 可以将文本内容设计成像报纸一样的多列布局，如下实例:
 
-![CSS3 多列](http://p9myzkds7.bkt.clouddn.com/CSS3/CSS3%20%E5%A4%9A%E5%88%97.png)
+![CSS3 多列](https://graphbed.qiniu.songxingguo.com/CSS3/CSS3%20%E5%A4%9A%E5%88%97.png)
 
 ### 浏览器支持
 
@@ -1329,7 +1329,7 @@ CSS3 可以将文本内容设计成像报纸一样的多列布局，如下实例
 
 紧跟在数字后面的 -webkit- 或 -moz- 为指定浏览器的前缀。
 
-![浏览器支持](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E5%A4%9A%E5%88%97.png)
+![浏览器支持](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E5%A4%9A%E5%88%97.png)
 
 ### CSS3 多列属性
 
@@ -1434,7 +1434,7 @@ div {
 
 下表列出了所有 CSS3 的多列属性：
 
-![CSS3 多列属性](http://p9myzkds7.bkt.clouddn.com/CSS3/CSS3%20%E5%A4%9A%E5%88%97%E5%B1%9E%E6%80%A7.png)
+![CSS3 多列属性](https://graphbed.qiniu.songxingguo.com/CSS3/CSS3%20%E5%A4%9A%E5%88%97%E5%B1%9E%E6%80%A7.png)
 
 ## CSS3 用户界面
 
@@ -1454,7 +1454,7 @@ div {
 
 紧跟在 -webkit-, -ms- 或 -moz- 前的数字为支持该前缀属性的第一个浏览器版本号。
 
-![浏览器支持-用户界面](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2.png)
+![浏览器支持-用户界面](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2.png)
 
 ### CSS3 调整尺寸(Resizing)
 
@@ -1512,7 +1512,7 @@ div
 
 ### 新的用户界面特性
 
-![新的用户界面特性](http://p9myzkds7.bkt.clouddn.com/CSS3/%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E7%89%B9%E6%80%A7.png)
+![新的用户界面特性](https://graphbed.qiniu.songxingguo.com/CSS3/%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E7%89%B9%E6%80%A7.png)
 
 ## CSS 图片
 
@@ -1573,7 +1573,7 @@ a:hover {
 
 实例中，你可以通过重置浏览器大小查看效果:
 
-![查看效果](http://p9myzkds7.bkt.clouddn.com/CSS3/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%9B%BE%E7%89%87.png)
+![查看效果](https://graphbed.qiniu.songxingguo.com/CSS3/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%9B%BE%E7%89%87.png)
 
 
 如果你需要自由缩放图片，且图片放大的尺寸不大于其原始的最大值，则可使用以下代码：
@@ -1590,7 +1590,7 @@ img {
 
 如何定位图片文本:
 
-![如何定位图片文本](http://p9myzkds7.bkt.clouddn.com/CSS3/%E5%9B%BE%E7%89%87%E6%96%87%E6%9C%AC.png)
+![如何定位图片文本](https://graphbed.qiniu.songxingguo.com/CSS3/%E5%9B%BE%E7%89%87%E6%96%87%E6%9C%AC.png)
 
 
 ### 卡片式图片
@@ -1689,7 +1689,7 @@ span.onclick = function() {
 
 ### 基本按钮样式
 
-![基本按钮样式](http://p9myzkds7.bkt.clouddn.com/CSS3/%E5%9F%BA%E6%9C%AC%E6%8C%89%E9%92%AE%E6%A0%B7%E5%BC%8F.png)
+![基本按钮样式](https://graphbed.qiniu.songxingguo.com/CSS3/%E5%9F%BA%E6%9C%AC%E6%8C%89%E9%92%AE%E6%A0%B7%E5%BC%8F.png)
 
 
 ```css
@@ -1706,7 +1706,7 @@ span.onclick = function() {
 ```
 ### 按钮颜色
 
-![按钮颜色](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%8C%89%E9%92%AE%E9%A2%9C%E8%89%B2.png)
+![按钮颜色](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%8C%89%E9%92%AE%E9%A2%9C%E8%89%B2.png)
 
 我们可以使用 background-color 属性来设置按钮颜色:
 
@@ -1719,7 +1719,7 @@ span.onclick = function() {
 ```
 ### 按钮大小
 
-![按钮大小](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%8C%89%E9%92%AE%E5%A4%A7%E5%B0%8F.png)
+![按钮大小](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%8C%89%E9%92%AE%E5%A4%A7%E5%B0%8F.png)
 
 我们可以使用 font-size 属性来设置按钮大小:
 
@@ -1732,7 +1732,7 @@ span.onclick = function() {
 ```
 ### 圆角按钮
 
-![圆角按钮](http://p9myzkds7.bkt.clouddn.com/CSS3/%E5%9C%86%E8%A7%92%E6%8C%89%E9%92%AE.png)
+![圆角按钮](https://graphbed.qiniu.songxingguo.com/CSS3/%E5%9C%86%E8%A7%92%E6%8C%89%E9%92%AE.png)
 
 我们可以使用 border-radius 属性来设置圆角按钮:
 
@@ -1746,7 +1746,7 @@ span.onclick = function() {
 
 ### 按钮边框颜色
 
-![按钮边框颜色](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%8C%89%E9%92%AE%E8%BE%B9%E6%A1%86%E9%A2%9C%E8%89%B2.png)
+![按钮边框颜色](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%8C%89%E9%92%AE%E8%BE%B9%E6%A1%86%E9%A2%9C%E8%89%B2.png)
 
 我们可以使用 border 属性设置按钮边框颜色:
 
@@ -1761,7 +1761,7 @@ span.onclick = function() {
 
 ### 鼠标悬停按钮
 
-![鼠标悬停按钮](http://p9myzkds7.bkt.clouddn.com/CSS3/%E9%BC%A0%E6%A0%87%E6%82%AC%E5%81%9C%E6%8C%89%E9%92%AE.png)
+![鼠标悬停按钮](https://graphbed.qiniu.songxingguo.com/CSS3/%E9%BC%A0%E6%A0%87%E6%82%AC%E5%81%9C%E6%8C%89%E9%92%AE.png)
 
 我们可以使用 :hover 选择器来修改鼠标悬停在按钮上的样式。
 
@@ -1781,7 +1781,7 @@ span.onclick = function() {
 ```
 ### 按钮阴影
 
-![按钮阴影](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%8C%89%E9%92%AE%E9%98%B4%E5%BD%B1.png)
+![按钮阴影](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%8C%89%E9%92%AE%E9%98%B4%E5%BD%B1.png)
 
 我们可以使用 box-shadow 属性来为按钮添加阴影:
 
@@ -1796,7 +1796,7 @@ span.onclick = function() {
 ```
 ### 禁用按钮
 
-![禁用按钮](http://p9myzkds7.bkt.clouddn.com/CSS3/%E7%A6%81%E7%94%A8%E6%8C%89%E9%92%AE.png)
+![禁用按钮](https://graphbed.qiniu.songxingguo.com/CSS3/%E7%A6%81%E7%94%A8%E6%8C%89%E9%92%AE.png)
 
 我们可以使用 opacity 属性为按钮添加透明度 (看起来类似 "disabled" 属性效果)。
 
@@ -1810,7 +1810,7 @@ span.onclick = function() {
 ```
 ### 按钮宽度
 
-![按钮宽度](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%8C%89%E9%92%AE%E5%AE%BD%E5%BA%A6.png)
+![按钮宽度](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%8C%89%E9%92%AE%E5%AE%BD%E5%BA%A6.png)
 
 默认情况下，按钮的大小有按钮上的文本内容决定( 根据文本内容匹配长度 )。 我们可以使用 width 属性来设置按钮的宽度:
 
@@ -1823,7 +1823,7 @@ span.onclick = function() {
 ```
 ### 按钮组
 
-![按钮组](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%8C%89%E9%92%AE%E7%BB%84.png)
+![按钮组](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%8C%89%E9%92%AE%E7%BB%84.png)
 
 移除外边距并添加 float:left 来设置按钮组:
 
@@ -1834,7 +1834,7 @@ span.onclick = function() {
 ```
 ### 带边框按钮组
 
-![带边框按钮组](http://p9myzkds7.bkt.clouddn.com/CSS3/%E5%B8%A6%E8%BE%B9%E6%A1%86%E7%9A%84%E6%8C%89%E9%92%AE%E7%BB%84.png)
+![带边框按钮组](https://graphbed.qiniu.songxingguo.com/CSS3/%E5%B8%A6%E8%BE%B9%E6%A1%86%E7%9A%84%E6%8C%89%E9%92%AE%E7%BB%84.png)
 
 我们可以使用 border 属性来设置带边框的按钮组:
 
@@ -1848,19 +1848,19 @@ span.onclick = function() {
 
 鼠标移动到按钮上后添加箭头标记:
 
-![添加箭头标记](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B7%BB%E5%8A%A0%E7%AE%AD%E5%A4%B4%E6%A0%87%E8%AE%B0.png)
+![添加箭头标记](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%B7%BB%E5%8A%A0%E7%AE%AD%E5%A4%B4%E6%A0%87%E8%AE%B0.png)
 
 [添加箭头标记](http://www.runoob.com/try/try.php?filename=trycss_buttons_animate1)
 
 点击时添加 "波纹" 效果:
 
-![添加 "波纹" 效果](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B7%BB%E5%8A%A0%E6%B3%A2%E7%BA%B9%E6%95%88%E6%9E%9C.png)
+![添加 "波纹" 效果](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%B7%BB%E5%8A%A0%E6%B3%A2%E7%BA%B9%E6%95%88%E6%9E%9C.png)
 
 [添加 "波纹" 效果](http://www.runoob.com/try/try.php?filename=trycss_buttons_animate2)
 
 点击时添加 "压下" 效果:
 
-![添加 "压下" 效果](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B7%BB%E5%8A%A0%E5%8E%8B%E4%B8%8B%E6%95%88%E6%9E%9C.png)
+![添加 "压下" 效果](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%B7%BB%E5%8A%A0%E5%8E%8B%E4%B8%8B%E6%95%88%E6%9E%9C.png)
 
 [添加 "压下" 效果](http://www.runoob.com/try/try.php?filename=trycss_buttons_animate3)
 
@@ -1892,7 +1892,7 @@ ul.pagination li a {
 ```
 ### 点击及鼠标悬停分页样式
 
-![点击及鼠标悬停分页样式](http://p9myzkds7.bkt.clouddn.com/CSS3/%E7%82%B9%E5%87%BB%E5%8F%8A%E9%BC%A0%E6%A0%87%E6%82%AC%E5%81%9C.png)
+![点击及鼠标悬停分页样式](https://graphbed.qiniu.songxingguo.com/CSS3/%E7%82%B9%E5%87%BB%E5%8F%8A%E9%BC%A0%E6%A0%87%E6%82%AC%E5%81%9C.png)
 
 如果点击当前页，可以使用 .active 来设置当期页样式，鼠标悬停可以使用 :hover 选择器来修改样式：
 
@@ -1914,7 +1914,7 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
 ```
 ### 圆角样式
 
-![圆角样式](http://p9myzkds7.bkt.clouddn.com/CSS3/%E5%9C%86%E8%A7%92%E6%A0%B7%E5%BC%8F.png)
+![圆角样式](https://graphbed.qiniu.songxingguo.com/CSS3/%E5%9C%86%E8%A7%92%E6%A0%B7%E5%BC%8F.png)
 
 可以使用 border-radius 属性为选中的页码来添加圆角样式:
 
@@ -1929,7 +1929,7 @@ ul.pagination li a.active {
 ```
 ### 鼠标悬停过渡效果
 
-![鼠标悬停过渡效果](http://p9myzkds7.bkt.clouddn.com/CSS3/%E9%BC%A0%E6%A0%87%E6%82%AC%E5%81%9C%E8%BF%87%E6%B8%A1%E6%95%88%E6%9E%9C.png)
+![鼠标悬停过渡效果](https://graphbed.qiniu.songxingguo.com/CSS3/%E9%BC%A0%E6%A0%87%E6%82%AC%E5%81%9C%E8%BF%87%E6%B8%A1%E6%95%88%E6%9E%9C.png)
 
 我们可以通过添加 transition 属性来为鼠标移动到页码上时添加过渡效果:
 
@@ -1940,7 +1940,7 @@ ul.pagination li a {
 ```
 ### 带边框分页
 
-![带边框分页](http://p9myzkds7.bkt.clouddn.com/CSS3/%E5%B8%A6%E8%BE%B9%E6%A1%86%E5%88%86%E9%A1%B5.png)
+![带边框分页](https://graphbed.qiniu.songxingguo.com/CSS3/%E5%B8%A6%E8%BE%B9%E6%A1%86%E5%88%86%E9%A1%B5.png)
 
 我们可以使用 border 属性来添加带边框分页:
 
@@ -1953,7 +1953,7 @@ ul.pagination li a {
 
 提示: 在第一个分页链接和最后一个分页链接添加圆角：
 
-![圆角边框](http://p9myzkds7.bkt.clouddn.com/CSS3/%E5%9C%86%E8%A7%92%E8%BE%B9%E6%A1%86.png)
+![圆角边框](https://graphbed.qiniu.songxingguo.com/CSS3/%E5%9C%86%E8%A7%92%E8%BE%B9%E6%A1%86.png)
 
 ```css
 .pagination li:first-child a {
@@ -1970,7 +1970,7 @@ ul.pagination li a {
 
 提示: 你可以使用 margin 属性来为每个页码直接添加空格：
 
-![分页间隔](http://p9myzkds7.bkt.clouddn.com/CSS3/%E5%88%86%E9%A1%B5%E9%97%B4%E9%9A%94.png)
+![分页间隔](https://graphbed.qiniu.songxingguo.com/CSS3/%E5%88%86%E9%A1%B5%E9%97%B4%E9%9A%94.png)
 
 ```css
 ul.pagination li a {
@@ -1979,7 +1979,7 @@ ul.pagination li a {
 ```
 ### 分页字体大小
 
-![分页字体大小](http://p9myzkds7.bkt.clouddn.com/CSS3/%E5%88%86%E9%A1%B5%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F.png)
+![分页字体大小](https://graphbed.qiniu.songxingguo.com/CSS3/%E5%88%86%E9%A1%B5%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F.png)
 
 我们可以使用 font-size 属性来设置分页的字体大小:
 
@@ -1990,7 +1990,7 @@ ul.pagination li a {
 ```
 ### 居中分页
 
-![居中分页](http://p9myzkds7.bkt.clouddn.com/CSS3/%E5%B1%85%E4%B8%AD%E5%88%86%E9%A1%B5.png)
+![居中分页](https://graphbed.qiniu.songxingguo.com/CSS3/%E5%B1%85%E4%B8%AD%E5%88%86%E9%A1%B5.png)
 
 如果要让分页居中，可以在容器元素上 (如 <div>) 添加 text-align:center 样式：
 
@@ -2003,17 +2003,17 @@ div.center {
 
 上一页，下一页按钮:
 
-![上一页，下一页按钮](http://p9myzkds7.bkt.clouddn.com/%E4%B8%8A%E4%B8%80%E9%A1%B5%EF%BC%8C%E4%B8%8B%E4%B8%80%E9%A1%B5%E6%8C%89%E9%92%AE.png)
+![上一页，下一页按钮](https://graphbed.qiniu.songxingguo.com/%E4%B8%8A%E4%B8%80%E9%A1%B5%EF%BC%8C%E4%B8%8B%E4%B8%80%E9%A1%B5%E6%8C%89%E9%92%AE.png)
 
 分页导航
 
-![分页导航](http://p9myzkds7.bkt.clouddn.com/CSS3/%E5%88%86%E9%A1%B5%E5%AF%BC%E8%88%AA.png)
+![分页导航](https://graphbed.qiniu.songxingguo.com/CSS3/%E5%88%86%E9%A1%B5%E5%AF%BC%E8%88%AA.png)
 
 [尝试一下](http://www.runoob.com/try/try.php?filename=trycss_ex_pagination_nav)
 
 ### 面包屑导航
 
-![面包屑导航](http://p9myzkds7.bkt.clouddn.com/CSS3/%E9%9D%A2%E5%8C%85%E5%B1%91%E5%AF%BC%E8%88%AA.png)
+![面包屑导航](https://graphbed.qiniu.songxingguo.com/CSS3/%E9%9D%A2%E5%8C%85%E5%B1%91%E5%AF%BC%E8%88%AA.png)
 
 另外一种导航为面包屑导航，实例如下：
 
@@ -2042,7 +2042,7 @@ CSS3 box-sizing 属性可以设置 width 和 height 属性中包含了 padding(�
 
 紧跟在数字后面的 -webkit- 或 -moz- 为指定浏览器的前缀。
 
-![浏览器支持](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%A1%86%E5%A4%A7%E5%B0%8F.png)
+![浏览器支持](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E6%A1%86%E5%A4%A7%E5%B0%8F.png)
 
 ### 不使用 CSS3 box-sizing 属性
 
@@ -2054,7 +2054,7 @@ height(高) + padding(内边距) + border(边框) = 元素实际高度
 
 这就意味着我们在设置元素的 width/height 时，元素真实展示的高度与宽度会更大(因为元素的边框与内边距也会计算在 width/height 中)。
 
-![不使用 CSS3 box-sizing 属性](http://p9myzkds7.bkt.clouddn.com/CSS3/%E4%B8%8D%E4%BD%BF%E7%94%A8%20CSS3%20box-sizing%20%E5%B1%9E%E6%80%A7.png)
+![不使用 CSS3 box-sizing 属性](https://graphbed.qiniu.songxingguo.com/CSS3/%E4%B8%8D%E4%BD%BF%E7%94%A8%20CSS3%20box-sizing%20%E5%B1%9E%E6%80%A7.png)
 
 以上两个 `<div>` 元素虽然宽度与高度设置一样，但真实展示的大小不一致，因为 div2 指定了内边距:
 
@@ -2082,7 +2082,7 @@ CSS3 box-sizing 属性在一个元素的 width 和 height 中包含 padding(内�
 
 如果在元素上设置了 box-sizing: border-box; 则 padding(内边距) 和 border(边框) 也包含在 width 和 height 中:
 
-![使用 CSS3 box-sizing 属性](http://p9myzkds7.bkt.clouddn.com/CSS3/%E4%BD%BF%E7%94%A8%20CSS3%20box-sizing%20%E5%B1%9E%E6%80%A7.png)
+![使用 CSS3 box-sizing 属性](https://graphbed.qiniu.songxingguo.com/CSS3/%E4%BD%BF%E7%94%A8%20CSS3%20box-sizing%20%E5%B1%9E%E6%80%A7.png)
 
 以下是两个 `<div>` 元素添加 box-sizing: border-box; 属性的简单实例。
 
@@ -2127,7 +2127,7 @@ CSS3 弹性盒（ Flexible Box 或 flexbox），是一种当页面需要适应�
 
 紧跟在数字后面的 -webkit- 或 -moz- 为指定浏览器的前缀。
 
-![浏览器支持](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90.png)
+![浏览器支持](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90.png)
 
 ### CSS3 弹性盒子内容
 
@@ -2287,7 +2287,7 @@ justify-content: flex-start | flex-end | center | space-between | space-around
 
 效果图展示：
 
-![效果图展示](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%95%88%E6%9E%9C%E5%9B%BE%E5%B1%95%E7%A4%BA.png)
+![效果图展示](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%95%88%E6%9E%9C%E5%9B%BE%E5%B1%95%E7%A4%BA.png)
 
 以下实例演示了 flex-end 的使用:
 
@@ -2671,7 +2671,7 @@ flex: auto | initial | none | inherit |  [ flex-grow ] || [ flex-shrink ] || [ f
 
 下表列出了在弹性盒子中常用到的属性:
 
-![弹性盒子中常用到的属性](http://p9myzkds7.bkt.clouddn.com/CSS3/CSS3%20%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90%E5%B1%9E%E6%80%A7.png)
+![弹性盒子中常用到的属性](https://graphbed.qiniu.songxingguo.com/CSS3/CSS3%20%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90%E5%B1%9E%E6%80%A7.png)
 
 ### CSS3 多媒体查询
 
@@ -2700,7 +2700,7 @@ CSS3 的多媒体查询继承了 CSS2 多媒体类型的所有思想： 取代�
 
 表格中的数字表示支持该属性的第一个浏览器的版本号。
 
-![浏览器支持](http://p9myzkds7.bkt.clouddn.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E5%A4%9A%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2.png)
+![浏览器支持](https://graphbed.qiniu.songxingguo.com/CSS3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81-%E5%A4%9A%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2.png)
 
 ### 多媒体查询语法
 
@@ -2728,7 +2728,7 @@ CSS3 的多媒体查询继承了 CSS2 多媒体类型的所有思想： 取代�
 ```
 ### CSS3 多媒体类型
 
-![CSS3 多媒体类型](http://p9myzkds7.bkt.clouddn.com/CSS3/CSS3%20%E5%A4%9A%E5%AA%92%E4%BD%93%E7%B1%BB%E5%9E%8B.png)
+![CSS3 多媒体类型](https://graphbed.qiniu.songxingguo.com/CSS3/CSS3%20%E5%A4%9A%E5%AA%92%E4%BD%93%E7%B1%BB%E5%9E%8B.png)
 
 ### 多媒体查询简单实例
 

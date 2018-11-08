@@ -16,56 +16,56 @@ date: 2018-07-15 07:48:00
 
 ---
 ### 什么是跨域
-  
+
   - 域名地址的组成
-  
+
   ![域名组成](http://p9myzkds7.bkt.clouddn.com/cross-domain/%E8%B7%A8%E5%9F%9F.jpg)
-  
+
  `图片来自慕课网`
- 
+
   - 跨域错误代码
-  
+
   ![跨域错误代码](http://p9myzkds7.bkt.clouddn.com/cross-domain/%E8%B7%A8%E5%9F%9F%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81.jpg)
-  
+
   `图片来自慕课网`
- 
+
   - 跨域的定义
-  
+
    跨域是JavaScript出于安全方面的考虑，不允许跨域调用其他页面对象。是JavaScript同源策略的限制。
-   
+
   - 常见跨域场景
-  
+
    ![跨域类型](http://p9myzkds7.bkt.clouddn.com/cross-domain/%E8%B7%A8%E5%9F%9F%E7%9A%84%E7%B1%BB%E5%9E%8B.jpg)
-   
+
    `图片来自慕课网`
-   
+
 ---
 ### 处理跨域的方法
 
  #### **方法一：代理**
- 
+
  服务器后台做代理，a.com 调用 b.com的服务时不直接调用，而是通过a.com的服务器后台去调用b.com的服务。
- 
+
  ![服务器代理解决跨域](http://p9myzkds7.bkt.clouddn.com/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BB%A3%E7%90%86%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9Fjpg.jpg)
  `图片来自慕课网`
- 
- ---
+
+---
  #### **方法二：JSONP**
- 
+
  用JSONP定义参数名称，只支持GET请求。
- 
+
  ![JSONP跨域处理](http://p9myzkds7.bkt.clouddn.com/cross-domain/JSONP%E8%B7%A8%E5%9F%9F%E5%A4%84%E7%90%86.jpg)
  `图片来自慕课网`
- 
- ---
+
+---
  #### **方法三： XHR2**
- 
+
   跨域资源共享（CORS）
-  
+
 普通跨域请求：只服务端设置Access-Control-Allow-Origin即可，前端无须设置。
 带cookie请求：前后端都需要设置字段，另外需注意：所带cookie为跨域请求接口所在域的cookie，而非当前页。
 目前，所有浏览器都支持该功能(IE8+：IE8/9需要使用XDomainRequest对象来支持CORS）)，CORS也已经成为主流的跨域解决方案。
- 
+
  ![XHR2跨域解决](http://p9myzkds7.bkt.clouddn.com/cross-domain/XHR2%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3.jpg) 
   `图片来自慕课网`
 

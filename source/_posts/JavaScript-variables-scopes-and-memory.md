@@ -52,7 +52,7 @@ var num2 = num1;
 ```
 在此， num1 中保存的值是 5。当使用 num1 的值来初始化 num2 时， num2 中也保存了值 5。但 num2 中的 5 与 num1 中的 5 是完全独立的，该值只是 num1 中 5 的一个副本。此后，这两个变量可以参与任何操作而不会相互影响。下图形象地展示了复制基本类型值的过程。
 
-![复制基本类型值的过程](http://p9myzkds7.bkt.clouddn.com/JavaScript-variables-scopes-and-memory/%E5%A4%8D%E5%88%B6%E5%8F%98%E9%87%8F%E5%80%BC.png)
+![复制基本类型值的过程](https://graphbed.qiniu.songxingguo.com/JavaScript-variables-scopes-and-memory/%E5%A4%8D%E5%88%B6%E5%8F%98%E9%87%8F%E5%80%BC.png)
 
 当从一个变量向另一个变量复制引用类型的值时，同样也会将存储在变量对象中的值复制一份放到为新变量分配的空间中。不同的是，这个值的副本实际上是一个指针，而这个指针指向存储在堆中的一个对象。复制操作结束后，两个变量实际上将引用同一个对象。因此，改变其中一个变量，就会影响另一个变量，如下面的例子所示：
 
@@ -64,7 +64,7 @@ alert(obj2.name); //"Nicholas"
 ```
 首先，变量 obj1 保存了一个对象的新实例。然后，这个值被复制到了 obj2 中；换句话说， obj1 和 obj2 都指向同一个对象。这样，当为 obj1 添加 name 属性后，可以通过 obj2 来访问这个属性，因为这两个变量引用的都是同一个对象。图 4-2 展示了保存在变量对象中的变量和保存在堆中的对象之间的这种关系。
 
-![堆中的对象之间的关系](http://p9myzkds7.bkt.clouddn.com/JavaScript-variables-scopes-and-memory/%E5%A0%86%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%85%B3%E7%B3%BB.png)
+![堆中的对象之间的关系](https://graphbed.qiniu.songxingguo.com/JavaScript-variables-scopes-and-memory/%E5%A0%86%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%85%B3%E7%B3%BB.png)
 
 ### 传递参数
 ECMAScript 中所有函数的参数都是按值传递的。也就是说，把函数外部的值复制给函数内部的参数，就和把值从一个变量复制到另一个变量一样。基本类型值的传递如同基本类型变量的复制一样，而引用类型值的传递，则如同引用类型变量的复制一样。有不少开发人员在这一点上可能会感到困惑，因为访问变量有按值和按引用两种方式，而参数只能按值传递。
@@ -193,7 +193,7 @@ changeColor();
 
 无论全局环境还是 changeColor() 的局部环境都无权访问 tempColor 。然而，在 swapColors() 内部则可以访问其他两个环境中的所有变量，因为那两个环境是它的父执行环境。下图形象地展示了前面这个例子的作用域链。
 
-![作用域链](http://p9myzkds7.bkt.clouddn.com/JavaScript-variables-scopes-and-memory/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE.png)
+![作用域链](https://graphbed.qiniu.songxingguo.com/JavaScript-variables-scopes-and-memory/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE.png)
 
 上图中的矩形表示特定的执行环境。其中，内部环境可以通过作用域链访问所有的外部环境，但外部环境不能访问内部环境中的任何变量和函数。这些环境之间的联系是线性、有次序的。每个环境都可以向上搜索作用域链，以查询变量和函数名；但任何环境都不能通过向下搜索作用域链而进入另一个执行环境。对于这个例子中的 swapColors() 而言，其作用域链中包含 3 个对象： swapColors() 的变量对象、 changeColor() 的变量对象和全局变量对象。 swapColors() 的局部环境开始时会先在自己的变量对象中搜索变量和函数名，如果搜索不到则再搜索上一级作用域链。 changeColor() 的作用域链中只包含两个对象：它自己的变量对象和全局变量对象。这也就是说，它不能访问 swapColors() 的
 环境。
@@ -288,7 +288,7 @@ alert(getColor()); //"blue"
 
 在没有找到的情况下，搜索继续到下一个变量对象（全局环境的变量对象），然后在那里找到了名为 color 的标识符。因为搜索到了定义这个变量的变量对象，搜索过程宣告结束。下图形象地展示了上述搜索过程。
 
-![搜索过程](http://p9myzkds7.bkt.clouddn.com/JavaScript-variables-scopes-and-memory/%E6%90%9C%E7%B4%A2%E8%BF%87%E7%A8%8B.png)
+![搜索过程](https://graphbed.qiniu.songxingguo.com/JavaScript-variables-scopes-and-memory/%E6%90%9C%E7%B4%A2%E8%BF%87%E7%A8%8B.png)
 
 在这个搜索过程中，如果存在一个局部的变量的定义，则搜索会自动停止，不再进入另一个变量对象。换句话说，如果局部环境中存在着同名标识符，就不会使用位于父环境中的标识符，如下面的例子所示：
 

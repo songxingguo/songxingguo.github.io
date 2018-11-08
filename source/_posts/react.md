@@ -57,7 +57,7 @@ npm start
 ```
 这个命令会启动一个开发模式的服务器，同时也会让你的浏览器自动打开了一个网页，指向本机地址http://localhost：3000/ ，显示界面如下图所示。
 
-![由create-react-app创造的React应用界面](http://p9myzkds7.bkt.clouddn.com/React/%E7%AC%AC%E4%B8%80%E4%B8%AAReact%E5%BA%94%E7%94%A8.jpg)
+![由create-react-app创造的React应用界面](https://graphbed.qiniu.songxingguo.com/React/%E7%AC%AC%E4%B8%80%E4%B8%AAReact%E5%BA%94%E7%94%A8.jpg)
 
 [第一个React应用](https://songxingguo.github.io/React/)
 
@@ -118,7 +118,7 @@ export default ClickCounter;
 ```
 效果：
 
-![ClickCounter](http://p9myzkds7.bkt.clouddn.com/React/ClickCounter.jpg)
+![ClickCounter](https://graphbed.qiniu.songxingguo.com/React/ClickCounter.jpg)
 
 import是ES6（EcmaScript6）语法中导入文件模块的方式，ES6语法是一个大集合，大部分功能都被最新浏览器支持。不过这个import方法却不在广泛支持之列，这没有关系，ES6语法的JavaScript代码会被webpack和babel转译成所有浏览器都支持的ES5语法，而这一切都无需开发人员做配置，create-react-app已经替我们完成了这些工作。
 
@@ -133,7 +133,7 @@ Component作为所有组件的基类，提供了很多组件共有的功能。
 所谓JSX，是 **JavaScript的语法扩展**（eXtension），让我们 **在JavaScript中可以编写像HTML一样的代码** 。在ClickCounter.js的render函数中，就出现了类似这样的HTML代码，在index.js中，ReactDOM.render的第一个参数`<App/>`也是一段JSX代码。
 
 JSX中的这几段代码看起来和HTML几乎一模一样，都可以使用`<div>` `<button>`之类的元素，所以只要熟悉HTML，学习JSX完全不成问题，但是，我们一定要明白两者的不同之处。
-  
+
 首先，在JSX中使用的“元素”不局限于HTML中的元素，可以是任何一个React组件，在App.js中可以看到，我们创建的ClickCounter组件被直接应用在JSX中，使用方法和其他元素一样，这一点是传统的HTML做不到的。
 
 React判断一个元素是HTML元素还是React组件的原则就是看第一个字母是否大写，如果在JSX中我们不用ClickCounter而是用clickCounter，那就得不到我们想要的结果。
@@ -309,13 +309,13 @@ React对比Virtual DOM寻找差异的过程比较复杂，在第5章，我们会
 
 毫无疑问，jQuery的方式直观易懂，对于初学者十分适用，但是当项目逐渐变得庞大时，用jQuery写出的代码往往互相纠缠，形成类似图1-4的状况，难以维护。
 
-![jQuery方式造成的纠缠代码结构](http://p9myzkds7.bkt.clouddn.com/React/jQuery%E6%96%B9%E5%BC%8F%E9%80%A0%E6%88%90%E7%9A%84%E7%BA%A0%E7%BC%A0%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84.jpg)
+![jQuery方式造成的纠缠代码结构](https://graphbed.qiniu.songxingguo.com/React/jQuery%E6%96%B9%E5%BC%8F%E9%80%A0%E6%88%90%E7%9A%84%E7%BA%A0%E7%BC%A0%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84.jpg)
 
 使用React的方式，就可以避免构建这样复杂的程序结构，无论何种事件，引发的都是React组件的重新渲染，至于如何只修改必要的DOM部分，则完全交给React去操作，开发者并不需要关心，程序的流程简化为图1-5的样式。
 
 React利用函数式编程的思维来解决用户界面渲染的问题，最大的优势是开发者的效率会大大提高，开发出来的代码可维护性和可阅读性也大大增强。
 
-![React的程序流程](http://p9myzkds7.bkt.clouddn.com/React/React%E7%9A%84%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B.jpg)
+![React的程序流程](https://graphbed.qiniu.songxingguo.com/React/React%E7%9A%84%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B.jpg)
 
 React等于强制所有组件都按照这种由数据驱动渲染的模式来工作，无论应用的规模多大，都能让程序处于可控范围内。
 
@@ -469,7 +469,7 @@ Counter.propTypes = {
 ```
 我们在Chrome浏览器开发工具的Console界面，可以看到一个红色的警告提示，如下图所示。
 
-![错误prop类型的错误提示](http://p9myzkds7.bkt.clouddn.com/React/%E9%94%99%E8%AF%AFprop%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%94%99%E8%AF%AF%E6%8F%90%E7%A4%BA.jpg)
+![错误prop类型的错误提示](https://graphbed.qiniu.songxingguo.com/React/%E9%94%99%E8%AF%AFprop%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%94%99%E8%AF%AF%E6%8F%90%E7%A4%BA.jpg)
 
 这段出错的含义是，caption属性预期是字符串类型，得到的却是一个数字类型。
 我们尝试删掉这个Counter实例的caption属性，代码如下：
@@ -479,7 +479,7 @@ Counter.propTypes = {
 ```
 这时可以看到Console选项卡中依然有红色警告信息，如下图所示。
 
-![缺失必须存在prop的错误提示](http://p9myzkds7.bkt.clouddn.com/React/%E7%BC%BA%E5%A4%B1%E5%BF%85%E9%A1%BB%E5%AD%98%E5%9C%A8prop%E7%9A%84%E9%94%99%E8%AF%AF%E6%8F%90%E7%A4%BA.jpg)
+![缺失必须存在prop的错误提示](https://graphbed.qiniu.songxingguo.com/React/%E7%BC%BA%E5%A4%B1%E5%BF%85%E9%A1%BB%E5%AD%98%E5%9C%A8prop%E7%9A%84%E9%94%99%E8%AF%AF%E6%8F%90%E7%A4%BA.jpg)
 
 提示的含义是，caption是Counter必需的属性，但是却没有赋值。
 
@@ -890,7 +890,7 @@ React组件的卸载过程只涉及一个函数componentWillUnmount，当React�
 
 展示这个功能的代码存在于https://github.com/mocheng/react-and-redux/代码库的chapter-02/controlpanel_with_summary目录下，在界面上，可以看到效果如下图所示：
 
-![包含总数的ControlPanel应用效果图](http://p9myzkds7.bkt.clouddn.com/React/%E5%8C%85%E5%90%AB%E6%80%BB%E6%95%B0%E7%9A%84ControlPanel%E5%BA%94%E7%94%A8%E6%95%88%E6%9E%9C%E5%9B%BE.jpg)
+![包含总数的ControlPanel应用效果图](https://graphbed.qiniu.songxingguo.com/React/%E5%8C%85%E5%90%AB%E6%80%BB%E6%95%B0%E7%9A%84ControlPanel%E5%BA%94%E7%94%A8%E6%95%88%E6%9E%9C%E5%9B%BE.jpg)
 
 点击任何一个Counter的“+”按钮或者“-”按钮，可以看见除了所属Counter的计数变化，底部的总计数也会随之变化，这是因为Counter能够把自己状态改变的信息传递给外层的组件。
 
@@ -985,9 +985,9 @@ render() {
 
 另一种思路，就是干脆不要让任何一个React组件扮演“领头羊”的角色，把数据源放在React组件之外形成全局状态，如图2-6所示，让各个组件保持和全局状态的一致，这样更容易控制。
 
-![组件状态不一致的困惑](http://p9myzkds7.bkt.clouddn.com/React/%E7%BB%84%E4%BB%B6%E7%8A%B6%E6%80%81%E4%B8%8D%E4%B8%80%E8%87%B4%E7%9A%84%E5%9B%B0%E6%83%91.jpg)
+![组件状态不一致的困惑](https://graphbed.qiniu.songxingguo.com/React/%E7%BB%84%E4%BB%B6%E7%8A%B6%E6%80%81%E4%B8%8D%E4%B8%80%E8%87%B4%E7%9A%84%E5%9B%B0%E6%83%91.jpg)
 
-![React中提取出来](http://p9myzkds7.bkt.clouddn.com/React/React%E4%B8%AD%E6%8F%90%E5%8F%96%E5%87%BA%E6%9D%A5.png)
+![React中提取出来](https://graphbed.qiniu.songxingguo.com/React/React%E4%B8%AD%E6%8F%90%E5%8F%96%E5%87%BA%E6%9D%A5.png)
 
 图2-6中所示，全局状态就是唯一可靠的数据源，在第3章中我们会介绍，这就是Flux和Redux中Store的概念。
 
@@ -1005,5 +1005,5 @@ React利用prop来定义组件的对外接口，用state来代表内部的状态
 
 在本章中我们利用CountrolPanel和Counter两个组件演示了组件之间的通信方式，包括子组件向父组件传递信息的方式，同时也看出了使用React的state来存储状态的一个缺点，那就是数据的冗余和重复，这就是我们接下来要解决的问题。
 
-![跨级传递prop的困局](http://p9myzkds7.bkt.clouddn.com/React/%E8%B7%A8%E7%BA%A7%E4%BC%A0%E9%80%92prop%E7%9A%84%E5%9B%B0%E5%B1%80.jpg)
+![跨级传递prop的困局](https://graphbed.qiniu.songxingguo.com/React/%E8%B7%A8%E7%BA%A7%E4%BC%A0%E9%80%92prop%E7%9A%84%E5%9B%B0%E5%B1%80.jpg)
 

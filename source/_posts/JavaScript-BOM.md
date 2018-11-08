@@ -88,7 +88,7 @@ var newValue = window.oldValue;
 
 我们知道，**top 对象始终指向最高（最外）层的框架** ，也就是 **浏览器窗口** 。**使用它可以确保在一个框架中正确地访问另一个框架** 。因为对于在一个框架中编写的任何代码来说，**其中的 window 对象指向的都是那个框架的特定实例** ，而非最高层的框架。下图展示了在最高层窗口中，通过代码来访问前面例子中每个框架的不同方式。
 
-![访问每个框架](http://p9myzkds7.bkt.clouddn.com/JavaScript-BOM/%E8%AE%BF%E9%97%AE%E6%AF%8F%E4%B8%AA%E6%A1%86%E6%9E%B6.png)
+![访问每个框架](https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/%E8%AE%BF%E9%97%AE%E6%AF%8F%E4%B8%AA%E6%A1%86%E6%9E%B6.png)
 
 与 top 相对的另一个 window 对象是 **parent** 。顾名思义， **parent （父）对象** 始终 **指向当前框架的直接上层框架** 。在某些情况下， parent 有可能等于 top ；但在 **没有框架** 的情况下， **parent 一定等于 top**（此时它们都等于 window ）。再看下面的例子。
 
@@ -121,7 +121,7 @@ var newValue = window.oldValue;
 ```
 浏览器在加载完第一个框架集以后，会继续将第二个框架集加载到 rightFrame 中。如果代码位于   redFrame （或 blueFrame ）中，那么 parent 对象指向的就是 rightFrame 。可是，如果代码位于   topFrame 中，则 parent 指向的是 top ，因为 **topFrame 的直接上层框架就是最外层框架** 。图 8-2展示了在将前面例子加载到浏览器之后，不同 window 对象的值。
 
-![不同 window 对象的值](http://p9myzkds7.bkt.clouddn.com/JavaScript-BOM/%E4%B8%8D%E5%90%8Cwindow%E5%AF%B9%E8%B1%A1%E5%80%BCpng.png)
+![不同 window 对象的值](https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/%E4%B8%8D%E5%90%8Cwindow%E5%AF%B9%E8%B1%A1%E5%80%BCpng.png)
 
 注意，**除非最高层窗口是通过 window.open() 打开的**（本章后面将会讨论），**否则其 window 对象的 name 属性不会包含任何值** 。与框架有关的最后一个对象是 **self** ，它始终**指向 window** ；实际上， **self 和 window 对象可以互换使用** 。引入 self 对象的目的 **只是为了与 top 和 parent 对象对应起来** ，因此 **它不格外包含其他值** 。所有 **这些对象都是 window 对象的属性** ，可以通过 window.parent 、 window.top 等形式来访问。同时，这也意味着 **可以将不同层次的 window 对象连缀起来**，例如   window.parent.parent.frames[0] 。
 
@@ -220,7 +220,7 @@ window.open("http://www.wrox.com/", "topFrame");
 
   如果给 **window.open()** 传递的 **第二个参数并不是一个已经存在的窗口或框架** ，那么该方法就会 **根据在第三个参数位置上传入的字符串创建一个新窗口或新标签页** 。如果 **没有传入第三个参数** ，那么就会 **打开一个带有全部默认设置（工具栏、地址栏和状态栏等）的新浏览器窗口**（或者打开一个新标签页——根据浏览器设置）。在 **不打开新窗口** 的情况下，**会忽略第三个参数** 。**第三个参数** 是 **一个逗号分隔的设置字符串** ，表示 **在新窗口中都显示哪些特性** 。下表列出了可以出现在这个字符串中的设置选项。
 
-  ![设置选项](http://p9myzkds7.bkt.clouddn.com/JavaScript-BOM/%E8%AE%BE%E7%BD%AE%E9%80%89%E9%A1%B9.png)
+  ![设置选项](https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/%E8%AE%BE%E7%BD%AE%E9%80%89%E9%A1%B9.png)
 
   表中所列的部分或全部设置选项，都可以 **通过逗号分隔的名值对列表来指定** 。其中，**名值对以等号表示**（注意，整个特性字符串中不允许出现空格），如下面的例子所示。
 
@@ -400,7 +400,7 @@ setTimeout(incrementNumber, 500);
 
 第二种对话框是调用 **confirm()** 方法生成的。从向用户显示消息的方面来看，这种“确认”对话框很像是一个 **“警告”对话框** 。但二者的主要区别在于“确认”对话框 **除了显示 OK 按钮外** ，还会 **显示一个 Cancel（“取消”）按钮** ，**两个按钮可以让用户决定是否执行给定的操作** 。例如， confirm("Are you sure?") 会显示如图 8-4 所示的确认对话框。
 
-![对话框](http://p9myzkds7.bkt.clouddn.com/JavaScript-BOM/%E5%AF%B9%E8%AF%9D%E6%A1%86.png)
+![对话框](https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/%E5%AF%B9%E8%AF%9D%E6%A1%86.png)
 
 为了确定用户是单击了 OK 还是 Cancel，可以检查 confirm() 方法返回的布尔值** ： **true**  表示 **单击了 OK** ， **false** 表示 **单击了 Cancel** 或 **单击了右上角的 X 按钮** 。确认对话框的典型用法如下。
 
@@ -415,7 +415,7 @@ if (confirm("Are you sure?")) {
 
 最后一种对话框是通过调用 **prompt()** 方法生成的，这是一个**“提示”框** ，**用于提示用户输入一些文本** 。提示框中 **除了显示 OK 和 Cancel 按钮之外** ，还会 **显示一个文本输入域** ，**以供用户在其中输入内容** 。 prompt() 方法接受两个参数：**要显示给用户的文本提示** 和 **文本输入域的默认值**（可以是一个空字符串）。调用 prompt("What's your name?","Michael") 会得到如图 8-5 所示的对话框。
 
-![prompt对话框](http://p9myzkds7.bkt.clouddn.com/JavaScript-BOM/Prompt%E5%AF%B9%E8%AF%9D%E6%A1%86.png)
+![prompt对话框](https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/Prompt%E5%AF%B9%E8%AF%9D%E6%A1%86.png)
 
 如果 **用户单击了 OK 按钮** ，则** prompt() 返回文本输入域的值** ；如果 **用户单击了 Cancel** 或 **没有单击 OK** 而是  **通过其他方式关闭了对话框** ，则 **该方法返回 null ** 。下面是一个例子。
 
@@ -429,7 +429,7 @@ if (result !== null) {
 
 除了上述三种对话框之外，**Google Chrome浏览器** 还  **引入了一种新特性** 。如果 **当前脚本在执行过程中会打开两个或多个对话框** ，那么 **从第二个对话框开始** ，**每个对话框中都会显示一个复选框** ，**以便用户阻止后续的对话框显示** ，**除非用户刷新页面**（见图 8-6）。
 
-![复选框](http://p9myzkds7.bkt.clouddn.com/JavaScript-BOM/%E5%A4%8D%E9%80%89%E6%A1%86.png)
+![复选框](https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/%E5%A4%8D%E9%80%89%E6%A1%86.png)
 
 如果 **用户勾选了其中的复选框** ，并且 **关闭了对话框** ，那么 **除非用户刷新页面** ，所有 **后续的系统对话框（包括警告框、确认框和提示框）都会被屏蔽** 。Chrome 没有就对话框是否显示向开发人员提供任何信息。由于 **浏览器会在空闲时重置对话框计数器** ，因此如果**两次独立的用户操作分别打开两个警告框** ，那么 **这两个警告框中都不会显示复选框** 。而如果是 **同一次用户操作会生成两个警告框** ，那么 **第二个警告框中就会显示复选框**。这个新特性出现以后，**IE9** 和 **Firefox 4** 也实现了它。还有两个可以 **通过 JavaScript 打开的对话框** ，即“**查找**”和“**打印**”。**这两个对话框都是异步显示的** ，**能够将控制权立即交还给脚本** 。这两个对话框 **与用户通过浏览器菜单的“查找”和“打印”命令打开的对话框相同** 。而在 JavaScript 中则可以像下面这样 通过 **window 对象** 的 **find()** 和 **print()** 方法打开它们。
 
@@ -446,7 +446,7 @@ window.find();
 
 **location** 是最有用的 BOM对象之一，它提供了 **与当前窗口中加载的文档有关的信息** ，还提供了 **一些导航功能**。事实上， location 对象是很特别的一个对象，因为它既是 **window 对象的属性** ，也是 **document 对象的属性** ；换句话说， **window.location 和  document.location 引用的是同一个对象**。**location 对象** 的用处不只表现在 **它保存着当前文档的信息** ，还表现在 **它将 URL 解析为独立的片段** ，让开发人员 **可以通过不同的属性访问这些片段** 。下表列出了 **location 对象的所有属性**（注：省略了每个属性前面的 location 前缀）。
 
-![location 对象的所有属性](http://p9myzkds7.bkt.clouddn.com/JavaScript-BOM/location%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png)
+![location 对象的所有属性](https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/location%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png)
 
 ### 查询字符串参数
 
@@ -571,9 +571,9 @@ location.reload(true); //重新加载（从服务器重新加载）
 
 最早由 Netscape Navigator 2.0 引入的 **navigator 对象**，现在已经成为识别客户端浏览器的事实标准。虽然其他浏览器也通过其他方式提供了相同或相似的信息（例如，IE 中的**window.clientInformation** 和 Opera 中的 **window.opera** ），但 **navigator 对象**却 **是所有支持 JavaScript 的浏览器所共有的** 。与其他 BOM 对象的情况一样，每个浏览器中的 navigator 对象也都有一套自己的属性。下表列出了存在于所有浏览器中的属性和方法，以及支持它们的浏览器版本。
 
-![navigator 对象属性](http://p9myzkds7.bkt.clouddn.com/JavaScript-BOM/navigater%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png)
+![navigator 对象属性](https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/navigater%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png)
 
-![navigator 对象属性（续）](http://p9myzkds7.bkt.clouddn.com/JavaScript-BOM/navagiator%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%EF%BC%88%E7%BB%AD%EF%BC%89.png)
+![navigator 对象属性（续）](https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/navagiator%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%EF%BC%88%E7%BB%AD%EF%BC%89.png)
 
 表中的这些 **navigator 对象的属性** 通常 **用于检测显示网页的浏览器类型**（第 9 章会详细讨论）。
 
@@ -691,9 +691,9 @@ navigator.registerProtocolHandler("mailto",
 
 JavaScript 中有几个对象在编程中用处不大，而 screen 对象就是其中之一。 **screen 对象** 基本上只 **用来表明客户端的能力** ，其中 **包括浏览器窗口外部的显示器的信息** ，如像素宽度和高度等。**每个浏览器中的 screen 对象都包含着各不相同的属性** ，下表列出了所有属性及支持相应属性的浏览器。
 
-![screen 对象属性](http://p9myzkds7.bkt.clouddn.com/JavaScript-BOM/screen%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png)
+![screen 对象属性](https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/screen%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png)
 
-![screen 对象属性（续）](http://p9myzkds7.bkt.clouddn.com/JavaScript-BOM/Screen%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%EF%BC%88%E7%BB%AD%EF%BC%89.png)
+![screen 对象属性（续）](https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/Screen%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%EF%BC%88%E7%BB%AD%EF%BC%89.png)
 
 这些信息经常集中出现在 **测定客户端能力的站点跟踪工具中** ，但通常不会用于影响功能。不过，有时候也可能会用到其中的信息来 **调整浏览器窗口大小** ，**使其占据屏幕的可用空间** ，例如：
 

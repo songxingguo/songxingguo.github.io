@@ -685,7 +685,7 @@ http://freegeoip.net/json/?callback=handleResponse
 这个 URL 是在请求一个 JSONP 地理定位服务。通过查询字符串来指定 JSONP 服务的回调参数是很常见的，就像上面的 URL 所示，这里指定的回调函数的名字叫 handleResponse() 。
 
 **JSONP** 是 **通过动态 `<script>` 元素（要了解详细信息，请参考第 13 章）来使用的** ，使用时 **可以为 src 属性指定一个跨域 URL** 。这里的 **`<script>` 元素与 `<img>` 元素类似** ，都有能力不受限制地从其他域加载资源。因为 JSONP 是有效的 JavaScript 代码，所以在请求完成后，即在 JSONP 响应加载到页面中以后，就会立即执行。来看一个例子。
-  
+
 ```js
 function handleResponse(response){
   alert("You’re at IP address " + response.ip + ", which is in " + response.city + ", " + response.region_name);
@@ -709,11 +709,11 @@ JSONP 之所以在开发人员中极为流行，主要原因是它非常简单�
 
 有两种实现 Comet 的方式：**长轮询** 和 **流** 。**长轮询** 是 **传统轮询（也称为短轮询）的一个翻版** ，即 **浏览器定时向服务器发送请求，看有没有更新的数据** 。下图展示的是 **短轮询** 的时间线。
 
-![短轮询](http://p9myzkds7.bkt.clouddn.com/JavaScript-Ajax-and-Comet/%E7%9F%AD%E8%BD%AE%E8%AF%A2.png)
+![短轮询](https://graphbed.qiniu.songxingguo.com/JavaScript-Ajax-and-Comet/%E7%9F%AD%E8%BD%AE%E8%AF%A2.png)
 
 长轮询把短轮询颠倒了一下。**页面发起一个到服务器的请求** ，然后 **服务器一直保持连接打开，直到有数据可发送** 。发送完数据之后，浏览器关闭连接，随即又发起一个到服务器的新请求。这一过程在页面打开期间一直持续不断。下图展示了 **长轮询** 的时间线。
 
-![长轮询](http://p9myzkds7.bkt.clouddn.com/JavaScript-Ajax-and-Comet/%E9%95%BF%E8%BD%AE%E8%AF%A2.png)
+![长轮询](https://graphbed.qiniu.songxingguo.com/JavaScript-Ajax-and-Comet/%E9%95%BF%E8%BD%AE%E8%AF%A2.png)
 
 无论是短轮询还是长轮询，**浏览器都要在接收数据之前**，**先发起对服务器的连接** 。两者最大的区别在于服务器如何发送数据。**短轮询** 是 **服务器立即发送响应，无论数据是否有效** ，而 **长轮询** 是 **等待发送响应** 。轮询的优势是所有浏览器都支持，因为使用 XHR 对象和 setTimeout() 就能实现。而你要做的就是决定什么时候发送请求。
 

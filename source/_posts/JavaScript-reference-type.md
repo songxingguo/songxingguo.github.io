@@ -698,13 +698,13 @@ toString() — Thu Feb 01 2007 00:00:00 GMT-0800 (Pacific Standard Time)
 Opera 10
 toLocaleString() — 2/1/2007 12:00:00 AM
 toString() — Thu, 01 Feb 2007 00:00:00 GMT-0800
-````
+​````
 显然，这两个方法在不同的浏览器中返回的日期和时间格式可谓大相径庭。事实上，
 toLocaleString() 和 toString() 的这一差别仅在调试代码时比较有用，而在显示日期和时间时没有什么价值。
 
 至于 Date 类型的 **valueOf() 方法** ，则根本不返回字符串，而是返回 **日期的毫秒** 表示。因此，**可以方便使用比较操作符（小于或大于）来比较日期值** 。请看下面的例子。
 
-```js
+​```js
 var date1 = new Date(2007, 0, 1); //"January 1, 2007"
 var date2 = new Date(2007, 1, 1); //"February 1, 2007"
 
@@ -731,9 +731,9 @@ Date 类型还有一些专门用于将日期格式化为字符串的方法，这
 
 到目前为止，剩下还未介绍的 Date 类型的方法（如下表所示），都是直接取得和设置日期值中特定部分的方法了。需要注意的是，UTC 日期指的是在没有时区偏差的情况下（将日期转换为 GMT 时间）的日期值。
 
-![日期值](http://p9myzkds7.bkt.clouddn.com/JavaScript-reference-type/%E6%97%A5%E6%9C%9F%E5%80%BC.png)
+![日期值](https://graphbed.qiniu.songxingguo.com/JavaScript-reference-type/%E6%97%A5%E6%9C%9F%E5%80%BC.png)
 
-![日期值（续）](http://p9myzkds7.bkt.clouddn.com/JavaScript-reference-type/%E6%97%A5%E6%9C%9F%E5%80%BC%EF%BC%88%E7%BB%AD%EF%BC%89.png)
+![日期值（续）](https://graphbed.qiniu.songxingguo.com/JavaScript-reference-type/%E6%97%A5%E6%9C%9F%E5%80%BC%EF%BC%88%E7%BB%AD%EF%BC%89.png)
 
 ##  RegExp 类型
 
@@ -813,7 +813,7 @@ var pattern2 = new RegExp("[bc]at", "i");
 ```
 在此， pattern1 和 pattern2 是两个完全等价的正则表达式。要注意的是，传递给 RegExp 构造函数的两个参数都是字符串（不能把正则表达式字面量传递给 RegExp 构造函数）。由于 RegExp 构造函数的模式参数是字符串，所以在某些情况下要对字符进行双重转义。所有元字符都必须双重转义，那些已经转义过的字符也是如此，例如 \n （字符\在字符串中通常被转义为\\，而在正则表达式字符串中就会变成\\\\）。下表给出了一些模式，左边是这些模式的字面量形式，右边是使用 RegExp 构造函数定义相同模式时使用的字符串。
 
-![相同模式时使用的字符串](http://p9myzkds7.bkt.clouddn.com/JavaScript-reference-type/%E4%BD%BF%E7%94%A8%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2.png)
+![相同模式时使用的字符串](https://graphbed.qiniu.songxingguo.com/JavaScript-reference-type/%E4%BD%BF%E7%94%A8%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2.png)
 
 使用正则表达式字面量和使用 RegExp 构造函数创建的正则表达式不一样。在 ECMAScript 3 中，**正则表达式字面量始终会共享同一个 RegExp 实例** ，而使用 **构造函数创建的每一个新 RegExp 实例都是一个新实例** 。来看下面的例子。
 
@@ -943,7 +943,7 @@ alert(pattern.toLocaleString()); // /\[bc\]at/gi
 
 RegExp 构造函数包含一些属性（这些属性在其他语言中被看成是静态属性）。这些属性适用于作用域中的所有正则表达式，并且基于所执行的最近一次正则表达式操作而变化。关于这些属性的另一个独特之处，就是可以通过两种方式访问它们。换句话说，这些属性分别有一个长属性名和一个短属性名（Opera 是例外，它不支持短属性名）。下表列出了 RegExp 构造函数的属性。
 
-![RegExp 构造函数的属性](http://p9myzkds7.bkt.clouddn.com/JavaScript-reference-type/RegExp%20%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E5%B1%9E%E6%80%A7.png)
+![RegExp 构造函数的属性](https://graphbed.qiniu.songxingguo.com/JavaScript-reference-type/RegExp%20%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E5%B1%9E%E6%80%A7.png)
 
 使用这些属性可以从 exec() 或 test() 执行的操作中提取出更具体的信息。请看下面的例子。
 
@@ -1722,7 +1722,7 @@ String 类型提供了很多方法，用于辅助完成对 ECMAScript 中字符�
 
   如果第二个参数是字符串，那么还可以使用一些特殊的字符序列，**将正则表达式操作得到的值插入到结果字符串中** 。下表列出了 ECMAScript 提供的这些特殊的字符序列。
 
-  ![特殊的字符序列](http://p9myzkds7.bkt.clouddn.com/JavaScript-reference-type/%E7%89%B9%E6%AE%8A%E7%9A%84%E5%AD%97%E7%AC%A6%E5%BA%8F%E5%88%97.png)
+  ![特殊的字符序列](https://graphbed.qiniu.songxingguo.com/JavaScript-reference-type/%E7%89%B9%E6%AE%8A%E7%9A%84%E5%AD%97%E7%AC%A6%E5%BA%8F%E5%88%97.png)
 
   通过这些特殊的字符序列，可以使用最近一次匹配结果中的内容，如下面的例子所示。
 
@@ -1828,7 +1828,7 @@ String 类型提供了很多方法，用于辅助完成对 ECMAScript 中字符�
 
   早期的 Web 浏览器提供商觉察到了使用 JavaScript 动态格式化 HTML 的需求。于是，这些提供商就扩展了标准，实现了一些专门用于简化常见 HTML 格式化任务的方法。下表列出了这些 HTML 方法。不过，需要请读者注意的是，应该尽量不使用这些方法，因为它们创建的标记通常无法表达语义。
 
-  ![HTML 方法](http://p9myzkds7.bkt.clouddn.com/JavaScript-reference-type/HTML%20%E6%96%B9%E6%B3%95.png)
+  ![HTML 方法](https://graphbed.qiniu.songxingguo.com/JavaScript-reference-type/HTML%20%E6%96%B9%E6%B3%95.png)
 
 ## 单体内置对象
 
@@ -1877,9 +1877,9 @@ Global （全局）对象可以说是 ECMAScript 中最特别的一个对象了�
 - #### eval() 方法
 
   > 整个 ECMAScript 语言中 **最强大的一个方法** ： **eval()** 。
- 
+
   eval() 方法就像一个完整的 **ECMAScript 解析器** ，它只接受一个参数，即要 **执行的 ECMAScript（或 JavaScript）字符串** 。看下面的例子：
- 
+
    ```js
    eval("alert('hi')");
    ```
@@ -1917,12 +1917,12 @@ Global （全局）对象可以说是 ECMAScript 中最特别的一个对象了�
   evval = "hi"; //causes error
   ```
  > **能够解释代码字符串的能力非常强大，但也非常危险** 。因此在使用 eval() 时必须极为谨慎，特别是在用它执行用户输入数据的情况下。否则，可能会有恶意用户输入威胁你的站点或应用程序的安全的代码（即所谓的 **代码注入** ）。
- 
+
 - #### Global 对象属性
 
   下表列出了 Global 对象的所有属性。
   
-  ![Global 对象的所有属性](http://p9myzkds7.bkt.clouddn.com/JavaScript-reference-typeGlobal%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%80%E6%9C%89%E5%B1%9E%E6%80%A7.png)
+  ![Global 对象的所有属性](https://graphbed.qiniu.songxingguo.com/JavaScript-reference-typeGlobal%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%80%E6%9C%89%E5%B1%9E%E6%80%A7.png)
   
   <!-- | 属性           | 说明                    |
   | -------------- | ----------------------- |
@@ -1946,7 +1946,7 @@ Global （全局）对象可以说是 ECMAScript 中最特别的一个对象了�
   | URIError       | 构造函数 URIError       | -->
   
   ECMAScript 5 明确禁止给 undefined 、NaN 和 Infinity 赋值，这样做即使在非严格模式下也会导致错误。
- 
+
 - #### window 对象
 
   ECMAaScript 虽然没有指出如何直接访问 Global 对象，但 Web 浏览器都是 **将这个全局对象作为 window 对象的一部分加以实现的** 。因此，在全局作用域中声明的所有变量和函数，就都 **成为了 window 对象的属性** 。来看一个例子。
@@ -1976,12 +1976,12 @@ Global （全局）对象可以说是 ECMAScript 中最特别的一个对象了�
 ### Math 对象
 
   ECMAScript 还为保存数学公式和信息提供了一个公共位置，即 **Math 对象** 。与我们在 JavaScript 直接编写的计算功能相比， **Math 对象提供的计算功能执行起来要快得多** 。Math 对象中还 **提供了辅助完成这些计算的属性和方法** 。
-  
+
   - #### Math 对象的属性
     
     Math 对象包含的 **属性大多数是** 数学计算中可能会用到的一些 **特殊值** 。下表列出了这些属性。
     
-    ![Math 对象的属性](http://p9myzkds7.bkt.clouddn.com/JavaScript-reference-typeMath%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7%E5%80%BC.png)
+    ![Math 对象的属性](https://graphbed.qiniu.songxingguo.com/JavaScript-reference-typeMath%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7%E5%80%BC.png)
     
     <!-- | 属性         | 说明                                |
 | ------------ | ----------------------------------- |
@@ -2043,9 +2043,9 @@ Global （全局）对象可以说是 ECMAScript 中最特别的一个对象了�
   对于介于 25 和 26 之间的数值， Math.ceil() 始终返回 26，因为它执行的是向上舍入。Math.round() 方法只在大于等于 25.5 时返回 26；否则返回 25。最后， Math.floor() 对介于25 和 26 之间的数值都返回 25。
   
 - #### random() 方法
- 
+
   Math.random() 方法 **返回大于等于 0 小于 1 的一个随机数** 。对于某些站点来说，这个方法非常实用，因为可以利用它来随机显示名人名言和新闻事件。套用下面的公式，就 **可以利用 Math.random() 从某个整数范围内随机选择一个值** 。
- 
+
    ```
    值 = Math.floor(Math.random() * 可能值的总数 + 第一个可能的值)
    ```
@@ -2082,7 +2082,7 @@ Global （全局）对象可以说是 ECMAScript 中最特别的一个对象了�
 - #### 其他方法
 
   下面我们给出一个表格，其中列出了这些没有介绍到的 Math 对象的方法。
-  ![ Math 对象的方法](http://p9myzkds7.bkt.clouddn.com/JavaScript-reference-type/Math%20%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95.png)
+  ![ Math 对象的方法](https://graphbed.qiniu.songxingguo.com/JavaScript-reference-type/Math%20%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95.png)
   
   <!-- | 方法                 | 说明                    |
 | -------------------- | ----------------------- |
@@ -2102,9 +2102,9 @@ Global （全局）对象可以说是 ECMAScript 中最特别的一个对象了�
   虽然 ECMA-262 规定了这些方法，但不同实现可能会对方法采用不同的算法。毕竟，计算某个值的正弦、余弦和正切的方式多种多样。也正是因为如此，**这些方法在不同的实现中可能会有不同的精度** 。
   
 ## 小结
-  
+
   **对象** 在 JavaScript 中被称为 **引用类型的值** ，而且 **有一些内置的引用类型可以用来创建特定的对象** ，现简要总结如下：
-  
+
   - 引用类型与传统面向对象程序设计中的类 **相似** ，但 **实现不同** ；
   
   - Object 是一个基础类型，其他 **所有类型都从 Object 继承了基本的行为** ；
@@ -2114,15 +2114,15 @@ Global （全局）对象可以说是 ECMAScript 中最特别的一个对象了�
   - Date 类型提供了有关 **日期** 和 **时间** 信息，包括 **当前日期和时间** 以及 **相关的计算功能** ；
   
   - RegExp 类型是 **ECMAScript 支持正则表达式的一个接口** ，提供了 **最基本的和一些高级的正则表达式功能** ；
-  
+
 函数实际上是 Function 类型的实例，因此 **函数也是对象** ；而这一点正是 JavaScript 最有特色的地方。由于函数是对象，所以 **函数也拥有方法** ，**可以用来增强其行为** 。
- 
+
 因为有了 **基本包装类型** ，所以 JavaScript 中 **基本类型值可以被当作对象来访问** 。三种基本包装类型分别是： **Boolean** 、 **Number** 和 **String** 。以下是它们共同的特征：
- 
+
  - 每个包装类型都映射到 **同名的基本类型** ；
- 
+
  - 在 **读取模式** 下访问 **基本类型值** 时，就 **会创建对应的基本包装类型的一个对象** ，从而方便了数据操作；
- 
+
  - 操作基本数据类型值的语句一经执行完毕，就会 **立即销毁新创建的包装对象** 。
- 
+
 在 **所有代码执行之前** ，作用域中已经存在两个内置对象：**Global** 和 **Math** 。在大多数 ECMAScript 实现中都不能直接访问 Global 对象；不过，Web 浏览器实现了承担该角色的 **Window 对象** 。**全局变量和函数** 都是 **Global 对象属性** 。Math 对象提供了很多属性和方法，用来完成复杂的数学计算任务。

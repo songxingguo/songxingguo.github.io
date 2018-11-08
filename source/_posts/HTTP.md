@@ -38,7 +38,7 @@ HTTP三点注意事项：
 
 以下图表展示了HTTP协议通信流程：
 
-![HTTP协议通信流程](http://p9myzkds7.bkt.clouddn.com/HTTP/cgiarch.gif)
+![HTTP协议通信流程](https://graphbed.qiniu.songxingguo.com/HTTP/cgiarch.gif)
 
 ## HTTP 消息结构
 
@@ -56,13 +56,13 @@ HTTP使用统一资源标识符（Uniform Resource Identifiers, URI）来传输�
 
 客户端发送一个HTTP请求到服务器的请求消息包括以下格式：请求行（request line）、请求头部（header）、空行和请求数据四个部分组成，下图给出了请求报文的一般格式。
 
-![请求报文的一般格式](http://p9myzkds7.bkt.clouddn.com/HTTP/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E7%9A%84%E4%B8%80%E8%88%AC%E6%A0%BC%E5%BC%8F.png)
+![请求报文的一般格式](https://graphbed.qiniu.songxingguo.com/HTTP/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E7%9A%84%E4%B8%80%E8%88%AC%E6%A0%BC%E5%BC%8F.png)
 
 ### 服务器响应消息
 
 HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文。
 
-![HTTP响应也由四个部分组成](http://p9myzkds7.bkt.clouddn.com/HTTP/HTTP%E5%93%8D%E5%BA%94%E4%B9%9F%E7%94%B1%E5%9B%9B%E4%B8%AA%E9%83%A8%E5%88%86%E7%BB%84%E6%88%90.jpg)
+![HTTP响应也由四个部分组成](https://graphbed.qiniu.songxingguo.com/HTTP/HTTP%E5%93%8D%E5%BA%94%E4%B9%9F%E7%94%B1%E5%9B%9B%E4%B8%AA%E9%83%A8%E5%88%86%E7%BB%84%E6%88%90.jpg)
 
 下面实例是一点典型的使用GET来传递数据的实例：
 
@@ -100,7 +100,7 @@ HTTP1.0定义了三种请求方法： GET, POST 和 HEAD方法。
 
 HTTP1.1新增了五种请求方法：OPTIONS, PUT, DELETE, TRACE 和 CONNECT 方法。
 
-![HTTP请求方法](http://p9myzkds7.bkt.clouddn.com/HTTP%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95.png)
+![HTTP请求方法](https://graphbed.qiniu.songxingguo.com/HTTP%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95.png)
 
 ## HTTP 响应头信息
 
@@ -108,7 +108,7 @@ HTTP请求头提供了关于请求，响应或者其他的发送实体的信息�
 
 在本章节中我们将具体来介绍HTTP响应头信息。
 
-![HTTP 响应头信息](http://p9myzkds7.bkt.clouddn.com/HTTP/HTTP%20%E5%93%8D%E5%BA%94%E5%A4%B4%E4%BF%A1%E6%81%AF.png)
+![HTTP 响应头信息](https://graphbed.qiniu.songxingguo.com/HTTP/HTTP%20%E5%93%8D%E5%BA%94%E5%A4%B4%E4%BF%A1%E6%81%AF.png)
 
 ## HTTP状态码
 
@@ -129,7 +129,7 @@ HTTP状态码由三个十进制数字组成，第一个十进制数字定义了�
 
 HTTP状态码分类:
 
-![HTTP状态码分类](http://p9myzkds7.bkt.clouddn.com/HTTP/HTTP%E7%8A%B6%E6%80%81%E7%A0%81%E5%88%86%E7%B1%BB.png)
+![HTTP状态码分类](https://graphbed.qiniu.songxingguo.com/HTTP/HTTP%E7%8A%B6%E6%80%81%E7%A0%81%E5%88%86%E7%B1%BB.png)
 
 HTTP状态码列表:
 

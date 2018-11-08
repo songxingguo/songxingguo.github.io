@@ -13,7 +13,7 @@ date: 2018-03-25 17:19:00
 
 JSX 到页面的渲染如下图：
 
-![渲染图](http://p9myzkds7.bkt.clouddn.com/pasted-5.png)
+![渲染图](https://graphbed.qiniu.songxingguo.com/pasted-5.png)
 
 有些同学可能会问，为什么不直接从 JSX 直接渲染构造 DOM 结构，而是要经过中间这么一层呢？
 
@@ -95,7 +95,7 @@ render () {
 
 ### JSX与html中不不同之处
 直接使用 class 在 React.js 的元素上添加类名如 <div class=“xxx”> 这种方式是不合法的。因为 class 是 JavaScript 的关键字，所以 React.js 中定义了一种新的方式：className 来帮助我们给元素添加类名。
-  
+
 还有一个特例就是 for 属性，例如 <label for='male'>Male</label>，因为 for 也是 JavaScript 的关键字，所以在 JSX 用 htmlFor 替代，即 <label htmlFor='male'>Male</label>。而其他的 HTML 属性例如 style 、data-* 等就可以像普通的 HTML 属性那样直接添加上去。
 
 ### 自定义组件和组件树
@@ -103,7 +103,7 @@ render () {
 
 组件可以和组件组合在一起，组件内部可以使用别的组件。就像普通的 HTML 标签一样使用就可以。这样的组合嵌套，最后构成一个所谓的组件树，就正如上面的例子那样，Index 用了 Header、Main、Footer，Header 又使用了 Title 。这样用这样的树状结构表示它们之间的关系：
 
-![树形结构](http://p9myzkds7.bkt.clouddn.com/pasted-1.png)
+![树形结构](https://graphbed.qiniu.songxingguo.com/pasted-1.png)
 
 这里的结构还是比较简单，因为我们的页面结构并不复杂。当页面结构复杂起来，有许多不同的组件嵌套组合的话，组件树会相当的复杂和庞大。理解组件树的概念对后面理解数据是如何在组件树内自上往下流动过程很重要。
 
@@ -458,7 +458,7 @@ defaultProps 作为点赞按钮组件的类属性，里面是对 props 中各个
 props 一旦传入进来就不能改变。我们尝试改变 this.props.likedText，
 然后你会看到控制台报错了：
 
-![控制台报错](http://p9myzkds7.bkt.clouddn.com/pasted-6.png)
+![控制台报错](https://graphbed.qiniu.songxingguo.com/pasted-6.png)
 
 你不能改变一个组件被渲染的时候传进来的 props。React.js 希望一个组件在输入确定的 props 的时候，能够输出确定的 UI 显示形态。如果 props 渲染过程中可以被修改，那么就会导致这个组件显示形态和行为变得不可预测，这样会可能会给组件使用者带来困惑。
 

@@ -316,7 +316,7 @@ HTTP 规范（包括 1.0 和 1.1版）明确规定，浏览器应该发送 **简
 
   这个明显复杂了很多的用户代理字符串中蕴含很多新想法。下表列出了字符串中各项的用意。
 
-  ![用户代理字符串](http://p9myzkds7.bkt.clouddn.com/JavaScript-customer-service-test/%E4%BB%A3%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2.png)
+  ![用户代理字符串](https://graphbed.qiniu.songxingguo.com/JavaScript-customer-service-test/%E4%BB%A3%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2.png)
 
   为了帮助读者更好地理解 Gecko 的用户代理字符串，下面我们来看几个从基于 Gecko 的浏览器中取得的字符串。
 
@@ -567,9 +567,9 @@ if (ieVer >=6){
   ```
   代码首先将用户代理字符串保存在变量 ua 中。然后通过正则表达式来测试其中是否包含字符串"AppleWebKit" ，并使用捕获组来取得版本号。由于实际的版本号中可能会包含数字、小数点和字母，所以捕获组中使用了表示非空格的特殊字符（ \S ）。用户代理字符串中的版本号与下一部分的分隔符是一个空格，因此这个模式可以保证捕获所有版本信息。 test() 方法基于用户代理字符串运行正则表达式。如果返回 true ，就将捕获的版本号保存在 engine.ver 中，而将版本号的浮点表示保存在engine.webkit 中。WebKit 版本与 Safari 版本的详细对应情况如下表所示。
 
-  ![WebKit 版本与 Safari 版本对照](http://p9myzkds7.bkt.clouddn.com/JavaScript-customer-service-test/%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%AF%B9%E7%85%A7%E8%A1%A8.png)
+  ![WebKit 版本与 Safari 版本对照](https://graphbed.qiniu.songxingguo.com/JavaScript-customer-service-test/%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%AF%B9%E7%85%A7%E8%A1%A8.png)
 
-  ![WebKit 版本与 Safari 版本对照（续）](http://p9myzkds7.bkt.clouddn.com/JavaScript-customer-service-test/%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%AF%B9%E7%85%A7%E8%A1%A8%EF%BC%88%E7%BB%AD%EF%BC%89.png)
+  ![WebKit 版本与 Safari 版本对照（续）](https://graphbed.qiniu.songxingguo.com/JavaScript-customer-service-test/%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%AF%B9%E7%85%A7%E8%A1%A8%EF%BC%88%E7%BB%AD%EF%BC%89.png)
 
   >有时候，Safari 版本并不会与 WebKit 版本严格地一一对应，也可能会存在某些小版本上的差异。这个表中只是列出了最可能的 WebKit版本，但不保证精确。
 
@@ -610,7 +610,7 @@ if (ieVer >=6){
   ```
   Gecko 的版本号位于字符串 "rv:" 与一个闭括号之间，因此为了提取出这个版本号，正则表达式要查找所有不是闭括号的字符，还要查找字符串 "Gecko/" 后跟 8 个数字。如果上述模式匹配，就提取出版本号并将其保存在相应的属性中。Gecko 版本号与 Firefox 版本号的对应关系如下表所示。
 
-  ![Gecko 版本号与 Firefox 版本号的对应关系](http://p9myzkds7.bkt.clouddn.com/JavaScript-customer-service-test/Grcko%E7%89%88%E6%9C%AC%E5%8F%B7%E4%B8%8EFirfox%E7%89%88%E6%9C%AC%E5%AF%B9%E6%AF%94.png)
+  ![Gecko 版本号与 Firefox 版本号的对应关系](https://graphbed.qiniu.songxingguo.com/JavaScript-customer-service-test/Grcko%E7%89%88%E6%9C%AC%E5%8F%B7%E4%B8%8EFirfox%E7%89%88%E6%9C%AC%E5%AF%B9%E6%AF%94.png)
 
   > 与 Safari 跟 WebKit 一样，Firefox 与 Gecko 的版本号也不一定严格对应。
 
@@ -814,7 +814,7 @@ if (ieVer >=6){
 
   在 Windows平台下，还可以 **从用户代理字符串中进一步取得具体的操作系统信息** 。在 Windows XP之前，Windows有两种版本，分别针对家庭用户和商业用户。针对家庭用户的版本分别是 Windows 95、98 和 Windows ME。而针对商业用户的版本则一直叫做 Window NT，最后由于市场原因改名为 Windows2000。这两个产品线后来又合并成一个由 Windows NT 发展而来的公共的代码基，代表产品就是 WindowsXP。随后，微软在 Windows XP 基础上又构建了 Windows Vista。只有了解这些信息，才能搞清楚用户代理字符串中 Windows操作系统的具体版本。下表列出了不同浏览器在表示不同的 Windows操作系统时给出的不同字符串。
 
-  ![Windows操作系统的不同字符串](http://p9myzkds7.bkt.clouddn.com/JavaScript-customer-service-test/windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%8D%E5%90%8C%E5%AD%97%E7%AC%A6%E4%B8%B2.png)
+  ![Windows操作系统的不同字符串](https://graphbed.qiniu.songxingguo.com/JavaScript-customer-service-test/windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%8D%E5%90%8C%E5%AD%97%E7%AC%A6%E4%B8%B2.png)
 
   由于用户代理字符串中的 Windows 操作系统版本表示方法各异，因此检测代码并不十分直观。好在，从 Windows 2000 开始，表示操作系统的字符串大部分都还相同，只有版本号有变化。**为了检测不同的 Windows 操作系统** ，**必须要使用正则表达式**。由于使用 Opera 7 之前版本的用户已经不多了，因此我们可以忽略这部分浏览器。
 
@@ -1084,10 +1084,10 @@ if (ieVer >=6){
       system: system
     };
   }();
-  ````
+  ​````
   检测前述游戏系统的代码如下：
 
-  ```js
+  ​```js
   system.wii = ua.indexOf("Wii") > -1;
   system.ps = /playstation/i.test(ua);
   ```
