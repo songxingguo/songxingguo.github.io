@@ -16,13 +16,13 @@ Web 使用一种名为 HTTP（HyperText Transfer Protocol，超文本传输协�
 
 <!-- more -->
 
-![了解Web及网络基础](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/Web%E5%8F%8A%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80.png)
+![了解Web及网络基础](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/Web%E5%8F%8A%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80.png)
 
 ### HTTP 的诞生
 
 #### 为知识共享而规划 Web
 
-![知识共享](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E7%9F%A5%E8%AF%86%E5%85%B1%E4%BA%AB.png)
+![知识共享](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E7%9F%A5%E8%AF%86%E5%85%B1%E4%BA%AB.png)
 
 最初设想的基本理念是：**借助多文档之间相互关联形成的超文本**（HyperText），**连成可相互参阅的 WWW**（World Wide Web，万维网）。
 
@@ -83,7 +83,7 @@ HTTP 正式作为标准被公布是在 1996 年的 5 月，版本被命名为HTT
 
 **计算机与网络设备要相互通信，双方就必须基于相同的方法。** 比如，如何探测到通信目标、由哪一边先发起通信、使用哪种语言进行通信、怎样结束通信等规则都需要事先确定。不同的硬件、操作系统之间的通信，所有的这一切都需要一种规则。而我们就把这种规则称为协议（protocol）。
 
-![TC/协议族TP](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/TC.TP.png)
+![TC/协议族TP](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/TC.TP.png)
 
 协议中存在各式各样的内容。从电缆的规格到 IP 地址的选定方法、寻找异地用户的方法、双方建立通信的顺序，以及 Web 页面显示需要处理的步骤，等等。
 
@@ -125,7 +125,7 @@ TCP/IP 协议族各层的作用如下。
 
 #### TCP/IP 通信传输流
 
-![TCP/IP 通信传输流](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/TCP.IP%20%E9%80%9A%E4%BF%A1%E4%BC%A0%E8%BE%93%E6%B5%81.png)
+![TCP/IP 通信传输流](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/TCP.IP%20%E9%80%9A%E4%BF%A1%E4%BC%A0%E8%BE%93%E6%B5%81.png)
 
 利用 TCP/IP 协议族进行网络通信时，会通过分层顺序与对方进行通信。发送端从应用层往下走，接收端则往应用层往上走。
 
@@ -137,7 +137,7 @@ TCP/IP 协议族各层的作用如下。
 
 接收端的服务器在链路层接收到数据，按序往上层发送，一直到应用层。当传输到应用层，才能算真正接收到由客户端发送过来的 HTTP 请求。
 
-![TCP/IP 通信传输流封装](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/TCP.IP%20%E9%80%9A%E4%BF%A1%E4%BC%A0%E8%BE%93%E6%B5%81%E5%B0%81%E8%A3%85.png)
+![TCP/IP 通信传输流封装](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/TCP.IP%20%E9%80%9A%E4%BF%A1%E4%BC%A0%E8%BE%93%E6%B5%81%E5%B0%81%E8%A3%85.png)
 
 **发送端在层与层之间传输数据时，每经过一层时必定会被打上一个该层所属的首部信息** 。反之，**接收端在层与层传输数据时，每经过一层时会把对应的首部消去** 。
 
@@ -169,7 +169,7 @@ Resolution Protocol）。**ARP** 是 **一种用以解析地址的协议** ，**
 
 我们是想通过这个比喻说明，无论哪台计算机、哪台网络设备，它们都无法全面掌握互联网中的细节。
 
-![传输状况](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E4%BC%A0%E8%BE%93%E7%8A%B6%E5%86%B5.png)
+![传输状况](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E4%BC%A0%E8%BE%93%E7%8A%B6%E5%86%B5.png)
 
 #### 确保可靠性的 TCP 协议
 
@@ -187,7 +187,7 @@ Resolution Protocol）。**ARP** 是 **一种用以解析地址的协议** ，**
 
 若在握手过程中某个阶段莫名中断，TCP 协议会再次以相同的顺序发送相同的数据包。
 
-![三次握手](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png)
+![三次握手](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png)
 
 除了上述三次握手，TCP 协议还有其他各种手段来保证通信的可靠性。
 
@@ -203,13 +203,13 @@ DNS（Domain Name System）服务是和 HTTP 协议一样位于应用层的协�
 
 为了解决上述的问题，**DNS 服务** 应运而生。**DNS 协议提供通过域名查找 IP 地址** ，或 **逆向从 IP 地址反查域名的服务** 。
 
-![DNS 服务](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/DNS%20%E6%9C%8D%E5%8A%A1.png)
+![DNS 服务](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/DNS%20%E6%9C%8D%E5%8A%A1.png)
 
 ### 各种协议与 HTTP 协议的关系
 
 我们再通过这张图来了解下 IP 协议、TCP 协议和 DNS 服务在使用 HTTP 协议的通信过程中各自发挥了哪些作用。
 
-![各种协议与 HTTP 协议的关系](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E5%90%84%E7%A7%8D%E5%8D%8F%E8%AE%AE%E4%B8%8E%20HTTP%20%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%85%B3%E7%B3%BB.png)
+![各种协议与 HTTP 协议的关系](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E5%90%84%E7%A7%8D%E5%8D%8F%E8%AE%AE%E4%B8%8E%20HTTP%20%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%85%B3%E7%B3%BB.png)
 
 ### URI 和 URL
 
@@ -259,7 +259,7 @@ urn:oasis:names:specification:docbook:dtd:xml:4.1.2
 
 让我们先来了解一下绝对 URI 的格式。
 
-![绝对 URI 的格式](http://p9myzkds7.bkt.clouddn.com/JavaScript-deep/%E7%BB%9D%E5%AF%B9%20URI%20%E7%9A%84%E6%A0%BC%E5%BC%8F.png)
+![绝对 URI 的格式](https://graphbed.qiniu.songxingguo.com/JavaScript-deep/%E7%BB%9D%E5%AF%B9%20URI%20%E7%9A%84%E6%A0%BC%E5%BC%8F.png)
 
 使用 http: 或 https: 等协议方案名获取访问资源时要指定协议类型。 **不区分字母大小写** ，**最后附一个冒号**（:）。
 
@@ -306,7 +306,7 @@ urn:oasis:names:specification:docbook:dtd:xml:4.1.2
 
 ## 简单的 HTTP 协议
 
-![简单的 HTTP 协议](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%E5%8D%8F%E8%AE%AE.png)
+![简单的 HTTP 协议](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/HTTP%E5%8D%8F%E8%AE%AE.png)
 
 ### HTTP 协议用于客户端和服务器端之间的通信
 
@@ -314,7 +314,7 @@ HTTP 协议和 TCP/IP 协议族内的其他众多的协议相同，用于客户�
 
 请求访问文本或图像等资源的一端称为客户端，而提供资源响应的一端称为服务器端。
 
-![客户端和服务器端](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF.png)
+![客户端和服务器端](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF.png)
 
 图：应用 HTTP 协议时，必定是一端担任客户端角色，另一端担任服务器端角色
 
@@ -324,7 +324,7 @@ HTTP 协议和 TCP/IP 协议族内的其他众多的协议相同，用于客户�
 
 ### 通过请求和响应的交换达成通信
 
-![请求和响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94.png)
+![请求和响应](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94.png)
 
 图：**请求必定由客户端发出，而服务器端回复响应**
 
@@ -332,7 +332,7 @@ HTTP 协议和 TCP/IP 协议族内的其他众多的协议相同，用于客户�
 
 下面，我们来看一个具体的示例。
 
-![具体示例](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%85%B7%E4%BD%93%E7%9A%84%E7%A4%BA%E4%BE%8B.png)
+![具体示例](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%85%B7%E4%BD%93%E7%9A%84%E7%A4%BA%E4%BE%8B.png)
 
 下面则是从客户端发送给某个 HTTP 服务器端的请求报文中的内容。
 
@@ -346,7 +346,7 @@ Host: hackr.jp
 
 **请求报文** 是由 **请求方法** 、**请求 URI** 、**协议版本** 、**可选的请求首部字段** 和 **内容实体** 构成的。
 
-![请求报文的构成](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E7%9A%84%E6%9E%84%E6%88%90.png)
+![请求报文的构成](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E7%9A%84%E6%9E%84%E6%88%90.png)
 
 请求首部字段及内容实体稍后会作详细说明。接下来，我们继续讲解。接收到请求的服务器，会将请求内容的处理结果以响应的形式返回。
 
@@ -366,13 +366,13 @@ Content-Type: text/html
 
 **响应报文** 基本上由 **协议版本** 、**状态码**（表示请求成功或失败的数字代码）、**用以解释状态码的原因短语** 、**可选的响应首部字段** 以及 **实体主体** 构成。
 
-![响应报文的构成](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E7%9A%84%E6%9E%84%E6%88%90.png)
+![响应报文的构成](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E7%9A%84%E6%9E%84%E6%88%90.png)
 
 ### HTTP 是不保存状态的协议
 
 HTTP 是一种不保存状态，即 **无状态（stateless）协议** 。HTTP 协议自身不对请求和响应之间的通信状态进行保存。也就是说在 HTTP 这个级别，**协议对于发送过的请求或响应都不做持久化处理** 。
 
-![无状态（stateless）协议](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E6%97%A0%E7%8A%B6%E6%80%81%E5%8D%8F%E8%AE%AE.png)
+![无状态（stateless）协议](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E6%97%A0%E7%8A%B6%E6%80%81%E5%8D%8F%E8%AE%AE.png)
 
 图：HTTP 协议自身不具备保存之前发送过的请求或响应的功能
 
@@ -386,13 +386,13 @@ HTTP/1.1 虽然是无状态协议，但为了实现期望的保持状态功能�
 
 HTTP 协议使用 URI 定位互联网上的资源。正是因为 URI 的特定功能，在互联网上任意位置的资源都能访问到。
 
-![URI 定位资源](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/URI%20%E5%AE%9A%E4%BD%8D%E8%B5%84%E6%BA%90.png)
+![URI 定位资源](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/URI%20%E5%AE%9A%E4%BD%8D%E8%B5%84%E6%BA%90.png)
 
 图：HTTP 协议使用 URI 让客户端定位到资源
 
 当客户端请求访问资源而发送请求时，URI 需要将作为请求报文中的请求 URI 包含在内。指定请求 URI 的方式有很多。
 
-![请求 URI 的方式](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%20URI%20%E7%9A%84%E6%96%B9%E5%BC%8F.png)
+![请求 URI 的方式](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%20URI%20%E7%9A%84%E6%96%B9%E5%BC%8F.png)
 
 图：以 http://hackr.jp/index.htm 作为请求的例子
 
@@ -410,11 +410,11 @@ OPTIONS * HTTP/1.1
 
 GET 方法用来 **请求访问已被 URI 识别的资源** 。**指定的资源经服务器端解析后返回响应内容。** 也就是说，如果请求的资源是文本，那就保持原样返回；如果是像 CGI（Common Gateway Interface，通用网关接口）那样的程序，则返回经过执行后的输出结果。
 
-![GET 方法](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/GET%20%E6%96%B9%E6%B3%95.png)
+![GET 方法](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/GET%20%E6%96%B9%E6%B3%95.png)
 
 使用 GET 方法的请求·响应的例子
 
-![GET 方法的请求·响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/GET%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
+![GET 方法的请求·响应](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/GET%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
 
 #### POST：传输实体主体
 
@@ -422,11 +422,11 @@ GET 方法用来 **请求访问已被 URI 识别的资源** 。**指定的资源
 
 虽然用 GET 方法也可以传输实体的主体，但一般不用 GET 方法进行传输，而是用 POST 方法。虽说 POST 的功能与 GET 很相似，但 **POST 的主要目的并不是获取响应的主体内容** 。
 
-![POST 方法](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/POST%E6%96%B9%E6%B3%95.png)
+![POST 方法](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/POST%E6%96%B9%E6%B3%95.png)
 
 使用 POST 方法的请求·响应的例子
 
-![POST 方法的请求·响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/POST%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
+![POST 方法的请求·响应](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/POST%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
 
 #### PUT：传输文件
 
@@ -434,11 +434,11 @@ GET 方法用来 **请求访问已被 URI 识别的资源** 。**指定的资源
 
 但是，鉴于 HTTP/1.1 的 PUT 方法自身不带验证机制，任何人都可以上传文件 , **存在安全性问题** ，因此一般的 Web 网站不使用该方法。**若配合 Web 应用程序的验证机制** ，或 **架构设计采用 REST（REpresentational State Transfer，表征状态转移）标准** 的同类 Web 网站，就 **可能会开放使用 PUT 方法** 。
 
-![PUT 方法](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/PUT%20%E6%96%B9%E6%B3%95.png)
+![PUT 方法](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/PUT%20%E6%96%B9%E6%B3%95.png)
 
 使用 PUT 方法的请求·响应的例子
 
-![PUT 方法的请求·响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/PUT%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
+![PUT 方法的请求·响应](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/PUT%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
 
 > 响应的意思其实是请求执行成功了，但无数据返回。
 
@@ -446,13 +446,13 @@ GET 方法用来 **请求访问已被 URI 识别的资源** 。**指定的资源
 
 **HEAD 方法和 GET 方法一样**，只是 **不返回报文主体部分** 。用于 **确认 URI 的有效性及资源更新的日期时间等** 。
 
-![HEAD 方法](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HEAD%20%E6%96%B9%E6%B3%95.png)
+![HEAD 方法](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/HEAD%20%E6%96%B9%E6%B3%95.png)
 
 图：和 GET 一样，但不返回报文主体
 
 使用 HEAD 方法的请求·响应的例子
 
-![HEAD 方法的请求·响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HEAD%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
+![HEAD 方法的请求·响应](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/HEAD%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
 
 #### DELETE：删除文件
 
@@ -460,21 +460,21 @@ DELETE 方法用来删除文件，是与 PUT 相反的方法。DELETE 方法按�
 
 但是，HTTP/1.1 的 DELETE 方法本身 **和 PUT 方法一样不带验证机制** ，所以一般的 Web 网站也不使用 DELETE 方法。当配合 Web 应用程序的验证机制，或遵守 REST 标准时还是有可能会开放使用的。
 
-![DELETE 方法](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/DELETE%20%E6%96%B9%E6%B3%95.png)
+![DELETE 方法](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/DELETE%20%E6%96%B9%E6%B3%95.png)
 
 使用 DELETE 方法的请求·响应的例子
 
-![DELETE 方法的请求·响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/DELETE%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
+![DELETE 方法的请求·响应](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/DELETE%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
 
 #### OPTIONS：询问支持的方法
 
 **OPTIONS 方法** 用来 **查询针对请求 URI 指定的资源支持的方法** 。
 
-![OPTIONS 方法](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/OPTIONS%20%E6%96%B9%E6%B3%95.png)
+![OPTIONS 方法](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/OPTIONS%20%E6%96%B9%E6%B3%95.png)
 
 使用 OPTIONS 方法的请求·响应的例子
 
-![OPTIONS 方法的请求·响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/OPTIONS%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
+![OPTIONS 方法的请求·响应](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/OPTIONS%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
 
 #### TRACE：追踪路径
 
@@ -486,13 +486,13 @@ DELETE 方法用来删除文件，是与 PUT 相反的方法。DELETE 方法按�
 
 但是，TRACE 方法本来就不怎么常用，再加上它 **容易引发 XST**（Cross-Site Tracing，跨站追踪）攻击，通常就更不会用到了。
 
-![TRACE 方法](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/TRACE%20%E6%96%B9%E6%B3%95.png)
+![TRACE 方法](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/TRACE%20%E6%96%B9%E6%B3%95.png)
 
 使用 TRACE 方法的请求·响应的例子
 
-![TRACE 方法的请求.响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/TRACE%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82.%E5%93%8D%E5%BA%94.png)
+![TRACE 方法的请求.响应](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/TRACE%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82.%E5%93%8D%E5%BA%94.png)
 
-![TRACE 方法的请求.响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/TRACE%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82.%E5%93%8D%E5%BA%941.png)
+![TRACE 方法的请求.响应](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/TRACE%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82.%E5%93%8D%E5%BA%941.png)
 
 #### CONNECT：要求用隧道协议连接代理
 
@@ -503,11 +503,11 @@ CONNECT 方法的格式如下所示。
 ```
 CONNECT 代理服务器名:端口号 HTTP版本
 ```
-![CONNECT 方法](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/CONNECT%20%E6%96%B9%E6%B3%95%E7%9A%84.png)
+![CONNECT 方法](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/CONNECT%20%E6%96%B9%E6%B3%95%E7%9A%84.png)
 
 使用 CONNECT 方法的请求·响应的例子
 
-![CONNECT 方法的请求·响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/CONNECT%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
+![CONNECT 方法的请求·响应](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/CONNECT%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82%C2%B7%E5%93%8D%E5%BA%94.png)
 
 ### 使用方法下达命令
 
@@ -515,11 +515,11 @@ CONNECT 代理服务器名:端口号 HTTP版本
 
 方法的作用在于，可以 **指定请求的资源按期望产生某种行为**  。方法中有 GET、POST 和 HEAD 等。
 
-![方法的命令](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E6%96%B9%E6%B3%95%E7%9A%84%E5%91%BD%E4%BB%A4.png)
+![方法的命令](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E6%96%B9%E6%B3%95%E7%9A%84%E5%91%BD%E4%BB%A4.png)
 
 下表列出了 HTTP/1.0 和 HTTP/1.1 支持的方法。另外，**方法名区分大小写** ，注意要用 **大写字母** 。
 
-![HTTP/1.0 和 HTTP/1.1 支持的方法](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP-1.0%20%E5%92%8C%20HTTP-1.1%20%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%B9%E6%B3%95.png)
+![HTTP/1.0 和 HTTP/1.1 支持的方法](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/HTTP-1.0%20%E5%92%8C%20HTTP-1.1%20%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%B9%E6%B3%95.png)
 
 在这里列举的众多方法中，LINK 和 UNLINK 已被 HTTP/1.1 废弃，不再支持。
 
@@ -527,19 +527,19 @@ CONNECT 代理服务器名:端口号 HTTP版本
 
 HTTP 协议的初始版本中，每进行一次 HTTP 通信就要断开一次 TCP连接。
 
-![HTTP 协议的初始版本](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%20%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%88%9D%E5%A7%8B%E7%89%88%E6%9C%AC.png)
+![HTTP 协议的初始版本](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/HTTP%20%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%88%9D%E5%A7%8B%E7%89%88%E6%9C%AC.png)
 
 以当年的通信情况来说，因为都是些容量很小的文本传输，所以即使这样也没有多大问题。可随着 HTTP 的普及，文档中包含大量图片的情况多了起来。
 
 比如，使用浏览器浏览一个包含多张图片的 HTML页面时，在发送请求访问 HTML页面资源的同时，也会请求该 HTML页面里包含的其他资源。因此，每次的请求都会造成无谓的 TCP 连接建立和断开，增加通信量的开销。
 
-![增加通信量的开销](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%A2%9E%E5%8A%A0%E9%80%9A%E4%BF%A1%E9%87%8F%E7%9A%84%E5%BC%80%E9%94%80.png)
+![增加通信量的开销](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%A2%9E%E5%8A%A0%E9%80%9A%E4%BF%A1%E9%87%8F%E7%9A%84%E5%BC%80%E9%94%80.png)
 
 #### 持久连接
 
 为解决上述 TCP 连接的问题，HTTP/1.1 和一部分的 HTTP/1.0 想出了持久连接（HTTP Persistent Connections，也称为 **HTTP keep-alive** 或 **HTTP connection reuse** ）的方法。持久连接的特点是，**只要任意一端没有明确提出断开连接，则保持 TCP 连接状态** 。
 
-![持久连接](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5.png)
+![持久连接](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5.png)
 
 图：持久连接旨在建立 1 次 TCP 连接后进行多次请求和响应的交互
 
@@ -553,7 +553,7 @@ HTTP 协议的初始版本中，每进行一次 HTTP 通信就要断开一次 TC
 
 这样就能够做到 **同时并行发送多个请求** ，而不需要一个接一个地等待响应了。
 
-![管线化](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E7%AE%A1%E7%BA%BF%E5%8C%96.png)
+![管线化](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E7%AE%A1%E7%BA%BF%E5%8C%96.png)
 
 图：不等待响应，直接发送下一个请求
 
@@ -567,7 +567,7 @@ HTTP 协议的初始版本中，每进行一次 HTTP 通信就要断开一次 TC
 
 不可否认，无状态协议当然也有它的优点。由于不必保存状态，自然可减少服务器的 CPU 及内存资源的消耗。从另一侧面来说，也正是因为 HTTP 协议本身是非常简单的，所以才会被应用在各种场景里。
 
-![HTTP 是无状态协议](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%20%E6%98%AF%E6%97%A0%E7%8A%B6%E6%80%81%E5%8D%8F%E8%AE%AE.png)
+![HTTP 是无状态协议](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/HTTP%20%E6%98%AF%E6%97%A0%E7%8A%B6%E6%80%81%E5%8D%8F%E8%AE%AE.png)
 
 图：如果让服务器管理全部客户端状态则会成为负担
 
@@ -579,12 +579,12 @@ Cookie 会根据从服务器端发送的响应报文内的一个叫做 **Set-Coo
 
 - 没有 Cookie 信息状态下的请求
 
- ![没有 Cookie 信息状态](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E6%B2%A1%E6%9C%89%20Cookie%20%E4%BF%A1%E6%81%AF%E7%8A%B6%E6%80%81.png)
+ ![没有 Cookie 信息状态](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E6%B2%A1%E6%9C%89%20Cookie%20%E4%BF%A1%E6%81%AF%E7%8A%B6%E6%80%81.png)
 
 - 第 2 次以后（存有 Cookie 信息状态）的请求
 
- ![存有 Cookie 信息状态](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%AD%98%E6%9C%89%20Cookie%20%E4%BF%A1%E6%81%AF%E7%8A%B6%E6%80%81.png)
- 
+ ![存有 Cookie 信息状态](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%AD%98%E6%9C%89%20Cookie%20%E4%BF%A1%E6%81%AF%E7%8A%B6%E6%80%81.png)
+
 上图展示了发生 Cookie 交互的情景，HTTP 请求报文和响应报文的内容如下。
 
 1. 请求报文（没有 Cookie 信息的状态）
@@ -615,7 +615,7 @@ Cookie 会根据从服务器端发送的响应报文内的一个叫做 **Set-Coo
 
 HTTP 通信过程包括从客户端发往服务器端的请求及从服务器端返回客户端的响应。
 
-![HTTP 报文内的 HTTP 信息](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%E6%8A%A5%E6%96%87%E4%BF%A1%E6%81%AF.png)
+![HTTP 报文内的 HTTP 信息](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/HTTP%E6%8A%A5%E6%96%87%E4%BF%A1%E6%81%AF.png)
 
 ### HTTP 报文
 
@@ -623,15 +623,15 @@ HTTP 通信过程包括从客户端发往服务器端的请求及从服务器端
 
 **HTTP 报文** 大致可分为 **报文首部** 和 **报文主体** 两块。两者由最初出现的**空行**（CR+LF）来划分。通常，**并不一定要有报文主体** 。
 
-![HTTP 报文的结构](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%20%E6%8A%A5%E6%96%87%E7%9A%84%E7%BB%93%E6%9E%84.png)
+![HTTP 报文的结构](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/HTTP%20%E6%8A%A5%E6%96%87%E7%9A%84%E7%BB%93%E6%9E%84.png)
 
 ### 请求报文及响应报文的结构
 
 我们来看一下请求报文和响应报文的结构。
 
-![请求报文（上）和响应报文（下）的结构](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%EF%BC%88%E4%B8%8A%EF%BC%89%E5%92%8C%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%EF%BC%88%E4%B8%8B%EF%BC%89%E7%9A%84%E7%BB%93%E6%9E%84.png)
+![请求报文（上）和响应报文（下）的结构](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%EF%BC%88%E4%B8%8A%EF%BC%89%E5%92%8C%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%EF%BC%88%E4%B8%8B%EF%BC%89%E7%9A%84%E7%BB%93%E6%9E%84.png)
 
-![请求报文（上）和响应报文（下）的实例](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%EF%BC%88%E4%B8%8A%EF%BC%89%E5%92%8C%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%EF%BC%88%E4%B8%8B%EF%BC%89%E7%9A%84%E5%AE%9E%E4%BE%8B.png)
+![请求报文（上）和响应报文（下）的实例](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%EF%BC%88%E4%B8%8A%EF%BC%89%E5%92%8C%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%EF%BC%88%E4%B8%8B%EF%BC%89%E7%9A%84%E5%AE%9E%E4%BE%8B.png)
 
 请求报文和响应报文的首部内容由以下数据组成。
 
@@ -677,7 +677,7 @@ HTTP 报文的主体用于传输请求或响应的实体主体。
 
 内容编码指明应用在实体内容上的编码格式，并保持实体信息原样压缩。内容编码后的实体由客户端接收并负责解码。
 
-![内容编码](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%86%85%E5%AE%B9%E7%BC%96%E7%A0%81.png)
+![内容编码](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%86%85%E5%AE%B9%E7%BC%96%E7%A0%81.png)
 
 常用的内容编码有以下几种。
 
@@ -692,17 +692,17 @@ HTTP 报文的主体用于传输请求或响应的实体主体。
 
 这种 **把实体主体分块的功能** 称为 **分块传输编码**（Chunked Transfer Coding）。
 
-![分块传输编码](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%88%86%E5%9D%97%E4%BC%A0%E8%BE%93%E7%BC%96%E7%A0%81.png)
+![分块传输编码](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%88%86%E5%9D%97%E4%BC%A0%E8%BE%93%E7%BC%96%E7%A0%81.png)
 
 分块传输编码会将实体主体分成多个部分（块）。每一块都会 **用十六进制来标记块的大小** ，而实体主体的 **最后一块** 会 **使用“0(CR+LF)”来标记** 。
 
 使用分块传输编码的实体主体会由接收的客户端负责解码，恢复到编码前的实体主体。
 
 HTTP/1.1 中存在一种称为传输编码（Transfer Coding）的机制，它可以在通信时按某种编码方式传输，但只定义作用于分块传输编码中。
- 
+
 ### 发送多种数据的多部分对象集合
 
-![多部分对象集合](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%A4%9A%E9%83%A8%E5%88%86%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88.png)
+![多部分对象集合](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%A4%9A%E9%83%A8%E5%88%86%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88.png)
 
 发送邮件时，我们可以在邮件里写入文字并添加多份附件。这是因为采用了 **MIME**（Multipurpose Internet Mail Extensions，多用途因特网邮件扩展）机制，它允许邮件处理 **文本** 、**图片** 、**视频** 等多个不同类型的数据。例如，**图片等二进制数据以 ASCII 码字符串编码的方式指明** ，就是 **利用 MIME 来描述标记数据类型** 。而在 MIME 扩展中会使用一种称为 **多部分对象集合**（Multipart）的方法，来容纳多份不同类型的数据。
 
@@ -753,9 +753,9 @@ Content-Range: bytes 7000-7999/8000
 --THIS_STRING_SEPARATES--
 ```
 在 HTTP 报文中使用多部分对象集合时，需要在首部字段里加上 Content-type。
- 
+
  使用 boundary 字符串来划分多部分对象集合指明的各类实体。在 boundary 字符串指定的各个实体的起始行之前插入“\--”标记（例如：\--AaB03x、\--THIS_STRING_SEPARATES），而在多部分对象集合对应的字符串的最后插入“\--”标记（例如：\--AaB03x\--、\--THIS_STRING_SEPARATES\--）作为结束。
- 
+
 多部分对象集合的每个部分类型中，都可以含有首部字段。另外，可以在某个部分中嵌套使用多部分对象集合。
 
 ### 获取部分内容的范围请求
@@ -766,7 +766,7 @@ Content-Range: bytes 7000-7999/8000
 
 对一份 10 000 字节大小的资源，如果使用范围请求，可以只请求 5001~10 000 字节内的资源。
 
-![范围请求](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E8%8C%83%E5%9B%B4%E8%AF%B7%E6%B1%82.png)
+![范围请求](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E8%8C%83%E5%9B%B4%E8%AF%B7%E6%B1%82.png)
 
 执行范围请求时，会用到首部字段 Range 来指定资源的 byte 范围。
 
@@ -797,7 +797,7 @@ byte 范围的指定形式如下。
 
 当浏览器的默认语言为英语或中文，访问相同 URI 的 Web 页面时，则会显示对应的英语版或中文版的 Web 页面。这样的机制称为 **内容协商**（Content Negotiation）。
 
-![访问网址](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E8%AE%BF%E9%97%AE%E7%BD%91%E5%9D%80.png)
+![访问网址](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E8%AE%BF%E9%97%AE%E7%BD%91%E5%9D%80.png)
 
 图：访问 http://www.google.com/
 
@@ -830,23 +830,23 @@ Content-Language
 
 ## 返回结果的 HTTP 状态码
 
-![返回结果的 HTTP 状态码](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%E7%8A%B6%E6%80%81%E7%A0%81.png)
+![返回结果的 HTTP 状态码](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/HTTP%E7%8A%B6%E6%80%81%E7%A0%81.png)
 
 HTTP 状态码负责表示客户端 HTTP 请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等工作。
 
-![HTTP 状态码](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%20%E7%8A%B6%E6%80%81.png)
+![HTTP 状态码](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/HTTP%20%E7%8A%B6%E6%80%81.png)
 
 ### 状态码告知从服务器端返回的请求结果
 
 状态码的职责是当客户端向服务器端发送请求时，描述返回的请求结果。借助状态码，用户可以知道服务器端是正常处理了请求，还是出现了错误。
 
-![响应的状态码可描述请求的处理结果](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%93%8D%E5%BA%94%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81%E5%8F%AF%E6%8F%8F%E8%BF%B0%E8%AF%B7%E6%B1%82%E7%9A%84%E5%A4%84%E7%90%86%E7%BB%93%E6%9E%9C.png)
+![响应的状态码可描述请求的处理结果](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%93%8D%E5%BA%94%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81%E5%8F%AF%E6%8F%8F%E8%BF%B0%E8%AF%B7%E6%B1%82%E7%9A%84%E5%A4%84%E7%90%86%E7%BB%93%E6%9E%9C.png)
 
 状态码如 200 OK，**以 3 位数字和原因短语组成** 。
 
 数字中的第一位指定了响应类别，后两位无分类。响应类别有以下 5 种。
 
-![状态码的类别](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E7%8A%B6%E6%80%81%E7%A0%81%E7%9A%84%E7%B1%BB%E5%88%AB.png)
+![状态码的类别](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E7%8A%B6%E6%80%81%E7%A0%81%E7%9A%84%E7%B1%BB%E5%88%AB.png)
 
 只要 **遵守状态码类别的定义** ，即使 **改变 RFC2616 中定义的状态码** ，或 **服务器端自行创建状态码** 都没问题。
 
@@ -858,7 +858,7 @@ HTTP 状态码负责表示客户端 HTTP 请求的返回结果、标记服务器
 
 #### 200 OK
 
-![200 OK](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/200%20OK.png)
+![200 OK](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/200%20OK.png)
 
 表示 **从客户端发来的请求在服务器端被正常处理了** 。
 
@@ -867,7 +867,7 @@ HTTP 状态码负责表示客户端 HTTP 请求的返回结果、标记服务器
 
 #### 204 No Content
 
-![204 No Content](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/204%20No%20Content.png)
+![204 No Content](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/204%20No%20Content.png)
 
 该状态码代表 **服务器接收的请求已成功处理** ，但 **在返回的响应报文中不含实体的主体部分** 。另外，也不允许返回任何实体的主体。比如，当从浏览器发出请求处理后，返回 204 响应，那么浏览器显示的页面不发生更新。
 
@@ -875,7 +875,7 @@ HTTP 状态码负责表示客户端 HTTP 请求的返回结果、标记服务器
 
 #### 206 Partial Content
 
-![206 Partial Content](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/206%20Partial%20Content.png)
+![206 Partial Content](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/206%20Partial%20Content.png)
 
 该状态码表示 **客户端进行了范围请求** ，而 **服务器成功执行了这部分的 GET 请求** 。响应报文中包含由 **Content-Range 指定范围的实体内容** 。
 
@@ -885,7 +885,7 @@ HTTP 状态码负责表示客户端 HTTP 请求的返回结果、标记服务器
 
 ####  301 Moved Permanently
 
-![301 Moved Permanently](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/301%20Moved%20Permanently.png)
+![301 Moved Permanently](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/301%20Moved%20Permanently.png)
 
 永久性重定向。该状态码表示 **请求的资源已被分配了新的 URI** ，**以后应使用资源现在所指的 URI** 。也就是说，如果 **已经把资源对应的 URI 保存为书签了** ，这时应该按 **Location 首部字段** 提示的 URI 重新保存。
 
@@ -897,7 +897,7 @@ http://example.com/sample
 
 #### 302 Found
 
-![302 Found](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/302%20Found.png)
+![302 Found](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/302%20Found.png)
 
 临时性重定向。该状态码表示 **请求的资源已被分配了新的 URI** ，**希望用户（本次）能使用新的 URI 访问** 。
 
@@ -905,7 +905,7 @@ http://example.com/sample
 
 #### 303 See Other
 
-![303 See Other](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/303%20See%20Other.png)
+![303 See Other](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/303%20See%20Other.png)
 
 该状态码表示 **由于请求对应的资源存在着另一个 URI** ，**应使用 GET方法定向获取请求的资源** 。
 
@@ -920,7 +920,7 @@ http://example.com/sample
 
 #### 304 Not Modified
 
-![304 Not Modified](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/304%20Not%20Modified.png)
+![304 Not Modified](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/304%20Not%20Modified.png)
 
 该状态码表示客户端发送附带条件的请求时，**服务器端允许请求访问资源** ，但 **未满足条件的情况** 。304 状态码返回时，不包含任何响应的主体部分。304 虽然被划分在 3XX 类别中，但是和重定向没有关系。
 
@@ -938,13 +938,13 @@ http://example.com/sample
 
 #### 400 Bad Request
 
-![400 Bad Request](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/400%20Bad%20Request.png)
+![400 Bad Request](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/400%20Bad%20Request.png)
 
 该状态码表示 **请求报文中存在语法错误** 。当错误发生时，**需修改请求的内容后再次发送请求** 。另外，**浏览器会像 200 OK 一样对待该状态码** 。
 
 #### 401 Unauthorized
 
-![401 Unauthorized](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/401%20Unauthorized.png)
+![401 Unauthorized](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/401%20Unauthorized.png)
 
 该状态码表示 **发送的请求需要有通过 HTTP 认证**（BASIC 认证、DIGEST 认证）的认证信息。另外若之前已进行过 1 次请求，则表示用户认证失败。
 
@@ -952,7 +952,7 @@ http://example.com/sample
 
 #### 403 Forbidden
 
-![403 Forbidden](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/403%20Forbidden.png)
+![403 Forbidden](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/403%20Forbidden.png)
 
 该状态码表明 **对请求资源的访问被服务器拒绝了** 。服务器端没有必要给出拒绝的详细理由，但如果想作说明的话，可以在实体的主体部分对原因进行描述，这样就能让用户看到了。
 
@@ -960,7 +960,7 @@ http://example.com/sample
 
 #### 404 Not Found
 
-![404 Not Found](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/404%20Not%20Found.png)
+![404 Not Found](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/404%20Not%20Found.png)
 
 该状态码表明 **服务器上无法找到请求的资源** 。除此之外，也可以 **在服务器端拒绝请求且不想说明理由时使用** 。
 
@@ -970,13 +970,13 @@ http://example.com/sample
 
 #### 500 Internal Server Erro
 
-![500 Internal Server Erro](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/500%20Internal%20Server%20Erro.png)
+![500 Internal Server Erro](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/500%20Internal%20Server%20Erro.png)
 
 该状态码表明 **服务器端在执行请求时发生了错误** 。也有可能是 **Web应用存在的 bug** 或 **某些临时的故障** 。
 
 #### 503 Service Unavailable
 
-![503 Service Unavailable](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/503%20Service%20Unavailable.png)
+![503 Service Unavailable](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/503%20Service%20Unavailable.png)
 
 该状态码表明 **服务器暂时处于超负载** 或 **正在进行停机维护** ，现在无法处理请求。如果 **事先得知解除以上状况需要的时间** ，最好写入 **RetryAfter** 首部字段再返回给客户端。
 
@@ -985,11 +985,11 @@ http://example.com/sample
 
 ## 与 HTTP 协作的 Web 服务器
 
-![与 HTTP 协作的 Web 服务器](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E4%B8%8E%20HTTP%20%E5%8D%8F%E4%BD%9C%E7%9A%84%20Web%20%E6%9C%8D%E5%8A%A1%E5%99%A8.png)
+![与 HTTP 协作的 Web 服务器](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E4%B8%8E%20HTTP%20%E5%8D%8F%E4%BD%9C%E7%9A%84%20Web%20%E6%9C%8D%E5%8A%A1%E5%99%A8.png)
 
 一台 Web 服务器可搭建多个独立域名的 Web 网站，也可作为通信路径上的中转服务器提升传输效率。
 
-![Web 服务器](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Web%E6%9C%8D%E5%8A%A1%E5%99%A8.png)
+![Web 服务器](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Web%E6%9C%8D%E5%8A%A1%E5%99%A8.png)
 
 ### 用单台虚拟主机实现多个域名
 
@@ -997,7 +997,7 @@ http://example.com/sample
 
 即使物理层面只有一台服务器，但只要使用虚拟主机的功能，则可以假想已具有多台服务器。
 
-![多个域名](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%A4%9A%E4%B8%AA%E5%9F%9F%E5%90%8D.png)
+![多个域名](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%A4%9A%E4%B8%AA%E5%9F%9F%E5%90%8D.png)
 
 客户端使用 HTTP 协议访问服务器时，会经常采用类似 www.hackr.jp 这样的主机名和域名。
 
@@ -1005,7 +1005,7 @@ http://example.com/sample
 
 所以，如果一台服务器内托管了 www.tricorder.jp 和 www.hackr.jp 这两个域名，当收到请求时就需要弄清楚究竟要访问哪个域名。
 
-![访问哪个域名](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E8%AE%BF%E9%97%AE%E5%93%AA%E4%B8%AA%E5%9F%9F%E5%90%8D.png)
+![访问哪个域名](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E8%AE%BF%E9%97%AE%E5%93%AA%E4%B8%AA%E5%9F%9F%E5%90%8D.png)
 
 在相同的 IP 地址下，由于 **虚拟主机可以寄存多个不同主机名和域名的 Web 网站** ，因此在发送 HTTP 请求时，必须 **在 Host 首部内完整指定主机名或域名的 URI** 。
 
@@ -1029,19 +1029,19 @@ HTTP 通信时，除 **客户端** 和 **服务器** 以外，还有一些 **用
 
 #### 代理
 
-![代理服务器](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8.png)
+![代理服务器](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8.png)
 
 代理服务器的基本行为就是 **接收客户端发送的请求后转发给其他服务器**v 。代理 **不改变请求 URI** ，会 **直接发送给前方持有资源的目标服务器** 。
 
 **持有资源实体的服务器** 被称为 **源服务器** 。从源服务器返回的响应经过代理服务器后再传给客户端。
 
-![代理服务器转发请求或响应](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BD%AC%E5%8F%91%E8%AF%B7%E6%B1%82%E6%88%96%E5%93%8D%E5%BA%94.png)
+![代理服务器转发请求或响应](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BD%AC%E5%8F%91%E8%AF%B7%E6%B1%82%E6%88%96%E5%93%8D%E5%BA%94.png)
 
 图：每次通过代理服务器转发请求或响应时，会追加写入 Via 首部信息
 
 在 HTTP 通信过程中，可级联多台代理服务器。请求和响应的转发会经过数台类似锁链一样连接起来的代理服务器。转发时，**需要附加 Via 首部字段以标记出经过的主机信息** 。
 
-![代理服务器访问控制](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6.png)
+![代理服务器访问控制](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6.png)
 
 使用代理服务器的理由有：利用缓存技术（稍后讲解）**减少网络带宽的流量** ，**组织内部针对特定网站的访问控制** ，以获取访问日志为主要目的，等等。
 
@@ -1059,7 +1059,7 @@ HTTP 通信时，除 **客户端** 和 **服务器** 以外，还有一些 **用
 
 #### 网关
 
-![网关](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E7%BD%91%E5%85%B3.png)
+![网关](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E7%BD%91%E5%85%B3.png)
 
 图：利用网关可以由 HTTP 请求转化为其他协议通信
 
@@ -1073,7 +1073,7 @@ HTTP 通信时，除 **客户端** 和 **服务器** 以外，还有一些 **用
 
 隧道本身不会去解析 HTTP 请求。也就是说，请求保持原样中转给之后的服务器。隧道会在通信双方断开连接时结束。
 
-![隧道](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E9%9A%A7%E9%81%93.png)
+![隧道](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E9%9A%A7%E9%81%93.png)
 
 图：通过隧道的传输，可以和远距离的服务器安全通信。隧道本身是透明的，客户端不用在意隧道的存在
 
@@ -1083,7 +1083,7 @@ HTTP 通信时，除 **客户端** 和 **服务器** 以外，还有一些 **用
 
 缓存服务器是代理服务器的一种，并归类在缓存代理类型中。换句话说，**当代理转发从服务器返回的响应** 时，**代理服务器将会保存一份资源的副本** 。
 
-![缓存服务器](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E7%BC%93%E5%AD%98%E6%9C%8D%E5%8A%A1%E5%99%A8.png)
+![缓存服务器](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E7%BC%93%E5%AD%98%E6%9C%8D%E5%8A%A1%E5%99%A8.png)
 
 缓存服务器的优势在于利用缓存 **可避免多次从源服务器转发资源 ** 。因此客户端 **可就近从缓存服务器上获取资源** ，而 **源服务器也不必多次处理相同的请求了** 。
 
@@ -1095,7 +1095,7 @@ HTTP 通信时，除 **客户端** 和 **服务器** 以外，还有一些 **用
 
 即使存在缓存，也会因为客户端的要求、缓存的有效期等因素，**向源服务器确认资源的有效性** 。若 **判断缓存失效** ，**缓存服务器将会再次从源服务器上获取“新”资源** 。
 
-![缓存的有效期限](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E7%BC%93%E5%AD%98%E7%9A%84%E6%9C%89%E6%95%88%E6%9C%9F%E9%99%90.png)
+![缓存的有效期限](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E7%BC%93%E5%AD%98%E7%9A%84%E6%9C%89%E6%95%88%E6%9C%9F%E9%99%90.png)
 
 #### 客户端的缓存
 
@@ -1105,7 +1105,7 @@ HTTP 通信时，除 **客户端** 和 **服务器** 以外，还有一些 **用
 
 另外，和缓存服务器相同的一点是，当判定 **缓存过期** 后，会 **向源服务器确认资源的有效性** 。若判断 **浏览器缓存失效** ，**浏览器会再次请求新资源** 。
 
-![客户端的缓存](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%BC%93%E5%AD%98.png)
+![客户端的缓存](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%BC%93%E5%AD%98.png)
 
 >在 HTTP 出现之前的协议
 
@@ -1128,17 +1128,17 @@ HTTP 通信时，除 **客户端** 和 **服务器** 以外，还有一些 **用
 
 ## HTTP 首部
 
-![通用首部和请求首部](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E9%80%9A%E7%94%A8%E9%A6%96%E9%83%A8%E5%92%8C%E8%AF%B7%E6%B1%82%E9%A6%96%E9%83%A8.png)
+![通用首部和请求首部](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E9%80%9A%E7%94%A8%E9%A6%96%E9%83%A8%E5%92%8C%E8%AF%B7%E6%B1%82%E9%A6%96%E9%83%A8.png)
 
-![响应首部和实体首部](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%93%8D%E5%BA%94%E9%A6%96%E9%83%A8%E5%92%8C%E5%AE%9E%E4%BD%93%E9%A6%96%E9%83%A8.png)
+![响应首部和实体首部](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%93%8D%E5%BA%94%E9%A6%96%E9%83%A8%E5%92%8C%E5%AE%9E%E4%BD%93%E9%A6%96%E9%83%A8.png)
 
 HTTP 协议的请求和响应报文中必定包含 HTTP 首部，只是我们平时在使用 Web 的过程中感受不到它。
 
-![HTTP 首部](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%20%E9%A6%96%E9%83%A8.png)
+![HTTP 首部](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/HTTP%20%E9%A6%96%E9%83%A8.png)
 
 ### HTTP 报文首部
 
-![HTTP 报文的结构](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%20%E6%8A%A5%E6%96%87%E7%9A%84%E7%BB%93%E6%9E%84.png)
+![HTTP 报文的结构](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/HTTP%20%E6%8A%A5%E6%96%87%E7%9A%84%E7%BB%93%E6%9E%84.png)
 
 HTTP 协议的请求和响应报文中必定包含 HTTP 首部。首部内容为客户端和服务器分别处理请求和响应提供所需要的信息。对于客户端用户来说，这些信息中的大部分内容都无须亲自查看。
 
@@ -1148,7 +1148,7 @@ HTTP 协议的请求和响应报文中必定包含 HTTP 首部。首部内容为
 
 在请求中，HTTP 报文由 **方法** 、**URI**  、**HTTP 版本** 、**HTTP 首部字段** 等部分构成。
 
-![请求报文](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87.png)
+![请求报文](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87.png)
 
 下面的示例是访问 http://hackr.jp 时，请求报文的首部信息。
 
@@ -1169,7 +1169,7 @@ Cache-Control: max-age=0
 
 在响应中，HTTP 报文由 **HTTP 版本** 、**状态码**（数字和原因短语）、**HTTP 首部字段**  3 部分构成。
 
-![响应报文](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87.png)
+![响应报文](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87.png)
 
 以下示例是之前请求访问 http://hackr.jp/ 时，返回的响应报文的首部信息。
 
@@ -1192,7 +1192,7 @@ HTTP 首部字段是构成 HTTP 报文的要素之一。在客户端与服务器
 
 使用首部字段是为了给浏览器和服务器提供 **报文主体大小** 、**所使用的语言** 、**认证信息** 等内容。
 
-![首部字段内可使用的附加信息较多](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%E5%86%85%E5%8F%AF%E4%BD%BF%E7%94%A8%E7%9A%84%E9%99%84%E5%8A%A0%E4%BF%A1%E6%81%AF%E8%BE%83%E5%A4%9A.png)
+![首部字段内可使用的附加信息较多](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%E5%86%85%E5%8F%AF%E4%BD%BF%E7%94%A8%E7%9A%84%E9%99%84%E5%8A%A0%E4%BF%A1%E6%81%AF%E8%BE%83%E5%A4%9A.png)
 
 #### HTTP 首部字段结构
 
@@ -1241,13 +1241,13 @@ HTTP 首部字段根据实际用途被分为以下 4 种类型。
 
 HTTP/1.1 规范定义了如下 47 种首部字段。
 
-![通用首部字段](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E9%80%9A%E7%94%A8%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
+![通用首部字段](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E9%80%9A%E7%94%A8%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
 
-![请求首部字段](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
+![请求首部字段](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E8%AF%B7%E6%B1%82%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
 
-![响应首部字段](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%93%8D%E5%BA%94%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
+![响应首部字段](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%93%8D%E5%BA%94%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
 
-![实体首部字段](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%AE%9E%E4%BD%93%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
+![实体首部字段](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%AE%9E%E4%BD%93%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
 
 #### 非 HTTP/1.1 首部字段
 
@@ -1286,7 +1286,7 @@ HTTP 首部字段将定义成缓存代理和非缓存代理的行为，分成 2 
 
 通过指定首部字段 Cache-Control 的指令，就能 **操作缓存的工作机制** 。
 
-![Cache-Control](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Cache-Control.png)
+![Cache-Control](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Cache-Control.png)
 
 图：首部字段 Cache-Control 能够控制缓存的行为
 
@@ -1299,9 +1299,9 @@ Cache-Control: private, max-age=0, no-cache
 
 可用的指令按请求和响应分类如下所示。
 
-![缓存请求指令](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E7%BC%93%E5%AD%98%E8%AF%B7%E6%B1%82%E6%8C%87%E4%BB%A4.png)
+![缓存请求指令](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E7%BC%93%E5%AD%98%E8%AF%B7%E6%B1%82%E6%8C%87%E4%BB%A4.png)
 
-![缓存响应指令](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E7%BC%93%E5%AD%98%E5%93%8D%E5%BA%94%E6%8C%87%E4%BB%A4.png)
+![缓存响应指令](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E7%BC%93%E5%AD%98%E5%93%8D%E5%BA%94%E6%8C%87%E4%BB%A4.png)
 
 ##### 表示是否能缓存的指令
 
@@ -1314,7 +1314,7 @@ Cache-Control: public
 
 ###### private 指令
 
-![private 指令](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/private%20%E6%8C%87%E4%BB%A4.png)
+![private 指令](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/private%20%E6%8C%87%E4%BB%A4.png)
 
 ```
 Cache-Control: private
@@ -1325,7 +1325,7 @@ Cache-Control: private
 
 ###### no-cache 指令
 
-![no-cache 指令](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/no-cache%20%E6%8C%87%E4%BB%A4.png)
+![no-cache 指令](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/no-cache%20%E6%8C%87%E4%BB%A4.png)
 
 ```
 Cache-Control: no-cache
@@ -1368,7 +1368,7 @@ s-maxage 指令的功能和 max-age 指令的相同，它们的不同点是 **sm
 
 ###### max-age 指令
 
-![max-age 指令](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/max-age%20%E6%8C%87%E4%BB%A4.png)
+![max-age 指令](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/max-age%20%E6%8C%87%E4%BB%A4.png)
 
 当客户端发送的请求中包含 max-age 指令时，如果 **判定缓存资源的缓存时间数值比指定时间的数值更小** ，那么 **客户端就接收缓存的资源** 。
 
@@ -1380,7 +1380,7 @@ s-maxage 指令的功能和 max-age 指令的相同，它们的不同点是 **sm
 
 ###### min-fresh 指令
 
-![min-fresh 指令](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/min-fresh%20%E6%8C%87%E4%BB%A4.png)
+![min-fresh 指令](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/min-fresh%20%E6%8C%87%E4%BB%A4.png)
 
 ```
 Cache-Control: min-fresh=60（单位：秒）
@@ -1450,7 +1450,7 @@ Connection 首部字段具备如下两个作用。
 
 ##### 控制不再转发给代理的首部字段
 
-![不再转发的首部字段名](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E4%B8%8D%E5%86%8D%E8%BD%AC%E5%8F%91%E7%9A%84%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%E5%90%8D.png)
+![不再转发的首部字段名](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E4%B8%8D%E5%86%8D%E8%BD%AC%E5%8F%91%E7%9A%84%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%E5%90%8D.png)
 
 ```
 Connection: 不再转发的首部字段名
@@ -1460,7 +1460,7 @@ Connection: 不再转发的首部字段名
 
 ##### 管理持久连接
 
-![管理持久连接](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E7%AE%A1%E7%90%86%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5.png)
+![管理持久连接](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E7%AE%A1%E7%90%86%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5.png)
 
 ```
 Connection: close
@@ -1477,7 +1477,7 @@ HTTP/1.1 版本的 **默认连接** 都是 **持久连接** 。为此，**客户
 
 首部字段 Date 表明创建 HTTP 报文的日期和时间。
 
-![创建 HTTP 报文的日期和时间](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%88%9B%E5%BB%BA%20HTTP%20%E6%8A%A5%E6%96%87%E7%9A%84%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4.png)
+![创建 HTTP 报文的日期和时间](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%88%9B%E5%BB%BA%20HTTP%20%E6%8A%A5%E6%96%87%E7%9A%84%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4.png)
 
 HTTP/1.1 协议使用在 RFC1123 中规定的日期时间的格式，如下 示例。
 
@@ -1505,7 +1505,7 @@ Pragma: no-cache
 ```
 该首部字段属于通用首部字段，但只用在客户端发送的请求中。**客户端会要求所有的中间服务器不返回缓存的资源。**
 
-![中间服务器不返回缓存的资源](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E4%B8%AD%E9%97%B4%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8D%E8%BF%94%E5%9B%9E%E7%BC%93%E5%AD%98%E7%9A%84%E8%B5%84%E6%BA%90.png)
+![中间服务器不返回缓存的资源](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E4%B8%AD%E9%97%B4%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8D%E8%BF%94%E5%9B%9E%E7%BC%93%E5%AD%98%E7%9A%84%E8%B5%84%E6%BA%90.png)
 
 所有的中间服务器如果都能 **以 HTTP/1.1 为基准** ，那 **直接采用 CacheControl: no-cache 指定缓存** 的处理方式是最为理想的。但要整体掌握全部中间服务器使用的 HTTP 协议版本却是不现实的。因此，**发送的请求会同时含有下面两个首部字段** 。
 
@@ -1515,7 +1515,7 @@ Pragma: no-cache
 ```
 #### Trailer
 
-![Trailer](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Trailer.png)
+![Trailer](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Trailer.png)
 
 首部字段 Trailer 会 **事先说明在报文主体后记录了哪些首部字段** 。该首部字段可应用在 **HTTP/1.1 版本分块传输编码** 时。
 
@@ -1534,7 +1534,7 @@ Expires: Tue, 28 Sep 2004 23:59:59 GMT
 
 #### Transfer-Encoding
 
-![Transfer-Encoding](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Transfer-Encoding.png)
+![Transfer-Encoding](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Transfer-Encoding.png)
 
 首部字段 Transfer-Encoding 规定了 **传输报文主体时采用的编码方式** 。
 
@@ -1563,7 +1563,7 @@ cf0 ←16进制(10进制为3312)
 
 首部字段 Upgrade 用于 **检测 HTTP 协议及其他协议是否可使用更高的版本进行通信** ，其参数值可以用来 **指定一个完全不同的通信协议** 。
 
-![Upgrade](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Upgrade.png)
+![Upgrade](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Upgrade.png)
 
 上图用例中，首部字段 Upgrade 指定的值为 **TLS/1.0**  。请注意此处两个字段首部字段的对应关系，**Connection 的值被指定为 Upgrade** 。
 
@@ -1579,7 +1579,7 @@ Upgrade 首部字段产生作用的 **Upgrade 对象仅限于客户端和邻接�
 
 首部字段 Via 不仅用于 **追踪报文的转发** ，还可 **避免请求回环的发生** 。所以必须在经过代理时附加该首部字段内容。
 
-![首部字段 Via](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%20Via.png)
+![首部字段 Via](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%20Via.png)
 
 上图用例中，在经过代理服务器 A 时，Via 首部附加了“1.0 gw.hackr.jp (Squid/3.1)”这样的字符串值。行头的 1.0 是指接收请求的服务器上应用的 HTTP 协议版本。接下来经过代理服务器 B 时亦是如此，在 Via 首部附加服务器信息，也可增加 1 个新的 Via 首部写入服务器信息。
 
@@ -1599,17 +1599,17 @@ Warning: [警告码][警告的主机:端口号]“[警告内容]”([日期时�
 ```
 HTTP/1.1 中定义了 7 种警告。警告码对应的警告内容仅推荐参考。另外，警告码具备扩展性，今后有可能追加新的警告码。
 
-![HTTP/1.1 警告码](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP-1.1%20%E8%AD%A6%E5%91%8A%E7%A0%81.png)
+![HTTP/1.1 警告码](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/HTTP-1.1%20%E8%AD%A6%E5%91%8A%E7%A0%81.png)
 
 ### 请求首部字段
 
 请求首部字段是 **从客户端往服务器端发送请求报文中所使用的字段** ，用于补充请求的附加信息、客户端信息、对响应内容相关的优先级等内容。
 
-![HTTP 请求报文中使用的首部字段](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%20%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%9A%84%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
+![HTTP 请求报文中使用的首部字段](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/HTTP%20%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%9A%84%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
 
 #### Accept
 
-![Accept](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Accept.png)
+![Accept](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Accept.png)
 
 ```
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
@@ -1654,7 +1654,7 @@ Accept-Charset 首部字段可用来 **通知服务器用户代理支持的字�
 
 #### Accept-Encoding
 
-![Accept-Encoding](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Accept-Encoding.png)
+![Accept-Encoding](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Accept-Encoding.png)
 
 ```
 Accept-Encoding: gzip, deflate
@@ -1681,7 +1681,7 @@ Accept-Encoding 首部字段用来告知服务器用户代理支持的内容编�
 
 #### Accept-Language
 
-![Accept-Language](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Accept-Language.png)
+![Accept-Language](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Accept-Language.png)
 
 ```
 Accept-Language: zh-cn,zh;q=0.7,en-us,en;q=0.3
@@ -1692,7 +1692,7 @@ Accept-Language: zh-cn,zh;q=0.7,en-us,en;q=0.3
 
 #### Authorization
 
-![Authorization](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Authorization.png)
+![Authorization](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Authorization.png)
 
 ```
 Authorization: Basic dWVub3NlbjpwYXNzd29yZA==
@@ -1703,7 +1703,7 @@ Authorization: Basic dWVub3NlbjpwYXNzd29yZA==
 
 #### Expect
 
-![Expect](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Expect.png)
+![Expect](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Expect.png)
 
 ```
 Expect: 100-continue
@@ -1716,13 +1716,13 @@ Expect: 100-continue
 
 #### From
 
-![From](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/From.png)
+![From](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/From.png)
 
 首部字段 From 用来告知 **服务器使用用户代理的用户的电子邮件地址** 。通常，其使用目的就是为了显示搜索引擎等用户代理的负责人的电子邮件联系方式。使用代理时，应尽可能包含 From 首部字段（但可能会因代理不同，将电子邮件地址记录在 **User-Agent 首部字段** 内）。
 
 #### Host
 
-![Host](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Host.png)
+![Host](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Host.png)
 
 图：虚拟主机运行在同一个 IP 上，因此使用首部字段 Host 加以区分
 
@@ -1740,13 +1740,13 @@ Host:
 ```
 #### If-Match
 
-![If-Match](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/If-Match.png)
+![If-Match](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/If-Match.png)
 
 图：附带条件请求
 
 形如 **If-xxx 这种样式的请求首部字段** ，都可称为 **条件请求** 。服务器接收到附带条件的请求后，**只有判断指定条件为真时** ，**才会执行请求** 。
 
-![匹配一致](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%8C%B9%E9%85%8D%E4%B8%80%E8%87%B4.png)
+![匹配一致](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%8C%B9%E9%85%8D%E4%B8%80%E8%87%B4.png)
 
 图：只有当 If-Match 的字段值跟 ETag 值匹配一致时，服务器才会接受请求
 
@@ -1759,7 +1759,7 @@ If-Match: "123456"
 
 #### If-Modified-Since
 
-![If-Modified-Since](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/If-Modified-Since.png)
+![If-Modified-Since](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/If-Modified-Since.png)
 
 图：如果在 If-Modified-Since 字段指定的日期时间后，资源发生了更新，服务器会接受请求
 
@@ -1774,7 +1774,7 @@ If-Modified-Since 用于 **确认代理或客户端拥有的本地资源的有�
 
 #### If-None-Match
 
-![If-None-Match](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/If-None-Match.png)
+![If-None-Match](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/If-None-Match.png)
 
 图：只有在 If-None-Match 的字段值与 ETag 值不一致时，可处理该请求。与 If-Match 首部字段的作用相反
 
@@ -1784,11 +1784,11 @@ If-Modified-Since 用于 **确认代理或客户端拥有的本地资源的有�
 
 #### If-Range
 
-![If-Range](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/If-Range.png)
+![If-Range](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/If-Range.png)
 
 首部字段 If-Range 属于附带条件之一。它告知服务器 **若指定的 IfRange 字段值（ETag 值或者时间）和请求资源的 ETag 值或时间相一致** 时，则 **作为范围请求处理** 。反之，则 **返回全体资源** 。
 
-![不使用首部字段 If-Range](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E4%B8%8D%E4%BD%BF%E7%94%A8%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%20If-Range.png)
+![不使用首部字段 If-Range](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E4%B8%8D%E4%BD%BF%E7%94%A8%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%20If-Range.png)
 
 下面我们思考一下不使用首部字段 If-Range 发送请求的情况。服务器端的资源如果更新，那客户端持有资源中的一部分也会随之无效，当然，范围请求作为前提是无效的。这时，服务器会暂且以 **状态码 412 Precondition Failed** 作为响应返回，其目的是**催促客户端再次发送请求** 。这样一来，**与使用首部字段 If-Range 比起来，就需要花费两倍的功夫** 。
 
@@ -1801,7 +1801,7 @@ If-Unmodified-Since: Thu, 03 Jul 2012 00:00:00 GMT
 
 #### Max-Forwards
 
-![Max-Forwards](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Max-Forwards.png)
+![Max-Forwards](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Max-Forwards.png)
 
 图：每次转发数值减 1。当数值变 0 时返回响应
 
@@ -1814,11 +1814,11 @@ Max-Forwards: 10
 
 可以灵活使用首部字段 Max-Forwards，针对以上问题产生的原因展开调查。由于 **当 Max-Forwards 字段值为 0** 时，**务器就会立即返回响应** ，由此我们至少可以 **对以那台服务器为终点的传输路径的通信状况有所把握** 。
 
-![代理 B 到源服务器的请求失败了](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E4%BB%A3%E7%90%86%20B%20%E5%88%B0%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E8%AF%B7%E6%B1%82%E5%A4%B1%E8%B4%A5%E4%BA%86.png)
+![代理 B 到源服务器的请求失败了](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E4%BB%A3%E7%90%86%20B%20%E5%88%B0%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E8%AF%B7%E6%B1%82%E5%A4%B1%E8%B4%A5%E4%BA%86.png)
 
 图：代理 B 到源服务器的请求失败了，但客户端不知道
 
-![陷入代理之间的循环](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E9%99%B7%E5%85%A5%E4%BB%A3%E7%90%86%E4%B9%8B%E9%97%B4%E7%9A%84%E5%BE%AA%E7%8E%AF.png)
+![陷入代理之间的循环](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E9%99%B7%E5%85%A5%E4%BB%A3%E7%90%86%E4%B9%8B%E9%97%B4%E7%9A%84%E5%BE%AA%E7%8E%AF.png)
 
 图：由于未知原因，导致请求陷入代理之间的循环，但客户端不知道
 
@@ -1842,7 +1842,7 @@ Range: bytes=5001-10000
 
 #### Referer
 
-![Referer](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Referer.png)
+![Referer](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Referer.png)
 
 ```
 Referer: http://www.hackr.jp/index.htm
@@ -1867,7 +1867,7 @@ TE: trailers
 ```
 #### User-Agent
 
-![User-Agent](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/User-Agent.png)
+![User-Agent](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/User-Agent.png)
 
 图：User-Agent 用于传达浏览器的种类
 
@@ -1882,11 +1882,11 @@ User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:13.0) Gecko/20100101 Firefox/
 
 响应首部字段是由服务器端向客户端返回响应报文中所使用的字段，用于补充响应的附加信息、服务器信息，以及对客户端的附加要求等信息。
 
-![HTTP 响应报文中使用的首部字段](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/HTTP%20%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%9A%84%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
+![HTTP 响应报文中使用的首部字段](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/HTTP%20%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%9A%84%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
 
 #### Accept-Ranges
 
-![Accept-Ranges](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Accept-Ranges.png)
+![Accept-Ranges](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Accept-Ranges.png)
 
 图：当不能处理范围请求时，Accept-Ranges: none
 
@@ -1899,7 +1899,7 @@ Accept-Ranges: bytes
 
 #### Age
 
-![Age](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Age.png)
+![Age](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Age.png)
 
 ```
 Age: 600
@@ -1910,7 +1910,7 @@ Age: 600
 
 #### ETag
 
-![ETag](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/ETag.png)
+![ETag](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/ETag.png)
 
 ```
 ETag: "82e22293907ce725faf67773957acd12"
@@ -1919,7 +1919,7 @@ ETag: "82e22293907ce725faf67773957acd12"
 
 另外，当 **资源更新** 时，**ETag 值也需要更新** 。生成 ETag 值时，并没有统一的算法规则，而仅仅是 **由服务器来分配** 。
 
-![被分配唯一性标识](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E8%A2%AB%E5%88%86%E9%85%8D%E5%94%AF%E4%B8%80%E6%80%A7%E6%A0%87%E8%AF%86.png)
+![被分配唯一性标识](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E8%A2%AB%E5%88%86%E9%85%8D%E5%94%AF%E4%B8%80%E6%80%A7%E6%A0%87%E8%AF%86.png)
 
 **资源被缓存时** ，就会 **被分配唯一性标识** 。例如，当使用中文版的浏览器访问 http://www.google.com/ 时，就会返回中文版对应的资源，而使用英文版的浏览器访问时，则会返回英文版对应的资源。**两者的 URI 是相同的** ，所以 **仅凭 URI 指定缓存的资源是相当困难的** 。若在下载过程中出现连接中断、再连接的情况，都会 **依照 ETag 值来指定资源** 。
 
@@ -1943,7 +1943,7 @@ ETag: W/"usagi-1234"
 ```
 #### Location
 
-![Location](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Location.png)
+![Location](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Location.png)
 
 ```
 Location: http://www.usagidesign.jp/sample.html
@@ -1965,7 +1965,7 @@ Proxy-Authenticate: Basic realm="Usagidesign Auth"
 
 #### Retry-After
 
-![Retry-After](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Retry-After.png)
+![Retry-After](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Retry-After.png)
 
 ```
 Retry-After: 120
@@ -1976,7 +1976,7 @@ Retry-After: 120
 
 #### Server
 
-![Server](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Server.png)
+![Server](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Server.png)
 
 ```
 Server: Apache/2.2.17 (Unix)
@@ -1988,7 +1988,7 @@ Server: Apache/2.2.6 (Unix) PHP/5.2.5
 ```
 #### Vary
 
-![Vary](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Vary.png)
+![Vary](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Vary.png)
 
 图：当代理服务器接收到带有 Vary 首部字段指定获取资源的请求时，如果使用的 Accept-Language 字段的值相同，那么就直接从缓存返回响应。反之，则需要先从源服务器端获取资源后才能作为响应返回
 
@@ -2012,13 +2012,13 @@ WWW-Authenticate: Basic realm="Usagidesign Auth"
 
 实体首部字段是包含在请求报文和响应报文中的实体部分所使用的首部，用于补充内容的更新时间等与实体相关的信息。
 
-![实体相关的首部字段](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E5%AE%9E%E4%BD%93%E7%9B%B8%E5%85%B3%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
+![实体相关的首部字段](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%AE%9E%E4%BD%93%E7%9B%B8%E5%85%B3%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
 
 图：在请求和响应两方的 HTTP 报文中都含有与实体相关的首部字段
 
 #### Allow
 
-![Allow](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Allow.png)
+![Allow](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Allow.png)
 
 ```
 Allow: GET, HEAD
@@ -2032,7 +2032,7 @@ Content-Encoding: gzip
 ```
 首部字段 Content-Encoding 会告知客户端服务器对实体的主体部分选用的内容编码方式。内容编码是指在不丢失实体信息的前提下所进行的压缩
 
-![Content-Encoding](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Content-Encoding.png)
+![Content-Encoding](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Content-Encoding.png)
 
 主要采用以下 4 种内容编码的方式。（各方式的说明请参考 6.4.3 节 Accept-Encoding 首部字段）。
 
@@ -2043,7 +2043,7 @@ Content-Encoding: gzip
 
 #### Content-Language
 
-![Content-Language](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Content-Language.png)
+![Content-Language](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Content-Language.png)
 
 ```
 Content-Language: zh-CN
@@ -2052,7 +2052,7 @@ Content-Language: zh-CN
 
 #### Content-Length
 
-![Content-Length](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Content-Length.png)
+![Content-Length](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Content-Length.png)
 
 ```
 Content-Length: 15000
@@ -2070,7 +2070,7 @@ Content-Location: http://www.hackr.jp/index-ja.html
 
 #### Content-MD5
 
-![Content-MD5](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Content-MD5.png)
+![Content-MD5](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Content-MD5.png)
 
 图：客户端会对接收的报文主体执行相同的 MD5 算法，然后与首部字段 Content-MD5 的字段值比较
 
@@ -2085,7 +2085,7 @@ Content-MD5: OGFkZDUwNGVhNGY3N2MxMDIwZmQ4NTBmY2IyTY==
 
 #### Content-Range
 
-![Content-Range](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Content-Range.png)
+![Content-Range](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Content-Range.png)
 
 ```
 Content-Range: bytes 5001-10000/10000
@@ -2101,7 +2101,7 @@ Content-Type: text/html; charset=UTF-8
 
 #### Expires
 
-![Expires](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Expires.png)
+![Expires](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Expires.png)
 
 ```
 Expires: Wed, 04 Jul 2012 08:26:05 GMT
@@ -2114,7 +2114,7 @@ Expires: Wed, 04 Jul 2012 08:26:05 GMT
 
 #### Last-Modified
 
-![Last-Modified](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Last-Modified.png)
+![Last-Modified](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Last-Modified.png)
 
 ```
 Last-Modified: Wed, 23 May 2012 09:59:55 GMT
@@ -2151,9 +2151,9 @@ Last-Modified: Wed, 23 May 2012 09:59:55 GMT
 
 下面的表格内列举了与 Cookie 有关的首部字段。
 
-![为 Cookie 服务的首部字段](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/%E4%B8%BA%20Cookie%20%E6%9C%8D%E5%8A%A1%E7%9A%84%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
+![为 Cookie 服务的首部字段](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E4%B8%BA%20Cookie%20%E6%9C%8D%E5%8A%A1%E7%9A%84%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png)
 
-![Cookie](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Cookie.png)
+![Cookie](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Cookie.png)
 
 #### Set-Cookie
 
@@ -2164,7 +2164,7 @@ Set-Cookie: status=enable; expires=Tue, 05 Jul 2011 07:26:31 GMT; path=/; domain
 
 下面的表格列举了 Set-Cookie 的字段值。
 
-![Set-Cookie 字段的属性](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/Set-Cookie%20%E5%AD%97%E6%AE%B5%E7%9A%84%E5%B1%9E%E6%80%A7.png)
+![Set-Cookie 字段的属性](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Set-Cookie%20%E5%AD%97%E6%AE%B5%E7%9A%84%E5%B1%9E%E6%80%A7.png)
 
 ##### expires 属性
 
@@ -2261,7 +2261,7 @@ X-XSS-Protection: 1
 
 #### DNT
 
-![DNT](http://p9myzkds7.bkt.clouddn.com/Graphic-HTTP/DNT.png)
+![DNT](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/DNT.png)
 
 ```
 DNT: 1
