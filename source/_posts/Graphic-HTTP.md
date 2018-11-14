@@ -2843,3 +2843,579 @@ SSL客户端认证是 **借由 HTTPS 的客户端证书完成认证的方式** �
 通常，一种安全的保存方法是，先利用 **给密码加盐（salt）的方式增加额外信息** ，再 **使用散列（hash）函数计算出散列值** 后保存。但是我们也经常看到 **直接保存明文密码** 的做法，而 **这样的做法具有导致密码泄露的风险** 。
 
 > salt 其实就是 **由服务器随机生成的一个字符串** ，但是要 **保证长度足够长** ，并且是 **真正随机生成的** 。然后把它和密码字符串相连接（前后都可以）生成散列值。当 **两个用户使用了同一个密码** 时，**由于随机生成的 salt 值不同，对应的散列值也将是不同的** 。这样一来，很大程度上减少了密码特征，攻击者也就很难利用自己手中的密码特征库进行破解。
+
+## 基于 HTTP 的功能追加协议
+
+![追加协议](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E8%BF%BD%E5%8A%A0%E5%8D%8F%E8%AE%AE.png)
+
+虽然 HTTP 协议既简单又简捷，但随着时代的发展，其功能使用上捉襟见肘的疲态已经凸显。
+
+![基于 HTTP 的功能追加协议](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%9F%BA%E4%BA%8E%20HTTP%20%E7%9A%84%E5%8A%9F%E8%83%BD%E8%BF%BD%E5%8A%A0.png)
+
+### 基于 HTTP 的协议
+
+HTTP 功能上的不足可通过创建一套全新的协议来弥补。可是目前基于 HTTP 的 Web 浏览器的使用环境已遍布全球，因此无法完全抛弃HTTP。有一些新协议的规则是基于 HTTP 的，并在此基础上添加了新的功能。
+
+### 消除 HTTP 瓶颈的 SPDY
+
+Google 在 2010 年发布了 SPDY（取自 SPeeDY，发音同 speedy），其开发目标旨在解决 HTTP 的性能瓶颈，缩短 Web 页面的加载时间（50%）。
+
+SPDY- The Chromium Projects
+
+- http://www.chromium.org/spdy/
+
+#### HTTP 的瓶颈
+
+使用 HTTP 协议探知服务器上是否有内容更新，就必须频繁地从客户端到服务器端进行确认。如果服务器上没有内容更新，那么就会产生徒劳的通信。
+
+若想在现有 Web 实现所需的功能，以下这些 HTTP 标准就会成为瓶颈。
+
+- 一条连接上 **只可发送一个请求** 。
+- 请求 **只能从客户端开始** 。客户端不可以接收除响应以外的指令。
+- 请求 / 响应 **首部未经压缩** 就发送。首部信息越多延迟越大。
+- 发送 **冗长的首部** 。每次互相发送相同的首部造成的浪费较多。
+- 可任意选择数据压缩格式。**非强制压缩** 发送。
+
+![以前的 HTTP 通信](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E4%BB%A5%E5%89%8D%E7%9A%84%20HTTP%20%E9%80%9A%E4%BF%A1.png)
+
+##### Ajax 的解决方法
+
+Ajax（Asynchronous JavaScript and XML， 异 步 JavaScript 与 XML技术）是一种有效利用 **JavaScript** 和 **DOM**（Document Object Model，文档对象模型）的操作，以达到 **局部 Web 页面替换加载** 的 **异步通信** 手段。和以前的同步通信相比，由于它只更新一部分页面，响应中传输的数据量会因此而减少，这一优点显而易见。
+
+Ajax 的核心技术是名为 **XMLHttpRequest 的 API** ，通过 JavaScript 脚本语言的调用就能和服务器进行 HTTP 通信。借由这种手段，就能从已加载完毕的 Web 页面上发起请求，只更新局部页面。
+
+而利用 Ajax 实时地从服务器获取内容，有可能会 **导致大量请求** 产生。另外，Ajax 仍未解决 HTTP 协议本身存在的问题。
+
+![Ajax 通信](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Ajax%20%E9%80%9A%E4%BF%A1.png)
+
+##### Comet 的解决方法
+
+一旦服务器端有内容更新了，Comet **不会让请求等待** ，而是 **直接给客户端返回响应** 。这是一种通过 **延迟应答** ，**模拟实现服务器端向客户端推送**（Server Push）的功能。
+
+通常，服务器端接收到请求，在处理完毕后就会立即返回响应，但为了实现推送功能，Comet 会先 **将响应置于挂起状态** ，当 **服务器端有内容更新** 时，再 **返回该响应** 。因此，服务器端一旦有更新，就可以立即反馈给客户端。
+
+内容上虽然可以做到实时更新，但为了保留响应，**一次连接的持续时间也变长了** 。期间，**为了维持连接会消耗更多的资源** 。另外，Comet 也仍未解决 HTTP 协议本身存在的问题。
+
+![Comet 通信](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Comet%20%E9%80%9A%E4%BF%A1.png)
+
+##### SPDY的目标
+
+陆续出现的 Ajax 和 Comet 等提高易用性的技术，一定程度上使 HTTP得到了改善，但 HTTP 协议本身的限制也令人有些束手无策。为了进行根本性的改善，需要有一些协议层面上的改动。处于持续开发状态中的 SPDY 协议，正是为了在协议级别消除 HTTP 所遭遇的瓶颈。
+
+#### SPDY的设计与功能
+
+SPDY 没有完全改写 HTTP 协议，而是在 TCP/IP 的应用层与运输层之间通过新加 **会话层** 的形式运作。同时，考虑到安全性问题，**SPDY 规定通信中使用 SSL** 。
+
+**SPDY 以会话层的形式加入** ，控制对数据的流动，但还是 **采用 HTTP建立通信连接** 。因此，可照常使用 HTTP 的 GET 和 POST 等方 法、Cookie 以及 HTTP 报文等。
+
+![SPDY的设计](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/SPDY%E7%9A%84%E8%AE%BE%E8%AE%A1.png)
+
+使用 SPDY 后，HTTP 协议额外获得以下功能。
+
+##### 多路复用流
+
+通过 **单一的 TCP 连接** ，可以 **无限制处理多个 HTTP 请求** 。所有请求的处理都在一条 TCP 连接上完成，因此 TCP 的处理效率得到提高。
+
+##### 赋予请求优先级
+
+SPDY 不仅可以无限制地并发处理请求，还可以 **给请求逐个分配优先级顺序** 。这样主要是为了在发送多个请求时，解决因带宽低而导致响应变慢的问题。
+
+##### 压缩 HTTP 首部
+
+**压缩 HTTP 请求和响应的首部** 。这样一来，通信产生的数据包数量和发送的字节数就更少了。
+推送功能支持服务器主动向客户端推送数据的功能。这样，服务器可直接发送数据，而不必等待客户端的请求。
+
+##### 服务器提示功能
+
+服务器可以 **主动提示客户端请求所需的资源** 。由于在客户端发现资源之前就可以获知资源的存在，因此在资源已缓存等情况下，可以避免发送不必要的请求。
+
+#### SPDY消除 Web 瓶颈了吗
+
+希望使用 SPDY 时，Web 的内容端不必做什么特别改动，而 Web 浏览器及 Web 服务器都要为对应 SPDY 做出一定程度上的改动。有好几家 Web 浏览器已经针对 SPDY 做出了相应的调整。另外，Web 服务器也进行了实验性质的应用，但把该技术导入实际的 Web 网站却进展不佳。
+
+因为 SPDY 基本上只是将单个域名（ IP 地址）的通信多路复用，所以当一个 Web 网站上使用多个域名下的资源，改善效果就会受到限制。
+
+**SPDY** 的确是一种 **可有效消除 HTTP 瓶颈的技术** ，但 **很多 Web 网站存在的问题并非仅仅是由 HTTP 瓶颈所导致** 。对 Web 本身的速度提升，还应该从其他可细致钻研的地方入手，比如改善 Web 内容的编写方式等。
+
+### 使用浏览器进行全双工通信的 WebSocket
+
+利用 Ajax 和 Comet 技术进行通信可以提升 Web 的浏览速度。但问题在于通信若使用 HTTP 协议，就无法彻底解决瓶颈问题。WebSocket网络技术正是为解决这些问题而实现的 **一套新协议及 API** 。
+
+当时筹划将 WebSocket 作为 HTML5 标准的一部分，而现在它却逐渐变成了独立的协议标准。WebSocket 通信协议在 2011 年 12 月 11 日，被 RFC 6455 - The WebSocket Protocol 定为标准。
+
+#### WebSocket 的设计与功能
+
+WebSocket，即 **Web 浏览器与 Web 服务器之间全双工通信标准** 。其中，WebSocket 协议由 IETF 定为标准，WebSocket API 由 W3C 定为标准。仍在开发中的 WebSocket 技术主要是为了 **解决 Ajax 和 Comet 里 XMLHttpRequest 附带的缺陷所引起的问题** 。
+
+#### WebSocket 协议
+
+一旦 Web 服务器与客户端之间建立起 WebSocket 协议的通信连接，之后所有的通信都依靠这个 **专用协议** 进行。通信过程中可互相发送JSON、XML、HTML或图片等任意格式的数据。
+
+由于是建立在 **HTTP 基础上的协议** ，因此 **连接的发起方仍是客户端** ，而 **一旦确立 WebSocket 通信连接** ，不论服务器还是客户端，**任意一方都可直接向对方发送报文** 。
+
+下面我们列举一下 WebSocket 协议的主要特点。
+
+##### 推送功能
+
+支持由服务器向客户端推送数据的推送功能。这样，服务器可直接发送数据，而不必等待客户端的请求。
+
+##### 减少通信量
+
+只要建立起 WebSocket 连接，就希望一直保持连接状态。和 HTTP 相比，不但每次连接时的总开销减少，而且由于 WebSocket 的首部信息很小，通信量也相应减少了。
+
+为了实现 WebSocket 通信，在 HTTP 连接建立之后，需要完成一次 **“握手”（Handshaking）的步骤** 。
+
+##### 握手·请求
+
+为了实现 WebSocket 通信，需要用到 HTTP 的 Upgrade 首部字段，告知服务器通信协议发生改变，以达到握手的目的。
+
+```
+GET /chat HTTP/1.1
+Host: server.example.com
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==
+Origin: http://example.com
+Sec-WebSocket-Protocol: chat, superchat
+Sec-WebSocket-Version: 13
+```
+Sec-WebSocket-Key 字段内记录着握手过程中必不可少的键值。Sec-WebSocket-Protocol 字段内记录使用的子协议。
+
+子协议按 WebSocket 协议标准在连接分开使用时，定义那些连接的名称。
+
+##### 握手·响应
+
+对于之前的请求，返回状态码 101 Switching Protocols 的响应。
+
+```
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo=
+Sec-WebSocket-Protocol: chat
+```
+Sec-WebSocket-Accept 的字段值是由握手请求中的 SecWebSocket-Key 的字段值生成的。
+
+成功握手确立 WebSocket 连接之后，通信时不再使用 HTTP 的数据帧，而采用 **WebSocket 独立的数据帧** 。
+
+![WebSocket 通信](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/WebSocket%20%E9%80%9A%E4%BF%A1.png)
+
+##### WebSocket API
+
+JavaScript 可调用“The WebSocket API”（http://www.w3.org/TR/websockets/，由 W3C 标准制定）内提供的 WebSocket 程序接口，以实现 WebSocket 协议下全双工通信。
+
+以下为调用 WebSocket API，每 50ms 发送一次数据的实例。
+
+```
+var socket = new WebSocket('ws://game.example.com:12010/updates');
+socket.onopen = function() {
+  setInterval(function() {
+    if (socket.bufferedAmount == 0) socket.send(getUpdateData());
+  },50);
+};
+```
+
+### 期盼已久的 HTTP/2.0
+
+目前主流的 HTTP/1.1 标准，自 1999 年发布的 RFC2616 之后再未进行过改订。SPDY 和 WebSocket 等技术纷纷出现，很难断言 HTTP/1.1仍是适用于当下的 Web 的协议。
+
+负责互联网技术标准的 IETF（Internet Engineering Task Force，互联网工程任务组）创立 httpbis（Hypertext Transfer Protocol Bis，http://datatracker.ietf.org/wg/httpbis/）工作组，其目标是推进下一代 HTTP——HTTP/2.0 在 2014 年 11 月实现标准化。
+
+#### HTTP/2.0 的特点
+
+HTTP/2.0 的目标是改善用户在使用 Web 时的速度体验。由于基本上都会先通过 HTTP/1.1 与 TCP 连接，现在我们以下面的这些协议为基础，探讨一下它们的实现方法。
+
+- SPDY
+- HTTP Speed ＋ Mobility
+- Network-Friendly HTTP Upgrade
+
+HTTP Speed ＋ Mobility 由微软公司起草，是用于改善并提高移动端通信时的通信速度和性能的标准。它建立在 Google 公司提出的 **SPDY 与 WebSocket 的基础之上** 。
+
+Network-Friendly HTTP Upgrade 主要是在移动端通信时改善 HTTP 性能的标准。
+
+
+#### HTTP/2.0 的 7 项技术及讨论
+
+HTTP/2.0 围绕着主要的 7 项技术进行讨论，现阶段（2012 年 8 月 13 日），大都倾向于采用以下协议的技术。但是，讨论仍在持续，所以不能排除会发生重大改变的可能性。
+
+![7 项技术](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/7%20%E9%A1%B9%E6%8A%80%E6%9C%AF.png)
+
+注：HTTP Speed ＋ Mobility 简写为 Speed ＋ Mobility，Network-Friendly HTTP Upgrade 简写为 Friendly。
+
+### Web 服务器管理文件的 WebDAV
+
+WebDAV（Web-based Distributed Authoring and Versioning，基于万维网的 **分布式创作** 和**版本控制** ）是一个可对 Web 服务器上的内容直接进行文件复制、编辑等操作的分布式文件系统。它作为扩展 HTTP/1.1的协议定义在 RFC4918。
+
+除了创建、删除文件等基本功能，它还具备文件创建者管理、文件编辑过程中禁止其他用户内容覆盖的加锁功能，以及对文件内容修改的版本控制功能。
+
+![WebDAV](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/WebDAV.png)
+
+使用 HTTP/1.1 的 PUT 方法和 DELETE 方法，就可以对 Web 服务器上的文件进行创建和删除操作。可是出于安全性及便捷性等考虑，一般不使用。
+
+#### 扩展 HTTP/1.1 的 WebDAV
+
+针对服务器上的资源，WebDAV 新增加了一些概念，如下所示。
+
+![WebDAV 扩展的概念](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/WebDAV%20%E6%89%A9%E5%B1%95%E7%9A%84%E6%A6%82%E5%BF%B5.png)
+
+集合（Collection）：是一种统一管理多个资源的概念。以集合为单位可进行各种操作。也可实现类似集合的集合这样的叠加。
+
+资源（Resource）：把文件或集合称为资源。
+
+属性（Property）：定义资源的属性。定义以“名称 = 值”的格式执行。
+
+锁（Lock）：把文件设置成无法编辑状态。多人同时编辑时，可防止在同一时间进行内容写入。
+
+#### WebDAV 内新增的方法及状态码
+
+WebDAV 为实现远程文件管理，向 HTTP/1.1 中追加了以下这些 **方法** 。
+
+- PROPFIND ：获取属性
+- PROPPATCH ：修改属性
+- MKCOL ：创建集合
+- COPY ：复制资源及属性
+- MOVE ：移动资源
+- LOCK ：资源加锁
+- UNLOCK ：资源解锁
+
+为配合扩展的方法，**状态码** 也随之扩展。
+
+- 102 Processing ：可正常处理请求，但目前是处理中状态
+- 207 Multi-Status ：存在多种状态
+- 422 Unprocessible Entity ：格式正确，内容有误
+- 423 Locked ：资源已被加锁
+- 424 Failed Dependency ：处理与某请求关联的请求失败，因此不再维持依赖关系
+- 507 Insufficient Storage ：保存空间不足
+
+
+##### WebDAV 的请求实例
+
+下面是使用 PROPFIND 方法对 http://www.example.com/file 发起获取属性的请求。
+
+```
+PROPFIND /file HTTP/1.1
+Host: www.example.com
+Content-Type: application/xml; charset="utf-8"
+Content-Length: 219
+
+<?xml version="1.0" encoding="utf-8" ?>
+<D:propfind xmlns:D="DAV:">
+  <D:prop xmlns:R="http://ns.example.com/boxschema/">
+    <R:bigbox/>
+    <R:author/>
+    <R:DingALing/>
+    <R:Random/>
+  </D:prop>
+</D:propfind>
+```
+##### WebDAV 的响应实例
+
+下面是针对之前的 PROPFIND 方法，返回 http://www.example.com/file 的属性的响应。
+
+```
+HTTP/1.1 207 Multi-Status
+Content-Type: application/xml; charset="utf-8"
+Content-Length: 831
+
+<?xml version="1.0" encoding="utf-8" ?>
+<D:multistatus xmlns:D="DAV:">
+<D:response xmlns:R="http://ns.example.com/boxschema/">
+  <D:href>http://www.example.com/file</D:href>
+  <D:propstat>
+    <D:prop>
+      <R:bigbox>
+      <R:BoxType>Box type A</R:BoxType>
+      </R:bigbox>
+      <R:author>
+      <R:Name>J.J. Johnson</R:Name>
+      </R:author>
+    </D:prop>
+    <D:status>HTTP/1.1 200 OK</D:status>
+  </D:propstat>
+  <D:propstat>
+    <D:prop><R:DingALing/><R:Random/></D:prop>
+    <D:status>HTTP/1.1 403 Forbidden</D:status>
+    <D:responsedescription> The user does not have access to the DingALing property.
+    </D:responsedescription>
+  </D:propstat>
+</D:response>
+<D:responsedescription> There has been an access violation error.</D:responsedescription>
+</D:multistatus>
+```
+
+> 为何 HTTP 协议受众如此广泛
+
+> 本章讲解了几个与 HTTP 相关联的协议使用案例。为什么 HTTP 协议受众能够如此广泛呢？
+
+> 过去，新编写接入互联网的系统或软件时，还需要同时编写实现与必要功能对应的新协议。但最近，使用 HTTP 的系统和软件占了绝大多数。
+
+> 这有着诸多原因，其中与企业或组织的防火墙设定有着莫大的关系。防火墙的基本功能就是禁止非指定的协议和端口号的数据包通过。因此如果使用新协议或端口号则必须修改防火墙设置。
+
+>互联网上，使用率最高的当属 Web。不管是否具备访问 FTP 和 SSH 的权限，一般公司都会开放对 Web 的访问。Web 是基于 HTTP协议运作的，因此在构建 Web 服务器或访问 Web 站点时，需事先
+设置防火墙 HTTP（80/tcp）和 HTTPS（443/tcp）的权限。
+
+> 许多公司或组织已设定权限将 HTTP 作为通信环境，因此无须再修改防火墙的设定。可见 HTTP 具有导入简单这一大优势。而这也是基于 HTTP 服务或内容不断增加的原因之一。
+
+>还有一些其他原因，比如，作为 HTTP 客户端的浏览器已相当普遍，HTTP 服务器的数量已颇具规模，HTTP 本身就是优异的应用等。
+
+## 构建 Web 内容的技术
+
+
+![Web 内容构建](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Web%E5%86%85%E5%AE%B9%E6%9E%84%E5%BB%BA.png)
+
+在 Web 刚出现时，我们只能浏览那些页面样式简单的内容。如今，Web 使用各种各样的技术，来呈现丰富多彩的内容。
+
+![构建 Web 内容的技术](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E6%9E%84%E5%BB%BA%20Web%20%E5%86%85%E5%AE%B9%E7%9A%84%E6%8A%80%E6%9C%AF.png)
+
+### HTML
+
+#### Web 页面几乎全由 HTML 构建
+
+HTML（HyperText Markup Language，超文本标记语言）是为了发送 Web 上的超文本（Hypertext）而开发的标记语言。超文本是一种文档系统，可将文档中任意位置的信息与其他信息（文本或图片等）建立关联，即超链接文本。标记语言是指通过在文档的某部分穿插特别的字符串标签，用来修饰文档的语言。我们把出现在 HTML文档内的这种特殊字符串叫做 HTML标签（Tag）。
+
+平时我们浏览的 Web 页面几乎全是使用 HTML写成的。由 HTML构成的文档经过浏览器的解析、渲染后，呈现出来的结果就是 Web 页面。
+
+![HTML](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/HTML.png)
+
+以下就是用 HTML编写的文档的例子。而这份 HTML文档内这种被 `<>` 包围着的文字就是标签。在标签的作用下，文档会改变样式，或插入图片、链接。
+
+```html
+<html>
+ <head></head>
+ <body>
+  &lt; html &gt;  
+  <meta http="" -="" equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title> hackr.jp &lt; /title&gt;
+</title>
+<style type="text/css ">
+  .logo {
+  padding: 20px;
+  text-align: center;
+  }
+</style>   
+  <div class="logo "> 
+   <p><img src="photo.jpg " alt="photo " width="240 " height="127 " /></p> 
+   <p><img src="hackr.gif " alt="hackr.jp " width="240 " height="84 " /></p> 
+   <p><a href="http: //hackr.jp/">hackr.jp</a> </p> &lt; /div&gt;  /
+  </div>
+ </body>
+</html>
+```
+#### HTML 的版本
+
+Tim Berners-Lee 提出 HTTP 概念的同时，还提出了 HTML原型。1993 年在伊利诺伊大学的 NCSA（The National Center for Supercomputing Applications，国家超级计算机应用中心）发布了 Mosaic 浏览器（世界首个图形界面浏览器程序），而能够被 Mosaic 解析的 HTML，统一标准后即作为 HTML1.0 发布。
+
+目前的最新版本是 HTML4.01 标准，1999 年 12 月 W3C（World Wide Web Consortium）组织推荐使用这一版本。下一个版本，预计会在2014 年左右正式推荐使用 HTML5 标准。
+
+HTML5 标准不仅解决了浏览器之间的兼容性问题，并且可把文本作为数据对待，更容易复用，动画等效果也变得更生动。
+
+时至今日，HTML仍存在较多悬而未决问题。有些浏览器未遵循HTML标准实现，或扩展自用标签等，这都反映了 HTML的标准实际上尚未统一这一现状。
+
+#### 设计应用 CSS
+
+CSS（Cascading Style Sheets，层叠样式表）可以指定如何展现 HTML内的各种元素，属于样式表标准之一。即使是相同的 HTML文档，通过改变应用的 CSS，用浏览器看到的页面外观也会随之改变。CSS的理念就是 **让文档的结构和设计分离** ，达到解耦的目的。
+
+下面让我们来看一个 CSS 的用例。
+
+```css
+.logo {
+  padding: 20px;
+  text-align: center;
+}
+```
+可在选择器（selector）.logo 的指定范围内，使用 {} 括起来的声明块中写明的 padding: 20px 等声明语句应用指定的样式。可通过指定 HTML元素或特定的 class、ID 等作为选择器来限定样式
+的应用范围。
+
+### 动态 HTML
+
+#### 让 Web 页面动起来的动态 HTML
+
+所谓动态 HTML（Dynamic HTML），是指  **使用客户端脚本语言将静态的 HTML内容变成动态的技术的总称** 。鼠标单击点开的新闻、Google Maps 等可滚动的地图就用到了动态 HTML。
+
+动态 HTML技术是通过调用客户端脚本语言 **JavaScript** ，实现对HTML的 Web 页面的动态改造。利用 DOM（Document Object Model，文档对象模型）可指定欲发生动态变化的 HTML元素。
+
+#### 更易控制 HTML 的 DOM
+
+DOM 是用以操作 HTML文档和 XML文档的 API（Application Programming Interface，应用编程接口）。使用 DOM 可以将 HTML内的元素当作对象操作，如取出元素内的字符串、改变那个 CSS 的属
+性等，使页面的设计发生改变。
+
+通过调用 JavaScript 等脚本语言对 DOM 的操作，可以以更为简单的方式控制 HTML的改变。
+
+```html
+<html>
+ <head></head>
+ <body>
+  &lt; html &gt;  
+  <meta http="" -="" equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title> hackr.jp &lt; /title&gt;
+</title>
+<style type="text/css ">
+.logo {
+  padding: 20px;
+  text-align: center;
+}
+</style>   
+  <div class="logo "> 
+   <p><img src="photo.jpg " alt="photo " width="240 " height="127 " /></p> 
+   <p><img src="hackr.gif " alt="hackr.jp " width="240 " height="84 " /></p> 
+   <p><a href="http: //hackr.jp/">hackr.jp</a> </p> &lt; /div&gt;  /
+  </div>
+ </body>
+</html>
+```
+
+document.getElementsByTagName('P') 语句调用 getElementsByTagName函数，从整个 HTML文档（document object）内取出 P 元素。接下来的 content[2].style.color = '#FF0000' 语句指定 content 的索引为 2（第 3个）的元素的样式颜色改为红色（#FF0000）。
+
+DOM 内存在各种函数，使用它们可查阅 HTML中的各个元素。
+
+### Web 应用
+
+#### 通过 Web 提供功能的 Web 应用
+
+Web 应用是指通过 Web 功能提供的应用程序。比如购物网站、网上银行、SNS、BBS、搜索引擎和 e-learning 等。互联网（Internet）或企业内网（Intranet）上遍布各式各样的 Web 应用。
+
+原本应用 HTTP 协议的 Web 的机制就是对客户端发来的请求，返回事前准备好的内容。可随着 Web 越来越普及，仅靠这样的做法已不足以应对所有的需求，更需要引入由程序创建 HTML内容的做法。
+
+类似这种 **由程序创建的内容** 称为 **动态内容** ，而 **事先准备好的内容** 称为 **静态内容** 。Web 应用则作用于动态内容之上。
+
+![动态内容和静态内容](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/%E5%8A%A8%E6%80%81%E5%86%85%E5%AE%B9%E5%92%8C%E9%9D%99%E6%80%81%E5%86%85%E5%AE%B9.png)
+
+#### 与 Web 服务器及程序协作的 CGI
+
+CGI（Common Gateway Interface，通用网关接口）是指 **Web 服务器在接收到客户端发送过来的请求后转发给程序的一组机制** 。在 CGI 的作用下，程序会对请求内容做出相应的动作，比如 **创建 HTML等动态内容** 。
+
+使用 CGI 的程序叫做 CGI 程序，通常是用 Perl、PHP、Ruby 和 C 等编程语言编写而成。
+
+![CGI](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/CGI.png)
+
+有关 CGI 更为翔实的内容请参考 RFC3875“The Common Gateway Interface (CGI) Version 1.1”
+
+#### 因 Java 而普及的 Servlet
+
+Servlet 是 **一种能在服务器上创建动态内容的程序** 。**Servlet** 是用 **Java 语言实现的一个接口** ，属于面向企业级 Java（JavaEE，JavaEnterprise Edition）的一部分。
+
+> 没有对应中文译名，全称是 Java Servlet。名称取自 Servlet=Server+Applet，表示
+轻量服务程序。
+
+之前提及的 CGI，由于每次接到请求，程序都要跟着启动一次。因此一旦访问量过大，Web 服务器要承担相当大的负载。而 Servlet 运行在与 Web 服务器相同的进程中，因此 **受到的负载较小**。**Servlet 的运行环境** 叫做 **Web 容器** 或 **Servlet 容器** 。
+
+> Servlet 常驻内存，因此在每次请求时，可启动相对进程级别更为轻量的Servlet，程序的执行效率从而变得更高。
+
+**Servlet 作为解决 CGI 问题的对抗技术** ，随 Java 一起得到了普及。
+
+>说对抗的原因在于，这个方向上已存在用 Perl 编写的 CGI，实现在 Apache HTTP Server 上内置 mod_php 模块后可运行 PHP 程序、微软主导的 ASP 等技术。
+
+![Servlet](https://graphbed.qiniu.songxingguo.com/Graphic-HTTP/Servlet.png)
+
+随着 CGI 的普及，每次请求都要启动新 CGI 程序的 CGI 运行机制逐渐变成了性能瓶颈，所以之后 Servlet 和 mod_perl 等可直接在 Web 服务器上运行的程序才得以开发、普及。
+
+### 数据发布的格式及语言
+
+#### 可扩展标记语言
+
+XML（eXtensible Markup Language，可扩展标记语言）是 **一种可按应用目标进行扩展的通用标记语言** 。旨在通过使用 XML，使互联网数据共享变得更容易。
+
+**XML** 和 **HTML** 都是从 **标准通用标记语言 SGML**（Standard Generalized Markup Language）简化而成。与 HTML相比，它对数据的记录方式做了特殊处理。
+
+下面我们以 HTML编写的某公司的研讨会议议程为例进行说明。
+
+```html
+<html>
+ <head> 
+  <title>T公司研讨会介绍</title> 
+ </head> 
+ <body> 
+  <h1>T公司研讨会介绍</h1> 
+  <ul> 
+   <li>研讨会编号：TR001 
+    <ul> 
+     <li>Web应用程序脆弱性诊断讲座</li> 
+    </ul> </li> 
+   <li>研讨会编号：TR002 
+    <ul> 
+     <li>网络系统脆弱性诊断讲座</li> 
+    </ul> </li> 
+  </ul>  
+ </body>
+</html>
+```
+用浏览器打开该文档时，就会显示排列的列表内容，但如果这些数据被其他程序读取会发生什么？某些程序虽然具备可通过识别布局特征取出文本的方法，但这份 HTML的样式一旦改变，要读取数据内容也就变得相对困难了。可见，为了保持数据的正确读取，**HTML不适合用来记录数据结构** 。
+
+接着将这份列表以 XML的形式改写就成了以下的示例。
+
+```xml
+<研讨会 编号="TR001" 主题="Web应用程序脆弱性诊断讲座">
+  <类别>安全</类别>
+  <概要>为深入研究Web应用程序脆弱性诊断必要的…</概要>
+</研讨会>
+<研讨会 编号="TR002" 主题="网络系统脆弱性诊断讲座">
+  <类别>安全</类别>
+  <概要>为深入研究网络系统脆弱性诊断必要的…</概要>
+</研讨会>
+```
+XML和 HTML一样，使用标签构成树形结构，并且可自定义扩展标签。
+
+从 XML文档中读取数据比起 HTML更为简单。由于 XML的结构基本上都是用标签分割而成的树形结构，因此通过语法分析器（Parser）的解析功能解析 XML结构并取出数据元素，可 **更容易地对数据进行读取** 。
+
+更容易地复用数据使得 XML在互联网上被广泛接受。比如，可用在 2 个不同的应用之间的交换数据格式化。
+
+#### 发布更新信息的 RSS/Atom
+
+RSS（简易信息聚合，也叫聚合内容）和 Atom 都是发布新闻或博客日志等更新信息文档的格式的总称。两者都用到了 XML。
+
+RSS 有以下版本，名称和编写方式也不相同。
+
+RSS 0.9（RDFSite Summary）：最初的 RSS 版本。1999 年 3 月由网景通信公司自行开发用于其门户网站。基础构图创建在初期的 RDF规格上。
+
+RSS 0.91（Rich Site Summary）：在 RSS0.9 的基础上扩展元素，于 1999 年 7 月开发完毕。非 RDF 规格，使用 XML方式编写。
+
+RSS 1.0（RDFSite Summary）：RSS 规格正处于混乱状态。2000 年 12 月由 RSS-DEV 工作组再次采用 RSS0.9 中使用的 RDF 规格发布。
+
+RSS2.0（Really Simple Syndication）：非 RSS1.0 发展路线。增加支持 RSS0.91 的兼容性，2000 年 12 月由 UserLand Software 公司开发完成。
+
+Atom 具有以下两种标准。
+
+Atom 供稿格式（Atom Syndication Format）：为发布内容而制定的网站消息来源格式，单讲 Atom 时，就是指此标准。
+
+Atom 出版协定（Atom Publishing Protocol）：为 Web 上内容的新增或修改而制定的协议。
+
+
+用于订阅博客更新信息的 RSS 阅读器，这种应用几乎支持 RSS 的所有版本以及 Atom。
+
+下面是 RSS1.0 的示例。
+
+```rss
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet href="http://d.hatena.ne.jp/sen-u/rssxsl" type="text/xsl" media="screen"?>
+<rdf:RDF
+xmlns="http://purl.org/rss/1.0/"
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:content="http://purl.org/rss/1.0/modules/content/"
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xml:lang="ja">
+<channel rdf:about="http://d.hatena.ne.jp/sen-u/rss">
+<title>兔子的文学日记</title>
+<link>http://d.hatena.ne.jp/sen-u/</link>
+<description>兔子的文学日记</description>
+</channel>
+
+<item rdf:about="http://d.hatena.ne.jp/sen-u/20121215/p1">
+<title>[security]提供脆弱性悬赏奖金计划的网站一览</title>
+<link>http://d.hatena.ne.jp/sen-u/20121215/p1</link>
+<description> 正是所谓“是所谓 Bounty Programs”、处理接受Web脆弱性的相关信息，并提供奖金的计划 ...</description>
+<dc:creator>sen-u</dc:creator>
+<dc:date>2012-12-15</dc:date>
+<dc:subject>security</dc:subject>
+</item>
+```
+#### JavaScript 衍生的轻量级易用 JSON
+
+JSON（ **JavaScript Object Notation** ）是一种 **以 JavaScript（ECMAScript）的对象表示法为基础的轻量级数据标记语言** 。能够处理的数据类型有 **false/null/true/ 对象 / 数组 / 数字 / 字符串**，这 7 种类型。
+
+```js
+{"name": "Web Application Security", "num": "TR001"}
+```
+JSON 让数据更轻更纯粹，并且 JSON 的字符串形式可被 JavaScript轻易地读入。当初配合 XML使用的 Ajax 技术也让 JSON 的应用变得更为广泛。另外，其他各种编程语言也提供丰富的库类，以达到轻便操作 JSON 的目的。
+
+有关 JSON 更为翔实的内容请参考 RFC4627“The application/json Media Type for JavaScript Object Notation (JSON)”
+
