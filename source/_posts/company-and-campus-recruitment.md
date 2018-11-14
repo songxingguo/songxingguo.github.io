@@ -107,7 +107,7 @@ date: 2018-08-07 03:32:00
 
   [校园招聘](http://campus.jd.com/web/apply/myjob)
 
-8. ### 猿辅导
+8. ### 猿辅导（前端研发工程师）
 
   > 内推；暂无状态；
 
@@ -380,5 +380,12 @@ date: 2018-08-07 03:32:00
 55. ### 易幻网络
     
    [校园招聘](http://www.efun.com/campus/recruitment_detail.html?type=1&child=0)
+   
+56. ### 56到家（前端工程师）
 
- 
+   [校园招聘](https://campus.daojia.com/#/position/69)
+   
+57. ### Momenta （Web前端开发工程师-苏州）
+
+   [校园招聘](http://campus.51job.com/Momenta/job.html)
+   
