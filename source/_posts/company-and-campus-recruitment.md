@@ -389,3 +389,18 @@ date: 2018-08-07 03:32:00
 
    [校园招聘](http://campus.51job.com/Momenta/job.html)
    
+58. ### 商汤科技 （前端工程师）
+
+   [校园招聘](https://mp.weixin.qq.com/s/hCZHq9z_fv6lXBsKP4K_kQ)
+   
+   [简历下载](https://graphbed.qiniu.songxingguo.com/company-and-campus-recruitment/%E3%80%90%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%88-%E5%AE%8B%E5%85%B4%E5%9B%BD%E3%80%91%E3%80%90%E9%87%8D%E5%BA%86%E7%90%86%E5%B7%A5%E5%A4%A7%E5%AD%A6%E3%80%91%E3%80%90%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E3%80%91%E3%80%9018983642737%E3%80%91%E3%80%901328989942@qq.com%E3%80%91.pdf)
+  
+59. ### oppo （前端工程师）
+
+   [招聘流程](http://oppo.zhaopin.com/jobs.html)
+   
+   [校园招聘](https://xiaoyuan.zhaopin.com/Home/MyApply/recordlist)  
+  
+  
+  前端工程师
+   
