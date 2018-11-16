@@ -87,13 +87,15 @@ date: 2018-08-07 03:32:00
 
   [校园招聘](https://hr.xiaomi.com/user/index)
 
-5. ### 好未来
+5. ### 好未来（前端开发工程师）
 
   > 内推；等待笔试；
 
   > 秋招；等待笔试；
 
   [校园招聘](http://job.100tal.com/Portal/Apply/Index)
+  
+  [简历下载](https://graphbed.qiniu.songxingguo.com/company-and-campus-recruitment/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-%E5%AE%8B%E5%85%B4%E5%9B%BD-%E9%87%8D%E5%BA%86%E7%90%86%E5%B7%A5%E5%A4%A7%E5%AD%A6-%E7%89%9B%E5%AE%A2%E7%BD%91.pdf)
 
 6. ### 爱奇艺
 
@@ -402,5 +404,58 @@ date: 2018-08-07 03:32:00
    [校园招聘](https://xiaoyuan.zhaopin.com/Home/MyApply/recordlist)  
   
   
-  前端工程师
-   
+60. ### VIPKID（前端开发工程师）
+  
+  [校园招聘](http://join.vipkid.com.cn/#/position) 
+
+  [简历下载](https://graphbed.qiniu.songxingguo.com/company-and-campus-recruitment/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-%E5%AE%8B%E5%85%B4%E5%9B%BD-%E9%87%8D%E5%BA%86%E7%90%86%E5%B7%A5%E5%A4%A7%E5%AD%A6-%E7%89%9B%E5%AE%A2%E7%BD%91.pdf)
+  
+61. ### OYO酒店（前端开发工程师）
+
+  > 邮箱投递
+  
+  [简历下载](https://graphbed.qiniu.songxingguo.com/company-and-campus-recruitment/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-%E5%AE%8B%E5%85%B4%E5%9B%BD-%E9%87%8D%E5%BA%86%E7%90%86%E5%B7%A5%E5%A4%A7%E5%AD%A6-%E7%89%9B%E5%AE%A2%E7%BD%91.pdf)
+  
+62. ### 一点资讯（前端开发工程师-大前端）
+
+  > 邮箱投递
+  
+  [简历下载](https://graphbed.qiniu.songxingguo.com/company-and-campus-recruitment/%E7%89%9B%E5%AE%A2%E7%BD%91-%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88%EF%BC%88%E5%A4%A7%E5%89%8D%E7%AB%AF%EF%BC%89-%E5%AE%8B%E5%85%B4%E5%9B%BD.pdf)
+
+63. ### 吉比特（前端开发工程师）
+
+  > 邮箱投递
+  
+  [简历下载](https://graphbed.qiniu.songxingguo.com/company-and-campus-recruitment/%E7%89%9B%E5%AE%A2%E7%BD%91-%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88%EF%BC%88%E5%A4%A7%E5%89%8D%E7%AB%AF%EF%BC%89-%E5%AE%8B%E5%85%B4%E5%9B%BD.pdf)
+ 
+64. ### 4399（Web前端开发）
+
+  > 邮箱投递
+  
+  [校园招聘](http://web.4399.com/campus/yjsgw/kaifalei/#648043) 
+  
+  [简历下载](https://graphbed.qiniu.songxingguo.com/company-and-campus-recruitment/%E5%AE%8B%E5%85%B4%E5%9B%BD-Web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91-%E9%87%8D%E5%BA%86%E7%90%86%E5%B7%A5%E5%A4%A7%E5%AD%A6-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E7%89%9B%E5%AE%A2%E7%BD%91.pdf)
+  
+65. ### 高新兴科技集团（Web前端开发工程师）
+
+  > 邮箱投递
+  
+  [官网](http://www.gosuncn.com/) 
+  
+  [简历下载](https://graphbed.qiniu.songxingguo.com/company-and-campus-recruitment/%E5%AE%8B%E5%85%B4%E5%9B%BD-Web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-%E9%87%8D%E5%BA%86%E7%90%86%E5%B7%A5%E5%A4%A7%E5%AD%A6-%E6%9D%AD%E5%B7%9E-%E7%89%9B%E5%AE%A2%E7%BD%91.pdf)
+  
+66. ### 绿湾（前端开发工程师）
+
+  > 邮箱投递
+  
+  [校园招聘](http://www.lvwan.com/join.html#xiaozhao) 
+  
+  [简历下载](https://graphbed.qiniu.songxingguo.com/company-and-campus-recruitment/%E7%89%9B%E5%AE%A2%E7%BD%91-%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88%EF%BC%88%E5%A4%A7%E5%89%8D%E7%AB%AF%EF%BC%89-%E5%AE%8B%E5%85%B4%E5%9B%BD.pdf)
+  
+67. ### 图谱科技（前端开发工程师）
+
+  > 邮箱投递
+  
+  [官网](https://www.tuputech.com/) 
+  
+  [简历下载](https://graphbed.qiniu.songxingguo.com/company-and-campus-recruitment/%E5%AE%8B%E5%85%B4%E5%9B%BD-%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-%E5%B9%BF%E5%B7%9E-%E7%89%9B%E5%AE%A2%E7%BD%91.pdf)
