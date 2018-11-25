@@ -12,7 +12,7 @@ date: 2018-11-20 18:15:00
 
 ![类型](https://graphbed.qiniu.songxingguo.com/deep-javascript-2/%E7%B1%BB%E5%9E%8B.png)
 
-大多数开发者认为，像 JavaScript 这样的动态语言是没有类型（type）的。让我们来看看ES5.1 规范（http://www.ecma-international.org/ecma-262/5.1/）对此是如何界定的：
+大多数开发者认为，像 JavaScript 这样的动态语言是没有类型（type）的。让我们来看看ES5.1 规范（ http://www.ecma-international.org/ecma-262/5.1/ ）对此是如何界定的：
 
 > ECMAScript 语言中所有的值都有一个对应的语言类型。ECMAScript 语言类型包括 Undefined、Null、Boolean、String、Number 和 Object。
 
