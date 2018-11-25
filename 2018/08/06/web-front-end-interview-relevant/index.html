@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="什么叫优雅降级和渐进增强？ 渐进增强（progressive enhancement）：  针对 低版本浏览器 进行 构建页面 ，保证 最基本 的功能，然后再针对 高级浏览器 进行 效果 、交互 等 改进 和 追加功能 达到 更好的用户体验 。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web前端面试题目及详解汇总-前端相关">
+<meta property="og:url" content="https://www.songxingguo.com/2018/08/06/web-front-end-interview-relevant/index.html">
+<meta property="og:site_name" content="阿有的生活">
+<meta property="og:description" content="什么叫优雅降级和渐进增强？ 渐进增强（progressive enhancement）：  针对 低版本浏览器 进行 构建页面 ，保证 最基本 的功能，然后再针对 高级浏览器 进行 效果 、交互 等 改进 和 追加功能 达到 更好的用户体验 。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://p9myzkds7.bkt.clouddn.com/web-interview/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95.png">
+<meta property="og:updated_time" content="2018-11-25T02:37:58.004Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web前端面试题目及详解汇总-前端相关">
+<meta name="twitter:description" content="什么叫优雅降级和渐进增强？ 渐进增强（progressive enhancement）：  针对 低版本浏览器 进行 构建页面 ，保证 最基本 的功能，然后再针对 高级浏览器 进行 效果 、交互 等 改进 和 追加功能 达到 更好的用户体验 。">
+<meta name="twitter:image" content="http://p9myzkds7.bkt.clouddn.com/web-interview/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/08/06/web-front-end-interview-relevant/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Web前端面试题目及详解汇总-前端相关 | 阿有的生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">114</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">14</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">33</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/08/06/web-front-end-interview-relevant/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Web前端面试题目及详解汇总-前端相关
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-06 14:16:00" itemprop="dateCreated datePublished" datetime="2018-08-06T14:16:00+00:00">2018-08-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-25 02:37:58" itemprop="dateModified" datetime="2018-11-25T02:37:58+00:00">2018-11-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/找工作/" itemprop="url" rel="index"><span itemprop="name">找工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/06/web-front-end-interview-relevant/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/08/06/web-front-end-interview-relevant/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/08/06/web-front-end-interview-relevant/" class="leancloud_visitors" data-flag-title="Web前端面试题目及详解汇总-前端相关">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="什么叫优雅降级和渐进增强？"><a href="#什么叫优雅降级和渐进增强？" class="headerlink" title="什么叫优雅降级和渐进增强？"></a>什么叫优雅降级和渐进增强？</h3><ul>
+<li><p><strong>渐进增强</strong>（progressive enhancement）：</p>
+<blockquote>
+<p>针对 <strong>低版本浏览器</strong> 进行 <strong>构建页面</strong> ，保证 <strong>最基本</strong> 的功能，然后再针对 <strong>高级浏览器</strong> 进行 <strong>效果</strong> 、<strong>交互</strong> 等 <strong>改进</strong> 和 <strong>追加功能</strong> 达到 <strong>更好的用户体验</strong> 。</p>
+</blockquote>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><p><strong>优雅降级</strong>（graceful degradation）：</p>
+<blockquote>
+<p>一开始就构建 <strong>完整</strong> 的 <strong>功能</strong> ，然后再针对 <strong>低版本浏览器</strong> 进行 <strong>兼容</strong> 。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>渐进增强和优雅降级的区别：</strong></p>
+<ol>
+<li><p><strong>优雅降级</strong> 是从 <strong>复杂</strong> 的现状 <strong>开始</strong> ，并试图 <strong>减少用户体验</strong> 的供给。</p>
+</li>
+<li><p><strong>渐进增强</strong> 则是从一个 <strong>非常基础</strong> 的，<strong>能够起作用</strong> 的 <strong>版本</strong> 开始，并 <strong>不断扩充</strong> ，以 <strong>适应</strong> 未来环境的 <strong>需要</strong> 。</p>
+</li>
+<li><p><strong>降级</strong>（功能衰减）意味着 <strong>往回看</strong> ；而 <strong>渐进增强</strong> 则意味着 <strong>朝前看</strong> ，同时 <strong>保证其根基处于安全地带</strong> 。</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>来自—— <a href="https://www.cnblogs.com/Renyi-Fan/p/7808756.html#_label0_7" target="_blank" rel="noopener">什么叫优雅降级和渐进增强？</a></p>
+<h3 id="浏览器的内核分别是什么"><a href="#浏览器的内核分别是什么" class="headerlink" title="浏览器的内核分别是什么?"></a>浏览器的内核分别是什么?</h3><blockquote>
+<p>浏览器的内核是分为两个部分的，一是 <strong>渲染引擎</strong> (layout engineer或Rendering Engine)，另一个是 <strong>JS引擎</strong> 。现在JS引擎比较独立，内核更加倾向于说 <strong>渲染引擎</strong> 。</p>
+</blockquote>
+<p><strong>渲染引擎</strong></p>
+<p>负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入CSS等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核。</p>
+<p><strong>JS引擎则</strong> </p>
+<p> 解析和执行javascript来实现网页的动态效果。最开始渲染引擎和JS引擎并没有区分的很明确，后来JS引擎越来越独立，内核就倾向于只指渲染引擎。</p>
+<ul>
+<li><p>主流浏览器内核及其内核</p>
+<p><img src="http://p9myzkds7.bkt.clouddn.com/web-interview/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8.png" alt="主流浏览器内核"></p>
+</li>
+<li><p>五大流浏览器内核及其代表</p>
+<ul>
+<li><p>Trident内核</p>
+<blockquote>
+<p>代表作品是 <strong>IE</strong> ，因 <strong>IE捆绑在Windows中</strong> ，所以占有极高的份额，又称为<strong>IE内核</strong> 或 <strong>MSHTML</strong> ，此内核 <strong>只能用于 Windows 平台</strong> ，且 <strong>不是开源的</strong> 。代表作品还有 <strong>腾讯</strong>、<strong>Maxthon</strong>（遨游）、<strong>360浏览器</strong> 等。存在很多的兼容性问题。</p>
+</blockquote>
+</li>
+<li><p>Gecko内核</p>
+<blockquote>
+<p>代表作品是 <strong>Firefox</strong> （即火狐浏览器）。因火狐是最多的用户，故常被称为  <strong>firefox</strong> 内核,它是 <strong>开源的</strong> ，最大优势是 <strong>跨平台</strong>，在 <strong>Microsoft Windows</strong> 、<strong>Linux</strong> 、<strong>MacOs X</strong> 等主要操作系统中使用。</p>
+</blockquote>
+</li>
+<li><p>Webkit内核</p>
+<blockquote>
+<p>代表作品是 <strong>Safari</strong>、曾经的 <strong>Chrome</strong>。开源的项目。</p>
+</blockquote>
+</li>
+<li><p>Presto内核：</p>
+<blockquote>
+<p>代表作品是 <strong>Opera</strong> ，<strong>Presto</strong> 是由 <strong>Opera Software</strong> 开发的 <strong>浏览器排版引擎</strong> ，它是世界公认 <strong>最快的渲染速度的引擎</strong> 。在13年之后，Opera宣布加入谷歌阵营，弃用了 <strong>Presto</strong> 。</p>
+</blockquote>
+</li>
+<li><p>Blink内核</p>
+<blockquote>
+<p>由 <strong>Google</strong> 和 <strong>Opera Software</strong> 开发的 <strong>浏览器排版引擎</strong> ，2013年4月发布。现在 <strong>Chrome</strong> 内核是 <strong>Blink</strong> 。谷歌还开发了自己的 <strong>JS引擎</strong> ，<strong>V8</strong> ，<strong>使JS运行速度极大地提高了</strong> 。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>来自—— <a href="https://www.cnblogs.com/maggie-pan/p/6391355.html" target="_blank" rel="noopener">浏览器的内核分别是什么？</a>、<a href="https://blog.csdn.net/u014753892/article/details/52713841" target="_blank" rel="noopener">五大流浏览器内核及其代表</a></p>
+<h3 id="Web前端性能优化"><a href="#Web前端性能优化" class="headerlink" title="Web前端性能优化"></a>Web前端性能优化</h3><p>前端是庞大的，包括 HTML、 CSS、 Javascript、Image 、Flash等等各种各样的资源。前端优化是复杂的，针对方方面面的资源都有不同的方式。</p>
+<h4 id="前端优化的目的是什么"><a href="#前端优化的目的是什么" class="headerlink" title="前端优化的目的是什么 ?"></a>前端优化的目的是什么 ?</h4><ol>
+<li>从用户角度而言，优化能够<strong>让页面加载得更快</strong>、对用户的操作响应得更及时，能够<strong>给用户提供更为友好的体验</strong>。</li>
+<li>从服务商角度而言，优化能够 <strong>减少页面请求数</strong> 、或者 <strong>减小请求所占带宽</strong> ，能够节省可观的资源。</li>
+</ol>
+<p>总之，恰当的优化不仅能够改善站点的用户体验并且能够节省相当的资源利用。</p>
+<p>大概有如下优化方法：</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95.png" alt="优化方法"></p>
+<h4 id="页面级优化"><a href="#页面级优化" class="headerlink" title="页面级优化"></a>页面级优化</h4><h5 id="减少-HTTP请求数"><a href="#减少-HTTP请求数" class="headerlink" title="减少 HTTP请求数"></a>减少 HTTP请求数</h5><ul>
+<li><p>每个请求都是有成本的，既包含时间成本也包含资源成本。一个完整的请求都需要经过 <strong>DNS寻址、与服务器建立连接、发送数据、等待服务器响应、接收数据这样一个 “漫长” 而复杂的过程</strong> 。</p>
+</li>
+<li><p>时间成本就是用户需要看到或者 “感受” 到这个资源是必须要等待这个过程结束的，资源上由于每个请求都需要携带数据，因此每个请求都需要占用带宽。</p>
+</li>
+<li><p>另外，由于浏览器进行并发请求的请求数是有上限的 (具体参见此处 )，因此请求数多了以后，浏览器需要分批进行请求，因此会增加用户的等待时间，会给用户造成站点速度慢这样一个印象，即使可能用户能看到的第一屏的资源都已经请求完了，但是浏览器的进度条会一直存在。</p>
+</li>
+</ul>
+<p><strong>减少 HTTP请求数的主要途径包括：</strong></p>
+<h6 id="从设计实现层面简化页面。"><a href="#从设计实现层面简化页面。" class="headerlink" title="从设计实现层面简化页面。"></a>从设计实现层面简化页面。</h6><p>保持页面简洁、减少资源的使用时最直接的。</p>
+<h6 id="合理设置-HTTP缓存"><a href="#合理设置-HTTP缓存" class="headerlink" title="合理设置 HTTP缓存"></a>合理设置 HTTP缓存</h6><p>缓存原则是：<strong>能缓存越多越好，能缓存越久越好</strong>。</p>
+<blockquote>
+<p>例如，很少变化的图片资源可以直接通过 HTTP Header中的Expires设置一个很长的过期头 ;变化不频繁而又可能会变的资源可以使用 Last-Modifed来做请求验证。尽可能的让资源能够在缓存中待得更久。</p>
+</blockquote>
+<h6 id="资源合并与压缩"><a href="#资源合并与压缩" class="headerlink" title="资源合并与压缩"></a>资源合并与压缩</h6><ul>
+<li>尽可能的将外部的脚本、样式进行合并，多个合为一个。</li>
+<li>另外， CSS、 Javascript、Image 都可以用相应的工具进行压缩，压缩后往往能省下不少空间。</li>
+</ul>
+<h6 id="CSS-Sprites"><a href="#CSS-Sprites" class="headerlink" title="CSS Sprites"></a>CSS Sprites</h6><p>合并 CSS图片，减少请求数的又一个好办法。</p>
+<h6 id="Inline-Images"><a href="#Inline-Images" class="headerlink" title="Inline Images"></a>Inline Images</h6><p>通过编码的字符串将图片内嵌到网页文本中。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.sample-inline-png</span> &#123;</span><br><span class="line">    <span class="attribute">padding-left</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">background</span>: white <span class="built_in">url</span>(<span class="string">'data:image/png;base64,iVBORw0KGgoAA</span></span><br><span class="line"><span class="string">AANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAABlBMVEUAAAD///+l2Z/dAAAAM0l</span></span><br><span class="line"><span class="string">EQVR4nGP4/5/h/1+G/58ZDrAz3D/McH8yw83NDDeNGe4Ug9C9zwz3gVLMDA/A6</span></span><br><span class="line"><span class="string">P9/AFGGFyjOXZtQAAAAAElFTkSuQmCC'</span>) no-repeat scroll left top;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果不考虑资源管理上的问题的话，不失为一个好办法。如果是嵌入页面的话换来的是增大了页面的体积，而且无法利用浏览器缓存。使用在 CSS中的图片则更为理想一些。</p>
+</blockquote>
+<h6 id="Lazy-Load-Images"><a href="#Lazy-Load-Images" class="headerlink" title="Lazy Load Images"></a>Lazy Load Images</h6><p>这条策略实际上并不一定能减少 HTTP请求数，但是却能在某些条件下或者页面刚加载时减少 HTTP请求数。</p>
+<p>对于图片而言，在页面刚加载的时候可以只加载第一屏，当用户继续往后滚屏的时候才加载后续的图片。</p>
+<h6 id="将外部脚本置底（将脚本内容在页面信息内容加载后再加载）"><a href="#将外部脚本置底（将脚本内容在页面信息内容加载后再加载）" class="headerlink" title="将外部脚本置底（将脚本内容在页面信息内容加载后再加载）"></a>将外部脚本置底（将脚本内容在页面信息内容加载后再加载）</h6><p>浏览器是可以并发请求的，这一特点使得其能够更快的加载资源，然而外链脚本在加载时却会阻塞其他资源，例如在脚本加载完成之前，它后面的图片、样式以及其他脚本都处于阻塞状态，直到脚本加载完成后才会开始加载。</p>
+<h6 id="异步执行-inline脚本-其实原理和上面是一样，保证脚本在页面内容后面加载。"><a href="#异步执行-inline脚本-其实原理和上面是一样，保证脚本在页面内容后面加载。" class="headerlink" title="异步执行 inline脚本(其实原理和上面是一样，保证脚本在页面内容后面加载。)"></a>异步执行 inline脚本(其实原理和上面是一样，保证脚本在页面内容后面加载。)</h6><p>inline脚本对性能的影响与外部脚本相比，是有过之而无不及。</p>
+<p>inline脚本在执行的时候，页面处于空白状态。</p>
+<p>鉴于以上两点原因，建议将执行时间较长的 inline脚本异步执行，异步的方式有很多种，例如使用 <strong>script元素的defer 属性</strong> (存在兼容性问题和其他一些问题，例如不能使用 document.write)、<strong>使用setTimeout</strong> ，此外，在HTML5中引入了 <strong>Web Workers的机制</strong> ，恰恰可以解决此类问题。</p>
+<h6 id="Lazy-Load-Javascript（只有在需要加载的时候加载，在一般情况下并不加载信息内容。）"><a href="#Lazy-Load-Javascript（只有在需要加载的时候加载，在一般情况下并不加载信息内容。）" class="headerlink" title="Lazy Load Javascript（只有在需要加载的时候加载，在一般情况下并不加载信息内容。）"></a>Lazy Load Javascript（只有在需要加载的时候加载，在一般情况下并不加载信息内容。）</h6><p>一个框架往往包括了很多的功能实现，这些功能并不是每一个页面都需要的，如果下载了不需要的脚本则算得上是一种资源浪费 -既浪费了带宽又浪费了执行花费的时间。</p>
+<p>目前的做法大概有两种:</p>
+<ul>
+<li><p>一种是为那些流量特别大的页面专门定制一个专用的 mini版框架，另一种则是 Lazy Load。</p>
+</li>
+<li><p>YUI 则使用了第二种方式，在 YUI的实现中，最初只加载核心模块，其他模块可以等到需要使用的时候才加载。</p>
+</li>
+</ul>
+<h6 id="将-CSS放在-HEAD中"><a href="#将-CSS放在-HEAD中" class="headerlink" title="将 CSS放在 HEAD中"></a>将 CSS放在 HEAD中</h6><p>如果将 CSS放在其他地方比如 BODY中，则浏览器有可能还未下载和解析到 CSS就已经开始渲染页面了，这就导致页面由无 CSS状态跳转到 CSS状态，用户体验比较糟糕。</p>
+<h5 id="异步请求-Callback（就是将一些行为样式提取出来，慢慢的加载信息的内容）"><a href="#异步请求-Callback（就是将一些行为样式提取出来，慢慢的加载信息的内容）" class="headerlink" title="异步请求 Callback（就是将一些行为样式提取出来，慢慢的加载信息的内容）"></a>异步请求 Callback（就是将一些行为样式提取出来，慢慢的加载信息的内容）</h5><p>在某些页面中可能存在这样一种需求，需要使用 script标签来异步的请求数据。</p>
+<p>直接在页面上写 <code>&lt;script&gt;</code>对页面的性能也是有影响的，即增加了页面首次加载的负担，推迟了 DOMLoaded和window.onload 事件的触发时机。如果时效性允许的话，可以考虑在 DOMLoaded事件触发的时候加载，或者使用 setTimeout方式来灵活的控制加载的时机。</p>
+<h5 id="减少不必要的-HTTP跳转"><a href="#减少不必要的-HTTP跳转" class="headerlink" title="减少不必要的 HTTP跳转"></a>减少不必要的 HTTP跳转</h5><p>对于以目录形式访问的 HTTP链接，很多人都会忽略链接最后是否带 ’/‘，假如你的服务器对此是区别对待的话，那么你也需要注意，这其中很可能隐藏了 301跳转，增加了多余请求。具体参见下图，其中第一个链接是以无 ’/‘结尾的方式访问的，于是服务器有了一次跳转。</p>
+<p>来自——<a href="https://blog.csdn.net/daimomo000/article/details/72897436" target="_blank" rel="noopener">常见的web性能优化方法</a></p>
+<h3 id="前端网页性能最佳实践"><a href="#前端网页性能最佳实践" class="headerlink" title="前端网页性能最佳实践"></a>前端网页性能最佳实践</h3><p><img src="https://graphbed.qiniu.songxingguo.com/%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95.png" alt="优化方法"></p>
+<h4 id="网页内容"><a href="#网页内容" class="headerlink" title="网页内容"></a>网页内容</h4><h5 id="减少http请求次数"><a href="#减少http请求次数" class="headerlink" title="减少http请求次数"></a>减少http请求次数</h5><ul>
+<li><p>资源合并与压缩：将多个脚本文件捆绑成一个文件，将多个样式表文件捆绑成一个文件，以此来减少文件的下载次数。</p>
+</li>
+<li><p>CSS Sprites：把多个图片拼成一副图片，然后通过CSS来控制在什么地方具体显示这整张图片的什么位置</p>
+</li>
+<li><p>Image Maps：也是将多幅图拼在一起，然后通过坐标来控制显示导航。</p>
+</li>
+<li><p>Inline images: 通过编码的字符串将图片内嵌到网页文本中。</p>
+</li>
+</ul>
+<h5 id="减少DNS查询次数"><a href="#减少DNS查询次数" class="headerlink" title="减少DNS查询次数"></a>减少DNS查询次数</h5><p>DNS查询也消耗响应时间，如果我们的网页内容来自各个不同的domain (比如嵌入了开放广告，引用了外部图片或脚本)，那么客户端首次解析这些domain也需要消耗一定的时间。</p>
+<p>DNS查询结果缓存在本地系统和浏览器中一段时间，所以 <strong>DNS查询一般是对首次访问响应速度有所影响。</strong></p>
+<h5 id="避免页面跳转"><a href="#避免页面跳转" class="headerlink" title="避免页面跳转"></a>避免页面跳转</h5><p>当客户端收到服务器的跳转回复时，客户端再次根据服务器回复中的location指定的地址再次发送请求，例如以下跳转回复。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 301 Moved Permanently</span><br><span class="line">Location: http://example.com/newuri</span><br><span class="line">Content-Type: text/html</span><br></pre></td></tr></table></figure>
+<h5 id="缓存Ajax"><a href="#缓存Ajax" class="headerlink" title="缓存Ajax"></a>缓存Ajax</h5><p>Ajax可以帮助我们异步的下载网页内容，但是有些网页内容即使是异步的，用户还是在等待它的返回结果。例如ajax的返回是用户联系人的下拉列表。</p>
+<p>注意尽量应用以下规则提高ajax的响应速度。</p>
+<ul>
+<li>添加Expires 或 Cache-Control报文头使回复可以被客户端缓存</li>
+<li>压缩回复内容</li>
+<li>减少dns查询</li>
+<li>精简javascript</li>
+<li>避免跳转</li>
+<li>配置Etags</li>
+</ul>
+<h5 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h5><p>延迟加载需要我们知道我们的网页最初加载需要的最小内容集是什么。剩下的内容就可以推到延迟加载的集合中。</p>
+<p>Javascript是典型的可以延迟加载内容。</p>
+<p>一个比较激进的做法是开发网页时先确保网页在没有Javascript的时候也可以基本工作，然后通过延迟加载脚本来完成一些高级的功能。</p>
+<h5 id="提前加载"><a href="#提前加载" class="headerlink" title="提前加载"></a>提前加载</h5><p>与延迟加载目的相反，提前加载的是为了提前加载接下来网页中访问的资源。</p>
+<p>无条件提前加载：当前网页加载完成后，马上去下载一些其他的内容。</p>
+<p>有条件加载：根据用户的输入推断需要加载的内容。</p>
+<p>有预期的的加载：这种情况一般发生在网页重新设计时，由于用户经常访问旧网页，本地对旧的网页内容缓存充分从而显得旧网页速度很快，而新的网页内容却没有缓存，设计者可以在旧网页的内容中预先加载一些新网页中可能用到的内容，这样新的网页就会生下来一些需要下载的资源。</p>
+<h5 id="减少DOM元素数量"><a href="#减少DOM元素数量" class="headerlink" title="减少DOM元素数量"></a>减少DOM元素数量</h5><p>网页中元素过多对网页的加载和脚本的执行都是沉重的负担。</p>
+<p>想知道你的网页中有多少元素，通过在浏览器中的一条简单命令就可以算出，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">'*'</span>).length</span><br></pre></td></tr></table></figure>
+<h5 id="根据域名划分内容"><a href="#根据域名划分内容" class="headerlink" title="根据域名划分内容"></a>根据域名划分内容</h5><p><strong>浏览器一般对同一个域的下载连接数有所限制</strong> ，<strong>按照域名划分下载内容可以浏览器增大并行下载连接</strong> ，但是 <strong>注意控制域名使用在2-4个之间，不然dns查询也是个问题。</strong></p>
+<p>一般网站规划会将静态资源放在类似于static.example.com，动态内容放在<a href="http://www.example.com上。这样做还有一个好处是可以在静态的域名上避免使用cookie。" target="_blank" rel="noopener">www.example.com上。这样做还有一个好处是可以在静态的域名上避免使用cookie。</a></p>
+<h5 id="减少iframe数量"><a href="#减少iframe数量" class="headerlink" title="减少iframe数量"></a>减少iframe数量</h5><p>优点</p>
+<ul>
+<li>可以用来加载速度较慢的内容，例如广告。</li>
+<li>安全沙箱保护。浏览器会对iframe中的内容进行安全控制。</li>
+<li>脚本可以并行下载</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>即使iframe内容为空也消耗加载时间</li>
+<li>会阻止页面加载</li>
+<li>没有语义</li>
+</ul>
+<h5 id="避免404"><a href="#避免404" class="headerlink" title="避免404"></a>避免404</h5><p>404我们都不陌生，代表服务器没有找到资源。</p>
+<p>我们要特别要注意404的情况不要在我们提供的网页资源上，客户端发送一个请求但是服务器却返回一个无用的结果，时间浪费掉了。</p>
+<p>更糟糕的是我们网页中需要加载一个外部脚本，结果返回一个404，不仅阻塞了其他脚本下载，下载回来的内容(404)客户端还会将其当成Javascript去解析。</p>
+<h4 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h4><h5 id="使用CDN"><a href="#使用CDN" class="headerlink" title="使用CDN"></a>使用CDN</h5><p>再次强调第一条黄金定律，减少网页内容的下载时间。</p>
+<p>提高下载速度还可以通过CDN(内容分发网络)来提升。CDN通过部署在不同地区的服务器来提高客户的下载速度。如果你的网站上有大量的静态内容，世界各地的用户都在访问，我说的是youtube么？那CDN是必不可少的。</p>
+<h5 id="添加Expires-或Cache-Control报文头"><a href="#添加Expires-或Cache-Control报文头" class="headerlink" title="添加Expires 或Cache-Control报文头"></a>添加Expires 或Cache-Control报文头</h5><ul>
+<li><p>对于静态内容添加Expires，将静态内容设为永不过期，或者很长时间以后。</p>
+</li>
+<li><p>对于动态内容应用合适的Cache-Control，让浏览器根据条件来发送请求。</p>
+</li>
+</ul>
+<h5 id="Gzip压缩传输文件"><a href="#Gzip压缩传输文件" class="headerlink" title="Gzip压缩传输文件"></a>Gzip压缩传输文件</h5><p>Gzip通常可以减少70%网页内容的大小，包括脚本、样式表、图片等文件。Gzip比deflate更高效，主流服务器都有相应的压缩支持模块。</p>
+<blockquote>
+<p>值得注意的是pdf文件可以从需要被压缩的类型中剔除，因为pdf文件本身已经压缩，gzip对其效果不大，而且会浪费CPU。</p>
+</blockquote>
+<h5 id="配置ETags"><a href="#配置ETags" class="headerlink" title="配置ETags"></a>配置ETags</h5><p>虽然标题叫配制ETags，但是这里你要根据具体情况进行一些判断。首先Etag简单来说是通过一个文件版本标识使得服务器可以轻松判断该请求的内容是否有所更新，如果没有就回复304 (not modified)，从而避免下载整个文件。</p>
+<p>如果你遇到这样的问题，IIS 7中可以通过如下方法将Etag去掉，使用URL Rewrite，然后在web.config中添加如下配制:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rewrite</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">outboundRules</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rule</span> <span class="attr">name</span>=<span class="string">"Remove ETag"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">match</span> <span class="attr">serverVariable</span>=<span class="string">"RESPONSE_ETag"</span> <span class="attr">pattern</span>=<span class="string">".+"</span> /&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">action</span> <span class="attr">type</span>=<span class="string">"Rewrite"</span> <span class="attr">value</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">rule</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">outboundRules</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">rewrite</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>IIS8里提供了一个简单配制来直接关闭Etag：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">element</span> <span class="attr">name</span>=<span class="string">"clientCache"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">attribute</span> <span class="attr">name</span>=<span class="string">"cacheControlMode"</span> <span class="attr">type</span>=<span class="string">"enum"</span> <span class="attr">defaultValue</span>=<span class="string">"NoControl"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">enum</span> <span class="attr">name</span>=<span class="string">"NoControl"</span> <span class="attr">value</span>=<span class="string">"0"</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">enum</span> <span class="attr">name</span>=<span class="string">"DisableCache"</span> <span class="attr">value</span>=<span class="string">"1"</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">enum</span> <span class="attr">name</span>=<span class="string">"UseMaxAge"</span> <span class="attr">value</span>=<span class="string">"2"</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">enum</span> <span class="attr">name</span>=<span class="string">"UseExpires"</span> <span class="attr">value</span>=<span class="string">"3"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">attribute</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">attribute</span> <span class="attr">name</span>=<span class="string">"cacheControlMaxAge"</span> <span class="attr">type</span>=<span class="string">"timeSpan"</span> <span class="attr">defaultValue</span>=<span class="string">"1.00:00:00"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">attribute</span> <span class="attr">name</span>=<span class="string">"httpExpires"</span> <span class="attr">type</span>=<span class="string">"string"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">attribute</span> <span class="attr">name</span>=<span class="string">"cacheControlCustom"</span> <span class="attr">type</span>=<span class="string">"string"</span> /&gt;</span></span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;<span class="name">attribute</span> <span class="attr">name</span>=<span class="string">"setEtag"</span> <span class="attr">type</span>=<span class="string">"bool"</span> <span class="attr">defaultValue</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="尽早flush输出"><a href="#尽早flush输出" class="headerlink" title="尽早flush输出"></a>尽早flush输出</h5><p>网页后台程序中我们知道有个方法叫Response.Flush()，一般我们调用它都是在程序末尾，但注意这个方法可以被调用多次。目的是可以将现有的缓存中的回复内容先发给客户端，让客户端“有活干”。</p>
+<p>那在什么时候调用这个方法比较好呢？<strong>一般情况下我们可以在对于需要加载比较多外部脚本或者样式表时可以提前调用一次</strong> ，客户端收到了关于脚本或其他外部资源的链接可以并行的先发请求去下载，服务器接下来把后续的处理结果发给客户端。</p>
+<h5 id="使用GET-Ajax请求"><a href="#使用GET-Ajax请求" class="headerlink" title="使用GET Ajax请求"></a>使用GET Ajax请求</h5><p>浏览器在实现XMLHttpRequest POST的时候分成两步，先发header，然后发送数据。而GET却可以用一个TCP报文完成请求。另外GET从语义上来讲是去服务器取数据，而POST则是向服务器发送数据，所以我们 <strong>使用Ajax请求数据的时候尽量通过GET来完成</strong> 。</p>
+<h5 id="避免空的图片src"><a href="#避免空的图片src" class="headerlink" title="避免空的图片src"></a>避免空的图片src</h5><p>空的图片src仍然会使浏览器发送请求到服务器，这样完全是浪费时间，而且浪费服务器的资源。尤其是你的网站每天被很多人访问的时候，这种空请求造成的伤害不容忽略。</p>
+<p>浏览器如此实现也是根据RFC 3986 - Uniform Resource Identifiers标准，空的src被定义为当前页面。</p>
+<p>所以注意我们的网页中是否存在这样的代码</p>
+<p>straight HTML </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">""</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>JavaScript </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> img = <span class="keyword">new</span> Image(); </span><br><span class="line">img.src = <span class="string">""</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><h5 id="减少Cookie大小"><a href="#减少Cookie大小" class="headerlink" title="减少Cookie大小"></a>减少Cookie大小</h5><p>Cookie被用来做认证或个性化设置，其信息被包含在http报文头中，对于cookie我们要注意以下几点，来提高请求的响应速度，</p>
+<ul>
+<li>去除没有必要的cookie，如果网页不需要cookie就完全禁掉。</li>
+<li>将cookie的大小减到最小</li>
+<li>注意cookie设置的domain级别，没有必要情况下不要影响到sub-domain</li>
+<li>设置合适的过期时间，比较长的过期时间可以提高响应速度。</li>
+</ul>
+<h5 id="页面内容使用无cookie域名"><a href="#页面内容使用无cookie域名" class="headerlink" title="页面内容使用无cookie域名"></a>页面内容使用无cookie域名</h5><p><strong>大多数网站的静态资源都没必要cookie，我们可以采用不同的domain来单独存放这些静态文件</strong> ，这样做不仅可以减少cookie大小从而提高响应速度，还有一个好处是有些proxy拒绝缓存带有cookie的内容，如果能将这些静态资源cookie去除，那就可以得到这些proxy的缓存支持。</p>
+<p>常见的划分domain的方式是将静态文件放在static.example.com，动态内容放在<a href="http://www.example.com。" target="_blank" rel="noopener">www.example.com。</a></p>
+<p>也有一些网站需要在二级域名上应用cookie，所有的子域都会继承，这种情况下一般会再购买一个专门的域名来存放cookie-free的静态资源。例如Yahoo!的yimg.com，YouTube的ytimg.com等。</p>
+<h4 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h4><h5 id="将样式表置顶"><a href="#将样式表置顶" class="headerlink" title="将样式表置顶"></a>将样式表置顶</h5><p>经样式表(css)放在网页的HEAD中会让网页显得加载速度更快，因为这样做可以使浏览器逐步加载已将下载的网页内容。</p>
+<h5 id="避免CSS表达式"><a href="#避免CSS表达式" class="headerlink" title="避免CSS表达式"></a>避免CSS表达式</h5><p>CSS表达式可以动态的设置CSS属性，在IE5-IE8中支持，其他浏览器中表达式会被忽略。</p>
+<p>CSS表达式的问题在于它被重新计算的次数远比我们想象的要多，不仅在网页绘制或大小改变时计算，即使我们滚动屏幕或者移动鼠标的时候也在计算，因此我们还是尽量避免使用它来防止使用不当而造成的性能损耗。</p>
+<p>如果想达到类似的效果我们可以通过简单的脚本做到。</p>
+<h5 id="用-lt-link-gt-代替-import"><a href="#用-lt-link-gt-代替-import" class="headerlink" title="用&lt;link&gt;代替@import"></a>用<code>&lt;link&gt;</code>代替@import</h5><p>避免使用@import的原因很简单，因为它相当于将css放在网页内容底部。</p>
+<h5 id="避免使用Filters"><a href="#避免使用Filters" class="headerlink" title="避免使用Filters"></a>避免使用Filters</h5><p>滤镜的使用会导致图片在下载的时候阻塞网页绘制，另外使用这种滤镜会导致内存使用量的问题。</p>
+<h4 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h4><h5 id="将脚本置底"><a href="#将脚本置底" class="headerlink" title="将脚本置底"></a>将脚本置底</h5><p>因此对于脚本提速，我们可以考虑以下方式，</p>
+<ul>
+<li>把脚本置底，这样可以让网页渲染所需要的内容尽快加载显示给用户。</li>
+<li>现在主流浏览器都支持defer关键字，可以指定脚本在文档加载后执行。</li>
+<li>HTML5中新加了async关键字，可以让脚本异步执行。</li>
+</ul>
+<h5 id="使用外部Javascirpt和CSS文件"><a href="#使用外部Javascirpt和CSS文件" class="headerlink" title="使用外部Javascirpt和CSS文件"></a>使用外部Javascirpt和CSS文件</h5><ul>
+<li><p>使用外部Javascript和CSS文件可以使这些文件被浏览器缓存，从而在不同的请求内容之间重用。</p>
+</li>
+<li><p>同时将Javascript和CSS从inline变为external也减小了网页内容的大小。</p>
+</li>
+</ul>
+<h5 id="精简Javascript和CSS"><a href="#精简Javascript和CSS" class="headerlink" title="精简Javascript和CSS"></a>精简Javascript和CSS</h5><p>精简就是将Javascript或CSS中的空格和注释全去掉。</p>
+<p>JS compressors:</p>
+<ul>
+<li>Packer</li>
+<li>JSMin</li>
+<li>Closure compiler</li>
+<li>YUICompressor (also does CSS)</li>
+<li>AjaxMin (also does CSS)</li>
+</ul>
+<p>CSS compressors:</p>
+<ul>
+<li>CSSTidy</li>
+<li>Minify</li>
+<li>YUICompressor (also does JS)</li>
+<li>AjaxMin (also does JS)</li>
+<li>CSSCompressor</li>
+</ul>
+<p>与VS集成比较好的工具如下.</p>
+<ul>
+<li>YUICompressor - 编译集成，包含在NuGet.</li>
+<li>AjaxMin  - 编译集成</li>
+</ul>
+<h5 id="去除重复脚本"><a href="#去除重复脚本" class="headerlink" title="去除重复脚本"></a>去除重复脚本</h5><p>重复的脚本不仅浪费浏览器的下载时间，而且浪费解析和执行时间。一般用来避免引入重复脚本的做法是使用统一的脚本管理模块，这样不仅可以避免重复脚本引入，还可以兼顾脚本依赖管理和版本管理。</p>
+<h5 id="减少DOM访问"><a href="#减少DOM访问" class="headerlink" title="减少DOM访问"></a>减少DOM访问</h5><p>通过Javascript访问DOM元素没有我们想象中快，元素多的网页尤其慢，对于Javascript对DOM的访问我们要注意</p>
+<ul>
+<li>缓存已经访问过的元素</li>
+<li>ffline更新节点然后再加回DOM Tree</li>
+<li>避免通过Javascript修复layout</li>
+</ul>
+<h5 id="使用智能事件处理"><a href="#使用智能事件处理" class="headerlink" title="使用智能事件处理"></a>使用智能事件处理</h5><p>通过不同的方式尽量少去触发事件，如果必要就尽早的去处理事件。</p>
+<h4 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h4><h5 id="优化图像"><a href="#优化图像" class="headerlink" title="优化图像"></a>优化图像</h5><p>当美工完成了网站的图片设计后，我们可以在上传图片之前对其做以下优化</p>
+<ul>
+<li><p>检查GIF图片中图像颜色的数量是否和调色板规格一致。如果你发现图片中只用到了4种颜色，而在调色板的中显示的256色的颜色槽，那么这张图片就还有压缩的空间。可以使用imagemagick检查： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">identify -verbose image.gif</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>尝试把GIF格式转换成PNG格式，看看是否节省空间。大多数情况下是可以压缩的。下面这条简单的命令可以安全地把GIF格式转换为PNG格式： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert image.gif image.png</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在所有的PNG图片上运行pngcrush（或者其它PNG优化工具）。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pngcrush image.png -rem alla -reduce -brute result.png</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在所有的JPEG图片上运行jpegtran。这个工具可以对图片中的出现的锯齿等做无损操作，同时它还可以用于优化和清除图片中的注释以及其它无用信息 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jpegtran -copy none -optimize -perfect src.jpg dest.jpg</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="优化CSS-Sprite"><a href="#优化CSS-Sprite" class="headerlink" title="优化CSS Sprite"></a>优化CSS Sprite</h5><ul>
+<li>Spirite中水平排列图片，垂直排列会增加文件大小；</li>
+<li>Spirite中把颜色较近的组合在一起可以降低颜色数，理想状况是低于256色以便适用PNG8格式；</li>
+<li>不要在Spirite的图像中间留有较大空隙。这虽然不大会增加文件大小,但对于用户代理来说它需要更少的内存来把图片解压为像素地图。100×100的图片为1万像素，1000×1000就是100万像素。</li>
+</ul>
+<h5 id="不要在HTML中缩放图片"><a href="#不要在HTML中缩放图片" class="headerlink" title="不要在HTML中缩放图片"></a>不要在HTML中缩放图片</h5><p>不要通过图片缩放来适应页面，如果你需要小图片，就直接使用小图片吧。</p>
+<h5 id="使用小且可缓存的favicon-ico"><a href="#使用小且可缓存的favicon-ico" class="headerlink" title="使用小且可缓存的favicon.ico"></a>使用小且可缓存的favicon.ico</h5><p>网站图标文件favicon.ico，不管你服务器有还是没有，浏览器都会去尝试请求这个图标。所以我们要确保这个图标</p>
+<ul>
+<li>存在</li>
+<li>文件尽量小，最好小于1k</li>
+<li>设置一个长的过期时间</li>
+</ul>
+<h4 id="移动客户端"><a href="#移动客户端" class="headerlink" title="移动客户端"></a>移动客户端</h4><h5 id="保持单个内容小于25KB"><a href="#保持单个内容小于25KB" class="headerlink" title="保持单个内容小于25KB"></a>保持单个内容小于25KB</h5><p>这限制是因为iphone，他只能缓存小于25K，注意这是解压后的大小。所以单纯gzip不一定够用，精简文件工具要用上了。</p>
+<h5 id="打包组建成符合文档"><a href="#打包组建成符合文档" class="headerlink" title="打包组建成符合文档"></a>打包组建成符合文档</h5><p>把页面内容打包成复合文本就如同带有多附件的Email，它能够使你在一个HTTP请求中取得多个组建。当你使用这条规则时，首先要确定用户代理是否支持（iPhone不支持）。</p>
+<p>来自——<a href="http://www.cnblogs.com/developersupport/p/webpage-performance-best-practices.html" target="_blank" rel="noopener">毫秒必争，前端网页性能最佳实践</a></p>
+<h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><p><a href="https://segmentfault.com/a/1190000006178770" target="_blank" rel="noopener">入门 Webpack，看这篇就够了</a></p>
+<p><a href="https://www.cnblogs.com/wymbk/p/6172208.html" target="_blank" rel="noopener">Webpack是什么</a></p>
+<p><a href="https://segmentfault.com/a/1190000014685887" target="_blank" rel="noopener">Webpack 配置详解（含 4）——关注细节</a></p>
+<p><a href="https://blog.csdn.net/mutouafangzi/article/details/79377917" target="_blank" rel="noopener">Webpack基本配置介绍</a></p>
+<h4 id="loader-和-plugins"><a href="#loader-和-plugins" class="headerlink" title="loader 和 plugins"></a>loader 和 plugins</h4><p>Loaders是webpack提供的最激动人心的功能之一了。通过使用不同的loader，webpack有能力调用外部的脚本或工具，实现对不同格式的文件的处理。</p>
+<p>插件（Plugins）是用来拓展Webpack功能的，它们会在整个构建过程中生效，执行相关的任务。</p>
+<h4 id="打包流程"><a href="#打包流程" class="headerlink" title="打包流程"></a>打包流程</h4><p><a href="https://www.cnblogs.com/yxy99/p/5852987.html" target="_blank" rel="noopener">细说webpack之流程篇</a></p>
+<p><a href="https://www.jianshu.com/p/05222b9f8a8b" target="_blank" rel="noopener">Webpack打包流程细节源码解析（P2）</a></p>
+<h4 id="Webpack-4-0-（简化配置）"><a href="#Webpack-4-0-（简化配置）" class="headerlink" title="Webpack 4.0 （简化配置）"></a>Webpack 4.0 （简化配置）</h4><p><a href="https://www.jianshu.com/p/3a13f1b37300" target="_blank" rel="noopener">Webpack 4.0发布了！！</a></p>
+<p><a href="https://blog.csdn.net/liwusen/article/details/79424118" target="_blank" rel="noopener">Webpack4.0初体验</a></p>
+<h3 id="MCV和MVM"><a href="#MCV和MVM" class="headerlink" title="MCV和MVM"></a>MCV和MVM</h3><h3 id="jQuery-extend-fn"><a href="#jQuery-extend-fn" class="headerlink" title="jQuery extend fn"></a>jQuery extend fn</h3><h3 id="SEO-搜索引擎优化、爬虫"><a href="#SEO-搜索引擎优化、爬虫" class="headerlink" title="SEO 搜索引擎优化、爬虫"></a>SEO 搜索引擎优化、爬虫</h3><h3 id="常见调试方法"><a href="#常见调试方法" class="headerlink" title="常见调试方法"></a>常见调试方法</h3><h3 id="什么是线程？进程和线程的关系是什么？"><a href="#什么是线程？进程和线程的关系是什么？" class="headerlink" title="什么是线程？进程和线程的关系是什么？"></a>什么是线程？进程和线程的关系是什么？</h3><h3 id="怎么样从web前端方面优化性能？至少列举5点？"><a href="#怎么样从web前端方面优化性能？至少列举5点？" class="headerlink" title="怎么样从web前端方面优化性能？至少列举5点？"></a>怎么样从web前端方面优化性能？至少列举5点？</h3><h3 id="如果制作一个访问量很大的网站，对css，js和图片应该怎么处理"><a href="#如果制作一个访问量很大的网站，对css，js和图片应该怎么处理" class="headerlink" title="如果制作一个访问量很大的网站，对css，js和图片应该怎么处理?"></a>如果制作一个访问量很大的网站，对css，js和图片应该怎么处理?</h3><h3 id="31-写出几种IE6-BUG的解决方法？"><a href="#31-写出几种IE6-BUG的解决方法？" class="headerlink" title="31.写出几种IE6 BUG的解决方法？"></a>31.写出几种IE6 BUG的解决方法？</h3><h3 id="浏览器标准模式和怪异模式之间的区别是什么？"><a href="#浏览器标准模式和怪异模式之间的区别是什么？" class="headerlink" title="浏览器标准模式和怪异模式之间的区别是什么？"></a>浏览器标准模式和怪异模式之间的区别是什么？</h3><h3 id="你如何对网站的文件和资源进行优化？期待的解决方案包括："><a href="#你如何对网站的文件和资源进行优化？期待的解决方案包括：" class="headerlink" title="你如何对网站的文件和资源进行优化？期待的解决方案包括："></a>你如何对网站的文件和资源进行优化？期待的解决方案包括：</h3><h3 id="经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用hack的技巧？6、前台兼容性问题有哪些？"><a href="#经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用hack的技巧？6、前台兼容性问题有哪些？" class="headerlink" title="经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用hack的技巧？6、前台兼容性问题有哪些？"></a>经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用hack的技巧？6、前台兼容性问题有哪些？</h3><h3 id="平时如何管理项目？"><a href="#平时如何管理项目？" class="headerlink" title="平时如何管理项目？"></a>平时如何管理项目？</h3><h3 id="工作中用过什么构建工具？"><a href="#工作中用过什么构建工具？" class="headerlink" title="工作中用过什么构建工具？"></a>工作中用过什么构建工具？</h3><h3 id="谈谈你对模块化的理解？"><a href="#谈谈你对模块化的理解？" class="headerlink" title="谈谈你对模块化的理解？"></a>谈谈你对模块化的理解？</h3><h3 id="平时都用什么第三方框架？"><a href="#平时都用什么第三方框架？" class="headerlink" title="平时都用什么第三方框架？"></a>平时都用什么第三方框架？</h3><h3 id="10、谈谈你对预加载的理解？"><a href="#10、谈谈你对预加载的理解？" class="headerlink" title="10、谈谈你对预加载的理解？"></a>10、谈谈你对预加载的理解？</h3><p>11、缓存和预加载的区别是什么？<br>9、如何使用缓存？</p>
+<h3 id="12、图片如何压缩？"><a href="#12、图片如何压缩？" class="headerlink" title="12、图片如何压缩？"></a>12、图片如何压缩？</h3><h3 id="13、压缩文件有哪些方法？"><a href="#13、压缩文件有哪些方法？" class="headerlink" title="13、压缩文件有哪些方法？"></a>13、压缩文件有哪些方法？</h3><h3 id="14、如何区分静态页面和动态页面？"><a href="#14、如何区分静态页面和动态页面？" class="headerlink" title="14、如何区分静态页面和动态页面？"></a>14、如何区分静态页面和动态页面？</h3><h3 id="18、内存泄漏怎么理解？"><a href="#18、内存泄漏怎么理解？" class="headerlink" title="18、内存泄漏怎么理解？"></a>18、内存泄漏怎么理解？</h3><h3 id="19、微格式到底是做啥用？"><a href="#19、微格式到底是做啥用？" class="headerlink" title="19、微格式到底是做啥用？"></a>19、微格式到底是做啥用？</h3><h3 id="、如何缓存整个页面，在没有网络的时候可以来回的跳转？（访问缓存）"><a href="#、如何缓存整个页面，在没有网络的时候可以来回的跳转？（访问缓存）" class="headerlink" title="、如何缓存整个页面，在没有网络的时候可以来回的跳转？（访问缓存）"></a>、如何缓存整个页面，在没有网络的时候可以来回的跳转？（访问缓存）</h3><h3 id="22、CDN是啥？"><a href="#22、CDN是啥？" class="headerlink" title="22、CDN是啥？"></a>22、CDN是啥？</h3><h3 id="23、浏览器一次可以从一个域名下请求多少资源？"><a href="#23、浏览器一次可以从一个域名下请求多少资源？" class="headerlink" title="23、浏览器一次可以从一个域名下请求多少资源？"></a>23、浏览器一次可以从一个域名下请求多少资源？</h3><h3 id="24、什么是垃圾回收机制（GC）？"><a href="#24、什么是垃圾回收机制（GC）？" class="headerlink" title="24、什么是垃圾回收机制（GC）？"></a>24、什么是垃圾回收机制（GC）？</h3><p>36、请描述你熟悉的语言的垃圾回收(GC)机制，他们对循环引用是如何处理的？如何查找内存泄漏(MemoryLeak)?</p>
+<h3 id="25、image和canvas在处理图片的时候有什么区别？"><a href="#25、image和canvas在处理图片的时候有什么区别？" class="headerlink" title="25、image和canvas在处理图片的时候有什么区别？"></a>25、image和canvas在处理图片的时候有什么区别？</h3><p>image是通过对象的形式描述图片的</p>
+<p>canvas通过专门的API将图片绘制在画布上</p>
+<h3 id="26、简述移动开发的注意点-如何做好不同手机的适配-你以前的项目是怎么做的"><a href="#26、简述移动开发的注意点-如何做好不同手机的适配-你以前的项目是怎么做的" class="headerlink" title="26、简述移动开发的注意点,如何做好不同手机的适配,你以前的项目是怎么做的?"></a>26、简述移动开发的注意点,如何做好不同手机的适配,你以前的项目是怎么做的?</h3><h3 id="35、设计模式有哪些？列举你在前端开发工作中自己应用到或者了解到其他框架所用到的设计模式？"><a href="#35、设计模式有哪些？列举你在前端开发工作中自己应用到或者了解到其他框架所用到的设计模式？" class="headerlink" title="35、设计模式有哪些？列举你在前端开发工作中自己应用到或者了解到其他框架所用到的设计模式？"></a>35、设计模式有哪些？列举你在前端开发工作中自己应用到或者了解到其他框架所用到的设计模式？</h3><p>单例、工厂、观察者、适配器、代理模式</p>
+<h3 id="19、什么是MVVM框架？"><a href="#19、什么是MVVM框架？" class="headerlink" title="19、什么是MVVM框架？"></a>19、什么是MVVM框架？</h3><p><a href="https://www.jianshu.com/p/0e9a0d460f64" target="_blank" rel="noopener">来源</a></p>
+<h3 id="调试按钮"><a href="#调试按钮" class="headerlink" title="调试按钮"></a>调试按钮</h3><p>F9   在你需要停下的地方设置断点<br>F5   进入调试<br>F10  单步运行<br>F11  进入函数</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/06/http-state-code/" rel="next" title="HTTP状态码">
+                <i class="fa fa-chevron-left"></i> HTTP状态码
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/06/web-front-end-interview-security/" rel="prev" title="Web前端面试题目及详解汇总-前端安全">
+                Web前端面试题目及详解汇总-前端安全 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="songxingguo">
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">114</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么叫优雅降级和渐进增强？"><span class="nav-number">1.</span> <span class="nav-text">什么叫优雅降级和渐进增强？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器的内核分别是什么"><span class="nav-number">2.</span> <span class="nav-text">浏览器的内核分别是什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web前端性能优化"><span class="nav-number">3.</span> <span class="nav-text">Web前端性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前端优化的目的是什么"><span class="nav-number">3.1.</span> <span class="nav-text">前端优化的目的是什么 ?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#页面级优化"><span class="nav-number">3.2.</span> <span class="nav-text">页面级优化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#减少-HTTP请求数"><span class="nav-number">3.2.1.</span> <span class="nav-text">减少 HTTP请求数</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#从设计实现层面简化页面。"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">从设计实现层面简化页面。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#合理设置-HTTP缓存"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">合理设置 HTTP缓存</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#资源合并与压缩"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">资源合并与压缩</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#CSS-Sprites"><span class="nav-number">3.2.1.4.</span> <span class="nav-text">CSS Sprites</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Inline-Images"><span class="nav-number">3.2.1.5.</span> <span class="nav-text">Inline Images</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Lazy-Load-Images"><span class="nav-number">3.2.1.6.</span> <span class="nav-text">Lazy Load Images</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#将外部脚本置底（将脚本内容在页面信息内容加载后再加载）"><span class="nav-number">3.2.1.7.</span> <span class="nav-text">将外部脚本置底（将脚本内容在页面信息内容加载后再加载）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#异步执行-inline脚本-其实原理和上面是一样，保证脚本在页面内容后面加载。"><span class="nav-number">3.2.1.8.</span> <span class="nav-text">异步执行 inline脚本(其实原理和上面是一样，保证脚本在页面内容后面加载。)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Lazy-Load-Javascript（只有在需要加载的时候加载，在一般情况下并不加载信息内容。）"><span class="nav-number">3.2.1.9.</span> <span class="nav-text">Lazy Load Javascript（只有在需要加载的时候加载，在一般情况下并不加载信息内容。）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#将-CSS放在-HEAD中"><span class="nav-number">3.2.1.10.</span> <span class="nav-text">将 CSS放在 HEAD中</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异步请求-Callback（就是将一些行为样式提取出来，慢慢的加载信息的内容）"><span class="nav-number">3.2.2.</span> <span class="nav-text">异步请求 Callback（就是将一些行为样式提取出来，慢慢的加载信息的内容）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#减少不必要的-HTTP跳转"><span class="nav-number">3.2.3.</span> <span class="nav-text">减少不必要的 HTTP跳转</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端网页性能最佳实践"><span class="nav-number">4.</span> <span class="nav-text">前端网页性能最佳实践</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网页内容"><span class="nav-number">4.1.</span> <span class="nav-text">网页内容</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#减少http请求次数"><span class="nav-number">4.1.1.</span> <span class="nav-text">减少http请求次数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#减少DNS查询次数"><span class="nav-number">4.1.2.</span> <span class="nav-text">减少DNS查询次数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#避免页面跳转"><span class="nav-number">4.1.3.</span> <span class="nav-text">避免页面跳转</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#缓存Ajax"><span class="nav-number">4.1.4.</span> <span class="nav-text">缓存Ajax</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#延迟加载"><span class="nav-number">4.1.5.</span> <span class="nav-text">延迟加载</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#提前加载"><span class="nav-number">4.1.6.</span> <span class="nav-text">提前加载</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#减少DOM元素数量"><span class="nav-number">4.1.7.</span> <span class="nav-text">减少DOM元素数量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#根据域名划分内容"><span class="nav-number">4.1.8.</span> <span class="nav-text">根据域名划分内容</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#减少iframe数量"><span class="nav-number">4.1.9.</span> <span class="nav-text">减少iframe数量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#避免404"><span class="nav-number">4.1.10.</span> <span class="nav-text">避免404</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务器"><span class="nav-number">4.2.</span> <span class="nav-text">服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用CDN"><span class="nav-number">4.2.1.</span> <span class="nav-text">使用CDN</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加Expires-或Cache-Control报文头"><span class="nav-number">4.2.2.</span> <span class="nav-text">添加Expires 或Cache-Control报文头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Gzip压缩传输文件"><span class="nav-number">4.2.3.</span> <span class="nav-text">Gzip压缩传输文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#配置ETags"><span class="nav-number">4.2.4.</span> <span class="nav-text">配置ETags</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#尽早flush输出"><span class="nav-number">4.2.5.</span> <span class="nav-text">尽早flush输出</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用GET-Ajax请求"><span class="nav-number">4.2.6.</span> <span class="nav-text">使用GET Ajax请求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#避免空的图片src"><span class="nav-number">4.2.7.</span> <span class="nav-text">避免空的图片src</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie"><span class="nav-number">4.3.</span> <span class="nav-text">Cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#减少Cookie大小"><span class="nav-number">4.3.1.</span> <span class="nav-text">减少Cookie大小</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#页面内容使用无cookie域名"><span class="nav-number">4.3.2.</span> <span class="nav-text">页面内容使用无cookie域名</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS"><span class="nav-number">4.4.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#将样式表置顶"><span class="nav-number">4.4.1.</span> <span class="nav-text">将样式表置顶</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#避免CSS表达式"><span class="nav-number">4.4.2.</span> <span class="nav-text">避免CSS表达式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用-lt-link-gt-代替-import"><span class="nav-number">4.4.3.</span> <span class="nav-text">用&lt;link&gt;代替@import</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#避免使用Filters"><span class="nav-number">4.4.4.</span> <span class="nav-text">避免使用Filters</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Javascript"><span class="nav-number">4.5.</span> <span class="nav-text">Javascript</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#将脚本置底"><span class="nav-number">4.5.1.</span> <span class="nav-text">将脚本置底</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用外部Javascirpt和CSS文件"><span class="nav-number">4.5.2.</span> <span class="nav-text">使用外部Javascirpt和CSS文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#精简Javascript和CSS"><span class="nav-number">4.5.3.</span> <span class="nav-text">精简Javascript和CSS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#去除重复脚本"><span class="nav-number">4.5.4.</span> <span class="nav-text">去除重复脚本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#减少DOM访问"><span class="nav-number">4.5.5.</span> <span class="nav-text">减少DOM访问</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用智能事件处理"><span class="nav-number">4.5.6.</span> <span class="nav-text">使用智能事件处理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图片"><span class="nav-number">4.6.</span> <span class="nav-text">图片</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#优化图像"><span class="nav-number">4.6.1.</span> <span class="nav-text">优化图像</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化CSS-Sprite"><span class="nav-number">4.6.2.</span> <span class="nav-text">优化CSS Sprite</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#不要在HTML中缩放图片"><span class="nav-number">4.6.3.</span> <span class="nav-text">不要在HTML中缩放图片</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用小且可缓存的favicon-ico"><span class="nav-number">4.6.4.</span> <span class="nav-text">使用小且可缓存的favicon.ico</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移动客户端"><span class="nav-number">4.7.</span> <span class="nav-text">移动客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#保持单个内容小于25KB"><span class="nav-number">4.7.1.</span> <span class="nav-text">保持单个内容小于25KB</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#打包组建成符合文档"><span class="nav-number">4.7.2.</span> <span class="nav-text">打包组建成符合文档</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Webpack"><span class="nav-number">5.</span> <span class="nav-text">Webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#loader-和-plugins"><span class="nav-number">5.1.</span> <span class="nav-text">loader 和 plugins</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包流程"><span class="nav-number">5.2.</span> <span class="nav-text">打包流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Webpack-4-0-（简化配置）"><span class="nav-number">5.3.</span> <span class="nav-text">Webpack 4.0 （简化配置）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MCV和MVM"><span class="nav-number">6.</span> <span class="nav-text">MCV和MVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery-extend-fn"><span class="nav-number">7.</span> <span class="nav-text">jQuery extend fn</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SEO-搜索引擎优化、爬虫"><span class="nav-number">8.</span> <span class="nav-text">SEO 搜索引擎优化、爬虫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见调试方法"><span class="nav-number">9.</span> <span class="nav-text">常见调试方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是线程？进程和线程的关系是什么？"><span class="nav-number">10.</span> <span class="nav-text">什么是线程？进程和线程的关系是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么样从web前端方面优化性能？至少列举5点？"><span class="nav-number">11.</span> <span class="nav-text">怎么样从web前端方面优化性能？至少列举5点？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果制作一个访问量很大的网站，对css，js和图片应该怎么处理"><span class="nav-number">12.</span> <span class="nav-text">如果制作一个访问量很大的网站，对css，js和图片应该怎么处理?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#31-写出几种IE6-BUG的解决方法？"><span class="nav-number">13.</span> <span class="nav-text">31.写出几种IE6 BUG的解决方法？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器标准模式和怪异模式之间的区别是什么？"><span class="nav-number">14.</span> <span class="nav-text">浏览器标准模式和怪异模式之间的区别是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你如何对网站的文件和资源进行优化？期待的解决方案包括："><span class="nav-number">15.</span> <span class="nav-text">你如何对网站的文件和资源进行优化？期待的解决方案包括：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用hack的技巧？6、前台兼容性问题有哪些？"><span class="nav-number">16.</span> <span class="nav-text">经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用hack的技巧？6、前台兼容性问题有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平时如何管理项目？"><span class="nav-number">17.</span> <span class="nav-text">平时如何管理项目？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作中用过什么构建工具？"><span class="nav-number">18.</span> <span class="nav-text">工作中用过什么构建工具？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谈谈你对模块化的理解？"><span class="nav-number">19.</span> <span class="nav-text">谈谈你对模块化的理解？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平时都用什么第三方框架？"><span class="nav-number">20.</span> <span class="nav-text">平时都用什么第三方框架？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10、谈谈你对预加载的理解？"><span class="nav-number">21.</span> <span class="nav-text">10、谈谈你对预加载的理解？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12、图片如何压缩？"><span class="nav-number">22.</span> <span class="nav-text">12、图片如何压缩？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13、压缩文件有哪些方法？"><span class="nav-number">23.</span> <span class="nav-text">13、压缩文件有哪些方法？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14、如何区分静态页面和动态页面？"><span class="nav-number">24.</span> <span class="nav-text">14、如何区分静态页面和动态页面？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18、内存泄漏怎么理解？"><span class="nav-number">25.</span> <span class="nav-text">18、内存泄漏怎么理解？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19、微格式到底是做啥用？"><span class="nav-number">26.</span> <span class="nav-text">19、微格式到底是做啥用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#、如何缓存整个页面，在没有网络的时候可以来回的跳转？（访问缓存）"><span class="nav-number">27.</span> <span class="nav-text">、如何缓存整个页面，在没有网络的时候可以来回的跳转？（访问缓存）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22、CDN是啥？"><span class="nav-number">28.</span> <span class="nav-text">22、CDN是啥？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23、浏览器一次可以从一个域名下请求多少资源？"><span class="nav-number">29.</span> <span class="nav-text">23、浏览器一次可以从一个域名下请求多少资源？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24、什么是垃圾回收机制（GC）？"><span class="nav-number">30.</span> <span class="nav-text">24、什么是垃圾回收机制（GC）？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25、image和canvas在处理图片的时候有什么区别？"><span class="nav-number">31.</span> <span class="nav-text">25、image和canvas在处理图片的时候有什么区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26、简述移动开发的注意点-如何做好不同手机的适配-你以前的项目是怎么做的"><span class="nav-number">32.</span> <span class="nav-text">26、简述移动开发的注意点,如何做好不同手机的适配,你以前的项目是怎么做的?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#35、设计模式有哪些？列举你在前端开发工作中自己应用到或者了解到其他框架所用到的设计模式？"><span class="nav-number">33.</span> <span class="nav-text">35、设计模式有哪些？列举你在前端开发工作中自己应用到或者了解到其他框架所用到的设计模式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19、什么是MVVM框架？"><span class="nav-number">34.</span> <span class="nav-text">19、什么是MVVM框架？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试按钮"><span class="nav-number">35.</span> <span class="nav-text">调试按钮</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
