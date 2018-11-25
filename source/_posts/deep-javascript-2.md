@@ -1626,6 +1626,8 @@ JavaScript 为基本数据类型值提供了封装对象，称为原生函数（
 
 ### 强制类型转换
 
+![强制类型转换](https://graphbed.qiniu.songxingguo.com/deep-javascript-2/%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.png)
+
 #### 值类型转换
 
 **将值从一种类型转换为另一种类型** 通常称为 **类型转换**（type casting），这是 **显式的情况** ；**隐式的情况** 称为 **强制类型转换**（coercion）。
@@ -3299,7 +3301,7 @@ doSomething("",0) 和 doSomething([],"") 也会如此。
 
 Alex Dorey（GitHub 用户名 @dorey）在 GitHub 上制作了一张图表，列出了各种相等比较的情况，如图 4-1 所示。
 
-![JavaScript 中的相等比较]()
+![JavaScript 中的相等比较](https://graphbed.qiniu.songxingguo.com/deep-javascript-2/JavaScript%20%E4%B8%AD%E7%9A%84%E7%9B%B8%E7%AD%89%E6%AF%94%E8%BE%83.png)
 
 #### 抽象关系比较
 
