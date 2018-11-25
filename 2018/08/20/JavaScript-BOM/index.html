@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="BOMECMAScript 是 JavaScript 的核心，但如果要在 Web 中使用 JavaScript，那么 BOM（浏览器对象模型）则无疑才是真正的核心 。BOM 提供了很多对象，用于访问浏览器的功能，这些功能与任何网页内容无关 。多年来，缺少事实上的规范导致 BOM 既有意思又有问题 ，因为 浏览器提供商会按照各自的想法随意去扩展它 。于是，浏览器之间共有的对象就成为了事实上的标准。这">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《JavaScript 高级程序设计》学习笔记-BOM">
+<meta property="og:url" content="https://www.songxingguo.com/2018/08/20/JavaScript-BOM/index.html">
+<meta property="og:site_name" content="阿有的生活">
+<meta property="og:description" content="BOMECMAScript 是 JavaScript 的核心，但如果要在 Web 中使用 JavaScript，那么 BOM（浏览器对象模型）则无疑才是真正的核心 。BOM 提供了很多对象，用于访问浏览器的功能，这些功能与任何网页内容无关 。多年来，缺少事实上的规范导致 BOM 既有意思又有问题 ，因为 浏览器提供商会按照各自的想法随意去扩展它 。于是，浏览器之间共有的对象就成为了事实上的标准。这">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/%E8%AE%BF%E9%97%AE%E6%AF%8F%E4%B8%AA%E6%A1%86%E6%9E%B6.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/%E4%B8%8D%E5%90%8Cwindow%E5%AF%B9%E8%B1%A1%E5%80%BCpng.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/%E8%AE%BE%E7%BD%AE%E9%80%89%E9%A1%B9.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/%E5%AF%B9%E8%AF%9D%E6%A1%86.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/Prompt%E5%AF%B9%E8%AF%9D%E6%A1%86.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/%E5%A4%8D%E9%80%89%E6%A1%86.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/location%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/navigater%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/navagiator%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%EF%BC%88%E7%BB%AD%EF%BC%89.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/screen%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/Screen%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%EF%BC%88%E7%BB%AD%EF%BC%89.png">
+<meta property="og:updated_time" content="2018-11-25T09:04:12.199Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《JavaScript 高级程序设计》学习笔记-BOM">
+<meta name="twitter:description" content="BOMECMAScript 是 JavaScript 的核心，但如果要在 Web 中使用 JavaScript，那么 BOM（浏览器对象模型）则无疑才是真正的核心 。BOM 提供了很多对象，用于访问浏览器的功能，这些功能与任何网页内容无关 。多年来，缺少事实上的规范导致 BOM 既有意思又有问题 ，因为 浏览器提供商会按照各自的想法随意去扩展它 。于是，浏览器之间共有的对象就成为了事实上的标准。这">
+<meta name="twitter:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/%E8%AE%BF%E9%97%AE%E6%AF%8F%E4%B8%AA%E6%A1%86%E6%9E%B6.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/08/20/JavaScript-BOM/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《JavaScript 高级程序设计》学习笔记-BOM | 阿有的生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">114</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">14</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">33</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/08/20/JavaScript-BOM/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《JavaScript 高级程序设计》学习笔记-BOM
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-20 13:19:00" itemprop="dateCreated datePublished" datetime="2018-08-20T13:19:00+00:00">2018-08-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-25 09:04:12" itemprop="dateModified" datetime="2018-11-25T09:04:12+00:00">2018-11-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/20/JavaScript-BOM/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/08/20/JavaScript-BOM/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/08/20/JavaScript-BOM/" class="leancloud_visitors" data-flag-title="《JavaScript 高级程序设计》学习笔记-BOM">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h1><p>ECMAScript 是 JavaScript 的核心，但如果要在 Web 中使用 JavaScript，那么 <strong>BOM（浏览器对象模型）则无疑才是真正的核心</strong> 。<strong>BOM</strong> 提供了很多对象，<strong>用于访问浏览器的功能</strong>，<strong>这些功能与任何网页内容无关</strong> 。多年来，<strong>缺少事实上的规范导致 BOM 既有意思又有问题</strong> ，因为 <strong>浏览器提供商会按照各自的想法随意去扩展它</strong> 。于是，浏览器之间共有的对象就成为了事实上的标准。这些对象在浏览器中得以存在，很大程度上是由于它们提供了与浏览器的互操作性。<strong>W3C 为了把浏览器中 JavaScript 最基本的部分标准化</strong> ，<strong>已经将 BOM 的主要方面纳入了 HTML5 的规范中</strong> 。</p>
+<a id="more"></a>
+<h2 id="window-对象"><a href="#window-对象" class="headerlink" title="window 对象"></a>window 对象</h2><p><strong>BOM 的核心对象是 window</strong> ，<strong>它表示浏览器的一个实例</strong> 。在浏览器中， window 对象有双重角色，它既是 <strong>通过 JavaScript 访问浏览器窗口的一个接口</strong> ，又是 <strong>ECMAScript 规定的 Global 对象</strong> 。这意味着 <strong>在网页中定义的任何一个对象、变量和函数，都以 window 作为其 Global 对象</strong> ，因此有权访问 parseInt() 等方法。</p>
+<h3 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h3><p>由于 window 对象同时扮演着 ECMAScript中 Global 对象的角色，因此 <strong>所有在全局作用域中声明的变量、函数都会变成 window 对象的属性和方法</strong> 。来看下面的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age = <span class="number">29</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayAge</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">alert(<span class="keyword">this</span>.age);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(<span class="built_in">window</span>.age); <span class="comment">//29</span></span><br><span class="line">sayAge(); <span class="comment">//29</span></span><br><span class="line"><span class="built_in">window</span>.sayAge(); <span class="comment">//29</span></span><br></pre></td></tr></table></figure>
+<p>我们在 <strong>全局作用域</strong> 中定义了一个 <strong>变量 age</strong> 和一个 <strong>函数 sayAge()</strong> ，<strong>它们被自动归在了 window 对象名下</strong>。于是，可以通过 window.age 访问变量 age ，可以通过 window.sayAge() 访问函数 sayAge() 。</p>
+<p>由于 <strong>sayAge() 存在于全局作用域中</strong> ，因此 <strong>this.age 被映射到 window.age</strong> ，最终显示的仍然是正确的结果。</p>
+<p>抛开全局变量会成为 window 对象的属性不谈，定义全局变量与在 window 对象上直接定义属性还是有一点差别：<strong>全局变量不能通过 delete 操作符删除</strong> ，而 <strong>直接在 window 对象上的定义的属性可以</strong> 。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age = <span class="number">29</span>;</span><br><span class="line"><span class="built_in">window</span>.color = <span class="string">"red"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在 IE &lt; 9 时抛出错误，在其他所有浏览器中都返回 false</span></span><br><span class="line"><span class="keyword">delete</span> <span class="built_in">window</span>.age;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在 IE &lt; 9 时抛出错误，在其他所有浏览器中都返回 true</span></span><br><span class="line"><span class="keyword">delete</span> <span class="built_in">window</span>.color; <span class="comment">//returns true</span></span><br><span class="line"></span><br><span class="line">alert(<span class="built_in">window</span>.age); <span class="comment">//29</span></span><br><span class="line">alert(<span class="built_in">window</span>.color); <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<p>刚才使用 <strong>var 语句</strong> 添加的 <strong>window 属性</strong> 有一个名为 <strong>[[Configurable]] 的特性</strong> ，这个特性的 <strong>值被设置为 false</strong> ，因此 <strong>这样定义的属性不可以通过 delete 操作符删除</strong>。IE8  及更早版本在遇到使用 delete 删除 window 属性的语句时，不管该属性最初是如何创建的，都会抛出错误，以示警告。IE9 及更高版本不会抛出错误。</p>
+<p>另外，还要记住一件事：<strong>尝试访问未声明的变量会抛出错误</strong> ，但是 <strong>通过查询 window 对象</strong>，<strong>可以知道某个可能未声明的变量是否存在</strong> 。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这里会抛出错误，因为 oldValue 未定义</span></span><br><span class="line"><span class="keyword">var</span> newValue = oldValue;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这里不会抛出错误，因为这是一次属性查询</span></span><br><span class="line"><span class="comment">//newValue 的值是 undefined</span></span><br><span class="line"><span class="keyword">var</span> newValue = <span class="built_in">window</span>.oldValue;</span><br></pre></td></tr></table></figure>
+<p>本章后面将要讨论的很多全局 JavaScript 对象（如 location 和 navigator ）实际上都是 window<br>对象的属性。</p>
+<blockquote>
+<p>Windows Mobile 平台的 IE 浏览器 <strong>不允许通过 window.property = value 之类的形式</strong> ，直接 <strong>在 window 对象上创建新的属性或方法</strong> 。可是，<strong>在全局作用域中声明的所有变量和函数</strong>，照样 <strong>会变成 window 对象的成员</strong> 。</p>
+</blockquote>
+<h3 id="窗口关系及框架"><a href="#窗口关系及框架" class="headerlink" title="窗口关系及框架"></a>窗口关系及框架</h3><p>如果 <strong>页面中包含框架</strong> ，则 <strong>每个框架都拥有自己的 window 对象</strong> ，并且 <strong>保存在 frames 集合中</strong> 。在 <strong>frames 集合</strong> 中，可以 <strong>通过数值索引（从 0 开始，从左至右，从上到下）或者框架名称来访问相应的 window 对象</strong> 。<strong>每个 window 对象都有一个 name 属性</strong> ，其中 <strong>包含框架的名称</strong> 。下面是一个包含框架的页面：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Frameset Example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">frameset</span> <span class="attr">rows</span>=<span class="string">"160,*"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"frame.htm"</span> <span class="attr">name</span>=<span class="string">"topFrame"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">frameset</span> <span class="attr">cols</span>=<span class="string">"50%,50%"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"anotherframe.htm"</span> <span class="attr">name</span>=<span class="string">"leftFrame"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"yetanotherframe.htm"</span> <span class="attr">name</span>=<span class="string">"rightFrame"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">frameset</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">frameset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>以上代码创建了一个 <strong>框架集</strong> ，其中一个框架居上，两个框架居下。对这个例子而言，可以通过 <strong>window.frames[0]</strong> 或者 <strong>window.frames[“topFrame”]</strong> 来引用上方的框架。不过，恐怕你 <strong>最好使用 top 而非 window 来引用这些框架</strong>（例如，通过 top.frames[0] ）。</p>
+<p>我们知道，<strong>top 对象始终指向最高（最外）层的框架</strong> ，也就是 <strong>浏览器窗口</strong> 。<strong>使用它可以确保在一个框架中正确地访问另一个框架</strong> 。因为对于在一个框架中编写的任何代码来说，<strong>其中的 window 对象指向的都是那个框架的特定实例</strong> ，而非最高层的框架。下图展示了在最高层窗口中，通过代码来访问前面例子中每个框架的不同方式。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/%E8%AE%BF%E9%97%AE%E6%AF%8F%E4%B8%AA%E6%A1%86%E6%9E%B6.png" alt="访问每个框架"></p>
+<p>与 top 相对的另一个 window 对象是 <strong>parent</strong> 。顾名思义， <strong>parent （父）对象</strong> 始终 <strong>指向当前框架的直接上层框架</strong> 。在某些情况下， parent 有可能等于 top ；但在 <strong>没有框架</strong> 的情况下， <strong>parent 一定等于 top</strong>（此时它们都等于 window ）。再看下面的例子。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Frameset Example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">frameset</span> <span class="attr">rows</span>=<span class="string">"100,*"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"frame.htm"</span> <span class="attr">name</span>=<span class="string">"topFrame"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">frameset</span> <span class="attr">cols</span>=<span class="string">"50%,50%"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"anotherframe.htm"</span> <span class="attr">name</span>=<span class="string">"leftFrame"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"anotherframeset.htm"</span> <span class="attr">name</span>=<span class="string">"rightFrame"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">frameset</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">frameset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这个框架集中的一个框架包含了另一个框架集，该框架集的代码如下所示。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Frameset Example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">frameset</span> <span class="attr">cols</span>=<span class="string">"50%,50%"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"red.htm"</span> <span class="attr">name</span>=<span class="string">"redFrame"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"blue.htm"</span> <span class="attr">name</span>=<span class="string">"blueFrame"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">frameset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>浏览器在加载完第一个框架集以后，会继续将第二个框架集加载到 rightFrame 中。如果代码位于   redFrame （或 blueFrame ）中，那么 parent 对象指向的就是 rightFrame 。可是，如果代码位于   topFrame 中，则 parent 指向的是 top ，因为 <strong>topFrame 的直接上层框架就是最外层框架</strong> 。图 8-2展示了在将前面例子加载到浏览器之后，不同 window 对象的值。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/%E4%B8%8D%E5%90%8Cwindow%E5%AF%B9%E8%B1%A1%E5%80%BCpng.png" alt="不同 window 对象的值"></p>
+<p>注意，<strong>除非最高层窗口是通过 window.open() 打开的</strong>（本章后面将会讨论），<strong>否则其 window 对象的 name 属性不会包含任何值</strong> 。与框架有关的最后一个对象是 <strong>self</strong> ，它始终<strong>指向 window</strong> ；实际上， <strong>self 和 window 对象可以互换使用</strong> 。引入 self 对象的目的 <strong>只是为了与 top 和 parent 对象对应起来</strong> ，因此 <strong>它不格外包含其他值</strong> 。所有 <strong>这些对象都是 window 对象的属性</strong> ，可以通过 window.parent 、 window.top 等形式来访问。同时，这也意味着 <strong>可以将不同层次的 window 对象连缀起来</strong>，例如   window.parent.parent.frames[0] 。</p>
+<blockquote>
+<p>在 <strong>使用框架</strong> 的情况下，<strong>浏览器中会存在多个 Global 对象</strong> 。在 <strong>每个框架中定义的全局变量会自动成为框架中 window 对象的属性</strong> 。由于 <strong>每个 window 对象都包含原生类型的构造函数</strong> ，因此 <strong>每个框架都有一套自己的构造函数</strong> ，这些构造函数一一对应，但并不相等。例如，top.Object 并不等于 top.frames[0].Object 。<strong>这个问题会影响到对跨框架传递的对象使用 instanceof 操作符</strong> 。</p>
+</blockquote>
+<h3 id="窗口位置"><a href="#窗口位置" class="headerlink" title="窗口位置"></a>窗口位置</h3><p>用来 <strong>确定和修改 window 对象位置</strong> 的属性和方法有很多。IE、Safari、Opera 和 Chrome 都提供了<strong>screenLeft 和 screenTop 属性</strong> ，<strong>分别用于表示窗口相对于屏幕左边和上边的位置</strong>  。Firefox 则在 <strong>screenX 和 screenY 属性</strong> 中提供相同的窗口位置信息，Safari 和 Chrome 也同时支持这两个属性。Opera 虽然也支持 screenX 和 screenY 属性，但与 screenLeft 和 screenTop 属性并不对应，因此建议大家不要在 Opera 中使用它们。使用下列代码可以 <strong>跨浏览器取得窗口左边和上边的位置</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> leftPos = (<span class="keyword">typeof</span> <span class="built_in">window</span>.screenLeft == <span class="string">"number"</span>) ?</span><br><span class="line"><span class="built_in">window</span>.screenLeft : <span class="built_in">window</span>.screenX;</span><br><span class="line"><span class="keyword">var</span> topPos = (<span class="keyword">typeof</span> <span class="built_in">window</span>.screenTop == <span class="string">"number"</span>) ?</span><br><span class="line"><span class="built_in">window</span>.screenTop : <span class="built_in">window</span>.screenY;</span><br></pre></td></tr></table></figure>
+<p>这个例子运用二元操作符首先确定 screenLeft 和 screenTop 属性是否存在，如果是（在 IE、Safari、Opera 和 Chrome 中），则取得这两个属性的值。如果不存在（在 Firefox 中），则取得 screenX 和 screenY 的值。</p>
+<p>在使用这些值的过程中，还必须注意一些小问题。在 <strong>IE</strong>、<strong>Opera</strong> 中，<strong>screenLeft</strong> 和 <strong>screenTop</strong> 中 <strong>保存的是从屏幕左边和上边到由 window 对象表示的页面可见区域的距离</strong> 。换句话说，如果 window 对象是最外层对象，而且浏览器窗口紧贴屏幕最上端——即 y 轴坐标为 0，那么 screenTop 的值就是位于页面可见区域上方的浏览器工具栏的像素高度。但是，在 <strong>Chrome</strong> 、<strong>Firefox</strong> 和 <strong>Safari</strong> 中， <strong>screenY</strong> 或 <strong>screenTop</strong> 中保存的是 <strong>整个浏览器窗口相对于屏幕的坐标值</strong> ，即在窗口的 y 轴坐标为 0 时返回 0。</p>
+<p>更让人捉摸不透是，<strong>Firefox</strong>、<strong>Safari</strong> 和 <strong>Chrome</strong> 始终 <strong>返回页面中每个框架的</strong>  <strong>top.screenX</strong> 和 <strong>top.screenY</strong> 值。<strong>即使在页面由于被设置了外边距而发生偏移的情况下</strong> ，相对于 window 对象使用 <strong>screenX</strong> 和 <strong>screenY</strong> 每次也都会返回相同的值。而 <strong>IE</strong> 和 <strong>Opera</strong> 则 <strong>会给出框架相对于屏幕边界的精确坐标值</strong> 。最终结果，就是 <strong>无法在跨浏览器的条件下取得窗口左边和上边的精确坐标值</strong> 。然而，使用 <strong>moveTo()</strong> 和 <strong>moveBy()</strong>  方法倒是 <strong>有可能将窗口精确地移动到一个新位置</strong> 。这两个方法都接收两个参数，其中 <strong>moveTo()</strong> 接收的是 <strong>新位置的 x 和 y 坐标值</strong>，而 <strong>moveBy()</strong> 接收的是 <strong>在水平和垂直方向上移动的像素数</strong> 。下面来看几个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//将窗口移动到屏幕左上角</span><br><span class="line">window.moveTo(0,0);</span><br><span class="line"></span><br><span class="line">//将窗向下移动 100 像素</span><br><span class="line">window.moveBy(0,100);</span><br><span class="line"></span><br><span class="line">//将窗口移动到(200,300)</span><br><span class="line">window.moveTo(200,300);</span><br><span class="line"></span><br><span class="line">//将窗口向左移动 50 像素</span><br><span class="line">window.moveBy(-50,0);</span><br></pre></td></tr></table></figure>
+<p><strong>需要注意</strong> 的是，<strong>这两个方法可能会被浏览器禁用</strong> ；而且，在 <strong>Opera</strong> 和 <strong>IE 7</strong>（及更高版本）中 <strong>默认就是禁用的</strong> 。另外，<strong>这两个方法都不适用于框架</strong> ，<strong>只能对最外层的 window 对象使用</strong> 。</p>
+<h3 id="窗口大小"><a href="#窗口大小" class="headerlink" title="窗口大小"></a>窗口大小</h3><p>跨浏览器确定一个窗口的大小不是一件简单的事。<strong>IE9+</strong>、<strong>Firefox</strong>、<strong>Safari</strong>、<strong>Opera</strong> 和 <strong>Chrome</strong> 均为此 <strong>提供了 4 个属性</strong>： <strong>innerWidth</strong> 、 <strong>innerHeight</strong> 、 <strong>outerWidth</strong> 和 <strong>outerHeight</strong> 。在 <strong>IE9+</strong>、<strong>Safari</strong> 和 <strong>Firefox</strong> 中， <strong>outerWidth</strong> 和 <strong>outerHeight</strong> 返回 <strong>浏览器窗口本身的尺寸</strong> （无论是从最外层的 window 对象还是从某个框架访问）。在 <strong>Opera</strong> 中，这两个属性的值 <strong>表示页面视图容器</strong> （这里所谓的“<strong>页面视图容器</strong> ”指的是 <strong>Opera 中单个标签页对应的浏览器窗口</strong> 。）的大小。而 <strong>innerWidth</strong> 和 <strong>innerHeight</strong> 则表示 <strong>该容器中页面视图区的大小</strong>（减去边框宽度）。在<strong>Chrome</strong> 中，<strong>outerWidth</strong> 、 <strong>outerHeight</strong> 与 <strong>innerWidth</strong> 、<strong>innerHeight</strong> 返回 <strong>相同的值</strong> ，即 <strong>视口（viewport）大小</strong> 而非浏览器窗口大小。</p>
+<p><strong>IE8 及更早版本没有提供取得当前浏览器窗口尺寸的属性</strong> ；不过，<strong>它通过 DOM 提供了页面可见区域的相关信息</strong> 。</p>
+<p>在 <strong>IE</strong>、<strong>Firefox</strong>、<strong>Safari</strong>、<strong>Opera</strong> 和 <strong>Chrome</strong> 中， <strong>document.documentElement.clientWidth</strong> 和<strong>document.documentElement.clientHeight</strong> 中 <strong>保存了页面视口的信息</strong> 。在 <strong>IE6</strong> 中，这些属性 <strong>必须在标准模式下才有效</strong> ；如果是 <strong>混杂模式</strong> ，就必须通过<strong>document.body.clientWidth</strong> 和 <strong>document.body.clientHeight</strong> <strong>取得相同信息</strong> 。而对于 <strong>混杂模式</strong> 下的 <strong>Chrome</strong> ，则无论通过 <strong>document.documentElement</strong> 还是 <strong>document.body</strong> 中的 <strong>clientWidth</strong> 和 <strong>clientHeight</strong> 属性，<strong>都可以取得视口的大小</strong>  。</p>
+<p><strong>虽然最终无法确定浏览器窗口本身的大小，但却可以取得页面视口的大小</strong> ，如下所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pageWidth = <span class="built_in">window</span>.innerWidth,</span><br><span class="line">pageHeight = <span class="built_in">window</span>.innerHeight;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> pageWidth != <span class="string">"number"</span>)&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">document</span>.compatMode == <span class="string">"CSS1Compat"</span>)&#123;</span><br><span class="line">    pageWidth = <span class="built_in">document</span>.documentElement.clientWidth;</span><br><span class="line">    pageHeight = <span class="built_in">document</span>.documentElement.clientHeight;</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    pageWidth = <span class="built_in">document</span>.body.clientWidth;</span><br><span class="line">    pageHeight = <span class="built_in">document</span>.body.clientHeight;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在以上代码中，我们首先将 window.innerWidth 和 window.innerHeight 的值分别赋给了 pageWidth 和 pageHeight 。然后检查 pageWidth 中保存的是不是一个数值；如果不是，则通过检查 document.compatMode （这个属性将在第 10 章全面讨论）来确定页面是否处于标准模式。如果是，则分别使用 document.documentElement.clientWidth 和document.documentElement.clientHeight 的值。否则，就使用 document.body.clientWidth 和 document.body.clientHeight 的值。</p>
+<p>对于 <strong>移动设备</strong>， <strong>window.innerWidth</strong> 和 <strong>window.innerHeight 保存着可见视口</strong> ，也就是 <strong>屏幕上可见页面区域的大小</strong> 。移动 IE 浏览器不支持这些属性，但通过 document.documentElement.clientWidth 和document.documentElement.clientHeihgt 提供了相同的信息。<strong>随着页面的缩放，这些值也会相应变化。</strong></p>
+<p>在 <strong>其他移动浏览器</strong> 中，<strong>document.documentElement</strong> 度量的是 <strong>布局视口</strong> ，即 <strong>渲染后页面的实际大小</strong>（与可见视口不同，可见视口只是整个页面中的一小部分）。移动 IE 浏览器把布局视口的信息保存在 <strong>document.body.clientWidth</strong> 和 <strong>document.body.clientHeight </strong> 中。这些值不会随着页面缩放变化。</p>
+<p>由于与桌面浏览器间存在这些差异，最好是 <strong>先检测一下用户是否在使用移动设备</strong> ，然后 <strong>再决定使用哪个属性</strong> 。</p>
+<blockquote>
+<p>有关移动设备视口的话题比较复杂，有很多非常规的情形，也有各种各样的建议。移动开发咨询师 Peter-Paul Koch 记述了他对这个问题的研究：<a href="http://t.cn/zOZs0Tz" target="_blank" rel="noopener">http://t.cn/zOZs0Tz</a> 。如果你在做 <strong>移动 Web 开发</strong> ，推荐你读一读这篇文章。</p>
+</blockquote>
+<p>另外，使用 <strong>resizeTo()</strong> 和 <strong>resizeBy()</strong> 方法 <strong>可以调整浏览器窗口的大小</strong> 。这两个方法都接收两个参数，其中 <strong>resizeTo()</strong> 接收 <strong>浏览器窗口的新宽度和新高度</strong> ，而 <strong>resizeBy()</strong> 接收 <strong>新窗口与原窗口的宽度和高度之差</strong> 。来看下面的例子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//调整到 100×100</span><br><span class="line">window.resizeTo(100, 100);</span><br><span class="line"></span><br><span class="line">//调整到 200×150</span><br><span class="line">window.resizeBy(100, 50);</span><br><span class="line"></span><br><span class="line">//调整到 300×300</span><br><span class="line">window.resizeTo(300, 300);</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，这两个方法与移动窗口位置的方法类似，也有 <strong>可能被浏览器禁用</strong> ；而且，在 <strong>Opera</strong> 和 <strong>IE7</strong>（及更高版本）中 <strong>默认就是禁用的</strong> 。另外，这两个方法同样 <strong>不适用于框架</strong>  ，而 <strong>只能对最外层的 window 对象使用</strong> 。</p>
+<h3 id="导航和打开窗口"><a href="#导航和打开窗口" class="headerlink" title="导航和打开窗口"></a>导航和打开窗口</h3><p>使用 <strong>window.open()</strong> 方法既可以 <strong>导航到一个特定的 URL</strong> ，也可以 <strong>打开一个新的浏览器窗口</strong> 。这个方法可以 <strong>接收 4 个参数</strong> ：<strong>要加载的 URL</strong> 、<strong>窗口目标</strong> 、一个 <strong>特性字符串</strong> 以及一个表示 <strong>新页面是否取代浏览器历史记录中当前加载页面的布尔值</strong> 。<strong>通常只须传递第一个参数</strong> ，<strong>最后一个参数只在不打开新窗口的情况下使用</strong> 。如果为 window.open() 传递了 <strong>第二个参数</strong> ，而且该参数是 <strong>已有窗口</strong> 或 <strong>框架</strong> 的名称，那么就会 <strong>在具有该名称的窗口或框架中加载第一个参数指定的 URL</strong> 。看下面的例子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//等同于&lt; a href=&quot;http://www.wrox.com&quot; target=&quot;topFrame&quot;&gt;&lt;/a&gt;</span><br><span class="line">window.open(&quot;http://www.wrox.com/&quot;, &quot;topFrame&quot;);</span><br></pre></td></tr></table></figure>
+<p>调用这行代码，就如同用户单击了 href 属性为 <a href="http://www.wrox.com/，" target="_blank" rel="noopener">http://www.wrox.com/，</a> target 属性为 “topFrame” 的链接。如果 <strong>有一个名叫 “topFrame” 的窗口或者框架</strong>  ，就会 <strong>在该窗口或框架加载这个 URL</strong> ；否则，就会 <strong>创建一个新窗口</strong> 并 <strong>将其命名为 “topFrame”</strong>  。此外，<strong>第二个参数</strong> 也可以是下列 <strong>任何一个特殊的窗口名称</strong> ： <strong>_self</strong> 、 <strong>_parent</strong> 、 <strong>_top</strong> 或 <strong>_blank</strong> 。</p>
+<ul>
+<li><h4 id="弹出窗口"><a href="#弹出窗口" class="headerlink" title="弹出窗口"></a>弹出窗口</h4><p>如果给 <strong>window.open()</strong> 传递的 <strong>第二个参数并不是一个已经存在的窗口或框架</strong> ，那么该方法就会 <strong>根据在第三个参数位置上传入的字符串创建一个新窗口或新标签页</strong> 。如果 <strong>没有传入第三个参数</strong> ，那么就会 <strong>打开一个带有全部默认设置（工具栏、地址栏和状态栏等）的新浏览器窗口</strong>（或者打开一个新标签页——根据浏览器设置）。在 <strong>不打开新窗口</strong> 的情况下，<strong>会忽略第三个参数</strong> 。<strong>第三个参数</strong> 是 <strong>一个逗号分隔的设置字符串</strong> ，表示 <strong>在新窗口中都显示哪些特性</strong> 。下表列出了可以出现在这个字符串中的设置选项。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/%E8%AE%BE%E7%BD%AE%E9%80%89%E9%A1%B9.png" alt="设置选项"></p>
+<p>表中所列的部分或全部设置选项，都可以 <strong>通过逗号分隔的名值对列表来指定</strong> 。其中，<strong>名值对以等号表示</strong>（注意，整个特性字符串中不允许出现空格），如下面的例子所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.open(<span class="string">"http://www.wrox.com/"</span>,<span class="string">"wroxWindow"</span>,</span><br><span class="line">        <span class="string">"height=400,width=400,top=10,left=10,resizable=yes"</span>);</span><br></pre></td></tr></table></figure>
+<p>这行代码会 <strong>打开一个新的可以调整大小的窗口</strong> ，窗口 <strong>初始大小为 400×400 像素</strong> ，并且  <strong>距屏幕上沿和左边各 10 像素</strong> 。</p>
+<p><strong>window.open()</strong> 方法会 <strong>返回一个指向新窗口的引用</strong> 。<strong>引用的对象与其他 window 对象大致相似</strong> ，但 <strong>我们可以对其进行更多控制</strong> 。例如，有些浏览器在默认情况下可能不允许我们针对主浏览器窗口调整大小或移动位置，但却 <strong>允许我们针对通过 window.open() 创建的窗口调整大小或移动位置</strong> 。通过这个返回的对象，<strong>可以像操作其他窗口一样操作新打开的窗口</strong> ，如下所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> wroxWin = <span class="built_in">window</span>.open(<span class="string">"http://www.wrox.com/"</span>,<span class="string">"wroxWindow"</span>,</span><br><span class="line">                  <span class="string">"height=400,width=400,top=10,left=10,resizable=yes"</span>);</span><br><span class="line">                  </span><br><span class="line"><span class="comment">//调整大小</span></span><br><span class="line">wroxWin.resizeTo(<span class="number">500</span>,<span class="number">500</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//移动位置</span></span><br><span class="line">wroxWin.moveTo(<span class="number">100</span>,<span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+<p>调用 <strong>close()</strong> 方法还可以 <strong>关闭新打开的窗口</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wroxWin.close();</span><br></pre></td></tr></table></figure>
+<p>但是，这个方法仅<strong>适用于通过 window.open() 打开的弹出窗口</strong> 。对于 <strong>浏览器的主窗口</strong> ，如果 <strong>没有得到用户的允许是不能关闭它的</strong> 。不过，<strong>弹出窗口</strong> 倒是 <strong>可以调用 top.close() 在不经用户允许的情况下关闭自己</strong> 。<strong>弹出窗口关闭之后</strong> ，<strong>窗口的引用仍然还在</strong> ，但除了像下面这样检测其 closed 属性之外，已经没有其他用处了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wroxWin.close();</span><br><span class="line">alert(wroxWin.closed); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>新创建的 <strong>window 对象</strong> 有一个 <strong>opener 属性</strong> ，其中 <strong>保存着打开它的原始窗口对象</strong> 。这个属性 <strong>只在弹出窗口中的最外层 window 对象（ top ）中有定义</strong> ，而且 <strong>指向调用 window.open() 的窗口或框架</strong> 。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> wroxWin = <span class="built_in">window</span>.open(<span class="string">"http://www.wrox.com/"</span>,<span class="string">"wroxWindow"</span>,</span><br><span class="line">             <span class="string">"height=400,width=400,top=10,left=10,resizable=yes"</span>);</span><br><span class="line">             </span><br><span class="line">alert(wroxWin.opener == <span class="built_in">window</span>); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>虽然 <strong>弹出窗口</strong> 中 <strong>有一个指针指向打开它的原始窗口</strong> ，但 <strong>原始窗口中并没有这样的指针指向弹出窗口</strong> 。<strong>窗口并不跟踪记录它们打开的弹出窗口</strong> ，因此我们只能在必要的时候自己来手动实现跟踪。有些浏览器（如 IE8 和 Chrome）会在独立的进程中运行每个标签页。当一个标签页打开另一个标签页时，如果两个 window 对象之间需要彼此通信，那么新标签页就不能运行在独立的进程中。在 Chrome 中，将 <strong>新创建的标签页的 opener 属性设置为 null</strong> ，即 <strong>表示在单独的进程中运行新标签页</strong> ，如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var wroxWin = window.open(&quot;http://www.wrox.com/&quot;,&quot;wroxWindow&quot;,</span><br><span class="line">              &quot;height=400,width=400,top=10,left=10,resizable=yes&quot;);</span><br><span class="line">              </span><br><span class="line">wroxWin.opener = null;</span><br></pre></td></tr></table></figure>
+<p>将 <strong>opener 属性设置为 null</strong> 就是 <strong>告诉浏览器新创建的标签页不需要与打开它的标签页通信</strong> ，因此 <strong>可以在独立的进程中运行</strong> 。标签页之间的 <strong>联系一旦切断</strong> ，将 <strong>没有办法恢复</strong> 。</p>
+</li>
+<li><h4 id="安全限制"><a href="#安全限制" class="headerlink" title="安全限制"></a>安全限制</h4><p>曾经有一段时间，广告商在网上使用弹出窗口达到了肆无忌惮的程度。他们经常把弹出窗口打扮成系统对话框的模样，引诱用户去点击其中的广告。由于看起来像是系统对话框，一般用户很难分辨是真是假。为了解决这个问题，有些浏览器开始在弹出窗口配置方面增加限制。</p>
+<p>Windows XP SP2 中的 IE6 对弹出窗口施加了多方面的安全限制，包括不允许在屏幕之外创建弹出窗口、不允许将弹出窗口移动到屏幕以外、不允许关闭状态栏等。IE7 则增加了更多的安全限制，如不允许关闭地址栏、默认情况下不允许移动弹出窗口或调整其大小。Firefox 1 从一开始就不支持修改状态栏，因此无论给 window.open() 传入什么样的特性字符串，弹出窗口中都会无一例外地显示状态栏。后来的 Firefox 3 又强制始终在弹出窗口中显示地址栏。Opera 只会在主浏览器窗口中打开弹出窗口，但不允许它们出现在可能与系统对话框混淆的地方。</p>
+<p>此外，有的浏览器只根据用户操作来创建弹出窗口。这样一来，在页面尚未加载完成时调用window.open() 的语句根本不会执行，而且还可能会将错误消息显示给用户。换句话说，只能通过单击或者击键来打开弹出窗口。对于那些不是用户有意打开的弹出窗口，Chrome 采取了不同的处理方式。它不会像其他浏览器那样简单地屏蔽这些弹出窗口，而是只显示它们的标题栏，并把它们放在浏览器窗口的右下角。</p>
+<blockquote>
+<p>在打开计算机硬盘中的网页时，IE 会解除对弹出窗口的某些限制。但是在服务器上执行这些代码会受到对弹出窗口的限制。</p>
+</blockquote>
+</li>
+<li><h4 id="弹出窗口屏蔽程序"><a href="#弹出窗口屏蔽程序" class="headerlink" title="弹出窗口屏蔽程序"></a>弹出窗口屏蔽程序</h4><p>大多数浏览器都 <strong>内置有弹出窗口屏蔽程序</strong> ，而没有内置此类程序的浏览器，也可以安装 <strong>Yahoo! Toolbar</strong> 等带有内置屏蔽程序的实用工具。结果就是用户可以将绝大多数不想看到弹出窗口屏蔽掉。于是，在弹出窗口被屏蔽时，就应该考虑两种可能性。如果是 <strong>浏览器内置的屏蔽程序阻止的弹出窗口</strong> ，那么<strong> window.open() 很可能会返回 null</strong> 。此时，<strong>只要检测这个返回的值就可以确定弹出窗口是否被屏蔽了</strong> ，如下面的例子所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> wroxWin = <span class="built_in">window</span>.open(<span class="string">"http://www.wrox.com"</span>, <span class="string">"_blank"</span>);</span><br><span class="line"><span class="keyword">if</span> (wroxWin == <span class="literal">null</span>)&#123;</span><br><span class="line">   alert(<span class="string">"The popup was blocked!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果是 <strong>浏览器扩展或其他程序阻止的弹出窗口</strong> ，那么 <strong>window.open() 通常会抛出一个错误</strong> 。因此，要想准确地检测出弹出窗口是否被屏蔽，必须在 <strong>检测返回值</strong> 的同时，<strong>将 window.open() 的调用封装在一个 try-catch 块中</strong> ，如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var blocked = false;</span><br><span class="line"></span><br><span class="line">try &#123;</span><br><span class="line">  var wroxWin = window.open(&quot;http://www.wrox.com&quot;, &quot;_blank&quot;);</span><br><span class="line">  if (wroxWin == null)&#123;</span><br><span class="line">    blocked = true;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; catch (ex)&#123;</span><br><span class="line">  blocked = true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (blocked)&#123;</span><br><span class="line">  alert(&quot;The popup was blocked!&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 <strong>任何情况</strong> 下，以上代码 <strong>都可以检测出调用 window.open() 打开的弹出窗口是不是被屏蔽了</strong> 。但要注意的是，检测弹出窗口是否被屏蔽只是一方面，它 <strong>并不会阻止浏览器显示与被屏蔽的弹出窗口有关的消息</strong>。</p>
+</li>
+</ul>
+<h3 id="间歇调用和超时调用"><a href="#间歇调用和超时调用" class="headerlink" title="间歇调用和超时调用"></a>间歇调用和超时调用</h3><p><strong>JavaScript 是单线程语言</strong> ，但它 <strong>允许通过设置超时值和间歇时间值来调度代码在特定的时刻执行</strong> 。前者是 <strong>在指定的时间过后执行代码</strong> ，而后者则是 <strong>每隔指定的时间就执行一次代码</strong> 。<strong>超时调用</strong> 需要使用 <strong>window 对象的 setTimeout() 方法</strong> ，它接受两个参数：<strong>要执行的代码</strong> 和 <strong>以毫秒表示的时间</strong>（即在执行代码前需要等待多少毫秒）。其中，第一个参数可以是 <strong>一个包含 JavaScript 代码的字符串</strong>（就和在 eval() 函数中使用的字符串一样），也可以是 <strong>一个函数</strong> 。例如，下面对 setTimeout() 的两次调用都会在一秒钟后显示一个警告框。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不建议传递字符串！</span></span><br><span class="line">setTimeout(<span class="string">"alert('Hello world!') "</span>, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//推荐的调用方式</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">"Hello world!"</span>);</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<p>虽然这两种调用方式都没有问题，但由于 <strong>传递字符串可能导致性能损失</strong> ，因此 <strong>不建议以字符串作为第一个参数</strong> 。<strong>第二个参数</strong> 是一个 <strong>表示等待多长时间的毫秒数</strong> ，但 <strong>经过该时间后指定的代码不一定会执行</strong> 。<strong>JavaScript 是一个单线程序的解释器</strong> ，因此 <strong>一定时间内只能执行一段代码</strong> 。为了控制要执行的代码，就有一个 <strong>JavaScript 任务队列</strong>。这些任务会按照将它们添加到队列的顺序执行。 <strong>setTimeout()</strong> 的 <strong>第二个参数告诉JavaScript 再过多长时间把当前任务添加到队列中</strong> 。如果 <strong>队列是空的</strong> ，那么添加的代码会 <strong>立即执行</strong> ；如果队列 <strong>不是空的</strong> ，那么它就要 <strong>等前面的代码执行完了以后再执行</strong> 。调用 setTimeout() 之后，该方法会 <strong>返回一个数值 ID</strong> ，表示 <strong>超时调用</strong> 。这个超时调用 ID 是 <strong>计划执行代码的唯一标识符</strong> ，<strong>可以通过它来取消超时调用</strong> 。要 <strong>取消尚未执行的超时调用计划</strong> ，可以调用 <strong>clearTimeout()</strong> 方法并将相应的 <strong>超时调用 ID 作为参数</strong> 传递给它，如下所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置超时调用</span></span><br><span class="line"><span class="keyword">var</span> timeoutId = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">"Hello world!"</span>);</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//注意：把它取消</span></span><br><span class="line">clearTimeout(timeoutId);</span><br></pre></td></tr></table></figure>
+<p><strong>只要是在指定的时间尚未过去之前调用 clearTimeout() ，就可以完全取消超时调用</strong>。前面的代码在设置超时调用之后马上又调用了 <strong>clearTimeout()</strong> ，结果就跟什么也没有发生一样。</p>
+<blockquote>
+<p>超时调用的代码都是在全局作用域中执行的，因此函数中 this 的值在 <strong>非严格模式</strong> 下 <strong>指向 window 对象</strong> ，在 <strong>严格模式</strong> 下是 <strong>undefined</strong> 。</p>
+</blockquote>
+<p><strong>间歇调用</strong> 与 <strong>超时调用</strong> 类似，只不过它 <strong>会按照指定的时间间隔重复执行代码</strong> ，<strong>直至间歇调用被取消或者页面被卸载</strong> 。设置间歇调用的方法是 <strong>setInterval()</strong> ，它接受的参数与 setTimeout() 相同：<strong>要执行的代码</strong>（字符串或函数）和 <strong>每次执行之前需要等待的毫秒数</strong> 。下面来看一个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不建议传递字符串！</span></span><br><span class="line">setInterval (<span class="string">"alert('Hello world!') "</span>, <span class="number">10000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//推荐的调用方式</span></span><br><span class="line">setInterval (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">"Hello world!"</span>);</span><br><span class="line">&#125;, <span class="number">10000</span>);</span><br></pre></td></tr></table></figure>
+<p>调用 setInterval() 方法同样也会 <strong>返回一个间歇调用 ID</strong> ，该 ID <strong>可用于在将来某个时刻取消间歇调用</strong> 。要 <strong>取消尚未执行的间歇调用</strong> ，可以使用 <strong>clearInterval()</strong> 方法并传入相应的 <strong>间歇调用 ID</strong> 。取消间歇调用的 <strong>重要性要远远高于取消超时调用</strong> ，因为在 <strong>不加干涉</strong> 的情况下，<strong>间歇调用将会一直执行到页面卸载</strong> 。以下是一个常见的使用间歇调用的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> max = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> intervalId = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">incrementNumber</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  num++;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//如果执行次数达到了 max 设定的值，则取消后续尚未执行的调用</span></span><br><span class="line">  <span class="keyword">if</span> (num == max) &#123;</span><br><span class="line">    clearInterval(intervalId);</span><br><span class="line">    alert(<span class="string">"Done"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">intervalId = setInterval(incrementNumber, <span class="number">500</span>);</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，<strong>变量 num 每半秒钟递增一次，当递增到最大值时就会取消先前设定的间歇调用</strong> 。这个模式也可以使用超时调用来实现，如下所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> max = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">incrementNumber</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  num++;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 如果执行次数未达到 max  设定的值，则设置另一次超时调用</span></span><br><span class="line">  <span class="keyword">if</span> (num &lt; max) &#123;</span><br><span class="line">    setTimeout(incrementNumber, <span class="number">500</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    alert(<span class="string">"Done"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setTimeout(incrementNumber, <span class="number">500</span>);</span><br></pre></td></tr></table></figure>
+<p>可见，在使用 <strong>超时调用</strong> 时，<strong>没有必要跟踪超时调用 ID</strong> ，因为每次执行代码之后，如果<strong>不再设置另一次超时调用</strong> ，<strong>调用就会自行停止</strong> 。一般认为，使用 <strong>超时调用来模拟间歇调用的是一种最佳模式</strong> 。在 <strong>开发环境</strong> 下，<strong>很少使用真正的间歇调用</strong> ，原因是 <strong>后一个间歇调用可能会在前一个间歇调用结束之前启动</strong> 。而像前面示例中那样使用 <strong>超时调用</strong> ，则 <strong>完全可以避免这一点</strong> 。所以，<strong>最好不要使用间歇调用</strong> 。</p>
+<h3 id="系统对话框"><a href="#系统对话框" class="headerlink" title="系统对话框"></a>系统对话框</h3><p>浏览器通过 <strong>alert()</strong> 、 <strong>confirm()</strong> 和 <strong>prompt()</strong> 方法 <strong>可以调用系统对话框向用户显示消息</strong> 。<strong>系统对话框与在浏览器中显示的网页没有关系</strong> ，也不包含 HTML。<strong>它们的外观由操作系统及（或）浏览器设置决定</strong> ，而不是由 CSS 决定。此外，通过这几个方法 <strong>打开的对话框</strong> 都是 <strong>同步</strong> 和 <strong>模态</strong> 的。也就是说，<strong>显示这些对话框的时候代码会停止执行</strong> ，而 <strong>关掉这些对话框后代码又会恢复执行</strong> 。</p>
+<p>本书各章经常会用到 alert() 方法，这个方法 <strong>接受一个字符串</strong> 并将其 <strong>显示给用户</strong>。具体来说，调用 alert() 方法的结果就是 <strong>向用户显示一个系统对话框</strong> ，其中 <strong>包含指定的文本</strong> 和 <strong>一个 OK（“确定”）按钮</strong> 。例如， alert(“Hello world!”) 会在 Windows XP 系统的 IE 中生成如图 8-3 所示的对话框。</p>
+<p>通常使用 <strong>alert()</strong> 生成的 <strong>“警告”对话框</strong> 向用户显示一些他们无法控制的消息，例如错误消息。而用户只能在看完消息后关闭对话框。</p>
+<p>第二种对话框是调用 <strong>confirm()</strong> 方法生成的。从向用户显示消息的方面来看，这种“确认”对话框很像是一个 <strong>“警告”对话框</strong> 。但二者的主要区别在于“确认”对话框 <strong>除了显示 OK 按钮外</strong> ，还会 <strong>显示一个 Cancel（“取消”）按钮</strong> ，<strong>两个按钮可以让用户决定是否执行给定的操作</strong> 。例如， confirm(“Are you sure?”) 会显示如图 8-4 所示的确认对话框。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/%E5%AF%B9%E8%AF%9D%E6%A1%86.png" alt="对话框"></p>
+<p>为了确定用户是单击了 OK 还是 Cancel，可以检查 confirm() 方法返回的布尔值<strong> ： </strong>true<strong>  表示 </strong>单击了 OK<strong> ， </strong>false<strong> 表示 </strong>单击了 Cancel<strong> 或 </strong>单击了右上角的 X 按钮** 。确认对话框的典型用法如下。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (confirm(<span class="string">"Are you sure?"</span>)) &#123;</span><br><span class="line">  alert(<span class="string">"I'm so glad you're sure! "</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  alert(<span class="string">"I'm sorry to hear you're not sure. "</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，第一行代码（if 条件语句）会向用户显示一个确认对话框。如果用户单击了 OK，则通过一个警告框向用户显示消息 I’m so glad you’ re sure! 。如果用户单击的是 Cancel 按钮，则通过警告框显示 I’m sorry to hear you’re not sure.。<strong>这种模式经常在用户想要执行删除操作的时候使用</strong> ，例如删除电子邮件。</p>
+<p>最后一种对话框是通过调用 <strong>prompt()</strong> 方法生成的，这是一个<strong>“提示”框</strong> ，<strong>用于提示用户输入一些文本</strong> 。提示框中 <strong>除了显示 OK 和 Cancel 按钮之外</strong> ，还会 <strong>显示一个文本输入域</strong> ，<strong>以供用户在其中输入内容</strong> 。 prompt() 方法接受两个参数：<strong>要显示给用户的文本提示</strong> 和 <strong>文本输入域的默认值</strong>（可以是一个空字符串）。调用 prompt(“What’s your name?”,”Michael”) 会得到如图 8-5 所示的对话框。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/Prompt%E5%AF%B9%E8%AF%9D%E6%A1%86.png" alt="prompt对话框"></p>
+<p>如果 <strong>用户单击了 OK 按钮</strong> ，则<strong> prompt() 返回文本输入域的值</strong> ；如果 <strong>用户单击了 Cancel</strong> 或 <strong>没有单击 OK</strong> 而是  <strong>通过其他方式关闭了对话框</strong> ，则 <strong>该方法返回 null </strong> 。下面是一个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = prompt(<span class="string">"What is your name? "</span>, <span class="string">""</span>);</span><br><span class="line"><span class="keyword">if</span> (result !== <span class="literal">null</span>) &#123;</span><br><span class="line">  alert(<span class="string">"Welcome, "</span> + result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>综上所述，这些系统对话框很适合向用户显示消息并请用户作出决定。由于不涉及 HTML、CSS 或JavaScript，因此 <strong>它们是增强 Web 应用程序的一种便捷方式</strong> 。</p>
+<p>除了上述三种对话框之外，<strong>Google Chrome浏览器</strong> 还  <strong>引入了一种新特性</strong> 。如果 <strong>当前脚本在执行过程中会打开两个或多个对话框</strong> ，那么 <strong>从第二个对话框开始</strong> ，<strong>每个对话框中都会显示一个复选框</strong> ，<strong>以便用户阻止后续的对话框显示</strong> ，<strong>除非用户刷新页面</strong>（见图 8-6）。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/%E5%A4%8D%E9%80%89%E6%A1%86.png" alt="复选框"></p>
+<p>如果 <strong>用户勾选了其中的复选框</strong> ，并且 <strong>关闭了对话框</strong> ，那么 <strong>除非用户刷新页面</strong> ，所有 <strong>后续的系统对话框（包括警告框、确认框和提示框）都会被屏蔽</strong> 。Chrome 没有就对话框是否显示向开发人员提供任何信息。由于 <strong>浏览器会在空闲时重置对话框计数器</strong> ，因此如果<strong>两次独立的用户操作分别打开两个警告框</strong> ，那么 <strong>这两个警告框中都不会显示复选框</strong> 。而如果是 <strong>同一次用户操作会生成两个警告框</strong> ，那么 <strong>第二个警告框中就会显示复选框</strong>。这个新特性出现以后，<strong>IE9</strong> 和 <strong>Firefox 4</strong> 也实现了它。还有两个可以 <strong>通过 JavaScript 打开的对话框</strong> ，即“<strong>查找</strong>”和“<strong>打印</strong>”。<strong>这两个对话框都是异步显示的</strong> ，<strong>能够将控制权立即交还给脚本</strong> 。这两个对话框 <strong>与用户通过浏览器菜单的“查找”和“打印”命令打开的对话框相同</strong> 。而在 JavaScript 中则可以像下面这样 通过 <strong>window 对象</strong> 的 <strong>find()</strong> 和 <strong>print()</strong> 方法打开它们。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//显示“打印”对话框</span></span><br><span class="line"><span class="built_in">window</span>.print();</span><br><span class="line"></span><br><span class="line"><span class="comment">//显示“查找”对话框</span></span><br><span class="line"><span class="built_in">window</span>.find();</span><br></pre></td></tr></table></figure>
+<p>这两个方法同样 <strong>不会就用户在对话框中的操作给出任何信息</strong> ，因此它们的用处有限。另外，既然 <strong>这两个对话框是异步显示的</strong> ，那么 Chrome 的 <strong>对话框计数器就不会将它们计算在内</strong> ，所以 <strong>它们也不会受用户禁用后续对话框显示的影响</strong> 。</p>
+<h2 id="location-对象"><a href="#location-对象" class="headerlink" title="location 对象"></a>location 对象</h2><p><strong>location</strong> 是最有用的 BOM对象之一，它提供了 <strong>与当前窗口中加载的文档有关的信息</strong> ，还提供了 <strong>一些导航功能</strong>。事实上， location 对象是很特别的一个对象，因为它既是 <strong>window 对象的属性</strong> ，也是 <strong>document 对象的属性</strong> ；换句话说， <strong>window.location 和  document.location 引用的是同一个对象</strong>。<strong>location 对象</strong> 的用处不只表现在 <strong>它保存着当前文档的信息</strong> ，还表现在 <strong>它将 URL 解析为独立的片段</strong> ，让开发人员 <strong>可以通过不同的属性访问这些片段</strong> 。下表列出了 <strong>location 对象的所有属性</strong>（注：省略了每个属性前面的 location 前缀）。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/location%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png" alt="location 对象的所有属性"></p>
+<h3 id="查询字符串参数"><a href="#查询字符串参数" class="headerlink" title="查询字符串参数"></a>查询字符串参数</h3><p>虽然通过上面的属性可以访问到 location 对象的大多数信息，但其中访问 URL 包含的查询字符<br>串的属性并不方便。尽管 <strong>location.search</strong> 返回 <strong>从问号到 URL 末尾的所有内容</strong> ，但 <strong>却没有办法逐个访问其中的每个查询字符串参数</strong> 。为此，可以像下面这样创建一个函数，<strong>用以解析查询字符串</strong> ，然后 <strong>返回包含所有参数的一个对象</strong> ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getQueryStringArgs</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">//取得查询字符串并去掉开头的问号</span></span><br><span class="line">  <span class="keyword">var</span> qs = (location.search.length &gt; <span class="number">0</span> ? location.search.substring(<span class="number">1</span>) : <span class="string">""</span>),</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//保存数据的对象</span></span><br><span class="line">  args = &#123;&#125;,</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//取得每一项</span></span><br><span class="line">  items = qs.length ? qs.split(<span class="string">"&amp;"</span>) : [],</span><br><span class="line">  </span><br><span class="line">  item = <span class="literal">null</span>,</span><br><span class="line">  name = <span class="literal">null</span>,</span><br><span class="line">  value = <span class="literal">null</span>,</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//在 for 循环中使用</span></span><br><span class="line">  i = <span class="number">0</span>,</span><br><span class="line">  len = items.length;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//逐个将每一项添加到 args 对象中</span></span><br><span class="line">  <span class="keyword">for</span> (i=<span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">    item = items[i].split(<span class="string">"="</span>);</span><br><span class="line">    name = <span class="built_in">decodeURIComponent</span>(item[<span class="number">0</span>]);</span><br><span class="line">    value = <span class="built_in">decodeURIComponent</span>(item[<span class="number">1</span>]);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (name.length) &#123;</span><br><span class="line">      args[name] = value;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> args;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个函数的第一步是  <strong>先去掉查询字符串开头的问号</strong> 。当然，前提是 location.search 中必须要包含一或多个字符。然后，<strong>所有参数将被保存在 args 对象</strong> 中，该对象以字面量形式创建。接下来，<strong>根据和号（&amp;）来分割查询字符串</strong> ，并 <strong>返回 name=value 格式的字符串数组</strong>  。下面的 <strong>for 循环会迭代这个数组</strong> ，然后 <strong>再根据等于号分割每一项</strong> ，从而返回 <strong>第一项为参数名</strong>，<strong>第二项为参数值的数组</strong> 。再使用 <strong>decodeURIComponent()</strong> 分别 <strong>解码 name 和 value </strong>（因为查询字符串应该是被编码过的）。最后，<strong>将 name 作为 args 对象的属性，将 value 作为相应属性的值</strong> 。下面给出了使用这个函数的示例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假设查询字符串是?q=javascript&amp;num=10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> args = getQueryStringArgs();</span><br><span class="line"></span><br><span class="line">alert(args[<span class="string">"q"</span>]); <span class="comment">//"javascript"</span></span><br><span class="line">alert(args[<span class="string">"num"</span>]); <span class="comment">//"10"</span></span><br></pre></td></tr></table></figure>
+<p>可见，<strong>每个查询字符串参数都成了返回对象的属性</strong> 。这样就极大地方便了对每个参数的访问。</p>
+<h3 id="位置操作"><a href="#位置操作" class="headerlink" title="位置操作"></a>位置操作</h3><p>使用 <strong>location 对象</strong> 可以 <strong>通过很多方式来改变浏览器的位置</strong> 。首先，也是最常用的方式，就是使用 <strong>assign() 方法</strong> 并为其传递一个 <strong>URL</strong> ，如下所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location.assign(<span class="string">"http://www.wrox.com"</span>);</span><br></pre></td></tr></table></figure>
+<p>这样，就 <strong>可以立即打开新 URL 并在浏览器的历史记录中生成一条记录</strong> 。如果是 <strong>将 location.href 或 window.location 设置为一个 URL 值</strong> ，<strong>也会以该值调用 assign() 方法</strong> 。例如，下列两行代码与显式调用 assign() 方法的效果完全一样。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location = <span class="string">"http://www.wrox.com"</span>; </span><br><span class="line">location.href = <span class="string">"http://www.wrox.com"</span>;</span><br></pre></td></tr></table></figure>
+<p>在这些改变浏览器位置的方法中，<strong>最常用</strong> 的是设置 <strong>location.href 属性</strong>。</p>
+<p>另外，修改 location 对象的其他属性也可以改变当前加载的页面。下面的例子展示了通过将 <strong>hash</strong> 、<strong>search</strong> 、 <strong>hostname</strong> 、 <strong>pathname</strong> 和<strong> port</strong> 属性设置为新值来改变 URL。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假设初始 URL 为 http://www.wrox.com/WileyCDA/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//将 URL 修改为"http://www.wrox.com/WileyCDA/#section1"</span></span><br><span class="line">location.hash = <span class="string">"#section1"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将 URL 修改为"http://www.wrox.com/WileyCDA/?q=javascript"</span></span><br><span class="line">location.search = <span class="string">"?q=javascript"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将 URL 修改为"http://www.yahoo.com/WileyCDA/"</span></span><br><span class="line">location.hostname = <span class="string">"www.yahoo.com"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将 URL 修改为"http://www.yahoo.com/mydir/"</span></span><br><span class="line">location.pathname = <span class="string">"mydir"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将 URL 修改为"http://www.yahoo.com:8080/WileyCDA/"</span></span><br><span class="line">location.port = <span class="number">8080</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>每次修改 location 的属性（ hash 除外），页面都会以新 URL 重新加载</strong> 。</p>
+<blockquote>
+<p>在 IE8、Firefox 1、Safari 2+、Opera 9+和 Chrome 中，<strong>修改 hash 的值会在浏览器的历史记录中生成一条新记录</strong> 。在 IE 的早期版本中， hash 属性不会在用户单击“后退”和“前进”按钮时被更新，而只会在用户单击包含 hash 的 URL 时才会被更新。</p>
+</blockquote>
+<p>当通过 <strong>上述任何一种方式修改 URL 之后</strong> ，<strong>浏览器的历史记录中就会生成一条新记录</strong> ，因此 <strong>用户通过单击“后退”按钮都会导航到前一个页面</strong> 。要 <strong>禁用这种行为</strong> ，可以使用 <strong>replace()</strong> 方法。这个方法只接受一个参数，即 <strong>要导航到的 URL</strong> ；结果虽然 <strong>会导致浏览器位置改变</strong> ，但  <strong>不会在历史记录中生成新记录</strong> 。在调用 replace() 方法之后，用户不能回到前一个页面，来看下面的例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>You won't be able to get back here<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Enjoy this page for a second, because you won't be coming back here.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">      setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        location.replace(<span class="string">"http://www.wrox.com/"</span>);</span></span><br><span class="line"><span class="undefined">      &#125;, 1000);</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果将这个页面加载到浏览器中，浏览器就会在 1 秒钟后重新定向到 <a href="http://www.wrox.com。然后，“后退”按钮将处于禁用状态，如果不重新输入完整的" target="_blank" rel="noopener">www.wrox.com。然后，“后退”按钮将处于禁用状态，如果不重新输入完整的</a> URL，则无法返回示例页面。</p>
+<p>与位置有关的最后一个方法是 <strong>reload()</strong> ，<strong>作用是重新加载当前显示的页面</strong> 。如果调用 reload() 时 <strong>不传递任何参数</strong> ，<strong>页面就会以最有效的方式重新加载</strong> 。也就是说，如果 <strong>页面自上次请求以来并没有改变过</strong> ，页面就会 <strong>从浏览器缓存中重新加载</strong> 。如果 <strong>要强制从服务器重新加载</strong> ，则需要像下面这样 <strong>为该方法传递参数 true</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">location.reload(); <span class="comment">//重新加载（有可能从缓存中加载）</span></span><br><span class="line">location.reload(<span class="literal">true</span>); <span class="comment">//重新加载（从服务器重新加载）</span></span><br></pre></td></tr></table></figure>
+<p><strong>位于 reload() 调用之后的代码可能会也可能不会执行</strong> ，这要 <strong>取决于网络延迟或系统资源等因素</strong> 。为此，<strong>最好将 reload() 放在代码的最后一行</strong> 。</p>
+<h2 id="navigator-对象"><a href="#navigator-对象" class="headerlink" title="navigator 对象"></a>navigator 对象</h2><p>最早由 Netscape Navigator 2.0 引入的 <strong>navigator 对象</strong>，现在已经成为识别客户端浏览器的事实标准。虽然其他浏览器也通过其他方式提供了相同或相似的信息（例如，IE 中的<strong>window.clientInformation</strong> 和 Opera 中的 <strong>window.opera</strong> ），但 <strong>navigator 对象</strong>却 <strong>是所有支持 JavaScript 的浏览器所共有的</strong> 。与其他 BOM 对象的情况一样，每个浏览器中的 navigator 对象也都有一套自己的属性。下表列出了存在于所有浏览器中的属性和方法，以及支持它们的浏览器版本。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/navigater%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png" alt="navigator 对象属性"></p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/navagiator%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%EF%BC%88%E7%BB%AD%EF%BC%89.png" alt="navigator 对象属性（续）"></p>
+<p>表中的这些 <strong>navigator 对象的属性</strong> 通常 <strong>用于检测显示网页的浏览器类型</strong>（第 9 章会详细讨论）。</p>
+<h3 id="检测插件"><a href="#检测插件" class="headerlink" title="检测插件"></a>检测插件</h3><p><strong>检测浏览器中是否安装了特定的插件</strong> 是一种最常见的检测例程。对于 <strong>非 IE 浏览器</strong> ，可以使用 <strong>plugins 数组</strong> 来达到这个目的。该数组中的每一项都包含下列属性。</p>
+<ul>
+<li><strong>name</strong> ：插件的名字。</li>
+<li><strong>description</strong> ：插件的描述。</li>
+<li><strong>filename</strong> ：插件的文件名。</li>
+<li><strong>length</strong> ：插件所处理的 MIME 类型数量。</li>
+</ul>
+<p>一般来说， <strong>name 属性</strong> 中会 <strong>包含检测插件必需的所有信息</strong> ，但有时候也不完全如此。在检测插件时，需要像下面这样 <strong>循环迭代每个插件并将插件的 name 与给定的名字进行比较</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//检测插件（在 IE 中无效）</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasPlugin</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">  name = name.toLowerCase();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; navigator.plugins.length; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span> (navigator. plugins [i].name.toLowerCase().indexOf(name) &gt; <span class="number">-1</span>)&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//检测 Flash</span></span><br><span class="line">alert(hasPlugin(<span class="string">"Flash"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//检测 QuickTime</span></span><br><span class="line">alert(hasPlugin(<span class="string">"QuickTime"</span>));</span><br></pre></td></tr></table></figure>
+<p>这个 <strong>hasPlugin() 函数</strong> 接受一个参数：<strong>要检测的插件名</strong> 。第一步是 <strong>将传入的名称转换为小写形式</strong> ，<strong>以便于比较</strong> 。然后，<strong>迭代 plugins 数组</strong> ，<strong>通过 indexOf() 检测每个 name 属性</strong> ，<strong>以确定传入的名称是否出现在字符串的某个地方</strong> 。比较的字符串都 <strong>使用小写形式可以避免因大小写不一致导致的错误</strong> 。而传入的参数应该尽可能具体，以避免混淆。应该说，像 Flash 和 QuickTime 这样的字符串就比较具体了，不容易导致混淆。在 Firefox、Safari、Opera 和 Chrome 中可以使用这种方法来检测插件。</p>
+<blockquote>
+<p><strong>每个插件对象</strong> 身也是一个 <strong>MimeType 对象的数组</strong>，这些对象 <strong>可以通过方括号语法来访问</strong> 。每个 MimeType 对象有 4 个属性：包含 <strong>MIME 类型描述</strong> 的 <strong>description</strong> 、<strong>回指插件对象</strong> 的 <strong>enabledPlugin</strong> 、表示 <strong>与 MIME 类型对应的文件扩展名</strong> 的 <strong>字符串suffixes</strong> （以逗号分隔）和表示 <strong>完整 MIME 类型字符串</strong> 的 <strong>type</strong> 。</p>
+</blockquote>
+<p>检测 IE 中的插件比较麻烦，因为 <strong>IE 不支持 Netscape 式的插件</strong> 。在 IE 中检测插件的唯一方式就是 <strong>使用专有的 ActiveXObject 类型</strong> ，<strong>并尝试创建一个特定插件的实例</strong> 。<strong> IE 是以 COM对象的方式实现插件的</strong> ，而 <strong>COM对象使用唯一标识符来标识</strong> 。因此，要想检查特定的插件，就 <strong>必须知道其 COM 标识符</strong> 。例如，Flash 的标识符是ShockwaveFlash.ShockwaveFlash 。知道唯一标识符之后，就可以编写类似下面的函数来检测 IE 中是否安装相应插件了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//检测 IE 中的插件</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasIEPlugin</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">new</span> ActiveXObject(name);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (ex)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//检测 Flash</span></span><br><span class="line">alert(hasIEPlugin(<span class="string">"ShockwaveFlash.ShockwaveFlash"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//检测 QuickTime</span></span><br><span class="line">alert(hasIEPlugin(<span class="string">"QuickTime.QuickTime"</span>));</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，<strong>函数 hasIEPlugin()</strong> 只接收一个 <strong>COM 标识符作为参数</strong> 。在函数内部，首先会尝试 <strong>创建一个 COM对象的实例</strong> 。之所以 <strong>要在 try-catch 语句中进行实例化</strong> ，是因为 <strong>创建未知 COM 对象会导致抛出错误</strong> 。这样，如果 <strong>实例化成功</strong> ，则 <strong>函数返回 true</strong> ；否则，如果 <strong>抛出了错误</strong> ，则 <strong>执行 catch 块</strong> ，<strong>结果就会返回 false</strong> 。例子最后检测 IE 中是否安装了 Flash 和 QuickTime 插件。</p>
+<p>鉴于检测这两种插件的方法差别太大，因此 <strong>典型的做法</strong> 是 <strong>针对每个插件分别创建检测函数</strong> ，而不是使用前面介绍的通用检测方法。来看下面的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//检测所有浏览器中的 Flash</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasFlash</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = hasPlugin(<span class="string">"Flash"</span>);</span><br><span class="line">  <span class="keyword">if</span> (!result)&#123;</span><br><span class="line">    result = hasIEPlugin(<span class="string">"ShockwaveFlash.ShockwaveFlash"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//检测所有浏览器中的 QuickTime</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasQuickTime</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = hasPlugin(<span class="string">"QuickTime"</span>);</span><br><span class="line">  <span class="keyword">if</span> (!result)&#123;</span><br><span class="line">    result = hasIEPlugin(<span class="string">"QuickTime.QuickTime"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//检测 Flash</span></span><br><span class="line">alert(hasFlash());</span><br><span class="line"></span><br><span class="line"><span class="comment">//检测 QuickTime</span></span><br><span class="line">alert(hasQuickTime());</span><br></pre></td></tr></table></figure>
+<p>上面代码中定义了两个函数： <strong>hasFlash()</strong> 和 <strong>hasQuickTime()</strong> 。每个函数都是 <strong>先尝试使用不针对 IE 的插件检测方法</strong> 。如果 <strong>返回了 false</strong> （在 IE 中会这样），那么 <strong>再使用针对 IE 的插件检测方法</strong> 。如果 <strong>IE 的插件检测方法再返回 false</strong> ，则 <strong>整个方法也将返回 false</strong> 。<strong>只要任何一次检测返回 true</strong>  ，<strong>整个方法都会返回 true</strong> 。</p>
+<blockquote>
+<p><strong>plugins 集合</strong> 有一个名叫 <strong>refresh() 的方法</strong> ，<strong>用于刷新 plugins 以反映最新安装的插件</strong> 。这个方法接收一个参数：表示 <strong>是否应该重新加载页面的一个布尔值</strong> 。如果将 <strong>这个值设置为 true</strong> ，则会 <strong>重新加载包含插件的所有页面</strong> ；否则，<strong>只更新 plugins 集合</strong> ，<strong>不重新加载页面</strong> 。</p>
+</blockquote>
+<h3 id="注册处理程序"><a href="#注册处理程序" class="headerlink" title="注册处理程序"></a>注册处理程序</h3><p>Firefox 2 为 <strong>navigator 对象</strong> 新增了 <strong>registerContentHandler()</strong> 和 <strong>registerProtocolHandler()</strong> 方法（这两个方法是 <strong>在 HTML5 中定义的</strong> ，相关内容将在第 22 章讨论）。这两个方法 <strong>可以让一个站点指明它可以处理特定类型的信息</strong> 。随着 RSS 阅读器和在线电子邮件程序的兴起，<strong>注册处理程序</strong> 就 <strong>为像使用桌面应用程序一样默认使用这些在线应用程序提供了一种方式</strong> 。</p>
+<p>其中， <strong>registerContentHandler()方法</strong> 接收三个参数：<strong>要处理的 MIME 类型</strong> 、<strong>可以处理该 MIME 类型的页面的 URL</strong> 以及 <strong>应用程序的名称</strong> 。举个例子，<strong>要将一个站点注册为处理 RSS 源的处理程序</strong> ，可以使用如下代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">navigator.registerContentHandler(<span class="string">"application/rss+xml"</span>,</span><br><span class="line">  <span class="string">"http://www.somereader.com?feed=%s"</span>, <span class="string">"Some Reader"</span>);</span><br></pre></td></tr></table></figure>
+<p>第一个参数是 <strong>RSS 源的 MIME 类型</strong> 。第二个参数是应该 <strong>接收 RSS源 URL的 URL</strong> ，其中的 %s 表示 <strong>RSS 源 URL</strong> ，由浏览器自动插入。当下一次请求 RSS 源时，浏览器就会打开指定的 URL，而相应的 <strong>Web 应用程序</strong> 将以适当方式来处理该请求。</p>
+<blockquote>
+<p>Firefox 4 及之前版本只允许在 registerContentHandler() 方法中使用三个 MIME 类型： <strong>application/rss+xml</strong> 、 <strong>application/atom+xml</strong> 和 <strong>application/vnd.mozilla.maybe. feed</strong>  。这三个 MIME类型的作用都一样，即 <strong>为 RSS 或 ATOM 新闻源（feed）注册处理程序</strong> 。</p>
+</blockquote>
+<p>类似的调用方式也适用于 <strong>registerProtocolHandler() 方法</strong> ，它也接收三个参数：<strong>要处理的协议</strong>（例如， mailto 或 ftp ）、<strong>处理该协议的页面的 URL</strong>  和 <strong>应用程序的名称</strong> 。例如，<strong>要想将一个应用程序注册为默认的邮件客户端</strong> ，可以使用如下代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">navigator.registerProtocolHandler(<span class="string">"mailto"</span>,</span><br><span class="line">  <span class="string">"http://www.somemailclient.com?cmd=%s"</span>, <span class="string">"Some Mail Client"</span>);</span><br></pre></td></tr></table></figure>
+<p>这个例子注册了一个 <strong>mailto 协议的处理程序</strong> ，该程序指向 <strong>一个基于 Web 的电子邮件客户端</strong> 。同样，第二个参数仍然是 <strong>处理相应请求的 URL</strong>，而 %s 则表示 <strong>原始的请求</strong> 。</p>
+<blockquote>
+<p>Firefox 2 虽然实现了 registerProtocolHandler() ，但该方法还不能用。Firefox 3 完整实现这个方法。</p>
+</blockquote>
+<h2 id="screen-对象"><a href="#screen-对象" class="headerlink" title="screen 对象"></a>screen 对象</h2><p>JavaScript 中有几个对象在编程中用处不大，而 screen 对象就是其中之一。 <strong>screen 对象</strong> 基本上只 <strong>用来表明客户端的能力</strong> ，其中 <strong>包括浏览器窗口外部的显示器的信息</strong> ，如像素宽度和高度等。<strong>每个浏览器中的 screen 对象都包含着各不相同的属性</strong> ，下表列出了所有属性及支持相应属性的浏览器。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/screen%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7.png" alt="screen 对象属性"></p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-BOM/Screen%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%EF%BC%88%E7%BB%AD%EF%BC%89.png" alt="screen 对象属性（续）"></p>
+<p>这些信息经常集中出现在 <strong>测定客户端能力的站点跟踪工具中</strong> ，但通常不会用于影响功能。不过，有时候也可能会用到其中的信息来 <strong>调整浏览器窗口大小</strong> ，<strong>使其占据屏幕的可用空间</strong> ，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.resizeTo(screen.availWidth, screen.availHeight);</span><br></pre></td></tr></table></figure>
+<p>前面曾经提到过，<strong>许多浏览器都会禁用调整浏览器窗口大小的能力</strong> ，因此上面这行代码不一定在所有环境下都有效。</p>
+<p><strong>涉及移动设备的屏幕大小</strong> 时，<strong>情况有点不一样</strong> 。运行 iOS 的设备始终会像是把设备竖着拿在手里一样，因此返回的值是 768×1024。而 Android设备则会相应调用 screen.width 和 screen.height 的值。</p>
+<h2 id="history-对象"><a href="#history-对象" class="headerlink" title="history 对象"></a>history 对象</h2><p><strong>history 对象</strong> 保存着 <strong>用户上网的历史记录</strong> ，从窗口被打开的那一刻算起。因为 history 是 window 对象的属性，因此 <strong>每个浏览器窗口</strong> 、<strong>每个标签页</strong> 乃至 <strong>每个框架</strong> ，<strong>都有自己的 history 对象与特定的 window 对象关联</strong> 。出于安全方面的考虑，开发人员无法得知用户浏览过的 URL。不过，借由用户访问过的页面列表，同样可以在不知道实际 URL 的情况下实现后退和前进。使用 <strong>go() 方法</strong> 可以 <strong>在用户的历史记录中任意跳转</strong> ，<strong>可以向后</strong>也 <strong>可以向前</strong> 。这个方法接受一个参数，表示 <strong>向后或向前跳转的页面数</strong> 的 <strong>一个整数值</strong> 。<strong>负数</strong> 表示 <strong>向后跳转</strong>（类似于单击浏览器的“后退”按钮），<strong>正数</strong> 表示 <strong>向前跳转</strong>（类似于单击浏览器的“前进”按钮）。来看下面的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//后退一页</span></span><br><span class="line">history.go(<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//前进一页</span></span><br><span class="line">history.go(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//前进两页</span></span><br><span class="line">history.go(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<p>也可以给 <strong>go() 方法</strong> 传递 <strong>一个字符串参数</strong> ，此时 <strong>浏览器会跳转到历史记录中包含该字符串的第一个位置</strong> —— 可能后退，也可能前进，具体要看哪个位置最近。<strong>如果历史记录中不包含该字符串</strong> ，那么 <strong>这个方法什么也不做</strong> ，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//跳转到最近的 wrox.com 页面</span></span><br><span class="line">history.go(<span class="string">"wrox.com"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//跳转到最近的 nczonline.net 页面</span></span><br><span class="line">history.go(<span class="string">"nczonline.net"</span>);</span><br></pre></td></tr></table></figure>
+<p>另外，还可以使用两个简写方法 <strong>back()</strong> 和 <strong>forward()</strong> 来代替 go() 。顾名思义，这两个方法 <strong>可以模仿浏览器的“后退”和“前进”按钮</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//后退一页</span></span><br><span class="line">history.back();</span><br><span class="line"></span><br><span class="line"><span class="comment">//前进一页</span></span><br><span class="line">history.forward();</span><br></pre></td></tr></table></figure>
+<p>除了上述几个方法外， <strong>history 对象</strong> 还有一个 <strong>length 属性</strong> ，保存着 <strong>历史记录的数量</strong> 。这个数量包括所有历史记录，即所有向后和向前的记录。对于加载到窗口、标签页或框架中的 <strong>第一个页面</strong> 而言，<strong>history.length 等于 0</strong> 。通过像下面这样测试该属性的值，<strong>可以确定用户是否一开始就打开了你的页面</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (history.length == <span class="number">0</span>)&#123;</span><br><span class="line">  <span class="comment">//这应该是用户打开窗口后的第一个页面</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>虽然 history 并不常用，但 <strong>在创建自定义的“后退”和“前进”按钮</strong> ，以及 <strong>检测当前页面是不是用户历史记录中的第一个页面时</strong> ，还是必须使用它。</p>
+<blockquote>
+<p><strong>当页面的 URL 改变时，就会生成一条历史记录</strong> 。在 IE8 及更高版本、Opera、Firefox、Safari 3 及更高版本以及 Chrome 中，<strong>这里所说的改变</strong> 包括 <strong>URL 中 hash 的变化</strong>（因此，设置 location.hash 会在这些浏览器中生成一条新的历史记录）。</p>
+</blockquote>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><strong>浏览器对象模型</strong> （BOM）<strong>以 window 对象为依托</strong> ，表示 <strong>浏览器窗口</strong> 以及 <strong>页面可见区域</strong> 。同时， <strong>window 对象</strong> 还是 <strong>ECMAScript 中的 Global 对象</strong> ，因而 <strong>** 所有全局变量和函数都是它的属性</strong> ，且 <strong>所有原生的构造函数及其他函数</strong> 也都 <strong>存在于它的命名空间下</strong> 。本章讨论了下列 BOM 的组成部分。</p>
+<ul>
+<li><p>在使用框架时，<strong>每个框架</strong> 都有自己的 <strong>window 对象</strong> 以及 <strong>所有原生构造函数及其他函数的副本</strong> 。<strong>每个框架</strong> 都 <strong>保存在 frames 集合</strong> 中，可以通过位置或通过名称来访问。</p>
+</li>
+<li><p>有一些窗口指针，可以用来引用其他框架，包括父框架。</p>
+</li>
+<li><p><strong>top 对象</strong> 始终指向 <strong>最外围的框架</strong> ，也就是 <strong>整个浏览器窗口</strong> 。</p>
+</li>
+<li><p><strong>parent 对象</strong> 表示 <strong>包含当前框架的框架</strong> ，而 <strong>self 对象</strong> 则 <strong>回指 window</strong> 。</p>
+</li>
+<li><p>使用 <strong>location 对象</strong> 可以 <strong>通过编程方式来访问浏览器的导航系统</strong> 。<strong>设置相应的属性</strong>，<strong>可以逐段或整体性地修改浏览器的 URL</strong> 。</p>
+</li>
+<li><p>调用 <strong>replace() 方法</strong> 可以 <strong>导航到一个新 URL</strong> ，同时 <strong>该 URL 会替换浏览器历史记录中当前显示的页面</strong> 。</p>
+</li>
+<li><p><strong>navigator 对象</strong> 提供了 <strong>与浏览器有关的信息</strong> 。到底提供哪些信息，很大程度上取决于用户的浏览器；不过，也有一些公共的属性（如 userAgent ）存在于所有浏览器中。</p>
+</li>
+</ul>
+<p><strong>BOM</strong> 中还有两个对象： <strong>screen</strong> 和 <strong>history</strong> ，但它们的功能有限。 <strong>screen 对象</strong> 中<strong>保存着与客户端显示器有关的信息</strong> ，这些信息一般 <strong>只用于站点分析</strong> 。 <strong>history 对象</strong> 为 <strong>访问浏览器的历史记录开了一个小缝隙</strong> ，开发人员可以据此 <strong>判断历史记录的数量</strong> ，也可以 <strong>在历史记录中向后或向前导航到任意页面</strong> 。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/17/JavaScript-function-expression/" rel="next" title="《JavaScript 高级程序设计》学习笔记-函数表达式">
+                <i class="fa fa-chevron-left"></i> 《JavaScript 高级程序设计》学习笔记-函数表达式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/21/JavaScript-customer-service-test/" rel="prev" title="《JavaScript 高级程序设计》学习笔记-客户端检测">
+                《JavaScript 高级程序设计》学习笔记-客户端检测 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="songxingguo">
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">114</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BOM"><span class="nav-number">1.</span> <span class="nav-text">BOM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#window-对象"><span class="nav-number">1.1.</span> <span class="nav-text">window 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全局作用域"><span class="nav-number">1.1.1.</span> <span class="nav-text">全局作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#窗口关系及框架"><span class="nav-number">1.1.2.</span> <span class="nav-text">窗口关系及框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#窗口位置"><span class="nav-number">1.1.3.</span> <span class="nav-text">窗口位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#窗口大小"><span class="nav-number">1.1.4.</span> <span class="nav-text">窗口大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导航和打开窗口"><span class="nav-number">1.1.5.</span> <span class="nav-text">导航和打开窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#弹出窗口"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">弹出窗口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全限制"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">安全限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#弹出窗口屏蔽程序"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">弹出窗口屏蔽程序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#间歇调用和超时调用"><span class="nav-number">1.1.6.</span> <span class="nav-text">间歇调用和超时调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统对话框"><span class="nav-number">1.1.7.</span> <span class="nav-text">系统对话框</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#location-对象"><span class="nav-number">1.2.</span> <span class="nav-text">location 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查询字符串参数"><span class="nav-number">1.2.1.</span> <span class="nav-text">查询字符串参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位置操作"><span class="nav-number">1.2.2.</span> <span class="nav-text">位置操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#navigator-对象"><span class="nav-number">1.3.</span> <span class="nav-text">navigator 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检测插件"><span class="nav-number">1.3.1.</span> <span class="nav-text">检测插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册处理程序"><span class="nav-number">1.3.2.</span> <span class="nav-text">注册处理程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#screen-对象"><span class="nav-number">1.4.</span> <span class="nav-text">screen 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#history-对象"><span class="nav-number">1.5.</span> <span class="nav-text">history 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.6.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
