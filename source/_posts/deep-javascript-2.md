@@ -4664,3 +4664,379 @@ JavaScript 中有很多错误类型，分为两大类：早期错误（编译时
 finally 中代码的处理顺序需要特别注意。它们有时能派上很大用场，但也容易引起困惑，特别是在和带标签的代码块混用时。总之，使用 finally 旨在让代码更加简洁易读，切忌弄巧成拙。
 
 switch 相对于 if..else if.. 来说更为简洁。需要注意的一点是，如果对其理解得不够透彻，稍不注意就很容易出错。
+
+### 混合环境 JavaScript
+
+![混合环境 JavaScript](https://graphbed.qiniu.songxingguo.com/deep-javascript-2/%E6%B7%B7%E5%90%88%E7%8E%AF%E5%A2%83JavaScript.png)
+
+如果 JavaScript 程序仅仅是在引擎中运行的话，它会严格遵循规范并且是可以预测的。但是 JavaScript 程序几乎总是在宿主环境中运行，这使得它在一定程度上变得不可预测。
+
+#### Annex B（ECMAScript）
+
+JavaScript 语言的官方名称是 ECMAScript（指的是管理它的 ECMA 标准），这一点不太为人所知。那么 JavaScript 又是指什么呢？ JavaScript 是该语言的通用称谓，更确切地说，它是该规范在浏览器上的实现。
+
+官方 ECMAScript 规范包括 Annex B，其中介绍了由于浏览器兼容性问题导致的与官方规范的差异。
+
+可以这样来理解：这些差异只存在于浏览器中。如果代码只在浏览器中运行，就不会发现任何差异。否则（如果代码也在 Node.js、Rhino 等环境中运行），或者你也不确定的时候，就需要小心对待。
+下面是主要的兼容性差异。
+
+- 在非严格模式中允许八进制数值常量存在，如 0123（即十进制的 83）。
+- window.escape(..) 和 window.unescape(..) 让你能够转义（escape）和回转（unescape）带有 % 分隔符的十六进制字符串。例如，window.escape( "? foo=97%&bar=3%" ) 的结果为 "%3Ffoo%3D97%25%26bar%3D3%25"。
+- String.prototype.substr 和 String.prototype.substring 十分相似，除了前者的第二个参数是结束位置索引（非自包含），后者的第二个参数是长度（需要包含的字符数）。
+
+##### Web ECMAScript
+
+Web ECMAScript 规范（https://javascript.spec.whatwg.org）中介绍了官方 ECMAScript 规范和目前基于浏览器的 JavaScript 实现之间的差异。
+
+换句话说，其中的内容对浏览器来说是“必需的”（考虑到兼容性），但是并未包含在官方规范的“Annex B”部分（到本书写作时）。
+
+- <!-- 和 --> 是合法的单行注释分隔符。
+- String.prototype 中返回 HTML 格 式 字 符 串 的 附 加 方 法：anchor(..)、big(..)、blink(..)、bold(..)、fixed(..)、fontcolor(..)、fontsize(..)、italics(..)、link(..)、small(..)、strike(..) 和 sub(..)。
+
+以上内容在实际开发中很少使用，也不推荐，我们更倾向于使用其他的内建DOM API 和自定义工具集。
+
+- RegExp 扩展：RegExp.$1 .. RegExp.$9（匹配组）和 RegExp.lastMatch/RegExp["$&"]（最
+近匹配）。
+- Function.prototype 附加方法：Function.prototype.arguments（别名为 arguments 对象）和 Function.caller（别名为 arguments.caller）。
+
+> arguments 和 arguments.caller 均已被废止，所以尽量不使用它们，也不要使用它们的别名。
+
+>一些十分细微且很不常见的差异这里就不介绍了。如有需要，可参考文档“Annex B”和“Web ECMAScript”。
+
+通常来说，出现这些差异的情况很少，所以无需特别担心。只要在使用它们的时候特别注意即可。
+
+#### 宿主对象
+
+JavaScript 中有关变量的规则定义得十分清楚，但也不乏一些例外情况，比如自动定义的变量，以及由宿主环境（浏览器等）创建并提供给 JavaScript 引擎的变量——所谓的“宿主对象”（包括内建对象和函数）。
+
+例如：
+
+```js
+var a = document.createElement( "div" );
+typeof a; // "object"--正如所料
+Object.prototype.toString.call( a ); // "[object HTMLDivElement]"
+a.tagName; // "DIV"
+```
+上例中，a 不仅仅是一个 object，还是一个特殊的宿主对象，因为它是一个 DOM 元素。其内部的 [[Class]] 值（为 "HTMLDivElement"）来自预定义的属性（通常也是不可更改的）。
+
+另外一个难点在 4.2.3 节中的“假值对象”部分曾介绍过：一些对象在强制转换为 boolean 时，会意外地成为假值而非真值，这很让人抓狂。
+
+其他需要注意的宿主对象的行为差异有：
+
+- 无法访问正常的 object 内建方法，如 toString();
+- 无法写覆盖；
+- 包含一些预定义的只读属性；
+- 包含无法将 this 重载为其他对象的方法；
+- 其他……
+
+在针对运行环境进行编码时，**宿主对象** 扮演着一个十分关键的角色，但要特别注意其行为特性，因为它们常常 **有别于普通的 JavaScript object** 。
+
+在我们经常打交道的宿主对象中，**console 及其各种方法（log(..)、error(..) 等）是比较值得一提的。** console 对象由宿主环境提供，以便从代码中输出各种值。
+
+console 在浏览器中是输出到开发工具控制台，而在 Node.js 和其他服务器端 JavaScript 环境中，则是指向 JavaScript 环境系统进程的标准输出（stdout）和标准错误输出（stderr）。
+
+####  全局 DOM 变量
+
+你可能已经知道，声明一个全局变量（使用 var 或者不使用）的结果并不仅仅是创建一个全局变量，而且还会在 global 对象（在浏览器中为 window）中创建一个同名属性。
+
+还有一个不太为人所知的事实是：由于浏览器演进的历史遗留问题，**在创建带有 id 属性的 DOM 元素时也会创建同名的全局变量** 。例如：
+
+```js
+<div id="foo"></div>
+```
+以及：
+
+```js
+if (typeof foo == "undefined") {
+  foo = 42; // 永远也不会运行
+}
+
+console.log( foo ); // HTML元素
+```
+你可能认为只有 JavaScript 代码才能创建全局变量，并且习惯使用 typeof 或 .. in window 来检测全局变量。但是如上例所示，HTML 页面中的内容也会产生全局变量，并且稍不注意就很容易让全局变量检查错误百出。
+
+这也是尽量不要使用全局变量的一个原因。如果确实要用，也要确保变量名的唯一性，从而避免与其他地方的变量产生冲突，包括 HTML 和其他第三方代码。
+
+#### 原生原型
+
+一个广为人知的 JavaScript 的最佳实践是：**不要扩展原生原型** 。
+
+如果向 Array.prototype 中加入新的方法和属性，假设它们确实有用，设计和命名都很得当，那它最后很有可能会被加入到 JavaScript 规范当中。这样一来你所做的扩展就会与之冲突。
+
+我自己就曾遇到过这样一个例子。
+
+当时我正在为一些网站开发一个嵌入式构件，该构件基于 jQuery（基本上所有的框架都会犯这样的错误）。基本上它在所有的网站上都可以运行，但是在某个网站上却彻底无法运行。
+
+经过差不多一个星期的分析调试之后，我发现这个网站有一段遗留代码，如下：
+
+```js
+// Netscape 4没有Array.push
+Array.prototype.push = function(item) {
+  this[this.length-1] = item;
+};
+```
+
+除了注释以外（谁还会关心 Netscape 4 呢？），上述代码似乎没有问题，是吧？
+
+问题在于 Array.prototype.push 随后被加入到了规范中，并且和这段代码不兼容。标准的 push(..) 可以一次加入多个值。而这段代码中的 push 方法则只会处理第一个值。
+
+几乎所有 JavaScript 框架的代码都使用 push(..) 来处理多个值。我的问题则是 CSS 选择器引擎（CSS selector）。可想而知其他很多地方也会有这样的问题。
+
+最初编写这个方法的开发人员将其命名为 push 没有问题，但是并未预见到需要处理多个值的情况。这相当于挖了一个坑，而大约 10 年之后，我无意间掉了进去。
+
+从中我们可以吸取几个教训。
+
+首先，**不要扩展原生方法** ，除非你确信代码在运行环境中不会有冲突。如果对此你并非 100% 确定，那么进行扩展是非常危险的。这需要你自己仔细权衡利弊。
+
+其次，**在扩展原生方法时需要加入判断条件** （因为你可能无意中覆盖了原来的方法）。对于前面的例子，下面的处理方式要更好一些：
+
+```js
+if (!Array.prototype.push) {
+ // Netscape 4没有Array.push
+ Array.prototype.push = function(item) {
+   this[this.length-1] = item;
+ };
+}
+```
+其中，if 语句用来确保当 JavaScript 运行环境中没有 push() 方法时才将扩展加入。这应该可以解决我的问题。但它并非万全之策，并且存在着一定的隐患。
+
+如果网站代码中的 push(..) 原本就不打算处理多个值的情况，那么标准的 push(..) 出台后会导致代码运行出错。
+
+如果在 if 判断前引入了其他第三方的 push(..) 方法，并且该方法的功能不同，也会导致代码运行出错。
+
+这里突出了一个不太为 JavaScript 开发人员注意的问题：在各种第三方代码混合运行的环境中，是否应该只使用现有的原生方法？
+
+答案是否定的，但是实际上不太行得通。通常你无法重新定义所有会用到的原生方法，同时确保它们的安全。即使可以，这种做法也是一种浪费。
+
+那么是否应该既检测原生方法是否存在，又要测试它能否执行我们想要的功能？如果测试没通过，是不是意味着代码要停止执行？
+
+```js
+// 不要信任 Array.prototype.push
+(function() {
+  if (Array.prototype.push) {
+    var a = [];
+    a.push(1, 2);
+    if (a[0] === 1 && a[1] === 2) {
+      // 测试通过，可以放心使用！
+      return;
+    }
+  }
+  
+  throw Error("Array#push() is missing/broken!");
+})();
+```
+理论上说这个方法不错，但实际上不可能为每个原生函数都做这样的测试。
+
+那应该怎么办呢？我们是否应该逐一做测试？还是假设一切没问题，等出现问题时再处理？
+
+这里没有标准答案。实际上，只要我们自己不去扩展原生原型，就不会遇到这类问题。
+
+如果你和第三方代码都遵循以上原则，那么你的程序是安全的。否则就要更加谨慎小心地对待程序，以防任何可能出现的类似问题。
+
+针对各种运行环境做单元和回归测试能够早点发现问题，却不能够完全杜绝问题。
+
+##### shim/polyfill
+
+通常来说，在老版本的（不符合规范的）运行环境中扩展原生方法是唯一安全的，因为环境不太可能发生变化——支持新规范的新版本浏览器会完全替代老版本浏览器，而非在老版本上做扩展。
+
+如果能够预见哪些方法会在将来成为新的标准，如 Array.prototype.foobar，那么就可以完全放心地使用当前的扩展版本，不是吗？
+
+```js
+if (!Array.prototype.foobar) {
+ // 幼稚
+ Array.prototype.foobar = function() {
+   this.push( "foo", "bar" );
+ };
+}
+```
+如果规范中已经定义了 Array.prototype.foobar，并且其功能和上面的代码类似，那就没有什么问题。这种情况一般称为 polyfill（或者 shim）。
+
+polyfill 能有效地为不符合最新规范的老版本浏览器填补缺失的功能，让你能够通过可靠的代码来支持所有你想要支持的运行环境。
+
+ES5-Shim（ https://github.com/es-shims/es5-shim ）是一个完整的 shim/polyfill 集合，能够为你的项目提供 ES5 基本规范支持。同样，ES6-Shim（ https://github.com/es-shims/es6-shim ）提供了对 ES6 基本规范的支持。虽然我们可以通过 shim/polyfill 来填补新的 API，但是无法填补新的语法。可以使用 Traceur（ https://github.com/google/traceur-compiler/wiki/GettingStarted ）这样的工具来实现新旧语法之间的转换。
+
+对于将来可能成为标准的功能，按照大部分人赞同的方式来预先实现能和将来的标准兼容的 polyfill，我们称为 prollyfill（probably fill）。
+
+真正的问题在于一些标准功能无法被完整地 polyfill/prollyfill。
+
+JavaScript 社区存在这样的争论，即是否可以对一个功能做不完整的 polyfill（将无法 polyfill 的部分文档化），或者不做则已，要做就要达到 100% 符合规范。
+
+很多开发人员可以接受一些不完整的 polyfill（如 Object.create(..)），因为缺失的部分也不会被用到。
+
+一些人认为在 polyfill/shim 中的 if 判断里需要加入兼容性测试，并且只在被测试的功能不存在或者未通过测试时才将其替换。这也是区别 shim（有兼容性测试）和 polyfill（检查功能是否存在）的方式。
+
+对此并没有一个绝对正确的答案。即便在老版本的运行环境中使用了“安全”的做法，对原生功能进行扩展也无法做到 100% 安全。依赖第三方代码中的原生功能也是如此，因为这些功能有可能被扩展了。
+
+因此，在处理这些情况的时候需要格外小心，要编写健壮的代码，并且写好文档。
+
+#### `<script>`
+
+绝大部分网站 /Web 应用程序的代码都存放在多个文件中，通常可以在网页中使用 `<scriopt src=..></script>` 来加载这些文件，或者使用 `<script> .. </script>` 来包含 **内联代码**（inline-code）。
+
+这些文件和内联代码是相互独立的 JavaScript 程序还是一个整体呢？
+
+答案（也许会令人惊讶）是它们的运行方式更像是相互独立的 JavaScript 程序，但是并非总是如此。
+
+它们共享 global 对象（在浏览器中则是 window），也就是说这些文件中的代码在共享的命名空间中运行，并相互交互。
+
+如果某个 script 中定义了函数 foo()，后面的 script 代码就可以访问并调用 foo()，就像 foo() 在其内部被声明过一样。
+
+但是全局变量作用域的提升机制（hoisting，参见《你不知道的 JavaScript（上卷）》的“作用域和闭包”部分）在这些边界中不适用，因此无论是 `<script> .. </script>` 还是 `<script src=..></script>`，下面的代码都无法运行（因为 foo() 还未被声明）。
+
+```js
+<script>foo();</script>
+<script>
+ function foo() { .. }
+</script>
+```
+但是下面的两段代码则没问题：
+
+```js
+<script>
+   foo();
+   function foo() { .. }
+</script>
+```
+和：
+
+```js
+<script>
+  function foo() { .. }
+</script>
+
+<script>foo();</script>
+```
+**如果 script 中的代码（无论是内联代码还是外部代码）发生错误，它会像独立的 JavaScript 程序那样停止，但是后续的 script 中的代码（仍然共享 global）依然会接着运行，不会受影响。**
+
+你可以使用代码来动态创建 script，将其加入到页面的 DOM 中，效果是一样的：
+
+```js
+var greeting = "Hello World";
+var el = document.createElement( "script" );
+
+el.text = "function foo(){ alert( greeting );
+ } setTimeout( foo, 1000 );";
+ 
+document.body.appendChild( el );
+```
+如果将 el.src 的值设置为一个文件 URL，就可以通过 `<scrscript=..></script>` 动态加载外部文件。
+
+内联代码和外部文件中的代码之间有一个区别，即在内联代码中不可以出现 </script> 字符串，一旦出现即被视为代码块结束。因此对于下面这样的代码需要非常小心：
+
+```js
+<script>
+  var code = "<script>alert( ‘Hello World’ )</script>";
+</script>
+```
+上述代码看似没什么问题，但是字符串常量中的 </script> 将会被当作结束标签来处理，因此会导致错误。常用的变通方法是：
+
+```js
+"</sc" + "ript>";
+```
+另外需要注意的一点是，我们是根据代码文件的字符集属性（UTF-8、ISO-8859-8 等）来解析外部文件中的代码（或者默认字符集），而内联代码则使用其所在页面文件的字符集（或者默认字符集）。
+
+内联代码的 script 标签没有 charset 属性。
+
+script 标签的一个已废止的用法是在内联代码中包含 HTML 或 XHTML 格式的注释，如：
+
+```js
+<script>
+  <!--
+  alert( "Hello" );
+  //-->
+</script>
+<script>
+  <!--//--><![CDATA[//><!--
+  alert( "World" );
+  //--><!]]>
+</script>
+```
+现在我们已经不需要这样做了，所以不要再继续使用它们。
+
+`<!-- 和 -->`（HTML 格式的注释）在 JavaScript 中被定义为合法的单行注释分隔符（var x = 2; 是另一行合法注释），这是老的技术导致的（详见 A.1节的“Web ECMAScript”部分），切勿再使用它们。
+
+#### 保留字
+
+ES5 规范在 7.6.1 节中定义了一些“保留字”，我们不能将它们用作变量名。这些保留字有四类：“关键字”“预留关键字”、null 常量和 true/false 布尔常量。
+
+像 function 和 switch 都是关键字。预留关键字包括 enum 等，它们中很多已经在 ES6 中被用到（如 class、extend 等）。另外还有一些在严格模式中使用的保留字，如 interface。
+
+一个名为“art4theSould”的 StackOverflow 用户将这些保留字编成了一首有趣的小诗（http://
+stackoverflow.com/questions/26255/reserved-keywords-in-javascript/12114140#12114140）：
+
+```js
+Let this long package float,
+Goto private class if short.
+While protected with debugger case,
+Continue volatile interface.
+Instanceof super synchronized throw,
+Extends final export throws.
+Try import double enum?
+-False, boolean, abstract function,
+Implements typeof transient break!
+Void static, default do,
+Switch int native new.
+Else, delete null public var
+In return for const, true, char
+...Finally catch byte.
+```
+这首诗中包含了 ES3 中的保留字（byte、long 等），它们在 ES5 中已经不再是保留字。
+
+在 ES5 之前，保留字也不能用来作为对象常量中的属性名称或者键值，但是现在已经没有这个限制。
+
+例如，下面的情况是不允许的：
+
+```js
+var import = "42";
+```
+但是下面的情况是允许的：
+
+```js
+var obj = { import: "42" };
+console.log( obj.import );
+```
+需要注意的是，在一些版本较老的浏览器中（主要是 IE），这些规则并不完全适用，有时候将保留字作为对象属性还是会出错。所以需要在所有要支持的浏览器中仔细测试。
+
+#### 实现中的限制
+
+JavaScript 规范对于函数中参数的个数，以及字符串常量的长度等并没有限制；但是由于JavaScript 引擎实现各异，规范在某些地方有一些限制。
+
+例如：
+
+```js
+function addAll() {
+  var sum = 0;
+  for (var i = 0; i < arguments.length; i++) {
+    sum += arguments[i];
+  }
+  return sum;
+}
+
+var nums = [];
+for (var i = 1; i < 100000; i++) {
+  nums.push(i);
+}
+
+addAll(2, 4, 6); // 12
+addAll.apply(null, nums); // 应该是: 499950000
+```
+在一些 JavaScript 引擎中你会得到正确答案 499950000，而另外一些引擎（如 Safari 6.x）中则会产生错误“RangeError: Maximum call stack size exceeded”。
+
+下面列出一些已知的限制：
+
+- 字符串常量中允许的最大字符数（并非只是针对字符串值）；
+- 可以作为参数传递到函数中的数据大小（也称为栈大小，以字节为单位）；
+- 函数声明中的参数个数；
+- 未经优化的调用栈（例如递归）的最大层数，即函数调用链的最大长度；
+- JavaScript 程序以阻塞方式在浏览器中运行的最长时间（秒）；
+- 变量名的最大长度。
+
+我们不会经常碰到这些限制，但应该对它们有所了解，特别是不同的 JavaScript 引擎的限制各异。
+
+#### 小结
+
+JavaScript 语言本身有一个统一的标准，在所有浏览器 / 引擎中的实现也是可靠的。这是好事！
+
+但是 JavaScript 很少独立运行。通常运行环境中还有第三方代码，有时代码甚至会运行在浏览器之外的引擎 / 环境中。
+
+只要我们对这些问题多加注意，就能够提高代码的可靠性和健壮性。
