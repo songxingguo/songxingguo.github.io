@@ -41,7 +41,11 @@ date: 2018-12-06 16:02:00
 
 1. cnpm init 
 
-2. cnpm i vue vue-loader webpack css-loader vue-template-compiler style-leader file-loader url-loader less-loader less --save
+2. cnpm i vue vue-loader webpack css-loader vue-template-compiler style-loader file-loader url-loader less-loader less  --save
+
+3. cnpm i webpack-dev-server cross-env -D
+
+4. cnpm i html-webpack-plugin -D
 
 ### 项目结构
 
@@ -77,6 +81,16 @@ vue-todolist
 </style>
 ```
 
+### Vue 项目开发
+
+```
+cnpm i postcss-loader postcss-load-config autoprefixer babel-loader babel-core --save
+```
+
+```
+cnpm i babel-preset-env babel-plugin-transform-vue-jsx --save
+```
+
 ### 问题
 
 1. vue-template-compiler must be installed as a peer dependency, or a compatible compiler implementation must be passed via options.
@@ -97,9 +111,3 @@ vue-todolist
               use: ['style-loader','css-loader']
       }
     ```
-
-
-
-
-   
-   
