@@ -20,6 +20,8 @@ date: 2018-11-25 10:33:00
 
 - 存储：在小程序前端直接上传/下载云端文件，在云开发控制台可视化管理
 
+<!-- more -->
+
 ![云开发](https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BA%91%E5%BC%80%E5%8F%91.png)
 
 ### 云开发数据库
@@ -129,16 +131,267 @@ exports.main = (event, context) => {
 
 ![无服务器](https://graphbed.qiniu.songxingguo.com/WeChatMinApp/Serverless.png)
 
-## 数据库 API
+### 传统开发模式
+
+![传统开发模式](https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BC%A0%E7%BB%9F%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F.png)
+
+### 云开发模式
+
+![云开发模式](https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BA%91%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F.png)
+
+### Serverless分类
+
+![Serverless分类](https://graphbed.qiniu.songxingguo.com/WeChatMinApp/Serverless%E5%88%86%E7%B1%BB.png)
+
+### Serverless 的优点
+
+- 运营成本更低
+
+- 降低开发成本
+
+- 拓展能力强
+
+- 管理简单
+
+### Serverless 的优势
+
+- 快速接入
+
+- 快速实现
+
+- 无感运维
+
+## 数据库 API 的解读
+
+### 云开发数据库概念
+
+![云开发数据库概念](https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BA%91%E5%BC%80%E5%8F%91%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E5%BF%B5.png)
+
+
+### 数据库 API
 
 ![云数据库](https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BA%91%E6%95%B0%E6%8D%AE%E5%BA%93.png)
 
-## 文件存储 API
+#### database
+
+> 获取数据库的引用。
+
+以下调用获取默认环境的数据库的引用：
+
+```js
+const db = wx.cloud.database()
+```
+假设有一个环境名为 test，用做测试环境，那么可以如下获取测试环境数据库：
+
+```js
+const testDB = wx.cloud.database({
+  env: 'test'
+})
+```
+#### serverDate
+
+> 构造一个服务端时间的引用。可用于查询条件、更新字段值或新增记录时的字段值。
+
+新增记录时设置字段为服务端时间：
+
+```js
+const db = wx.cloud.database()
+db.collection('todos').add({
+  description: 'eat an apple',
+  createTime: db.serverDate()
+})
+```
+更新字段为服务端时间往后一小时：
+
+```js
+const db = wx.cloud.database()
+db.collection('todos').doc('my-todo-id').update({
+  due: db.serverDate({
+    offset: 60 * 60 * 1000
+  })
+})
+```
+#### Geo
+
+> 构造一个基于地理位置的引用。
+
+```js
+const db = wx.cloud.database()
+db.collection('todos').add({
+  description: 'eat an apple',
+  location: db.Geo.Point(113, 23)
+})
+```
+### 数据库命令 API
+
+> 获取数据库查询及更新指令。
+
+```js
+const _ = db.command
+```
+
+![Command查询指令](https://graphbed.qiniu.songxingguo.com/WeChatMinApp/Command%E6%9F%A5%E8%AF%A2%E6%8C%87%E4%BB%A4.png)
+
+![Command更新指令](https://graphbed.qiniu.songxingguo.com/WeChatMinApp/Command%E6%9B%B4%E6%96%B0%E6%8C%87%E4%BB%A4.png)
+
+### 数据库集合 API
+
+> 获取集合的引用。
+
+```js
+onst db = wx.cloud.database()
+const todosCollection = db.collection('todos')
+```
+![Collection API](https://graphbed.qiniu.songxingguo.com/WeChatMinApp/Collection%20API.png)
+
+### 数据库文档 API 
+
+> 获取对一个记录的引用。
+
+![Document API](https://graphbed.qiniu.songxingguo.com/WeChatMinApp/Document%20API.png)
+
+## 文件存储 API 的解读
 
 ![文件存储](https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8.png)
 
-## 云函数 API
+### 小程序端上传文件
+
+wx.cloud.uploadFile
+
+> 将本地资源上传至云存储空间，如果上传至同一路径则是覆盖。
+
+Promise 风格
+
+```js
+const cloud = require('wx-server-sdk')
+const fs = require('fs')
+const path = require('path')
+
+exports.main = async (event, context) => {
+  const fileStream = fs.createReadStream(path.join(__dirname, 'demo.jpg'))
+  return await cloud.uploadFile({
+    cloudPath: 'demo.jpg',
+    fileContent: fileStream,
+  })
+}
+```
+### 小程序端下载文件
+
+wx.cloud.downloadFile
+
+> 从云存储空间下载文件
+
+Promise 风格
+
+```js
+const cloud = require('wx-server-sdk')
+
+exports.main = async (event, context) => {
+  const fileID = 'xxxx'
+  const res = await cloud.downloadFile({
+    fileID,
+  })
+  const buffer = res.fileContent
+  return buffer.toString('utf8')
+}
+```
+### 获取临时文件链接
+
+wx.cloud.getTempFileURL
+
+> 用云文件 ID 换取真实链接，可自定义有效期，默认一天且最大不超过一天。
+
+Promise 风格
+
+```js
+const cloud = require('wx-server-sdk')
+
+exports.main = async (event, context) => {
+  const fileList = ['cloud://xxx', 'cloud://yyy']
+  const result = await cloud.getTempFileURL({
+    fileList,
+  })
+  return result.fileList
+}
+```
+### 小程序端删除文件
+
+wx.cloud.deleteFile
+
+> 从云存储空间删除文件。
+
+```js
+const cloud = require('wx-server-sdk')
+
+exports.main = async (event, context) => {
+  const fileIDs = ['xxx', 'xxx']
+  const result = await cloud.deleteFile({
+    fileList: fileIDs,
+  })
+  return result.fileList
+}
+```
+### 小程序组件对云文件 ID 的支持
+
+![小程序组件对云文件 ID 的支持](https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%BB%84%E4%BB%B6%E5%AF%B9%E4%BA%91%E6%96%87%E4%BB%B6%20ID%20%E7%9A%84%E6%94%AF%E6%8C%81.png)
+
+## 云函数 API 的解读
 
 ![云函数](https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BA%91%E5%87%BD%E6%95%B0.png)
 
-## 服务端 API
+### 调用云函数
+
+wx.cloud.callFunction
+
+```js
+const cloud = require('wx-server-sdk')
+exports.main = async (event, context) => {
+  const res = await cloud.callFunction({
+    // 要调用的云函数名称
+    name: 'add',
+    // 传递给云函数的参数
+    data: {
+      x: 1,
+      y: 2,
+    }
+  })
+  return res.result
+}
+```
+ 
+## 服务端 API 的解读
+
+### 服务端 API 和小程序 API 的异同
+
+- 服务端 API 仅支持 Promise 风格
+
+- 服务端 API 可以进行批量 update 和  remove
+
+### 服务端 API 使用注意事项
+
+- 服务端 API 使用前需先调用 wx.cloud.init 方法
+
+- 通过 cloud.init 传入的 env 可以设置不同的环境
+
+### 云函数获取用户信息
+
+> 云开发的云函数的独特优势在于与微信登录鉴权的无缝整合。当小程序端调用云函数时，云函数的传入参数中会被注入小程序端用户的 openid，开发者无需校验 openid 的正确性，因为微信已经完成了这部分鉴权，开发者可以直接使用该 openid。与 openid 一起同时注入云函数的还有小程序的 appid。
+
+```js
+exports.main = (event, context) => {
+  return {
+    openid: event.userInfo,
+  }
+}
+```
+### 云函数返回结果
+
+在云函数中处理一些异步操作时，需要在异步操作完成后，再返回结果给到调用方。此时我们可以通过在云函数中返回一个 Promise 的方法来完成。
+
+```js
+exports.main = async (event, context) => new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(event.a + event.b)
+  }, 3000)
+})
+``
