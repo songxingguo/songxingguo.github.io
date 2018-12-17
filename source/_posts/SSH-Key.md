@@ -2,7 +2,8 @@ title: '配置多个 SSH Key '
 author: songxingguo
 tags:
   - git
-categories: []
+categories:
+  - 前端技术
 date: 2018-12-17 11:40:00
 ---
 ## 写在前面

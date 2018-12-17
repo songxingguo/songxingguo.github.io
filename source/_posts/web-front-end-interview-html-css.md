@@ -261,7 +261,35 @@ date: 2018-08-06 14:56:00
 
       可查看站内文章—— **Flex布局**
       
-来自—— **曹刘阳.编写高质量代码：Web前端开发修炼之道[M].机械工业出版社，2016.6.（4.7.9 居中）**
+- #### absoute 居中
+ 
+   - 高度或宽度确定的水平和垂直居中
+   
+   ```css
+   .element {
+     width: 300px;
+     height: 200px;
+     position: absolute;
+     left: %;
+     top: 50%;
+     margin-left: -150px;
+     margin-top: -100px;
+   }
+   ```
+  - 利用 **绝对定位元素的流体特性** 和  **margin:auto 的自动分配特性** 实现居中 （IE 8 开始支持）。
+  
+    ```css
+    .element {
+      width: 300px;
+      height: 200px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin: auto;
+    }
+    ```
+ 
+来自—— **曹刘阳.编写高质量代码：Web前端开发修炼之道[M].机械工业出版社，2016.6.（4.7.9 居中）**，**张鑫：CSS世界[M].人民邮电出版社，2017.4.（6.8.3 absolute 的 margin: auto 居中 ）**
 
 
 ### 简述一下 href、src、rel、url 的区别
