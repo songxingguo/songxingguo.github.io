@@ -64,3 +64,19 @@ git checkout source-code
 git config --global user.name "songxingguo"
 git config --global user.email "1328989942@qqc.com"
 ```
+设置原 npm 镜像
+
+```
+npm config set registry http://registry.npmjs.org 
+```
+设置淘宝镜像
+
+```
+npm config set registry https://registry.npm.taobao.org
+```
+
+查看镜像
+
+```
+npm config get registry 
+```
