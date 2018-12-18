@@ -39,6 +39,8 @@ cat ~/.ssh/id_rsa.pub
 
 ### 生成 SSH 密钥
 
+进入到 `/c/Users/admin/.ssh` 目录下，执行下面的命令：
+
 ```
 ssh-keygen -t rsa -C “xxx.mail@xxx.com”
 ```
@@ -146,11 +148,23 @@ ssh-add ./id_rsa_gitlab
 
 ### 添加到 github
 
+查看公钥：
+
+```
+cat ~/.ssh/id_rsa_github.pub
+```
+
 ![添加到 github](https://graphbed.qiniu.songxingguo.com/SSH-Key/%E6%B7%BB%E5%8A%A0%E5%88%B0github.png)
 
 ![添加到 github（续）](https://graphbed.qiniu.songxingguo.com/SSH-Key/%E6%B7%BB%E5%8A%A0%E5%88%B0%20github%EF%BC%88%E7%BB%AD%EF%BC%89.png)
 
 ### 添加到gitlab
+
+查看公钥：
+
+```
+cat ~/.ssh/id_rsa_gitlab.pub
+```
 
 打开gitlab,找到Profile Settings-->SSH Keys--->Add SSH Key,并把上一步中复制的内容粘贴到Key所对应的文本框，在Title对应的文本框中给这个sshkey设置一个名字，点击Add key按钮。
 
