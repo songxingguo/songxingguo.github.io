@@ -12,7 +12,7 @@ TravisCI 是在线部署工具，可以减少发布的重复操作，可以将�
 
 ## 配置文件
 
-```
+```yml
 {
   "os": "linux",
   "dist": "trusty",
@@ -44,6 +44,85 @@ TravisCI 是在线部署工具，可以减少发布的重复操作，可以将�
 ```
 
 <!-- more -->
+
+## 部署流程
+
+### 添加仓库
+
+[登录 travis-ci](https://travis-ci.com/account/repositories)
+
+> 登录 travis-ci， 从 github 添加仓库到 travis-ci。
+
+![添加仓库](https://graphbed.qiniu.songxingguo.com/TravisCI/%E6%B7%BB%E5%8A%A0%E4%BB%93%E5%BA%93.png)
+
+![选择仓库](https://graphbed.qiniu.songxingguo.com/TravisCI/%E9%80%89%E6%8B%A9%E4%BB%93%E5%BA%93.png)
+
+### 配置仓库
+
+#### 生成 Access Token
+
+[添加 Access Token](https://github.com/settings/tokens)
+
+> 登录 github ，进入 Settings Developer settings 添加 Access Token。
+
+![添加 Access Token](https://graphbed.qiniu.songxingguo.com/TravisCI/%E6%B7%BB%E5%8A%A0%20Access%20Token.png)
+
+权限选择
+
+![权限选择](https://graphbed.qiniu.songxingguo.com/TravisCI/%E6%9D%83%E9%99%90%E9%80%89%E6%8B%A9.png)
+
+#### 添加 Acess Token
+
+![配置仓库](https://graphbed.qiniu.songxingguo.com/TravisCI/%E9%85%8D%E7%BD%AE%E4%BB%93%E5%BA%93.png)
+
+添加 Acess Token 到 TrivisCI
+
+![添加 Acess Token 到 TrivisCI](https://graphbed.qiniu.songxingguo.com/TravisCI/%E6%B7%BB%E5%8A%A0%20Acess%20Token%20%E5%88%B0%20TrivisCI.png)
+
+### 添加配置文件
+
+> 添加 `.travis.yml` 文件。
+
+```yml
+language: node_js
+node_js:
+  - 8.12.0
+
+# S: Build Lifecycle
+install:
+  - npm install
+
+before_script:
+ # - npm install -g gulp
+
+script:
+  - hexo clean
+  - hexo g
+
+after_script:
+  - cd ./dist
+  - git init
+  - git config user.name "songxingguo"
+  - git config user.email "1328989942@qq.com"
+  - git add .
+  - git commit -m "Update Blog By TravisCI With Build $TRAVIS_BUILD_NUMBER"
+  # Github Pages
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" gh-pages:gh-pages
+  # Github Pages
+  - git push --quiet "https://${GH_TOKEN}@${GH_REF}" gh-pages:gh-pages --tags
+# E: Build LifeCycle
+
+branches:
+  only:
+    - master
+env:
+ global:
+  # Github Pages
+  - GH_REF: github.com/songxingguo/vue-todoList.git
+```
+配置说明：
+
+![配置说明](https://graphbed.qiniu.songxingguo.com/TravisCI/%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E.png)
 
 ## 存在的问题
 
