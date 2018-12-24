@@ -9,11 +9,15 @@ date: 2018-06-02 10:23:12
 
 > 该作品是参照 [五星果品](http://www.wuxingguopin.com/) 网站之前的版本开发。
 
-[React音乐播放器](https://songxingguo.github.io/react-music-player/)
+[React 音乐播放器](https://songxingguo.github.io/react-music-player/)
+
+> 基于 React、Wepack 实现的音乐播放器。
 
 <iframe src="https://songxingguo.github.io/react-music-player/"  width="100%" height="500" frameborder="0" align="middle" ></iframe>
 
-[Vue TodoList](https://songxingguo.github.io/vue-todoList/)
+[Vue 待办事项表](https://songxingguo.github.io/vue-todoList/)
+
+> 基于 Vue、Wepack 实现的 TodoList。
 
 <iframe src="https://songxingguo.github.io/vue-todoList/"  width="100%" height="500" frameborder="0" align="middle" ></iframe>
 
