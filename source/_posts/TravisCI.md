@@ -13,34 +13,51 @@ TravisCI 是在线部署工具，可以减少发布的重复操作，可以将�
 ## 配置文件
 
 ```yml
-{
-  "os": "linux",
-  "dist": "trusty",
-  "group": "stable",
-  "script": [
-    "hexo clean",
-    "hexo g"
-  ],
-  "install": [
-    "npm install"
-  ],
-  "node_js": "stable",
-  "language": "node_js",
-  "global_env": "GH_REF=github.com/songxingguo/songxingguo.github.io.git CO_REF=git.coding.net/songxingguo/songxingguo.coding.me.git",
-  "after_script": [
-    "cd ./public",
-    "git init",
-    "git config user.name \"songxingguo\"",
-    "git config user.email \"1328989942@qq.com\"",
-    "git add .",
-    "git commit -m \"Update Blog By TravisCI With Build $TRAVIS_BUILD_NUMBER\"",
-    "git push --force --quiet \"https://${GH_TOKEN}@${GH_REF}\" master:master",
-    "git push --force --quiet \"https://songxingguo:${CO_TOKEN}@${CO_REF}\" master:master",
-    "git tag v0.0.$TRAVIS_BUILD_NUMBER -a -m \"Auto Taged By TravisCI With Build $TRAVIS_BUILD_NUMBER\"",
-    "git push --quiet \"https://${GH_TOKEN}@${GH_REF}\" master:master --tags",
-    "git push --quiet \"https://songxingguo:${CO_TOKEN}@${CO_REF}\" master:master --tags"
-  ]
-}
+language: node_js
+node_js: 
+  - 8.12.0
+
+# S: Build Lifecycle
+install:
+  - npm install
+  - npm install hexo-helper-live2d
+  - npm install live2d-widget-model-z16
+
+before_script:
+ # - npm install -g gulp
+
+script:
+  - hexo clean
+  - hexo g
+
+after_script:
+  - cd ./public
+  - git init
+  - git config user.name "songxingguo"
+  - git config user.email "1328989942@qq.com"
+  - git add .
+  - git commit -m "Update Blog By TravisCI With Build $TRAVIS_BUILD_NUMBER"
+  # Github Pages
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
+  # Coding Pages
+  - git push --force --quiet "https://songxingguo:${CO_TOKEN}@${CO_REF}" master:master
+  # Add Tag
+  - git tag v0.0.$TRAVIS_BUILD_NUMBER -a -m "Auto Taged By TravisCI With Build $TRAVIS_BUILD_NUMBER"
+  # Github Pages
+  - git push --quiet "https://${GH_TOKEN}@${GH_REF}" master:master --tags
+  # Coding Pages
+  - git push --quiet "https://songxingguo:${CO_TOKEN}@${CO_REF}" master:master --tags
+# E: Build LifeCycle
+
+branches:
+  only:
+    - hexo
+env:
+ global:
+  # Github Pages
+  - GH_REF: github.com/songxingguo/songxingguo.github.io.git
+  # Coding Pages
+  - CO_REF: git.coding.net/songxingguo/songxingguo.coding.me.git
 ```
 
 <!-- more -->
@@ -93,11 +110,10 @@ install:
   - npm install
 
 before_script:
- # - npm install -g gulp
+# - npm install -g gulp
 
 script:
-  - hexo clean
-  - hexo g
+  - npm run build
 
 after_script:
   - cd ./dist
@@ -107,22 +123,24 @@ after_script:
   - git add .
   - git commit -m "Update Blog By TravisCI With Build $TRAVIS_BUILD_NUMBER"
   # Github Pages
-  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" gh-pages:gh-pages
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages
+  # Add Tag
+  - git tag v0.0.$TRAVIS_BUILD_NUMBER -a -m "Auto Taged By TravisCI With Build $TRAVIS_BUILD_NUMBER"
   # Github Pages
-  - git push --quiet "https://${GH_TOKEN}@${GH_REF}" gh-pages:gh-pages --tags
+  - git push --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages --tags
 # E: Build LifeCycle
 
 branches:
   only:
     - master
 env:
- global:
-  # Github Pages
-  - GH_REF: github.com/songxingguo/vue-todoList.git
+  global:
+    # Github Pages
+    - GH_REF: github.com/songxingguo/vue-todoList.git
 ```
 配置说明：
 
-![配置说明](https://graphbed.qiniu.songxingguo.com/TravisCI/%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E.png)
+![配置说明](https://graphbed.qiniu.songxingguo.com/TravisCI/%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E%20.png)
 
 ## 存在的问题
 
