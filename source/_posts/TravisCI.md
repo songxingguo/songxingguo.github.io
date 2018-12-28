@@ -90,6 +90,8 @@ env:
 
 #### 添加 Acess Token
 
+[添加 Acess Token](https://travis-ci.com/songxingguo)
+
 ![配置仓库](https://graphbed.qiniu.songxingguo.com/TravisCI/%E9%85%8D%E7%BD%AE%E4%BB%93%E5%BA%93.png)
 
 添加 Acess Token 到 TrivisCI
