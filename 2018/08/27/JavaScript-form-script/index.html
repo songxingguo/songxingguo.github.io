@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="表单脚本JavaScript 最初的一个应用，就是分担服务器处理表单的责任，打破处处依赖服务器的局面。尽管目前的 Web 和 JavaScript 已经有了长足的发展，但 Web 表单的变化并不明显。由于 Web 表单没有为许多常见任务提供现成的解决手段，很多开发人员不仅会在验证表单时使用 JavaScirpt，而且还增强了一些标准表单控件的默认行为。">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《JavaScript 高级程序设计》学习笔记-表单脚本">
+<meta property="og:url" content="https://www.songxingguo.com/2018/08/27/JavaScript-form-script/index.html">
+<meta property="og:site_name" content="阿有的生活">
+<meta property="og:description" content="表单脚本JavaScript 最初的一个应用，就是分担服务器处理表单的责任，打破处处依赖服务器的局面。尽管目前的 Web 和 JavaScript 已经有了长足的发展，但 Web 表单的变化并不明显。由于 Web 表单没有为许多常见任务提供现成的解决手段，很多开发人员不仅会在验证表单时使用 JavaScirpt，而且还增强了一些标准表单控件的默认行为。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-form-script/%E5%85%B6%E4%BB%96%E5%85%83%E7%B4%A0%E7%9A%84type%E5%B1%9E%E6%80%A7.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-form-script/%E9%A2%84%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-form-script/%E9%A2%84%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4%EF%BC%88%E7%BB%AD%EF%BC%89.png">
+<meta property="og:updated_time" content="2019-01-02T07:10:11.542Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《JavaScript 高级程序设计》学习笔记-表单脚本">
+<meta name="twitter:description" content="表单脚本JavaScript 最初的一个应用，就是分担服务器处理表单的责任，打破处处依赖服务器的局面。尽管目前的 Web 和 JavaScript 已经有了长足的发展，但 Web 表单的变化并不明显。由于 Web 表单没有为许多常见任务提供现成的解决手段，很多开发人员不仅会在验证表单时使用 JavaScirpt，而且还增强了一些标准表单控件的默认行为。">
+<meta name="twitter:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-form-script/%E5%85%B6%E4%BB%96%E5%85%83%E7%B4%A0%E7%9A%84type%E5%B1%9E%E6%80%A7.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/08/27/JavaScript-form-script/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《JavaScript 高级程序设计》学习笔记-表单脚本 | 阿有的生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">122</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">14</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">33</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/08/27/JavaScript-form-script/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《JavaScript 高级程序设计》学习笔记-表单脚本
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-27 15:49:00" itemprop="dateCreated datePublished" datetime="2018-08-27T15:49:00+00:00">2018-08-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-02 07:10:11" itemprop="dateModified" datetime="2019-01-02T07:10:11+00:00">2019-01-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/27/JavaScript-form-script/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/08/27/JavaScript-form-script/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/08/27/JavaScript-form-script/" class="leancloud_visitors" data-flag-title="《JavaScript 高级程序设计》学习笔记-表单脚本">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="表单脚本"><a href="#表单脚本" class="headerlink" title="表单脚本"></a>表单脚本</h1><p>JavaScript 最初的一个应用，就是分担服务器处理表单的责任，打破处处依赖服务器的局面。尽管目前的 Web 和 JavaScript 已经有了长足的发展，但 Web 表单的变化并不明显。由于 Web 表单没有为许多常见任务提供现成的解决手段，很多开发人员不仅会在验证表单时使用 JavaScirpt，而且还增强了一些标准表单控件的默认行为。</p>
+<a id="more"></a>
+<h2 id="表单的基础知识"><a href="#表单的基础知识" class="headerlink" title="表单的基础知识"></a>表单的基础知识</h2><p><strong>在 HTML 中</strong> ，<strong>表单是由 <code>&lt;form&gt;</code> 元素来表示的</strong> ，而 <strong>在 JavaScript 中</strong> ，<strong>表单对应的则是 HTMLFormElement 类型</strong> 。 <strong>HTMLFormElement 继承了HTMLElement</strong> ，<strong>因而与其他 HTML 元素具有相同的默认属性</strong> 。不过， HTMLFormElement 也有它自己下列独有的属性和方法。</p>
+<ul>
+<li>acceptCharset ：服务器能够处理的字符集；等价于 HTML 中的 accept-charset 特性。</li>
+<li>action ：接受请求的 URL；等价于 HTML 中的 action 特性。</li>
+<li>elements ：表单中所有控件的集合（ HTMLCollection ）。</li>
+<li>enctype ：请求的编码类型；等价于 HTML 中的 enctype 特性。</li>
+<li>length ：表单中控件的数量。</li>
+<li>method ：要发送的 HTTP 请求类型，通常是 “get” 或 “post” ；等价于 HTML 的 method 特性。</li>
+<li>name ：表单的名称；等价于 HTML 的 name 特性。</li>
+<li>reset() ：将所有表单域重置为默认值。</li>
+<li>submit() ：提交表单。</li>
+<li>target ：用于发送请求和接收响应的窗口名称；等价于 HTML 的 target 特性。</li>
+</ul>
+<p><strong>取得 <code>&lt;form&gt;</code> 元素引用</strong> 的方式有好几种。其中 <strong>最常见的方式</strong> 就是 <strong>将它看成与其他元素一样</strong> ，<strong>并为其添加 id 特性</strong> ，<strong>然后再像下面这样使用 getElementById() 方法找到它</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> form = <span class="built_in">document</span>.getElementById(<span class="string">"form1"</span>);</span><br></pre></td></tr></table></figure>
+<p>其次，<strong>通过 document.forms 可以取得页面中所有的表单</strong> 。在这个集合中，<strong>可以通过数值索引或 name 值来取得特定的表单</strong> ，如下面的例子所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> firstForm = <span class="built_in">document</span>.forms[<span class="number">0</span>]; <span class="comment">//取得页面中的第一个表单</span></span><br><span class="line"><span class="keyword">var</span> myForm = <span class="built_in">document</span>.forms[<span class="string">"form2"</span>]; <span class="comment">//取得页面中名称为"form2"的表单</span></span><br></pre></td></tr></table></figure>
+<p>另外，在较早的浏览器或者那些支持向后兼容的浏览器中，也会把每个设置了 name 特性的表单作为属性保存在 document 对象中。例如，<strong>通过 document.form2 可以访问到名为 “form2” 的表单</strong> 。不过，我们 <strong>不推荐使用这种方式</strong> ：一是 <strong>容易出错</strong> ，二是 <strong>将来的浏览器可能会不支持</strong> 。</p>
+<p>注意，<strong>可以同时为表单指定 id 和 name 属性</strong> ，但 <strong>它们的值不一定相同</strong> 。</p>
+<h3 id="提交表单"><a href="#提交表单" class="headerlink" title="提交表单"></a>提交表单</h3><p><strong>用户单击提交按钮或图像按钮时，就会提交表单</strong> 。<strong>使用 <code>&lt;input&gt;</code> 或 <code>&lt;button&gt;</code> 都可以定义提交按钮</strong> ，<strong>只要将其 type 特性的值设置为 “submit” 即可</strong> ，而 <strong>图像按钮则是通过将 <code>&lt;input&gt;</code> 的 type 特性值设置为 “image” 来定义的</strong> 。因此，只要我们单击以下代码生成的按钮，就可以提交表单。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 通用提交按钮 --&gt;</span><br><span class="line">&lt;input type=<span class="string">"submit"</span> value=<span class="string">"Submit Form"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 自定义提交按钮 --&gt;</span><br><span class="line">&lt;button type=<span class="string">"submit"</span>&gt;Submit Form&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;!-- 图像按钮 --&gt;</span></span><br><span class="line"><span class="regexp">&lt;input type="image" src="graphic.gif"&gt;</span></span><br></pre></td></tr></table></figure>
+<p>只要表单中存在上面列出的任何一种按钮，那么在相应表单控件拥有焦点的情况下，按回车键就可以提交该表单。（ textarea 是一个例外，在文本区中回车会换行。）<strong>如果表单里没有提交按钮，按回车键不会提交表单</strong> 。</p>
+<p><strong>以这种方式提交表单时，浏览器会在将请求发送给服务器之前触发 submit 事件</strong> 。这样，<strong>我们就有机会验证表单数据，并据以决定是否允许表单提交</strong> 。<strong>阻止这个事件的默认行为就可以取消表单提交</strong> 。例如，下列代码会阻止表单提交。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> form = <span class="built_in">document</span>.getElementById(<span class="string">"myForm"</span>);</span><br><span class="line">EventUtil.addHandler(form, <span class="string">"submit"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//取得事件对象</span></span><br><span class="line">  event = EventUtil.getEvent(event);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//阻止默认事件</span></span><br><span class="line">  EventUtil.preventDefault(event);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这里使用了第 13 章定义的 EventUtil 对象，以便跨浏览器处理事件。<strong>调用 prevetnDefault() 方法阻止了表单提交</strong> 。一般来说，<strong>在表单数据无效而不能发送给服务器时，可以使用这一技术</strong> 。</p>
+<p><strong>在 JavaScript 中，以编程方式调用 submit() 方法也可以提交表单</strong> 。而且，<strong>这种方式无需表单包含提交按钮</strong> ，<strong>任何时候都可以正常提交表单</strong> 。来看一个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> form = <span class="built_in">document</span>.getElementById(<span class="string">"myForm"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提交表单</span></span><br><span class="line">form.submit();</span><br></pre></td></tr></table></figure>
+<p><strong>在以调用 submit() 方法的形式提交表单时</strong> ，<strong>不会触发 submit 事件</strong> ，因此<strong>要记得在调用此方法之前先验证表单数据</strong> 。</p>
+<p>提交表单时可能出现的最大问题，就是 <strong>重复提交表单</strong> 。在第一次提交表单后，如果长时间没有反应，用户可能会变得不耐烦。这时候，他们也许会反复单击提交按钮。结果往往很麻烦（因为服务器要处理重复的请求），或者会造成错误（如果用户是下订单，那么可能会多订好几份）。解决这一问题的办法有两个：<strong>在第一次提交表单后就禁用提交按钮</strong> ，或者 <strong>利用 onsubmit 事件处理程序取消后续的表单提交操作</strong> 。</p>
+<h3 id="重置表单"><a href="#重置表单" class="headerlink" title="重置表单"></a>重置表单</h3><p><strong>在用户单击重置按钮时，表单会被重置</strong> 。<strong>使用 type 特性值为 “reset” 的 <code>&lt;input&gt;</code> 或 <code>&lt;button&gt;</code> 都可以创建重置按钮</strong> ，如下面的例子所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 通用重置按钮 --&gt;</span><br><span class="line">&lt;input type=<span class="string">"reset"</span> value=<span class="string">"Reset Form"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 自定义重置按钮 --&gt;</span><br><span class="line">&lt;button type=<span class="string">"reset"</span>&gt;Reset Form&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这两个按钮都可以用来重置表单。在重置表单时，<strong>所有表单字段都会恢复到页面刚加载完毕时的初始值</strong> 。如果某个字段的初始值为空，就会恢复为空；而带有默认值的字段，也会恢复为默认值。</p>
+<p><strong>用户单击重置按钮重置表单时，会触发 reset 事件</strong> 。<strong>利用这个机会，我们可以在必要时取消重置操作</strong> 。例如，下面展示了阻止重置表单的代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> form = <span class="built_in">document</span>.getElementById(<span class="string">"myForm"</span>);</span><br><span class="line">EventUtil.addHandler(form, <span class="string">"reset"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//取得事件对象</span></span><br><span class="line">  event = EventUtil.getEvent(event);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//阻止表单重置</span></span><br><span class="line">  EventUtil.preventDefault(event);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>与提交表单一样，也 <strong>可以通过 JavaScript 来重置表单</strong> ，如下面的例子所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> form = <span class="built_in">document</span>.getElementById(<span class="string">"myForm"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重置表单</span></span><br><span class="line">form.reset();</span><br></pre></td></tr></table></figure>
+<p>与调用 submit() 方法不同，<strong>调用 reset() 方法会像单击重置按钮一样触发 reset 事件</strong> 。</p>
+<blockquote>
+<p>在 Web 表单设计中，重置表单通常意味着对已经填写的数据不满意。重置表单经常会导致用户摸不着头脑，如果意外地触发了表单重置事件，那么用户甚至会很恼火。事实上，重置表单的需求是很少见的。<strong>更常见的做法是提供一个取消按钮</strong> ，<strong>让用户能够回到前一个页面</strong> ，<strong>而不是不分青红皂白地重置表单中的所有值</strong> 。</p>
+</blockquote>
+<h3 id="表单字段"><a href="#表单字段" class="headerlink" title="表单字段"></a>表单字段</h3><p><strong>可以像访问页面中的其他元素一样，使用原生 DOM 方法访问表单元素</strong> 。此外，<strong>每个表单都有elements 属性</strong> ，该属性是 <strong>表单中所有表单元素（字段）的集合</strong> 。这个<strong>elements 集合是一个有序列表</strong> ，其中 <strong>包含着表单中的所有字段</strong> ，例如 <code>&lt;input&gt;</code> 、 <code>&lt;textarea&gt;</code> 、 <code>&lt;button&gt;</code> 和 <code>&lt;fieldset&gt;</code> 。<strong>每个表单字段在 elements 集合中的顺序</strong> ，<strong>与它们出现在标记中的顺序相同</strong> ，<strong>可以按照位置和 name 特性来访问它们</strong> 。下面来看一个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> form = <span class="built_in">document</span>.getElementById(<span class="string">"form1"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//取得表单中的第一个字段</span></span><br><span class="line"><span class="keyword">var</span> field1 = form.elements[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//取得名为"textbox1"的字段</span></span><br><span class="line"><span class="keyword">var</span> field2 = form.elements[<span class="string">"textbox1"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//取得表单中包含的字段的数量</span></span><br><span class="line"><span class="keyword">var</span> fieldCount = form.elements.length;</span><br></pre></td></tr></table></figure>
+<p>如果有多个表单控件都在使用一个 name （如单选按钮），那么就会返回以该 name 命名的一个 NodeList 。例如，以下面的 HTML 代码片段为例。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">id</span>=<span class="string">"myForm"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"color"</span> <span class="attr">value</span>=<span class="string">"red"</span>&gt;</span>Red<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"color"</span> <span class="attr">value</span>=<span class="string">"green"</span>&gt;</span>Green<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"color"</span> <span class="attr">value</span>=<span class="string">"blue"</span>&gt;</span>Blue<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在这个 HTML 表单中，有 3 个单选按钮，它们的 name 都是 “color” ，意味着这 3 个字段是一起的。在访问 elements[“color”] 时，就会返回一个 <strong>NodeList</strong> ，其中 <strong>包含这 3 个元素</strong> ；不过，如果访问 elements[0] ，则只会返回第一个元素。来看下面的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> form = <span class="built_in">document</span>.getElementById(<span class="string">"myForm"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> colorFields = form.elements[<span class="string">"color"</span>];</span><br><span class="line">alert(colorFields.length); <span class="comment">//3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> firstColorField = colorFields[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">var</span> firstFormField = form.elements[<span class="number">0</span>];</span><br><span class="line">alert(firstColorField === firstFormField); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>以上代码显示，通过 form.elements[0] 访问到的第一个表单字段，与包含在 form.elements[“color”] 中的第一个元素相同。</p>
+<blockquote>
+<p>也可以通过访问表单的属性来访问元素，例如 form[0] 可以取得第一个表单字段，而 form[“color”] 则可以取得第一个命名字段。这些属性与通过 elements 集合访问到的元素是相同的。但是，我们应该尽可能使用 elements ，通过表单属性访问元素只是为了与旧浏览器向后兼容而保留的一种过渡方式。</p>
+</blockquote>
+<ul>
+<li><h4 id="共有的表单字段属性"><a href="#共有的表单字段属性" class="headerlink" title="共有的表单字段属性"></a>共有的表单字段属性</h4><p><strong>除了 <code>&lt;fieldset&gt;</code> 元素之外，所有表单字段都拥有相同的一组属性</strong> 。由于 <strong><code>&lt;input&gt;</code> 类型可以表示多种表单字段</strong> ，因此 <strong>有些属性只适用于某些字段</strong> ，但 <strong>还有一些属性是所有字段所共有的</strong> 。表单字段共有的属性如下。</p>
+<ul>
+<li>disabled ：布尔值，表示当前字段是否被禁用。</li>
+<li>form ：指向当前字段所属表单的指针；只读。</li>
+<li>name ：当前字段的名称。</li>
+<li>readOnly ：布尔值，表示当前字段是否只读。</li>
+<li>tabIndex ：表示当前字段的切换（tab）序号。</li>
+<li>type ：当前字段的类型，如 “checkbox” 、 “radio” ，等等。</li>
+<li>value ：当前字段将被提交给服务器的值。对文件字段来说，这个属性是只读的，包含着文件在计算机中的路径。</li>
+</ul>
+<p>除了 form 属性之外，<strong>可以通过 JavaScript 动态修改其他任何属性</strong> 。来看下面的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> form = <span class="built_in">document</span>.getElementById(<span class="string">"myForm"</span>);</span><br><span class="line"><span class="keyword">var</span> field = form.elements[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//修改 value 属性</span></span><br><span class="line">field.value = <span class="string">"Another value"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//检查 form 属性的值</span></span><br><span class="line">alert(field.form === form); <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//把焦点设置到当前字段</span></span><br><span class="line">field.focus();</span><br><span class="line"></span><br><span class="line"><span class="comment">//禁用当前字段</span></span><br><span class="line">field.disabled = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//修改 type 属性（不推荐，但对&lt;input&gt;来说是可行的）</span></span><br><span class="line">field.type = <span class="string">"checkbox"</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>能够动态修改表单字段属性</strong> ，意味着 <strong>我们可以在任何时候</strong> ，<strong>以任何方式来动态操作表单</strong> 。例如，很多用户可能会重复单击表单的提交按钮。在涉及信用卡消费时，这就是个问题：因为会导致费用翻番。为此，最常见的解决方案，就是在第一次单击后就禁用提交按钮。只要侦听 submit 事件，并在该事件发生时禁用提交按钮即可。以下就是这样一个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//避免多次提交表单</span></span><br><span class="line">EventUtil.addHandler(form, <span class="string">"submit"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  event = EventUtil.getEvent(event);</span><br><span class="line">  <span class="keyword">var</span> target = EventUtil.getTarget(event);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//取得提交按钮</span></span><br><span class="line">  <span class="keyword">var</span> btn = target.elements[<span class="string">"submit-btn"</span>];</span><br><span class="line"></span><br><span class="line">  <span class="comment">//禁用它</span></span><br><span class="line">  btn.disabled = <span class="literal">true</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>以上代码为表单的 submit 事件添加了一个事件处理程序</strong> 。事件触发后，代码取得了提交按钮并将其 disabled 属性设置为 true 。注意，不能通过 onclick 事件处理程序来实现这个功能，原因是不同浏览器之间存在“时差”：有的浏览器会在触发表单的 submit 事件之前触发 click 事件，而有的浏览器则相反。对于先触发 click 事件的浏览器，意味着会在提交发生之前禁用按钮，结果永远都不会提交表单。因此，最好是通过 submit 事件来禁用提交按钮。不过，这种方式不适合表单中不包含提交按钮的情况；如前所述，只有在包含提交按钮的情况下，才有可能触发表单的 submit 事件。</p>
+<p><strong>除了 <code>&lt;fieldset&gt;</code> 之外</strong> ，<strong>所有表单字段都有 type 属性</strong> 。<strong>对于 <code>&lt;input&gt;</code> 元素</strong> ，<strong>这个值等于 HTML 特性 type 的值</strong> 。对于其他元素，这个 type 属性的值如下表所列。</p>
+<p>  <img src="https://graphbed.qiniu.songxingguo.com/JavaScript-form-script/%E5%85%B6%E4%BB%96%E5%85%83%E7%B4%A0%E7%9A%84type%E5%B1%9E%E6%80%A7.png" alt="其他元素的type属性"></p>
+<p>此外， <strong><code>&lt;input&gt;</code> 和 <code>&lt;button&gt;</code> 元素的 type 属性是可以动态修改的</strong> ，而 <strong><code>&lt;select&gt;</code> 元素的 type 属性则是只读的</strong> 。</p>
+</li>
+<li><h4 id="共有的表单字段方法"><a href="#共有的表单字段方法" class="headerlink" title="共有的表单字段方法"></a>共有的表单字段方法</h4><p><strong>每个表单字段都有两个方法： focus() 和 blur() </strong>。其中， <strong>focus() 方法</strong> 用于 <strong>将浏览器的焦点设置到表单字段</strong> ，即 <strong>激活表单字段</strong> ，<strong>使其可以响应键盘事件</strong> 。例如，接收到焦点的文本框会显示插入符号，随时可以接收输入。<strong>使用 focus() 方法</strong> ，<strong>可以将用户的注意力吸引到页面中的某个部位</strong> 。例如，在页面加载完毕后，将焦点转移到表单中的第一个字段。为此，<strong>可以侦听页面的 load 事件</strong> ，<strong>并在该事件发生时在表单的第一个字段上调用 focus() 方法</strong> ，如下面的例子所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EventUtil.addHandler(<span class="built_in">window</span>, <span class="string">"load"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">document</span>.forms[<span class="number">0</span>].elements[<span class="number">0</span>].focus();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>要注意的是，如果 <strong>第一个表单字段是一个 <code>&lt;input&gt;</code> 元素</strong> ，<strong>且其 type 特性的值为 “hidden”</strong> ，那么 <strong>以上代码会导致错误</strong> 。另外，<strong>如果使用 CSS 的 display 和 visibility 属性隐藏了该字段</strong> ，<strong>同样也会导致错误</strong> 。</p>
+<p><strong>HTML5 为表单字段</strong> 新增了一个 <strong>autofocus 属性</strong> 。在支持这个属性的浏览器中，<strong>只要设置这个属性</strong> ，<strong>不用 JavaScript 就能自动把焦点移动到相应字段</strong> 。例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">autofocus</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>为了保证前面的代码在设置 autofocus 的浏览器中正常运行</strong> ，必须 <strong>先检测是否设置了该属性</strong> ，如果 <strong>设置了</strong> ，就 <strong>不用再调用 focus()了</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EventUtil.addHandler(<span class="built_in">window</span>, <span class="string">"load"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> element = <span class="built_in">document</span>.forms[<span class="number">0</span>].elements[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">if</span> (element.autofocus !== <span class="literal">true</span>)&#123;</span><br><span class="line">    element.focus(); <span class="built_in">console</span>.log(<span class="string">"JS focus"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>因为 <strong>autofocus 是一个布尔值属性</strong> ，所以 <strong>在支持的浏览器中它的值应该是 true</strong> 。（在不支持的浏览器中，它的值将是空字符串。）为此，<strong>上面的代码只有在 autofocus 不等于 true 的情况下才会调用 focus()</strong>  ，<strong>从而保证向前兼容</strong> 。支持 autofocus 属性的浏览器有 Firefox 4+、Safari 5+、Chrome 和 Opera 9.6。</p>
+<blockquote>
+<p><strong>在默认情况下，只有表单字段可以获得焦点</strong> 。对于其他元素而言，<strong>如果先将其 tabIndex 属性设置为 -1</strong> ，然后 <strong>再调用 focus() 方法</strong> ，<strong>也可以让这些元素获得焦点</strong> 。只有 Opera 不支持这种技术。</p>
+</blockquote>
+<p>与 focus() 方法相对的是 <strong>blur() 方法</strong> ，它的作用是 <strong>从元素中移走焦点</strong> 。<strong>在调用 blur() 方法时，并不会把焦点转移到某个特定的元素上</strong> ；<strong>仅仅是将焦点从调用这个方法的元素上面移走而已</strong> 。在早期  Web 开发中，那时候的表单字段还没有 readonly 特性，因此就可以使用 blur() 方法来创建只读字段。</p>
+<p>现在，虽然需要使用 blur() 的场合不多了，但必要时还可以使用的。用法如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.forms[<span class="number">0</span>].elements[<span class="number">0</span>].blur();</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="共有的表单字段事件"><a href="#共有的表单字段事件" class="headerlink" title="共有的表单字段事件"></a>共有的表单字段事件</h4></li>
+</ul>
+<p><strong>除了支持鼠标、键盘、更改和 HTML 事件之外</strong>，<strong>所有表单字段都支持下列 3 个事件</strong> 。</p>
+<ul>
+<li>blur ：当前字段失去焦点时触发。</li>
+<li>change ：对于 <code>&lt;input&gt;</code> 和 <code>&lt;textarea&gt;</code> 元素，在它们失去焦点且 value 值改变时触发；对于 <code>&lt;select&gt;</code> 元素，在其选项改变时触发。</li>
+<li>focus ：当前字段获得焦点时触发。</li>
+</ul>
+<p><strong>当用户改变了当前字段的焦点</strong> ，或者 <strong>我们调用了 blur() 或 focus() 方法</strong> 时，<strong>都可以触发 blur 和 focus 事件</strong> 。<strong>这两个事件在所有表单字段中都是相同的</strong> 。但是，<strong>change 事件在不同表单控件中触发的次数会有所不同</strong> 。对于 <strong><code>&lt;input&gt;</code> 和 <code>&lt;textarea&gt;</code> 元素</strong> ，<strong>当它们从获得焦点到失去焦点且 value 值改变时</strong> ，才会 <strong>触发 change 事件</strong> 。对于 <strong><code>&lt;select&gt;</code> 元素</strong> ，只要 <strong>用户选择了不同的选项</strong> ，<strong>就会触发 change 事件</strong> ；换句话说，<strong>不失去焦点也会触发 change 事件</strong> 。</p>
+<p>通常，<strong>可以使用 focus 和 blur 事件来以某种方式改变用户界面</strong> ，要么是 <strong>向用户给出视觉提示</strong> ，要么是 <strong>向界面中添加额外的功能</strong> （例如，为文本框显示一个下拉选项菜单）。而 <strong>change 事件则经常用于验证用户在字段中输入的数据</strong> 。例如，假设有一个文本框，我们只允许用户输入数值。此时，<strong>可以利用 focus 事件修改文本框的背景颜色</strong> ，<strong>以便更清楚地表明这个字段获得了焦点</strong> 。<strong>可以利用 blur 事件恢复文本框的背景颜色</strong> ，<strong>利用 change 事件在用户输入了非数值字符时再次修改背景颜色</strong> 。下面就给出了实现上述功能的代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> textbox = <span class="built_in">document</span>.forms[<span class="number">0</span>].elements[<span class="number">0</span>];</span><br><span class="line">EventUtil.addHandler(textbox, <span class="string">"focus"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  event = EventUtil.getEvent(event);</span><br><span class="line">  <span class="keyword">var</span> target = EventUtil.getTarget(event);</span><br><span class="line">  <span class="keyword">if</span> (target.style.backgroundColor != <span class="string">"red"</span>)&#123;</span><br><span class="line">    target.style.backgroundColor = <span class="string">"yellow"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">EventUtil.addHandler(textbox, <span class="string">"blur"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  event = EventUtil.getEvent(event);</span><br><span class="line">  <span class="keyword">var</span> target = EventUtil.getTarget(event);</span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/[^\d]/</span>.test(target.value))&#123;</span><br><span class="line">    target.style.backgroundColor = <span class="string">"red"</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    target.style.backgroundColor = <span class="string">""</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">EventUtil.addHandler(textbox, <span class="string">"change"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  event = EventUtil.getEvent(event);</span><br><span class="line">  <span class="keyword">var</span> target = EventUtil.getTarget(event);</span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/[^\d]/</span>.test(target.value))&#123;</span><br><span class="line">    target.style.backgroundColor = <span class="string">"red"</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    target.style.backgroundColor = <span class="string">""</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在此， <strong>onfocus 事件处理程序将文本框的背景颜色修改为黄色</strong>，<strong>以清楚地表明当前字段已经激活</strong> 。随后，<strong>onblur 和 onchange 事件处理程序则会在发现非数值字符时，将文本框背景颜色修改为红色</strong> 。为了测试用户输入的是不是非数值，这里针对文本框的 value 属性使用了简单的正则表达式。而且，为确保无论文本框的值如何变化，验证规则始终如一， onblur 和 onchange 事件处理程序中使用了相同的正则表达式。</p>
+<blockquote>
+<p>关于 blur 和 change 事件的关系，并没有严格的规定。在某些浏览器中， blur 事件会先于 change 事件发生；而在其他浏览器中，则恰好相反。为此，<strong>不能假定这两个事件总会以某种顺序依次触发</strong> ，这一点要特别注意。</p>
+</blockquote>
+<h2 id="文本框脚本"><a href="#文本框脚本" class="headerlink" title="文本框脚本"></a>文本框脚本</h2><p>在 HTML 中，有两种方式来表现文本框：一种是 <strong>使用 <code>&lt;input&gt;</code> 元素的单行文本框</strong> ，另一种是 <strong>使用 <code>&lt;textarea&gt;</code> 的多行文本框</strong> 。这两个控件非常相似，而且多数时候的行为也差不多。不过，它们之间仍然存在一些重要的区别。</p>
+<p><strong>要表现文本框，必须将 <code>&lt;input&gt;</code> 元素的 type 特性设置为 “text”</strong> 。而通过 <strong>设置 size 特性</strong> ，可以 <strong>指定文本框中能够显示的字符数</strong> 。通过 <strong>value 特性</strong> ，可以 <strong>设置文本框的初始值</strong> ，而 <strong>maxlength 特性</strong> 则用于 <strong>指定文本框可以接受的最大字符数</strong> 。如果要创建一个文本框，让它能够显示 25 个字符，但输入不能超过 50 个字符，可以使用以下代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">size</span>=<span class="string">"25"</span> <span class="attr">maxlength</span>=<span class="string">"50"</span> <span class="attr">value</span>=<span class="string">"initial value"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>相对而言，<strong><code>&lt;textarea&gt;</code> 元素则始终会呈现为一个多行文本框</strong> 。<strong>要指定文本框的大小，可以使用 rows 和 cols 特性</strong> 。其中， <strong>rows 特性</strong> 指定的是 <strong>文本框的字符行数</strong> ，而 <strong>cols 特性</strong> 指定的是 <strong>文本框的字符列数</strong>（类似于 <code>&lt;input&gt;</code> 元素的 size 特性）。与 <code>&lt;input&gt;</code> 元素不同， <strong><code>&lt;textarea&gt;</code> 的初始值必须要放在 <code>&lt;textarea&gt;</code> 和 <code>&lt;/textarea&gt;</code> 之间</strong> ，如下面的例子所示。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">rows</span>=<span class="string">"25"</span> <span class="attr">cols</span>=<span class="string">"5"</span>&gt;</span>initial value<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>另一个与 <code>&lt;input&gt;</code> 的区别在于，<strong>不能在 HTML 中给 <code>&lt;textarea&gt;</code> 指定最大字符数</strong> 。</p>
+<p>无论这两种文本框在标记中有什么区别，但 <strong>它们都会将用户输入的内容保存在 value 属性中</strong> 。<strong>可以通过这个属性读取和设置文本框的值</strong> ，如下面的例子所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> textbox = <span class="built_in">document</span>.forms[<span class="number">0</span>].elements[<span class="string">"textbox1"</span>];</span><br><span class="line">alert(textbox.value);</span><br><span class="line"></span><br><span class="line">textbox.value = <span class="string">"Some new value"</span>;</span><br></pre></td></tr></table></figure>
+<p>我们建议读者 <strong>像上面这样使用 value 属性读取或设置文本框的值</strong> ，<strong>不建议使用标准的 DOM 方法</strong> 。换句话说，<strong>不要使用 setAttribute() 设置 <code>&lt;input&gt;</code> 元素的 value 特性</strong> ，也 <strong>不要去修改 <code>&lt;textarea&gt;</code> 元素的第一个子节点</strong> 。原因很简单：<strong>对 value 属性所作的修改</strong> ，<strong>不一定会反映在 DOM中</strong> 。因此，在处理文本框的值时，最好不要使用 DOM 方法。</p>
+<h3 id="选择文本"><a href="#选择文本" class="headerlink" title="选择文本"></a>选择文本</h3><p>上述两种文本框都支持 <strong>select() 方法</strong> ，这个方法用于 <strong>选择文本框中的所有文本</strong> 。在调用 select() 方法时，大多数浏览器（Opera 除外）都会将焦点设置到文本框中。这个方法不接受参数，可以在任何时候被调用。下面来看一个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> textbox = <span class="built_in">document</span>.forms[<span class="number">0</span>].elements[<span class="string">"textbox1"</span>];</span><br><span class="line">textbox.select();</span><br></pre></td></tr></table></figure>
+<p><strong>在文本框获得焦点时选择其所有文本</strong> ，这是一种非常常见的做法，特别是在文本框包含默认值的时候。因为这样做可以让用户不必一个一个地删除文本。下面展示了实现这一操作的代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EventUtil.addHandler(textbox, <span class="string">"focus"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  event = EventUtil.getEvent(event);</span><br><span class="line">  <span class="keyword">var</span> target = EventUtil.getTarget(event);</span><br><span class="line">  </span><br><span class="line">  target.select();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>将上面的代码应用到文本框之后，<strong>只要文本框获得焦点</strong> ，<strong>就会选择其中所有的文本</strong> 。这种技术能够较大幅度地提升表单的易用性。</p>
+<ul>
+<li><h4 id="选择（-select-）事件"><a href="#选择（-select-）事件" class="headerlink" title="选择（ select ）事件"></a>选择（ select ）事件</h4><p>与 select() 方法对应的，是一个 <strong>select 事件</strong> 。<strong>在选择了文本框中的文本时，就会触发 select 事件</strong> 。不过，到底什么时候触发 select 事件，还会因浏览器而异。在 IE9+、Opera、Firefox、Chrome 和 Safari 中，只有用户选择了文本（而且要释放鼠标），才会触发 select 事件。而在 IE8 及更早版本中，只要用户选择了一个字母（不必释放鼠标），就会触发 select 事件。另外，<strong>在调用 select() 方法时也会触发 select 事件</strong> 。下面是一个简单的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> textbox = <span class="built_in">document</span>.forms[<span class="number">0</span>].elements[<span class="string">"textbox1"</span>];</span><br><span class="line">EventUtil.addHandler(textbox, <span class="string">"select"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> alert(<span class="string">"Text selected"</span> + textbox.value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="取得选择的文本"><a href="#取得选择的文本" class="headerlink" title="取得选择的文本"></a>取得选择的文本</h4><p>虽然通过 select 事件我们可以知道用户什么时候选择了文本，但仍然不知道用户选择了什么文本。HTML5 通过一些扩展方案解决了这个问题，以便更顺利地取得选择的文本。该规范采取的办法是添加两个属性： <strong>selectionStart</strong> 和 <strong>selectionEnd</strong> 。<strong>这两个属性中保存的是基于 0 的数值</strong> ，<strong>表示所选择文本的范围</strong> （即文本选区开头和结尾的偏移量）。因此，要 <strong>取得用户在文本框中选择的文本</strong> ，可以使用如下代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSelectedText</span>(<span class="params">textbox</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> textbox.value.substring(textbox.selectionStart, textbox.selectionEnd);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为 <strong>substring() 方法基于字符串的偏移量执行操作</strong> ，所以 <strong>将 selectionStart 和 selectionEnd 直接传给它就可以取得选中的文本</strong> 。</p>
+<p>IE9+、Firefox、Safari、Chrome 和 Opera 都支持这两个属性。IE8 及之前版本不支持这两个属性，而是提供了另一种方案。</p>
+<p>IE8 及更早的版本中有一个 <strong>document.selection 对象</strong> ，其中 <strong>保存着用户在整个文档范围内选择的文本信息</strong> ；也就是说，无法确定用户选择的是页面中哪个部位的文本。不过，在与 select 事件一起使用的时候，可以假定是用户选择了文本框中的文本，因而触发了该事件。<strong>要取得选择的文本</strong> ，首先必须 <strong>创建一个范围</strong> （第 12 章讨论过），然后再 <strong>将文本从其中提取出来</strong> ，如下面的例子所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSelectedText</span>(<span class="params">textbox</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> textbox.selectionStart == <span class="string">"number"</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> textbox.value.substring(textbox.selectionStart, textbox.selectionEnd);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.selection)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">document</span>.selection.createRange().text;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里修改了前面的函数，包括了在 IE 中取得选择文本的代码。注意，调用 document.selection 时，不需要考虑 textbox 参数。</p>
+</li>
+<li><h4 id="选择部分文本"><a href="#选择部分文本" class="headerlink" title="选择部分文本"></a>选择部分文本</h4><p>HTML5 也为选择文本框中的部分文本提供了解决方案 ， 即最早由 Firefox 引入的<strong>setSelectionRange() 方法</strong> 。现在除 select() 方法之外，所有文本框都有一个 setSelectionRange() 方法。这个方法接收两个参数：<strong>要选择的第一个字符的索引</strong> 和 <strong>要选择的最后一个字符之后的字符的索引</strong> （类似于 substring() 方法的两个参数）。来看一个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">textbox.value = <span class="string">"Hello world!"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//选择所有文本</span></span><br><span class="line">textbox.setSelectionRange(<span class="number">0</span>, textbox.value.length); <span class="comment">//"Hello world!"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//选择前 3 个字符</span></span><br><span class="line">textbox.setSelectionRange(<span class="number">0</span>, <span class="number">3</span>); <span class="comment">//"Hel"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//选择第 4 到第 6 个字符</span></span><br><span class="line">textbox.setSelectionRange(<span class="number">4</span>, <span class="number">7</span>); <span class="comment">//"o w"</span></span><br></pre></td></tr></table></figure>
+<p>要看到选择的文本，必须在调用 setSelectionRange() 之前或之后立即将焦点设置到文本框。IE9、Firefox、Safari、Chrome和 Opera 支持这种方案。</p>
+<p>IE8 及更早版本支持使用范围（第 12 章讨论过）选择部分文本。要选择文本框中的部分文本，必须首先使用 IE 在所有文本框上提供的 <strong>createTextRange() 方法创建一个范围</strong> ，并 <strong>将其放在恰当的位置上</strong> 。然后，再 <strong>使用 moveStart() 和 moveEnd() 这两个范围方法将范围移动到位</strong> 。不过，在调用这两个方法以前，还 <strong>必须使用 collapse() 将范围折叠到文本框的开始位置</strong> 。此时， <strong>moveStart() 将范围的起点和终点移动到了相同的位置</strong> ，<strong>只要再给 moveEnd() 传入要选择的字符总数即可</strong> 。最后一步，就是 <strong>使用范围的 select() 方法选择文本</strong> ，如下面的例子所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">textbox.value = <span class="string">"Hello world!"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> range = textbox.createTextRange();</span><br><span class="line"></span><br><span class="line"><span class="comment">//选择所有文本</span></span><br><span class="line">range.collapse(<span class="literal">true</span>);</span><br><span class="line">range.moveStart(<span class="string">"character"</span>, <span class="number">0</span>);</span><br><span class="line">range.moveEnd(<span class="string">"character"</span>, textbox.value.length); <span class="comment">//"Hello world!"</span></span><br><span class="line">range.select();</span><br><span class="line"></span><br><span class="line"><span class="comment">//选择前 3 个字符</span></span><br><span class="line">range.collapse(<span class="literal">true</span>);</span><br><span class="line">range.moveStart(<span class="string">"character"</span>, <span class="number">0</span>);</span><br><span class="line">range.moveEnd(<span class="string">"character"</span>, <span class="number">3</span>);</span><br><span class="line">range.select(); <span class="comment">//"Hel"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//选择第 4 到第 6 个字符</span></span><br><span class="line">range.collapse(<span class="literal">true</span>);</span><br><span class="line">range.moveStart(<span class="string">"character"</span>, <span class="number">4</span>);</span><br><span class="line">range.moveEnd(<span class="string">"character"</span>, <span class="number">3</span>);</span><br><span class="line">range.select(); <span class="comment">//"o w"</span></span><br></pre></td></tr></table></figure>
+<p>与在其他浏览器中一样，<strong>要想在文本框中看到文本被选择的效果，必须让文本框获得焦点</strong> 。</p>
+<p>为了 <strong>实现跨浏览器编程</strong> ，可以将上述两种方案组合起来，如下面的例子所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectText</span>(<span class="params">textbox, startIndex, stopIndex</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (textbox.setSelectionRange)&#123;</span><br><span class="line">    textbox.setSelectionRange(startIndex, stopIndex);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (textbox.createTextRange)&#123;</span><br><span class="line">    <span class="keyword">var</span> range = textbox.createTextRange();</span><br><span class="line">    range.collapse(<span class="literal">true</span>);</span><br><span class="line">    range.moveStart(<span class="string">"character"</span>, startIndex);</span><br><span class="line">    range.moveEnd(<span class="string">"character"</span>, stopIndex - startIndex);</span><br><span class="line">    range.select();</span><br><span class="line">  &#125;</span><br><span class="line">  textbox.focus();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个 <strong>selectText() 函数</strong> 接收三个参数：<strong>要操作的文本框</strong> 、<strong>要选择文本中第一个字符的索引</strong> 和 <strong>要选择文本中最后一个字符之后的索引</strong> 。首先，函数测试了文本框是否包含 setSelectionRange() 方法。</p>
+<p>如果有，则使用该方法。否则，检测文本框是否支持 createTextRange() 方法。如果支持，则通过创建范围来实现选择。最后一步，就是为文本框设置焦点，以便用户看到文本框中选择的文本。可以像下面这样使用 selectText() 方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">textbox.value = <span class="string">"Hello world!"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//选择所有文本</span></span><br><span class="line">selectText(textbox, <span class="number">0</span>, textbox.value.length); <span class="comment">//"Hello world!"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//选择前 3 个字符</span></span><br><span class="line">selectText(textbox, <span class="number">0</span>, <span class="number">3</span>); <span class="comment">//"Hel"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//选择第 4 到第 6 个字符</span></span><br><span class="line">selectText(textbox, <span class="number">4</span>, <span class="number">7</span>); <span class="comment">//"o w"</span></span><br></pre></td></tr></table></figure>
+<p><strong>选择部分文本的技术在实现高级文本输入框时很有用</strong> ，例如提供自动完成建议的文本框就可以使用这种技术。</p>
+</li>
+</ul>
+<h3 id="过滤输入"><a href="#过滤输入" class="headerlink" title="过滤输入"></a>过滤输入</h3><p><strong>我们经常会要求用户在文本框中输入特定的数据</strong> ，<strong>或者输入特定格式的数据</strong> 。例如，必须包含某些字符，或者必须匹配某种模式。<strong>由于文本框在默认情况下没有提供多少验证数据的手段</strong> ，<strong>因此必须使用 JavaScript 来完成此类过滤输入的操作</strong> 。而综合运用事件和 DOM 手段，就可以 <strong>将普通的文本框转换成能够理解用户输入数据的功能型控件</strong> 。</p>
+<ul>
+<li><h4 id="屏蔽字符"><a href="#屏蔽字符" class="headerlink" title="屏蔽字符"></a>屏蔽字符</h4><p>有时候，我们需要用户 <strong>输入的文本中包含或不包含某些字符</strong> 。例如，电话号码中不能包含非数值字符。如前所述，<strong>响应向文本框中插入字符操作的是 keypress 事件</strong> 。因此，可以通过阻止这个事件的默认行为来屏蔽此类字符。在极端的情况下，可以通过下列代码 <strong>屏蔽所有按键操作</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EventUtil.addHandler(textbox, <span class="string">"keypress"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  event = EventUtil.getEvent(event);</span><br><span class="line">  EventUtil.preventDefault(event);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行以上代码后，由于所有按键操作都将被屏蔽，结果会导致文本框变成只读的。如果 <strong>只想屏蔽特定的字符</strong> ，则 <strong>需要检测 keypress 事件对应的字符编码</strong> ，然后 <strong>再决定如何响应</strong> 。例如，下列代码只允许用户输入数值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">EventUtil.addHandler(textbox, <span class="string">"keypress"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  event = EventUtil.getEvent(event);</span><br><span class="line">  <span class="keyword">var</span> target = EventUtil.getTarget(event);</span><br><span class="line">  <span class="keyword">var</span> charCode = EventUtil.getCharCode(event);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!<span class="regexp">/\d/</span>.test(<span class="built_in">String</span>.fromCharCode(charCode)))&#123;</span><br><span class="line">    EventUtil.preventDefault(event);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，我们 <strong>使用 EventUtil.getCharCode() 实现了跨浏览器取得字符编码</strong> 。然后，使用 <strong>String.fromCharCode() 将字符编码转换成字符串</strong> ，再 <strong>使用正则表达式  /\d/ 来测试该字符串</strong> ，从而 <strong>确定用户输入的是不是数值</strong> 。如果测试失败，那么就使用 <strong>EventUtil.preventDefault() 屏蔽按键事件</strong> 。结果，文本框就会忽略所有输入的非数值。</p>
+<p>虽然理论上只应该在用户按下字符键时才触发 keypress 事件，但有些浏览器也会对其他键触发此事件。Firefox 和 Safari（3.1 版本以前）会对向上键、向下键、退格键和删除键触发 keypress 事件；Safari 3.1 及更新版本则不会对这些键触发 keypress 事件。这意味着，<strong>仅考虑到屏蔽不是数值的字符还不够</strong> ，<strong>还要避免屏蔽这些极为常用和必要的键</strong> 。所幸的是，要检测这些键并不困难。在 Firefox 中，所有由非字符键触发的 keypress 事件对应的字符编码为 0，而在 Safari 3 以前的版本中，对应的字符编码全部为 8。为了让代码更通用，<strong>只要不屏蔽那些字符编码小于 10 的键即可</strong> 。故而，可以将上面的函数重写成如下所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">EventUtil.addHandler(textbox, <span class="string">"keypress"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  event = EventUtil.getEvent(event);</span><br><span class="line">  <span class="keyword">var</span> target = EventUtil.getTarget(event);</span><br><span class="line">  <span class="keyword">var</span> charCode = EventUtil.getCharCode(event);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!<span class="regexp">/\d/</span>.test(<span class="built_in">String</span>.fromCharCode(charCode)) &amp;&amp; charCode &gt; <span class="number">9</span>)&#123;</span><br><span class="line">    EventUtil.preventDefault(event);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这样，我们的事件处理程序就可以适用所有浏览器了，<strong>即可以屏蔽非数值字符</strong> ，<strong>但不屏蔽那些也会触发 keypress 事件的基本按键</strong> 。</p>
+<p>除此之外，还有一个问题需要处理：<strong>复制</strong> 、<strong>粘贴</strong> 及 v其他操作还要用到 Ctrl 键<strong> 。在除 IE 之外的所有浏览器中，</strong>前面的代码也会屏蔽 Ctrl+C、Ctrl+V，以及其他使用 Ctrl 的组合键<strong> 。因此，</strong>最后还要添加一个检测条件<strong> ，</strong>以确保用户没有按下 Ctrl 键** ，如下面的例子所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">EventUtil.addHandler(textbox, <span class="string">"keypress"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  event = EventUtil.getEvent(event);</span><br><span class="line">  <span class="keyword">var</span> target = EventUtil.getTarget(event);</span><br><span class="line">  <span class="keyword">var</span> charCode = EventUtil.getCharCode(event);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!<span class="regexp">/\d/</span>.test(<span class="built_in">String</span>.fromCharCode(charCode)) &amp;&amp; charCode &gt; <span class="number">9</span> &amp;&amp;</span><br><span class="line">  !event.ctrlKey)&#123;</span><br><span class="line">    EventUtil.preventDefault(event);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>经过最后一点修改，就可以确保文本框的行为完全正常了。在这个例子的基础上加以修改和调整，就 <strong>可以将同样的技术运用于放过和屏蔽任何输入文本框的字符</strong> 。</p>
+</li>
+<li><h4 id="操作剪贴板"><a href="#操作剪贴板" class="headerlink" title="操作剪贴板"></a>操作剪贴板</h4><p>IE 是第一个支持与剪贴板相关事件，以及通过 JavaScript 访问剪贴板数据的浏览器。IE 的实现成为了事实上的标准，不仅 Safari 2、Chrome 和 Firefox 3 也都支持类似的事件和剪贴板访问（Opera 不支持通过 JavaScript 访问剪贴板），<strong>HTML 5 后来也把剪贴板事件纳入了规范</strong> 。下列就是 6 个剪贴板事件。</p>
+<ul>
+<li>beforecopy ：在发生复制操作前触发。</li>
+<li>copy ：在发生复制操作时触发。</li>
+<li>beforecut ：在发生剪切操作前触发。</li>
+<li>cut ：在发生剪切操作时触发。</li>
+<li>beforepaste ：在发生粘贴操作前触发。</li>
+<li>paste ：在发生粘贴操作时触发。</li>
+</ul>
+<p>由于没有针对剪贴板操作的标准，这些事件及相关对象会因浏览器而异。在 Safari、Chrome 和 Firefox 中， beforecopy 、 beforecut 和 beforepaste 事件只会在显示针对文本框的上下文菜单（预期将发生剪贴板事件）的情况下触发。但是，IE 则会在触发 copy 、 cut 和 paste 事件之前先行触发这些事件。</p>
+<p><strong>至于 copy 、 cut 和 paste 事件</strong> ，<strong>只要是在上下文菜单中选择了相应选项</strong> ，或者 <strong>使用了相应的键盘组合键</strong> ，<strong>所有浏览器都会触发它们</strong> 。</p>
+<p>在实际的事件发生之前，<strong>通过 beforecopy 、 beforecut 和 beforepaste 事件可以在向剪贴板发送数据</strong> ，或者 <strong>从剪贴板取得数据之前修改数据</strong> 。不过，<strong>取消这些事件并不会取消对剪贴板的操作</strong> ——只有取消 copy 、 cut 和 paste 事件，才能阻止相应操作发生。</p>
+<p>要访问剪贴板中的数据，可以使用 clipboardData 对象：在 IE 中，这个对象是 window 对象的属性；而在 Firefox 4+、Safari 和 Chrome 中，这个对象是相应 event 对象的属性。但是，在 Firefox、Safari 和 Chorme 中，只有在处理剪贴板事件期间 clipboardData 对象才有效，这是为了防止对剪贴板的未授权访问；在 IE 中，则可以随时访问 clipboardData 对象。为了确保跨浏览器兼容性，最好只在发生剪贴板事件期间使用这个对象。</p>
+<p>这个 <strong>clipboardData 对象</strong> 有三个方法： <strong>getData()</strong> 、 <strong>setData()</strong> 和 <strong>clearData()</strong> 。其中， <strong>getData() 用于从剪贴板中取得数据</strong> ，它接受一个参数，即 <strong>要取得的数据的格式</strong> 。在 IE中，有两种数据格式： “text”和 “URL” 。在 Firefox、Safari 和 Chrome 中，这个参数是一种 MIME 类型；不过，可以用 “text” 代表 “text/plain” 。</p>
+<p>类似地， <strong>setData() 方法</strong> 的 <strong>第一个参数也是数据类型</strong> ，第二个参数是 <strong>要放在剪贴板中的文本</strong> 。对于第一个参数，IE 照样支持 “text” 和 “URL” ，而 Safari 和 Chrome 仍然只支持 MIME 类型。但是，与 getData() 方法不同的是，Safari 和 Chrome的 setData() 方法不能识别 “text” 类型。这两个浏览器在成功将文本放到剪贴板中后，都会返回 true ；否则，返回 false 。为了弥合这些差异，我们可以向 EventUtil 中再添加下列方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> EventUtil = &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//省略的代码</span></span><br><span class="line"></span><br><span class="line">  getClipboardText: <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> clipboardData = (event.clipboardData || <span class="built_in">window</span>.clipboardData);</span><br><span class="line">    <span class="keyword">return</span> clipboardData.getData(<span class="string">"text"</span>);</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">//省略的代码</span></span><br><span class="line"></span><br><span class="line">  setClipboardText: <span class="function"><span class="keyword">function</span>(<span class="params">event, value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (event.clipboardData)&#123;</span><br><span class="line">      <span class="keyword">return</span> event.clipboardData.setData(<span class="string">"text/plain"</span>, value);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.clipboardData)&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">window</span>.clipboardData.setData(<span class="string">"text"</span>, value);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">//省略的代码</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这里的 <strong>getClipboardText() 方法</strong> 相对简单；它只要 <strong>确定 clipboardData 对象的位置</strong> ，然后再 <strong>以 “text” 类型调用 getData() 方法</strong> 即可。相应地， <strong>setClipboardText() 方法</strong> 则要稍微复杂一些。在 <strong>取得 clipboardData 对象</strong> 之后，需要 <strong>根据不同的浏览器实现为 setData() 传入不同的类型</strong> （对于 Safari 和 Chrome，是 “text/plain” ；对于 IE，是 “text” ）。</p>
+<p><strong>在需要确保粘贴到文本框中的文本中包含某些字符</strong> ， <strong>或者符合某种格式要求时</strong> ，<strong>能够访问剪贴板是非常有用的</strong> 。例如，如果一个文本框只接受数值，那么就必须检测粘贴过来的值，以确保有效。在 <strong>paste 事件</strong> 中，<strong>可以确定剪贴板中的值是否有效</strong> ，<strong>如果无效</strong> ，就可以像下面示例中那样，<strong>取消默认的行为</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">EventUtil.addHandler(textbox, <span class="string">"paste"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  event = EventUtil.getEvent(event);</span><br><span class="line">  <span class="keyword">var</span> text = EventUtil.getClipboardText(event);</span><br><span class="line">  <span class="keyword">if</span> (!<span class="regexp">/^\d*$/</span>.test(text))&#123;</span><br><span class="line">    EventUtil.preventDefault(event);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在这里， onpaste 事件处理程序可以确保只有数值才会被粘贴到文本框中。如果剪贴板的值与正则表达式不匹配，则会取消粘贴操作。Firefox、Safari 和 Chrome 只允许在 onpaste 事件处理程序中访问 getData() 方法。</p>
+<p>由于并非所有浏览器都支持访问剪贴板，所以 <strong>更简单的做法是屏蔽一或多个剪贴板操作</strong> 。在支持 copy 、 cut 和 paste 事件的浏览器中（IE、Safari、Chrome 和 Firefox 3 及更高版本），很容易阻止这些事件的默认行为。在 Opera 中，则需要阻止那些会触发这些事件的按键操作，同时还要阻止在文本框中显示上下文菜单。</p>
+</li>
+</ul>
+<h3 id="自动切换焦点"><a href="#自动切换焦点" class="headerlink" title="自动切换焦点"></a>自动切换焦点</h3><p>使用 JavaScript 可以从多个方面增强表单字段的易用性。其中，最常见的一种方式就是<strong>在用户填写完当前字段时</strong> ，<strong>自动将焦点切换到下一个字段</strong> 。通常，<strong>在自动切换焦点之前，必须知道用户已经输入了既定长度的数据</strong>（例如电话号码）。例如，美国的电话号码通常会分为三部分：区号、局号和另外 4 位数字。为取得完整的电话号码，很多网页中都会提供下列 3 个文本框：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"tel1"</span> <span class="attr">id</span>=<span class="string">"txtTel1"</span> <span class="attr">maxlength</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"tel2"</span> <span class="attr">id</span>=<span class="string">"txtTel2"</span> <span class="attr">maxlength</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"tel3"</span> <span class="attr">id</span>=<span class="string">"txtTel3"</span> <span class="attr">maxlength</span>=<span class="string">"4"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>为增强易用性</strong> ，<strong>同时加快数据输入</strong> ，<strong>可以在前一个文本框中的字符达到最大数量后</strong> ，<strong>自动将焦点切换到下一个文本框</strong> 。换句话说，用户在第一个文本框中输入了 3 个数字之后，焦点就会切换到第二个文本框，再输入 3 个数字，焦点又会切换到第三个文本框。这种 <strong>“自动切换焦点”的功能</strong> ，可以通过下列代码实现：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">tabForward</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    event = EventUtil.getEvent(event);</span><br><span class="line">    <span class="keyword">var</span> target = EventUtil.getTarget(event);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (target.value.length == target.maxLength)&#123;</span><br><span class="line">      <span class="keyword">var</span> form = target.form;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>, len=form.elements.length; i &lt; len; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (form.elements[i] == target) &#123;</span><br><span class="line">          <span class="keyword">if</span> (form.elements[i+<span class="number">1</span>])&#123;</span><br><span class="line">            form.elements[i+<span class="number">1</span>].focus();</span><br><span class="line">          &#125; </span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> textbox1 = <span class="built_in">document</span>.getElementById(<span class="string">"txtTel1"</span>);</span><br><span class="line"><span class="keyword">var</span> textbox2 = <span class="built_in">document</span>.getElementById(<span class="string">"txtTel2"</span>);</span><br><span class="line"><span class="keyword">var</span> textbox3 = <span class="built_in">document</span>.getElementById(<span class="string">"txtTel3"</span>);</span><br><span class="line"></span><br><span class="line">EventUtil.addHandler(textbox1, <span class="string">"keyup"</span>, tabForward);</span><br><span class="line">EventUtil.addHandler(textbox2, <span class="string">"keyup"</span>, tabForward);</span><br><span class="line">EventUtil.addHandler(textbox3, <span class="string">"keyup"</span>, tabForward);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>开始的 <strong>tabForward() 函数</strong> 是实现“自动切换焦点”的关键所在。这个函数 <strong>通过比较用户输入的值与文本框的 maxlength 特性</strong>v，<strong>可以确定是否已经达到最大长度</strong> 。<strong>如果这两个值相等</strong> （因为浏览器最终会强制它们相等，因此用户绝不会多输入字符），<strong>则需要查找表单字段集合</strong> ，<strong>直至找到下一个文本框</strong> 。</p>
+<p>找到下一个文本框之后，则将焦点切换到该文本框。然后，我们把这个函数指定为每个文本框的 onkeyup 事件处理程序。由于 keyup 事件会在用户输入了新字符之后触发，所以此时是检测文本框中内容长度的最佳时机。这样一来，<strong>用户在填写这个简单的表单时</strong> ，<strong>就不必再通过按制表键切换表单字段和提交表单了</strong> 。</p>
+<p>不过请记住，这些代码 <strong>只适用于前面给出的标记</strong> ，<strong>而且没有考虑隐藏字段</strong> 。</p>
+<h3 id="HTML5-约束验证API"><a href="#HTML5-约束验证API" class="headerlink" title="HTML5 约束验证API"></a>HTML5 约束验证API</h3><p>为了在将表单提交到服务器之前验证数据，HTML5 新增了一些功能。有了这些功能，<strong>即便 JavaScript 被禁用或者由于种种原因未能加载</strong> ，<strong>也可以确保基本的验证</strong> 。换句话说，<strong>浏览器自己会根据标记中的规则执行验证</strong> ，<strong>然后自己显示适当的错误消息</strong>（完全不用 JavaScript 插手）。当然，<strong>这个功能只有在支持 HTML5 这部分内容的浏览器中才有效</strong> ，这些浏览器有 Firefox 4+、Safari 5+、Chrome 和 Opera 10+。</p>
+<p><strong>只有在某些情况下表单字段才能进行自动验证</strong> 。具体来说，就是 <strong>要在 HTML 标记中为特定的字段指定一些约束</strong> ，然后 <strong>浏览器才会自动执行表单验证</strong>。</p>
+<ul>
+<li><h4 id="必填字段"><a href="#必填字段" class="headerlink" title="必填字段"></a>必填字段</h4><p>第一种情况是在表单字段中指定了 <strong>required 属性</strong> ，如下面的例子所示：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">required</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>任何标注有 required 的字段，在提交表单时都不能空着。<strong>这个属性适用于 <code>&lt;input&gt;</code> 、 <code>&lt;textarea&gt;</code> 和 <code>&lt;select&gt;</code> 字段</strong>（Opera 11 及之前版本还不支持 <code>&lt;select&gt;</code> 的 required 属性）。<strong>在 JavaScript 中</strong> ，<strong>通过对应的 required 属性，可以检查某个表单字段是否为必填字段</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> isUsernameRequired = <span class="built_in">document</span>.forms[<span class="number">0</span>].elements[<span class="string">"username"</span>].required;</span><br></pre></td></tr></table></figure>
+<p>另外，使用下面这行代码可以 <strong>测试浏览器是否支持 required 属性</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> isRequiredSupported = <span class="string">"required"</span> <span class="keyword">in</span> <span class="built_in">document</span>.createElement(<span class="string">"input"</span>);</span><br></pre></td></tr></table></figure>
+<p>以上代码通过特性检测来确定新创建的 <code>&lt;input&gt;</code> 元素中是否存在 required 属性。</p>
+<p>对于空着的必填字段，不同浏览器有不同的处理方式。Firefox 4 和 Opera 11 会阻止表单提交并在相应字段下方弹出帮助框，而 Safari（5 之前）和 Chrome（9 之前）则什么也不做，而且也不阻止表单提交。</p>
+</li>
+<li><h4 id="其他输入类型"><a href="#其他输入类型" class="headerlink" title="其他输入类型"></a>其他输入类型</h4><p><strong>HTML5 为 <code>&lt;input&gt;</code> 元素的 type 属性又增加了几个值</strong> 。<strong>这些新的类型不仅能反映数据类型的信息</strong> ，而且 <strong>还能提供一些默认的验证功能</strong> 。其中， <strong>“email” 和 “url” 是两个得到支持最多的类型</strong> ，<strong>各浏览器也都为它们增加了定制的验证机制</strong> 。例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span> <span class="attr">name</span> =<span class="string">"email"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"url"</span> <span class="attr">name</span>=<span class="string">"homepage"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>顾名思义， <strong>“email” 类型要求输入的文本必须符合电子邮件地址的模式</strong> ，而 <strong>“url” 类型要求输入的文本必须符合 URL 的模式</strong> 。不过，本节前面提到的浏览器在恰当地匹配模式方面都存在问题。最明显的是 “-@-“ 会被当成一个有效的电子邮件地址。浏览器开发商还在解决这些问题。</p>
+<p><strong>要检测浏览器是否支持这些新类型</strong> ，<strong>可以在 JavaScript 创建一个 <code>&lt;input&gt;</code> 元素</strong> ，然后 <strong>将 type 属性设置为 “email” 或 “url”</strong>  ，最后 <strong>再检测这个属性的值</strong> 。<strong>不支持它们的旧版本浏览器</strong> 会 <strong>自动将未知的值设置为 “text”</strong>  ，而 <strong>支持的浏览器</strong> 则会 <strong>返回正确的值</strong> 。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> input = <span class="built_in">document</span>.createElement(<span class="string">"input"</span>);</span><br><span class="line">input.type = <span class="string">"email"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> isEmailSupported = (input.type == <span class="string">"email"</span>);</span><br></pre></td></tr></table></figure>
+<p>要注意的是，如果不给 <code>&lt;input&gt;</code> 元素设置 required 属性，那么空文本框也会验证通过。另一方面，<strong>设置特定的输入类型并不能阻止用户输入无效的值</strong> ，<strong>只是应用某些默认的验证而已</strong> 。</p>
+</li>
+<li><h4 id="数值范围"><a href="#数值范围" class="headerlink" title="数值范围"></a>数值范围</h4><p><strong>除了 “email” 和 “url” ，HTML5 还定义了另外几个输入元素</strong> 。这几个元素都要求填写某种基于数字的值： <strong>“number”</strong> 、 <strong>“range”</strong> 、 <strong>“datetime”</strong> 、 <strong>“datetime-local”</strong> 、 <strong>“date”</strong> 、 <strong>“month”</strong> 、 <strong>“week”</strong> ，还有 <strong>“time”</strong> 。<strong>浏览器对这几个类型的支持情况并不好</strong> ，因此如果真想选用的话，要特别小心。目前，浏览器开发商主要关注更好的跨平台兼容性以及更多的逻辑功能。因此，本节介绍的内容某种程度上有些超前，不一定马上就能在实际开发中使用。</p>
+<p><strong>对所有这些数值类型的输入元素</strong> ，<strong>可以指定 min 属性</strong>（最小的可能值）、 <strong>max 属性</strong>（最大的可能值）和 <strong>step 属性</strong>（从 min 到 max 的两个刻度间的差值）。例如，想让用户只能输入 0 到 100的值，而且这个值必须是 5 的倍数，可以这样写代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">"number"</span> min=<span class="string">"0"</span> max=<span class="string">"100"</span> step=<span class="string">"5"</span> name=<span class="string">"count"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>在不同的浏览器中，可能会也可能不会看到能够自动递增和递减的数值调节按钮（向上和向下按钮）。</p>
+<p>以上这些属性 <strong>在 JavaScript 中都能通过对应的元素访问</strong>（或修改）。此外，还有两个方法： <strong>stepUp()</strong> 和 <strong>stepDown()</strong> ，都接收一个可选的参数：<strong>要在当前值基础上加上或减去的数值</strong> 。（默认是加或减 1。）这两个方法还没有得到任何浏览器支持，但下面的例子演示了它们的用法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">input.stepUp(); <span class="comment">//加 1</span></span><br><span class="line">input.stepUp(<span class="number">5</span>); <span class="comment">//加 5</span></span><br><span class="line">input.stepDown(); <span class="comment">//减 1</span></span><br><span class="line">input.stepDown(<span class="number">10</span>); <span class="comment">//减 10</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="输入模式"><a href="#输入模式" class="headerlink" title="输入模式"></a>输入模式</h4><p><strong>HTML5 为文本字段新增了 pattern 属性</strong> 。<strong>这个属性的值是一个正则表达式</strong> ，用于 <strong>匹配文本框中的值</strong> 。例如，如果只想允许在文本字段中输入数值，可以像下面的代码一样应用约束：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">pattern</span>=<span class="string">"\d+"</span> <span class="attr">name</span>=<span class="string">"count"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>注意，<strong>模式的开头和末尾不用加^和$符号</strong>（假定已经有了）。<strong>这两个符号表示输入的值必须从头到尾都与模式匹配</strong> 。与其他输入类型相似，<strong>指定 pattern 也不能阻止用户输入无效的文本</strong> 。<strong>这个模式应用给值，浏览器来判断值是有效，还是无效</strong> 。<strong>在 JavaScript 中可以通过 pattern 属性访问模式</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pattern = <span class="built_in">document</span>.forms[<span class="number">0</span>].elements[<span class="string">"count"</span>].pattern;</span><br></pre></td></tr></table></figure>
+<p>使用以下代码可以检测浏览器是否支持 pattern 属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> isPatternSupported = <span class="string">"pattern"</span> <span class="keyword">in</span> <span class="built_in">document</span>.createElement(<span class="string">"input"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="检测有效性"><a href="#检测有效性" class="headerlink" title="检测有效性"></a>检测有效性</h4><p>使用 <strong>checkValidity() 方法</strong> 可以 <strong>检测表单中的某个字段是否有效</strong> 。<strong>所有表单字段都有个方法</strong> ，<strong>如果字段的值有效，这个方法返回 true</strong> ，<strong>否则返回 false</strong> 。字段的值是否有效的判断依据是本节前面介绍过的那些约束。换句话说，<strong>必填字段中如果没有值就是无效的</strong> ，而 <strong>字段中的值与 pattern 属性不匹配也是无效的</strong> 。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">document</span>.forms[<span class="number">0</span>].elements[<span class="number">0</span>].checkValidity())&#123;</span><br><span class="line">  <span class="comment">//字段有效，继续</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">//字段无效</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>要检测整个表单是否有效，可以在表单自身调用 checkValidity() 方法</strong> 。<strong>如果所有表单字段都有效</strong> ，这个方法 <strong>返回 true</strong> ；<strong>即使有一个字段无效</strong> ，这个方法也会 <strong>返回 false</strong>  。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="built_in">document</span>.forms[<span class="number">0</span>].checkValidity())&#123;</span><br><span class="line">  <span class="comment">//表单有效，继续</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">//表单无效</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与 <strong>checkValidity() 方法简单地告诉你字段是否有效</strong> 相比， <strong>validity 属性则会告诉你为什么字段有效或无效</strong> 。这个对象中包含一系列属性，<strong>每个属性会返回一个布尔值</strong> 。</p>
+<ul>
+<li>customError ：如果设置了 setCustomValidity() ，则为 true ，否则返回 false 。</li>
+<li>patternMismatch ：如果值与指定的 pattern 属性不匹配，返回 true 。</li>
+<li>rangeOverflow ：如果值比 max 值大，返回 true 。</li>
+<li>rangeUnderflow ：如果值比 min 值小，返回 true 。</li>
+<li>stepMisMatch ：如果 min 和 max 之间的步长值不合理，返回 true 。</li>
+<li>tooLong ：如果值的长度超过了 maxlength 属性指定的长度，返回 true 。有的浏览器（如Firefox 4）会自动约束字符数量，因此这个值可能永远都返回 false 。</li>
+<li>typeMismatch ：如果值不是 “mail” 或 “url” 要求的格式，返回 true 。</li>
+<li>valid ：如果这里的其他属性都是 false ，返回 true 。 checkValidity() 也要求相同的值。</li>
+<li>valueMissing ：如果标注为 required 的字段中没有值，返回 true 。</li>
+</ul>
+<p>因此，<strong>要想得到更具体的信息</strong> ，就 <strong>应该使用 validity 属性来检测表单的有效性</strong> 。下面是一个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (input.validity &amp;&amp; !input.validity.valid)&#123;</span><br><span class="line">  <span class="keyword">if</span> (input.validity.valueMissing)&#123;</span><br><span class="line">    alert(<span class="string">"Please specify a value."</span>)</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (input.validity.typeMismatch)&#123;</span><br><span class="line">    alert(<span class="string">"Please enter an email address."</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    alert(<span class="string">"Value is invalid."</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="禁用验证"><a href="#禁用验证" class="headerlink" title="禁用验证"></a>禁用验证</h4><p><strong>通过设置 novalidate 属性，可以告诉表单不进行验证</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;form method=<span class="string">"post"</span> action=<span class="string">"signup.php"</span> novalidate&gt;</span><br><span class="line">  &lt;!--这里插入表单元素--&gt;</span><br><span class="line">&lt;<span class="regexp">/form&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>在 JavaScript 中使用 noValidate 属性可以取得或设置这个值</strong> ，<strong>如果这个属性存在</strong> ，<strong>值为 true</strong> ，<strong>如果不存在</strong> ，<strong>值为 false</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.forms[<span class="number">0</span>].noValidate = <span class="literal">true</span>; <span class="comment">//禁用验证</span></span><br></pre></td></tr></table></figure>
+<p>如果一个表单中有多个提交按钮，<strong>为了指定点击某个提交按钮不必验证表单</strong> ，<strong>可以在相应的按钮上添加 formnovalidate 属性</strong> 。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">action</span>=<span class="string">"foo.php"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--这里插入表单元素--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Regular Submit"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">formnovalidate</span> <span class="attr">name</span>=<span class="string">"btnNoValidate"</span> <span class="attr">value</span>=<span class="string">"Non-validating Submit"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在这个例子中，点击第一个提交按钮会像往常一样验证表单，而点击第二个按钮则会不经过验证而提交表单。<strong>使用 JavaScript 也可以设置这个属性</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//禁用验证</span></span><br><span class="line"><span class="built_in">document</span>.forms[<span class="number">0</span>].elements[<span class="string">"btnNoValidate"</span>].formNoValidate = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="选择框脚本"><a href="#选择框脚本" class="headerlink" title="选择框脚本"></a>选择框脚本</h2><p><strong>选择框是通过 <code>&lt;select&gt;</code> 和 <code>&lt;option&gt;</code> 元素创建的</strong> 。为了方便与这个控件交互，<strong>除了所有表单字段共有的属性和方法外</strong> ， HTMLSelectElement 类型还提供了下列属性和方法。</p>
+<ul>
+<li>add(newOption, relOption) ：向控件中插入新 <code>&lt;option&gt;</code> 元素，其位置在相关项（ relOption ）之前。</li>
+<li>multiple ：布尔值，表示是否允许多项选择；等价于 HTML 中的 multiple 特性。</li>
+<li>options ：控件中所有 <code>&lt;option&gt;</code> 元素的 HTMLCollection 。</li>
+<li>remove(index) ：移除给定位置的选项。</li>
+<li>selectedIndex ：基于 0 的选中项的索引，如果没有选中项，则值为 -1 。对于支持多选的控件，只保存选中项中第一项的索引。</li>
+<li>size ：选择框中可见的行数；等价于 HTML 中的 size 特性。选择框的 type 属性不是 “select-one” ，就是 “select-multiple” ，这取决于 HTML 代码中有没有 multiple 特性。选择框的 value 属性由当前选中项决定，相应规则如下。</li>
+<li>如果没有选中的项，则选择框的 value 属性保存空字符串。</li>
+<li>如果有一个选中项，而且该项的 value 特性已经在 HTML 中指定，则选择框的 value 属性等于选中项的 value 特性。即使 value 特性的值是空字符串，也同样遵循此条规则。</li>
+<li>如果有一个选中项，但该项的 value 特性在 HTML 中未指定，则选择框的 value 属性等于该项的文本。</li>
+<li>如果有多个选中项，则选择框的 value 属性将依据前两条规则取得第一个选中项的值。</li>
+</ul>
+<p>以下面的选择框为例：</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"location"</span> <span class="attr">id</span>=<span class="string">"selLocation"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"Sunnyvale, CA"</span>&gt;</span>Sunnyvale<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"Los Angeles, CA"</span>&gt;</span>Los Angeles<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"Mountain View, CA"</span>&gt;</span>Mountain View<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>China<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span>&gt;</span>Australia<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果用户选择了其中第一项，则选择框的值就是 “Sunnyvale, CA” 。如果文本为 “China” 的选项被选中，则选择框的值就是一个空字符串，因为其 value 特性是空的。如果选择了最后一项，那么由于 <code>&lt;option&gt;</code> 中没有指定 value 特性，则选择框的值就是 “Australia” 。</p>
+<p>在 DOM 中，每个 <code>&lt;option&gt;</code> 元素都有一个 HTMLOptionElement 对象表示。为便于访问数据，HTMLOptionElement 对象添加了下列属性：</p>
+<ul>
+<li>index ：当前选项在 options 集合中的索引。</li>
+<li>label ：当前选项的标签；等价于 HTML 中的 label 特性。</li>
+<li>selected ：布尔值，表示当前选项是否被选中。将这个属性设置为 true 可以选中当前选项。</li>
+<li>text ：选项的文本。</li>
+<li>value ：选项的值（等价于 HTML 中的 value 特性）。</li>
+</ul>
+<p><strong>其中大部分属性的目的，都是为了方便对选项数据的访问</strong> 。虽然也可以使用 <strong>常规的 DOM 功能来访问这些信息</strong> ，但 <strong>效率是比较低的</strong> ，如下面的例子所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> selectbox = <span class="built_in">document</span>.forms[<span class="number">0</span>].elements[<span class="string">"location"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//不推荐</span></span><br><span class="line"><span class="keyword">var</span> text = selectbox.options[<span class="number">0</span>].firstChild.nodeValue; <span class="comment">//选项的文本</span></span><br><span class="line"><span class="keyword">var</span> value = selectbox.options[<span class="number">0</span>].getAttribute(<span class="string">"value"</span>); <span class="comment">//选项的值</span></span><br></pre></td></tr></table></figure>
+<p>以上代码使用标准 DOM 方法，取得了选择框中第一项的文本和值。可以与下面使用选项属性的代码作一比较：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> selectbox = <span class="built_in">document</span>.forms[<span class="number">0</span>]. elements[<span class="string">"location"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 推荐</span></span><br><span class="line"><span class="keyword">var</span> text = selectbox.options[<span class="number">0</span>].text; <span class="comment">// 选项的文本</span></span><br><span class="line"><span class="keyword">var</span> value = selectbox.options[<span class="number">0</span>].value; <span class="comment">// 选项的值</span></span><br></pre></td></tr></table></figure>
+<p>在操作选项时，我们建议 <strong>最好是使用特定于选项的属性</strong> ，因为 <strong>所有浏览器都支持这些属性</strong> 。在将表单控件作为 DOM 节点的情况下，实际的交互方式则会因浏览器而异。我们不推荐使用标准 DOM 技术修改 <code>&lt;option&gt;</code> 元素的文本或者值。</p>
+<p>最后，我们还想提醒读者注意一点：<strong>选择框的 change 事件与其他表单字段的 change 事件触发的条件不一样</strong> 。<strong>其他表单字段的 change 事件</strong> 是在 <strong>值被修改且焦点离开当前字段时触发</strong> ，而 <strong>选择框的 change 事件</strong> 只要 <strong>选中了选项就会触发</strong> 。</p>
+<blockquote>
+<p>不同浏览器下，选项的 value 属性返回什么值也存在差别。但是，在所有浏览器中， value 属性始终等于 value 特性。在未指定 value 特性的情况下，IE8会返回空字符串，而 IE9+、Safari、Firefox、Chrome 和 Opera 则会返回与 text 特性相同的值。</p>
+</blockquote>
+<h3 id="选择选项"><a href="#选择选项" class="headerlink" title="选择选项"></a>选择选项</h3><p>对于 <strong>只允许选择一项的选择框</strong> ，访问选中项的最简单方式，就是 <strong>使用选择框的 selectedIndex 属性</strong> ，如下面的例子所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> selectedOption = selectbox.options[selectbox.selectedIndex];</span><br></pre></td></tr></table></figure>
+<p>取得选中项之后，可以像下面这样显示该选项的信息：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> selectedIndex = selectbox.selectedIndex;</span><br><span class="line"><span class="keyword">var</span> selectedOption = selectbox.options[selectedIndex];</span><br><span class="line">alert(<span class="string">"Selected index: "</span> + selectedIndex + <span class="string">"\nSelected text: "</span> + selectedOption.text + <span class="string">"\nSelected value: "</span> + selectedOption.value);</span><br></pre></td></tr></table></figure>
+<p>这里，我们通过一个警告框显示了选中项的索引、文本和值。</p>
+<p><strong>对于可以选择多项的选择框， selectedfIndex 属性就好像只允许选择一项一样</strong> 。设置 selectedIndex 会导致取消以前的所有选项并选择指定的那一项，而读取 selectedIndex 则只会返回选中项中第一项的索引值。</p>
+<p>另一种选择选项的方式，就是 <strong>取得对某一项的引用</strong> ，然后 <strong>将其 selected 属性设置为 true</strong> 。例如，下面的代码会选中选择框中的第一项：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">selectbox.options[<span class="number">0</span>].selected = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+<p>与 selectedIndex 不同，在允许多选的选择框中设置选项的 selected 属性，不会取消对其他选中项的选择，因而可以动态选中任意多个项。但是，如果是在单选选择框中，修改某个选项的 selected 属性则会取消对其他选项的选择。需要注意的是，将 selected 属性设置为 false 对单选选择框没有影响。</p>
+<p>实际上，<strong>selected 属性的作用主要是确定用户选择了选择框中的哪一项</strong> 。<strong>要取得所有选中的项，可以循环遍历选项集合，然后测试每个选项的 selected 属性</strong> 。来看下面的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSelectedOptions</span>(<span class="params">selectbox</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">  <span class="keyword">var</span> option = <span class="literal">null</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>, len=selectbox.options.length; i &lt; len; i++)&#123;</span><br><span class="line">    option = selectbox.options[i];</span><br><span class="line">    <span class="keyword">if</span> (option.selected)&#123;</span><br><span class="line">      result.push(option);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个函数可以返回给定选择框中选中项的一个数组。首先，创建一个将包含选中项的数组，然后使用 for 循环迭代所有选项，同时检测每一项的 selected 属性。如果有选项被选中，则将其添加到 result 数组中。最后，返回包含选中项的数组。下面是一个 <strong>使用 getSelectedOptions() 函数取得选中项</strong> 的示例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> selectbox = <span class="built_in">document</span>.getElementById(<span class="string">"selLocation"</span>);</span><br><span class="line"><span class="keyword">var</span> selectedOptions = getSelectedOptions(selectbox);</span><br><span class="line"><span class="keyword">var</span> message = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>, len=selectedOptions.length; i &lt; len; i++)&#123;</span><br><span class="line">  message += <span class="string">"Selected index: "</span> + selectedOptions[i].index + <span class="string">"\nSelected text: "</span> + selectedOptions[i].text + <span class="string">"\nSelected value: "</span> + selectedOptions[i].value + <span class="string">"\n\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line">alert(message);</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，我们首先从一个选择框中取得了选中项。然后，使用 for 循环构建了一条消息，包含所有选中项的信息：每一项的索引、文本和值。这种技术适用于单选和多选选择框。</p>
+<h3 id="添加选项"><a href="#添加选项" class="headerlink" title="添加选项"></a>添加选项</h3><p><strong>可以使用 JavaScript 动态创建选项，并将它们添加到选择框中</strong> 。添加选项的方式有很多，第一种方式就是使用如下所示的 DOM方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> newOption = <span class="built_in">document</span>.createElement(<span class="string">"option"</span>);</span><br><span class="line">newOption.appendChild(<span class="built_in">document</span>.createTextNode(<span class="string">"Option text"</span>));</span><br><span class="line">newOption.setAttribute(<span class="string">"value"</span>, <span class="string">"Option value"</span>);</span><br><span class="line"></span><br><span class="line">selectbox.appendChild(newOption);</span><br></pre></td></tr></table></figure>
+<p>以上代码创建了一个新的 <code>&lt;option&gt;</code> 元素，然后为它添加了一个文本节点，并设置其 value 特性，最后将它添加到了选择框中。添加到选择框之后，用户立即就可以看到新选项。</p>
+<p>第二种方式是 <strong>使用 Option 构造函数来创建新选项</strong> ，这个构造函数是 DOM 出现之前就有的，一直遗留到现在。 <strong>Option 构造函数</strong> 接受两个参数：<strong>文本</strong>（ text ）和 <strong>值</strong>（ value ）；<strong>第二个参数可选</strong> 。虽然这个构造函数会创建一个 Object 的实例，但兼容 DOM 的浏览器会返回一个 <code>&lt;option&gt;</code> 元素。换句话说，<strong>在这种情况下，我们仍然可以使用 appendChild() 将新选项添加到选择框中</strong> 。来看下面的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> newOption = <span class="keyword">new</span> Option(<span class="string">"Option text"</span>, <span class="string">"Option value"</span>);</span><br><span class="line">selectbox.appendChild(newOption); <span class="comment">//在 IE8 及之前版本中有问题</span></span><br></pre></td></tr></table></figure>
+<p>这种方式在除 IE 之外的浏览器中都可以使用。由于存在 bug，IE 在这种方式下不能正确设置新选项的文本。</p>
+<p>第三种添加新选项的方式是 <strong>使用选择框的 add() 方法</strong> 。DOM 规定这个方法接受两个参数：<strong>要添加的新选项</strong> 和 <strong>将位于新选项之后的选项</strong> 。如果想在列表的最后添加一个选项，应该将第二个参数设置为 null 。在 IE对 add() 方法的实现中，第二个参数是可选的，而且如果指定，该参数必须是新选项之后选项的索引。兼容 DOM 的浏览器要求必须指定第二个参数，因此要想编写跨浏览器的代码，就不能只传入一个参数。这时候，为第二个参数传入 undefined ，就可以在所有浏览器中都将新选项插入到列表最后了。来看一个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> newOption = <span class="keyword">new</span> Option(<span class="string">"Option text"</span>, <span class="string">"Option value"</span>);</span><br><span class="line">selectbox.add(newOption, <span class="literal">undefined</span>); <span class="comment">//最佳方案</span></span><br></pre></td></tr></table></figure>
+<p>在 IE 和兼容 DOM 的浏览器中，上面的代码都可以正常使用。<strong>如果你想将新选项添加到其他位置</strong>（不是最后一个），<strong>就应该使用标准的 DOM 技术和 insertBefore() 方法</strong> 。</p>
+<blockquote>
+<p>就和在 HTML 中一样，此时也不一定要为选项指定值。换句话说，只为 Option 构造函数传入一个参数（选项的文本）也没有问题。</p>
+</blockquote>
+<h3 id="移除选项"><a href="#移除选项" class="headerlink" title="移除选项"></a>移除选项</h3><p>与添加选项类似，移除选项的方式也有很多种。首先，<strong>可以使用 DOM 的 removeChild() 方法</strong> ，<strong>为其传入要移除的选项</strong> ，如下面的例子所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">selectbox.removeChild(selectbox.options[<span class="number">0</span>]); <span class="comment">//移除第一个选项</span></span><br></pre></td></tr></table></figure>
+<p>其次，<strong>可以使用选择框的 remove() 方法</strong> 。这个方法接受一个参数，即 <strong>要移除选项的索引</strong> ，如下面的例子所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">selectbox.remove(<span class="number">0</span>); <span class="comment">//移除第一个选项</span></span><br></pre></td></tr></table></figure>
+<p>最后一种方式，<strong>就是将相应选项设置为 null</strong> 。这种方式也是 DOM 出现之前浏览器的遗留机制。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">selectbox.options[<span class="number">0</span>] = <span class="literal">null</span>; <span class="comment">//移除第一个选项</span></span><br></pre></td></tr></table></figure>
+<p><strong>要清除选择框中所有的项，需要迭代所有选项并逐个移除它们</strong> ，如下面的例子所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function clearSelectbox(selectbox)&#123;</span><br><span class="line">  for(var i=0, len=selectbox.options.length; i &lt; len; i++)&#123;</span><br><span class="line">    selectbox.remove(i);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个函数每次只移除选择框中的第一个选项。<strong>由于移除第一个选项后，所有后续选项都会自动向上移动一个位置</strong> ，<strong>因此重复移除第一个选项就可以移除所有选项了</strong> 。</p>
+<h3 id="移动和重排选项"><a href="#移动和重排选项" class="headerlink" title="移动和重排选项"></a>移动和重排选项</h3><p>在 DOM 标准出现之前，将一个选择框中的选项移动到另一个选择框中是非常麻烦的。整个过程要涉及从第一个选择框中移除选项，然后以相同的文本和值创建新选项，最后再将新选项添加到第二个选择框中。而使用 DOM 的 appendChild() 方法，就可以将第一个选择框中的选项直接移动到第二个选择框中。我们知道，如果为 appendChild() 方法传入一个文档中已有的元素，那么就会先从该元素的父节点中移除它，再把它添加到指定的位置。下面的代码展示了 <strong>将第一个选择框中的第一个选项移动到第二个选择框中的过程</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> selectbox1 = <span class="built_in">document</span>.getElementById(<span class="string">"selLocations1"</span>);</span><br><span class="line"><span class="keyword">var</span> selectbox2 = <span class="built_in">document</span>.getElementById(<span class="string">"selLocations2"</span>);</span><br><span class="line"></span><br><span class="line">selectbox2.appendChild(selectbox1.options[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure>
+<p><strong>移动选项与移除选项有一个共同之处</strong> ，<strong>即会重置每一个选项的 index 属性</strong> 。</p>
+<p>重排选项次序的过程也十分类似，最好的方式仍然是使用 DOM 方法。要将选择框中的某一项移动到特定位置，最合适的 DOM 方法就是 <strong>insertBefore()</strong> ； <strong>appendChild()</strong> 方法只适用于将选项添加到选择框的最后。要在选择框中向前移动一个选项的位置，可以使用以下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> optionToMove = selectbox.options[<span class="number">1</span>];</span><br><span class="line">selectbox.insertBefore(optionToMove, selectbox.options[optionToMove.index<span class="number">-1</span>]);</span><br></pre></td></tr></table></figure>
+<p>以上代码首先选择了要移动的选项，然后将其插入到了排在它前面的选项之前。实际上，第二行代码对除第一个选项之外的其他选项是通用的。类似地，可以使用下列代码 <strong>将选择框中的选项向后移动一个位置</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> optionToMove = selectbox.options[<span class="number">1</span>];</span><br><span class="line">selectbox.insertBefore(optionToMove, selectbox.options[optionToMove.index+<span class="number">2</span>]);</span><br></pre></td></tr></table></figure>
+<p>以上代码适用于选择框中的所有选项，包括最后一个选项。</p>
+<blockquote>
+<p>IE7 存在一个页面重绘问题，有时候会导致使用 DOM 方法重排的选项不能马上正确显示。</p>
+</blockquote>
+<h2 id="表单序列化"><a href="#表单序列化" class="headerlink" title="表单序列化"></a>表单序列化</h2><p><strong>随着 Ajax 的出现，表单序列化已经成为一种常见需求</strong> （第 21 章将讨论 Ajax）。<strong>在 JavaScript 中，可以利用表单字段的 type 属性，连同 name 和 value 属性一起实现对表单的序列化</strong> 。在编写代码之前，有必须先搞清楚在表单提交期间，浏览器是怎样将数据发送给服务器的。</p>
+<ul>
+<li>对表单字段的名称和值进行 URL 编码，使用和号（&amp;）分隔。</li>
+<li>不发送禁用的表单字段。</li>
+<li>只发送勾选的复选框和单选按钮。</li>
+<li>不发送 type 为 “reset” 和 “button” 的按钮。</li>
+<li>多选选择框中的每个选中的值单独一个条目。</li>
+<li>在单击提交按钮提交表单的情况下，也会发送提交按钮；否则，不发送提交按钮。也包括 type为 “image” 的 <code>&lt;input&gt;</code> 元素。</li>
+<li><code>&lt;select&gt;</code> 元素的值，就是选中的 <code>&lt;option&gt;</code> 元素的 value 特性的值。如果 <code>&lt;option&gt;</code> 元素没有 value 特性，则是 <code>&lt;option&gt;</code> 元素的文本值。</li>
+</ul>
+<p>在表单序列化过程中，一般不包含任何按钮字段，因为结果字符串很可能是通过其他方式提交的。除此之外的其他上述规则都应该遵循。以下就是 <strong>实现表单序列化</strong> 的代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">function serialize(form)&#123;</span><br><span class="line">  var parts = [],</span><br><span class="line">  field = null,</span><br><span class="line">    i,</span><br><span class="line">    len,</span><br><span class="line">    j,</span><br><span class="line">    optLen,</span><br><span class="line">    option,</span><br><span class="line">    optValue;</span><br><span class="line">  </span><br><span class="line">  for (i=0, len=form.elements.length; i &lt; len; i++)&#123;</span><br><span class="line">    field = form.elements[i];</span><br><span class="line">    </span><br><span class="line">    switch(field.type)&#123;</span><br><span class="line">      case &quot;select-one&quot;:</span><br><span class="line">      case &quot;select-multiple&quot;:</span><br><span class="line">      </span><br><span class="line">        if (field.name.length)&#123;</span><br><span class="line">          for (j=0, optLen = field.options.length; j &lt; optLen; j++)&#123;</span><br><span class="line">            option = field.options[j];</span><br><span class="line">            if (option.selected)&#123;</span><br><span class="line">              optValue = &quot;&quot;;</span><br><span class="line">              if (option.hasAttribute)&#123;</span><br><span class="line">                optValue = (option.hasAttribute(&quot;value&quot;) ?</span><br><span class="line">                option.value : option.text);</span><br><span class="line">              &#125; else &#123;</span><br><span class="line">                optValue = (option.attributes[&quot;value&quot;].specified ?</span><br><span class="line">                option.value : option.text);</span><br><span class="line">              &#125;</span><br><span class="line">              parts.push(encodeURIComponent(field.name) + &quot;=&quot; + encodeURIComponent(optValue));</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        break;</span><br><span class="line">      </span><br><span class="line">      case undefined: //字段集</span><br><span class="line">      case &quot;file&quot;: //文件输入</span><br><span class="line">      case &quot;submit&quot;: //提交按钮</span><br><span class="line">      case &quot;reset&quot;: //重置按钮</span><br><span class="line">      case &quot;button&quot;: //自定义按钮</span><br><span class="line">        break;</span><br><span class="line">        </span><br><span class="line">      case &quot;radio&quot;: //单选按钮</span><br><span class="line">      case &quot;checkbox&quot;: //复选框</span><br><span class="line">        if (!field.checked)&#123;</span><br><span class="line">          break;</span><br><span class="line">        &#125;</span><br><span class="line">      /* 执行默认操作 */</span><br><span class="line">      </span><br><span class="line">      default:</span><br><span class="line">        //不包含没有名字的表单字段</span><br><span class="line">        if (field.name.length)&#123;</span><br><span class="line">          parts.push(encodeURIComponent(field.name) + &quot;=&quot; + encodeURIComponent(field.value));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return parts.join(&quot;&amp;&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面这个 serialize() 函数首先定义了一个名为 parts 的数组，用于保存将要创建的字符串的各个部分。然后，通过 for 循环迭代每个表单字段，并将其保存在 field 变量中。在获得了一个字段的引用之后，使用 switch 语句检测其 type 属性。序列化过程中最麻烦的就是 <code>&lt;select&gt;</code> 元素，它可能是单选框也可能是多选框。为此，需要遍历控件中的每一个选项，并在相应选项被选中的情况下向数组中添加一个值。对于单选框，只可能有一个选中项，而多选框则可能有零或多个选中项。这里的代码适用于这两种选择框，至于可选项的数量则是由浏览器控制的。在找到一个选中项之后，需要确定使用什么值。如果不存在 value 特性，或者虽然存在该特性，但值为空字符串，都要使用选项的文本来代替。为检查这个特性，在 DOM 兼容的浏览器中需要使用 hasAttribute() 方法，而在 IE 中需要使用特性的 specified 属性。</p>
+<p>如果表单中包含 <code>&lt;fieldset&gt;</code> 元素，则该元素会出现在元素集合中，但没有 type 属性。因此，如果 type 属性未定义，则不需要对其进行序列化。同样，对于各种按钮以及文件输入字段也是如此（文件输入字段在表单提交过程中包含文件的内容；但是，这个字段是无法模仿的，序列化时一般都要忽略）。对于单选按钮和复选框，要检查其 checked 属性是否被设置为 false ，如果是则退出 switch 语句。如果 checked 属性为 true ，则继续执行 default 语句，即将当前字段的名称和值进行编码，然后添加到 parts 数组中。函数的最后一步，就是使用 join() 格式化整个字符串，也就是用和号来分隔每一个表单字段。</p>
+<p>最后， serialize() 函数会以查询字符串的格式输出序列化之后的字符串。当然，要序列化成其他格式，也不是什么困难的事。</p>
+<h2 id="富文本编辑"><a href="#富文本编辑" class="headerlink" title="富文本编辑"></a>富文本编辑</h2><p>富文本编辑，又称为 WYSIWYG（What You See Is What You Get，所见即所得）。<strong>在网页中编辑富文本内容，是人们对 Web 应用程序最大的期待之一</strong> 。虽然也没有规范，但在 IE 最早引入的这一功能基础上，已经出现了事实标准。而且，Opera、Safari、Chrome 和 Firefox 都已经支持这一功能。这一技术的本质，就是在页面中嵌入一个包含空 HTML 页面的 iframe 。通过设置 designMode 属性，这个空白的 HTML 页面可以被编辑，而编辑对象则是该页面 <code>&lt;body&gt;</code> 元素的 HTML 代码。 designMode 属性有两个可能的值： “off” （默认值）和 “on” 。在设置为 “on” 时，整个文档都会变得可以编辑（显示插入符号），然后就可以像使用字处理软件一样，通过键盘将文本内容加粗、变成斜体，等等。</p>
+<p><strong>可以给 iframe 指定一个非常简单的 HTML 页面作为其内容来源</strong> 。例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Blank Page for Rich Text Editing<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这个页面在 iframe 中可以像其他页面一样被加载。<strong>要让它可以编辑，必须要将 designMode 设置为 “on”</strong> ，但 <strong>只有在页面完全加载之后才能设置这个属性</strong> 。因此，在包含页面中，<strong>需要使用 onload 事件处理程序来在恰当的时刻设置 designMode </strong> ，如下面的例子所示：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">name</span>=<span class="string">"richedit"</span> <span class="attr">style</span>=<span class="string">"height:100px;width:100px;"</span> <span class="attr">src</span>=<span class="string">"blank.htm"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  EventUtil.addHandler(<span class="built_in">window</span>, <span class="string">"load"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    frames[<span class="string">"richedit"</span>].document.designMode = <span class="string">"on"</span>;</span></span><br><span class="line"><span class="undefined">  &#125;);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>等到以上代码执行之后，你就会在页面中看到一个类似文本框的可编辑区字段。这个区字段具有与其他网页相同的默认样式；不过，<strong>通过为空白页面应用 CSS 样式，可以修改可编辑区字段的外观</strong> 。</p>
+<h3 id="使用-contenteditable-属性"><a href="#使用-contenteditable-属性" class="headerlink" title="使用 contenteditable 属性"></a>使用 contenteditable 属性</h3><p>另一种编辑富文本内容的方式是使用名为 <strong>contenteditable 的特殊属性</strong> ，这个属性也是由 IE 最早实现的。<strong>可以把 contenteditable 属性应用给页面中的任何元素，然后用户立即就可以编辑该元素</strong> 。</p>
+<p>这种方法之所以受到欢迎，是因为它不需要 iframe 、空白页和 JavaScript，只要为元素设置 contenteditable 属性即可。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"editable"</span> <span class="attr">id</span>=<span class="string">"richedit"</span> <span class="attr">contenteditable</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样，元素中包含的任何文本内容就都可以编辑了，就好像这个元素变成了 <textarea> 元素一样。通过在这个元素上设置 contenteditable 属性，也能打开或关闭编辑模式。</textarea></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">"richedit"</span>);</span><br><span class="line">div.contentEditable = <span class="string">"true"</span>;</span><br></pre></td></tr></table></figure>
+<p>contenteditable 属性有三个可能的值： <strong>“true” 表示打开</strong> 、 <strong>“false” 表示关闭</strong> ， <strong>“inherit” 表示从父元素那里继承</strong>（因为可以在 contenteditable 元素中创建或删除元素）。支持 contenteditable属性的元素有 IE、Firefox、Chrome、Safari 和 Opera。在移动设备上，支持 contenteditable 属性的浏览器有 iOS 5+中的 Safari 和 Android 3+中的 WebKit。</p>
+<h3 id="操作富文本"><a href="#操作富文本" class="headerlink" title="操作富文本"></a>操作富文本</h3><p><strong>与富文本编辑器交互的主要方式，就是使用 document.execCommand()</strong> 。这个方法可以对文档执行预定义的命令，而且可以应用大多数格式。可以为 <strong>document.execCommand() 方法</strong> 传递 3 个参数：<strong>要执行的命令名称</strong> 、<strong>表示浏览器是否应该为当前命令提供用户界面的一个布尔值</strong> 和 <strong>执行命令必须的一个值</strong> （如果不需要值，则传递 null ）。<strong>为了确保跨浏览器的兼容性，第二个参数应该始终设置为 false</strong>  ，因为 Firefox 会在该参数为 true 时抛出错误。</p>
+<p>不同浏览器支持的预定义命令也不一样。下表列出了那些被支持最多的命令。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-form-script/%E9%A2%84%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4.png" alt="预定义命令"></p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-form-script/%E9%A2%84%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4%EF%BC%88%E7%BB%AD%EF%BC%89.png" alt="预定义命令（续）"></p>
+<p>其中，与剪贴板有关的命令在不同浏览器中的差异极大。Opera 根本没有实现任何剪贴板命令，而 Firefox 在默认情况下会禁用它们（必须修改用户的首选项来启用它们）。Safari 和 Chrome 实现了 cut 和 copy ，但没有实现 paste 。不过，即使不能通过 document.execCommand() 来执行这些命令，但却可以通过相应的快捷键来实现同样的操作。</p>
+<p><strong>可以在任何时候使用这些命令来修改富文本区域的外观</strong> ，如下面的例子所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//转换粗体文本</span></span><br><span class="line">frames[<span class="string">"richedit"</span>].document.execCommand(<span class="string">"bold"</span>, <span class="literal">false</span>, <span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//转换斜体文本</span></span><br><span class="line">frames[<span class="string">"richedit"</span>].document.execCommand(<span class="string">"italic"</span>, <span class="literal">false</span>, <span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建指向 www.wrox.com 的链接</span></span><br><span class="line">frames[<span class="string">"richedit"</span>].document.execCommand(<span class="string">"createlink"</span>, <span class="literal">false</span>, <span class="string">"http://www.wrox.com"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//格式化为 1 级标题</span></span><br><span class="line">frames[<span class="string">"richedit"</span>].document.execCommand(<span class="string">"formatblock"</span>, <span class="literal">false</span>, <span class="string">"&lt;h1&gt;"</span>);</span><br></pre></td></tr></table></figure>
+<p>同样的方法也适用于页面中 contenteditable 属性为 “true” 的区块，<strong>只要把对框架的引用替换成当前窗口的 document 对象即可</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//转换粗体文本</span></span><br><span class="line"><span class="built_in">document</span>.execCommand(<span class="string">"bold"</span>, <span class="literal">false</span>, <span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//转换斜体文本</span></span><br><span class="line"><span class="built_in">document</span>.execCommand(<span class="string">"italic"</span>, <span class="literal">false</span>, <span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建指向 www.wrox.com 的链接</span></span><br><span class="line"><span class="built_in">document</span>.execCommand(<span class="string">"createlink"</span>, <span class="literal">false</span>, <span class="string">"http://www.wrox.com"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//格式化为 1 级标题</span></span><br><span class="line"><span class="built_in">document</span>.execCommand(<span class="string">"formatblock"</span>, <span class="literal">false</span>, <span class="string">"&lt;h1&gt;"</span>);</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，虽然所有浏览器都支持这些命令，但这些命令所产生的 HTML 仍然有很大不同。例如，执行 bold 命令时，IE 和 Opera 会使用 <code>&lt;strong&gt;</code> 标签包围文本，Safari 和 Chrome 使用 <code>&lt;b&gt;</code> 标签，而 Firefox 则使用 <code>&lt;span&gt;</code> 标签。由于各个浏览器实现命令的方式不同，加上它们通过 innerHTML 实现转换的方式也不一样，因此不能指望富文本编辑器会产生一致的 HTML。</p>
+<p>除了命令之外，还有一些与命令相关的方法。第一个方法就是 queryCommandEnabled() ，可以用它来检测是否可以针对当前选择的文本，或者当前插入字符所在位置执行某个命令。这个方法接收一个参数，即要检测的命令。如果当前编辑区域允许执行传入的命令，这个方法返回 true ，否则返回 false 。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = frames[<span class="string">"richedit"</span>].document.queryCommandEnabled(<span class="string">"bold"</span>);</span><br></pre></td></tr></table></figure>
+<p>如果能够对当前选择的文本执行 “bold” 命令，以上代码会返回 true 。需要注意的是， queryCommandEnabled() 方法返回 true ，并不意味着实际上就可以执行相应命令，而只能说明对当前选择的文本执行相应命令是否合适。例如，Firefox 在默认情况下会禁用剪切操作，但执行 queryCommandEnabled(“cut”) 也可能会返回 true 。</p>
+<p>另外， queryCommandState() 方法用于确定是否已将指定命令应用到了选择的文本。例如，要确定当前选择的文本是否已经转换成了粗体，可以使用如下代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> isBold = frames[<span class="string">"richedit"</span>].document.queryCommandState(<span class="string">"bold"</span>);</span><br></pre></td></tr></table></figure>
+<p>如果此前已经对选择的文本执行了 “bold” 命令，那么上面的代码会返回 true 。一些功能全面的富文本编辑器，正是利用这个方法来更新粗体、斜体等按钮的状态的。<br>最后一个方法是 queryCommandValue() ，用于取得执行命令时传入的值（即前面例子中传给 document.execCommand() 的第三个参数）。例如，在对一段文本应用 “fontsize” 命令时如果传入了 7 ，那么下面的代码就会返回 “7” ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fontSize = frames[<span class="string">"richedit"</span>].document.queryCommandValue(<span class="string">"fontsize"</span>);</span><br></pre></td></tr></table></figure>
+<p>通过这个方法可以确定某个命令是怎样应用到选择的文本的，可以据以确定再对其应用后续命令是否合适。</p>
+<h3 id="富文本选区"><a href="#富文本选区" class="headerlink" title="富文本选区"></a>富文本选区</h3><p>在富文本编辑器中，使用框架（ iframe ）的 getSelection() 方法，可以确定实际选择的文本。这个方法是 window 对象和 document 对象的属性，调用它会返回一个表示当前选择文本的 Selection 对象。每个 Selection 对象都有下列属性。</p>
+<ul>
+<li>anchorNode ：选区起点所在的节点。</li>
+<li>anchorOffset ：在到达选区起点位置之前跳过的 anchorNode 中的字符数量。</li>
+<li>focusNode ：选区终点所在的节点。</li>
+<li>focusOffset ： focusNode 中包含在选区之内的字符数量。</li>
+<li>isCollapsed ：布尔值，表示选区的起点和终点是否重合。</li>
+<li>rangeCount ：选区中包含的 DOM 范围的数量。</li>
+</ul>
+<p>Selection 对象的这些属性并没有包含多少有用的信息。好在，该对象的下列方法提供了更多信息，并且支持对选区的操作。  </p>
+<ul>
+<li>addRange(range) ：将指定的 DOM 范围添加到选区中。</li>
+<li>collapse(node, offset) ：将选区折叠到指定节点中的相应的文本偏移位置。</li>
+<li>collapseToEnd() ：将选区折叠到终点位置。</li>
+<li>collapseToStart() ：将选区折叠到起点位置。</li>
+<li>containsNode(node) ：确定指定的节点是否包含在选区中。</li>
+<li>deleteFromDocument() ：从文档中删除选区中的文本，与 document.execCommand(“delete”,false, null) 命令的结果相同。</li>
+<li>extend(node, offset) ：通过将 focusNode 和 focusOffset 移动到指定的值来扩展选区。</li>
+<li>getRangeAt(index) ：返回索引对应的选区中的 DOM 范围。</li>
+<li>removeAllRanges() ：从选区中移除所有 DOM 范围。实际上，这样会移除选区，因为选区中至少要有一个范围。</li>
+<li>reomveRange(range) ：从选区中移除指定的 DOM 范围。</li>
+<li>selectAllChildren(node) ：清除选区并选择指定节点的所有子节点。</li>
+<li>toString() ：返回选区所包含的文本内容。</li>
+</ul>
+<p>Selection 对象的这些方法都极为实用，它们利用了（第 12 章讨论过的）DOM 范围来管理选区。由于可以直接操作选择文本的 DOM 表现，因此访问 DOM范围与使用 execCommand() 相比，能够对富文本编辑器进行更加细化的控制。下面来看一个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> selection = frames[<span class="string">"richedit"</span>].getSelection();</span><br><span class="line"></span><br><span class="line"><span class="comment">//取得选择的文本</span></span><br><span class="line"><span class="keyword">var</span> selectedText = selection.toString();</span><br><span class="line"></span><br><span class="line"><span class="comment">//取得代表选区的范围</span></span><br><span class="line"><span class="keyword">var</span> range = selection.getRangeAt(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//突出显示选择的文本</span></span><br><span class="line"><span class="keyword">var</span> span = frames[<span class="string">"richedit"</span>].document.createElement(<span class="string">"span"</span>);</span><br><span class="line">span.style.backgroundColor = <span class="string">"yellow"</span>;</span><br><span class="line">range.surroundContents(span);</span><br></pre></td></tr></table></figure>
+<p>以上代码会为富文本编辑器中被选择的文本添加黄色的背景。这里使用了默认选区中的 DOM 范围，通过 surroundContents() 方法将选区添加到了带有黄色背景的 <span> 元素中。</span></p>
+<p>HTML5 将 getSelection() 方法纳入了标准，而且 IE9、Firefox、Safari、Chrome 和 Opera 8 都实现了它。由于历史原因，在 Firefox 3.6+中调用 document.getSelection() 会返回一个字符串。为此，可以在 Firefox 3.6+中改作调用 window.getSelection() ，从而返回 selection 对象。Firefox 8 修复了 document.getSelection() 的 bug，能返回与 window.getSelection() 相同的值。</p>
+<p>IE8 及更早的版本不支持 DOM范围，但我们可以通过它支持的 selection 对象操作选择的文本。IE 中的 selection 对象是 document 的属性，本章前面曾经讨论过。要取得富文本编辑器中选择的文本，首先必须创建一个文本范围（请参考第 12 章中的相关内容），然后再像下面这样访问其 text 属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> range = frames[<span class="string">"richedit"</span>].document.selection.createRange();</span><br><span class="line"><span class="keyword">var</span> selectedText = range.text;</span><br></pre></td></tr></table></figure>
+<p>虽然使用 IE 的文本范围来执行 HTML 操作并不像使用 DOM 范围那么可靠，但也不失为一种有效的途径。要像前面使用 DOM 范围那样实现相同的文本高亮效果，可以组合使用 htmlText 属性和 pasteHTML() 方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> range = frames[<span class="string">"richedit"</span>].document.selection.createRange();</span><br><span class="line">range.pasteHTML(<span class="string">"&lt;span style=\"background-color:yellow\"&gt; "</span> + range.htmlText + <span class="string">"&lt;/span&gt;"</span>);</span><br></pre></td></tr></table></figure>
+<p>以上代码通过 htmlText 取得了当前选区中的 HTML，然后将其放在了一对 <span> 标签中，最后又使用 pasteHTML() 将结果重新插入到了选区中。</span></p>
+<h3 id="表单与富文本"><a href="#表单与富文本" class="headerlink" title="表单与富文本"></a>表单与富文本</h3><p>由于富文本编辑是使用 iframe 而非表单控件实现的，因此从技术上说，富文本编辑器并不属于表单。换句话说，富文本编辑器中的 HTML 不会被自动提交给服务器，而需要我们手工来提取并提交 HTML。为此，通常可以添加一个隐藏的表单字段，让它的值等于从 iframe 中提取出的 HTML。具体来说，就是在提交表单之前，从 iframe 中提取出 HTML，并将其插入到隐藏的字段中。下面就是通过表单的 onsubmit 事件处理程序实现上述操作的代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EventUtil.addHandler(form, <span class="string">"submit"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  event = EventUtil.getEvent(event);</span><br><span class="line">  <span class="keyword">var</span> target = EventUtil.getTarget(event);</span><br><span class="line"></span><br><span class="line">  target.elements[<span class="string">"comments"</span>].value = frames[<span class="string">"richedit"</span>].document.body.innerHTML;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在此，我们通过文档主体的 innerHTML 属性取得了 iframe 中的 HTML，然后将其插入到了名为 “comments” 的表单字段中。这样可以确保恰好在提交表单之前填充 “comments” 字段。如果你想在代码中通过 submit() 来手工提交表单，那么一定不要忘记事先执行上面的操作。对于 contenteditable 元素，也可以执行类似操作。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EventUtil.addHandler(form, <span class="string">"submit"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  event = EventUtil.getEvent(event);</span><br><span class="line">  <span class="keyword">var</span> target = EventUtil.getTarget(event);</span><br><span class="line">  </span><br><span class="line">  target.elements[<span class="string">"comments"</span>].value = <span class="built_in">document</span>.getElementById(<span class="string">"richedit"</span>).innerHTML;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>虽然 HTML 和 Web 应用自诞生以来已经发生了天翻地覆的变化，但 Web 表单相对却没有什么改变。使用 JavaScript 可以增强已有的表单字段，从而创造出新的功能，或者提升表单的易用性。为此，表单、表单字段都引入了相应的属性和方法，以便 JavaScript 使用。下面是本章介绍的几个概念。</p>
+<ul>
+<li>可以使用一些标准或非标准的方法选择文本框中的全部或部分文本。</li>
+<li>大多数浏览器都采用了 Firefox 操作选择文本的方式，但 IE 仍然坚持自己的实现。</li>
+<li>在文本框的内容变化时，可以通过侦听键盘事件以及检测插入的字符，来允许或禁止用户输入某些字符。除 Opera 之外的所有浏览器都支持剪贴板事件，包括 copy 、 cut 和 paste 。其他浏览器在实现剪贴板事件时也可以分为几种不同的情况。</li>
+<li>IE、Firefox、Chrome 和 Safari 允许通过 JavaScript 访问剪贴板中的数据，而 Opera 不允许这种访问方式。</li>
+<li>即使是 IE、Chrome 和 Safari，它们各自的实现方式也不相同。</li>
+<li>Firefox、Safari 和 Chrome 只允许在 paste 事件发生时读取剪贴板数据，而 IE 没有这个限制。</li>
+<li>Firefox、Safari 和 Chrome 只允许在发生剪贴板事件时访问与剪贴板相关的信息，而 IE 允许在任何时候访问相关信息。</li>
+</ul>
+<p>在文本框内容必须限制为某些特定字符的情况下，就可以利用剪贴板事件来屏蔽通过粘贴向文本框中插入内容的操作。</p>
+<p>选择框也是经常要通过 JavaScript 来控制的一个表单字段。由于有了 DOM，对选择框的操作比以前要方便多了。添加选项、移除选项、将选项从一个选择框移动到另一个选择框，甚至对选项进行排序等操作，都可以使用标准的 DOM技术来实现。</p>
+<p>富文本编辑功能是通过一个包含空 HTML 文档的 iframe 元素来实现的。通过将空文档的 designMode 属性设置为 “on” ，就可以将该页面转换为可编辑状态，此时其表现如同字处理软件。另外，也可以将某个元素设置为 contenteditable 。在默认情况下，可以将字体加粗或者将文本转换为斜体，还可以使用剪贴板。JavaScript 通过使用 execCommand() 方法也可以实现相同的一些功能。另外，使用 queryCommandEnabled() 、 queryCommandState() 和 queryCommandValue() 方法则可以取得有关<br>文本选区的信息。由于以这种方式构建的富文本编辑器并不是一个表单字段，因此在将其内容提交给服务器之前，必须将 iframe 或 contenteditable 元素中的 HTML 复制到一个表单字段中。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/26/JavaScript-event/" rel="next" title="《JavaScript 高级程序设计》学习笔记-事件">
+                <i class="fa fa-chevron-left"></i> 《JavaScript 高级程序设计》学习笔记-事件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/27/JavaScript-canvas-drawing/" rel="prev" title="《JavaScript 高级程序设计》学习笔记-使用 Canvas 绘图">
+                《JavaScript 高级程序设计》学习笔记-使用 Canvas 绘图 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="songxingguo">
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">122</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#表单脚本"><span class="nav-number">1.</span> <span class="nav-text">表单脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#表单的基础知识"><span class="nav-number">1.1.</span> <span class="nav-text">表单的基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#提交表单"><span class="nav-number">1.1.1.</span> <span class="nav-text">提交表单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重置表单"><span class="nav-number">1.1.2.</span> <span class="nav-text">重置表单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单字段"><span class="nav-number">1.1.3.</span> <span class="nav-text">表单字段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#共有的表单字段属性"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">共有的表单字段属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#共有的表单字段方法"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">共有的表单字段方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#共有的表单字段事件"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">共有的表单字段事件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本框脚本"><span class="nav-number">1.2.</span> <span class="nav-text">文本框脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择文本"><span class="nav-number">1.2.1.</span> <span class="nav-text">选择文本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#选择（-select-）事件"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">选择（ select ）事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取得选择的文本"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">取得选择的文本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选择部分文本"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">选择部分文本</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤输入"><span class="nav-number">1.2.2.</span> <span class="nav-text">过滤输入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#屏蔽字符"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">屏蔽字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作剪贴板"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">操作剪贴板</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动切换焦点"><span class="nav-number">1.2.3.</span> <span class="nav-text">自动切换焦点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-约束验证API"><span class="nav-number">1.2.4.</span> <span class="nav-text">HTML5 约束验证API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#必填字段"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">必填字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他输入类型"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">其他输入类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数值范围"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">数值范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入模式"><span class="nav-number">1.2.4.4.</span> <span class="nav-text">输入模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检测有效性"><span class="nav-number">1.2.4.5.</span> <span class="nav-text">检测有效性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#禁用验证"><span class="nav-number">1.2.4.6.</span> <span class="nav-text">禁用验证</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择框脚本"><span class="nav-number">1.3.</span> <span class="nav-text">选择框脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择选项"><span class="nav-number">1.3.1.</span> <span class="nav-text">选择选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加选项"><span class="nav-number">1.3.2.</span> <span class="nav-text">添加选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移除选项"><span class="nav-number">1.3.3.</span> <span class="nav-text">移除选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移动和重排选项"><span class="nav-number">1.3.4.</span> <span class="nav-text">移动和重排选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单序列化"><span class="nav-number">1.4.</span> <span class="nav-text">表单序列化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#富文本编辑"><span class="nav-number">1.5.</span> <span class="nav-text">富文本编辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-contenteditable-属性"><span class="nav-number">1.5.1.</span> <span class="nav-text">使用 contenteditable 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作富文本"><span class="nav-number">1.5.2.</span> <span class="nav-text">操作富文本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#富文本选区"><span class="nav-number">1.5.3.</span> <span class="nav-text">富文本选区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单与富文本"><span class="nav-number">1.5.4.</span> <span class="nav-text">表单与富文本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.6.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
