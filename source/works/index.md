@@ -50,11 +50,11 @@ date: 2018-06-02 10:23:12
   
  <iframe src="https://songxingguo.github.io/canvas-tree/" width="100%" height="300" frameborder="0" align="middle" ></iframe>
  
-[作品展示](https://songxingguo.github.io/works/)
+[学习成果展示](https://songxingguo.github.io/learning/)
 
-> 该作品用于作品展示的主页面，现在还在开发中,准备采用 **HTML5** + **CSS3** + **JavaSript** 进行开发，并 **兼容移动端** 查看。
+> 该作品用于学习成果展示的主页面，,准备采用 **HTML5** + **CSS3** + **JavaSript** 进行开发，并 **兼容移动端** 查看。
 
-<iframe src="https://songxingguo.github.io/works/" width="100%" height="500" frameborder="0" align="middle" ></iframe>
+<iframe src="https://songxingguo.github.io/learning/" width="100%" height="500" frameborder="0" align="middle" ></iframe>
 
 <!-- <iframe src="https://songxingguo.github.io/FruitShop/" width="100%" height="500" frameborder="0" align="middle" ></iframe> -->
 
