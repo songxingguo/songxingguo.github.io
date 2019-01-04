@@ -480,28 +480,27 @@ date: 2018-07-25 12:04:00
         
                calcTaxES5(50000, "Smith", "Johnson", "McDonald");
                calcTaxES5(750000, "Smith", "Olson", "Clinton");
-           ```
+          ```
+       ```
+          //ES6 and rest operator
+          function calcTaxdES6(income, ...customers) {
+          console.log("ES6. Calculating tax for customers with the income ",
+          income);
 
+          customers.forEach(function(customer) {
+          console.log("Processing", customer);
+          });
+          }
 
-               //ES6 and rest operator
-               function calcTaxdES6(income, ...customers) {
-                 console.log("ES6. Calculating tax for customers with the income ", 
-                    income);
-    
-                 customers.forEach(function(customer) {
-                    console.log("Processing", customer);
-                 });
-               }
-    
-               calcTaxdES6(50000, "Smith", "Johnson", "McDonald");
-               calcTaxdES6(750000, "Olson", "Clinton");
-    
-            </script>
-    
-            </body>
-            </html>
-           ```
-         calcTaxEs5()和calcTaxEs6()函数产生相同的结果：
+          calcTaxdES6(50000, "Smith", "Johnson", "McDonald");
+          calcTaxdES6(750000, "Olson", "Clinton");
+
+          </script>
+
+          </body>
+          </html>
+        ```
+        calcTaxEs5()和calcTaxEs6()函数产生相同的结果：
           
            ```
              ES5. Calculating tax for customers with the income  50000
@@ -520,11 +519,12 @@ date: 2018-07-25 12:04:00
              Processing Olson
              Processing Clinton
           ```
-          不过，它们在处理customers时还是有差异的，因为arguments对象并不是一个真正的数组，在ES5中不得不使用slice()和call()方法 **创建一个数组** ，并从arguments中的第二个元素开始提取顾客姓名，放入到新创建的数组中。
+
+       不过，它们在处理customers时还是有差异的，因为arguments对象并不是一个真正的数组，在ES5中不得不使用slice()和call()方法 **创建一个数组** ，并从arguments中的第二个元素开始提取顾客姓名，放入到新创建的数组中。
           
-          ES6则不需要使用这些技巧，rest操作符能够返回一个正常的customers数组。rest参数能 **让代码更简单** ，**可读性更强** 。
+       ES6则不需要使用这些技巧，rest操作符能够返回一个正常的customers数组。rest参数能 **让代码更简单** ，**可读性更强** 。
           
-          如果 **rest操作符** 能够把 **变长参数转换为数组** ，那么 **扩展运算符** 则执行相反的操作； **把一个数组分解到参数列表中** 。假设需要编写一个函数，计算给定收入的三名顾客的税费。这一次，**参数的长度是固定的** ，但是顾客被存放到要给数组中。可以使用扩展运算符——三个点（...）, **把数组分解到独立参数的列表中** 。
+       如果 **rest操作符** 能够把 **变长参数转换为数组** ，那么 **扩展运算符** 则执行相反的操作； **把一个数组分解到参数列表中** 。假设需要编写一个函数，计算给定收入的三名顾客的税费。这一次，**参数的长度是固定的** ，但是顾客被存放到要给数组中。可以使用扩展运算符——三个点（...）, **把数组分解到独立参数的列表中** 。
          
           ```
             <!DOCTYPE html>
