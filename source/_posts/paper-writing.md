@@ -270,15 +270,27 @@ date: 2018-07-11 08:01:00
 - #### 设置参考文献上标以及参考文献序号
 
   1、阅读全文，在需要参考文献上标的地方依此添加上标。
+  
+  首先选中 `内容` ，然后点击下图中的图标。
+  
+  ![添加上标](https://graphbed.qiniu.songxingguo.com/paper-writing/%E6%B7%BB%E5%8A%A0%E4%B8%8A%E6%A0%87.png)
 
-  2、根据上标序号以及内容添加相应的参考文献信息。
+  2、根据上标序号以及内容添加相应的参考文献信息，添加参考文献序号。
+  
+  首先将 `鼠标放在参考文献开始处`，然后选择 `自定义编号列表`，如下图 `设置编号格式`。
+  
+  ![参考文献序号](https://graphbed.qiniu.songxingguo.com/paper-writing/%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E5%BA%8F%E5%8F%B7.png)
   
   3、使用 [知网](http://www.cnki.net/) 导出参考文献。
-
----
+  
+  首先 `勾选文献`，然后点击 `导出参考文献`。
+  
+  ![导出参考文献](https://graphbed.qiniu.songxingguo.com/paper-writing/%E5%AF%BC%E5%87%BA%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE.png)
 
 ---
 - #### 去除红线波浪线
+
+  [去除红线波浪线](https://jingyan.baidu.com/article/b24f6c822830b986bfe5da0a.html)
 
 ---
 ### 总结
