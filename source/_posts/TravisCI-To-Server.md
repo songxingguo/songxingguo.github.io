@@ -110,6 +110,8 @@ env:
     - REMOTE_SERVER: root@47.100.232.2
 ```
 
+> 注意： **不要** 把私钥推送到了代码仓库。
+
 ## 写在最后
 
 [Travis CI用来持续集成你的项目](http://www.cnblogs.com/zqzjs/p/6119750.html)
