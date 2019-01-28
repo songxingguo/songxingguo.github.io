@@ -280,3 +280,62 @@ CSS3 结构伪类选择器
 ```css
 :not(footer){}
 ```
+## 伪元素
+
+伪元素可以用于定位文档中包含的文本，但无法在文档树中定位。
+
+> CSS3 将伪元素调整为 双冒号。
+
+### 伪元素 ::first-letter
+
+“:first-letter” 用于选择文本块的第一个字母，除非在同一行中包含一些其他元素。
+例如下沉字母或首字母。
+
+### 伪元素 ::first-line
+
+“::first-line” 用来匹配元素的第一行文本，匹配 block、inline-block、tablee-caption、table-cell 等级别元素的第一行。
+
+### 伪元素 ::before 和 ::after
+
+“::before” 和 “::after”不是指存在于标记中的内容，而是可以插入额外内容的位置。尽管生成的内容不会成为 DOM 的一部分，但它同样可以设置样式。
+
+> 要为伪元素生成内容，还需要配合 content 属性。
+
+如：
+
+在页面上所有外部链接之后的括号中附加它们指向的 URL。
+
+```css
+a[herf^=http]::after {
+  content:"("attr(herf)")"
+}
+```
+### 伪元素 ::selection
+
+“::selection” 是用来匹配突出显示的文本。
+
+[菜鸟案例](http://www.runoob.com/try/try.php?filename=trycss3_selection)
+
+## 属性选择器
+
+属性选择器可以基于元素的属性来匹配元素，支持基于模式匹配来定位元素。
+
+### 属性选择器语法
+
+![属性选择器语法](https://graphbed.qiniu.songxingguo.com/CSS3-selector/%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E5%99%A8%E8%AF%AD%E6%B3%95.png)
+
+![属性选择器语法（续）](https://graphbed.qiniu.songxingguo.com/CSS3-selector/%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E5%99%A8%E8%AF%AD%E6%B3%95%EF%BC%88%E7%BB%AD%EF%BC%89.png)
+
+CSS3 中常见的通配符
+
+![CSS3 中常见的通配符](https://graphbed.qiniu.songxingguo.com/CSS3-selector/CSS3%20%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E9%80%9A%E9%85%8D%E7%AC%A6.png)
+
+如：
+
+多属性选择元素
+
+```css
+a[id][title]{background-color: red;}
+```
+> E[attr=val] 选择器中，属性和属性值必须完全匹配。例如只有a[class="links item"]{...} 才能匹配。
+
