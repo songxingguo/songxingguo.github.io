@@ -34,7 +34,7 @@ date: 2018-06-02 10:23:12
 > 该作品用于将平时生活中所遇到的 **优秀 UI** ，采用微信小程序的形式展示出来。
 
 <center>
-![WeUI库](https://github.com/songxingguo/WeUI/blob/master/image/WeUI.jpg)</center>
+![WeUI库](https://raw.githubusercontent.com/songxingguo/WeUI/master/image/WeUI.jpg)</center>
 
 [海马特效](https://songxingguo.github.io/canvas-hippocampus/)
 
