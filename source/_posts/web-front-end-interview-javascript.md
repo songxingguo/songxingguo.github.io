@@ -525,6 +525,29 @@ document.getElementById("debounce").onscroll = function(){
 
 [原型 / 构造函数 / 实例]: https://juejin.im/post/5c64d15d6fb9a049d37f9c20
 
+### 执行上下文(EC)
+
+> 执行上下文可以简单理解为一个对象。
+
+#### 包含三个部分：
+
+- 变量对象（VO）
+- 作用域链（词法作用域）
+- this 指向
+
+#### 类型
+
+- 全局执行上下文
+- 函数执行上下文
+- eval执行上下文
+
+#### 代码执行过程
+
+- 创建 全局上下文 (global EC)
+- 全局执行上下文 (caller) 逐行 自上而下 执行。遇到函数时，函数执行上下文 (callee) 被push到执行栈顶层。
+- 函数执行上下文被激活，成为 active EC, 开始执行函数中的代码，caller 被挂起。
+- 函数执行完后，callee 被pop移除出执行栈，控制权交还全局上下文 (caller)，继续执行。
+
 ### 即时函数
 
 ### 浅拷贝和深拷贝
