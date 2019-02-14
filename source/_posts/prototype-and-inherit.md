@@ -429,3 +429,64 @@ SubType.prototype.sayAge = function() {
 ```
 
 ## apply()、 call() 以及 bind()
+
+
+### 相同之处
+
+- call()、apply()、bind() 都是用来重定义 this ，改变 this 指向。
+
+- 每个函数都包含两个非继承而来的方法： apply()、 call() 和 bind()。
+
+### 不同之处
+
+**返回值的区别**
+
+![返回值的区别](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-html-css/call%28%29%E3%80%81apply%28%29%E3%80%81bind%28%29%20%E4%B8%89%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB.png)
+
+```js
+obj.myFun.call(db)；　　　  //德玛年龄99
+obj.myFun.apply(db);　　　 //德玛年龄99
+obj.myFun.bind(db)();　　　//德玛年龄99
+```
+> bind() 返回的是一个新的函数，你必须调用它才会被执行。
+
+**参数的区别**
+
+![返回值的区别](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-html-css/call%28%29%E3%80%81apply%28%29%E3%80%81bind%28%29%20%E4%B8%89%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB.png)
+
+```js
+obj.myFun.call(db,'成都','上海')；　　　　 //德玛 年龄 99  来自 成都去往上海
+obj.myFun.apply(db,['成都','上海']);        //德玛 年龄 99  来自 成都去往上海  
+obj.myFun.bind(db,'成都','上海')();         //德玛 年龄 99  来自 成都去往上海
+obj.myFun.bind(db,['成都','上海'])();　　 //德玛 年龄 99  来自 成都,上海去往undefined
+```
+
+> 第一个参数都是 this 的指向对象。
+
+> 第二个参数 apply() 只需要传入数组，而在使用 bind() 和 call() 方法时，传递给函数的参数必须逐个列举出来。
+
+### 作用
+
+- 在特定的作用域中调用函数 ，实际上等于 **设置函数体内 this 对象的值** 。
+
+- 它们真正强大的地方是 **能够扩充函数赖以运行的作用域** 。
+
+- 对象不需要与方法有任何耦合关系 。
+
+### 传参与返回值
+
+**apply()**
+
+接收两个参数：一个是 在其中运行函数的作用域 ，另一个是 **参数数组** 。
+
+**call()**
+
+接收两个参数：一个是 在其中运行函数的作用域 ，另一个是 **参数列表** 。
+
+**bind()** 
+
+接收两个参数：一个是 在其中运行函数的作用域 ，另一个是 **参数列表** ,并 **返回函数**。
+
+> 创建一个函数的实例 ，其 this 值会被绑定到传给 bind() 函数的值 。
+
+来自—— [javascript中call()、apply()、bind()的用法终于理解](https://www.cnblogs.com/Shd-Study/archive/2017/03/16/6560808.html)
