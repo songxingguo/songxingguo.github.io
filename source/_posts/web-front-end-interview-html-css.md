@@ -288,7 +288,27 @@ date: 2018-08-06 14:56:00
       margin: auto;
     }
     ```
- 
+- #### 居中布局
+
+  - 水平居中
+
+    - 行内元素: text-align: center
+    - 块级元素: margin: 0 auto
+    - absolute + transform
+    - flex + justify-content: center
+
+  - 垂直居中
+
+    - line-height: height
+    - absolute + transform
+    - flex + align-items: center
+    - table
+
+  - 水平垂直居中
+
+    - absolute + transform
+    - flex + justify-content + align-items
+
 来自—— **曹刘阳.编写高质量代码：Web前端开发修炼之道[M].机械工业出版社，2016.6.（4.7.9 居中）**，**张鑫：CSS世界[M].人民邮电出版社，2017.4.（6.8.3 absolute 的 margin: auto 居中 ）**
 
 
@@ -468,14 +488,12 @@ date: 2018-08-06 14:56:00
 
   > **float** 的 **4** 种属性值：**left** 、**right** 、**none**（默认值） 、**inherit** 。
 
-  ![float属性值]
-
-<!-- | 值      |    描述| 
+<!--| 值      |    描述| 
 | :-------- | :--------| 
 | left	| 元素 **向左浮动** 。 | 
 | right	| 元素 **向右浮动** 。 |
 | none	| **默认值** 。元素 **不浮动** ，并会 **显示在其在文本中出现的位置** 。 | 
-| inherit	| 规定应该 **从父元素继承 float 属性的值** 。 | -->
+| inherit	| 规定应该 **从父元素继承 float 属性的值** 。 |-->
 
 - **浮动的“副作用”**
 
@@ -500,9 +518,7 @@ date: 2018-08-06 14:56:00
   2. 使用 clear: both 清除浮动。
   
      > clear属性规定元素的哪一侧不允许其他的浮动元素。如果声明左侧或者右侧不允许浮动，会使元素的上下边框边界刚好在该边上浮动元素的下外边距边距之下。
-     
-     ![clear属性值]
-     
+
      <!-- | 值      |    描述| 
 | :-------- | :--------| 
 		left	| 在 **左侧不允许** 浮动元素。 | 
@@ -511,9 +527,9 @@ date: 2018-08-06 14:56:00
 		none	| **默认值** 。**允许** 浮动元素出现在两侧。 | 
 		inherit	| 规定应该 **从父元素继承 clear 属性的值**。 | -->
 
-  3. 父级 div 定义： overflow： hidden 。 
+  3. 父级 div 定义： overflow： hidden （创建父级 BFC）。 
   
-  4. 在浮动元素后面增加 `<br/>` 标签。
+  4. 在浮动元素后面增加 `<br/>` 标签（ :after / <br> : clear: both）。
   
   5. 在父级元素加上 .clearfix 类（常用）
   
@@ -1498,7 +1514,7 @@ _建议最好不要使用 @improt，如果 @import 加载的样式比较大，�
  - display 为 inline-block、table-cells、flex
   
  -  overflow 除了 visible 以外的值 (hidden、auto、scroll)
-
+ 
 - BFC 特性及应用
 
  1. 同一个 BFC 下外边距会发生折叠；
@@ -1524,6 +1540,23 @@ _建议最好不要使用 @improt，如果 @import 加载的样式比较大，�
  6. BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之也如此；
 
  7. 计算BFC的高度时，浮动元素也参与计算。
+ 
+- 触发条件
+
+  - 根元素
+  - positon: absolute/fixed
+  - display: inline-block / table
+  - float 元素
+  - ovevflow !== visible
+ 
+- 规则
+
+  - 属于同一个 BFC 的两个相邻 Box 垂直排列
+  - 属于同一个 BFC 的两个相邻 Box 的 margin 会发生重叠
+  - BFC 中子元素不会超出他的包含块
+  - BFC 的区域不会与 float 的元素区域重叠
+  - 计算 BFC 的高度时，浮动子元素也参与计算
+  - 文字层不会被浮动层覆盖，环绕于周围
 
 来自—— [10 分钟理解 BFC 原理]、[浅谈BFC和IFC]、[前端精选文摘：BFC 神奇背后的原理]、[什么是BFC]
 
@@ -1531,6 +1564,30 @@ _建议最好不要使用 @improt，如果 @import 加载的样式比较大，�
 [浅谈BFC和IFC]:https://blog.csdn.net/mevicky/article/details/47008939
 [前端精选文摘：BFC 神奇背后的原理]:https://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html
 [什么是BFC]:https://www.cnblogs.com/libin-1/p/7098468.html
+
+### 层叠上下文
+
+**触发条件**
+
+- 根层叠上下文(html)
+- position
+- css3属性
+  - flex
+  - transform
+  - opacticy
+  - filter
+  - will-change
+  - -webkit-overflow-scrolling
+  
+**层叠等级**
+
+> 层叠上下文在z轴上的排序。
+
+![层叠等级](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-html-css/168e9d9f3a1d368b)
+
+来自—— [层叠上下文]
+
+[层叠上下文]:https://juejin.im/post/5c64d15d6fb9a049d37f9c20
 
 ### 说说你对SVG理解?
 
