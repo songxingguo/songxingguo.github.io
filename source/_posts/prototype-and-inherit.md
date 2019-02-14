@@ -8,7 +8,7 @@ date: 2018-12-22 11:01:00
 ---
 ## 原型链
 
-构造函数、原型对象和实例三者之间的关系：
+### 构造函数、原型对象和实例三者之间的关系：
 
 ![关系图](https://graphbed.qiniu.songxingguo.com/prototype-and-inherit/1544147270338.png)
 
@@ -36,6 +36,10 @@ date: 2018-12-22 11:01:00
 
 
 > 抓住 new 运算符，然后向上梳理。
+
+**控制台输出原型链** ：
+
+![原型链](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-html-css/%E5%8E%9F%E5%9E%8B%E9%93%BE.png)
 
 ### new 运算符
 
@@ -89,6 +93,10 @@ alert(instance.getSuperValue()); // true
 #### 确定原型和实例的关系
 
 - 使用 instanceof 操作符
+
+  > instanceof 可以判断实例对象的 `__proto__` 属性是否与构造函数的 prototype 属性指向同一地址。
+  
+  > instanceof 左边是实例，右边是构造函数。
 
   > 只要用这个操作符来测试实例与原型链中出现过的构造函数，结果就会返回 true。
 

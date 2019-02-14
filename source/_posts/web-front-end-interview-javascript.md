@@ -7,7 +7,7 @@ date: 2018-08-06 14:30:00
 ---
 ### 请指出document load和document ready的区别？
 
- 共同点：这两种事件都代表的是页面文档加载时触发。
+共同点：这两种事件都代表的是页面文档加载时触发。
 
 异同点：
 
@@ -486,6 +486,44 @@ document.getElementById("debounce").onscroll = function(){
 来自——[JavaScript函数节流和函数防抖之间的区别]
 
 [JavaScript函数节流和函数防抖之间的区别]:https://www.cnblogs.com/walls/p/6399837.html
+
+### 原型 / 构造函数 / 实例
+
+- 原型(prototype): 一个简单的对象，用于实现对象的属性继承。可以简单的理解成对象的爹。在 Firefox 和 Chrome 中，每个 JavaScript 对象中都包含一个 `__proto__ `(非标准)的属性指向它爹(该对象的原型)，可 `obj.__proto__` 进行访问。
+
+- 构造函数: 可以通过 new 来新建一个对象的函数。
+
+- 实例: 通过构造函数和 new 创建出来的对象，便是实例。 实例通过 `__proto__` 指向原型，通过 constructor 指向构造函数。
+
+**三者的关系**
+
+```
+实例.__proto__ === 原型
+
+原型.constructor === 构造函数
+
+构造函数.prototype === 原型
+
+原型.constructor === 构造函数
+```
+
+![三者的关系](https://graphbed.qiniu.songxingguo.com/web-front-end-interview-html-css/168e9d9b940c4c6f)
+
+> 形象理解： 实例、原型、构造函数的关系就好像一家三口，儿子（实例）的手（`__proto__`）拉着父亲(原型)，父亲和母亲分别通过 constructor 和 prototype 牵着彼此，并且通过 `__proto__` 指向自己的父亲（原型）。
+
+> 层级之间的指向都是使用 `__proto__` ，同层级指向使用 prototype 。
+
+> **上图有有错误，实例并无 constructor 属性。**
+
+**prototype 是啥，`__proto__` 又是啥，他们之间啥关系？**
+
+- JavaScript 中大部分类型的值都拥有 `__proto__` 属性。
+
+- 只有 function 对象才有 prototype 属性。
+
+来自——[原型 / 构造函数 / 实例]
+
+[原型 / 构造函数 / 实例]: https://juejin.im/post/5c64d15d6fb9a049d37f9c20
 
 ### 即时函数
 
