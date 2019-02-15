@@ -8,7 +8,7 @@ subtitle: 爱技术，也爱生活。
 description: < 写文章 && 做分享 />
 author: songxingguo
 language: zh-CN
-timezone: 
+timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -43,7 +43,7 @@ highlight:
   line_number: true
   auto_detect: false
   tab_replace:
-  
+
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
@@ -52,7 +52,7 @@ index_generator:
   path: ''
   per_page: 10
   order_by: -date
-  
+
 # Category & Tag
 default_category: uncategorized
 category_map:
@@ -133,3 +133,6 @@ live2d:
   react:
     opacityDefault: 1
     opacityOnHover: 0.2
+
+# Set default keywords (Use a comma to separate)
+keywords: "宋兴国, 兴国，宋，songxingguo, im.songxingguo.com, www.songxingguo.com, songxingguo.com" ##网站关键字

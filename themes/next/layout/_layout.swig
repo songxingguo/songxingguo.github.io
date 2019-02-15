@@ -7,6 +7,7 @@
 {% set title = __('title') !== 'title' && __('title') || config.title %}
 {% set subtitle = __('subtitle') !== 'subtitle' && __('subtitle') || config.subtitle %}
 {% set author = __('author') !== 'author' && __('author') || config.author %}
+{% set keywords = __('keywords') !== 'keywords' && __('keywords') || config.keywords %}
 {% set description = __('description') !== 'description' && __('description') || config.description %}
 
 {% set html_class = 'theme-next ' + theme.scheme %}
@@ -80,7 +81,7 @@
         </span>
       </div>
     {% endif %}
-	
+
     {% if theme.baidushare and theme.baidushare.type === "slide" %}
       <div>
         {% include '_partials/share/baidushare.swig' %}
