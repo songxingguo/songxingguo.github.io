@@ -46,3 +46,28 @@ nvm list-remote
 ```bash
 nvm help
 ```
+升级 Node 版本
+---
+```bash
+sudo npm cache clean -f
+sudo npm install -g n
+npm view node versions
+sudo n 10.14.2
+```
+或者
+
+```bash
+sudo npm cache clean -f
+sudo npm install -g n
+npm view node versions
+sudo n stable
+```
+
+重新安装依赖
+---
+```bash
+rm -rf node_modules
+rm package-lock.json
+npm cache clear --force
+npm install
+```
