@@ -22,6 +22,10 @@ vim example.js
  输入为v进入视图模式，可进行多行选择。
  
  使用Esc按钮，退出编辑模式，输入:wq，回车，保存文件内容并退出。
+ 
+- 退出编辑
+
+  `shift  zz`
 
 - 查看文件
 ```bash
@@ -137,6 +141,11 @@ rm /usr/jboss4.0.5.GA/jboss
 --- 
 进程
 ---
+
+- 查看端口号
+```bash
+netstat -apn|grep 80  
+```
 - 查看进程
 ```bash
 ps -ef|grep mysqld
@@ -153,4 +162,15 @@ kill -9 112704
 - 杀死所有输出的进程
 ```
 ps aux|grep mysql|awk '{print $2}'|xargs kill -9
+```
+- CentOS重启ssh服务命令
+```bash
+service sshd restart
+```
+授权
+---
+
+- 修改权限
+```bash
+chmod +x hexo-generate.sh
 ```
