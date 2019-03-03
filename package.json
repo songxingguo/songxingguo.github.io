@@ -6,7 +6,7 @@
     "version": "3.8.0"
   },
   "scripts": {
-    "start": "pm2 start --name blog hexo -- s -i 127.0.0.1",
+    "start": "pm2 start --name blog hexo -- s",
     "stop": "pm2 stop blog",
     "delete": "pm2 delete blog",
     "status": "pm2 status blog",
