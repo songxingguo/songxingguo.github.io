@@ -94,6 +94,7 @@ admin:
   username: songxingguo
   password_hash: $2a$10$EPfB6/k7xwYOdUtnCukxiOOI97QUYmtv//7.VXy7k5hLtaCNMfmQC
   secret: a secret something
+  deployCommand: './hexo-deploy.sh'
 
 # 自动生成sitemap
 sitemap:
