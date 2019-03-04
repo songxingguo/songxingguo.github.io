@@ -170,6 +170,28 @@ env:
 
 ![ORGANIZATIONS 仓库授权获取](https://graphbed.qiniu.songxingguo.com/TravisCI/ORGANIZATIONS%20%E6%8E%88%E6%9D%83.png)
 
+### 免密使用 github API 的两种方式
+
+#### deploy-keys 
+
+> deploy-keys SSH key 的形式，将公钥放在 github 上，进行授权验证。
+
+![配置 Deploy keys](https://graphbed.qiniu.songxingguo.com/TravisCI/%E9%85%8D%E7%BD%AE%20Deploy%20keys.png)
+
+#### Personal access tokens
+
+> 用于添加到请求路径中，进行免密请求，和具体的用户无关。
+
+```git
+git push --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages --tags
+```
+
+![配置 access tokens](https://graphbed.qiniu.songxingguo.com/TravisCI/%E6%B7%BB%E5%8A%A0%20Access%20Token.png)
+
+### travis org 和 com 的不同
+
+ Public repositories appear in https://travis-ci.org/profile and private ones in https://magnum.travis-ci.com/profile. 
+
 ## 参考文章
 
 [手把手教你使用Travis CI自动部署你的Hexo博客到Github上](https://blog.csdn.net/woblog/article/details/51319364)
