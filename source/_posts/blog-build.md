@@ -16,14 +16,14 @@ date: 2018-06-02 17:11:00
 
    - [Hello Wrold](https://www.songxingguo.com/2018/05/18/hello-world/)
    - [博客部署到Github Pages](https://www.songxingguo.com/2018/06/06/%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0github-pages/)
-   - [更换主题]()
+   - [更换主题](https://www.songxingguo.com/2018/06/06/hexo-theme/)
    - [可视化编写文档]()
-   - [将源代码推送到github相同仓库的不同分支]()
-   - [使用Travis CI 进行自动发布代码]()
-   - [将博客推送给百度]()
-   - [使用Coding作为国内访问站点]()
-   - [实现windows开机启动Hexo 服务]()
-   - [图床七牛云]()
+   - [将源代码推送到github相同仓库的不同分支](https://www.songxingguo.com/2018/06/06/deploy-github-pages/)
+   - [使用Travis CI 进行自动发布代码](https://www.songxingguo.com/2018/05/19/TravisCI/)
+   - 将博客推送给百度
+   - [使用Coding作为国内访问站点](https://www.songxingguo.com/2018/05/19/TravisCI/)
+   - 实现windows开机启动Hexo 服务
+   - [图床七牛云](https://www.songxingguo.com/2018/12/20/qiniu/)
    
 ### 优秀教程
 
