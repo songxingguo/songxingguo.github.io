@@ -548,9 +548,12 @@ document.getElementById("debounce").onscroll = function(){
 - 函数执行上下文被激活，成为 active EC, 开始执行函数中的代码，caller 被挂起。
 - 函数执行完后，callee 被pop移除出执行栈，控制权交还全局上下文 (caller)，继续执行。
 
+### 浅拷贝和深拷贝
+
+
+
 ### 即时函数
 
-### 浅拷贝和深拷贝
 
 ### 垃圾回收
 
