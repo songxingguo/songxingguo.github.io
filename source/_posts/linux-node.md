@@ -71,3 +71,9 @@ rm package-lock.json
 npm cache clear --force
 npm install
 ```
+npm 镜像
+---
+```bash
+npm config set registry https://registry.npm.taobao.org
+```
+[淘宝 npm 官网](http://npm.taobao.org/)
