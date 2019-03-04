@@ -165,6 +165,10 @@ env:
 - **解决方式：**
 
   使用 [七牛云](https://www.qiniu.com/) 作为图床，提供图片链接。
+  
+### ORGANIZATIONS 仓库如何授权获取
+
+![ORGANIZATIONS 仓库授权获取](https://graphbed.qiniu.songxingguo.com/TravisCI/ORGANIZATIONS%20%E6%8E%88%E6%9D%83.png)
 
 ## 参考文章
 
