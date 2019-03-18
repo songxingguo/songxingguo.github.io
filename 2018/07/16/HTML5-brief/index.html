@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="HTML5简介 HTML5的故事">
+<meta name="keywords" content="HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《HTML5秘籍》学习笔记-HTML5简介">
+<meta property="og:url" content="https://www.songxingguo.com/2018/07/16/HTML5-brief/index.html">
+<meta property="og:site_name" content="阿有的生活">
+<meta property="og:description" content="HTML5简介 HTML5的故事">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/HTML5/HTML5%E6%95%85%E4%BA%8B.png">
+<meta property="og:image" content="https://www.songxingguo.com/2018/07/16/HTML5-brief/Horsehead01.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/HTML5%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/HTML5/%E5%9B%BD%E5%86%85%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5.png">
+<meta property="og:updated_time" content="2019-03-18T10:58:00.585Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《HTML5秘籍》学习笔记-HTML5简介">
+<meta name="twitter:description" content="HTML5简介 HTML5的故事">
+<meta name="twitter:image" content="https://graphbed.qiniu.songxingguo.com/HTML5/HTML5%E6%95%85%E4%BA%8B.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/07/16/HTML5-brief/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《HTML5秘籍》学习笔记-HTML5简介 | 阿有的生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">128</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">14</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">33</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/07/16/HTML5-brief/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《HTML5秘籍》学习笔记-HTML5简介
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-16 11:16:00" itemprop="dateCreated datePublished" datetime="2018-07-16T11:16:00+00:00">2018-07-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-18 10:58:00" itemprop="dateModified" datetime="2019-03-18T10:58:00+00:00">2019-03-18</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/16/HTML5-brief/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/07/16/HTML5-brief/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/07/16/HTML5-brief/" class="leancloud_visitors" data-flag-title="《HTML5秘籍》学习笔记-HTML5简介">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="HTML5简介"><a href="#HTML5简介" class="headerlink" title="HTML5简介"></a>HTML5简介</h3><ul>
+<li><h4 id="HTML5的故事"><a href="#HTML5的故事" class="headerlink" title="HTML5的故事"></a>HTML5的故事</h4><p><img src="https://graphbed.qiniu.songxingguo.com/HTML5/HTML5%E6%95%85%E4%BA%8B.png" alt="HTML5的故事"></p>
+<a id="more"></a></li>
+<li><h4 id="HTML5三个主要原理"><a href="#HTML5三个主要原理" class="headerlink" title="HTML5三个主要原理"></a>HTML5三个主要原理</h4><ul>
+<li><h5 id="不破坏Web"><a href="#不破坏Web" class="headerlink" title="不破坏Web"></a>不破坏Web</h5><p>标准不该引入导致已有网页无法工作的改变。</p>
+<p>HTML5规范包括两部分。第一部分，面向Web开人员，要求摒弃过去的那些坏习惯和被摒弃的元素。第二部分,针对的是浏览器开发商，它们需要支持HTML中存在的一切，以做到向后兼容。</p>
+</li>
+<li><h5 id="修补牛蹄子路"><a href="#修补牛蹄子路" class="headerlink" title="修补牛蹄子路"></a>修补牛蹄子路</h5><p>牛蹄子路指的是高低不平但使用频率很高的路，通过它可以从一个地方到另一个地方。</p>
+<p>HTML5标准化了这些非官方（但广泛应用）的技术。</p>
+</li>
+<li><h5 id="实用至上"><a href="#实用至上" class="headerlink" title="实用至上"></a>实用至上</h5><p>改变应该以实用为目的。改变越多，代价也就越大。</p>
+<p>HTML标准加入官方的支持，让功能在所有浏览器中都能一致的工作。</p>
+<p>让网站不依赖插件也能够提供视频、丰富的交互功能以及各种漂亮的效果。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="HTML5标记初体验"><a href="#HTML5标记初体验" class="headerlink" title="HTML5标记初体验"></a>HTML5标记初体验</h4><ul>
+<li><h5 id="最简单的H5文档"><a href="#最简单的H5文档" class="headerlink" title="最简单的H5文档"></a>最简单的H5文档</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;title&gt;A Tiny HTML Document&lt;/title&gt;</span><br><span class="line">&lt;p&gt;Let&apos;s rock the browser, HTML5 style.&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p>开始是HTML5的文档声明，然后是页面标题和一些内容。在这里，内容是包含在一个段落中的文本。</p>
+<p>当然，HTML5允许没有关闭的标签（浏览器知道在文档后面关闭所有没有关闭的标签），HTML5标准也允许你省略 <code>&lt;title&gt;</code> 元素。</p>
+</li>
+<li><h5 id="瘦骨嶙峋的H5文档"><a href="#瘦骨嶙峋的H5文档" class="headerlink" title="瘦骨嶙峋的H5文档"></a>瘦骨嶙峋的H5文档</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;A Tiny HTML Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;p&gt;Let&apos;s rock the browser, HTML5 style.&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>使用<head><meta name="generator" content="Hexo 3.8.0">和</head><body>来将关于页面的信息（头部）与页面的实际内容（主体）分开。在为页面添加脚本、样式表和元数据的时候，这种结构特别实用。</body></p>
+</li>
+<li><h5 id="真正实用的H5文档"><a href="#真正实用的H5文档" class="headerlink" title="真正实用的H5文档"></a>真正实用的H5文档</h5>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br></pre></td></tr></table></figure>
+<p>  <head><meta name="generator" content="Hexo 3.8.0"></head></p>
+<pre><code>&lt;title&gt;A Tiny HTML Document&lt;/title&gt;
+</code></pre><p>  <br>  <body><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body></p>
+<pre><code>&lt;p&gt;Let&apos;s rock the browser, HTML5 style.&lt;/p&gt;
+</code></pre><p>  <br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  最后，选择用&lt;html&gt;元素来封装整个文档（不包含文档类型声明那一行）。</span><br><span class="line"></span><br><span class="line">  **注意：**  使不使用  `&lt;html&gt;` 、 `&lt;head&gt;` 、 `&lt;body&gt;` 元素只代表一种风格。事实上，浏览器会自动假设页面中已经包含了这些元素。</span><br><span class="line">  </span><br><span class="line">- ##### HTML5文档类型</span><br><span class="line"> </span><br><span class="line">  每个HTML5文档的第一行都必须是一个特定的文档类型声明。这个文档类型声明用于宣告后面的文档标记遵循那个标准。</span><br><span class="line"> </span><br><span class="line">  文档标记遵循HTML5标准：</span><br></pre></td></tr></table></figure>
+<p> &lt;!DOCTYPE html&gt;</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">XHTML1.0严格型的文档类型声明：</span><br></pre></td></tr></table></figure>
+<p> &lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Strict//EN” “<a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;" target="_blank" rel="noopener">http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</a></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">   HTML5的文档声明不包括官方规范的版本号。事实上，这个声明只表示当前页面是HTML页面。这与HTML5是一门活着的语言的远见是分不开的。换句话说，只要有新功能添加到HTML语言中，你在页面中都可以使用它们，而不必为此修改文档类型声明。</span><br><span class="line"></span><br><span class="line">   要求保留文档类型声明，主要是由于历史原因。如果没有文档类型声明，那大多数浏览器将转换到一种混杂模式（quirk mode）。</span><br><span class="line"></span><br><span class="line">   HTML5文档类型声明是最短的有效文档类型声明，因此它总能触发标准模式。</span><br><span class="line"></span><br><span class="line">   虽然文档类型声明主要目的是告诉浏览器去做什么，但其他代理也可以检测该声明。比如： HTML5验证器、搜索引擎、设计工具，还有人-在想知道你当初在页面中想写什么样的标记时。</span><br><span class="line"></span><br><span class="line">- ##### 字符编码</span><br><span class="line"></span><br><span class="line">   字符编码是一种标准，计算机根据它把文本转换成保存在文档中的字节序列（或者在打开文件时将字节序列转换成文本形式）。由于历史原因，现在的编码标准有很多种。</span><br><span class="line"></span><br><span class="line">   但实际上英文网站今天都使用一种叫UTF-8的编码，这种编码简洁、转换速度快，而且支持任何你想要的非英文字符。</span><br><span class="line"></span><br><span class="line">   一般来说，经过配置的Web服务器会告诉浏览器它提供的网页采用了什么编码。</span><br><span class="line"></span><br><span class="line">   在HTML5文档中添加字符编码信息，只要在 `&lt;head&gt;` 区块的最开始处（如果没有添加 `&lt;head&gt;` 元素，则是紧跟在文档类型声明之后）添加相应的 `&lt;meta&gt;` 元素。</span><br></pre></td></tr></table></figure>
+<p> <head><meta name="generator" content="Hexo 3.8.0"><br>   <meta charset="utf-8"><br>   <title>A Tiny HTML Document/title&gt;<br> </title></head></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- ##### 页面语言</span><br><span class="line"></span><br><span class="line">   指明网页中使用的自然语言是一种好习惯。有时候对搜索引擎可以通过它来筛选结果。</span><br><span class="line">   给内容指定语言，可以在任何元素上使用lang属性，并为该属性指定相应语言的语言代码（比如， en表示英语）。各国语言代码可以在这里查到：http://people.w3.org/tishida/utils/subtags/ 。</span><br><span class="line"></span><br><span class="line">   为整个页面添加语言说明的最简单方式，就是为 `&lt;html&gt;` 元素指定lang属性：</span><br></pre></td></tr></table></figure>
+<p> <html lang="en"></html></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   如果页面中包含多种语言的文本，可以为文本中不同的区块指定lang属性，指定 该区块中文本的语言。 </span><br><span class="line"></span><br><span class="line">- ##### 添加样式表</span><br><span class="line"></span><br><span class="line">   指定想要使用的CSS样式表时，需要在HTML5文档的 `&lt;head&gt;` 区块中添加 `&lt;link&gt;` 元素， 例如：</span><br></pre></td></tr></table></figure>
+<p> <head><meta name="generator" content="Hexo 3.8.0"><br>   <meta charset="utf-8"><br>   <title>A Tiny HTML Document/title&gt;<br>   <link href="styles.css" rel="stylesheet"><br> </title></head></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   CSS是网页中唯一可用的样式表语言，所以网页中过去要求的type=&quot;text/css&quot;属性就没有必要了。</span><br><span class="line"></span><br><span class="line">- ##### 添加JavaScript</span><br><span class="line"></span><br><span class="line">   下面就是一个引入外部JavaScript代码的文件示例：</span><br></pre></td></tr></table></figure>
+<p>   <head><meta name="generator" content="Hexo 3.8.0"></head></p>
+<pre><code>&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;title&gt;A Tiny HTML Document/title&gt;
+&lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>   </p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">没有必要加上language=&quot;JavaScript&quot;属性，浏览器会假定你想要使用JavaScript，除非你想使用其他脚本语言。</span><br><span class="line"></span><br><span class="line">即使是引用外部JavaScript文件，也不能忘了后面的 `&lt;/script&gt;` 标签。假如你不写这个标签或者使用空元素语法想缩短标记，页面将不会执行加载脚本。</span><br><span class="line"></span><br><span class="line">如果你在Inernet Explorer中花大量的时间测试包含JavaScript页面，还应该在 `&lt;head&gt;` 区块中包含一行特殊的注释，叫做Web标志（mark of the web）；这行注释要放在指定字符编码的元数据便签后面，如下所示：</span><br></pre></td></tr></table></figure>
+<p>   <head><meta name="generator" content="Hexo 3.8.0"></head></p>
+<pre><code>&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;!-- saved from url=(0014)about:internet --&gt;
+&lt;title&gt;A Tiny HTML Document/title&gt;
+&lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>   </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   这条注释告诉Internet Explorer将页面视为从远程网站上下载下来的。否则，IE会切换到一种特殊的锁定模式，弹出一条安全警告，在你点了“允许阻止内容”按钮后才会执行JavaScript代码。</span><br><span class="line"></span><br><span class="line">   其他浏览器都会忽略这个“Web标志”注释，对远程站点和本地文件使用相同的安全设置。  </span><br><span class="line"></span><br><span class="line">- ##### 最终的HTML5文档</span><br></pre></td></tr></table></figure>
+<p>  &lt;!DOCTYPE html&gt;<br>  <html lang="en">    </html></p>
+<pre><code>&lt;head&gt;
+   &lt;meta charset=&quot;utf-8&quot;&gt;
+   &lt;title&gt;A Tiny HTML Document&lt;/title&gt;
+   &lt;link href=&quot;styles.css&quot; rel=&quot;stylesheet&quot;&gt;
+   &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+   &lt;p&gt;Let&apos;s rock the browser, HTML5 style.&lt;/p&gt;
+ &lt;/body&gt;
+</code></pre><p>  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">        虽然这不再是一个最短的HTML5文档，但以它为基础可以构建出任何网页。</span><br><span class="line"></span><br><span class="line">- #### HTML5语法</span><br><span class="line"></span><br><span class="line"> - ##### 放松的规则</span><br><span class="line"></span><br><span class="line">   HTML5不区分大小写，因此类似下面这样的标记是没有问题的：</span><br></pre></td></tr></table></figure>
+<p>  </p><p>Capital and lowercase letters <em> don’t metter</em> in tag names.</p><p></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTML5还允许省略关闭空元素（void element）的斜杆；所谓空元素，就是不会嵌套内容的元素，如`&lt;img&gt;`(图像）、 `&lt;br&gt;`(换行）或 `&lt;hr&gt;`(水平线）。以下是三中添加换行的等价方式：</span><br></pre></td></tr></table></figure>
+<p> I cannot <br><br> move backward<br><br> or forward.<br><br> I am caught</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTML5也修改了属性语法规则。属性值中只要不包含受限的字符（比如&gt;、=或空格），就可以不加引号。下面这个 `&lt;img&gt;` 元素就利用了这点：</span><br></pre></td></tr></table></figure>
+<p> <img alt="Horsehead Nebula" src="/2018/07/16/HTML5-brief/Horsehead01.jpg"></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">只有属性名没有属性值也可以。虽然XHTML要求必须采用如下冗余的语法将复选框设置为选中状态：</span><br></pre></td></tr></table></figure>
+<p> <input type="checkbox" checked="checked"></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">但现在可以只包含属性名，回到HTML4.01时代的传统短语法形式：</span><br></pre></td></tr></table></figure>
+<p> <input type="checkbox" checked></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"> 如果能做到如下几点（也是尽管不是必须遵循的）， 基本上就可以算作良好的HTML5风格了。</span><br><span class="line">   - 包含可选的 `&lt;html&gt;`、 `&lt;body&gt;` 和 `&lt;head&gt;`元素。要给页面定义自然语言`&lt;html&gt;`是最理想的地方；而 `&lt;body&gt;` 和 `&lt;head&gt;` 有助于将页面内容与其他页面信息分离。</span><br><span class="line"></span><br><span class="line">   - 标签全部小写（如用 `&lt;p&gt;` 而非 `&lt;P&gt;`）。虽然不是必须这么做，但是这种形式很常见，输入起来要轻松容易很多，而且并不会让人触目惊心。</span><br><span class="line"></span><br><span class="line">   - 为属性值加引号。加引号是为了防止不经意间犯错。要知道，没有引号的话，一个无效字符就能破坏整个页面。</span><br><span class="line"></span><br><span class="line">   - 不加斜杆、使用短语法属性。</span><br><span class="line"></span><br><span class="line">- ##### HTML5验证</span><br><span class="line"></span><br><span class="line">  以下是HTML5验证器会关注的一些可能的问题：</span><br><span class="line"></span><br><span class="line">     - 缺少必要元素（例如 `&lt;title&gt;` 元素）；</span><br><span class="line">     - 有开始标签但没有结束标签；</span><br><span class="line">     - 标签嵌套又错误；</span><br><span class="line">     - 不包含必要属性的标签（例如没有src属性的 `&lt;img&gt;` 元素）；</span><br><span class="line">     - 元素或内容放错了地方（例如把文本直接放在了`&lt;head&gt;` 区块中）。</span><br><span class="line">  </span><br><span class="line">  可以使用在线验证工具，下面是W3C标准组织提供的流行的验证器，在浏览器中，打开http://validator.w3.org   </span><br><span class="line">  </span><br><span class="line">- ##### XHTML的回归</span><br><span class="line"></span><br><span class="line">  XHTML 强制要求的规则要么仍具有指导意义（例如，元素要正确嵌套），要么仍然是一种得到支持的可选约定（例如，空元素可以包含结束的斜杆）。</span><br><span class="line"></span><br><span class="line">  将一个HTML5文档转换成XHTMl5文档（器本质是给HTML5加上了XML的限制），必须在 `&lt;html&gt;` 元素中明确添加XHTML命名空间、关闭每个元素、所有标签都要小写等。下面就是一个XHTML5文档示例：</span><br></pre></td></tr></table></figure>
+<p>  &lt;!DOCTYPE html&gt;<br>  <html lang="en" xmlns="htttp://www.w3.org/1999/xhtml">    </html></p>
+<pre><code>&lt;head&gt;
+   &lt;meta charset=&quot;utf-8&quot;&gt;
+   &lt;title&gt;A Tiny HTML Document&lt;/title&gt;
+   &lt;link href=&quot;styles.css&quot; rel=&quot;stylesheet&quot;&gt;
+   &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+   &lt;p&gt;Let&apos;s rock the browser, HTML5 style.&lt;/p&gt;
+ &lt;/body&gt;
+</code></pre><p>  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">    可以使用 http://validator.w3.org/nu 进行验证。</span><br><span class="line">   </span><br><span class="line">- #### HTML5元素家族</span><br><span class="line"></span><br><span class="line">  - ##### 新增的元素</span><br><span class="line">  </span><br><span class="line">    ![新增元素](https://graphbed.qiniu.songxingguo.com/HTML5/%E6%96%B0%E5%A2%9E%E5%85%83%E7%B4%A0.jpg)</span><br><span class="line">  </span><br><span class="line">  - ##### 删除的元素</span><br><span class="line">  </span><br><span class="line">   剔除的少量元素，浏览器仍然可以得到浏览器的支持，但任何遵循规范的HTML5验证器都会敏感地查出它们的藏身之所，并给出错误提示。</span><br><span class="line">  </span><br><span class="line">   HTML5沿袭了表示不欢迎表现性元素的思想（最初萌发于XHTML）。所谓表现性元素，指的是那些仅仅是为网页添加样式的元素。</span><br><span class="line">  </span><br><span class="line">   HTML5埋葬了已经摒弃的HTML框架，`&lt;iframe&gt;` 元素侥幸得以保留，主要是Web应用中经常利用 `&lt;iframe&gt;` 实现一些集成任务，比如在网页中包含YouTube窗口、广告和谷歌搜索框等。</span><br><span class="line">  </span><br><span class="line">   还有另外一些元素，由于冗余或容易导致误会等原因也被剔除了，比如 `&lt;acronym&gt;` （代之为 `&lt;abbr&gt;`）和 `&lt;applet&gt;` （因为 `&lt;object&gt;` 更好）。</span><br><span class="line">  </span><br><span class="line">   完整的元素列表，可参考 http://dev.w3.org/html5/markup/ 。</span><br><span class="line">  </span><br><span class="line"> - ##### 改变的元素</span><br><span class="line">  </span><br><span class="line">   - `&lt;small&gt;` 元素</span><br><span class="line">    </span><br><span class="line">     HTML5将一些旧元素用于新的目的。例如， `&lt;small&gt;` 元素的用途不再是减小文本字体大小，而是表示“附属细则”（small print）,比如页面底部没人想让你看到的那些法律条款。</span><br><span class="line">   </span><br><span class="line">     放在 `&lt;small&gt;` 元素中的文本仍然照常显示，只不过字体稍小一点。</span><br><span class="line">   </span><br><span class="line">     **注意：** 一种看法是认为它最大限度的向后兼容，另一种看法认为它会导致旧网页中相应元素的语义变化。</span><br><span class="line">   </span><br><span class="line">   - `&lt;hr&gt;` 元素</span><br><span class="line">   </span><br><span class="line">     另一个改变的元素是 `&lt;hr&gt;` (horizontal rule, 水平线)，用于在两个区域间画一条线。在HTML5中 `&lt;hr&gt;` 表示主题的转换，即从一个主题变为另一个主题。默认格式还在，只不过又赋予了新的含义。</span><br><span class="line">     </span><br><span class="line">   - `&lt;s&gt;` 元素</span><br><span class="line">    </span><br><span class="line">     不仅仅是给文本加一条删除线，而它现在表示不再准确或不相关的内容。</span><br><span class="line">   </span><br><span class="line">   - 粗体和斜体</span><br><span class="line">   </span><br><span class="line">      HTML中最常用的两个表示粗体和斜体的元素 `&lt;b&gt;` 和 `&lt;i&gt;` 部分被 `&lt;strong&gt;` 和 `&lt;em&gt;` 元素取代。</span><br><span class="line"></span><br><span class="line">      其背后的思想是停止从格式（粗体和斜体）的角度来看问题，而是要换成使用具有真实逻辑含义（重要或重音）的元素。</span><br><span class="line"></span><br><span class="line">      但 `&lt;b&gt;` 和 `&lt;i&gt;` 这两个标签仍然作为XHTML新引入的两个标签的简写形式存在着。</span><br><span class="line"></span><br><span class="line">      下面分别说明：</span><br><span class="line">        - 使用 `&lt;strong&gt;` 表示重要的文本内容，也就是那些需要在周围文本中突出出来的文本。</span><br><span class="line">        - 使用 `&lt;b&gt;` 表示应该用粗体表示的文本，但该文本并不比其他文本重要。比如,关键字、产品名称等所有需要用粗体表示的文本都可以用这个标签。  </span><br><span class="line">        - 使用 `&lt;em&gt;` 表示重读的文本，也就是在朗读的时候要大声读出来。</span><br><span class="line">        - 使用 `&lt;i&gt;` 表示应该用斜体表示的文本，但该文本并不比其他文本更重要。比如，外文单词、技术术语等所需要使用斜体表示的文本都可以用这个标签。</span><br><span class="line">   </span><br><span class="line">  - ##### 调整的元素</span><br><span class="line">   </span><br><span class="line">    - `&lt;address&gt;` 元素</span><br><span class="line">    </span><br><span class="line">      提供HTML文档作者的联系信息，比如邮件地址或网站链接：</span><br></pre></td></tr></table></figure>
+<p>  <address></address></p>
+<pre><code>&lt;a href=&quot;mailto:songxingguo.com&quot;&gt;Xingguo Song&lt;/a&gt;
+</code></pre><p>  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- `&lt;cite&gt;` 元素</span><br><span class="line"></span><br><span class="line">   引用某些作品，去标注人名已经不对了。</span><br></pre></td></tr></table></figure>
+<p>   <cite> HTML5 秘籍 </cite><br>   <code>`</code></p>
+<ul>
+<li><p><code>&lt;a&gt;</code> 元素</p>
+<p> HTML以前的版本允许用 <code>&lt;a&gt;</code> 元素来标注可以单击的文本或图像。而在HTML5中，可以在 <code>&lt;a&gt;</code> 元素中放置任何东西（所有文本都会变成蓝色并带有下划线，而图像则会产生蓝色的边框）。Web浏览器支持这种做法已经有很多年了，HTML5只不过是把这种行为写进了规范。</p>
+</li>
+<li><p><code>&lt;ol&gt;</code> 元素</p>
+<p>  有序列表有了reversed属性，只是目前不是所有浏览器都支持。</p>
+</li>
+</ul>
+</li>
+<li><h5 id="标准化的元素"><a href="#标准化的元素" class="headerlink" title="标准化的元素"></a>标准化的元素</h5><ul>
+<li><p><code>&lt;embed&gt;</code> 元素</p>
+<p>向页面中加入插件的通用方法。</p>
+</li>
+<li><p><code>&lt;wbr&gt;</code> 元素</p>
+<p>  表示可以在某处换行，如果词太长了，一行放不下，那浏览器就会在<wbr>标注的地方断行（只有一行容不下来了才会断行）。</p>
+</li>
+<li><p><code>&lt;nobr&gt;</code> 元素 </p>
+<p> HTML5认为 <code>&lt;nobr&gt;</code> 已经不合时宜，可以在CSS中使用white-space属性，将它的值设定为nowarp。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="今天开始用HTML5"><a href="#今天开始用HTML5" class="headerlink" title="今天开始用HTML5"></a>今天开始用HTML5</h4><ul>
+<li><h5 id="对付旧版本浏览器"><a href="#对付旧版本浏览器" class="headerlink" title="对付旧版本浏览器"></a>对付旧版本浏览器</h5><p><strong>平稳退化：</strong></p>
+<p>   为老的浏览器提供替代内容（比如使用Flash插件的视频播放器）。</p>
+<p><strong>借助JavaScript:</strong></p>
+<p>  HTML5中的某些功能完全可以使用优秀的JavaScript库实现（最差的情况，完全通过手工编写JavaScript代码也可以写出来）。</p>
+</li>
+<li><h5 id="了解浏览器支持情况"><a href="#了解浏览器支持情况" class="headerlink" title="了解浏览器支持情况"></a>了解浏览器支持情况</h5><p>在浏览器中打开<a href="http://caniuse.com" target="_blank" rel="noopener">http://caniuse.com</a> 。</p>
+<p>红色代表不支持，浅绿色表示支持，橄榄绿色表示部分支持，灰色表示不确定（一般是因为浏览器的当前版本还在开发过程中，相应功能还没有加入）。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/HTML5%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5.png" alt="HTML5浏览器支持情况"><br><code>上图为HTML5浏览器支持情况</code></p>
+</li>
+<li><h5 id="浏览器装机情况统计"><a href="#浏览器装机情况统计" class="headerlink" title="浏览器装机情况统计"></a>浏览器装机情况统计</h5><p>可以查看流行的流量跟踪站点GlobalStats。</p>
+<p>在浏览器中打开<a href="http://gs.statcounter.com" target="_blank" rel="noopener">http://gs.statcounter.com</a> （国内只有翻墙才能访问）。</p>
+<p>打开网站可以看到一个折线图，显示着最近几年常用的浏览器，可以选择不同的条件显示统计不同的数据（比如，可以统计国内的浏览器使用情况）。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/HTML5/%E5%9B%BD%E5%86%85%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5.png" alt="国内浏览器使用情况"><br><code>上图为国内浏览器使用情况</code></p>
+</li>
+<li><h5 id="通过Modernizr检测功能"><a href="#通过Modernizr检测功能" class="headerlink" title="通过Modernizr检测功能"></a>通过Modernizr检测功能</h5><p>加载页面，通过JavaScript脚本检测某个具体的功能是否可用，然后，可以对用户进行提示（最衰的方法）、平稳退化到没有那么花哨的版本（稍好一些），或者采用其他方法实现浏览器本该支持的HTML5功能（最佳）。</p>
+<p>Modernizr是一个小巧、持续更新的工具，专门用于测试浏览器对很多HTML5及相关功能的支持情况。</p>
+<p>在刘浏览器中打开 <a href="http://modernizr.com/download" target="_blank" rel="noopener">http://modernizr.com/download</a> ，下载完整版Moderniznr，并将js引入到 <code>&lt;head&gt;</code> 区块中。</p>
+</li>
+<li><h5 id="使用“腻子脚本”填补功能缺陷"><a href="#使用“腻子脚本”填补功能缺陷" class="headerlink" title="使用“腻子脚本”填补功能缺陷"></a>使用“腻子脚本”填补功能缺陷</h5><p>Moderniznr可以帮你找出浏览器支持上的缺陷。它会在某个功能不可用时提醒你，但除此之外不会帮你弥补这些缺陷。而这就是腻子脚本（polyfill）的用途所在。腻子脚本就是一大堆五花八门的技术，目的是填平旧浏览器对HTML5支持上的缺陷。</p>
+<p>不过，腻子脚本并不完美。有些脚本依赖的技术同样得不到普遍的支持。</p>
+<p> 腻子脚本的完整集合，页面地址为：<a href="http://tinyurl.com/polyfill" target="_blank" rel="noopener">http://tinyurl.com/polyfill</a> 。</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTML/" rel="tag"># HTML</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/15/cross-domain/" rel="next" title="跨域问题">
+                <i class="fa fa-chevron-left"></i> 跨域问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/20/Ubuntu16-04-MySQL/" rel="prev" title=" Ubuntu 16.04 安装使用MySQL">
+                 Ubuntu 16.04 安装使用MySQL <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/favicon.ico"
+                alt="songxingguo" />
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">128</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5简介"><span class="nav-number">1.</span> <span class="nav-text">HTML5简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML5的故事"><span class="nav-number">1.1.</span> <span class="nav-text">HTML5的故事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML5三个主要原理"><span class="nav-number">1.2.</span> <span class="nav-text">HTML5三个主要原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#不破坏Web"><span class="nav-number">1.2.1.</span> <span class="nav-text">不破坏Web</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修补牛蹄子路"><span class="nav-number">1.2.2.</span> <span class="nav-text">修补牛蹄子路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实用至上"><span class="nav-number">1.2.3.</span> <span class="nav-text">实用至上</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML5标记初体验"><span class="nav-number">1.3.</span> <span class="nav-text">HTML5标记初体验</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#最简单的H5文档"><span class="nav-number">1.3.1.</span> <span class="nav-text">最简单的H5文档</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#瘦骨嶙峋的H5文档"><span class="nav-number">1.3.2.</span> <span class="nav-text">瘦骨嶙峋的H5文档</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#真正实用的H5文档"><span class="nav-number">1.3.3.</span> <span class="nav-text">真正实用的H5文档</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#标准化的元素"><span class="nav-number">1.3.4.</span> <span class="nav-text">标准化的元素</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#今天开始用HTML5"><span class="nav-number">1.4.</span> <span class="nav-text">今天开始用HTML5</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对付旧版本浏览器"><span class="nav-number">1.4.1.</span> <span class="nav-text">对付旧版本浏览器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#了解浏览器支持情况"><span class="nav-number">1.4.2.</span> <span class="nav-text">了解浏览器支持情况</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#浏览器装机情况统计"><span class="nav-number">1.4.3.</span> <span class="nav-text">浏览器装机情况统计</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通过Modernizr检测功能"><span class="nav-number">1.4.4.</span> <span class="nav-text">通过Modernizr检测功能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用“腻子脚本”填补功能缺陷"><span class="nav-number">1.4.5.</span> <span class="nav-text">使用“腻子脚本”填补功能缺陷</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
