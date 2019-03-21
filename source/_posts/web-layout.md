@@ -5,13 +5,47 @@ categories:
   - 前端技术
 date: 2018-08-02 05:06:00
 ---
-## 圣杯布局
+## 二列
 
-### [圣杯布局效果](https://songxingguo.github.io/HuaQing/Flex%E5%B8%83%E5%B1%80/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80.html)
+### 左列定宽，右列自适应
+
+> 适用于定宽的一侧常为导航，自适应的一侧为内容的布局。
+
+```html
+  <div class="left">定宽</div>
+  <div class="right">自适应</div>
+```
+
+```css
+.left{
+  width: 200px;
+  height: 600px;
+  background: red;
+  float: left;
+  display: table;
+  text-align: center;
+  line-height: 600px;
+  color: #fff;
+}
+
+.right{
+  margin-left: 210px;
+  height: 600px;
+  background: yellow;
+  text-align: center;
+  line-height: 600px;
+}
+```
+
+### 三列
+
+### 圣杯布局
+
+#### [圣杯布局效果](https://songxingguo.github.io/HuaQing/Flex%E5%B8%83%E5%B1%80/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80.html)
 
 <iframe src="https://songxingguo.github.io/HuaQing/Flex%E5%B8%83%E5%B1%80/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80.html"  width="100%" height="500" frameborder="0" align="middle" ></iframe>
 
-### HTML 结构
+#### HTML 结构
 
 ```html
 <body class="HolyGrail">
@@ -25,7 +59,7 @@ date: 2018-08-02 05:06:00
 </body>
 ```
 
-### CSS 样式
+#### CSS 样式
 
 ```css
 .HolyGrail {
@@ -70,18 +104,18 @@ header, footer {
 	}
 }
 ```
-### 完整代码
+#### 完整代码
 
 [圣杯布局](https://github.com/songxingguo/HuaQing/blob/master/Flex%E5%B8%83%E5%B1%80/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80.html)
 
 
-## 响应式页面
+### 响应式页面
 
-### [响应式页面效果](https://songxingguo.github.io/HuaQing/Flex%E5%B8%83%E5%B1%80/%E5%93%8D%E5%BA%94%E5%BC%8F%E9%A1%B5%E9%9D%A2.html)
+#### [响应式页面效果](https://songxingguo.github.io/HuaQing/Flex%E5%B8%83%E5%B1%80/%E5%93%8D%E5%BA%94%E5%BC%8F%E9%A1%B5%E9%9D%A2.html)
 
 <iframe src="https://songxingguo.github.io/HuaQing/Flex%E5%B8%83%E5%B1%80/%E5%93%8D%E5%BA%94%E5%BC%8F%E9%A1%B5%E9%9D%A2.html"  width="100%" height="180" frameborder="0" align="middle" ></iframe>
 
-### HTML 结构
+#### HTML 结构
 
 ```html
 <div class="flex-container">
@@ -94,7 +128,7 @@ header, footer {
   <footer class="footer">底部</footer>
 </div>
 ```
-### CSS 样式
+#### CSS 样式
 
 ```
 * {
@@ -136,7 +170,7 @@ header, footer {
     .footer  { order: 4; }
 }
 ```
-### 完整代码
+#### 完整代码
 
 [响应式页面](https://github.com/songxingguo/HuaQing/blob/master/Flex%E5%B8%83%E5%B1%80/%E5%93%8D%E5%BA%94%E5%BC%8F%E9%A1%B5%E9%9D%A2.html)
 

@@ -1994,9 +1994,18 @@ Google目前正在探究通过JS的多线程（Web Workers）来提供更好的�
 
 也许会有一些新的方式使得可以使用JavaScript做出更好的没有限制的动画，而且不用担心主线程的阻塞问题。但在那之前，还是好好考虑下如何做出流畅的动画吧。
 
+### css布局（圣杯布局、双飞翼布局、垂直居中、水平居中）
+
+来自——[六种CSS经典三栏布局方案]、[CSS布局说——可能是最全的]、[CSS经典布局]、[CSS布局十八般武艺都在这里了]、[史上最全Html和CSS布局技巧]、[CSS 常见布局方式]
+
+[六种CSS经典三栏布局方案]:http://www.php.cn/css-tutorial-382041.html
+[CSS布局说——可能是最全的]:https://segmentfault.com/a/1190000011358507
+[CSS经典布局]:https://blog.csdn.net/Sourcemyx/article/details/79126069
+[CSS布局十八般武艺都在这里了]:https://segmentfault.com/a/1190000008789039
+[史上最全Html和CSS布局技巧]:https://blog.csdn.net/qq_33834489/article/details/79111172
+[CSS 常见布局方式]:https://www.sohu.com/a/168143624_274163
+
 #### CSS3 动画（性能、3D硬件加速）
-
-
 
 来自——[前端性能优化（CSS动画篇）]、[css3动画与js动画的区别]、[前端制作动画的几种方式（css3，js）]、[css3动画和JS+DOM动画和JS+canvas动画比较]、[Javascript&CSS3动画]、[css3动画性能优化]、[GPU（图形处理器）]
 
@@ -2025,16 +2034,6 @@ Google目前正在探究通过JS的多线程（Web Workers）来提供更好的�
 [浏览器如何渲染页面？]:https://blog.csdn.net/jnshu_it/article/details/77150545
 [浏览器渲染页面过程与页面优化]:https://segmentfault.com/a/1190000010298038
 
-### css布局（圣杯布局、双飞翼布局、垂直居中、水平居中）
-
-来自——[六种CSS经典三栏布局方案]、[CSS布局说——可能是最全的]、[CSS经典布局]、[CSS布局十八般武艺都在这里了]、[史上最全Html和CSS布局技巧]、[CSS 常见布局方式]
-
-[六种CSS经典三栏布局方案]:http://www.php.cn/css-tutorial-382041.html
-[CSS布局说——可能是最全的]:https://segmentfault.com/a/1190000011358507
-[CSS经典布局]:https://blog.csdn.net/Sourcemyx/article/details/79126069
-[CSS布局十八般武艺都在这里了]:https://segmentfault.com/a/1190000008789039
-[史上最全Html和CSS布局技巧]:https://blog.csdn.net/qq_33834489/article/details/79111172
-[CSS 常见布局方式]:https://www.sohu.com/a/168143624_274163
 
 ### 移动端适配 
 
