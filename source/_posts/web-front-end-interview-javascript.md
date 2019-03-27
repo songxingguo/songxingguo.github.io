@@ -548,6 +548,12 @@ document.getElementById("debounce").onscroll = function(){
 - 函数执行上下文被激活，成为 active EC, 开始执行函数中的代码，caller 被挂起。
 - 函数执行完后，callee 被pop移除出执行栈，控制权交还全局上下文 (caller)，继续执行。
 
+### for in 和 for of的区别
+
+for in遍历的是数组的索引（即键名），而for of遍历的是数组元素值。
+
+- for in 循环特别适合遍历对象。
+
 ### 浅拷贝和深拷贝
 
 
