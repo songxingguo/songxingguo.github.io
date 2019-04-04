@@ -1,7 +1,9 @@
 title: CSS 如何命名
 author: songxingguo
-tags: []
-categories: []
+tags:
+  - CSS
+categories:
+  - 前端技术
 date: 2019-03-14 14:16:00
 ---
 BEM 规范[https://en.bem.info/methodology/css/]
@@ -18,6 +20,7 @@ BEM 代表块（Block），元素（Element），修饰符（Modifier）。
     < button  class = “header__button button button_theme_islands” > ... </ button > 
 </ header >
 ```
+<!-- more -->
 
 ## 命令规则
 
