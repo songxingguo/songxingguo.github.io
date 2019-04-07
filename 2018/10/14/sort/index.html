@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="排序排序的基本概念与分类假设含有n个记录的序列为{r1 ,r2 ,……,rn }，其相应的关键字分别为{k1 ,k2 ,……,kn }，需确定1,2,……,n的一种排列p1 ,p2 ,……,pn ，使其相 应的关键字满足kp1 ≤kp2 ≤……≤kpn （非递减或非递增）关系，即使得序列成为一个按关键字有序的序列{rp1 ,rp2 ,……,rpn }，这样的操作就 称为排序。">
+<meta name="keywords" content="宋兴国, 兴国，宋，songxingguo, im.songxingguo.com, www.songxingguo.com, songxingguo.com">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《大话数据结构》-读书笔记-排序">
+<meta property="og:url" content="https://www.songxingguo.com/2018/10/14/sort/index.html">
+<meta property="og:site_name" content="阿有的生活">
+<meta property="og:description" content="排序排序的基本概念与分类假设含有n个记录的序列为{r1 ,r2 ,……,rn }，其相应的关键字分别为{k1 ,k2 ,……,kn }，需确定1,2,……,n的一种排列p1 ,p2 ,……,pn ，使其相 应的关键字满足kp1 ≤kp2 ≤……≤kpn （非递减或非递增）关系，即使得序列成为一个按关键字有序的序列{rp1 ,rp2 ,……,rpn }，这样的操作就 称为排序。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/sort/%E6%9C%80%E7%AE%80%E5%8D%95%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/sort/%E5%B9%B3%E5%9D%87%E7%9A%84%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/sort/%E5%90%84%E7%A7%8D%E5%88%86%E7%B1%BB%E7%9A%84%E4%BB%A3%E8%A1%A8%E7%AE%97%E6%B3%95.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/sort/7%E7%A7%8D%E7%AE%97%E6%B3%95%E7%9A%84%E5%90%84%E7%A7%8D%E6%8C%87%E6%A0%87%E8%BF%9B%E8%A1%8C%E5%AF%B9%E6%AF%94.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/sort/3%E7%A7%8D%E7%AE%80%E5%8D%95%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E7%A7%BB%E5%8A%A8.png">
+<meta property="og:updated_time" content="2019-04-07T11:08:37.639Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《大话数据结构》-读书笔记-排序">
+<meta name="twitter:description" content="排序排序的基本概念与分类假设含有n个记录的序列为{r1 ,r2 ,……,rn }，其相应的关键字分别为{k1 ,k2 ,……,kn }，需确定1,2,……,n的一种排列p1 ,p2 ,……,pn ，使其相 应的关键字满足kp1 ≤kp2 ≤……≤kpn （非递减或非递增）关系，即使得序列成为一个按关键字有序的序列{rp1 ,rp2 ,……,rpn }，这样的操作就 称为排序。">
+<meta name="twitter:image" content="https://graphbed.qiniu.songxingguo.com/sort/%E6%9C%80%E7%AE%80%E5%8D%95%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/10/14/sort/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《大话数据结构》-读书笔记-排序 | 阿有的生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">129</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">14</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">33</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/10/14/sort/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《大话数据结构》-读书笔记-排序
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-14 09:26:00" itemprop="dateCreated datePublished" datetime="2018-10-14T09:26:00+00:00">2018-10-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-07 11:08:37" itemprop="dateModified" datetime="2019-04-07T11:08:37+00:00">2019-04-07</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/14/sort/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/14/sort/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/10/14/sort/" class="leancloud_visitors" data-flag-title="《大话数据结构》-读书笔记-排序">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="排序的基本概念与分类"><a href="#排序的基本概念与分类" class="headerlink" title="排序的基本概念与分类"></a>排序的基本概念与分类</h3><p>假设含有n个记录的序列为{r1 ,r2 ,……,rn }，其相应的关键字分别为{k1 ,k2 ,……,kn }，需确定1,2,……,n的一种排列p1 ,p2 ,……,pn ，使其相 应的关键字满足kp1 ≤kp2 ≤……≤kpn （非递减或非递增）关系，即使得序列成为一个按关键字有序的序列{rp1 ,rp2 ,……,rpn }，这样的操作就 称为排序。</p>
+<a id="more"></a>
+<h4 id="排序的稳定性"><a href="#排序的稳定性" class="headerlink" title="排序的稳定性"></a>排序的稳定性</h4><p>根据两个相同数字在排序过程是否交换原有位置，排序分为：稳定排序和不稳定排序。</p>
+<p>也正是由于排序不仅是针对主关键字，那么对于次关键字，因为待排序的记录序列中可能存在两个或两个以上的关键字相等的记录，排序结 果可能会存在不唯一的情况，我们给出了稳定与不稳定排序的定义。</p>
+<p>假设ki =kj (1≤i≤n,1≤j≤n,i≠j），且在排序前的序列中ri 领先于rj （即i&lt;j）。如果排序后ri 仍领先于rj ，则称所用的排序方法是稳定的；反之， 若可能使得排序后的序列中rj 领先ri ，则称所用的排序方法是不稳定的。</p>
+<h4 id="内排序与外排序"><a href="#内排序与外排序" class="headerlink" title="内排序与外排序"></a>内排序与外排序</h4><p>根据在排序过程中待排序的记录是否全部被放置在内存中，排序分为：内排序和外排序。</p>
+<p>内排序是在排序整个过程中，待排序的所有记录全部被放置在内存中。外排序是由于排序的记录个数太多，不能同时放置在内存，整个排序 过程需要在内外存之间多次交换数据才能进行。</p>
+<p>对于内排序来说，排序算法的性能主要是受3个方面影响：</p>
+<p>1．时间性能</p>
+<p>排序是数据处理中经常执行的一种操作，往往属于系统的核心部分，因此排序算法的时间开销是衡量其好坏的最重要的标志。在内排序中， 主要进行两种操作：比较和移动。比较指关键字之间的比较，这是要做排序最起码的操作。移动指记录从一个位置移动到另一个位置，事实 上，移动可以通过改变记录的存储方式来予以避免（这个我们在讲解具体的算法时再谈）。总之，高效率的内排序算法应该是具有尽可能少 的关键字比较次数和尽可能少的记录移动次数。</p>
+<p>2．辅助空间</p>
+<p>评价排序算法的另一个主要标准是执行算法所需要的辅助存储空间。辅助存储空间是除了存放待排序所占用的存储空间之外，执行算法所需 要的其他存储空间。</p>
+<p>3．算法的复杂性</p>
+<p>注意这里指的是算法本身的复杂度，而不是指算法的时间复杂度。显然算法过于复杂也会影响排序的性能。</p>
+<p>根据排序过程中借助的主要操作，我们把内排序分为：插入排序、交换排序、选择排序和归并排序。</p>
+<p>按照算法的复杂度分为两大类，冒泡排序、简单选择排序和直接插入排序属于简单算法，而希尔排序、堆排序、归并排序、快速排序属于改进算法。</p>
+<h4 id="排序用到的结构与函数"><a href="#排序用到的结构与函数" class="headerlink" title="排序用到的结构与函数"></a>排序用到的结构与函数</h4><p>先提供一个用于排序用的顺序表结构：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 用于要排序数组个数最大值，可根据需要修改 */</span> </span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE 10         </span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span>    </span><br><span class="line">  <span class="comment">/* 用于存储要排序数组，r[0]用作哨兵或临时变量 */</span>    </span><br><span class="line">  <span class="keyword">int</span> r[MAXSIZE + <span class="number">1</span>];        </span><br><span class="line">  <span class="comment">/* 用于记录顺序表的长度 */</span>    </span><br><span class="line">  <span class="keyword">int</span> length;            </span><br><span class="line">&#125; SqList;</span><br></pre></td></tr></table></figure>
+<p>另外，由于排序最最常用到的操作是数组两元素的交换，我们将它写成函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 交换L中数组r的下标为i和j的值 */</span> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(SqList *L, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;    </span><br><span class="line">  <span class="keyword">int</span> temp = L-&gt;r[i];    </span><br><span class="line">  L-&gt;r[i] = L-&gt;r[j];    </span><br><span class="line">  L-&gt;r[j] = temp; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 交换arr中数组下标为i和j的值 */</span> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">swap</span>(<span class="params">arr, i, j</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> temp = arr[i];</span><br><span class="line">  arr[i] = arr[j];</span><br><span class="line">  arr[j] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><h4 id="最简单排序实现"><a href="#最简单排序实现" class="headerlink" title="最简单排序实现"></a>最简单排序实现</h4><p>冒泡排序（Bubble Sort）一种交换排序，它的基本思想是：两两比较相邻记录的关键字，如果反序则交换，直到没有反序的记录为止。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 对顺序表L作交换排序(冒泡排序初级版) */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BubbleSort</span><span class="params">(SqList * L)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i,</span><br><span class="line">  j;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; L - &gt;length; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (j = i + <span class="number">1</span>; j &lt;= L - &gt;length; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (L - &gt;r[i] &gt; L - &gt;r[j]) &#123;</span><br><span class="line">        <span class="comment">/* 交换L-&gt;r[i]与L-&gt;r[j]的值 */</span></span><br><span class="line">        swap(L, i, j);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 对顺序表arr作交换排序(冒泡排序初级版) */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">BubbleSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = i + <span class="number">1</span>; j &lt; arr.length; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[i] &gt; arr[j]) &#123;</span><br><span class="line">        <span class="comment">/* 交换arr[i]和arr[j]的值 */</span></span><br><span class="line">        swap(arr, i, j);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码严格意义上说，不算是标准的冒泡排序算法，因为它不满足“两两比较相邻记录”的冒泡排序思想，它更应该是最最简单的交换排序而已。它的思路就是让每一个关键字，都和它后面的每一个关键字比较，如果大则交换，这样第一位置的关键字在一次循环后一定变成最小值。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/sort/%E6%9C%80%E7%AE%80%E5%8D%95%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.png" alt="最简单冒泡排序"></p>
+<p>它应该算是最最容易写出的排序代码了，不过这个简单易懂的代码，却是有缺陷的。观察后发现，在排序好1和2的位置后，对其余关键字的排序没有什么帮助（数字3反而还被换到了最后一位）。也就是说，这个算法的效率是非常低的。</p>
+<h4 id="冒泡排序算法"><a href="#冒泡排序算法" class="headerlink" title="冒泡排序算法"></a>冒泡排序算法</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 对顺序表L作冒泡排序 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BubbleSort</span><span class="params">(SqList * L)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i,</span><br><span class="line">  j;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; L - &gt;length; i++) &#123;</span><br><span class="line">    <span class="comment">/* 注意j是从后往前循环 */</span></span><br><span class="line">    <span class="keyword">for</span> (j = L - &gt;length - <span class="number">1</span>; j &gt;= i; j--) &#123;</span><br><span class="line">      <span class="comment">/* 若前者大于后者(注意这里与上一算法差异) */</span></span><br><span class="line">      <span class="keyword">if</span> (L - &gt;r[j] &gt; L - &gt;r[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="comment">/* 交换L-&gt;r[j]与L-&gt;r[j+1]的值 */</span></span><br><span class="line">        swap(L, j, j + <span class="number">1</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">BubbleSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length &amp;&amp; flag; i++) &#123;</span><br><span class="line">    <span class="comment">/* 初始为false */</span></span><br><span class="line">    flag = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = arr.length - <span class="number">1</span>; j &gt;= i; j--) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="comment">/* 交换L-&gt;r[j]与L-&gt;r[j+1]的值 */</span></span><br><span class="line">        swap(arr, j, j + <span class="number">1</span>);</span><br><span class="line">        <span class="comment">/* 如果有数据交换，则flag为true */</span></span><br><span class="line">        flag = <span class="literal">true</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="冒泡排序优化"><a href="#冒泡排序优化" class="headerlink" title="冒泡排序优化"></a>冒泡排序优化</h4><p>我们需要改进一下代码，增加一个标记变量flag来实现这一算法的改进。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 对顺序表L作改进冒泡算法 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BubbleSort2</span><span class="params">(SqList * L)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i,</span><br><span class="line">  j;</span><br><span class="line">  <span class="comment">/* flag用来作为标记 */</span></span><br><span class="line">  Status flag = TRUE;</span><br><span class="line">  <span class="comment">/* 若flag为true说明有过数据交换，否则停止循环 */</span></span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; L - &gt;length &amp;&amp; flag; i++) &#123;</span><br><span class="line">    <span class="comment">/* 初始为false */</span></span><br><span class="line">    flag = FALSE;</span><br><span class="line">    <span class="keyword">for</span> (j = L - &gt;length - <span class="number">1</span>; j &gt;= i; j--) &#123;</span><br><span class="line">      <span class="keyword">if</span> (L - &gt;r[j] &gt; L - &gt;r[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="comment">/* 交换L-&gt;r[j]与L-&gt;r[j+1]的值 */</span></span><br><span class="line">        swap(L, j, j + <span class="number">1</span>);</span><br><span class="line">        <span class="comment">/* 如果有数据交换，则flag为true */</span></span><br><span class="line">        flag = TRUE;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">BubbleSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; arr.length &amp;&amp; flag; i++) &#123;</span><br><span class="line">    <span class="comment">/* 初始为false */</span></span><br><span class="line">    flag = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = length - <span class="number">1</span>; j &gt;= i; j--) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[j ] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="comment">/* 交换L-&gt;r[j]与L-&gt;r[j+1]的值 */</span></span><br><span class="line">        swap(arr, j, j + <span class="number">1</span>);</span><br><span class="line">        <span class="comment">/* 如果有数据交换，则flag为true */</span></span><br><span class="line">        flag = <span class="literal">true</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码改动的关键就是在i变量的for循环中，增加了对flag是否为true的判断。经过这样的改进，冒泡排序在性能上就有了一些提升，可以避免因已经有序的情况下的无意义循环判断。</p>
+<h4 id="冒泡排序复杂度分析"><a href="#冒泡排序复杂度分析" class="headerlink" title="冒泡排序复杂度分析"></a>冒泡排序复杂度分析</h4><p>分析一下它的时间复杂度。当最好的情况，也就是要排序的表本身就是有序的，那么我们比较次数，根据最后改进的代码，可以推断出就是 n-1次的比较，没有数据交换，时间复杂度为O(n)。当最坏的情况，即待排序表是逆序的情况，此时需要比较sigma(i=2, n, i-1)=1+2+3+…+(n-1)=n(n-1)/2次，并作等数量级的记录移动。因此，总的时间复杂度为O(n<br>2 )。</p>
+<h3 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a>简单选择排序</h3><p>选择排序的基本思想是每一趟在n-i＋1(i=1,2,…,n-1)个记录中选取关键字最小的记录作为有序序列的第i个记录。</p>
+<h4 id="简单选择排序算法"><a href="#简单选择排序算法" class="headerlink" title="简单选择排序算法"></a>简单选择排序算法</h4><p>简单选择排序法（Simple Selection Sort）就是通过n-i次关键字间的比较，从n-i＋1个记录中选出关键字最小的记录，并和第i（1≤i≤n）个记录交换之。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 对顺序表L作简单选择排序 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SelectSort</span><span class="params">(SqList * L)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i,</span><br><span class="line">  j,</span><br><span class="line">  min;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; L - &gt;length; i++) &#123;</span><br><span class="line">    <span class="comment">/* 将当前下标定义为最小值下标 */</span></span><br><span class="line">    min = i;</span><br><span class="line">    <span class="comment">/* 循环之后的数据 */</span></span><br><span class="line">    <span class="keyword">for</span> (j = i + <span class="number">1</span>; j &lt;= L - &gt;length; j++) &#123;</span><br><span class="line">      <span class="comment">/* 如果有小于当前最小值的关键字 */</span></span><br><span class="line">      <span class="keyword">if</span> (L - &gt;r[min] &gt; L - &gt;r[j])</span><br><span class="line">      <span class="comment">/* 将此关键字的下标赋值给min */</span></span><br><span class="line">      min = j;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/* 若min不等于i，说明找到最小值，交换 */</span></span><br><span class="line">    <span class="keyword">if</span> (i != min)</span><br><span class="line">    <span class="comment">/* 交换L-&gt;r[i]与L-&gt;r[min]的值 */</span></span><br><span class="line">    swap(L, i, min);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SelectedSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="comment">/* 将当前下标定义为最小值下标 */</span></span><br><span class="line">    <span class="keyword">var</span> min = i;</span><br><span class="line">    <span class="comment">/* 循环之后的数据 */</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = i + <span class="number">1</span>; j &lt; arr.length; j++) &#123;</span><br><span class="line">      <span class="comment">/* 如果有小于当前最小值的关键字 */</span></span><br><span class="line">      <span class="keyword">if</span> (arr[min] &gt; arr[j]) &#123;</span><br><span class="line">        <span class="comment">/* 将此关键字的下标赋值给min */</span></span><br><span class="line">        min = j;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/* 若min不等于i，说明找到最小值，交换 */</span></span><br><span class="line">    <span class="keyword">if</span> (min != i) &#123;</span><br><span class="line">      <span class="comment">/* 交换L-&gt;r[i]与L-&gt;r[min]的值 */</span></span><br><span class="line">      swap(arr, min, i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="简单选择排序复杂度分析"><a href="#简单选择排序复杂度分析" class="headerlink" title="简单选择排序复杂度分析"></a>简单选择排序复杂度分析</h4><p>从简单选择排序的过程来看，它最大的特点就是交换移动数据次数相当少，这样也就节约了相应的时间。分析它的时间复杂度发现，无论最好最差的情况，其比较次数都是一样的多，第i趟排序需要进行n-i次关键字的比较，此时需要比较sigma(i=1, n-1, n-i)=(n-1)+(n2)+…+1=n(n-1)/2次。而对于交换次数而言，当最好的时候，交换为0次，最差的时候，也就初始降序时，交换次数为n-1次，基于最终的排序时间是比较与交换的次数总和，因此，总的时间复杂度依然为O(n2 )。</p>
+<p>应该说，尽管与冒泡排序同为O(n2 )，但简单选择排序的性能上还是要略优于冒泡排序。</p>
+<h3 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h3><h4 id="直接插入排序算法"><a href="#直接插入排序算法" class="headerlink" title="直接插入排序算法"></a>直接插入排序算法</h4><p>直接插入排序（Straight Insertion Sort）的基本操作是将一个记录插入到已经排好序的有序表中，从而得到一个新的、记录数增1的有序表。</p>
+<p>顾名思义，从名称上也可以知道它是一种插入排序的方法。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 对顺序表L作直接插入排序 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(SqList * L)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i,</span><br><span class="line">  j;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">2</span>; i &lt;= L - &gt;length; i++) &#123;</span><br><span class="line">    <span class="comment">/* 需将L-&gt;r[i]插入有序子表 */</span></span><br><span class="line">    <span class="keyword">if</span> (L - &gt;r[i] &lt; L - &gt;r[i - <span class="number">1</span>]) &#123;</span><br><span class="line">      <span class="comment">/* 设置哨兵 */</span></span><br><span class="line">      L - &gt;r[<span class="number">0</span>] = L - &gt;r[i];</span><br><span class="line">      <span class="keyword">for</span> (j = i - <span class="number">1</span>; L - &gt;r[j] &gt; L - &gt;r[<span class="number">0</span>]; j--)</span><br><span class="line">      <span class="comment">/* 记录后移 */</span></span><br><span class="line">      L - &gt;r[j + <span class="number">1</span>] = L - &gt;r[j];</span><br><span class="line">      <span class="comment">/* 插入到正确位置 */</span></span><br><span class="line">      L - &gt;r[j + <span class="number">1</span>] = L - &gt;r[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">InsertSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="comment">/* 需将arr[i]插入有序子表 */</span></span><br><span class="line">    <span class="keyword">if</span> (arr[i] &lt; arr[i - <span class="number">1</span>]) &#123;</span><br><span class="line">      <span class="comment">/* 设置哨兵 */</span></span><br><span class="line">      <span class="keyword">var</span> temp = arr[i];</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> j = i - <span class="number">1</span>; arr[j] &gt; temp; j--) &#123;</span><br><span class="line">        <span class="comment">/* 记录后移 */</span></span><br><span class="line">        arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">/* 插入到正确位置 */</span></span><br><span class="line">      arr[j + <span class="number">1</span>] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="直接插入排序复杂度分析"><a href="#直接插入排序复杂度分析" class="headerlink" title="直接插入排序复杂度分析"></a>直接插入排序复杂度分析</h4><p>我们来分析一下这个算法，从空间上来看，它只需要一个记录的辅助空间，因此关键是看它的时间复杂度。</p>
+<p>当最好的情况，也就是要排序的表本身就是有序的，比如纸牌拿到后就是{2,3,4,5,6}，那么我们比较次数，其实就是代码第6行每个L.r[i]与L.r[i-1]的比较，共比较了(n-1)sigma(i=2, n, 1)次，由于每次都是L.r[i]&gt;L.r[i-1]，因此没有移动的记录，时间复杂度为O(n)。</p>
+<p>当最坏的情况，即待排序表是逆序的情况，比如{6,5,4,3,2}，此时需要比较sigma(i=2, n, i)=2+3+…+n=(n+2)(n-1)/2次，而记录的移动次数也达到最大值sigma(i=2, n, i+1)=(n+4)(n-1)/2次。</p>
+<p>如果排序记录是随机的，那么根据概率相同的原则，平均比较和移动次数约为n2 /4次。因此，我们得出直接插入排序法的时间复杂度为O(n2 )。从这里也看出，同样的O(n2 )时间复杂度，直接插入排序法比冒泡和简单选择排序的性能要好一些。</p>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><p>从这里也告诉我们，做任何事，你解决不了时，想一想“Nothing is impossible!”，虽然有点唯心，但这样的思维方式会让你更加深入地思考解决方案，而不是匆忙的放弃。</p>
+<h4 id="希尔排序原理"><a href="#希尔排序原理" class="headerlink" title="希尔排序原理"></a>希尔排序原理</h4><p>希尔排序是D.L.Shell于1959年提出来的一种排序算法，在这之前排序算法的时间复杂度<br>基本都是O(n2)的，希尔排序算法是突破这个时间复杂度的第一批算法之一。</p>
+<p>我们前一节讲的直接插入排序，应该说，它的效率在某些时候是很高的，比如，我们的记录本身就是基本有序的，我们只需要少量的插入操作，就可以完成整个记录集的排序工作，此时直接插入很高效。还有就是记录数比较少时，直接插入的优势也比较明显。可问题在于，两个条件本身就过于苛刻，现实中记录少或者基本有序都属于特殊情况。</p>
+<p>问题其实也就在这里，我们分割待排序记录的目的是减少待排序记录的个数，并使整个序列向基本有序发展。而如上面这样分完组后就各自排序的方法达不到我们的要求。因此，我们需要采取跳跃分割的策略：将相距某个“增量”的记录组成一个子序列，这样才能保证在子序列内分别进行直接插入排序后得到的结果是基本有序而不是局部有序。</p>
+<h4 id="希尔排序算法"><a href="#希尔排序算法" class="headerlink" title="希尔排序算法"></a>希尔排序算法</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 对顺序表L作希尔排序 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShellSort</span><span class="params">(SqList * L)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i,</span><br><span class="line">  j;</span><br><span class="line">  <span class="keyword">int</span> increment = L - &gt;length;</span><br><span class="line">  <span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="comment">/* 增量序列 */</span></span><br><span class="line">    increment = increment / <span class="number">3</span> + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (i = increment + <span class="number">1</span>; i &lt;= L - &gt;length; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (L - &gt;r[i] &lt; L - &gt;r[i - increment]) &#123;</span><br><span class="line">        <span class="comment">/* 需将L-&gt;r[i]插入有序增量子表 */</span></span><br><span class="line">        <span class="comment">/* 暂存在L-&gt;r[0] */</span></span><br><span class="line">        L - &gt;r[<span class="number">0</span>] = L - &gt;r[i];</span><br><span class="line">        <span class="keyword">for</span> (j = i - increment; j &gt; <span class="number">0</span> &amp;&amp; L - &gt;r[<span class="number">0</span>] &lt; L - &gt;r[j]; j -= increment)</span><br><span class="line">        <span class="comment">/* 记录后移，查找插入位置 */</span></span><br><span class="line">        L - &gt;r[j + increment] = L - &gt;r[j];</span><br><span class="line">        <span class="comment">/* 插入 */</span></span><br><span class="line">        L - &gt;r[j + increment] = L - &gt;r[<span class="number">0</span>];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">while</span> ( increment &gt; <span class="number">1</span> );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="希尔排序复杂度分析"><a href="#希尔排序复杂度分析" class="headerlink" title="希尔排序复杂度分析"></a>希尔排序复杂度分析</h3><p>通过这段代码的剖析，相信大家有些明白，希尔排序的关键并不是随便分组后各自排序，而是将相隔某个“增量”的记录组成一个子序列，实现跳跃式的移动，使得排序的效率提高。</p>
+<p>这里“增量”的选取就非常关键了。我们在代码中第7行，是increment=increment/3+1;的方式选取增量的，可究竟应该选取什么样的增量才是最好，目前还是一个数学难题，迄今为止还没有人找到一种最好的增量序列。不过大量的研究表明，当增量序列为dlta[k]=2t -k+1-1（0≤k≤t≤）时，可以获得不错的效率，其时间复杂度为O(n3 /2)，要好于直接排序的O(n2 )。需要注意的是，增量序列的最后一个增量值必须等于1才行。另外由于记录是跳跃式的移动，希尔排序并不是一种稳定的排序算法。</p>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>如果可以做到每次在选择到最小记录的同时，并根据比较结果对其他记录做出相应的调整，那样排序的总体效率就会非常高了。而堆排序（HeapSort），就是对简单选择排序进行的一种改进，这种改进的效果是非常明显的。堆排序算法是Floyd和Williams在1964年共同发明的，同时，他们发明了“堆”这样的数据结构。</p>
+<p>堆是具有下列性质的完全二叉树：每个结点的值都大于或等于其左右孩子结点的值，称为大顶堆（例如图9-7-2左图所示）；或者每个结点的值都小于或等于其左右孩子结点的值，称为小顶堆。</p>
+<p>这里需要注意从堆的定义可知，根结点一定是堆中所有结点最大（小）者。较大（小）的结点靠近根结点。</p>
+<h4 id="堆排序算法"><a href="#堆排序算法" class="headerlink" title="堆排序算法"></a>堆排序算法</h4><p>堆排序（Heap Sort）就是利用堆（假设利用大顶堆）进行排序的方法。它的基本思想是，将待排序的序列构造成一个大顶堆。此时，整个序列的最大值就是堆顶的根结点。将它移走（其实就是将其与堆数组的末尾元素交换，此时末尾元素就是最大值），然后将剩余的n-1个序列重新构造成一个堆，这样就会得到n个元素中的次大值。如此反复执行，便能得到一个有序序列了。</p>
+<p>相信大家有些明白堆排序的基本思想了，不过要实现它还需要解决两个问题： 1.如何由一个无序序列构建成一个堆？ 2.如果在输出堆顶元素后，调整剩余元素成为一个新的堆？</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 对顺序表L进行堆排序 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HeapSort</span><span class="params">(SqList * L)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line">  <span class="comment">/* 把L中的r构建成一个大顶堆 */</span></span><br><span class="line">  <span class="keyword">for</span> (i = L - &gt;length / <span class="number">2</span>; i &gt; <span class="number">0</span>; i--) HeapAdjust(L, i, L - &gt;length);</span><br><span class="line">  <span class="keyword">for</span> (i = L - &gt;length; i &gt; <span class="number">1</span>; i--) &#123;</span><br><span class="line">    <span class="comment">/* 将堆顶记录和当前未经排序子序列的最后一个记录交换 */</span></span><br><span class="line">    swap(L, <span class="number">1</span>, i);</span><br><span class="line">    <span class="comment">/* 将L-&gt;r[1..i-1]重新调整为大顶堆 */</span></span><br><span class="line">    HeapAdjust(L, <span class="number">1</span>, i - <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从代码中也可以看出，整个排序过程分为两个for循环。第一个循环要完成的就是将现在的待排序序列构建成一个大顶堆。第二个循环要完成的就是逐步将每个最大值的根结点与末尾元素交换，并且再调整其成为大顶堆。</p>
+<p>既然已经弄清楚i的变化是在调整哪些元素了，现在我们来看关键的HeapAdjust（堆调整）函数是如何实现的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 已知L-&gt;r[s..m]中记录的关键字除L-&gt;r[s]之外</span></span><br><span class="line"><span class="comment">均满足堆的定义 */</span></span><br><span class="line"><span class="comment">/* 本函数调整L-&gt;r[s]的关键字，使L-&gt;r[s..m]成</span></span><br><span class="line"><span class="comment">为一个大顶堆 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HeapAdjust</span><span class="params">(SqList * L, <span class="keyword">int</span> s, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> temp,</span><br><span class="line">  j;</span><br><span class="line">  temp = L - &gt;r[s];</span><br><span class="line">  <span class="comment">/* 沿关键字较大的孩子结点向下筛选 */</span></span><br><span class="line">  <span class="keyword">for</span> (j = <span class="number">2</span> * s; j &lt;= m; j *= <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (j &lt; m &amp;&amp; L - &gt;r[j] &lt; L - &gt;r[j + <span class="number">1</span>])</span><br><span class="line">    <span class="comment">/* j为关键字中较大的记录的下标 */</span></span><br><span class="line">    ++j;</span><br><span class="line">    <span class="keyword">if</span> (temp &gt;= L - &gt;r[j])</span><br><span class="line">    <span class="comment">/* rc应插入在位置s上 */</span></span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    L - &gt;r[s] = L - &gt;r[j];</span><br><span class="line">    s = j;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/* 插入 */</span></span><br><span class="line">  L - &gt;r[s] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="堆排序复杂度分析"><a href="#堆排序复杂度分析" class="headerlink" title="堆排序复杂度分析"></a>堆排序复杂度分析</h4><p>堆排序的效率到底有多高呢？我们来分析一下。</p>
+<p>它的运行时间主要是消耗在初始构建堆和在重建堆时的反复筛选上。</p>
+<p>在构建堆的过程中，因为我们是完全二叉树从最下层最右边的非终端结点开始构建，，其实最多进行两次比较和互换操作，因此整个构建堆的时间复杂度为O(n)。</p>
+<p>在正式排序时，第i次取堆顶记录重建堆需要用O(logi)的时间（完全二叉树的某个结点到根结点的距离为），并且需要取n-1次堆顶记录，因此，重建堆的时间复杂度为O(nlogn)。</p>
+<p>所以总体来说，堆排序的时间复杂度为O(nlogn)。由于堆排序对原始记录的排序状态并不敏感，因此它无论是最好、最坏和平均时间复杂度均为O(nlogn)。这在性能上显然要远远好过于冒泡、简单选择、直接插入的O(n2 )的时间复杂度了。</p>
+<p>空间复杂度上，它只有一个用来交换的暂存单元，也非常的不错。不过由于记录的比较与交换是跳跃式进行，因此堆排序也是一种不稳定的排序方法。</p>
+<p>另外，由于初始构建堆所需的比较次数较多，因此，它并不适合待排序序列个数较少的情况。</p>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>前面我们讲了堆排序，因为它用到了完全二叉树，充分利用了完全二叉树的深度是|log2 n|+1的特性，所以效率比较高。不过堆结构的设计本身是比较复杂的，老实说，能想出这样的结构就挺不容易，有没有更直接简单的办法利用完全二叉树来排序呢？当然有。</p>
+<p>换句话说，所谓的全省排名，其实也就是每个市、每个县、每个学校、每个班级的排名合并后再排名得到的。注意我这里用到了合并一词。</p>
+<p>我们要比较两个学生的成绩高低是很容易的，比如甲比乙分数低，丙比丁分数低。那么我们也就可以很容易得到甲乙丙丁合并后的成绩排名，同样的，戊己庚辛的排名也容易得到，由于他们两组分别有序了，把他们八个学生成绩合并有序也是很容易做到的了，继续下去……最终完成全省学生的成绩排名，此时高考状元也就诞生了。</p>
+<h4 id="归并排序算法"><a href="#归并排序算法" class="headerlink" title="归并排序算法"></a>归并排序算法</h4><p>归并”一词的中文含义就是合并、并入的意思，而在数据结构中的定义是将两个或两个以上的有序表组合成一个新的有序表。</p>
+<p>归并排序（Merging Sort）就是利用归并的思想实现的排序方法。它的原理是假设初始序列含有n个记录，则可以看成是n个有序的子序列，每个子序列的长度为1，然后两两归并，得到|n/2|（|x|表示不小于x的最小整数）个长度为2或1的有序子序列；再两两归并，……，如此重复，直至得到一个长度为n的有序序列为止，这种排序方法称为2路归并排序。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 对顺序表L作归并排序 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MergeSort</span><span class="params">(SqList * L)</span> </span>&#123;</span><br><span class="line">  MSort(L - &gt;r, L - &gt;r, <span class="number">1</span>, L - &gt;length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一句代码，别奇怪，它只是调用了另一个函数而已。为了与前面的排序算法统一，我们用了同样的参数定义SqList *L，由于我们要讲解的归并排序实现需要用到递归调用，因此我们外封装了一个函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 将SR[s..t]归并排序为TR1[s..t] */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MSort</span><span class="params">(<span class="keyword">int</span> SR[], <span class="keyword">int</span> TR1[], <span class="keyword">int</span> s, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> m;</span><br><span class="line">  <span class="keyword">int</span> TR2[MAXSIZE + <span class="number">1</span>];</span><br><span class="line">  <span class="keyword">if</span> (s == t) TR1[s] = SR[s];</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">/* 将SR[s..t]平分为SR[s..m]和SR[m+1..t] */</span></span><br><span class="line">    m = (s + t) / <span class="number">2</span>;</span><br><span class="line">    <span class="comment">/* 递归将SR[s..m]归并为有序的TR2[s..m] */</span></span><br><span class="line">    MSort(SR, TR2, s, m);</span><br><span class="line">    <span class="comment">/* 递归将SR[m+1..t]归并为有序TR2[m+1..t] */</span></span><br><span class="line">    MSort(SR, TR2, m + <span class="number">1</span>, t);</span><br><span class="line">    <span class="comment">/* 将TR2[s..m]和TR2[m+1..t] */</span></span><br><span class="line">    <span class="comment">/* 归并到TR1[s..t] */</span></span><br><span class="line">    Merge(TR2, TR1, s, m, t);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在我们来看看Merge函数的代码是如何实现的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 将有序的SR[i..m]和SR[m+1..n]归并为有序的</span></span><br><span class="line"><span class="comment">TR[i..n] */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Merge</span><span class="params">(<span class="keyword">int</span> SR[], <span class="keyword">int</span> TR[], <span class="keyword">int</span> i, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> j,</span><br><span class="line">  k,</span><br><span class="line">  l;</span><br><span class="line">  <span class="comment">/* 将SR中记录由小到大归并入TR */</span></span><br><span class="line">  <span class="keyword">for</span> (j = m + <span class="number">1</span>, k = i; i &lt;= m &amp;&amp; j &lt;= n; k++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (SR[i] &lt; SR[j]) TR[k] = SR[i++];</span><br><span class="line">    <span class="keyword">else</span> TR[k] = SR[j++];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (i &lt;= m) &#123;</span><br><span class="line">    <span class="keyword">for</span> (l = <span class="number">0</span>; l &lt;= m - i; l++)</span><br><span class="line">    <span class="comment">/* 将剩余的SR[i..m]复制到TR */</span></span><br><span class="line">    TR[k + l] = SR[i + l];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (j &lt;= n) &#123;</span><br><span class="line">    <span class="keyword">for</span> (l = <span class="number">0</span>; l &lt;= n - j; l++)</span><br><span class="line">    <span class="comment">/* 将剩余的SR[j..n]复制到TR */</span></span><br><span class="line">    TR[k + l] = SR[j + l];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="归并排序复杂度分析"><a href="#归并排序复杂度分析" class="headerlink" title="归并排序复杂度分析"></a>归并排序复杂度分析</h4><p>我们来分析一下归并排序的时间复杂度，一趟归并需要将SR[1]～SR[n]中相邻的长度为h的有序序列进行两两归并。并将结果放到TR1[1]～TR1[n]中，这需要将待排序序列中的所有记录扫描一遍，因此耗费O(n)时间，而由完全二叉树的深度可知，整个归并排序需要进行次，因此，总的时间复杂度为O(nlogn)，而且这是归并排序算法中最好、最坏、平均的时间性能。</p>
+<p>由于归并排序在归并过程中需要与原始记录序列同样数量的存储空间存放归并结果以及递归时深度为log2n的栈空间，因此空间复杂度为O(n+logn)。</p>
+<p>另外，对代码进行仔细研究，发现Merge函数中有if(SR[i]&lt;SR[j])语句，这就说明它需要两两比较，不存在跳跃，因此归并排序是一种稳定的排序算法。</p>
+<p>也就是说，归并排序是一种比较占用内存，但却效率高且稳定的算法。</p>
+<h4 id="非递归实现归并排序"><a href="#非递归实现归并排序" class="headerlink" title="非递归实现归并排序"></a>非递归实现归并排序</h4><p>我们常说，“没有最好，只有更好。”归并排序大量引用了递归，尽管在代码上比较清晰，容易理解，但这会造成时间和空间上的性能损耗。</p>
+<p>我们排序追求的就是效率，有没有可能将递归转化成迭代呢？结论当然是可以的，而且改动之后，性能上进一步提高了，来看代码。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 对顺序表L作归并非递归排序 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MergeSort2</span><span class="params">(SqList * L)</span> </span>&#123;</span><br><span class="line">  <span class="comment">/* 申请额外空间 */</span></span><br><span class="line">  <span class="keyword">int</span> * TR = (<span class="keyword">int</span> * ) <span class="built_in">malloc</span>(L - &gt;length * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">  <span class="keyword">int</span> k = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span> (k &lt; L - &gt;length) &#123;</span><br><span class="line">    MergePass(L - &gt;r, TR, k, L - &gt;length);</span><br><span class="line">    <span class="comment">/*子序列长度加倍 */</span></span><br><span class="line">    k = <span class="number">2</span> * k;</span><br><span class="line">    MergePass(TR, L - &gt;r, k, L - &gt;length);</span><br><span class="line">    <span class="comment">/* 子序列长度加倍 */</span></span><br><span class="line">    k = <span class="number">2</span> * k;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从代码中，我们能够感受到，非递归的迭代做法更加直截了当，从最小的序列开始归并直至完成。不需要像归并的递归算法一样，需要先拆分递归，再归并退出递归。</p>
+<p>现在我们来看MergePass代码是如何实现的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 将SR[]中相邻长度为s的子序列两两归并到TR[] */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MergePass</span><span class="params">(<span class="keyword">int</span> SR[], <span class="keyword">int</span> TR[], <span class="keyword">int</span> s, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">int</span> j;</span><br><span class="line">  <span class="keyword">while</span> (i &lt;= n - <span class="number">2</span> * s + <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">/* 两两归并 */</span></span><br><span class="line">    Merge(SR, TR, i, i + s - <span class="number">1</span>, i + <span class="number">2</span> * s - <span class="number">1</span>);</span><br><span class="line">    i = i + <span class="number">2</span> * s;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/* 归并最后两个序列 */</span></span><br><span class="line">  <span class="keyword">if</span> (i &lt; n - s + <span class="number">1</span>) Merge(SR, TR, i, i + s - <span class="number">1</span>, n);</span><br><span class="line">  <span class="comment">/* 若最后只剩下单个子序列 */</span></span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">for</span> (j = i; j &lt;= n; j++) TR[j] = SR[j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>非递归的迭代方法，避免了递归时深度为log2 n的栈空间，空间只是用到申请归并临时用的TR数组，因此空间复杂度为O(n)，并且避免递归也在时间性能上有一定的提升，应该说，使用归并排序时，尽量考虑用非递归方法。</p>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>希尔排序相当于直接插入排序的升级，它们同属于插入排序类，堆排序相当于简单选择排序的升级，它们同属于选择排序类。而快速排序其实就是我们前面认为最慢的冒泡排序的升级，它们都属于交换排序类。即它也是通过不断比较和移动交换来实现排序的，只不过它的实现，增大了记录的比较和移动的距离，将关键字较大的记录从前面直接移动到后面，关键字较小的记录从后面直接移动到前面，从而减少了总的比较次数和移动交换次数。</p>
+<h4 id="快速排序算法"><a href="#快速排序算法" class="headerlink" title="快速排序算法"></a>快速排序算法</h4><p>快速排序（Quick Sort）的基本思想是：通过一趟排序将待排记录分割成独立的两部分，其中一部分记录的关键字均比另一部分记录的关键字小，则可分别对这两部分记录继续进行排序，以达到整个序列有序的目的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 对顺序表L作快速排序 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QuickSort</span><span class="params">(SqList * L)</span> </span>&#123;</span><br><span class="line">  QSort(L, <span class="number">1</span>, L - &gt;length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>又是一句代码，和归并排序一样，由于需要递归调用，因此我们外封装了一个函数。现在我们来看QSort的实现。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 对顺序表L中的子序列L-&gt;r[low..high]作快速排</span></span><br><span class="line"><span class="comment">序 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QSort</span><span class="params">(SqList * L, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> pivot;</span><br><span class="line">  <span class="keyword">if</span> (low &lt; high) &#123;</span><br><span class="line">    <span class="comment">/* 将L-&gt;r[low..high]一分为二， */</span></span><br><span class="line">    <span class="comment">/* 算出枢轴值pivot */</span></span><br><span class="line">    pivot = Partition(L, low, high);</span><br><span class="line">    <span class="comment">/* 对低子表递归排序 */</span></span><br><span class="line">    QSort(L, low, pivot - <span class="number">1</span>);</span><br><span class="line">    <span class="comment">/* 对高子表递归排序 */</span></span><br><span class="line">    QSort(L, pivot + <span class="number">1</span>, high);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过这段代码的模拟，大家应该能够明白，Partition函数，其实就是将选取的pivotkey不断交换，将比它小的换到它的左边，比它大的换到它的右边，它也在交换中不断更改自己的位置，直到完全满足这个要求为止。</p>
+<h4 id="快速排序复杂度分析"><a href="#快速排序复杂度分析" class="headerlink" title="快速排序复杂度分析"></a>快速排序复杂度分析</h4><p>我们来分析一下快速排序法的性能。快速排序的时间性能取决于快速排序递归的深度，可以用递归树来描述递归算法的执行情况。如图9-9-7所示，它是{50,10,90,30,70,40,80,60,20}在快速排序过程中的递归过程。由于我们的第一个关键字是50，正好是待排序的序列的中间值，因此递归树是平衡的，此时性能也比较好。</p>
+<p>在最优情况下，Partition每次都划分得很均匀，如果排序n个关键字，其递归树的深度就为（表示不大于x的最大整数），即仅需递归log2 n次，需要时间为T(n)的话，第一次Par-tiation应该是需要对整个数组扫描一遍，做n次比较。然后，获得的枢轴将数组一分为二，那么各自还需要T(n/2)的时间（注意是最好情况，所以平分两半）。于是不断地划分下去，我们就有了下面的不等式推断。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">T(n) ≤ 2T(n / 2) + n, T(1) = 0</span><br><span class="line">T(n) ≤ 2(2T(n / 4) + n / 2) + n = 4T(n / 4)+2n</span><br><span class="line">T(n) ≤ 4(2T(n / 8) + n / 4) + 2n = 8T(n / 8)+3n</span><br><span class="line">……</span><br><span class="line">T(n) ≤ nT(1) + (log2n) × n = O(nlogn)</span><br></pre></td></tr></table></figure>
+<p>也就是说，在最优的情况下，快速排序算法的时间复杂度为O(nlogn)。</p>
+<p>在最坏的情况下，待排序的序列为正序或者逆序，每次划分只得到一个比上一次划分少一个记录的子序列，注意另一个为空。如果递归树画出来，它就是一棵斜树。此时需要执行n-1次递归调用，且第i次划分需要经过n-i次关键字的比较才能找到第i个记录，也就是枢轴的位置，因此比较次数为sigma(i=1, n-1, n-i)=(n-1)+(n-2)+…+1=n(n-1)/2，最终其时间复杂度为O(n2 )。</p>
+<p>平均的情况，设枢轴的关键字应该在第k的位置（1≤k≤n），那么：</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/sort/%E5%B9%B3%E5%9D%87%E7%9A%84%E6%83%85%E5%86%B5.png" alt="平均的情况"></p>
+<p>由数学归纳法可证明，其数量级为O(nlogn)。</p>
+<p>就空间复杂度来说，主要是递归造成的栈空间的使用，最好情况，递归树的深度为log2 n，其空间复杂度也就为O(logn)，最坏情况，需要进行n-1递归调用，其空间复杂度为O(n)，平均情况，空间复杂度也为O(logn)。</p>
+<p>可惜的是，由于关键字的比较和交换是跳跃进行的，因此，快速排序是一种不稳定的排序方法。</p>
+<h4 id="快速排序优化"><a href="#快速排序优化" class="headerlink" title="快速排序优化"></a>快速排序优化</h4><p>…有需要可以加上</p>
+<h3 id="总结回顾"><a href="#总结回顾" class="headerlink" title="总结回顾"></a>总结回顾</h3><p>首先我们讲了排序的定义，并提到了排序的稳定性，排序稳定对于某些特殊需求来说是至关重要的，因此在排序算法中，我们需要关注此算法的稳定性如何。</p>
+<p>我们根据将排序记录是否全部被放置在内存中，将排序分为内排序与外排序两种，外排序需要在内外存之间多次交换数据才能进行。我们本章主要讲的是内排序的算法。</p>
+<p>根据排序过程中借助的主要操作，我们将内排序分为：插入排序、交换排序、选择排序和归并排序四类。之后介绍的7种排序法，就分别是各种分类的代表算法。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/sort/%E5%90%84%E7%A7%8D%E5%88%86%E7%B1%BB%E7%9A%84%E4%BB%A3%E8%A1%A8%E7%AE%97%E6%B3%95.png" alt="各种分类的代表算法"></p>
+<p>事实上，目前还没有十全十美的排序算法，有优点就会有缺点，即使是快速排序法，也只是在整体性能上优越，它也存在排序不稳定、需要大量辅助空间、对少量数据排序无优势等不足。因此我们就来从多个角度来剖析一下提到的各种排序的长与短。</p>
+<p>我们将7种算法的各种指标进行对比，如表9-10-1所示。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/sort/7%E7%A7%8D%E7%AE%97%E6%B3%95%E7%9A%84%E5%90%84%E7%A7%8D%E6%8C%87%E6%A0%87%E8%BF%9B%E8%A1%8C%E5%AF%B9%E6%AF%94.png" alt="7种算法的各种指标进行对比"></p>
+<p>从算法的简单性来看，我们将7种算法分为两类：</p>
+<ul>
+<li>简单算法：冒泡、简单选择、直接插入。</li>
+<li>改进算法：希尔、堆、归并、快速。</li>
+</ul>
+<p>从平均情况来看，显然最后3种改进算法要胜过希尔排序，并远远胜过前3种简单算法。</p>
+<p>从最好情况看，反而冒泡和直接插入排序要更胜一筹，也就是说，如果你的待排序序列总是基本有序，反而不应该考虑4种复杂的改进算法。</p>
+<p>从最坏情况看，堆排序与归并排序又强过快速排序以及其他简单排序。</p>
+<p>从这三组时间复杂度的数据对比中，我们可以得出这样一个认识。堆排序和归并排序就像两个参加奥数考试的优等生，心理素质强，发挥稳定。而快速排序像是很情绪化的天才，心情好时表现极佳，碰到较糟糕环境会变得差强人意。但是他们如果都来比赛计算个位数的加减法，它们反而算不过成绩极普通的冒泡和直接插入。</p>
+<p>从空间复杂度来说，归并排序强调要马跑得快，就得给马吃个饱。快速排序也有相应的空间要求，反而堆排序等却都是少量索取，大量付出，对空间要求是O(1)。如果执行算法的软件所处的环境非常在乎内存使用量的多少时，选择归并排序和快速排序就不是一个较好的决策了。</p>
+<p>从稳定性来看，归并排序独占鳌头，我们前面也说过，对于非常在乎排序稳定性的应用中，归并排序是个好算法。</p>
+<p>从待排序记录的个数上来说，待排序的个数n越小，采用简单排序方法越合适。反之，n越大，采用改进排序方法越合适。这也就是我们为什么对快速排序优化时，增加了一个阀值，低于阀值时换作直接插入排序的原因。</p>
+<p>从表9-10-1的数据中，似乎简单选择排序在3种简单排序中性能最差，其实也不完全是，比如，如果记录的关键字本身信息量比较大（例如，关键字都是数十位的数字），此时表明其占用存储空间很大，这样移动记录所花费的时间也就越多，我们给出3种简单排序算法的移动次数比较，如表9-10-2所示。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/sort/3%E7%A7%8D%E7%AE%80%E5%8D%95%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E7%A7%BB%E5%8A%A8.png" alt="3种简单排序算法的移动
+次数比较，如"></p>
+<p>你会发现，此时简单选择排序就变得非常有优势，原因也就在于，它是通过大量比较后选择明确记录进行移动，有的放矢。因此对于数据量不是很大而记录的关键字信息量较大的排序要求，简单排序算法是占优的。另外，记录的关键字信息量大小对那四个改进算法影响不大。</p>
+<p>总之，从综合各项指标来说，经过优化的快速排序是性能最好的排序算法，但是不同的场合我们也应该考虑使用不同的算法来应对它。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/10/qunar/" rel="next" title="去哪儿网面试准备">
+                <i class="fa fa-chevron-left"></i> 去哪儿网面试准备
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/15/search/" rel="prev" title="《大话数据结构》-读书笔记-查找">
+                《大话数据结构》-读书笔记-查找 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="songxingguo">
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">129</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">1.</span> <span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#排序的基本概念与分类"><span class="nav-number">1.1.</span> <span class="nav-text">排序的基本概念与分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#排序的稳定性"><span class="nav-number">1.1.1.</span> <span class="nav-text">排序的稳定性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内排序与外排序"><span class="nav-number">1.1.2.</span> <span class="nav-text">内排序与外排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排序用到的结构与函数"><span class="nav-number">1.1.3.</span> <span class="nav-text">排序用到的结构与函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冒泡排序"><span class="nav-number">1.2.</span> <span class="nav-text">冒泡排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#最简单排序实现"><span class="nav-number">1.2.1.</span> <span class="nav-text">最简单排序实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#冒泡排序算法"><span class="nav-number">1.2.2.</span> <span class="nav-text">冒泡排序算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#冒泡排序优化"><span class="nav-number">1.2.3.</span> <span class="nav-text">冒泡排序优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#冒泡排序复杂度分析"><span class="nav-number">1.2.4.</span> <span class="nav-text">冒泡排序复杂度分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单选择排序"><span class="nav-number">1.3.</span> <span class="nav-text">简单选择排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单选择排序算法"><span class="nav-number">1.3.1.</span> <span class="nav-text">简单选择排序算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单选择排序复杂度分析"><span class="nav-number">1.3.2.</span> <span class="nav-text">简单选择排序复杂度分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接插入排序"><span class="nav-number">1.4.</span> <span class="nav-text">直接插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直接插入排序算法"><span class="nav-number">1.4.1.</span> <span class="nav-text">直接插入排序算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直接插入排序复杂度分析"><span class="nav-number">1.4.2.</span> <span class="nav-text">直接插入排序复杂度分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#希尔排序"><span class="nav-number">1.5.</span> <span class="nav-text">希尔排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#希尔排序原理"><span class="nav-number">1.5.1.</span> <span class="nav-text">希尔排序原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#希尔排序算法"><span class="nav-number">1.5.2.</span> <span class="nav-text">希尔排序算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#希尔排序复杂度分析"><span class="nav-number">1.6.</span> <span class="nav-text">希尔排序复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆排序"><span class="nav-number">1.7.</span> <span class="nav-text">堆排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#堆排序算法"><span class="nav-number">1.7.1.</span> <span class="nav-text">堆排序算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#堆排序复杂度分析"><span class="nav-number">1.7.2.</span> <span class="nav-text">堆排序复杂度分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#归并排序"><span class="nav-number">1.8.</span> <span class="nav-text">归并排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#归并排序算法"><span class="nav-number">1.8.1.</span> <span class="nav-text">归并排序算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#归并排序复杂度分析"><span class="nav-number">1.8.2.</span> <span class="nav-text">归并排序复杂度分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非递归实现归并排序"><span class="nav-number">1.8.3.</span> <span class="nav-text">非递归实现归并排序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序"><span class="nav-number">1.9.</span> <span class="nav-text">快速排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#快速排序算法"><span class="nav-number">1.9.1.</span> <span class="nav-text">快速排序算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快速排序复杂度分析"><span class="nav-number">1.9.2.</span> <span class="nav-text">快速排序复杂度分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快速排序优化"><span class="nav-number">1.9.3.</span> <span class="nav-text">快速排序优化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结回顾"><span class="nav-number">1.10.</span> <span class="nav-text">总结回顾</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
