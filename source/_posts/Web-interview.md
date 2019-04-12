@@ -45,3 +45,7 @@ _**基础技能** 占比是 **最大** 的，其中 **JavaScript** 占到 **71�
 
 
 [原文阅读](https://baijiahao.baidu.com/s?id=1595533078101206155&wfr=spider&for=pc)
+
+## 面试攻略
+
+[来自offer杀手的前端面试攻略](https://mp.weixin.qq.com/s/H_KJUFd6wl3ZkWroqEVHvA)
