@@ -19,13 +19,13 @@ date: 2018-07-15 07:48:00
 
   - 域名地址的组成
 
-  ![域名组成](http://p9myzkds7.bkt.clouddn.com/cross-domain/%E8%B7%A8%E5%9F%9F.jpg)
+  ![域名组成](https://graphbed.qiniu.songxingguo.com/cross-domain/%E8%B7%A8%E5%9F%9F.jpg)
 
  `图片来自慕课网`
 
   - 跨域错误代码
 
-  ![跨域错误代码](http://p9myzkds7.bkt.clouddn.com/cross-domain/%E8%B7%A8%E5%9F%9F%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81.jpg)
+  ![跨域错误代码](https://graphbed.qiniu.songxingguo.com/cross-domain/%E8%B7%A8%E5%9F%9F%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81.jpg)
 
   `图片来自慕课网`
 
@@ -35,7 +35,7 @@ date: 2018-07-15 07:48:00
 
   - 常见跨域场景
 
-   ![跨域类型](http://p9myzkds7.bkt.clouddn.com/cross-domain/%E8%B7%A8%E5%9F%9F%E7%9A%84%E7%B1%BB%E5%9E%8B.jpg)
+   ![跨域类型](https://graphbed.qiniu.songxingguo.com/cross-domain/%E8%B7%A8%E5%9F%9F%E7%9A%84%E7%B1%BB%E5%9E%8B.jpg)
 
    `图片来自慕课网`
 
@@ -46,7 +46,7 @@ date: 2018-07-15 07:48:00
 
  服务器后台做代理，a.com 调用 b.com的服务时不直接调用，而是通过a.com的服务器后台去调用b.com的服务。
 
- ![服务器代理解决跨域](http://p9myzkds7.bkt.clouddn.com/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BB%A3%E7%90%86%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9Fjpg.jpg)
+ ![服务器代理解决跨域](https://graphbed.qiniu.songxingguo.com/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BB%A3%E7%90%86%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9Fjpg.jpg)
  `图片来自慕课网`
 
 ---
@@ -54,7 +54,7 @@ date: 2018-07-15 07:48:00
 
  用JSONP定义参数名称，只支持GET请求。
 
- ![JSONP跨域处理](http://p9myzkds7.bkt.clouddn.com/cross-domain/JSONP%E8%B7%A8%E5%9F%9F%E5%A4%84%E7%90%86.jpg)
+ ![JSONP跨域处理](https://graphbed.qiniu.songxingguo.com/cross-domain/JSONP%E8%B7%A8%E5%9F%9F%E5%A4%84%E7%90%86.jpg)
  `图片来自慕课网`
 
 ---
@@ -66,7 +66,7 @@ date: 2018-07-15 07:48:00
 带cookie请求：前后端都需要设置字段，另外需注意：所带cookie为跨域请求接口所在域的cookie，而非当前页。
 目前，所有浏览器都支持该功能(IE8+：IE8/9需要使用XDomainRequest对象来支持CORS）)，CORS也已经成为主流的跨域解决方案。
 
- ![XHR2跨域解决](http://p9myzkds7.bkt.clouddn.com/cross-domain/XHR2%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3.jpg) 
+ ![XHR2跨域解决](https://graphbed.qiniu.songxingguo.com/cross-domain/XHR2%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3.jpg) 
   `图片来自慕课网`
 
 ---
@@ -118,7 +118,8 @@ WebSocket protocol是HTML5一种新的协议。它实现了浏览器与服务器
 ---
 ### 参考教程
 
+[九种跨域方式实现原理（完整版）](https://mp.weixin.qq.com/s/zU6EyuuIqDbowAUMZwlH9Q)
+
 [处理跨域方式 慕课网](https://www.imooc.com/video/6238)
 
 [前端常见跨域解决方案（全）](https://www.cnblogs.com/roam/p/7520433.html)
-
