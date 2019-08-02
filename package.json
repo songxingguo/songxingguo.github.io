@@ -3,14 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "3.8.0"
+    "version": "3.9.0"
   },
   "scripts": {
     "start": "pm2 start --name blog hexo -- s",
     "stop": "pm2 stop blog",
     "delete": "pm2 delete blog",
     "status": "pm2 status blog",
-    "restart": "pm2 restart blog"
+    "restart": "pm2 restart blog",
+    "server": "hexo s"
   },
   "dependencies": {
     "hexo": "^3.8.0",
