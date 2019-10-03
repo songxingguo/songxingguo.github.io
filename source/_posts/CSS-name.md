@@ -3,7 +3,7 @@ author: songxingguo
 tags:
   - CSS
 categories:
-  - 前端技术
+  - 开发者手册
 date: 2019-03-14 14:16:00
 ---
 BEM 规范[https://en.bem.info/methodology/css/]

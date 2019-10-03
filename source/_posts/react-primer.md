@@ -4,7 +4,7 @@ tags:
   - React
   - JSX
 categories:
-  - 前端技术
+  - 开发者手册
 date: 2018-03-25 17:19:00
 ---
 ## React学习

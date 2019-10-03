@@ -117,7 +117,7 @@ baidu_analytics: ea29d0cf9dda7fe5403ba0f70fb2c10d
 
 live2d:
   enable: true
-  scriptFrom: local
+  scriptFrom: localcommentCount
   pluginRootPath: live2dw/
   pluginJsPath: lib/
   pluginModelPath: assets/

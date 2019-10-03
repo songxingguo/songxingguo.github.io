@@ -1,8 +1,9 @@
 title: 论文书写
 author: songxingguo
-tags: []
-categories:
+tags: 
   - 论文
+categories:
+  - 备忘录
 date: 2018-07-11 08:01:00
 ---
 ### 写在前面

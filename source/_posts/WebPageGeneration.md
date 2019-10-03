@@ -2,7 +2,7 @@ title: 网页生成
 author: songxingguo
 tags: []
 categories:
-  - 前端技术
+  - 开发者手册
 date: 2019-04-17 12:11:00
 ---
 ### 网页生成过程

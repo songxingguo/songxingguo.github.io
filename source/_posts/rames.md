@@ -2,7 +2,7 @@ title: React、Vue、AngularJS 、Angular 前端框架的异同
 author: songxingguo
 tags: []
 categories:
-  - 前端技术
+  - 开发者手册
 date: 2019-02-14 10:40:00
 ---
 ## React 

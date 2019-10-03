@@ -1,8 +1,9 @@
 title: 树
 author: songxingguo
-tags: []
+tags: [数据结构]
 categories:
-  - 数据结构
+
+  - 编程基础
 date: 2018-09-24 20:49:00
 ---
 ## 基本概念

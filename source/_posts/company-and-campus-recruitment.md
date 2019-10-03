@@ -1,8 +1,9 @@
 title: 公司及校园招聘流程
 author: songxingguo
-tags: []
-categories:
+tags: 
   - 找工作
+categories:
+  - 备忘录
 date: 2018-08-07 03:32:00
 ---
 ## 公司及校园招聘流程

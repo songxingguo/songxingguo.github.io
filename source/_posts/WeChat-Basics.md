@@ -1,9 +1,9 @@
 title: 微信小程序基础学习
 author: songxingguo
 tags:
-  - WeChat
-categories:
   - 微信小程序
+categories:
+  - 开发者手册
 date: 2018-06-15 16:45:00
 ---
 ### 模板

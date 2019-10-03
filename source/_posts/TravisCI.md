@@ -2,8 +2,9 @@ title: 使用 TravisCI 将代码部署到 Github 和 Coding
 author: songxingguo
 tags:
   - TravisCI
-categories:
   - 博客搭建
+categories:
+  - 开发者手册
 date: 2018-05-19 16:09:00
 ---
 ## 写在前面

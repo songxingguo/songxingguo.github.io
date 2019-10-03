@@ -3,7 +3,7 @@ author: songxingguo
 tags:
   - koa
 categories:
-  - 后端技术
+  - 开发者手册
 date: 2018-06-30 08:09:00
 ---
 ## 安装

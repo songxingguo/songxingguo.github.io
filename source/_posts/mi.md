@@ -1,8 +1,9 @@
 title: 小米面试准备
 author: songxingguo
-tags: []
-categories:
+tags: 
   - 找工作
+categories:
+  - 备忘录
 date: 2018-10-16 08:54:00
 ---
 # 用肯定自信的方式回答问题

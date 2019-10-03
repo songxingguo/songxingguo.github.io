@@ -1,8 +1,9 @@
 title: Web前端面试
 author: songxingguo
-tags: []
-categories:
+tags: 
   - 找工作
+categories:
+  - 备忘录
 date: 2018-08-06 03:19:00
 ---
 ## Web前端面试题分类

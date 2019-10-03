@@ -1,9 +1,9 @@
 title: 华清实习
 author: songxingguo
-tags: []
-categories:
+tags: 
   - 实习
-  - ''
+categories:
+  - 周记
 date: 2018-09-16 19:01:00
 ---
 ## 第一周
@@ -1024,4 +1024,3 @@ PHP后端，在HTML页面中嵌入PHP代码绑定数据
    
     
    
-    

@@ -2,9 +2,9 @@ title: hexo常用命令
 author: songxingguo
 tags:
   - Hexo
-  - ''
-categories:
   - 常用命令
+categories:
+  - 开发者手册
 date: 2018-03-25 15:07:00
 ---
 启动服务器（默认端口4000）

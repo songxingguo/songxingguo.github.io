@@ -1,9 +1,9 @@
 title: 笔试考点
 author: songxingguo
-tags: []
-categories:
+tags: 
   - 找工作
-  - ''
+categories:
+  - 备忘录
 date: 2018-09-12 20:42:00
 ---
 ## 前端相关

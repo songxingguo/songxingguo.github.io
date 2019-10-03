@@ -3,7 +3,7 @@ author: songxingguo
 tags:
   - CSS3
 categories:
-  - 前端技术
+  - 开发者手册
 date: 2019-01-24 15:55:00
 ---
 ## CSS3 选择器分类

@@ -3,7 +3,7 @@ author: songxingguo
 tags:
   - JavaScript
 categories:
-  - 前端技术
+  - 开发者手册
 date: 2018-12-22 11:01:00
 ---
 ## 原型链

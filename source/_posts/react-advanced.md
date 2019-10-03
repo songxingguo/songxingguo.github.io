@@ -3,7 +3,7 @@ author: songxingguo
 tags:
   - React
 categories:
-  - 前端技术
+  - 开发者手册
 date: 2018-03-26 16:44:00
 ---
 ## React进阶

@@ -2,9 +2,9 @@ title: 为 GitHub Pages  配置发布源
 author: songxingguo
 tags:
   - github
-  - ''
-categories:
   - 博客搭建
+categories:
+  - 开发者手册
 date: 2018-08-12 05:59:00
 ---
 ## 写在前面

@@ -3,8 +3,9 @@ author: songxingguo
 tags:
   - Linux
   - mysql
-categories:
   - 操作系统
+categories:
+  - 编程基础
 date: 2018-06-06 12:14:00
 ---
 ### 安装Mysql数据库

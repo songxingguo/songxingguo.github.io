@@ -1,8 +1,9 @@
 title: 面试准备
 author: songxingguo
-tags: []
-categories:
+tags: 
   - 找工作
+categories:
+  - 备忘录
 date: 2018-10-01 13:54:00
 ---
 ## 自我介绍

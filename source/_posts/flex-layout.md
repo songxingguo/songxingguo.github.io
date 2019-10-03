@@ -2,7 +2,7 @@ title: Flex布局
 tags:
   - Flex
 categories:
-  - 前端技术
+  - 开发者手册
 author: songxingguo
 date: 2018-06-20 14:37:00
 ---

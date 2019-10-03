@@ -1,8 +1,9 @@
 title: 你所不知道的JavaScript
 author: songxingguo
-tags: []
+tags: 
+  - 找工作
 categories:
-  - 前端技术
+  - 备忘录
 date: 2018-10-22 15:19:00
 ---
 ### 0.1 + 0.2 == 0.30000000000000004

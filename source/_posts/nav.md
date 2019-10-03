@@ -2,7 +2,7 @@ title: 简单导航
 author: songxingguo
 tags: []
 categories:
-  - 前端技术
+  - 开发者手册
 date: 2018-08-29 23:53:00
 ---
 ## 垂直导航
@@ -99,4 +99,3 @@ a:hover {
 [效果展示](https://songxingguo.github.io/nav/)
 
 [参考地址](https://www.imooc.com/video/42)
-   

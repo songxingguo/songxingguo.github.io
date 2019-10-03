@@ -1,8 +1,9 @@
 title: 技术要求以及复习
 author: songxingguo
-tags: []
-categories:
+tags: 
   - 找工作
+categories:
+  - 备忘录
 date: 2018-07-29 10:18:00
 ---
 ## 技术要求

@@ -1,9 +1,13 @@
 title: knex.js 学习笔记
 author: songxingguo
 tags:
-  - knexjs
+
+- 数据库
+- Knex
+
 categories:
-  - 数据库
+
+  - 编程基础
 date: 2018-07-01 15:38:00
 ---
 - #### 多表查询
@@ -36,7 +40,7 @@ date: 2018-07-01 15:38:00
       LIMIT 1
       ```
       <!-- more -->
-      
+    
       等同于下面的 **自然连接**
       ```
       SELECT
@@ -53,11 +57,11 @@ date: 2018-07-01 15:38:00
           borrow_end_date
       LIMIT 1
       ```
-     
+    
   - 外连接
   - 子查询
 
----  
+---
 - #### 使用自定义函数 
    -.row()
    查询中使用原始表达式

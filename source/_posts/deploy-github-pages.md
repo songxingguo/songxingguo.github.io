@@ -3,9 +3,9 @@ author: songxingguo
 tags:
   - github
   - Hexo
-  - ''
-categories:
   - 博客搭建
+categories:
+  - 开发者手册
 date: 2018-06-06 21:43:00
 ---
 - ### 前提

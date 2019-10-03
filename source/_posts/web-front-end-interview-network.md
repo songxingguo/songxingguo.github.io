@@ -1,8 +1,9 @@
 title: Web前端面试题目及详解汇总-网络部分
 author: songxingguo
-tags: []
-categories:
+tags: 
   - 找工作
+categories:
+  - 备忘录
 date: 2018-08-06 14:27:00
 ---
 ### 简述同步和异步的区别

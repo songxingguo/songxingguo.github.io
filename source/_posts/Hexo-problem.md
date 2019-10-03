@@ -2,8 +2,9 @@ title: Hexo问题解决
 author: songxingguo
 tags:
   - Hexo
-categories:
   - 博客搭建
+categories:
+  - 开发者手册
 date: 2018-06-02 17:06:00
 ---
 ### 服务busy

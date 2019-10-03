@@ -2,8 +2,9 @@ title: 用户、组织以及项目页面
 author: songxingguo
 tags:
   - github
-categories:
   - 博客搭建
+categories:
+  - 开发者手册
 date: 2018-08-12 08:44:00
 ---
 ## 写在前面

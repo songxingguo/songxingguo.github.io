@@ -2,7 +2,7 @@ title: TED
 author: songxingguo
 tags: []
 categories:
-  - 知识就是力量
+  - 观点和感想
 date: 2018-10-06 21:07:00
 ---
 ## 运气是怎么一步一步变好的

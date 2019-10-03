@@ -3,8 +3,9 @@ author: songxingguo
 tags:
   - Node
   - Linux
-categories:
   - 操作系统
+categories:
+  - 编程基础
 date: 2018-06-06 10:56:00
 ---
 配置node环境

@@ -2,7 +2,7 @@ title: good words
 author: songxingguo
 tags: []
 categories:
-  - 知识就是力量
+  - 观点和感想
 date: 2018-10-06 21:20:00
 ---
 1. 为自己多留一条出路。

@@ -2,9 +2,10 @@ title: ' Ubuntu 16.04 安装使用MySQL'
 author: songxingguo
 tags:
   - mysql
-  - 'Ubuntu '
-categories:
+  - 'Ubuntu'
   - 操作系统
+categories:
+  - 编程基础
 date: 2018-07-20 03:56:00
 ---
 ### 安装Mysql数据库

@@ -3,7 +3,7 @@ author: songxingguo
 tags:
   - TravisCI
 categories:
-  - 前端技术
+  - 开发者手册
 date: 2019-01-18 16:27:00
 ---
 ## 写在前面

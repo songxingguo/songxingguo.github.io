@@ -1,9 +1,13 @@
 title: knex.js中文文档-其他
 author: songxingguo
 tags:
-  - knexjs
+
+- 数据库
+- Knex
+
 categories:
-  - 数据库
+
+  - 编程基础
 date: 2018-07-01 16:22:00
 ---
 ### Raw

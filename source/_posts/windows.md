@@ -1,8 +1,9 @@
 title: Windows 常用命令
 author: songxingguo
-tags: []
-categories:
+tags: 
   - 常用命令
+categories:
+  - 开发者手册
 date: 2018-12-17 16:36:00
 ---
 创建文件

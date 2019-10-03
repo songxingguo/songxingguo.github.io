@@ -1,8 +1,9 @@
 title: 大约实习
 author: songxingguo
-tags: []
-categories:
+tags: 
   - 实习
+categories:
+  - 周记
 date: 2019-03-25 09:23:00
 ---
 ### 第1周  （ 2019  年 2 月 11 日 至  2019  年 2 月 15 日）

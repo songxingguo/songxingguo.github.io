@@ -2,8 +2,9 @@ title: Linux常用命令
 author: songxingguo
 tags:
   - Linux
-categories:
   - 常用命令
+categories:
+  - 开发者手册
 date: 2018-06-04 15:21:00
 ---
 文件操作

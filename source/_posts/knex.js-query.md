@@ -1,14 +1,18 @@
 title: knex.js中文文档-查询
 author: songxingguo
-tags:
-  - knexjs
+tags: 
+
+- 数据库
+- Knex
+
 categories:
-  - 数据库
+
+  - 编程基础
 date: 2018-06-30 08:07:00
 ---
 ### knexjs 简介
  &emsp;&emsp;Knex.js是为Postgres，MSSQL，MySQL，MariaDB，SQLite3，Oracle和Amazon Redshift设计的“包含电池”SQL查询构建器，其设计灵活，便于携带并且使用起来非常有趣。它具有传统的节点样式回调以及用于清洁异步流控制的承诺接口，流接口，全功能查询和模式构建器，事务支持（带保存点），连接池 以及不同查询客户和方言之间的标准化响应。[传送门](https://knexjs.org/#Installation-node)
-  
+
 
 
 - #### 支持
@@ -59,19 +63,20 @@ knex 查询构造器是用于构建和执行标准的SQL查询,例如：select, 
 最常见的只需要简单tableName.columnName，tableName或者columnName，但在许多情况下，还需要传递一个别名，以便稍后在查询中引用该标识符。
 
  - #### Identifier Syntax
- 
+
    有两种方法可以为标识符声明别名。可以直接 `as aliasName` 为标识符提供前缀，也可以传递对象 `{ aliasName: 'identifierName' }` 。
-   
+
    如果对象具有多个别名 `{ alias1: 'identifier1', alias2: 'identifier2' }` ，则所有别名标识符将扩展为逗号分隔列表。
-   
+
    例：
    ```
    knex({ a: 'table', b: 'table' })
-.select({
-  aTitle: 'a.title',
-  bTitle: 'b.title'
-})
-.whereRaw('?? = ??', ['a.column_1', 'b.column_2'])
+   .select({
+     aTitle: 'a.title',
+     bTitle: 'b.title'
+   })
+   .whereRaw('?? = ??', ['a.column_1', 'b.column_2'])
+   ```
 ```
   输出：
 ```
@@ -89,7 +94,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
   设置查询的超时时间，并且如果超时超时，将会引发TimeoutError。该错误包含有关查询，绑定和设置的超时的信息。对于想要确保执行的复杂查询不会花太长时间。传递选项的可选第二个参数：cancel：if ，如果达到超时则取消查询。*注意：目前只支持MySQL和MariaDB。 
      
    例：
-   ```
+```
     knex.select().from('books').timeout(1000)
    ```
    输出：
@@ -98,7 +103,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
    ```
    ---
    例：
-  ```
+   ```
  knex.select().from('books').timeout(1000, {cancel: true}) // MySQL and MariaDB only
   ```
   输出：
@@ -112,13 +117,13 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
    创建一个select查询，为查询提供可选的列数组，如果在构建查询时没有指定，则最终默认为*。select调用的响应将使用从数据库中选择的对象数组来解析。
 
     例：
-    ```
+  ```
     knex.select('title', 'author', 'year').from('books')
     ```
     输出：
     ```
     select `title`, `author`, `year` from `books`
-
+    
      ```
      ---
      例：
@@ -150,7 +155,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
   — .column(columns)
 
   专门设置要在选择查询中选择的列，并获取数组，列表或列名称。传递对象将使用给定的键自动对列进行别名。
-    
+  
     例：
     ```
     knex.column('title', 'author', 'year').select().from('books')
@@ -159,7 +164,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select `title`, `author`, `year` from `books`
     ```
-    ---
+  ---
     例：
     ```
     knex.column(['title', 'author', 'year']).select().from('books')
@@ -169,7 +174,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     select `title`, `author`, `year` from `books`
 
     ```
-    ---
+  ---
     例：
     ```
     knex.column('title', {by: 'author'}, 'year').select().from('books')
@@ -206,7 +211,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     with `with_alias` as (select * from "books" where "author" = 'Test') select * from `with_alias`
     ```
-    ---
+  ---
     例:
 
     ```
@@ -223,7 +228,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
    — .withSchema([schemaName])
 
   指定要用作表名前缀的模式。
-    
+  
     例：
     ```
     knex.withSchema('public').select('*').from('users')
@@ -330,7 +335,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select * from `users` where `votes` > 100
     ```
-    ---
+   ---
     例：
     ```
     var subquery = knex('users').where('votes', '>', 100).andWhere('status', 'active').orWhere('name', 'John').select('id');
@@ -436,7 +441,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select `name` from `users` where `id` in (1, 2, 3) or `id` in (4, 5, 6)
     ```
-    ---
+   ---
     例：
     ```
     knex.select('name').from('users')
@@ -448,7 +453,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select `name` from `users` where `account_id` in (select `id` from `accounts`)
     ```
-    ---
+   ---
     例：
     ```
     var subquery = knex.select('id').from('accounts');
@@ -460,7 +465,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select `name` from `users` where `account_id` in (select `id` from `accounts`)
     ```
-    ---
+   ---
     例：
     ```
     knex.select('name').from('users')
@@ -470,7 +475,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select `name` from `users` where (`account_id`, `email`) in ((3, 'test3@example.com'), (4, 'test4@example.com'))
     ```
-    ---
+   ---
     例：
     ```
     knex.select('name').from('users')
@@ -491,7 +496,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
      ```
       select * from `users` where `id` not in (1, 2, 3)
      ```
-    ---     
+    ---
     例：
     ```
     knex('users').where('name', 'like', '%Test%').orWhereNotIn('id', [1, 2, 3])
@@ -538,11 +543,11 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ---
     例：
     ```
-  knex('users').whereExists(knex.select('*').from('accounts').whereRaw('users.account_id = accounts.id'))
+    knex('users').whereExists(knex.select('*').from('accounts').whereRaw('users.account_id = accounts.id'))
     ```
     输出：
     ```
-  select * from `users` where exists (select * from `accounts` where users.account_id = accounts.id)
+    select * from `users` where exists (select * from `accounts` where users.account_id = accounts.id)
     ```
   - ##### whereNotExists 
      — .whereNotExists(builder | callback) / .orWhereNotExists
@@ -557,7 +562,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
       ```
       select * from `users` where not exists (select * from `accounts` where users.account_id = accounts.id)
       ```
-      ---
+     ---
       例：
       ```
       knex('users').whereNotExists(knex.select('*').from('accounts').whereRaw('users.account_id = accounts.id'))
@@ -604,11 +609,11 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
       select * from `users` where id = 1
       Join Me
       ```
----      
+---
 - #### Join 语句
 
  提供了几种帮助构建连接的方法。
- 
+
  - ##### join 
     — .join(table, first, [operator], second)
     
@@ -876,7 +881,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select * from `accounts` inner join natural full join table1 where `id` = 1   
     ```
----    
+---
 - #### Having 语句
   
   - ##### having 
@@ -933,7 +938,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
   - ##### havingNotNull 
      -.havingNotNull(column)
      向查询添加havingNotNull子句。
-      
+     
       例：
       ```
       knex.select('*').from('users').havingNotNull('email')
@@ -945,7 +950,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
   - ##### havingExists 
      -.havingExists(builder | callback)
      向查询添加一个havingExists子句。
-      
+     
       例：
       ```
       knex.select('*').from('users').havingExists(function() {
@@ -1009,7 +1014,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
       ```
       select * from `users` group by `count` having count > 100 order by `name` desc
       ```
----      
+---
 - #### On 语句
 
   - ##### onIn 
@@ -1057,7 +1062,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
   - ##### onNotNull 
      -.onNotNull(column)
      向查询添加一个onNotNull子句。
-      
+     
       例：
       ```
       knex.select('*').from('users').join('contacts', function() {
@@ -1071,7 +1076,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
   - ##### onExists 
      -.onExists(builder | callback)
      向查询添加一个onExists子句。
-      
+     
       例：
       ```     
       knex.select('*').from('users').join('contacts', function() {
@@ -1109,7 +1114,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
      knex.select('*').from('users').join('contacts', function() {
       this.on('users.id', '=', 'contacts.id').onBetween('contacts.id', [5, 30])
     })
-    ```
+     ```
     输出：
     ```
     select * from `users` inner join `contacts` on `users`.`id` = `contacts`.`id` and `contacts`.`id` between 5 and 30
@@ -1158,7 +1163,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
   - ##### clearOrder 
      -.clearOrder()
      清除查询中的所有订单子句，不包括子查询。
-      
+     
       例：
       ```
       knex.select().from('users').orderBy('name', 'desc').clearOrder()
@@ -1298,7 +1303,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     insert into `books` (`title`) values ('Slaughterhouse Five')
     ```
-    ---
+   ---
     例：
     ```
     // Normalizes for empty keys on multi-row insert:
@@ -1309,7 +1314,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     insert into `coords` (`x`, `y`) values (20, DEFAULT), (DEFAULT, 30), (10, 20)
     // Returns [2] in "mysql", "sqlite"; [2, 3] in "postgresql"
     ```
-    ---
+   ---
     例：
     ```
     knex.insert([{title: 'Great Gatsby'}, {title: 'Fahrenheit 451'}], 'id').into('books')
@@ -1353,7 +1358,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     insert into `books` (`title`) values ('Slaughterhouse Five')
     ```
-    ---
+  ---
     例：
     ```
     // Returns [2] in "mysql", "sqlite"; [2, 3] in "postgresql"
@@ -1365,7 +1370,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     insert into `books` (`title`) values ('Great Gatsby'), ('Fahrenheit 451')
     ```
-    ---
+  ---
     例：
     ```
     // Returns [ { id: 1, title: 'Slaughterhouse Five' } ]
@@ -1395,7 +1400,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     update `books` set `status` = 'archived' where `published_date` < 2000
     ```
-    --- 
+  ---
     例：
     ```
     // Returns [1] in "mysql", "sqlite", "oracle"; [] in "postgresql" unless the 'returning' parameter is set.
@@ -1461,7 +1466,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
    - ##### forShare 
       -.transacting(t).forShare()
         在指定事务后动态添加的forShare在select语句中添加了PostShareSQL中的FOR SHARE和MySQL中的LOCK IN SHARE MODE。由于缺少表锁，在Amazon Redshift上不支持。
-        
+      
         例：
         ```
         knex('tableName')
@@ -1478,7 +1483,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
    -.count(column|columns|raw)
    
     对指定的列或列数组执行计数（请注意，某些驱动程序不支持多列）。还接受原始表达式。请注意，在Postgres中，count会返回一个bigint类型，它将是一个String而不是一个Number（更多信息）。
-    
+   
     例：
     ```
     knex('users').count('active')
@@ -1487,7 +1492,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select count(`active`) from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').count('active as a')
@@ -1496,7 +1501,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select count(`active`) as `a` from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').count({ a: 'active' })
@@ -1505,7 +1510,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select count(`active`) as `a` from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').count('id', 'active')
@@ -1514,7 +1519,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select count(`id`) from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').count({ count: ['id', 'active'] })
@@ -1523,7 +1528,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select count(`id`, `active`) as `count` from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').count(knex.raw('??', ['active']))
@@ -1557,7 +1562,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select min(`age`) from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').min('age as a')
@@ -1566,7 +1571,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select min(`age`) as `a` from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').min({ a: 'age' })
@@ -1575,7 +1580,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select min(`age`) as `a` from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').min('age', 'logins')
@@ -1584,7 +1589,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select min(`age`) from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').min({ min: ['age', 'logins'] })
@@ -1593,7 +1598,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select min(`age`, `logins`) as `min` from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').min(knex.raw('??', ['age']))
@@ -1615,7 +1620,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select max(`age`) from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').max('age as a')
@@ -1624,7 +1629,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select max(`age`) as `a` from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').max({ a: 'age' })
@@ -1633,7 +1638,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select max(`age`) as `a` from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').max('age', 'logins')
@@ -1642,7 +1647,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select max(`age`) from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').max({ max: ['age', 'logins'] })
@@ -1651,7 +1656,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select max(`age`, `logins`) as `max` from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').max(knex.raw('??', ['age']))
@@ -1673,7 +1678,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select sum(`products`) from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').sum('products as p')
@@ -1682,7 +1687,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select sum(`products`) as `p` from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').sum({ p: 'products' })
@@ -1691,7 +1696,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select sum(`products`) as `p` from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').sum('products', 'orders')
@@ -1700,7 +1705,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select sum(`products`) from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').sum({ sum: ['products', 'orders'] })
@@ -1709,7 +1714,7 @@ select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `ta
     ```
     select sum(`products`, `orders`) as `sum` from `users`
     ```
-    ---
+   ---
     例：
     ```
     knex('users').sum(knex.raw('??', ['products']))

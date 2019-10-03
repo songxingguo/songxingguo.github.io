@@ -2,7 +2,7 @@ title: 网页布局
 author: songxingguo
 tags: []
 categories:
-  - 前端技术
+  - 开发者手册
 date: 2018-08-02 05:06:00
 ---
 ## 二列

@@ -1,8 +1,9 @@
 title: 数据结构
 author: songxingguo
-tags: []
+tags: [数据结构]
 categories:
-  - 数据结构
+
+  - 编程基础
 date: 2018-09-24 22:11:00
 ---
 

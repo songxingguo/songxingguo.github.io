@@ -1,8 +1,9 @@
 title: 线性表
 author: songxingguo
-tags: []
+tags: [数据结构]
 categories:
-  - 数据结构
+
+  - 编程基础
   - ''
 date: 2018-09-24 21:41:00
 ---
@@ -879,7 +880,7 @@ import java.util.Scanner;
     			String[] strings = string.split(" ");
 
 
-    ​			
+    			
     			for (String e: strings) {
     				if (isOperationChar(e)) {
     					queue.enqueue(e);
@@ -901,7 +902,7 @@ import java.util.Scanner;
     	
     	return queue;
     }
-
+    
     //中缀转后缀
     public static MyQueue<String> infixToPostfix(MyQueue<String> queue) {
     	String e = null;
@@ -939,7 +940,7 @@ import java.util.Scanner;
     	
     	return queue;
     }
-
+    
     //打印表达式
     public static void printExpression(MyQueue<String> queue) {
     	StringBuilder string = new StringBuilder();
@@ -950,7 +951,7 @@ import java.util.Scanner;
     	
     	System.out.println(string.toString());
     }
-
+    
     //是否是操作符
     private static boolean isOperator(String e) {
     	if (isMulAndDiv(e) || isAddAndSub(e)) {
@@ -969,7 +970,7 @@ import java.util.Scanner;
     	
     	return false;
     }
-
+    
     //是否是左括号
     private static boolean isLeftBracket(String e) {
     	if (e.equals("(")) {
@@ -977,7 +978,7 @@ import java.util.Scanner;
     	}
     	return false;
     }
-
+    
     //是否是右括号
     private static boolean isRightBracket(String e) {
     	if (e.equals(")")) {
@@ -985,7 +986,7 @@ import java.util.Scanner;
     	}
     	return false;
     }
-
+    
     private static boolean isOperationChar(String e) {
     	if(isOperator(e) || isOperand(e) 
     			|| isLeftBracket(e) || isRightBracket(e)) {
@@ -994,7 +995,7 @@ import java.util.Scanner;
     	
     	return false;
     }
-
+    
     //是否是最高优先级
     private static boolean isHighPriority(String char1, String char2) {
     	if (isMulAndDiv(char1)) {
@@ -1014,7 +1015,7 @@ import java.util.Scanner;
     	}
     	return false;
     }
-
+    
     private static boolean isMulAndDiv(String e) {
     	if (e.equals("*") || e.equals("/")) {
     		return true;

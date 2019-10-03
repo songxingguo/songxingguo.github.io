@@ -2,7 +2,7 @@ title: 《大话数据结构》-读书笔记-查找
 author: songxingguo
 tags: []
 categories:
-  - 数据结构
+  - 读书笔记
 date: 2018-10-15 14:40:00
 ---
 ### 顺序查找

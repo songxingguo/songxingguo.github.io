@@ -2,8 +2,9 @@ title: ztopic 主题更改
 author: songxingguo
 tags:
   - Hexo
-categories:
   - 博客搭建
+categories:
+  - 开发者手册
 date: 2018-08-11 12:42:00
 ---
 ## 添加文章总条数显示

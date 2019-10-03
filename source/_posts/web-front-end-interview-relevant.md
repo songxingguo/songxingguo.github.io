@@ -1,9 +1,9 @@
 title: Web前端面试题目及详解汇总-前端相关
 author: songxingguo
 tags:
-  - ''
-categories:
   - 找工作
+categories:
+  - 备忘录
 date: 2018-08-06 14:16:00
 ---
 ### 什么叫优雅降级和渐进增强？

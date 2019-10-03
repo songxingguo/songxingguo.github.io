@@ -1,8 +1,9 @@
 title: 去哪儿网面试准备
 author: songxingguo
-tags: []
-categories:
+tags: 
   - 找工作
+categories:
+  - 备忘录
 date: 2018-10-10 22:45:00
 ---
 # 多说，想到什么，就说什么。

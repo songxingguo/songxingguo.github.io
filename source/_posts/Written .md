@@ -1,8 +1,9 @@
 title: 笔试题
 author: songxingguo
-tags: []
-categories:
+tags: 
   - 找工作
+categories:
+  - 备忘录
 date: 2018-10-10 22:15:00
 ---
 ## 去哪儿

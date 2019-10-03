@@ -3,7 +3,7 @@ author: songxingguo
 tags:
   - git
 categories:
-  - 常用命令
+  - 开发者手册
   - ''
 date: 2018-03-25 15:25:00
 ---

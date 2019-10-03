@@ -2,8 +2,9 @@ title: ztopic 主题添加导航 “作品”
 author: songxingguo
 tags:
   - Hexo
-categories:
   - 博客搭建
+categories:
+  - 开发者手册
 date: 2018-08-11 09:46:00
 ---
 ## 写在前面

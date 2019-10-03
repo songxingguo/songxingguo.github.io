@@ -1,8 +1,9 @@
 title: Hello World
 tags:
   - Hexo
-categories:
   - 博客搭建
+categories:
+  - 开发者手册
 date: 2018-05-18 23:45:00
 ---
 # 快速开始

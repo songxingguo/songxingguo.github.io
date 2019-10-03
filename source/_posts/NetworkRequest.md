@@ -1,7 +1,7 @@
 title: 网络请求的方式
 author: songxingguo
 tags:
-  - 网络请求
+  - 计算机网络
 categories: []
 date: 2019-04-08 14:17:00
 ---

@@ -2,9 +2,9 @@ title: Web前端面试题目及详解汇总 -jQuery部分
 author: songxingguo
 tags:
   - jQuery
-  - ''
-categories:
   - 找工作
+categories:
+  - 备忘录
 date: 2018-08-13 04:04:00
 ---
 ### jQuery 库中的 $() 是什么？

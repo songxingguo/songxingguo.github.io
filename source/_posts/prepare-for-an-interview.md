@@ -1,8 +1,9 @@
 title: 准备面试
 author: songxingguo
-tags: []
-categories:
+tags: 
   - 找工作
+categories:
+  - 备忘录
 date: 2018-07-29 10:19:00
 ---
 ## 准备方式
