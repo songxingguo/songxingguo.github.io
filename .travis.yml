@@ -1,12 +1,10 @@
 language: node_js
-node_js: 
+node_js:
   - 8.12.0
 
 # S: Build Lifecycle
 install:
   - npm install
-  - npm install hexo-helper-live2d
-  - npm install live2d-widget-model-z16
 
 before_script:
  # - npm install -g gulp
