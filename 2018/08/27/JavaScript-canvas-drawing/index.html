@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="使用 Canvas 绘图不用说，HTML5 添加的最受欢迎的功能就是 &amp;lt;canvas&amp;gt; 元素 。这个元素负责在页面中设定一个区域 ，然后就可以通过 JavaScript 动态地在这个区域中绘制图形 。 &amp;lt;canvas&amp;gt; 元素最早是由苹果公司推出的，当时主要用在其 Dashboard 微件中。很快，HTML5 加入了这个元素，主流浏览器也迅速开始支持它。IE9+、Firefo">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《JavaScript 高级程序设计》学习笔记-使用 Canvas 绘图">
+<meta property="og:url" content="https://www.songxingguo.com/2018/08/27/JavaScript-canvas-drawing/index.html">
+<meta property="og:site_name" content="阿有的生活">
+<meta property="og:description" content="使用 Canvas 绘图不用说，HTML5 添加的最受欢迎的功能就是 &amp;lt;canvas&amp;gt; 元素 。这个元素负责在页面中设定一个区域 ，然后就可以通过 JavaScript 动态地在这个区域中绘制图形 。 &amp;lt;canvas&amp;gt; 元素最早是由苹果公司推出的，当时主要用在其 Dashboard 微件中。很快，HTML5 加入了这个元素，主流浏览器也迅速开始支持它。IE9+、Firefo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/fillReact%28%29.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/strokeRect%28%29.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/clearRect%28%29.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E4%B8%A4%E4%B8%AA%E5%9C%86%E5%BD%A2.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E4%B8%A4%E4%B8%AA%E5%9C%86%E5%BD%A2%EF%BC%88%E6%95%B0%E5%AD%9712%EF%BC%89.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E4%B8%A4%E4%B8%AA%E5%9C%86%E5%BD%A2%EF%BC%88%E4%B8%89%E4%B8%AA12%EF%BC%89.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E4%B8%A4%E4%B8%AA%E5%9C%86%E5%BD%A2%EF%BC%88%E4%B8%80%E5%AE%9A%E8%A7%92%E5%BA%A6%EF%BC%89.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E7%BB%98%E5%88%B6%E5%9B%BE%E5%83%8F.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E5%BD%B1%E9%98%B4.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E6%B8%90%E5%8F%98.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E5%BE%84%E5%90%91%E6%B8%90%E5%8F%98.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%BB%E5%86%99%E6%96%B9%E6%B3%95.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%BB%E5%86%99%E6%96%B9%E6%B3%95%EF%BC%88%E7%BB%AD%EF%BC%89.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E5%AD%97%E8%8A%82%E5%81%8F%E7%A7%BB%E9%87%8F.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E8%A7%86%E5%8F%A3%E5%9D%90%E6%A0%87.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E8%A7%86%E5%8F%A3%E5%86%85%E9%83%A8%E7%9A%84%E5%9D%90%E6%A0%87%E7%B3%BB.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E7%BB%98%E5%9B%BE%E6%93%8D%E4%BD%9C%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E7%BB%98%E5%88%B6%E4%B8%89%E8%A7%92%E5%BD%A2%E6%96%B9%E5%BC%8F.png">
+<meta property="og:updated_time" content="2020-06-17T08:58:37.123Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《JavaScript 高级程序设计》学习笔记-使用 Canvas 绘图">
+<meta name="twitter:description" content="使用 Canvas 绘图不用说，HTML5 添加的最受欢迎的功能就是 &amp;lt;canvas&amp;gt; 元素 。这个元素负责在页面中设定一个区域 ，然后就可以通过 JavaScript 动态地在这个区域中绘制图形 。 &amp;lt;canvas&amp;gt; 元素最早是由苹果公司推出的，当时主要用在其 Dashboard 微件中。很快，HTML5 加入了这个元素，主流浏览器也迅速开始支持它。IE9+、Firefo">
+<meta name="twitter:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/fillReact%28%29.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/08/27/JavaScript-canvas-drawing/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《JavaScript 高级程序设计》学习笔记-使用 Canvas 绘图 | 阿有的生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">131</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">43</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/08/27/JavaScript-canvas-drawing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《JavaScript 高级程序设计》学习笔记-使用 Canvas 绘图
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-27 22:11:00" itemprop="dateCreated datePublished" datetime="2018-08-27T22:11:00+00:00">2018-08-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-17 08:58:37" itemprop="dateModified" datetime="2020-06-17T08:58:37+00:00">2020-06-17</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/27/JavaScript-canvas-drawing/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/08/27/JavaScript-canvas-drawing/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/08/27/JavaScript-canvas-drawing/" class="leancloud_visitors" data-flag-title="《JavaScript 高级程序设计》学习笔记-使用 Canvas 绘图">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="使用-Canvas-绘图"><a href="#使用-Canvas-绘图" class="headerlink" title="使用 Canvas 绘图"></a>使用 Canvas 绘图</h1><p>不用说，<strong>HTML5 添加的最受欢迎的功能就是 <code>&lt;canvas&gt;</code> 元素</strong> 。<strong>这个元素负责在页面中设定一个区域</strong> ，<strong>然后就可以通过 JavaScript 动态地在这个区域中绘制图形</strong> 。 <code>&lt;canvas&gt;</code> 元素最早是由苹果公司推出的，当时主要用在其 Dashboard 微件中。很快，HTML5 加入了这个元素，主流浏览器也迅速开始支持它。IE9+、Firefox 1.5+、Safari 2+、Opera 9+、Chrome、iOS 版 Safari 以及 Android 版 WebKit 都在某种程度上支持 <code>&lt;canvas&gt;</code> 。</p>
+<p>与浏览器环境中的其他组件类似， <strong><code>&lt;canvas&gt;</code> 由几组 API 构成</strong> ，但 <strong>并非所有浏览器都支持所有这些 API</strong> 。<strong>除了具备基本绘图能力的 2D 上下文</strong> ， <strong><code>&lt;canvas&gt;</code> 还建议了一个名为 WebGL 的 3D 上下文</strong> 。目前，<strong>支持该元素的浏览器都支持 2D 上下文及文本 API</strong> ，但 <strong>对 WebGL 的支持还不够好</strong> 。由于 WebGL还是实验性的，因此要得到所有浏览器支持还需要很长一段时间。Firefox 4+和 Chrome 支持 WebGL 规范的早期版本，但一些老版本的操作系统，比如 Windows XP，由于缺少必要的绘图驱动程序，即便安装了这两款浏览器也无济于事。</p>
+<a id="more"></a>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><p><strong>要使用 <code>&lt;canvas&gt;</code> 元素，必须先设置其 width 和 height 属性</strong> ，<strong>指定可以绘图的区域大小</strong> 。<strong>出现在开始和结束标签中的内容是后备信息</strong> ，<strong>如果浏览器不支持 <code>&lt;canvas&gt;</code> 元素</strong> ，<strong>就会显示这些信息</strong> 。下面就是 <code>&lt;canvas&gt;</code> 元素的例子。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"drawing"</span> <span class="attr">width</span>=<span class="string">" 200"</span> <span class="attr">height</span>=<span class="string">"200"</span>&gt;</span>A drawing of something <span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>与其他元素一样，<strong> <code>&lt;canvas&gt;</code> 元素对应的 DOM 元素对象也有 width 和 height 属性</strong> ，<strong>可以随意修改</strong> 。而且，<strong>也能通过 CSS 为该元素添加样式</strong> ，<strong>如果不添加任何样式或者不绘制任何图形，在页面中是看不到该元素的</strong> 。</p>
+<p><strong>要在这块画布（canvas）上绘图，需要取得绘图上下文</strong> 。而 <strong>取得绘图上下文对象的引用</strong> ，需要调用 <strong>getContext() 方法</strong> 并传入 <strong>上下文的名字</strong> 。<strong>传入 “2d”</strong> ，就可以 <strong>取得 2D 上下文对象</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> drawing = <span class="built_in">document</span>.getElementById(<span class="string">"drawing"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//确定浏览器支持 &lt;canvas&gt; 元素</span></span><br><span class="line"><span class="keyword">if</span> (drawing.getContext)&#123;</span><br><span class="line">  <span class="keyword">var</span> context = drawing.getContext(<span class="string">"2d"</span>);</span><br><span class="line">  <span class="comment">//更多代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在使用 <code>&lt;canvas&gt;</code> 元素之前，首先 <strong>要检测 getContext() 方法是否存在</strong> ，这一步非常重要。有些浏览器会为 HTML 规范之外的元素创建默认的 HTML 元素对象（假设你想在 Firefox 3 中使用 <code>&lt;canvas&gt;</code> 元素。虽然浏览器会为该标签创建一个 DOM 对象，而且也可以引用它，但这个对象中并没有 getContext()方法。） 。在这种情况下，即使 drawing 变量中保存着一个有效的元素引用，也检测不到 getContext() 方法。</p>
+<p><strong>使用 toDataURL() 方法，可以导出在 <code>&lt;canvas&gt;</code> 元素上绘制的图像</strong> 。这个方法接受一个参数，即 <strong>图像的 MIME 类型格式</strong> ，而且 <strong>适合用于创建图像的任何上下文</strong> 。比如，<strong>要取得画布中的一幅 PNG 格式的图像</strong> ，可以使用以下代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> drawing = <span class="built_in">document</span>.getElementById(<span class="string">"drawing"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//确定浏览器支持&lt;canvas&gt;元素</span></span><br><span class="line"><span class="keyword">if</span> (drawing.getContext)&#123;</span><br><span class="line">  <span class="comment">// 取得图像的数据 URI</span></span><br><span class="line">  <span class="keyword">var</span> imgURI = drawing.toDataURL(<span class="string">"image/png"</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 显示图像</span></span><br><span class="line">  <span class="keyword">var</span> image = <span class="built_in">document</span>.createElement(<span class="string">"img"</span>);</span><br><span class="line">  image.src = imgURI;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(image);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>默认情况下，浏览器会将图像编码为 PNG 格式</strong>（除非另行指定）。Firefox 和 Opera 也支持基于 “image/jpeg” 参数的 JPEG 编码格式。由于这个方法是后来才追加的，所以支持 <code>&lt;canvas&gt;</code> 的浏览器也是在较新的版本中才加入了对它的支持，比如 IE9、Firefox 3.5 和 Opera 10。</p>
+<blockquote>
+<p><strong>如果绘制到画布上的图像源自不同的域</strong> ， <strong>toDataURL() 方法会抛出错误</strong> 。本章后面还将介绍更多相关内容。</p>
+</blockquote>
+<h2 id="2D-上下文"><a href="#2D-上下文" class="headerlink" title="2D 上下文"></a>2D 上下文</h2><p><strong>使用 2D 绘图上下文提供的方法</strong> ，<strong>可以绘制简单的 2D 图形</strong> ，比如矩形、弧线和路径。<strong>2D 上下文的坐标开始于 <code>&lt;canvas&gt;</code> 元素的左上角</strong> ，<strong>原点坐标是(0,0)</strong> 。<strong>所有坐标值都基于这个原点计算</strong> ，<strong>x 值越大表示越靠右</strong> ，<strong>y 值越大表示越靠下</strong> 。默认情况下，<strong> width 和 height 表示水平和垂直两个方向上可用的像素数目</strong> 。</p>
+<h3 id="填充和描边"><a href="#填充和描边" class="headerlink" title="填充和描边"></a>填充和描边</h3><p><strong>2D 上下文的两种基本绘图操作是填充和描边</strong> 。<strong>填充</strong> ，就是 <strong>用指定的样式（颜色、渐变或图像）填充图形</strong> ；<strong>描边</strong> ，就是 <strong>只在图形的边缘画线</strong> 。大多数 2D 上下文操作都会细分为填充和描边两个操作，而操作的结果取决于两个属性： <strong>fillStyle</strong> 和 <strong>strokeStyle</strong> 。</p>
+<p><strong>这两个属性的值可以是字符串、渐变对象或模式对象</strong> ，而且 <strong>它们的默认值都是 “#000000”</strong> 。如果为它们指定表示颜色的字符串值，可以 <strong>使用 CSS 中指定颜色值的任何格式</strong> ，包括 <strong>颜色名</strong> 、<strong>十六进制码</strong> 、<strong>rgb</strong> 、 <strong>rgba</strong> 、 <strong>hsl</strong> 或 <strong>hsla</strong> 。举个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> drawing = <span class="built_in">document</span>.getElementById(<span class="string">"drawing"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//确定浏览器支持&lt;canvas&gt;元素</span></span><br><span class="line"><span class="keyword">if</span> (drawing.getContext)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> context = drawing.getContext(<span class="string">"2d"</span>);</span><br><span class="line">  context.strokeStyle = <span class="string">"red"</span>;</span><br><span class="line">  context.fillStyle = <span class="string">"#0000ff"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码将 strokeStyle 设置为 red（CSS 中的颜色名），将 fillStyle 设置为#0000ff（蓝色）。然后，<strong>所有涉及描边和填充的操作都将使用这两个样式</strong> ，<strong>直至重新设置这两个值</strong> 。如前所述，<strong>这两个属性的值也可以是渐变对象或模式对象</strong> 。本章后面会讨论这两种对象。</p>
+<h3 id="绘制矩形"><a href="#绘制矩形" class="headerlink" title="绘制矩形"></a>绘制矩形</h3><p><strong>矩形是唯一一种可以直接在 2D 上下文中绘制的形状</strong> 。与矩形有关的方法包括 <strong>fillRect()</strong> 、<strong>strokeRect()</strong> 和 <strong>clearRect()</strong> 。这三个方法都能接收 4 个参数：<strong>矩形的 x 坐标</strong> 、<strong>矩形的 y 坐标</strong> 、<strong>矩形宽度</strong> 和 <strong>矩形高度</strong> 这些参数的单位都是像素。</p>
+<p>首先，<strong>fillRect() 方法在画布上绘制的矩形会填充指定的颜色</strong> 。<strong>填充的颜色通过 fillStyle 属性指定</strong> ，比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> drawing = <span class="built_in">document</span>.getElementById(<span class="string">"drawing"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//确定浏览器支持&lt;canvas&gt;元素</span></span><br><span class="line"><span class="keyword">if</span> (drawing.getContext)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> context = drawing.getContext(<span class="string">"2d"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  * 根据 Mozilla 的文档</span></span><br><span class="line"><span class="comment">  * http://developer.mozilla.org/en/docs/Canvas_tutorial:Basic_usage</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 绘制红色矩形</span></span><br><span class="line">  context.fillStyle = <span class="string">"#ff0000"</span>;</span><br><span class="line">  context.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 绘制半透明的蓝色矩形</span></span><br><span class="line">  context.fillStyle = <span class="string">"rgba(0,0,255,0.5)"</span>;</span><br><span class="line">  context.fillRect(<span class="number">30</span>, <span class="number">30</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码首先将 fillStyle 设置为红色，然后从(10,10)处开始绘制矩形，矩形的宽和高均为 50 像素。然后，通过 rgba() 格式再将 fillStyle 设置为半透明的蓝色，在第一个矩形上面绘制第二个矩形。结果就是可以透过蓝色的矩形看到红色的矩形（见下图）。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/fillReact%28%29.png" alt="fillRect() 方法"></p>
+<p><strong>strokeRect() 方法在画布上绘制的矩形会使用指定的颜色描边</strong> 。 <strong>描边颜色通过 strokeStyle 属性指定</strong> 。比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> drawing = <span class="built_in">document</span>.getElementById(<span class="string">"drawing"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//确定浏览器支持&lt;canvas&gt;元素</span></span><br><span class="line"><span class="keyword">if</span> (drawing.getContext)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> context = drawing.getContext(<span class="string">"2d"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  * 根据 Mozilla 的文档</span></span><br><span class="line"><span class="comment">  * http://developer.mozilla.org/en/docs/Canvas_tutorial:Basic_usage</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 绘制红色描边矩形</span></span><br><span class="line">  context.strokeStyle = <span class="string">"#ff0000"</span>;</span><br><span class="line">  context.strokeRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 绘制半透明的蓝色描边矩形</span></span><br><span class="line">  context.strokeStyle = <span class="string">"rgba(0,0,255,0.5)"</span>;</span><br><span class="line">  context.strokeRect(<span class="number">30</span>, <span class="number">30</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码绘制了两个重叠的矩形。不过，这两个矩形都只有框线，内部并没有填充颜色（见下图）。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/strokeRect%28%29.png" alt="strokeRect() 方法"></p>
+<blockquote>
+<p>描边线条的宽度由 lineWidth 属性控制，该属性的值可以是任意整数。另外，通过 lineCap 属性可以控制线条末端的形状是平头、圆头还是方头（ “butt” 、”round” 或 “square” ），通过 lineJoin 属性可以控制线条相交的方式是圆交、斜交还是斜接（ “round” 、 “bevel” 或 “miter” ）。</p>
+</blockquote>
+<p>最后，<strong>clearRect() 方法用于清除画布上的矩形区域</strong> 。本质上，这个方法 <strong>可以把绘制上下文中的某一矩形区域变透明</strong> 。<strong>通过绘制形状然后再清除指定区域</strong> ，<strong>就可以生成有意思的效果</strong> ，例如把某个形状切掉一块。下面看一个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> drawing = <span class="built_in">document</span>.getElementById(<span class="string">"drawing"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//确定浏览器支持&lt;canvas&gt;元素</span></span><br><span class="line"><span class="keyword">if</span> (drawing.getContext)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> context = drawing.getContext(<span class="string">"2d"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  * 根据 Mozilla 的文档</span></span><br><span class="line"><span class="comment">  * http://developer.mozilla.org/en/docs/Canvas_tutorial:Basic_usage</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//绘制红色矩形</span></span><br><span class="line">  context.fillStyle = <span class="string">"#ff0000"</span>;</span><br><span class="line">  context.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//绘制半透明的蓝色矩形</span></span><br><span class="line">  context.fillStyle = <span class="string">"rgba(0,0,255,0.5)"</span>;</span><br><span class="line">  context.fillRect(<span class="number">30</span>, <span class="number">30</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 在两个矩形重叠的地方清除一个小矩形</span></span><br><span class="line">  context.clearRect(<span class="number">40</span>, <span class="number">40</span>, <span class="number">10</span>, <span class="number">10</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如下图所示，两个填充矩形重叠在一起，而重叠的地方又被清除了一个小矩形区域。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/clearRect%28%29.png" alt="clearRect() 方法"></p>
+<h3 id="绘制路径"><a href="#绘制路径" class="headerlink" title="绘制路径"></a>绘制路径</h3><p><strong>2D 绘制上下文支持很多在画布上绘制路径的方法</strong> 。<strong>通过路径可以创造出复杂的形状和线条</strong> 。要绘制路径，首先必须调用 <strong>beginPath() 方法</strong> ，<strong>表示要开始绘制新路径</strong> 。然后，<strong>再通过调用下列方法来实际地绘制路径</strong> 。</p>
+<ul>
+<li><p>arc(x, y, radius, startAngle, endAngle, counterclockwise) ：以 (x,y) 为圆心绘制一条弧线，弧线半径为 radius ，起始和结束角度（用弧度表示）分别为 startAngle 和 endAngle 。最后一个参数表示 startAngle 和 endAngle 是否按逆时针方向计算，值为 false 表示按顺时针方向计算。</p>
+</li>
+<li><p>arcTo(x1, y1, x2, y2, radius) ：从上一点开始绘制一条弧线，到 (x2,y2) 为止，并且以给定的半径 radius 穿过 (x1,y1) 。</p>
+</li>
+<li><p>bezierCurveTo(c1x, c1y, c2x, c2y, x, y) ：从上一点开始绘制一条曲线，到 (x,y) 为止，并且以 (c1x,c1y) 和 (c2x,c2y) 为控制点。</p>
+</li>
+<li><p>lineTo(x, y) ：从上一点开始绘制一条直线，到 (x,y) 为止。</p>
+</li>
+<li><p>moveTo(x, y) ：将绘图游标移动到 (x,y) ，不画线。</p>
+</li>
+<li><p>quadraticCurveTo(cx, cy, x, y) ：从上一点开始绘制一条二次曲线，到 (x,y) 为止，并且以 (cx,cy) 作为控制点。</p>
+</li>
+<li><p>rect(x, y, width, height) ：从点 (x,y) 开始绘制一个矩形，宽度和高度分别由 width 和 height 指定。这个方法绘制的是矩形路径，而不是 strokeRect() 和 fillRect() 所绘制的独立的形状。</p>
+</li>
+</ul>
+<p>创建了路径后，接下来有几种可能的选择。<strong>如果想绘制一条连接到路径起点的线条</strong> ，<strong>可以调用 closePath()</strong> 。<strong>如果路径已经完成</strong> ，你想用 <strong>fillStyle 填充</strong> 它，可以 <strong>调用 fill() 方法</strong> 。另外，还可以 <strong>调用 stroke() 方法对路径描边</strong> ，<strong>描边使用的是 strokeStyle</strong> 。最后还可以 <strong>调用 clip()</strong> ，这个方法 <strong>可以在路径上创建一个剪切区域</strong>v 。</p>
+<p>下面看一个例子，即绘制一个不带数字的时钟表盘。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> drawing = <span class="built_in">document</span>.getElementById(<span class="string">"drawing"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//确定浏览器支持&lt;canvas&gt;元素</span></span><br><span class="line"><span class="keyword">if</span> (drawing.getContext)&#123;</span><br><span class="line">  <span class="keyword">var</span> context = drawing.getContext(<span class="string">"2d"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 开始路径</span></span><br><span class="line">  context.beginPath();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 绘制外圆</span></span><br><span class="line">  context.arc(<span class="number">100</span>, <span class="number">100</span>, <span class="number">99</span>, <span class="number">0</span>, <span class="number">2</span> * <span class="built_in">Math</span>.PI, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 绘制内圆</span></span><br><span class="line">  context.moveTo(<span class="number">194</span>, <span class="number">100</span>);</span><br><span class="line">  context.arc(<span class="number">100</span>, <span class="number">100</span>, <span class="number">94</span>, <span class="number">0</span>, <span class="number">2</span> * <span class="built_in">Math</span>.PI, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 绘制分针</span></span><br><span class="line">  context.moveTo(<span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line">  context.lineTo(<span class="number">100</span>, <span class="number">15</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 绘制时针</span></span><br><span class="line">  context.moveTo(<span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line">  context.lineTo(<span class="number">35</span>, <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 描边路径</span></span><br><span class="line">  context.stroke();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个例子使用 arc() 方法绘制了两个圆形：一个外圆和一个内圆，构成了表盘的边框。外圆的半径是 99 像素，圆心位于点(100,100)，也是画布的中心点。为了绘制一个完整的圆形，我们从 0 弧度开始，绘制 2π 弧度（通过 Math.PI 来计算）。在绘制内圆之前，必须把路径移动到内圆上的某一点，以避免绘制出多余的线条。第二次调用 arc() 使用了小一点的半径，以便创造边框的效果。然后，组合使用 moveTo() 和 lineTo() 方法来绘制时针和分针。最后一步是调用 stroke() 方法，这样才能把图形绘制到画布上，如下图所示。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E4%B8%A4%E4%B8%AA%E5%9C%86%E5%BD%A2.png" alt="两个圆形"></p>
+<p><strong>在 2D 绘图上下文中，路径是一种主要的绘图方式，因为路径能为要绘制的图形提供更多控制</strong> 。由于路径的使用很频繁，所以就有了一个名为 <strong>isPointInPath() 的方法</strong> 。这个方法 <strong>接收 x 和 y 坐标作为参数</strong> ，<strong>用于在路径被关闭之前确定画布上的某一点是否位于路径上</strong> ，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (context.isPointInPath(<span class="number">100</span>, <span class="number">100</span>))&#123;</span><br><span class="line">  alert(<span class="string">"Point (100, 100) is in the path."</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2D 上下文中的路径 API 已经非常稳定</strong> ，<strong>可以利用它们结合不同的填充和描边样式</strong> ，<strong>绘制出非常复杂的图形来</strong> 。</p>
+<h3 id="绘制文本"><a href="#绘制文本" class="headerlink" title="绘制文本"></a>绘制文本</h3><p><strong>文本与图形总是如影随形</strong> 。为此，2D 绘图上下文也提供了绘制文本的方法。 <strong>绘制文本</strong> 主要有两个方法： <strong>fillText()</strong> 和 <strong>strokeText()</strong> 。这两个方法都可以接收 4 个参数：<strong>要绘制的文本字符串</strong> 、<strong>x 坐标</strong> 、<strong>y 坐标</strong> 和 <strong>可选的最大像素宽度</strong> 。而且，这两个方法都以下列 3 个属性为基础。</p>
+<ul>
+<li><p>font ：表示文本样式、大小及字体，用 CSS 中指定字体的格式来指定，例如 “10px Arial” 。</p>
+</li>
+<li><p>textAlign ：表示文本对齐方式。可能的值有 “start” 、 “end” 、 “left” 、 “right” 和 “center” 。建议使用 “start” 和 “end” ，不要使用 “left” 和 “right” ，因为前两者的意思更稳妥，能同时适合从左到右和从右到左显示（阅读）的语言。</p>
+</li>
+<li><p>textBaseline ：表示文本的基线。可能的值有 “top” 、 “hanging” 、 “middle” 、 “alphabetic” 、”ideographic” 和 “bottom” 。</p>
+</li>
+</ul>
+<p><strong>这几个属性都有默认值</strong> ，因此没有必要每次使用它们都重新设置一遍值。 <strong>fillText() 方法使用 fillStyle 属性绘制文本</strong> ，而 <strong>strokeText() 方法使用 strokeStyle 属性为文本描边</strong> 。相对来说，还是 <strong>使用 fillText() 的时候更多</strong> ，因为 <strong>该方法模仿了在网页中正常显示文本</strong> 。例如，下面的代码在前一节创建的表盘上方绘制了数字 12：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">context.font = <span class="string">"bold 14px Arial"</span>;</span><br><span class="line">context.textAlign = <span class="string">"center"</span>;</span><br><span class="line">context.textBaseline = <span class="string">"middle"</span>;</span><br><span class="line">context.fillText(<span class="string">"12"</span>, <span class="number">100</span>, <span class="number">20</span>);</span><br></pre></td></tr></table></figure>
+<p>结果如下图所示。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E4%B8%A4%E4%B8%AA%E5%9C%86%E5%BD%A2%EF%BC%88%E6%95%B0%E5%AD%9712%EF%BC%89.png" alt="绘制12"></p>
+<p>因为这里把 textAlign 设置为 “center” ，把 textBaseline 设置为 “middle” ，所以坐标(100,20) 表示的是文本水平和垂直中点的坐标。如果将 textAlign 设置为 “start” ，则 x 坐标表示的是文本左端的位置（从左到右阅读的语言）；设置为 “end” ，则 x 坐标表示的是文本右端的位置（从左到右阅读的语言）。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正常</span></span><br><span class="line">context.font = <span class="string">"bold 14px Arial"</span>;</span><br><span class="line">context.textAlign = <span class="string">"center"</span>;</span><br><span class="line">context.textBaseline = <span class="string">"middle"</span>;</span><br><span class="line">context.fillText(<span class="string">"12"</span>, <span class="number">100</span>, <span class="number">20</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 起点对齐</span></span><br><span class="line">context.textAlign = <span class="string">"start"</span>;</span><br><span class="line">context.fi llText(<span class="string">"12"</span>, <span class="number">100</span>, <span class="number">40</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 终点对齐</span></span><br><span class="line">context.textAlign = <span class="string">"end"</span>;</span><br><span class="line">context.fi llText(<span class="string">"12"</span>, <span class="number">100</span>, <span class="number">60</span>);</span><br></pre></td></tr></table></figure>
+<p>这一回绘制了三个字符串 “12” ，每个字符串的 x 坐标值相同，但 textAlign 值不同。另外，后两个字符串的 y 坐标依次增大，以避免相互重叠。结果如下图所示。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E4%B8%A4%E4%B8%AA%E5%9C%86%E5%BD%A2%EF%BC%88%E4%B8%89%E4%B8%AA12%EF%BC%89.png" alt="绘制了三个字符串 &quot;12&quot;"></p>
+<p><strong>表盘中的分针恰好位于正中间，因此文本的水平对齐方式如何变化也能够一目了然</strong> 。类似地，修改 textBaseline 属性的值可以调整文本的垂直对齐方式：值为 “top” ，y 坐标表示文本顶端；值为 “bottom” ，y 坐标表示文本底端；值为 “hanging” 、 “alphabetic” 和 “ideographic” ，则 y 坐标分别指向字体的特定基线坐标。</p>
+<p>由于绘制文本比较复杂，特别是需要把文本控制在某一区域中的时候，<strong>2D 上下文提供了辅助确定文本大小的方法 measureText()</strong> 。这个方法接收一个参数，即 <strong>要绘制的文本</strong> ；<strong>返回一个 TextMetrics对象</strong> 。返回的对象目前只有一个 <strong>width 属性</strong> ，但将来还会增加更多度量属性。</p>
+<p><strong>measureText() 方法利用 font 、 textAlign 和 textBaseline 的当前值计算指定文本的大小</strong> 。比如，假设你想在一个 140 像素宽的矩形区域中绘制文本 Hello world!，下面的代码从 100 像素的字体大小开始递减，最终会找到合适的字体大小。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fontSize = <span class="number">100</span>;</span><br><span class="line">context.font = fontSize + <span class="string">"px Arial"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(context.measureText(<span class="string">"Hello world!"</span>).width &gt; <span class="number">140</span>)&#123;</span><br><span class="line">  fontSize--;</span><br><span class="line">  context.font = fontSize + <span class="string">"px Arial"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">context.fillText(<span class="string">"Hello world!"</span>, <span class="number">10</span>, <span class="number">10</span>);</span><br><span class="line">context.fillText(<span class="string">"Font size is "</span> + fontSize + <span class="string">"px"</span>, <span class="number">10</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+<p>前面提到过， <strong>fillText 和 strokeText() 方法</strong> 都可以接收第四个参数，也就是 <strong>文本的最大像素宽度</strong> 。不过，这个可选的参数尚未得到所有浏览器支持（最早支持它的是 Firefox 4）。提供这个参数后，调用 fillText() 或 strokeText() 时如果传入的字符串大于最大宽度，则绘制的文本字符的高度正确，但宽度会收缩以适应最大宽度。下图展示了这个效果。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA.png" alt="效果展示"></p>
+<p>绘制文本还是相对比较复杂的操作，因此支持 <code>&lt;canvas&gt;</code> 元素的浏览器也并未完全实现所有与绘制文本相关的 API。</p>
+<h3 id="变换"><a href="#变换" class="headerlink" title="变换"></a>变换</h3><p><strong>通过上下文的变换，可以把处理后的图像绘制到画布上</strong> 。<strong>2D 绘制上下文支持各种基本的绘制变换</strong> 。创建绘制上下文时，会以默认值初始化变换矩阵，<strong>在默认的变换矩阵下</strong> ，<strong>所有处理都按描述直接绘制</strong> 。<strong>为绘制上下文应用变换</strong> ，<strong>会导致使用不同的变换矩阵应用处理</strong> ，<strong>从而产生不同的结果</strong> 。可以通过如下方法来修改变换矩阵。</p>
+<ul>
+<li><p>rotate(angle) ：围绕原点旋转图像 angle 弧度。</p>
+</li>
+<li><p>scale(scaleX, scaleY) ：缩放图像，在 x 方向乘以 scaleX ，在 y 方向乘以 scaleY 。 scaleX和 scaleY 的默认值都是 1.0。</p>
+</li>
+<li><p>translate(x, y) ：将坐标原点移动到 (x,y) 。执行这个变换之后，坐标(0,0)会变成之前由 (x,y)表示的点。</p>
+</li>
+<li><p>transform(m1_1, m1_2, m2_1, m2_2, dx, dy) ：直接修改变换矩阵，方式是乘以如下矩阵。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">m1_1 m1_2 dx</span><br><span class="line">m2_1 m2_2 dy</span><br><span class="line">0 0 1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>setTransform(m1_1, m1_2, m2_1, m2_2, dx, dy) ：将变换矩阵重置为默认状态，然后再调用 transform() 。</p>
+</li>
+</ul>
+<p>变换有可能很简单，但也可能很复杂，这都要视情况而定。比如，就拿前面例子中绘制表针来说，如果把原点变换到表盘的中心，然后再绘制表针就容易多了。请看下面的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> drawing = <span class="built_in">document</span>.getElementById(<span class="string">"drawing"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//确定浏览器支持&lt;canvas&gt;元素</span></span><br><span class="line"><span class="keyword">if</span> (drawing.getContext)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> context = drawing.getContext(<span class="string">"2d"</span>);</span><br><span class="line">  <span class="comment">//开始路径</span></span><br><span class="line">  context.beginPath();</span><br><span class="line"></span><br><span class="line">  <span class="comment">//绘制外圆</span></span><br><span class="line">  context.arc(<span class="number">100</span>, <span class="number">100</span>, <span class="number">99</span>, <span class="number">0</span>, <span class="number">2</span> * <span class="built_in">Math</span>.PI, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//绘制内圆</span></span><br><span class="line">  context.moveTo(<span class="number">194</span>, <span class="number">100</span>);</span><br><span class="line">  context.arc(<span class="number">100</span>, <span class="number">100</span>, <span class="number">94</span>, <span class="number">0</span>, <span class="number">2</span> * <span class="built_in">Math</span>.PI, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 变换原点</span></span><br><span class="line">  context.translate(<span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 绘制分针</span></span><br><span class="line">  context.moveTo(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">  context.lineTo(<span class="number">0</span>, <span class="number">-85</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 绘制时针</span></span><br><span class="line">  context.moveTo(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  context.lineTo(<span class="number">-65</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//描边路径</span></span><br><span class="line">  context.stroke();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>把原点变换到时钟表盘的中心点(100,100)后，在同一方向上绘制线条就变成了简单的数学问题了。所有数学计算都基于(0,0)，而不是(100,100)。还可以更进一步，像下面这样 <strong>使用 rotate() 方法旋转时钟的表针</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> drawing = <span class="built_in">document</span>.getElementById(<span class="string">"drawing"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//确定浏览器支持&lt;canvas&gt;元素</span></span><br><span class="line"><span class="keyword">if</span> (drawing.getContext)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> context = drawing.getContext(<span class="string">"2d"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//开始路径</span></span><br><span class="line">  context.beginPath();</span><br><span class="line"></span><br><span class="line">  <span class="comment">//绘制外圆</span></span><br><span class="line">  context.arc(<span class="number">100</span>, <span class="number">100</span>, <span class="number">99</span>, <span class="number">0</span>, <span class="number">2</span> * <span class="built_in">Math</span>.PI, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//绘制内圆</span></span><br><span class="line">  context.moveTo(<span class="number">194</span>, <span class="number">100</span>);</span><br><span class="line">  context.arc(<span class="number">100</span>, <span class="number">100</span>, <span class="number">94</span>, <span class="number">0</span>, <span class="number">2</span> * <span class="built_in">Math</span>.PI, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//变换原点</span></span><br><span class="line">  context.translate(<span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 旋转表针</span></span><br><span class="line">  context.rotate(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//绘制分针</span></span><br><span class="line">  context.moveTo(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">  context.lineTo(<span class="number">0</span>, <span class="number">-85</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//绘制时针</span></span><br><span class="line">  context.moveTo(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  context.lineTo(<span class="number">-65</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//描边路径</span></span><br><span class="line">  context.stroke();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>因为原点已经变换到了时钟表盘的中心点，所以旋转也是以该点为圆心的</strong> 。结果就像是表针真地被固定在表盘中心一样，然后向右旋转了一定角度。结果如下图所示。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E4%B8%A4%E4%B8%AA%E5%9C%86%E5%BD%A2%EF%BC%88%E4%B8%80%E5%AE%9A%E8%A7%92%E5%BA%A6%EF%BC%89.png" alt="原点变换"></p>
+<p><strong>无论是刚才执行的变换</strong> ，还是 <strong>fillStyle 、 strokeStyle 等属性</strong> ，<strong>都会在当前上下文中一直有效</strong> ，<strong>除非再对上下文进行什么修改</strong> 。虽然没有什么办法把上下文中的一切都重置回默认值，但有两个方法可以跟踪上下文的状态变化。如果你知道将来还要返回某组属性与变换的组合，可以 <strong>调用 save() 方法</strong> 。调用这个方法后，<strong>当时的所有设置都会进入一个栈结构</strong> ，<strong>得以妥善保管</strong> 。然后 <strong>可以对上下文进行其他修改</strong> 。等想要 <strong>回到之前保存的设置</strong> 时，可以 <strong>调用 restore() 方法</strong> ，<strong>在保存设置的栈结构中向前返回一级</strong> ，<strong>恢复之前的状态</strong> 。<strong>连续调用 save() 可以把更多设置保存到栈结构中</strong> ，<strong>之后再连续调用 restore() 则可以一级一级返回</strong> 。下面来看一个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">context.fillStyle = <span class="string">"#ff0000"</span>;</span><br><span class="line">context.save();</span><br><span class="line"></span><br><span class="line">context.fillStyle = <span class="string">"#00ff00"</span>;</span><br><span class="line">context.translate(<span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line">context.save();</span><br><span class="line"></span><br><span class="line">context.fillStyle = <span class="string">"#0000ff"</span>;</span><br><span class="line">context.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">200</span>); <span class="comment">//从点(100,100)开始绘制蓝色矩形</span></span><br><span class="line"></span><br><span class="line">context.restore();</span><br><span class="line">context.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">100</span>, <span class="number">200</span>); <span class="comment">//从点(110,110)开始绘制绿色矩形</span></span><br><span class="line"></span><br><span class="line">context.restore();</span><br><span class="line">context.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">200</span>); <span class="comment">//从点(0,0)开始绘制红色矩形</span></span><br></pre></td></tr></table></figure>
+<p>首先，将 fillStyle 设置为红色，并调用 save() 保存上下文状态。接下来，把 fillStyle 修改为绿色，把坐标原点变换到(100,100)，再调用 save() 保存上下文状态。然后，把 fillStyle 修改为蓝色并绘制蓝色的矩形。因为此时的坐标原点已经变了，所以矩形的左上角坐标实际上是(100,100)。然后调用 restore() ，之后 fillStyle 变回了绿色，因而第二个矩形就是绿色。之所以第二个矩形的起点坐标是(110,110)，是因为坐标位置的变换仍然起作用。再调用一次 restore() ，变换就被取消了，而 fillStyle 也返回了红色。所以最后一个矩形是红色的，而且绘制的起点是(0,0)。需要注意的是， <strong>save() 方法保存的只是对绘图上下文的设置和变换</strong> ，<strong>不会保存绘图上下文的内容</strong> 。</p>
+<h3 id="绘制图像"><a href="#绘制图像" class="headerlink" title="绘制图像"></a>绘制图像</h3><p><strong>2D 绘图上下文内置了对图像的支持</strong> 。<strong>如果你想把一幅图像绘制到画布上</strong> ，可以使用 <strong>drawImage() 方法</strong> 。根据期望的最终结果不同，调用这个方法时，可以使用三种不同的参数组合。最简单的调用方式是 <strong>传入一个 HTML  <code>&lt;img&gt;</code> 元素</strong> ，以及 <strong>绘制该图像的起点的 x 和 y 坐标</strong> 。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> image = <span class="built_in">document</span>.images[<span class="number">0</span>];</span><br><span class="line">context.drawImage(image, <span class="number">10</span>, <span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<p>这两行代码 <strong>取得了文档中的第一幅图像</strong> ，然后 <strong>将它绘制到上下文中</strong> ，起点为(10,10)。绘制到画布上的图像大小与原始大小一样。如果你想 <strong>改变绘制后图像的大小</strong> ，可以再多传入两个参数，分别表示 <strong>目标宽度</strong> 和 <strong>目标高度</strong> 。通过这种方式来 <strong>缩放图像并不影响上下文的变换矩阵</strong> 。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">context.drawImage(image, <span class="number">50</span>, <span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+<p>执行代码后，绘制出来的图像大小会变成 20×30 像素。</p>
+<p>除了上述两种方式，还可以 <strong>选择把图像中的某个区域绘制到上下文中</strong> 。 drawImage() 方法的这种调用方式总共需要传入 9 个参数：<strong>要绘制的图像</strong> 、<strong>源图像的 x 坐标</strong> 、<strong>源图像的 y 坐标</strong> 、<strong>源图像的宽度</strong> 、<strong>源图像的高度</strong> 、<strong>目标图像的 x 坐标</strong> 、<strong>目标图像的 y 坐标</strong> 、<strong>目标图像的宽度</strong> 、<strong>目标图像的高度</strong> 。这样调用 drawImage() 方法可以获得最多的控制。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">context.drawImage(image, <span class="number">0</span>, <span class="number">10</span>, <span class="number">50</span>, <span class="number">50</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">40</span>, <span class="number">60</span>);</span><br></pre></td></tr></table></figure>
+<p>这行代码只会把原始图像的一部分绘制到画布上。原始图像的这一部分的起点为(0,10)，宽和高都是 50 像素。最终绘制到上下文中的图像的起点是(0,100)，而大小变成了 40×60 像素。这种调用方式可以创造出很有意思的效果，如下图所示。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E7%BB%98%E5%88%B6%E5%9B%BE%E5%83%8F.png" alt="绘制图像"></p>
+<p>除了给 drawImage() 方法传入 HTML <code>&lt;img&gt;</code> 元素外，还 <strong>可以传入另一个 <code>&lt;canvas&gt;</code> 元素作为其第一个参数</strong> 。这样，就 <strong>可以把另一个画布内容绘制到当前画布上</strong>  。</p>
+<p>结合使用 drawImage() 和其他方法，可以对图像进行各种基本操作。而 <strong>操作的结果可以通过 toDataURL() 方法获得</strong> （请读者注意，虽然本章至今一直在讨论 2D 绘图上下文，但 toDataURL()是 Canvas 对象的方法，不是上下文对象的方法。）。不过，有一个例外，即 <strong>图像不能来自其他域</strong> 。<strong>如果图像来自其他域，调用 toDataURL() 会抛出一个错误</strong> 。打个比方，假如位于 <a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a> 上的页面绘制的图像来自于 <a href="http://www.wrox.com" target="_blank" rel="noopener">www.wrox.com</a> ，那当前上下文就会被认为“不干净”，因而会抛出错误。</p>
+<h3 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h3><p>2D 上下文会根据以下几个属性的值，<strong>自动为形状或路径绘制出阴影</strong> 。</p>
+<ul>
+<li>shadowColor ：用 CSS 颜色格式表示的阴影颜色，默认为黑色。</li>
+<li>shadowOffsetX ：形状或路径 x 轴方向的阴影偏移量，默认为 0。</li>
+<li>shadowOffsetY ：形状或路径 y 轴方向的阴影偏移量，默认为 0。</li>
+<li>shadowBlur ：模糊的像素数，默认 0，即不模糊。</li>
+</ul>
+<p>这些属性都可以 <strong>通过 context 对象来修改</strong> 。<strong>只要在绘制前为它们设置适当的值，就能自动产生阴影</strong> 。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> context = drawing.getContext(<span class="string">"2d"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置阴影</span></span><br><span class="line">context.shadowOffsetX = <span class="number">5</span>;</span><br><span class="line">context.shadowOffsetY = <span class="number">5</span>;</span><br><span class="line">context.shadowBlur = <span class="number">4</span>;</span><br><span class="line">context.shadowColor = <span class="string">"rgba(0, 0, 0, 0.5)"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//绘制红色矩形</span></span><br><span class="line">context.fillStyle = <span class="string">"#ff0000"</span>;</span><br><span class="line">context.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//绘制蓝色矩形</span></span><br><span class="line">context.fillStyle = gradient;llStyle = <span class="string">"rgba(0,0,255,1)"</span>;</span><br><span class="line">context.ficontext.fillRect(<span class="number">30</span>, <span class="number">30</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+<p>两个矩形的阴影样式相同，结果如下图所示。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E5%BD%B1%E9%98%B4.png" alt="阴影"></p>
+<p><strong>不同浏览器对阴影的支持有一些差异</strong> 。IE9、Firefox 4 和 Opera 11 的行为最为规范，其他浏览器多多少少会有一些奇怪的现象，甚至根本不支持阴影。Chrome（直至第 10 版）不能正确地为描边的形状应用实心阴影。Chrome 和 Safari（直至第 5 版）在为带透明像素的图像应用阴影时也会有问题：不透明部分的下方本来是该有阴影的，但此时则一概不见了。Safari 也不能给渐变图形应用阴影，其他浏览器都可以。</p>
+<h3 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h3><p><strong>渐变由 CanvasGradient 实例表示</strong> ，很容易 <strong>通过 2D 上下文来创建和修改</strong> 。要创建一个新的线性渐变，可以 <strong>调用 createLinearGradient() 方法</strong> 。这个方法接收 4 个参数：<strong>起点的 x 坐标</strong> 、<strong>起点的 y 坐标</strong> 、<strong>终点的 x 坐标</strong> 、<strong>终点的 y 坐标</strong> 。调用这个方法后，它就会 <strong>创建一个指定大小的渐变</strong> ，并 <strong>返回 CanvasGradient 对象的实例</strong> 。</p>
+<p>创建了渐变对象后，下一步就是使用 <strong>addColorStop() 方法来指定色标</strong> 。这个方法接收两个参数：<strong>色标位置</strong> 和 <strong>CSS 颜色值</strong> 。<strong>色标位置是一个 0（开始的颜色）到 1（结束的颜色）之间的数字</strong> 。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gradient = context.createLinearGradient(<span class="number">30</span>, <span class="number">30</span>, <span class="number">70</span>, <span class="number">70</span>);</span><br><span class="line"></span><br><span class="line">gradient.addColorStop(<span class="number">0</span>, <span class="string">"white"</span>);</span><br><span class="line">gradient.addColorStop(<span class="number">1</span>, <span class="string">"black"</span>);</span><br></pre></td></tr></table></figure>
+<p>此时， gradient 对象表示的是一个从画布上点(30,30)到点(70,70)的渐变。起点的色标是白色，终点的色标是黑色。然后就 <strong>可以把 fillStyle 或 strokeStyle 设置为这个对象</strong> ，<strong>从而使用渐变来绘制形状或描边</strong> ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//绘制红色矩形</span></span><br><span class="line">context.fillStyle = <span class="string">"#ff0000"</span>;</span><br><span class="line">context.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//绘制渐变矩形</span></span><br><span class="line">context.fillStyle = gradient;</span><br><span class="line">context.fillRect(<span class="number">30</span>, <span class="number">30</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>为了让渐变覆盖整个矩形</strong> ，而不是仅应用到矩形的一部分，<strong>矩形和渐变对象的坐标必须匹配才行</strong> 。以上代码会得到如下图所示的结果。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E6%B8%90%E5%8F%98.png" alt="渐变"></p>
+<p>如果没有把矩形绘制到恰当的位置，那可能就只会显示部分渐变效果。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">context.fillStyle = gradient;</span><br><span class="line">context.fillRect(<span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+<p>这两行代码执行后得到的矩形只有左上角稍微有一点白色。这主要是因为矩形的起点位于渐变的中间位置，而此时渐变差不多已经结束了。由于渐变不重复，所以矩形的大部分区域都是黑色。<strong>确保渐变与形状对齐非常重要</strong> ，<strong>有时候可以考虑使用函数来确保坐标合适</strong> 。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createRectLinearGradient</span>(<span class="params">context, x, y, width, height</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> context.createLinearGradient(x, y, x+width, y+height);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个函数 <strong>基于起点的x和y坐标以及宽度和高度值来创建渐变对象</strong> ，从而 <strong>让我们可以在 fillRect() 中使用相同的值</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gradient = createRectLinearGradient(context, <span class="number">30</span>, <span class="number">30</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line">gradient.addColorStop(<span class="number">0</span>, <span class="string">"white"</span>);</span><br><span class="line">gradient.addColorStop(<span class="number">1</span>, <span class="string">"black"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//绘制渐变矩形</span></span><br><span class="line">context.fi llStyle = gradient;</span><br><span class="line">context.fillRect(<span class="number">30</span>, <span class="number">30</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+<p>使用画布的时候，确保坐标匹配很重要，也需要一些技巧。类似 createRectLinearGradient() 这样的辅助方法可以让控制坐标更容易一些。<strong>要创建径向渐变</strong>（或放射渐变），<strong>可以使用 createRadialGradient() 方法</strong> 。这个方法接收 6 个参数，<strong>对应着两个圆的圆心和半径</strong> 。前三个参数指定的是起点圆的原心（x 和 y）及半径，后三个参数指定的是终点圆的原心（x 和 y）及半径。可以把径向渐变想象成一个长圆桶，而这 6 个参数定义的正是这个桶的两个圆形开口的位置。如果把一个圆形开口定义得比另一个小一些，那这个圆桶就变成了圆锥体，而通过移动每个圆形开口的位置，就可达到像旋转这个圆锥体一样的效果。</p>
+<p><strong>如果想从某个形状的中心点开始创建一个向外扩散的径向渐变效果</strong> ，就要 <strong>将两个圆定义为同心圆</strong> 。比如，就拿前面创建的矩形来说，径向渐变的两个圆的圆心都应该在(55,55)，因为矩形的区域是从(30,30) 到(80,80)。请看代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gradient = context.createRadialGradient(<span class="number">55</span>, <span class="number">55</span>, <span class="number">10</span>, <span class="number">55</span>, <span class="number">55</span>, <span class="number">30</span>);</span><br><span class="line">gradient.addColorStop(<span class="number">0</span>, <span class="string">"white"</span>);</span><br><span class="line">gradient.addColorStop(<span class="number">1</span>, <span class="string">"black"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//绘制红色矩形</span></span><br><span class="line">context.fillStyle = <span class="string">"#ff0000"</span>;</span><br><span class="line">context.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//绘制渐变矩形</span></span><br><span class="line">context.fillStyle = gradient;</span><br><span class="line">context.fillRect(<span class="number">30</span>, <span class="number">30</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+<p>运行代码，会得到如下图所示的结果。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E5%BE%84%E5%90%91%E6%B8%90%E5%8F%98.png" alt="径向渐变"></p>
+<p>因为创建比较麻烦，所以径向渐变并不那么容易控制。不过，一般来说，<strong>让起点圆和终点圆保持为同心圆的情况比较多</strong> ，这时候 <strong>只要考虑给两个圆设置不同的半径就好了</strong> 。</p>
+<h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><p><strong>模式其实就是重复的图像</strong> ，<strong>可以用来填充或描边图形</strong> 。要创建一个新模式，可以调用 <strong>createPattern() 方法</strong> 并传入两个参数：<strong>一个 HTML  <code>&lt;img&gt;</code> 元素</strong> 和 <strong>一个表示如何重复图像的字符串</strong> 。其中，第二个参数的值 <strong>与 CSS 的 background-repeat 属性值相同</strong> ，包括 “<strong>repeat</strong>“ 、 “<strong>repeat-x</strong>“ 、”<strong>repeat-y</strong>“ 和 “<strong>no-repeat</strong>“ 。看一个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> image = <span class="built_in">document</span>.images[<span class="number">0</span>],</span><br><span class="line">pattern = context.createPattern(image, <span class="string">"repeat"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//绘制矩形</span></span><br><span class="line">context.fillStyle = pattern;</span><br><span class="line">context.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">150</span>, <span class="number">150</span>);</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，模式与渐变一样，都是从画布的原点(0,0)开始的。将填充样式（ fillStyle ）设置为模式对象，只表示在某个特定的区域内显示重复的图像，而不是要从某个位置开始绘制重复的图像。上面的代码会得到如下图所示的结果。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E6%A8%A1%E5%BC%8F.png" alt="模式"></p>
+<p><strong>createPattern() 方法</strong> 的第一个参数也 <strong>可以是一个 <code>&lt;video&gt;</code> 元素</strong> ，或者 <strong>另一个 <code>&lt;canvas&gt;</code> 元素</strong> 。</p>
+<h3 id="使用图像数据"><a href="#使用图像数据" class="headerlink" title="使用图像数据"></a>使用图像数据</h3><p>2D 上下文的一个明显的长处就是，<strong>可以通过 getImageData() 取得原始图像数据</strong> 。这个方法接收 4 个参数：<strong>要取得其数据的画面区域的 x 和 y 坐标</strong> 以及 <strong>该区域的像素宽度和高度</strong> 。例如，要取得左上角坐标为(10,5)、大小为 50×50 像素的区域的图像数据，可以使用以下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> imageData = context.getImageData(<span class="number">10</span>, <span class="number">5</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+<p>这里 <strong>返回的对象是 ImageData 的实例</strong> 。每个 ImageData 对象都有三个属性： <strong>width</strong> 、 <strong>height</strong> 和 <strong>data</strong> 。其中 <strong>data 属性是一个数组</strong> ，<strong>保存着图像中每一个像素的数据</strong> 。<strong>在 data 数组中，每一个像素用 4 个元素来保存，分别表示红、绿、蓝和透明度值</strong> 。因此，第一个像素的数据就保存在数组的第 0 到第 3 个元素中，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = imageData.data,</span><br><span class="line">   red = data[<span class="number">0</span>],</span><br><span class="line">   green = data[<span class="number">1</span>],</span><br><span class="line">   blue = data[<span class="number">2</span>],</span><br><span class="line">   alpha = data[<span class="number">3</span>];</span><br></pre></td></tr></table></figure>
+<p>数组中每个元素的值都介于 0 到 255 之间（包括 0 和 255）。能够直接访问到原始图像数据，就能够以各种方式来操作这些数据。例如，通过修改图像数据，可以像下面这样创建一个 <strong>简单的灰阶过滤器</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> drawing = <span class="built_in">document</span>.getElementById(<span class="string">"drawing"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//确定浏览器支持&lt;canvas&gt;元素</span></span><br><span class="line"><span class="keyword">if</span> (drawing.getContext)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> context = drawing.getContext(<span class="string">"2d"</span>),</span><br><span class="line">     image = <span class="built_in">document</span>.images[<span class="number">0</span>],</span><br><span class="line">     imageData, data,</span><br><span class="line">     i, len, average,</span><br><span class="line">     red, green, blue, alpha;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//绘制原始图像</span></span><br><span class="line">  context.drawImage(image, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//取得图像数据</span></span><br><span class="line">  imageData = context.getImageData(<span class="number">0</span>, <span class="number">0</span>, image.width, image.height);</span><br><span class="line">  data = imageData.data;</span><br><span class="line">  <span class="keyword">for</span> (i=<span class="number">0</span>, len=data.length; i &lt; len; i+=<span class="number">4</span>)&#123;</span><br><span class="line">  red = data[i];</span><br><span class="line">  green = data[i+<span class="number">1</span>];</span><br><span class="line">  blue = data[i+<span class="number">2</span>];</span><br><span class="line">  alpha = data[i+<span class="number">3</span>];</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//求得 rgb 平均值</span></span><br><span class="line">  average = <span class="built_in">Math</span>.floor((red + green + blue) / <span class="number">3</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//设置颜色值，透明度不变</span></span><br><span class="line">  data[i] = average;</span><br><span class="line">  data[i+<span class="number">1</span>] = average;</span><br><span class="line">  data[i+<span class="number">2</span>] = average;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//回写图像数据并显示结果</span></span><br><span class="line">  imageData.data = data;</span><br><span class="line">  context.putImageData(imageData, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个例子首先在画面上绘制了一幅图像，然后取得了原始图像数据。其中的 for 循环遍历了图像数据中的每一个像素。这里要注意的是，每次循环控制变量 i 都递增 4。在取得每个像素的红、绿、蓝颜色值后，计算出它们的平均值。再把这个平均值设置为每个颜色的值，结果就是去掉了每个像素的颜色，只保留了亮度接近的灰度值（即彩色变黑白）。在把 data 数组回写到 imageData 对象后，调用 putImageData() 方法把图像数据绘制到画布上。最终得到了图像的黑白版。</p>
+<p>当然，<strong>通过操作原始像素值不仅能实现灰阶过滤</strong> ，<strong>还能实现其他功能</strong> 。要了解通过操作原始图像数据实现过滤器的更多信息，请参考 Ilmari Heikkinen 的文章“Making Image Filters with Canvas”（基于Canvas的图像过滤器）：<a href="http://www.html5rocks.com/en/tutorials/canvas/imagefilters/" target="_blank" rel="noopener">http://www.html5rocks.com/en/tutorials/canvas/imagefilters/</a> 。</p>
+<blockquote>
+<p><strong>只有在画布“干净”的情况下</strong>（即图像并非来自其他域），<strong>才可以取得图像数据</strong> 。如果画布“不干净”，那么访问图像数据时会导致 JavaScript 错误。</p>
+</blockquote>
+<h3 id="合成"><a href="#合成" class="headerlink" title="合成"></a>合成</h3><p><strong>还有两个会应用到 2D 上下文中所有绘制操作的属性</strong> ： <strong>globalAlpha</strong> 和 <strong>globalCompositionOperation</strong> 。其中，<strong>globalAlpha 是一个介于 0 和 1 之间的值</strong>（包括 0和 1），<strong>用于指定所有绘制的透明度</strong> 。<strong>默认值为 0</strong> 。<strong>如果所有后续操作都要基于相同的透明度</strong> ，<strong>就可以先把 globalAlpha 设置为适当值，然后绘制，最后再把它设置回默认值 0</strong> 。下面来看一个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//绘制红色矩形</span></span><br><span class="line">context.fillStyle = <span class="string">"#ff0000"</span>;</span><br><span class="line">context.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//修改全局透明度</span></span><br><span class="line">context.globalAlpha = <span class="number">0.5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//绘制蓝色矩形</span></span><br><span class="line">context.fillStyle = <span class="string">"rgba(0,0,255,1)"</span>;</span><br><span class="line">context.fillRect(<span class="number">30</span>, <span class="number">30</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//重置全局透明度</span></span><br><span class="line">context.globalAlpha = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，我们把蓝色矩形绘制到了红色矩形上面。因为在绘制蓝色矩形前， globalAlpha 已经被设置为 0.5，所以蓝色矩形会呈现半透明效果，透过它可以看到下面的红色矩形。</p>
+<p>第二个属性 <strong>globalCompositionOperation 表示后绘制的图形怎样与先绘制的图形结合</strong> 。这个属性的值是字符串，可能的值如下。</p>
+<ul>
+<li>source-over （默认值）：后绘制的图形位于先绘制的图形上方。</li>
+<li>source-in ：后绘制的图形与先绘制的图形重叠的部分可见，两者其他部分完全透明。</li>
+<li>source-out ：后绘制的图形与先绘制的图形不重叠的部分可见，先绘制的图形完全透明。</li>
+<li>source-atop ：后绘制的图形与先绘制的图形重叠的部分可见，先绘制图形不受影响。</li>
+<li>destination-over ：后绘制的图形位于先绘制的图形下方，只有之前透明像素下的部分才可见。</li>
+<li>destination-in ：后绘制的图形位于先绘制的图形下方，两者不重叠的部分完全透明。</li>
+<li>destination-out ：后绘制的图形擦除与先绘制的图形重叠的部分。</li>
+<li>destination-atop ：后绘制的图形位于先绘制的图形下方，在两者不重叠的地方，先绘制的 lighter ：后绘制的图形与先绘制的图形重叠部分的值相加，使该部分变亮。</li>
+<li>copy ：后绘制的图形完全替代与之重叠的先绘制图形。</li>
+<li>xor ：后绘制的图形与先绘制的图形重叠的部分执行“异或”操作。</li>
+</ul>
+<p>这个合成操作实际上用语言或者黑白图像是很难说清楚的。要了解每个操作的具体效果，请参见 <a href="https://developer.mozilla.org/samples/canvas-tutorial/6_1_canvas_composite.html" target="_blank" rel="noopener">https://developer.mozilla.org/samples/canvas-tutorial/6_1_canvas_composite.html</a> 。推荐使用 IE9+或 Firefox 4+访问前面的网页，因为这两款浏览器对 Canvas的实现最完善。下面来看一个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//绘制红色矩形</span></span><br><span class="line">context.fillStyle = <span class="string">"#ff0000"</span>;</span><br><span class="line">context.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置合成操作</span></span><br><span class="line">context.globalCompositeOperation = <span class="string">"destination-over"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//绘制蓝色矩形</span></span><br><span class="line">context.fillStyle = <span class="string">"rgba(0,0,255,1)"</span>;</span><br><span class="line">context.fillRect(<span class="number">30</span>, <span class="number">30</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+<p>如果不修改 globalCompositionOperation ，那么蓝色矩形应该位于红色矩形之上。但把<br>globalCompositionOperation 设置为 “destination-over” 之后，红色矩形跑到了蓝色矩形上面。在使用 globalCompositionOperation 的情况下，一定要多测试一些浏览器。因为不同浏览器对这个属性的实现仍然存在较大的差别。Safari 和 Chrome 在这方面还有问题，至于有什么问题，大家可以比较在打开上述页面的情况下，IE9+和 Firefox 4+与它们有什么差异。</p>
+<h2 id="WebGL"><a href="#WebGL" class="headerlink" title="WebGL"></a>WebGL</h2><p><strong>WebGL 是针对 Canvas 的 3D 上下文</strong> 。与其他 Web 技术不同，<strong>WebGL 并不是 W3C 制定的标准</strong> ，而是由 Khronos Group 制定的。其官方网站是这样介绍的：“Khronos Group 是一个非盈利的由会员资助的协会，专注于为并行计算以及各种平台和设备上的图形及动态媒体制定无版税的开放标准。” Khronos Group 也设计了其他图形处理 API，比如 OpenGL ES 2.0。浏览器中使用的 WebGL就是基于 OpenGL ES 2.0 制定的。</p>
+<p>OpenGL 等 3D 图形语言是非常复杂的，本书不可能介绍其中每一个概念。熟悉 OpenGL ES 2.0 的读者可能会觉得 WebGL 更好理解一些，因为好多概念是相通的。<br>本节将适当地介绍 OpenGL ES 2.0 的一些概念，尽力解释其中的某些部分在 WebGL 中的实现。要全面了解 OpenGL，请访问 <a href="http://www.opengl.org" target="_blank" rel="noopener">www.opengl.org</a>  。要全面学习 WebGL，请参考 <a href="http://www.learningwebgl.com" target="_blank" rel="noopener">www.learningwebgl.com</a> ，其中包含非常棒的系列教程（中文翻译版请参考 <a href="http://www.hiwebgl.com/?p=42" target="_blank" rel="noopener">http://www.hiwebgl.com/?p=42</a> 。） 。</p>
+<h3 id="类型化数组"><a href="#类型化数组" class="headerlink" title="类型化数组"></a>类型化数组</h3><p><strong>WebGL 涉及的复杂计算需要提前知道数值的精度</strong> ，而 <strong>标准的 JavaScript 数值无法满足需要</strong> 。为此，<strong>WebGL 引入了一个概念</strong> ，叫 <strong>类型化数组</strong> （typed arrays）。<strong>类型化数组也是数组</strong> ，<strong>只不过其元素被设置为特定类型的值</strong> 。</p>
+<p>类型化数组的核心就是一个名为 <strong>ArrayBuffer 的类型</strong> 。<strong>每个 ArrayBuffer 对象表示的只是内存中指定的字节数</strong> ，但 <strong>不会指定这些字节用于保存什么类型的数据</strong> 。<strong>通过 ArrayBuffer 所能做的，就是为了将来使用而分配一定数量的字节</strong> 。例如，下面这行代码会在内存中分配 20B。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">20</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>创建了 ArrayBuffer 对象后，能够通过该对象获得的信息只有它包含的字节数</strong> ，方法是 <strong>访问其 byteLength 属性</strong> ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bytes = buffer.byteLength;</span><br></pre></td></tr></table></figure>
+<p>虽然 ArrayBuffer 对象本身没有多少可说的，但对 WebGL 而言，使用它是极其重要的。而且，在涉及视图的时候，你才会发现它原来还是很有意思的。</p>
+<ul>
+<li><h4 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h4><p><strong>使用 ArrayBuffer （数组缓冲器类型）的一种特别的方式就是用它来创建数组缓冲器视图</strong> 。其中，最常见的视图是 <strong>DataView</strong> ，<strong>通过它可以选择 ArrayBuffer 中一小段字节</strong> 。为此，可以在 <strong>创建 DataView 实例</strong> 的时候传入 <strong>一个 ArrayBuffer</strong> 、<strong>一个可选的字节偏移量</strong>（从该字节开始选择）和 v一个可选的要选择的字节数** 。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//基于整个缓冲器创建一个新视图</span></span><br><span class="line"><span class="keyword">var</span> view = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer);</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个开始于字节 9 的新视图</span></span><br><span class="line"><span class="keyword">var</span> view = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer, <span class="number">9</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个从字节 9 开始到字节 18 的新视图</span></span><br><span class="line"><span class="keyword">var</span> view = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer, <span class="number">9</span>, <span class="number">10</span>);</span><br><span class="line">​<span class="string">`</span></span><br></pre></td></tr></table></figure>
+<p>实例化之后， <strong>DataView 对象会把字节偏移量以及字节长度信息分别保存在 byteOffset 和 byteLength 属性中</strong> 。</p>
+<p>​<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alert(view.byteOffset);</span><br><span class="line">alert(view.byteLength);</span><br></pre></td></tr></table></figure></p>
+<p>通过这两个属性可以在以后方便地 <strong>了解视图的状态</strong> 。另外，<strong>通过其 buffer 属性也可以取得数组缓冲器</strong> 。</p>
+<p>读取和写入 DataView 的时候，要根据实际操作的数据类型，选择相应的 getter 和 setter 方法。下表列出了 <strong>DataView 支持的数据类型以及相应的读写方法</strong> 。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%BB%E5%86%99%E6%96%B9%E6%B3%95.png" alt="数据类型及读写方法"></p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%BB%E5%86%99%E6%96%B9%E6%B3%95%EF%BC%88%E7%BB%AD%EF%BC%89.png" alt="数据类型及读写方法（续）"></p>
+<p>所有 <strong>这些方法的第一个参数</strong> 都是一个 <strong>字节偏移量</strong> ，<strong>表示要从哪个字节开始读取或写入</strong> 。不要忘了，<strong>要保存有些数据类型的数据</strong> ，<strong>可能需要不止 1B</strong> 。比如，无符号 8 位整数要用 1B，而 32 位浮点数则要用 4B。<strong>使用 DataView ，就需要你自己来管理这些细节</strong> ，即 <strong>要明确知道自己的数据需要多少字节</strong> ，<strong>并选择正确的读写方法</strong> 。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">20</span>),</span><br><span class="line">   view = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer),</span><br><span class="line">   value;</span><br><span class="line"></span><br><span class="line">view.setUint16(<span class="number">0</span>, <span class="number">25</span>);</span><br><span class="line">view.setUint16(<span class="number">2</span>, <span class="number">50</span>); <span class="comment">//不能从字节 1 开始，因为 16 位整数要用 2B</span></span><br><span class="line">value = view.getUint16(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>以上代码把两个无符号 16 位整数保存到了数组缓冲器中。因为每个 16 位整数要用 2B，所以保存第一个数的字节偏移量为 0，而保存第二个数的字节偏移量为 2。</p>
+<p><strong>用于读写 16 位或更大数值的方法都有一个可选的参数 littleEndian</strong> 。这个参数是一个 <strong>布尔值</strong> ，<strong>表示读写数值时是否采用小端字节序</strong> （即将数据的最低有效位保存在低内存地址中），而不是大端字节序（即将数据的最低有效位保存在高内存地址中）。 <strong>如果你也不确定应该使用哪种字节序，那不用管它，就采用默认的大端字节序方式保存即可</strong> 。</p>
+<p>因为在这里使用的是字节偏移量，而非数组元素数，所以可以通过几种不同的方式来 <strong>访问同一字节</strong> 。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">20</span>),</span><br><span class="line">   view = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer),</span><br><span class="line">   value;</span><br><span class="line"></span><br><span class="line">view.setUint16(<span class="number">0</span>, <span class="number">25</span>);</span><br><span class="line">value = view.getInt8(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">alert(value); <span class="comment">//0</span></span><br></pre></td></tr></table></figure>
+<p>在这个例子中，数值 25 以 16 位无符号整数的形式被写入，字节偏移量为 0。然后，再以 8 位有符号整数的方式读取该数据，得到的结果是 0。这是因为 25 的二进制形式的前 8 位（第一个字节）全部是 0，如下图所示。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E5%AD%97%E8%8A%82%E5%81%8F%E7%A7%BB%E9%87%8F.png" alt="字节偏移量"></p>
+<p>可见，虽然 <strong>DataView 能让我们在字节级别上读写数组缓冲器中的数据</strong> ，但 <strong>我们必须自己记住要将数据保存到哪里，需要占用多少字节</strong> 。这样一来，就会带来很多工作量，因此类型化视图也就应运而生。</p>
+</li>
+<li><h4 id="类型化视图"><a href="#类型化视图" class="headerlink" title="类型化视图"></a>类型化视图</h4><p><strong>类型化视图一般也被称为类型化数组</strong> ，因为它们 <strong>除了元素必须是某种特定的数据类型外</strong> ，<strong>与常规的数组无异</strong> 。类型化视图也分几种，而且 <strong>它们都继承了 DataView</strong> 。</p>
+<ul>
+<li>Int8Array ：表示 8 位二补整数。</li>
+<li>Uint8Array ：表示 8 位无符号整数。</li>
+<li>Int16Array ：表示 16 位二补整数。</li>
+<li>Uint16Array ：表示 16 位无符号整数。</li>
+<li>Int32Array ：表示 32 位二补整数。</li>
+<li>Uint32Array ：表示 32 位无符号整数。</li>
+<li>Float32Array ：表示 32 位 IEEE 浮点值。</li>
+<li>Float64Array ：表示 64 位 IEEE 浮点值。</li>
+</ul>
+<p><strong>每种视图类型都以不同的方式表示数据</strong> ，而 <strong>同一数据视选择的类型不同有可能占用一或多字节</strong> 。例如，20B 的 ArrayBuffer 可以保存 20 个 Int8Array 或 Uint8Array ，或者 10 个 Int16Array 或 Uint16Array ，或者 5 个 Int32Array 、 Uint32Array 或 Float32Array ，或者 2 个 Float64Array 。</p>
+<p>由于 <strong>这些视图都继承自 DataView</strong>  ，因而 <strong>可以使用相同的构造函数参数来实例化</strong> 。第一个参数是要使用 <strong>ArrayBuffer 对象</strong> ，第二个参数是 <strong>作为起点的字节偏移量</strong> （默认为 0），第三个参数是 <strong>要包含的字节数</strong> 。三个参数中 <strong>只有第一个是必需的</strong> 。下面来看几个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个新数组，使用整个缓冲器</span></span><br><span class="line"><span class="keyword">var</span> int8s = <span class="keyword">new</span> <span class="built_in">Int8Array</span>(buffer);</span><br><span class="line"></span><br><span class="line"><span class="comment">//只使用从字节 9 开始的缓冲器</span></span><br><span class="line"><span class="keyword">var</span> int16s = <span class="keyword">new</span> <span class="built_in">Int16Array</span>(buffer, <span class="number">9</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//只使用从字节 9 到字节 18 的缓冲器</span></span><br><span class="line"><span class="keyword">var</span> uint16s = <span class="keyword">new</span> <span class="built_in">Uint16Array</span>(buffer, <span class="number">9</span>, <span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>能够指定缓冲器中可用的字节段</strong> ，意味着 <strong>能在同一个缓冲器中保存不同类型的数值</strong> 。比如，下面的代码就是在缓冲器的开头保存 8 位整数，而在其他字节中保存 16 位整数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//使用缓冲器的一部分保存 8 位整数，另一部分保存 16 位整数</span><br><span class="line">var int8s = new Int8Array(buffer, 0, 10);</span><br><span class="line">var uint16s = new Uint16Array(buffer, 11, 10);</span><br></pre></td></tr></table></figure>
+<p><strong>每个视图构造函数都有一个名为 BYTES_PER_ELEMENT 的属性</strong> ，<strong>表示类型化数组的每个元素需要多少字节</strong> 。因此，<strong> Uint8Array.BYTES_PER_ELEMENT 就是 1</strong> ，而 <strong>Float32Array.BYTES_PER_ELEMENT 则为 4</strong> 。<strong>可以利用这个属性来辅助初始化</strong>  。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//需要 10 个元素空间</span></span><br><span class="line"><span class="keyword">var</span> int8s = <span class="keyword">new</span> <span class="built_in">Int8Array</span>(buffer, <span class="number">0</span>, <span class="number">10</span> * <span class="built_in">Int8Array</span>.BYTES_PER_ELEMENT);</span><br><span class="line"></span><br><span class="line"><span class="comment">//需要 5 个元素空间</span></span><br><span class="line"><span class="keyword">var</span> uint16s = <span class="keyword">new</span> <span class="built_in">Uint16Array</span>(buffer, int8s.byteOffset + int8s.byteLength, <span class="number">5</span> * <span class="built_in">Uint16Array</span>.BYTES_PER_ELEMENT);</span><br></pre></td></tr></table></figure>
+<p>以上代码基于同一个数组缓冲器创建了两个视图。缓冲器的前 10B 用于保存 8 位整数，而其他字节用于保存无符号 16 位整数。在初始化 Uint16Array 的时候，使用了 Int8Array 的 byteOffset 和 byteLength 属性，以确保 uint16s 开始于 8 位数据之后。</p>
+<p>如前所述，<strong>类型化视图的目的在于简化对二进制数据的操作</strong> 。除了前面看到的优点之外，创建类型化视图还可以不用首先创建 ArrayBuffer 对象。<strong>只要传入希望数组保存的元素数，相应的构造函数就可以自动创建一个包含足够字节数的 ArrayBuffer 对象</strong> ，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个数组保存 10 个 8 位整数（10 字节）</span></span><br><span class="line"><span class="keyword">var</span> int8s = <span class="keyword">new</span> <span class="built_in">Int8Array</span>(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个数组保存 10 个 16 位整数（20 字节）</span></span><br><span class="line"><span class="keyword">var</span> int16s = <span class="keyword">new</span> <span class="built_in">Int16Array</span>(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<p>另外，也 <strong>可以把常规数组转换为类型化视图</strong> ，<strong>只要把常规数组传入类型化视图的构造函数即可</strong> ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个数组保存 5 个 8 位整数（10 字节）</span></span><br><span class="line"><span class="keyword">var</span> int8s = <span class="keyword">new</span> <span class="built_in">Int8Array</span>([<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>]);</span><br></pre></td></tr></table></figure>
+<p>这是 <strong>用默认值来初始化类型化视图的最佳方式</strong>，也是<strong> WebGL 项目中最常用的方式</strong> 。</p>
+<p>以这种方式来使用类型化视图，<strong>可以让它们看起来更像 Array 对象</strong> ，同时 <strong>也能确保在读写信息的时候使用正确的数据类型</strong> 。</p>
+<p><strong>使用类型化视图</strong> 时，可以 <strong>通过方括号语法访问每一个数据成员</strong> ，可以 <strong>通过 length 属性确定数组中有多少元素</strong> 。这样，<strong>对类型化视图的迭代与对 Array 对象的迭代就是一样的了</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>, len=int8s.length; i &lt; len; i++)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Value at position "</span> + i + <span class="string">" is "</span> + int8s[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然，也可以 <strong>使用方括号语法为类型化视图的元素赋值</strong> 。<strong>如果为相应元素指定的字节数放不下相应的值，则实际保存的值是最大可能值的模</strong> 。例如，无符号 16 位整数所能表示的最大数值是 65535，如果你想保存 65536，那实际保存的值是 0；如果你想保存 65537，那实际保存的值是 1，依此类推。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> uint16s = <span class="keyword">new</span> <span class="built_in">Uint16Array</span>(<span class="number">10</span>);</span><br><span class="line">uint16s[<span class="number">0</span>] = <span class="number">65537</span>;</span><br><span class="line">alert(uint16s[<span class="number">0</span>]); <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+<p>数据类型不匹配时不会抛出错误，所以你必须自己保证所赋的值不会超过相应元素的字节限制。</p>
+<p><strong>类型化视图</strong> 还有一个方法，即 <strong>subarray()</strong> ，使用 <strong>这个方法可以基于底层数组缓冲器的子集创建一个新视图</strong> 。这个方法接收两个参数：<strong>开始元素的索引</strong> 和 <strong>可选的结束元素的索引</strong> 。<strong>返回的类型与调用该方法的视图类型相同</strong> 。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> uint16s = <span class="keyword">new</span> <span class="built_in">Uint16Array</span>(<span class="number">10</span>),</span><br><span class="line">sub = uint16s.subarray(<span class="number">2</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<p>在以上代码中， sub 也是 Uint16Array 的一个实例，而且底层与 uint16s 都基于同一个 ArrayBuffer 。通过大视图创建小视图的主要好处就是，<strong>在操作大数组中的一部分元素时，无需担心意外修改了其他元素</strong> 。</p>
+<p>类型化数组是 WebGL 项目中执行各种操作的重要基础。</p>
+</li>
+</ul>
+<h3 id="WebGL上下文"><a href="#WebGL上下文" class="headerlink" title="WebGL上下文"></a>WebGL上下文</h3><p>目前，在支持的浏览器中，WebGL 的名字叫 “experimental-webgl” ，这是因为 WebGL 规范仍然未制定完成。制定完成后，这个上下文的名字就会变成简单的 “webgl” 。如果浏览器不支持 WebGL，那么取得该上下文时会返回 null 。 <strong>在使用 WebGL 上下文时，务必先检测一下返回值</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> drawing = <span class="built_in">document</span>.getElementById(<span class="string">"drawing"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//确定浏览器支持&lt;canvas&gt;元素</span></span><br><span class="line"><span class="keyword">if</span> (drawing.getContext)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> gl = drawing.getContext(<span class="string">"experimental-webgl"</span>);</span><br><span class="line">  <span class="keyword">if</span> (gl)&#123;</span><br><span class="line">    <span class="comment">// 使用 WebGL</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>一般都把WebGL上下文对象命名为 gl</strong> 。大多数WebGL应用和示例都遵守这一约定，因为 <strong>OpenGL ES 2.0 规定的方法和值通常都以 “gl” 开头</strong> 。这样做也可以保证 JavaScript 代码与 OpenGL 程序更相近。</p>
+<p><strong>取得了 WebGL 上下文之后，就可以开始 3D 绘图了</strong> 。如前所述，WebGL 是 OpenGL ES 2.0的 Web版，因此本节讨论的概念实际上就是 OpenGL 概念在 JavaScript 中的实现。</p>
+<p>通过给 <strong>getContext()</strong> 传递第二个参数，<strong>可以为 WebGL 上下文设置一些选项</strong> 。这个参数本身是一个对象，可以包含下列属性。</p>
+<ul>
+<li>alpha ：值为 true ，表示为上下文创建一个 Alpha 通道缓冲区；默认值为 true 。</li>
+<li>depth ：值为 true ，表示可以使用 16 位深缓冲区；默认值为 true 。</li>
+<li>stencil ：值为 true ，表示可以使用 8 位模板缓冲区；默认值为 false 。</li>
+<li>antialias ：值为 true ，表示将使用默认机制执行抗锯齿操作；默认值为 true 。</li>
+<li>premultipliedAlpha ：值为 true ，表示绘图缓冲区有预乘 Alpha 值；默认值为 true 。</li>
+<li>preserveDrawingBuffer ：值为 true ，表示在绘图完成后保留绘图缓冲区；默认值为 false 。</li>
+</ul>
+<p><strong>建议确实有必要的情况下再开启这个值</strong> ，因为 <strong>可能影响性能</strong> 。传递这个选项对象的方式如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> drawing = <span class="built_in">document</span>.getElementById(<span class="string">"drawing"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//确定浏览器支持&lt;canvas&gt;元素</span></span><br><span class="line"><span class="keyword">if</span> (drawing.getContext)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> gl = drawing.getContext(<span class="string">"experimental-webgl"</span>, &#123; <span class="attr">alpha</span>: <span class="literal">false</span>&#125;);</span><br><span class="line">  <span class="keyword">if</span> (gl)&#123;</span><br><span class="line">    <span class="comment">// 使用 WebGL</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大多数上下文选项只在高级技巧中使用。很多时候，各个选项的默认值就能满足我们的要求。</p>
+<p><strong>如果 getContext() 无法创建 WebGL 上下文，有的浏览器会抛出错误</strong> 。为此，最好 <strong>把调用封装到 一个 try-catch 块中</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Insert IconMargin [download]<span class="keyword">var</span> drawing = <span class="built_in">document</span>.getElementById(<span class="string">"drawing"</span>), gl;</span><br><span class="line"></span><br><span class="line"><span class="comment">//确定浏览器支持&lt;canvas&gt;元素</span></span><br><span class="line"><span class="keyword">if</span> (drawing.getContext)&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    gl = drawing.getContext(<span class="string">"experimental-webgl"</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (ex) &#123;</span><br><span class="line">    <span class="comment">// 什么也不做</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (gl)&#123;</span><br><span class="line">    <span class="comment">//使用 WebGL</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    alert(<span class="string">"WebGL context could not be created."</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h4><p>如果你熟悉 OpenGL，那肯定会对各种操作中使用非常多的常量印象深刻。 <strong>这些常量在 OpenGL 中都带前缀 GL_ </strong> 。在 WebGL 中， <strong>保存在上下文对象中的这些常量都没有 GL_ 前缀</strong> 。比如说，<strong>GL_COLOR_BUFFER_BIT 常量在 WebGL上下文中就是 gl.COLOR_BUFFER_BIT</strong> 。WebGL 以这种方式支持大多数 OpenGL 常量（有一部分常量是不支持的）。</p>
+</li>
+<li><h5 id="方法命名"><a href="#方法命名" class="headerlink" title="方法命名"></a>方法命名</h5><p><strong>OpenGL（以及 WebGL）中的很多方法都试图通过名字传达有关数据类型的信息</strong> 。如果某方法可以接收不同类型及不同数量的参数，看方法名的后缀就可以知道。方法名的后缀会包含参数个数（1 到 4）和接收的数据类型（ f 表示浮点数， i 表示整数）。例如， gl.uniform4f() 意味着要接收 4 个浮点数，而 gl.uniform3i() 则表示要接收 3 个整数。</p>
+<p>也有很多方法接收数组参数而非一个个单独的参数。这样的方法其名字中会包含字母 v（即 vector，矢量）。因此， gl.uniform3iv() 可以接收一个包含 3 个值的整数数组。请大家记住以上命名约定，这样对理解后面关于 WebGL的讨论很有帮助。</p>
+</li>
+<li><h4 id="准备绘图"><a href="#准备绘图" class="headerlink" title="准备绘图"></a>准备绘图</h4><p>在实际操作 WebGL 上下文之前， <strong>一般都要使用某种实色清除 <code>&lt;canvas&gt;</code></strong> ，为绘图做好准备。为此，首先必须使用 <strong>clearColor() 方法</strong> 来 <strong>指定要使用的颜色值</strong> ，该方法接收 4 个参数：<strong>红</strong>、<strong>绿</strong> 、<strong>蓝</strong> 和 <strong>透明度</strong> 。<strong>每个参数必须是一个 0 到 1 之间的数值</strong> ，表示 <strong>每种分量在最终颜色中的强度</strong> 。来看下面的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gl.clearColor(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>); <span class="comment">//black</span></span><br><span class="line">gl.clear(gl.COLOR_BUFFER_BIT);</span><br></pre></td></tr></table></figure>
+<p>以上代码 <strong>把清理颜色缓冲区的值设置为黑色</strong> ，然后调用了<strong> clear() 方法</strong> ，这个方法 <strong>与 OpenGL 中的 glClear() 等价</strong> 。传入的参数 gl.COLOR_BUFFER_BIT 告诉 WebGL使用之前定义的颜色来填充相应区域。一般来说，<strong>都要先清理缓冲区</strong> ，然后 <strong>再执行其他绘图操作</strong> 。</p>
+</li>
+<li><h4 id="视口与坐标"><a href="#视口与坐标" class="headerlink" title="视口与坐标"></a>视口与坐标</h4><p>开始绘图之前，通常要先 <strong>定义 WebGL 的视口</strong>（viewport）。默认情况下，<strong>视口可以使用整个 <code>&lt;canvas&gt;</code> 区域。要改变视口大小</strong> ，可以调用 <strong>viewport() 方法</strong> 并传入 4 个参数：（视口相对于 <code>&lt;canvas&gt;</code> 元素的） <strong>x 坐标</strong> 、<strong>y 坐标</strong> 、<strong>宽度</strong> 和 <strong>高度</strong> 。例如，下面的调用就使用了 <code>&lt;canvas&gt;</code> 元素：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gl.viewport(<span class="number">0</span>, <span class="number">0</span>, drawing.width, drawing.height);</span><br></pre></td></tr></table></figure>
+<p>视口坐标与我们通常熟悉的网页坐标不一样。<strong>视口坐标的原点(0,0)在 <code>&lt;canvas&gt;</code> 元素的左下角</strong> ，<strong>x 轴和 y 轴的正方向分别是向右和向上</strong> ，可以定义为(width-1, height-1)，如下图所示。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E8%A7%86%E5%8F%A3%E5%9D%90%E6%A0%87.png" alt="视口坐标"></p>
+<p><strong>知道怎么定义视口大小，就可以只在 <code>&lt;canvas&gt;</code> 元素的部分区域中绘图</strong> 。来看下面的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//视口是&lt;canvas&gt;左下角的四分之一区域</span></span><br><span class="line">gl.viewport(<span class="number">0</span>, <span class="number">0</span>, drawing.width/<span class="number">2</span>, drawing.height/<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//视口是&lt;canvas&gt;左上角的四分之一区域</span></span><br><span class="line">gl.viewport(<span class="number">0</span>, drawing.height/<span class="number">2</span>, drawing.width/<span class="number">2</span>, drawing.height/<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//视口是&lt;canvas&gt;右下角的四分之一区域</span></span><br><span class="line">gl.viewport(drawing.width/<span class="number">2</span>, <span class="number">0</span>, drawing.width/<span class="number">2</span>, drawing.height/<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<p>另外，<strong>视口内部的坐标系与定义视口的坐标系也不一样</strong> 。<strong>在视口内部，坐标原点(0,0)是视口的中心点</strong> ，因此 <strong>视口左下角坐标为(-1,-1)</strong> ，而 <strong>右上角坐标为(1,1)</strong> ，如下图所示。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E8%A7%86%E5%8F%A3%E5%86%85%E9%83%A8%E7%9A%84%E5%9D%90%E6%A0%87%E7%B3%BB.png" alt="视口内部的坐标系"></p>
+<p><strong>如果在视口内部绘图时使用视口外部的坐标，结果可能会被视口剪切</strong> 。比如，要绘制的形状有一个顶点在(1,2)，那么该形状在视口右侧的部分会被剪切掉。</p>
+</li>
+<li><h4 id="缓冲区"><a href="#缓冲区" class="headerlink" title="缓冲区"></a>缓冲区</h4><p><strong>顶点信息保存在 JavaScript 的类型化数组中</strong> ，<strong>使用之前必须转换到 WebGL 的缓冲区</strong> 。要创建缓冲区，可以调用 <strong>gl.createBuffer()</strong> ，然后 <strong>使用 gl.bindBuffer() 绑定到 WebGL 上下文</strong> 。这两步做完之后，就可以 <strong>用数据来填充缓冲区</strong> 了。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buffer = gl.createBuffer();</span><br><span class="line">gl.bindBuffer(gl.ARRAY_BUFFER, buffer);</span><br><span class="line">gl.bufferData(gl.ARRAY_BUFFER, <span class="keyword">new</span> <span class="built_in">Float32Array</span>([<span class="number">0</span>, <span class="number">0.5</span>, <span class="number">1</span>]), gl.STATIC_DRAW);</span><br></pre></td></tr></table></figure>
+<p><strong>调用 gl.bindBuffer() 可以将 buffer 设置为上下文的当前缓冲区</strong> 。此后，所有缓冲区操作都直接在 buffer 中执行。因此，调用 gl.bufferData() 时不需要明确传入 buffer 也没有问题。最后一行代码使用 Float32Array 中的数据初始化了 buffer （一般都是用 Float32Array 来保存顶点信息）。如果想使用 drawElements() 输出缓冲区的内容，也可以传入 gl.ELEMENT_ARRAY_BUFFER 。</p>
+<p><strong>gl.bufferData()</strong> 的最后一个参数用于 <strong>指定使用缓冲区的方式</strong> ，取值范围是如下几个常量。</p>
+<ul>
+<li>gl.STATIC_DRAW ：数据只加载一次，在多次绘图中使用。</li>
+<li>gl.STREAM_DRAW ：数据只加载一次，在几次绘图中使用。</li>
+<li>gl.DYNAMIC_DRAW ：数据动态改变，在多次绘图中使用。</li>
+</ul>
+<p>如果不是非常有经验的 OpenGL 程序员，<strong>多数情况下将缓冲区使用方式设置为 gl.STATIC_DRAW 即可</strong> 。</p>
+<p>在包含缓冲区的页面重载之前，缓冲区始终保留在内存中。如果你不想要某个缓冲区了，<strong>可以直接调用 gl.deleteBuffer() 释放内存</strong> ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gl.deleteBuffer(buffer);</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h4><p><strong>JavaScript 与 WebGL 之间的一个最大的区别在于</strong> ，<strong>WebGL 操作一般不会抛出错误</strong>v 。<strong>为了知道是否有错误发生</strong> ，必须 <strong>在调用某个可能出错的方法后</strong> ，<strong>手工调用 gl.getError() 方法</strong> 。这个方法 v返回一个表示错误类型的常量** 。可能的错误常量如下。</p>
+<ul>
+<li>gl.NO_ERROR ：上一次操作没有发生错误（值为 0）。</li>
+<li>gl.INVALID_ENUM ：应该给方法传入 WebGL 常量，但却传错了参数。</li>
+<li>gl.INVALID_VALUE ：在需要无符号数的地方传入了负值。</li>
+<li>gl.INVALID_OPERATION ：在当前状态下不能完成操作。</li>
+<li>gl.OUT_OF_MEMORY ：没有足够的内存完成操作。</li>
+<li>gl.CONTEXT_LOST_WEBGL ：由于外部事件（如设备断电）干扰丢失了当前 WebGL 上下文。</li>
+</ul>
+<p>每次调用 gl.getError() 方法返回一个错误值。第一次调用后，后续对 gl.getError() 的调用可能会返回另一个错误值。<strong>如果发生了多个错误，需要反复调用 gl.getError() 直至它返回 gl.NO_ERROR </strong> 。在执行了很多操作的情况下，最好通过一个循环来调用 getError() ，如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> errorCode = gl.getError();</span><br><span class="line"><span class="keyword">while</span>(errorCode)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Error occurred: "</span> + errorCode);</span><br><span class="line">  errorCode = gl.getError();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果 WebGL脚本输出不正确，那在脚本中放几行 gl.getError() 有助于找出问题所在。</p>
+</li>
+<li><h4 id="着色器"><a href="#着色器" class="headerlink" title="着色器"></a>着色器</h4><p>着色器（shader）是 OpenGL 中的另一个概念。WebGL 中有两种着色器：<strong>顶点着色器</strong> 和 <strong>片段（或像素）着色器</strong> 。<strong>顶点着色器用于将 3D 顶点转换为需要渲染的 2D 点</strong> 。<strong>片段着色器用于准确计算要绘制的每个像素的颜色</strong> 。WebGL 着色器的独特之处也是其难点在于，它们并不是用 JavaScript 写的。<strong>这些着色器是使用 GLSL（OpenGL Shading Language，OpenGL 着色语言）写的</strong> ，<strong>GLSL 是一种与 C 和 JavaScript 完全不同的语言</strong> 。</p>
+</li>
+<li><h4 id="编写着色器"><a href="#编写着色器" class="headerlink" title="编写着色器"></a>编写着色器</h4><p><strong>GLSL 是一种类 C 语言，专门用于编写 OpenGL 着色器</strong> 。因为 WebGL 是 OpenGL ES 2.0 的实现，所以 <strong>OpenGL 中使用的着色器可以直接在 WebGL 中使用</strong> 。这样就方便了将桌面图形应用移植到浏览器中。</p>
+<p>每个着色器都有一个 main() 方法，该方法在绘图期间会重复执行。为着色器传递数据的方式有两种：Attribute 和 Uniform。通过 Attribute 可以向顶点着色器中传入顶点信息，通过 Uniform 可以向任何着色器传入常量值。Attribute 和 Uniform 在 main() 方法外部定义，分别使用关键字 attribute 和 uniform 。在这两个值类型关键字之后，是数据类型和变量名。下面是一个简单的顶点着色器的例子。</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//OpenGL 着色语言</span></span><br><span class="line"><span class="comment">//着色器，作者 Bartek Drozdz，摘自他的文章</span></span><br><span class="line"><span class="comment">//http://www.netmagazine.com/tutorials/get-started-webgl-draw-square</span></span><br><span class="line"><span class="keyword">attribute</span> <span class="type">vec2</span> aVertexPosition;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main() &#123;</span><br><span class="line">  <span class="built_in">gl_Position</span> = <span class="type">vec4</span>(aVertexPosition, <span class="number">0.0</span>, <span class="number">1.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个顶点着色器定义了一个名为 aVertexPosition 的 Attribute，这个 Attribute 是一个数组，包含两个元素（数据类型为 vec2 ），表示 x 和 y 坐标。即使只接收到两个坐标，顶点着色器也必须把一个包含四方面信息的顶点赋值给特殊变量 gl_Position 。这里的着色器创建了一个新的包含四个元素的数组（ vec4 ），填补缺失的坐标，结果是把 2D 坐标转换成了 3D 坐标。</p>
+<p>除了只能通过 Uniform传入数据外，片段着色器与顶点着色器类似。以下是片段着色器的例子。</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//OpenGL 着色语言</span></span><br><span class="line"><span class="comment">//着色器，作者 Bartek Drozdz，摘自他的文章</span></span><br><span class="line"><span class="comment">//http://www.netmagazine.com/tutorials/get-started-webgl-draw-square</span></span><br><span class="line"><span class="keyword">uniform</span> <span class="type">vec4</span> uColor;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main() &#123;</span><br><span class="line">  <span class="built_in">gl_FragColor</span> = uColor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>片段着色器必须返回一个值，赋给变量 gl_FragColor ，表示绘图时使用的颜色。这个着色器定义了一个包含四方面信息（ vec4 ）的统一的颜色 uColor 。从以上代码看，这个着色器除了把传入的值赋给 gl_FragColor 什么也没做。 uColor 的值在这个着色器内部不能改变。</p>
+<blockquote>
+<p>OpenGL 着色语言比这里看到的还要复杂。专门讲解这门语言的书有很多，本节只是从辅助使用 WebGL 的角度简要介绍一下该语言。要了解更多信息，请参考 RandiJ. Rost 编著的 OpenGL Shading Language（Addison-Wesley,2006）。</p>
+</blockquote>
+</li>
+<li><h4 id="编写着色器程序"><a href="#编写着色器程序" class="headerlink" title="编写着色器程序"></a>编写着色器程序</h4><p>浏览器不能理解 GLSL 程序，因此必须准备好字符串形式的 GLSL 程序，以便编译并链接到着色器程序。为便于使用，通常是把着色器包含在页面的 <code>&lt;script&gt;</code> 标签内，并为该标签指定一个自定义的 type 属性。由于无法识别 type 属性值，浏览器不会解析 <code>&lt;script&gt;</code> 标签中的内容，但这不影响你读写其中的代码。例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"x-webgl/x-vertex-shader"</span> <span class="attr">id</span>=<span class="string">"vertexShader"</span>&gt;</span></span><br><span class="line">attribute vec2 aVertexPosition;</span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">void</span> main() &#123;</span></span><br><span class="line">  gl_Position = vec4(aVertexPosition, 0.0, 1.0);</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"x-webgl/x-fragment-shader"</span> <span class="attr">id</span>=<span class="string">"fragmentShader"</span>&gt;</span></span><br><span class="line">uniform vec4 uColor;</span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">void</span> main() &#123;</span></span><br><span class="line">  gl_FragColor = uColor;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后，可以 <strong>通过 text 属性提取出 <code>&lt;script&gt;</code> 元素的内容</strong> ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vertexGlsl = <span class="built_in">document</span>.getElementById(<span class="string">"vertexShader"</span>).text,</span><br><span class="line">fragmentGlsl = <span class="built_in">document</span>.getElementById(<span class="string">"fragmentShader"</span>).text;</span><br></pre></td></tr></table></figure>
+<p>复杂一些的 WebGL 应用可能会通过 Ajax（详见第 21 章）动态加载着色器。而使用着色器的关键是要有字符串形式的 GLSL 程序。</p>
+<p>取得了 GLSL 字符串之后，接下来就是创建着色器对象。要创建着色器对象，可以调用 <strong>gl.createShader() 方法</strong> 并传入 <strong>要创建的着色器类型</strong>（ gl.VERTEX_SHADER 或 gl.FRAGMENT_SHADER ）。编译着色器使用的是 gl.compileShader() 。请看下面的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vertexShader = gl.createShader(gl.VERTEX_SHADER);</span><br><span class="line">gl.shaderSource(vertexShader, vertexGlsl);</span><br><span class="line">gl.compileShader(vertexShader);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);</span><br><span class="line">gl.shaderSource(fragmentShader, fragmentGlsl);</span><br><span class="line">gl.compileShader(fragmentShader);</span><br></pre></td></tr></table></figure>
+<p>以上代码创建了两个着色器，并将它们分别保存在 vertexShader 和 fragmentShader 中。而使用下列代码，可以把这两个对象链接到着色器程序中。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> program = gl.createProgram();</span><br><span class="line">gl.attachShader(program, vertexShader);</span><br><span class="line">gl.attachShader(program, fragmentShader);</span><br><span class="line">gl.linkProgram(program);</span><br></pre></td></tr></table></figure>
+<p>第一行代码创建了程序，然后调用 attachShader() 方法又包含了两个着色器。最后调用 gl.linkProgram() 则把两个着色器封装到了变量 program 中。链接完程序之后，就可以通过 gl.useProgram() 方法通知 WebGL 使用这个程序了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gl.useProgram(program);</span><br></pre></td></tr></table></figure>
+<p>调用 gl.useProgram() 方法后，所有后续的绘图操作都将使用这个程序。</p>
+</li>
+<li><h4 id="为着色器传入值"><a href="#为着色器传入值" class="headerlink" title="为着色器传入值"></a>为着色器传入值</h4><p>前面定义的着色器都必须接收一个值才能工作。为了给着色器传入这个值，必须先找到要接收这个值的变量。对于 Uniform变量，可以使用 gl.getUniformLocation() ，这个方法返回一个对象，表示 Uniform变量在内存中的位置。然后可以基于变量的位置来赋值。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> uColor = gl.getUniformLocation(program, <span class="string">"uColor"</span>);</span><br><span class="line">gl.uniform4fv(uColor, [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
+<p>第一行代码从 program 中找到 Uniform变量 uColor ，返回了它在内存中的位置。第二行代码使用 gl.uniform4fv() 给 uColor 赋值。</p>
+<p>对于顶点着色器中的 Attribute 变量，也是差不多的赋值过程。要找到 Attribute 变量在内存中的位置，可以调用 gl.getAttribLocation() 。取得了位置之后，就可以像下面这样赋值了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aVertexPosition = gl.getAttribLocation(program, <span class="string">"aVertexPosition"</span>);</span><br><span class="line">gl.enableVertexAttribArray(aVertexPosition);</span><br><span class="line">gl.vertexAttribPointer(aVertexPosition, itemSize, gl.FLOAT, <span class="literal">false</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>在此，我们取得了 aVertexPosition 的位置，然后又通过gl.enableVertexAttribArray() 启用它。最后一行创建了指针，指向由 gl.bindBuffer() 指定的缓冲区，并将其保存在 aVertexPosition 中，以便顶点着色器使用。</p>
+</li>
+<li><h4 id="调试着色器和程序"><a href="#调试着色器和程序" class="headerlink" title="调试着色器和程序"></a>调试着色器和程序</h4><p>与 WebGL 中的其他操作一样，着色器操作也可能会失败，而且也是静默失败。如果你想知道着色器或程序执行中是否发生了错误，必须亲自询问 WebGL 上下文。</p>
+<p>对于着色器，可以在操作之后调用 <strong>gl.getShaderParameter()</strong> ，<strong>取得着色器的编译状态</strong> ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS))&#123;</span><br><span class="line">  alert(gl.getShaderInfoLog(vertexShader));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个例子检测了 vertexShader 的编译状态。如果着色器编译成功，调用 gl.getShader-<br>Parameter() 会返回 true 。如果返回的是 false ，说明编译期间发生了错误，此时调用 gl.getShaderInfoLog() 并传入相应的着色器就可以取得错误消息。错误消息就是一个表示问题所在的字符串。无论是顶点着色器，还是片段着色器，都可以使用 gl.getShaderParameter() 和 gl.getShaderInfoLog() 方法。</p>
+<p>程序也可能会执行失败，因此也有类似的方法—— gl.getProgramParameter() ，可以用来检测执行状态。最常见的程序失败发生在链接过程中，要检测链接错误，可以使用下列代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!gl.getProgramParameter(program, gl.LINK_STATUS))&#123;</span><br><span class="line">  alert(gl.getProgramInfoLog(program));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与 gl.getShaderParameter() 类似， gl.getProgramParameter() 返回 true 表示链接成功，返回 false 表示链接失败。同样，也有一个 gl.getProgramInfoLog() 方法，用于捕获程序失败的消息。</p>
+<p>以上介绍的这些方法主要在开发过程中用于调试。只要没有依赖外部代码，就可以放心地把它们从产品代码中删除。</p>
+</li>
+<li><h4 id="绘图"><a href="#绘图" class="headerlink" title="绘图"></a>绘图</h4><p>WebGL 只能绘制三种形状：<strong>点</strong> 、<strong>线</strong> 和 <strong>三角</strong> 。<strong>其他所有形状都是由这三种基本形状合成之后</strong> ，<strong>再绘制到三维空间中的</strong> 。执行绘图操作要调用 <strong>gl.drawArrays()</strong> 或 <strong>gl.drawElements()</strong> 方法，<strong>前者用于数组缓冲区</strong> ，<strong>后者用于元素数组缓冲区</strong> 。</p>
+<p><strong>gl.drawArrays() 或 gl.drawElements()</strong> 的第一个参数都是一个常量，表示 <strong>要绘制的形状</strong> 。可取值的常量范围包括以下这些。</p>
+<ul>
+<li><p>gl.POINTS ：将每个顶点当成一个点来绘制。</p>
+</li>
+<li><p>gl.LINES ：将数组当成一系列顶点，在这些顶点间画线。每个顶点既是起点也是终点，因此数组中必须包含偶数个顶点才能完成绘制。</p>
+</li>
+<li><p>gl.LINE_LOOP ：将数组当成一系列顶点，在这些顶点间画线。线条从第一个顶点到第二个顶点，再从第二个顶点到第三个顶点，依此类推，直至最后一个顶点。然后再从最后一个顶点到第一个顶点画一条线。结果就是一个形状的轮廓。</p>
+</li>
+<li><p>gl.LINE_STRIP ：除了不画最后一个顶点与第一个顶点之间的线之外，其他与 gl.LINE_LOOP相同。</p>
+</li>
+<li><p>gl.TRIANGLES ：将数组当成一系列顶点，在这些顶点间绘制三角形。除非明确指定，每个三角形都单独绘制，不与其他三角形共享顶点。</p>
+</li>
+<li><p>gl.TRIANGLES_STRIP ：除了将前三个顶点之后的顶点当作第三个顶点与前两个顶点共同构成一个新三角形外，其他都与 gl.TRIANGLES 相同。例如，如果数组中包含 A、B、C、D 四个顶点，则第一个三角形连接 ABC，而第二个三角形连接 BCD。</p>
+</li>
+<li><p>gl. TRIANGLES_FAN ：除了将前三个顶点之后的顶点当作第三个顶点与前一个顶点及第一个顶点共同构成一个新三角形外，其他都与 gl.TRIANGLES 相同。例如，如果数组中包含 A、B、C、D 四个顶点，则第一个三角形连接 ABC，而第二个三角形连接 ACD。</p>
+</li>
+</ul>
+<p><strong>gl.drawArrays() 方法</strong> 接收上面列出的常量中的一个作为第一个参数，接收 <strong>数组缓冲区中的起始索引</strong> 作为第二个参数，<strong>接收数组缓冲区中包含的顶点数</strong>（点的集合数）作为第三个参数。下面的代码 <strong>使用 gl.drawArrays() 在画布上绘制了一个三角形</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假设已经使用本节前面定义的着色器清除了视口</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义三个顶点以及每个顶点的 x 和 y 坐标</span></span><br><span class="line"><span class="keyword">var</span> vertices = <span class="keyword">new</span> <span class="built_in">Float32Array</span>([ <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span> ]),</span><br><span class="line">   buffer = gl.createBuffer(),</span><br><span class="line">   vertexSetSize = <span class="number">2</span>,</span><br><span class="line">   vertexSetCount = vertices.length/vertexSetSize,</span><br><span class="line">   uColor, aVertexPosition;</span><br><span class="line"></span><br><span class="line"><span class="comment">//把数据放到缓冲区</span></span><br><span class="line">gl.bindBuffer(gl.ARRAY_BUFFER, buffer);</span><br><span class="line">gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);</span><br><span class="line"></span><br><span class="line"><span class="comment">//为片段着色器传入颜色值</span></span><br><span class="line">uColor = gl.getUniformLocation(program, <span class="string">"uColor"</span>);</span><br><span class="line">gl.uniform4fv(uColor, [ <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span> ]);</span><br><span class="line"></span><br><span class="line"><span class="comment">//为着色器传入顶点信息</span></span><br><span class="line">aVertexPosition = gl.getAttribLocation(program, <span class="string">"aVertexPosition"</span>);</span><br><span class="line">gl.enableVertexAttribArray(aVertexPosition);</span><br><span class="line">gl.vertexAttribPointer(aVertexPosition, vertexSetSize, gl.FLOAT, <span class="literal">false</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//绘制三角形</span></span><br><span class="line">gl.drawArrays(gl.TRIANGLES, <span class="number">0</span>, vertexSetCount);</span><br></pre></td></tr></table></figure>
+<p>这个例子定义了一个 Float32Array ，包含三组顶点（每个顶点由两点表示）。这里关键是要知道顶点的大小及数量，以便将来计算时使用。把 vertexSetSize 设置为 2 之后，就可以计算出 vertexSetCount 的值。把顶点的信息保存在缓冲区中后，又把颜色信息传给了片段着色器。</p>
+<p>接下来，给顶点着色器传入顶点大小以及 gl.FLOAT ，后者表示顶点坐标是浮点数。传入的第四个参数是一个布尔值， false 在此表示坐标不是标准化的。第五个参数是步长值（stride value），表示取得下一个值的时候，要跳过多少个数组元素。除非你真需要跳过数组元素，否则传入 0 即可。最后一个参数是起点偏移量，值为 0 表示从第一个元素开始。</p>
+<p>最后一步就是使用 gl.drawArrays() 绘制三角形。传入 gl.TRIANGLES 作为第一个参数，表示在(0,1)、(1,-1)和(-1,-1)点之间绘制三角形，并使用传给片段着色器的颜色来填充它。第二个参数是缓冲区中的起点偏移量，最后一个参数是要读取的顶点总数。这次绘图操作的结果如图 15-17 所示。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E7%BB%98%E5%9B%BE%E6%93%8D%E4%BD%9C%E7%BB%93%E6%9E%9C.png" alt="绘图操作结果"></p>
+<p>通过修改 gl.drawArrays() 的第一个参数，可以修改绘制三角形的方式。图 15-18 展示了传入不同的参数后可能得到的结果。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-canvas-drawing/%E7%BB%98%E5%88%B6%E4%B8%89%E8%A7%92%E5%BD%A2%E6%96%B9%E5%BC%8F.png" alt="绘制三角形方式"></p>
+</li>
+<li><h4 id="纹理"><a href="#纹理" class="headerlink" title="纹理"></a>纹理</h4><p><strong>WebGL 的纹理可以使用 DOM 中的图像</strong> 。要 <strong>创建一个新纹理</strong> ，可以调用 <strong>gl.createTexture()</strong> ，然后再 <strong>将一幅图像绑定到该纹理</strong> 。<strong>如果图像尚未加载到内存中，可能需要创建一个 Image 对象的实例，以便动态加载图像</strong> 。图像加载完成之前，纹理不会初始化，因此，<strong>必须在 load 事件触发后才能设置纹理</strong> 。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> image = <span class="keyword">new</span> Image(),</span><br><span class="line">   texture;</span><br><span class="line">image.src = <span class="string">"smile.gif"</span>;</span><br><span class="line">image.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  texture = gl.createTexture();</span><br><span class="line">  gl.bindTexture(gl.TEXTURE_2D, texture);</span><br><span class="line">  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">  gl.texImage2D(gl.TEXTURE_2D, <span class="number">0</span>, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);</span><br><span class="line">  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);</span><br><span class="line">  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//清除当前纹理</span></span><br><span class="line">  gl.bindTexture(gl.TEXTURE_2D, <span class="literal">null</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>除了使用 DOM 中的图像之外，以上步骤与在 OpenGL 中创建纹理的步骤相同。最大的差异是使用 gl.pixelStore1() 设置像素存储格式。 gl.UNPACK_FLIP_Y_WEBGL 是 WebGL 独有的常量，在加载 Web 中的图像时，多数情况下都必须使用这个常量。这主要是因为 GIF、JPEG 和 PNG 图像与 WebGL 使用的坐标系不一样，如果没有这个标志，解析图像时就会发生混乱。</p>
+<p><strong>用作纹理的图像必须与包含页面来自同一个域</strong> ，或者 <strong>是保存在启用了 CORS（Cross-Origin Resource Sharing，跨域资源共享）的服务器上</strong> 。第 21 章将讨论 CORS。</p>
+<blockquote>
+<p><strong>图像、加载到 <code>&lt;video&gt;</code> 元素中的视频</strong> ，<strong>甚至其他 <code>&lt;canvas&gt;</code> 元素都可以用作纹理</strong> 。<strong>跨域资源限制同样适用于视频</strong> 。</p>
+</blockquote>
+</li>
+<li><h4 id="读取像素"><a href="#读取像素" class="headerlink" title="读取像素"></a>读取像素</h4><p>与 2D 上下文 类似，通过 WebGL 上下文也能读取像素值。读取像素值的方法 <strong>readPixels()</strong> 与 OpenGL 中的同名方法只有一点不同，即 <strong>最后一个参数必须是类型化数组</strong> 。像素信息是从帧缓冲区读取的，然后保存在类型化数组中。 readPixels() 方法的参数有：<strong>x</strong> 、<strong>y</strong> 、<strong>宽度</strong> 、<strong>高度</strong> 、<strong>图像格式</strong> 、<strong>数据类型</strong> 和 <strong>类型化数组</strong> 。前 4 个参数指定读取哪个区域中的像素。图像格式参数几乎总是 gl.RGBA 。数据类型参数用于指定保存在类型化数组中的数据的类型，但有以下限制。</p>
+<ul>
+<li><p>如果类型是 gl.UNSIGNED_BYTE ，则类型化数组必须是 Uint8Array 。</p>
+</li>
+<li><p>如果类型是 gl.UNSIGNED_SHORT_5_6_5 、 gl.UNSIGNED_SHORT_4_4_4_4 或 gl.UNSIGNED_SHORT_5_5_5_1 ，则类型化数组必须是 Uint16Array 。</p>
+</li>
+</ul>
+<p>下面是一个简单的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pixels = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(<span class="number">25</span>*<span class="number">25</span>);</span><br><span class="line">gl.readPixels(<span class="number">0</span>, <span class="number">0</span>, <span class="number">25</span>, <span class="number">25</span>, gl.RGBA, gl.UNSIGNED_BYTE, pixels);</span><br></pre></td></tr></table></figure>
+<p>以上代码从帧缓冲区中读取了 25×25 像素的区域，将读取到的像素信息保存到了 pixels 数组中。其中，每个像素的颜色由 4 个数组元素表示，分别代表红、绿、蓝和透明度。每个数组元素的值介于 0 到 255 之间（包含 0 和 255）。不要忘了根据返回的数据大小初始化类型化数组。</p>
+<p>在浏览器绘制更新的 WebGL 图像之前调用 readPixels() 不会有什么意外。绘制发生后，帧缓冲区会恢复其原始的干净状态，而调用 readPixels() 返回的像素数据反映的就是清除缓冲区后的状态。如果你想在绘制发生后读取像素数据 ，那在初始化 WebGL 上 下文时必须传入适当的 preserveDrawingBuffer 选项（前面讨论过）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gl = drawing.getContext(<span class="string">"experimental-webgl"</span>, &#123; <span class="attr">preserveDrawingBuffer</span>: <span class="literal">true</span>; &#125;);</span><br></pre></td></tr></table></figure>
+<p>设置这个标志的意思是让帧缓冲区在下一次绘制之前，保留其最后的状态。这个选项会导致性能损失，因此能不用最好不要用。</p>
+</li>
+</ul>
+<h3 id="支持"><a href="#支持" class="headerlink" title="支持"></a>支持</h3><p>Firefox 4+和 Chrome 都实现了 WebGL API。Safari 5.1 也实现了 WebGL，但默认是禁用的。WebGL比较特别的地方在于，某个浏览器的某个版本实现了它，并不一定意味着就真能使用它。某个浏览器支持 WebGL，至少意味着两件事：首先，<strong>浏览器本身必须实现了 WebGL API</strong> ；其次，<strong>计算机必须升级显示驱动程序</strong> 。运行 Windows XP 等操作系统的一些老机器，其驱动程序一般都不是最新的。因此，这些计算机中的浏览器都会禁用 WebGL。<strong>从稳妥的角度考虑，在使用 WebGL 之前，最好检测其是否得到了支持，而不是只检测特定的浏览器版本</strong> 。</p>
+<p>大家别忘了，WebGL 还是一个正在制定和发展中的规范。不管是函数名、函数签名，还是数据类型，都有可能改变。可以说，WebGL 目前只适合实验性地学习，不适合真正开发和应用。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>HTML5 的 <code>&lt;canvas&gt;</code> 元素提供了一组 JavaScript API，让我们可以动态地创建图形和图像。图形是在一个特定的上下文中创建的，而上下文对象目前有两种。第一种是 <strong>2D上下文，可以执行原始的绘图操作</strong> ，比如：</p>
+<ul>
+<li>设置填充、描边颜色和模式</li>
+<li>绘制矩形</li>
+<li>绘制路径</li>
+<li>绘制文本</li>
+<li>创建渐变和模式</li>
+</ul>
+<p>第二种是 <strong>3D 上下文，即 WebGL 上下文</strong> 。WebGL 是从 OpenGL ES 2.0 移植到浏览器中的，而 OpenGL ES 2.0 是游戏开发人员在创建计算机图形图像时经常使用的一种语言。<strong>WebGL 支持比 2D 上下文更丰富和更强大的图形图像处理能力</strong> ，比如：</p>
+<ul>
+<li>用 GLSL（OpenGL Shading Language，OpenGL 着色语言）编写的顶点和片段着色器</li>
+<li>支持类型化数组，即能够将数组中的数据限定为某种特定的数值类型</li>
+<li>创建和操作纹理</li>
+</ul>
+<p>目前，<strong>主流浏览器的较新版本大都已经支持 <code>&lt;canvas&gt;</code> 标签</strong> 。同样地，<strong>这些版本的浏览器基本上也都支持 2D 上下文</strong> 。但 <strong>对于 WebGL 而言，目前还只有 Firefox 4+和 Chrome 支持它</strong> 。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/27/JavaScript-form-script/" rel="next" title="《JavaScript 高级程序设计》学习笔记-表单脚本">
+                <i class="fa fa-chevron-left"></i> 《JavaScript 高级程序设计》学习笔记-表单脚本
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/28/JavaScript-HTML5-script-programming/" rel="prev" title="《JavaScript 高级程序设计》学习笔记-HTML5 脚本编程">
+                《JavaScript 高级程序设计》学习笔记-HTML5 脚本编程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="songxingguo">
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">131</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-Canvas-绘图"><span class="nav-number">1.</span> <span class="nav-text">使用 Canvas 绘图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本用法"><span class="nav-number">1.1.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2D-上下文"><span class="nav-number">1.2.</span> <span class="nav-text">2D 上下文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#填充和描边"><span class="nav-number">1.2.1.</span> <span class="nav-text">填充和描边</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制矩形"><span class="nav-number">1.2.2.</span> <span class="nav-text">绘制矩形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制路径"><span class="nav-number">1.2.3.</span> <span class="nav-text">绘制路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制文本"><span class="nav-number">1.2.4.</span> <span class="nav-text">绘制文本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变换"><span class="nav-number">1.2.5.</span> <span class="nav-text">变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制图像"><span class="nav-number">1.2.6.</span> <span class="nav-text">绘制图像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阴影"><span class="nav-number">1.2.7.</span> <span class="nav-text">阴影</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渐变"><span class="nav-number">1.2.8.</span> <span class="nav-text">渐变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模式"><span class="nav-number">1.2.9.</span> <span class="nav-text">模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用图像数据"><span class="nav-number">1.2.10.</span> <span class="nav-text">使用图像数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合成"><span class="nav-number">1.2.11.</span> <span class="nav-text">合成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebGL"><span class="nav-number">1.3.</span> <span class="nav-text">WebGL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类型化数组"><span class="nav-number">1.3.1.</span> <span class="nav-text">类型化数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#视图"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">视图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类型化视图"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">类型化视图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebGL上下文"><span class="nav-number">1.3.2.</span> <span class="nav-text">WebGL上下文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常量"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">常量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#方法命名"><span class="nav-number">1.3.2.1.1.</span> <span class="nav-text">方法命名</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#准备绘图"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">准备绘图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视口与坐标"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">视口与坐标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缓冲区"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">缓冲区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#着色器"><span class="nav-number">1.3.2.6.</span> <span class="nav-text">着色器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写着色器"><span class="nav-number">1.3.2.7.</span> <span class="nav-text">编写着色器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写着色器程序"><span class="nav-number">1.3.2.8.</span> <span class="nav-text">编写着色器程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为着色器传入值"><span class="nav-number">1.3.2.9.</span> <span class="nav-text">为着色器传入值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调试着色器和程序"><span class="nav-number">1.3.2.10.</span> <span class="nav-text">调试着色器和程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绘图"><span class="nav-number">1.3.2.11.</span> <span class="nav-text">绘图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#纹理"><span class="nav-number">1.3.2.12.</span> <span class="nav-text">纹理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#读取像素"><span class="nav-number">1.3.2.13.</span> <span class="nav-text">读取像素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持"><span class="nav-number">1.3.3.</span> <span class="nav-text">支持</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.4.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":90,"vOffset":-25},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
