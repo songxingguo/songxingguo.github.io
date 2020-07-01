@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="写在前面视频地址 官方文档 云开发简介 云函数：在云端运行的代码，微信私有协议天然鉴权，开发者只需编写自身业务逻辑代码  数据库：一个既可在小程序前端操作，也能在云函数中读写的 JSON 数据库  存储：在小程序前端直接上传/下载云端文件，在云开发控制台可视化管理">
+<meta name="keywords" content="微信小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序云开发">
+<meta property="og:url" content="https://www.songxingguo.com/2018/11/25/WeChatMinApp/index.html">
+<meta property="og:site_name" content="阿有的生活">
+<meta property="og:description" content="写在前面视频地址 官方文档 云开发简介 云函数：在云端运行的代码，微信私有协议天然鉴权，开发者只需编写自身业务逻辑代码  数据库：一个既可在小程序前端操作，也能在云函数中读写的 JSON 数据库  存储：在小程序前端直接上传/下载云端文件，在云开发控制台可视化管理">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BA%91%E5%BC%80%E5%8F%91.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%20JSON%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%A6%82%E5%BF%B5%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BC%A0%E7%BB%9F%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95%E6%B5%81%E7%A8%8B.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BC%A0%E7%BB%9F%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%91%E5%BC%80%E5%8F%91.%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/options%20%E6%8F%90%E4%BE%9B%E7%9A%84%E5%8F%AF%E9%80%89%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/Serverless.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BC%A0%E7%BB%9F%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BA%91%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/Serverless%E5%88%86%E7%B1%BB.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BA%91%E5%BC%80%E5%8F%91%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E5%BF%B5.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BA%91%E6%95%B0%E6%8D%AE%E5%BA%93.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/Command%E6%9F%A5%E8%AF%A2%E6%8C%87%E4%BB%A4.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/Command%E6%9B%B4%E6%96%B0%E6%8C%87%E4%BB%A4.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/Collection%20API.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/Document%20API.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%BB%84%E4%BB%B6%E5%AF%B9%E4%BA%91%E6%96%87%E4%BB%B6%20ID%20%E7%9A%84%E6%94%AF%E6%8C%81.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BA%91%E5%87%BD%E6%95%B0.png">
+<meta property="og:updated_time" content="2020-07-01T09:06:11.101Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序云开发">
+<meta name="twitter:description" content="写在前面视频地址 官方文档 云开发简介 云函数：在云端运行的代码，微信私有协议天然鉴权，开发者只需编写自身业务逻辑代码  数据库：一个既可在小程序前端操作，也能在云函数中读写的 JSON 数据库  存储：在小程序前端直接上传/下载云端文件，在云开发控制台可视化管理">
+<meta name="twitter:image" content="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BA%91%E5%BC%80%E5%8F%91.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/11/25/WeChatMinApp/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>微信小程序云开发 | 阿有的生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">131</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">43</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/11/25/WeChatMinApp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">微信小程序云开发
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-25 10:33:00" itemprop="dateCreated datePublished" datetime="2018-11-25T10:33:00+00:00">2018-11-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-07-01 09:06:11" itemprop="dateModified" datetime="2020-07-01T09:06:11+00:00">2020-07-01</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/25/WeChatMinApp/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/11/25/WeChatMinApp/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/11/25/WeChatMinApp/" class="leancloud_visitors" data-flag-title="微信小程序云开发">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p><a href="https://cloud.tencent.com/developer/edu/learn-100005-1244/3154" target="_blank" rel="noopener">视频地址</a></p>
+<p><a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html" target="_blank" rel="noopener">官方文档</a></p>
+<h2 id="云开发简介"><a href="#云开发简介" class="headerlink" title="云开发简介"></a>云开发简介</h2><ul>
+<li><p>云函数：在云端运行的代码，微信私有协议天然鉴权，开发者只需编写自身业务逻辑代码</p>
+</li>
+<li><p>数据库：一个既可在小程序前端操作，也能在云函数中读写的 JSON 数据库</p>
+</li>
+<li><p>存储：在小程序前端直接上传/下载云端文件，在云开发控制台可视化管理</p>
+</li>
+</ul>
+<a id="more"></a>
+<p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BA%91%E5%BC%80%E5%8F%91.png" alt="云开发"></p>
+<h3 id="云开发数据库"><a href="#云开发数据库" class="headerlink" title="云开发数据库"></a>云开发数据库</h3><p>云开发提供了一个 JSON 数据库，顾名思义，数据库中的每条记录都是一个 JSON 格式的对象。一个数据库可以有多个集合（相当于关系型数据中的表），集合可看做一个 JSON 数组，数组中的每个对象就是一条记录，记录的格式是 JSON 对象。</p>
+<p>关系型数据库和 JSON 数据库的概念对应关系如下表：</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%20JSON%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%A6%82%E5%BF%B5%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB.png" alt="关系型数据库和 JSON 数据库的概念对应关系"></p>
+<p>以下是一个示例的集合数据，假设我们有一个 books 集合存放了图书记录，其中有两本书：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    _id: 'Wzh76lk5_O_dt0vO',</span><br><span class="line">    title: 'The Catcher in the Rye',</span><br><span class="line">    author: 'J. D. Salinger',</span><br><span class="line">    characters: [</span><br><span class="line">      'Holden Caulfield',</span><br><span class="line">      'Stradlater',</span><br><span class="line">      'Mr. Antolini'</span><br><span class="line">    ],</span><br><span class="line">    publishInfo: &#123;</span><br><span class="line">      year: 1951,</span><br><span class="line">      country: 'United States'</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    _id: 'Wzia0lk5_O_dt0vR',</span><br><span class="line">    _openid: 'ohl4L0Rnhq7vmmbT_DaNQa4ePaz0',</span><br><span class="line">    title: 'The Lady of the Camellias',</span><br><span class="line">    author: 'Alexandre Dumas fils',</span><br><span class="line">    characters: [</span><br><span class="line">      'Marguerite Gautier',</span><br><span class="line">      'Armand Duval',</span><br><span class="line">      'Prudence',</span><br><span class="line">      'Count de Varville'</span><br><span class="line">    ],</span><br><span class="line">    publishInfo: &#123;</span><br><span class="line">      year: 1848,</span><br><span class="line">      country: 'France'</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="云函数"><a href="#云函数" class="headerlink" title="云函数"></a>云函数</h3><ul>
+<li><p>云端运行一段代码</p>
+</li>
+<li><p>可获取天然可信任的用户登录态</p>
+</li>
+<li><p>支持 Node,js 环境</p>
+</li>
+</ul>
+<h2 id="开发环境配置"><a href="#开发环境配置" class="headerlink" title="开发环境配置"></a>开发环境配置</h2><ul>
+<li><p>使用云开发模板</p>
+</li>
+<li><p>手动添加支持</p>
+<ul>
+<li><p>project.config.json 中增加了字段 cloudfunctionRoot 用于指定存放云函数的目录</p>
+</li>
+<li><p>在 app.json / game.json 中增加字段 “cloud”: true</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="微信登录实现"><a href="#微信登录实现" class="headerlink" title="微信登录实现"></a>微信登录实现</h2><h3 id="传统微信登录流程"><a href="#传统微信登录流程" class="headerlink" title="传统微信登录流程"></a>传统微信登录流程</h3><p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BC%A0%E7%BB%9F%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95%E6%B5%81%E7%A8%8B.jpg" alt="传统微信登录流程"></p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BC%A0%E7%BB%9F%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95%E6%B5%81%E7%A8%8B.png" alt="传统微信登录流程"></p>
+<h4 id="传统微信登录流程-1"><a href="#传统微信登录流程-1" class="headerlink" title="传统微信登录流程"></a>传统微信登录流程</h4><p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%91%E5%BC%80%E5%8F%91.%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95.png" alt="小程序云开发.微信登录"></p>
+<p>在用户管理中会显示使用云能力的小程序的访问用户列表，默认以访问时间倒叙排列，访问时间的触发点是在小程序端调用 wx.cloud.init 方法，且其中的 traceUser 参数传值为 true。例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wx.cloud.init(&#123;</span><br><span class="line">  traceUser: <span class="literal">true</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/options%20%E6%8F%90%E4%BE%9B%E7%9A%84%E5%8F%AF%E9%80%89%E9%85%8D%E7%BD%AE.png" alt="options 提供的可选配置"></p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95.png" alt="微信登录"></p>
+<h3 id="云函数端"><a href="#云函数端" class="headerlink" title="云函数端"></a>云函数端</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">exports.main = <span class="function">(<span class="params">event, context</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(event)</span><br><span class="line">  <span class="built_in">console</span>.log(context)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 可执行其他自定义逻辑</span></span><br><span class="line">  <span class="comment">// console.log 的内容可以在云开发云函数调用日志查看</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    openid: event.userInfo.openId,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="云开发与-Serverless"><a href="#云开发与-Serverless" class="headerlink" title="云开发与 Serverless"></a>云开发与 Serverless</h2><p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/Serverless.png" alt="无服务器"></p>
+<h3 id="传统开发模式"><a href="#传统开发模式" class="headerlink" title="传统开发模式"></a>传统开发模式</h3><p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BC%A0%E7%BB%9F%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F.png" alt="传统开发模式"></p>
+<h3 id="云开发模式"><a href="#云开发模式" class="headerlink" title="云开发模式"></a>云开发模式</h3><p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BA%91%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F.png" alt="云开发模式"></p>
+<h3 id="Serverless分类"><a href="#Serverless分类" class="headerlink" title="Serverless分类"></a>Serverless分类</h3><p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/Serverless%E5%88%86%E7%B1%BB.png" alt="Serverless分类"></p>
+<h3 id="Serverless-的优点"><a href="#Serverless-的优点" class="headerlink" title="Serverless 的优点"></a>Serverless 的优点</h3><ul>
+<li><p>运营成本更低</p>
+</li>
+<li><p>降低开发成本</p>
+</li>
+<li><p>拓展能力强</p>
+</li>
+<li><p>管理简单</p>
+</li>
+</ul>
+<h3 id="Serverless-的优势"><a href="#Serverless-的优势" class="headerlink" title="Serverless 的优势"></a>Serverless 的优势</h3><ul>
+<li><p>快速接入</p>
+</li>
+<li><p>快速实现</p>
+</li>
+<li><p>无感运维</p>
+</li>
+</ul>
+<h2 id="数据库-API-的解读"><a href="#数据库-API-的解读" class="headerlink" title="数据库 API 的解读"></a>数据库 API 的解读</h2><h3 id="云开发数据库概念"><a href="#云开发数据库概念" class="headerlink" title="云开发数据库概念"></a>云开发数据库概念</h3><p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BA%91%E5%BC%80%E5%8F%91%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E5%BF%B5.png" alt="云开发数据库概念"></p>
+<h3 id="数据库-API"><a href="#数据库-API" class="headerlink" title="数据库 API"></a>数据库 API</h3><p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BA%91%E6%95%B0%E6%8D%AE%E5%BA%93.png" alt="云数据库"></p>
+<h4 id="database"><a href="#database" class="headerlink" title="database"></a>database</h4><blockquote>
+<p>获取数据库的引用。</p>
+</blockquote>
+<p>以下调用获取默认环境的数据库的引用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> db = wx.cloud.database()</span><br></pre></td></tr></table></figure>
+<p>假设有一个环境名为 test，用做测试环境，那么可以如下获取测试环境数据库：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> testDB = wx.cloud.database(&#123;</span><br><span class="line">  env: <span class="string">'test'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="serverDate"><a href="#serverDate" class="headerlink" title="serverDate"></a>serverDate</h4><blockquote>
+<p>构造一个服务端时间的引用。可用于查询条件、更新字段值或新增记录时的字段值。</p>
+</blockquote>
+<p>新增记录时设置字段为服务端时间：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> db = wx.cloud.database()</span><br><span class="line">db.collection(<span class="string">'todos'</span>).add(&#123;</span><br><span class="line">  description: <span class="string">'eat an apple'</span>,</span><br><span class="line">  createTime: db.serverDate()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>更新字段为服务端时间往后一小时：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> db = wx.cloud.database()</span><br><span class="line">db.collection(<span class="string">'todos'</span>).doc(<span class="string">'my-todo-id'</span>).update(&#123;</span><br><span class="line">  due: db.serverDate(&#123;</span><br><span class="line">    offset: <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="Geo"><a href="#Geo" class="headerlink" title="Geo"></a>Geo</h4><blockquote>
+<p>构造一个基于地理位置的引用。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> db = wx.cloud.database()</span><br><span class="line">db.collection(<span class="string">'todos'</span>).add(&#123;</span><br><span class="line">  description: <span class="string">'eat an apple'</span>,</span><br><span class="line">  location: db.Geo.Point(<span class="number">113</span>, <span class="number">23</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="数据库命令-API"><a href="#数据库命令-API" class="headerlink" title="数据库命令 API"></a>数据库命令 API</h3><blockquote>
+<p>获取数据库查询及更新指令。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> _ = db.command</span><br></pre></td></tr></table></figure>
+<p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/Command%E6%9F%A5%E8%AF%A2%E6%8C%87%E4%BB%A4.png" alt="Command查询指令"></p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/Command%E6%9B%B4%E6%96%B0%E6%8C%87%E4%BB%A4.png" alt="Command更新指令"></p>
+<h3 id="数据库集合-API"><a href="#数据库集合-API" class="headerlink" title="数据库集合 API"></a>数据库集合 API</h3><blockquote>
+<p>获取集合的引用。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">onst db = wx.cloud.database()</span><br><span class="line"><span class="keyword">const</span> todosCollection = db.collection(<span class="string">'todos'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/Collection%20API.png" alt="Collection API"></p>
+<h3 id="数据库文档-API"><a href="#数据库文档-API" class="headerlink" title="数据库文档 API"></a>数据库文档 API</h3><blockquote>
+<p>获取对一个记录的引用。</p>
+</blockquote>
+<p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/Document%20API.png" alt="Document API"></p>
+<h2 id="文件存储-API-的解读"><a href="#文件存储-API-的解读" class="headerlink" title="文件存储 API 的解读"></a>文件存储 API 的解读</h2><p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8.png" alt="文件存储"></p>
+<h3 id="小程序端上传文件"><a href="#小程序端上传文件" class="headerlink" title="小程序端上传文件"></a>小程序端上传文件</h3><p>wx.cloud.uploadFile</p>
+<blockquote>
+<p>将本地资源上传至云存储空间，如果上传至同一路径则是覆盖。</p>
+</blockquote>
+<p>Promise 风格</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cloud = <span class="built_in">require</span>(<span class="string">'wx-server-sdk'</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"></span><br><span class="line">exports.main = <span class="keyword">async</span> (event, context) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> fileStream = fs.createReadStream(path.join(__dirname, <span class="string">'demo.jpg'</span>))</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">await</span> cloud.uploadFile(&#123;</span><br><span class="line">    cloudPath: <span class="string">'demo.jpg'</span>,</span><br><span class="line">    fileContent: fileStream,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="小程序端下载文件"><a href="#小程序端下载文件" class="headerlink" title="小程序端下载文件"></a>小程序端下载文件</h3><p>wx.cloud.downloadFile</p>
+<blockquote>
+<p>从云存储空间下载文件</p>
+</blockquote>
+<p>Promise 风格</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cloud = <span class="built_in">require</span>(<span class="string">'wx-server-sdk'</span>)</span><br><span class="line"></span><br><span class="line">exports.main = <span class="keyword">async</span> (event, context) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> fileID = <span class="string">'xxxx'</span></span><br><span class="line">  <span class="keyword">const</span> res = <span class="keyword">await</span> cloud.downloadFile(&#123;</span><br><span class="line">    fileID,</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">const</span> buffer = res.fileContent</span><br><span class="line">  <span class="keyword">return</span> buffer.toString(<span class="string">'utf8'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="获取临时文件链接"><a href="#获取临时文件链接" class="headerlink" title="获取临时文件链接"></a>获取临时文件链接</h3><p>wx.cloud.getTempFileURL</p>
+<blockquote>
+<p>用云文件 ID 换取真实链接，可自定义有效期，默认一天且最大不超过一天。</p>
+</blockquote>
+<p>Promise 风格</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cloud = <span class="built_in">require</span>(<span class="string">'wx-server-sdk'</span>)</span><br><span class="line"></span><br><span class="line">exports.main = <span class="keyword">async</span> (event, context) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> fileList = [<span class="string">'cloud://xxx'</span>, <span class="string">'cloud://yyy'</span>]</span><br><span class="line">  <span class="keyword">const</span> result = <span class="keyword">await</span> cloud.getTempFileURL(&#123;</span><br><span class="line">    fileList,</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> result.fileList</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="小程序端删除文件"><a href="#小程序端删除文件" class="headerlink" title="小程序端删除文件"></a>小程序端删除文件</h3><p>wx.cloud.deleteFile</p>
+<blockquote>
+<p>从云存储空间删除文件。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cloud = <span class="built_in">require</span>(<span class="string">'wx-server-sdk'</span>)</span><br><span class="line"></span><br><span class="line">exports.main = <span class="keyword">async</span> (event, context) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> fileIDs = [<span class="string">'xxx'</span>, <span class="string">'xxx'</span>]</span><br><span class="line">  <span class="keyword">const</span> result = <span class="keyword">await</span> cloud.deleteFile(&#123;</span><br><span class="line">    fileList: fileIDs,</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> result.fileList</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="小程序组件对云文件-ID-的支持"><a href="#小程序组件对云文件-ID-的支持" class="headerlink" title="小程序组件对云文件 ID 的支持"></a>小程序组件对云文件 ID 的支持</h3><p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%BB%84%E4%BB%B6%E5%AF%B9%E4%BA%91%E6%96%87%E4%BB%B6%20ID%20%E7%9A%84%E6%94%AF%E6%8C%81.png" alt="小程序组件对云文件 ID 的支持"></p>
+<h2 id="云函数-API-的解读"><a href="#云函数-API-的解读" class="headerlink" title="云函数 API 的解读"></a>云函数 API 的解读</h2><p><img src="https://graphbed.qiniu.songxingguo.com/WeChatMinApp/%E4%BA%91%E5%87%BD%E6%95%B0.png" alt="云函数"></p>
+<h3 id="调用云函数"><a href="#调用云函数" class="headerlink" title="调用云函数"></a>调用云函数</h3><p>wx.cloud.callFunction</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cloud = <span class="built_in">require</span>(<span class="string">'wx-server-sdk'</span>)</span><br><span class="line">exports.main = <span class="keyword">async</span> (event, context) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> res = <span class="keyword">await</span> cloud.callFunction(&#123;</span><br><span class="line">    <span class="comment">// 要调用的云函数名称</span></span><br><span class="line">    name: <span class="string">'add'</span>,</span><br><span class="line">    <span class="comment">// 传递给云函数的参数</span></span><br><span class="line">    data: &#123;</span><br><span class="line">      x: <span class="number">1</span>,</span><br><span class="line">      y: <span class="number">2</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> res.result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="服务端-API-的解读"><a href="#服务端-API-的解读" class="headerlink" title="服务端 API 的解读"></a>服务端 API 的解读</h2><h3 id="服务端-API-和小程序-API-的异同"><a href="#服务端-API-和小程序-API-的异同" class="headerlink" title="服务端 API 和小程序 API 的异同"></a>服务端 API 和小程序 API 的异同</h3><ul>
+<li><p>服务端 API 仅支持 Promise 风格</p>
+</li>
+<li><p>服务端 API 可以进行批量 update 和  remove</p>
+</li>
+</ul>
+<h3 id="服务端-API-使用注意事项"><a href="#服务端-API-使用注意事项" class="headerlink" title="服务端 API 使用注意事项"></a>服务端 API 使用注意事项</h3><ul>
+<li><p>服务端 API 使用前需先调用 wx.cloud.init 方法</p>
+</li>
+<li><p>通过 cloud.init 传入的 env 可以设置不同的环境</p>
+</li>
+</ul>
+<h3 id="云函数获取用户信息"><a href="#云函数获取用户信息" class="headerlink" title="云函数获取用户信息"></a>云函数获取用户信息</h3><blockquote>
+<p>云开发的云函数的独特优势在于与微信登录鉴权的无缝整合。当小程序端调用云函数时，云函数的传入参数中会被注入小程序端用户的 openid，开发者无需校验 openid 的正确性，因为微信已经完成了这部分鉴权，开发者可以直接使用该 openid。与 openid 一起同时注入云函数的还有小程序的 appid。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">exports.main = <span class="function">(<span class="params">event, context</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    openid: event.userInfo,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="云函数返回结果"><a href="#云函数返回结果" class="headerlink" title="云函数返回结果"></a>云函数返回结果</h3><p>在云函数中处理一些异步操作时，需要在异步操作完成后，再返回结果给到调用方。此时我们可以通过在云函数中返回一个 Promise 的方法来完成。</p>
+<p><code>`js
+exports.main = async (event, context) =&gt; new Promise((resolve, reject) =&gt; {
+  setTimeout(() =&gt; {
+    resolve(event.a + event.b)
+  }, 3000)
+})</code></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/微信小程序/" rel="tag"># 微信小程序</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/20/deep-javascript-2/" rel="next" title="《你不知道的 JavaScript-中卷》">
+                <i class="fa fa-chevron-left"></i> 《你不知道的 JavaScript-中卷》
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/05/cn-vuejs-org/" rel="prev" title="Vue.js文档学习">
+                Vue.js文档学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="songxingguo">
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">131</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#云开发简介"><span class="nav-number">2.</span> <span class="nav-text">云开发简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#云开发数据库"><span class="nav-number">2.1.</span> <span class="nav-text">云开发数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#云函数"><span class="nav-number">2.2.</span> <span class="nav-text">云函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发环境配置"><span class="nav-number">3.</span> <span class="nav-text">开发环境配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微信登录实现"><span class="nav-number">4.</span> <span class="nav-text">微信登录实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#传统微信登录流程"><span class="nav-number">4.1.</span> <span class="nav-text">传统微信登录流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#传统微信登录流程-1"><span class="nav-number">4.1.1.</span> <span class="nav-text">传统微信登录流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#云函数端"><span class="nav-number">4.2.</span> <span class="nav-text">云函数端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#云开发与-Serverless"><span class="nav-number">5.</span> <span class="nav-text">云开发与 Serverless</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#传统开发模式"><span class="nav-number">5.1.</span> <span class="nav-text">传统开发模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#云开发模式"><span class="nav-number">5.2.</span> <span class="nav-text">云开发模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serverless分类"><span class="nav-number">5.3.</span> <span class="nav-text">Serverless分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serverless-的优点"><span class="nav-number">5.4.</span> <span class="nav-text">Serverless 的优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serverless-的优势"><span class="nav-number">5.5.</span> <span class="nav-text">Serverless 的优势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库-API-的解读"><span class="nav-number">6.</span> <span class="nav-text">数据库 API 的解读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#云开发数据库概念"><span class="nav-number">6.1.</span> <span class="nav-text">云开发数据库概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库-API"><span class="nav-number">6.2.</span> <span class="nav-text">数据库 API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#database"><span class="nav-number">6.2.1.</span> <span class="nav-text">database</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#serverDate"><span class="nav-number">6.2.2.</span> <span class="nav-text">serverDate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Geo"><span class="nav-number">6.2.3.</span> <span class="nav-text">Geo</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库命令-API"><span class="nav-number">6.3.</span> <span class="nav-text">数据库命令 API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库集合-API"><span class="nav-number">6.4.</span> <span class="nav-text">数据库集合 API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库文档-API"><span class="nav-number">6.5.</span> <span class="nav-text">数据库文档 API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件存储-API-的解读"><span class="nav-number">7.</span> <span class="nav-text">文件存储 API 的解读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#小程序端上传文件"><span class="nav-number">7.1.</span> <span class="nav-text">小程序端上传文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小程序端下载文件"><span class="nav-number">7.2.</span> <span class="nav-text">小程序端下载文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取临时文件链接"><span class="nav-number">7.3.</span> <span class="nav-text">获取临时文件链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小程序端删除文件"><span class="nav-number">7.4.</span> <span class="nav-text">小程序端删除文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小程序组件对云文件-ID-的支持"><span class="nav-number">7.5.</span> <span class="nav-text">小程序组件对云文件 ID 的支持</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#云函数-API-的解读"><span class="nav-number">8.</span> <span class="nav-text">云函数 API 的解读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#调用云函数"><span class="nav-number">8.1.</span> <span class="nav-text">调用云函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端-API-的解读"><span class="nav-number">9.</span> <span class="nav-text">服务端 API 的解读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端-API-和小程序-API-的异同"><span class="nav-number">9.1.</span> <span class="nav-text">服务端 API 和小程序 API 的异同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端-API-使用注意事项"><span class="nav-number">9.2.</span> <span class="nav-text">服务端 API 使用注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#云函数获取用户信息"><span class="nav-number">9.3.</span> <span class="nav-text">云函数获取用户信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#云函数返回结果"><span class="nav-number">9.4.</span> <span class="nav-text">云函数返回结果</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":90,"vOffset":-25},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
