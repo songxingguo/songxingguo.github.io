@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="ECMAScript 6概述 ECMASript的故事">
+<meta name="keywords" content="ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Angular 2开发实战》学习笔记-ECMAScript 6概述">
+<meta property="og:url" content="https://www.songxingguo.com/2018/07/25/Angular-2-ECMAScript-6/index.html">
+<meta property="og:site_name" content="阿有的生活">
+<meta property="og:description" content="ECMAScript 6概述 ECMASript的故事">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/ECMAScript%E7%9A%84%E6%95%85%E4%BA%8B.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E%E8%A2%AB%E6%8F%90%E5%8D%87.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/%E5%8F%98%E9%87%8F%E5%88%9D%E5%A7%8B%E5%8C%96%E6%9C%AA%E8%A2%AB%E6%8F%90%E5%8D%87.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/let%E7%9A%84%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F.png">
+<meta property="og:updated_time" content="2020-07-03T09:07:54.035Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Angular 2开发实战》学习笔记-ECMAScript 6概述">
+<meta name="twitter:description" content="ECMAScript 6概述 ECMASript的故事">
+<meta name="twitter:image" content="https://graphbed.qiniu.songxingguo.com/Angular/ECMAScript%E7%9A%84%E6%95%85%E4%BA%8B.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/07/25/Angular-2-ECMAScript-6/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《Angular 2开发实战》学习笔记-ECMAScript 6概述 | 阿有的生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">131</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">43</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/07/25/Angular-2-ECMAScript-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《Angular 2开发实战》学习笔记-ECMAScript 6概述
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-25 12:04:00" itemprop="dateCreated datePublished" datetime="2018-07-25T12:04:00+00:00">2018-07-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-07-03 09:07:54" itemprop="dateModified" datetime="2020-07-03T09:07:54+00:00">2020-07-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/25/Angular-2-ECMAScript-6/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/07/25/Angular-2-ECMAScript-6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/07/25/Angular-2-ECMAScript-6/" class="leancloud_visitors" data-flag-title="《Angular 2开发实战》学习笔记-ECMAScript 6概述">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="ECMAScript-6概述"><a href="#ECMAScript-6概述" class="headerlink" title="ECMAScript 6概述"></a>ECMAScript 6概述</h3><ul>
+<li><h4 id="ECMASript的故事"><a href="#ECMASript的故事" class="headerlink" title="ECMASript的故事"></a>ECMASript的故事</h4><p><img src="https://graphbed.qiniu.songxingguo.com/Angular/ECMAScript%E7%9A%84%E6%95%85%E4%BA%8B.png" alt="ECMASript的故事"></p>
+<a id="more"></a>
+<p>可以访问ECMAScript兼容性网站 <a href="http://mng.bz/ao59" target="_blank" rel="noopener">http://mng.bz/ao59</a> <strong>查看截至目前ES6的支持情况</strong> 。</p>
+<p>使用转码器，比如 <strong>Traceur</strong> (详见 <a href="http://github.com/google/traceur-compiler" target="_blank" rel="noopener">http://github.com/google/traceur-compiler</a> ）或 <strong>Babel</strong>（详见 <a href="https://babeljs.io" target="_blank" rel="noopener">https://babeljs.io</a> ）,将ES6转换成ES5的版本，所有浏览器都支持ES5标准。</p>
+<p>学习JavaScript的github地址为 <a href="http://mng.bz/EIH" target="_blank" rel="noopener">http://mng.bz/EIH</a> 。</p>
+<p>2016年发布了ES7标准（又称ES 2016）,这是一次小型发布会。ESMAScript 2017语言标准发布在 <a href="http://tc39.github.io/ecma262/" target="_blank" rel="noopener">http://tc39.github.io/ecma262/</a> 上。</p>
+<p>ES6并 <strong>不会废弃任何旧的语法</strong> ，因此可以在最新的Web浏览器或独立的JavaScript引擎中安全地运行遗留的ES5或ES3。</p>
+</li>
+<li><h4 id="模板字面量"><a href="#模板字面量" class="headerlink" title="模板字面量"></a>模板字面量</h4><p>ES6引入了一种新的语法，<strong>用来处理包含了嵌入式语法的字符串字面量</strong> ，此功能被称为  <strong>字符串插值</strong> （string interpolation）。</p>
+<p>在ES5中，可以使用 <strong>字符串拼接</strong> 创建一个包含字符串字面量与变量的混合字符串。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var customerName = &quot;John Smith&quot;;</span><br><span class="line">console.log(&quot;Hello&quot; + customerName);</span><br></pre></td></tr></table></figure>
+<p>在ES6中，<strong>模板字面量被反引号包围</strong>。可以将 <strong>表达式嵌入文字</strong> 中，将其 <strong>放在以美元符号为前缀的大括号之间</strong>。在下面代码片段中，变量custimerName的值被嵌入到字符串字面量中：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var customerName = &quot;John Smith&quot;;</span><br><span class="line">console.lgo(`Hello $&#123;customerNamr&#125;`);</span><br><span class="line"></span><br><span class="line">function getCustomer() &#123;</span><br><span class="line">  return &quot;Allan Lou&quot;;</span><br><span class="line">&#125;</span><br><span class="line">console.log(`Hello $&#123;getCustomer()&#125;`);</span><br></pre></td></tr></table></figure>
+<p> 上述代码的输出为：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Hello John Smith</span><br><span class="line">Hello Allan Lou</span><br></pre></td></tr></table></figure>
+<p> <strong>在大括号之间可以使用任何有效的JavaScript表达式。</strong></p>
+<ul>
+<li><h5 id="多行字符串"><a href="#多行字符串" class="headerlink" title="多行字符串"></a>多行字符串</h5><p>在代码中字符串可以被写成多行。<strong>使用反引号可以编写多行字符串</strong> ，而无须把它们拼接在一起或者使用反斜杠：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var message = `Please enter a password that</span><br><span class="line">          has at least 8 characters and</span><br><span class="line">          includes a capital letter`;</span><br><span class="line"></span><br><span class="line">console.log(message);</span><br></pre></td></tr></table></figure>
+<p>生成的字符串会把所有空格也视为字符串内容的一部分，因此输出如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Please enter a password that </span><br><span class="line">          has at least 8  characters and </span><br><span class="line">          includes a capital letter</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="带标签的模板字符串"><a href="#带标签的模板字符串" class="headerlink" title="带标签的模板字符串"></a>带标签的模板字符串</h5><p>如果一个 <strong>模板字符串紧跟在一个函数名称引用后面</strong> ，那么这个字符串首先 <strong>会被计算</strong> ，之后 <strong>被传入到函数中做进一步处理</strong> 。<strong>模板字符串部分会被组成一个数组</strong> ，在模板中 <strong>经过计算的表达式会被当成独立的参数</strong> 传入到函数中。这种语法看起来有些不同，因为在常规的函数调用中不会使用括号：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mytag`Hello $&#123;name&#125;`;</span><br></pre></td></tr></table></figure>
+<p>下面介绍 <strong>如何根据region变量打印出带有货币符号的金额</strong> 。如果region变量的值为1，那么金额不变，在金额前面加一个美元符号。如果region变量的值为2，则需要转换金额，以汇率计算，并在前面加一个欧元符号。模板字符串看起来如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`You&apos;ve earned $&#123;region&#125; $&#123;amount&#125;!`</span><br></pre></td></tr></table></figure>
+<p>调用currencyAdjustment()函数，带标签的模板字符串看起来如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">currencyAdjustment`You&apos;ve earned $&#123;region&#125; $&#123;amount&#125;!`</span><br></pre></td></tr></table></figure>
+<p>currencyAdjustment()函数接收三个参数： 第一个参数是 <strong>模板字符串中所有的字符串</strong> ，第二个参数获得 <strong>region的值</strong> ，第三个参数获得 <strong>amount的值</strong> 。<strong>第一参数之后的参数的数量可以是任意</strong> 。完整的示例如下面的代码清单所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function currencyAdjustment(stringParts, region, amount) &#123;</span><br><span class="line">  console.log(stringParts);</span><br><span class="line">  console.lgo(region);</span><br><span class="line">  console.log(amount);</span><br><span class="line">  </span><br><span class="line">  var sign;</span><br><span class="line">  if(sign==1) &#123;</span><br><span class="line">    sign = &quot;$&quot;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    sign = &apos;\u20AC&apos;;</span><br><span class="line">    amount = 0.9*amount;</span><br><span class="line">  &#125;</span><br><span class="line">  return `$&#123;stringParts[0]&#125; $&#123;sign&#125;$&#123;amount&#125;$&#123;stringParts[2]&#125;`;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var amount = 100;</span><br><span class="line">var region = 2;</span><br><span class="line"></span><br><span class="line">var message = currencyAdjustment`You&apos;ve earned $&#123;region&#125; $&#123;amount&#125;!`</span><br><span class="line">console.log(message);</span><br></pre></td></tr></table></figure>
+<p>currencyAdjustment()函数接收一个内嵌了region和amount的字符串，并解析这模板，<strong>将字符串的部分与这些值分开（空格也被认为是字符串的一部分）</strong> 。为了方便说明在程序开始会打印模板解析的结果，之后函数将会检查region，开始货币转换，返回一个新的字符串模板。运行代码会产生如下输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[&quot;You&apos;ve earned &quot;,&quot; &quot;,&quot;!&quot;]</span><br><span class="line">2</span><br><span class="line">100</span><br><span class="line">You&apos;ve earned €90!</span><br></pre></td></tr></table></figure>
+<p>有关带标签的模板字符串的更多详细信息，请参阅由AxelRauschmayer编写的Exploring ES6一书中的Template Literals章节，可从 <a href="http://exploringjs.com" target="_blank" rel="noopener">http://exploringjs.com</a> 获取。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="可选参数和默认值"><a href="#可选参数和默认值" class="headerlink" title="可选参数和默认值"></a>可选参数和默认值</h4><p> 在ES6中，可以 <strong>为函数参数指定默认值</strong> ，这对于当函数被调用却没有传参数的情况是非常有用的。假设有一个计算税费的函数，它有两个参数：一个是全年的收入（income）;另一个是居住的州（state）。如果没有传state的值，你希望能够使用Florida。<br> 在ES5中，需要在函数体开始的时候检查是否提供了state值，如果没有，则使用Florida：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function calcTaxES5(income, state) &#123;</span><br><span class="line"></span><br><span class="line">  state = state || &quot;Florida&quot;;</span><br><span class="line">  </span><br><span class="line">  console.log(&quot;ES5. Calculating tax for the resident of &quot; + state +</span><br><span class="line">                           &quot;with the income &quot; + income);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">calcTaxES5（50000);</span><br></pre></td></tr></table></figure>
+<p> 下面是代码的输出结果：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;ES5. Calculating tax for the resident if Florida with the income 50000&quot;</span><br></pre></td></tr></table></figure>
+<p> 在ES6中，需要 <strong>在函数签名中指定默认值</strong> ：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function calcTaxES6(income, state = &quot;Florida&quot;) &#123;</span><br><span class="line"> console.log(&quot;ES6. Calculating tax for the resident of &quot; + state + </span><br><span class="line">                          &quot;with the income &quot; + income);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">calcTaxES6(50000);</span><br></pre></td></tr></table></figure>
+<p> 输出与上面看起来是一样的：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;ES6. Calculating tax for the resident if Florida with the income 50000&quot;</span><br></pre></td></tr></table></figure>
+<p> 除了能够为可选参数提供硬编码的默认值之外，甚至可以 <strong>把函数的返回值作为默认值</strong> ：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function calcTaxES6(income, state = getDefaultState()) &#123;</span><br><span class="line">  console.log(&quot;ES6. Calculating tax for the resident of &quot; + state +</span><br><span class="line">                           &quot;with the income &quot; + income);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getDefaultState() &#123;</span><br><span class="line">  return &quot;Florida&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 请记住，每次调用calcTaxES6()同样 <strong>也会调用getDefaultState()函数</strong> ，这  <strong>可能会带来性能问题</strong> 。这个可选参数的新语法能够让你 <strong>编写更少的代码</strong> ，并  <strong>使代码更好理解</strong> 。</p>
+</li>
+<li><h4 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h4><p>ES5中作用域机制相当混乱。无论在哪里使用var声明的变量，<strong>声明都会被移动到作用域的顶部</strong> ，这被称为 <strong>变量提升</strong>（hoisting）。 this 关键字的使用也不像Java或C#语言那么简单。</p>
+<p>ES6通过引入 <strong>关键字let</strong> 来 <strong>消除变量提升带来的混乱</strong> ，通过 <strong>箭头函数</strong> 来 <strong>解决this带来的混乱</strong> 。</p>
+<ul>
+<li><h5 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h5><p>在JavaScript中，<strong>所有的变量声明都会被移到顶部</strong> ，并且 <strong>没有块级作用域</strong> 。看看下面的简单示例，其中 <strong>在for循环中声明了变量i</strong> ,但是 <strong>在循环外面仍然可以使用</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">  for (var i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  console.log(&quot;i=&quot; + i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo();</span><br></pre></td></tr></table></figure>
+<p>运行代码后会打印i=10。变量i在循环外仍然可以被访问，尽管它看起来似乎只能在循环内部调用。<strong>JavaScript自动把变量的声明提升到顶部</strong> 。</p>
+<p>在这个例子中，因为只有一个变量被命名为i，提升不会引起任何问题。如果在函数内部和外部同时声明名字一样的两个变量，就 <strong>可能会造成代码逻辑上的混乱</strong> 。思考一下下面代码，在 <strong>全局作用域内声明了变量customer</strong> 。之后在 <strong>本地作用域内同样引入一个customer变量</strong> ，但是 <strong>会把引入的这个变量注释掉</strong> 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;hoisting.html&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  &quot;use strict&quot;;</span><br><span class="line">  </span><br><span class="line">  var customer = &quot;Joe&quot;;</span><br><span class="line">  </span><br><span class="line">  (function() &#123;</span><br><span class="line">    console.log(&quot;The name of the customer inside the function is &quot; +                 customer);</span><br><span class="line">    </span><br><span class="line">    /* if(2 &gt; 1) &#123;</span><br><span class="line">      var customer = &quot;Mary&quot;;</span><br><span class="line">    &#125;*/</span><br><span class="line">  &#125;)();</span><br><span class="line">  </span><br><span class="line">  console.log(&quot;The name of the customer outside the function is &quot; +               customer);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>使用Chrome浏览器打开这个文件，查看Chrome Developer Tools中控制台输出。正如我们所期望的，全局变量customer在函数的内部和外部都可见的,如下图所示。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/Angular/%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E%E8%A2%AB%E6%8F%90%E5%8D%87.png" alt="变量声明被提升"></p>
+<p><strong>取消对if语句的注释</strong>，在大括号中初始化customer变量。现在，有两个名字一样的变量，其中 <strong>一个是全局变量</strong> ，而 <strong>另一个变量则在函数的作用域内</strong> 。刷新浏览器页面，控制台的输出与之前不同了，函数中的customer变量为undefined,如下图所示。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/Angular/%E5%8F%98%E9%87%8F%E5%88%9D%E5%A7%8B%E5%8C%96%E6%9C%AA%E8%A2%AB%E6%8F%90%E5%8D%87.png" alt="变量初始化未被提升"></p>
+<p>这是因为在ES5中，<strong>变量声明</strong> 总是 <strong>被提升到作用域顶部</strong> ，但是 <strong>变量并不会被初始化</strong> 。因此 <strong>第二个没有初始化的变量被提升到了函数顶部</strong> ，console.log()打印的值为 <strong>函数内容部定义的变量的值</strong> ，，而不是全局变量customer的值。</p>
+<p><strong>函数的声明同样会被提升</strong> ，因此 <strong>可以在声明一个函数之前调用它</strong> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">doSomething();</span><br><span class="line"></span><br><span class="line">function doSomething() &#123;</span><br><span class="line">  console.log(&quot;I&apos;m doing something&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另一方面，<strong>函数表达式被认为是变量初始化</strong> ，因此 <strong>不会被提升</strong>。在下面的代码片段中，<strong>变量doSomething()的值为undefined</strong> :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">doSomething();</span><br><span class="line"></span><br><span class="line">var doSomething = function() &#123;</span><br><span class="line">  console.log(&quot;I&apos;m doing something&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="let和const"><a href="#let和const" class="headerlink" title="let和const"></a>let和const</h5><p>使用ES6关键字let代替var声明变量，能够 <strong>让变量拥有块级作用域</strong> 。下面是一个示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;let.html&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  &quot;use strict&quot;;</span><br><span class="line">  </span><br><span class="line">  let customer = &quot;Joe&quot;;</span><br><span class="line">  </span><br><span class="line">  (function() &#123;</span><br><span class="line">    console.log(&quot;The name of the customer inside the function is &quot; +                 customer);</span><br><span class="line">    </span><br><span class="line">    if(2 &gt; 1) &#123;</span><br><span class="line">      let customer = &quot;Mary&quot;;</span><br><span class="line">      console.log(&quot;The name of the customer inside the block is &quot; +                 customer);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)();</span><br><span class="line">  </span><br><span class="line">  for (let i =0; i &lt; 5; i++) &#123;</span><br><span class="line">    console.log(&quot;i=&quot; + i);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  console.log(&quot;i=&quot; + i); //prints Uncaught Reference Error: i is not defined</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p> 现在两个customer变量有不同的作用域和值，如下图所示。</p>
+<p> <img src="https://graphbed.qiniu.songxingguo.com/Angular/let%E7%9A%84%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F.png" alt="let的块级作用域"></p>
+<p> 如果循环中声明一个变量，它只是循环中可用：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (let i =0; i &lt; 5; i++) &#123;</span><br><span class="line">   console.log(&quot;i=&quot; + i);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">console.log(&quot;i=&quot; + i); //Reference Error: i is not defined</span><br></pre></td></tr></table></figure>
+<p> 在Traceur REPL中测试let关键字，访问Traceur的Transcoding Demo页面（ <a href="http://mng.bz/b191" target="_blank" rel="noopener">http://mng.bz/b191</a> ）,把输入的ES6语法已交互的方式转码为ES5。</p>
+<p> 简而言之，如果正在开发新的应用程序，请不要使用var,而是使用let。<strong>let关键字允许为变量无限制地分配值</strong> 。</p>
+<p> 如果要声明一个变量，使其 <strong>在分配了值之后不会被重新分配</strong> ，可以使用const关键词。<strong>常量同样支持块级作用域</strong> 。</p>
+<p> let和const的唯一区别是：<strong>const不允许改变已经被分配的值</strong> 。程序中 <strong>优先推荐使用const</strong> ;如果 <strong>变量需要被改变</strong> ，那么 <strong>使用let替换const</strong>。</p>
+</li>
+<li><h5 id="函数的块级作用域"><a href="#函数的块级作用域" class="headerlink" title="函数的块级作用域"></a>函数的块级作用域</h5><p>如果在一个块（一对大括号）中声明了一个函数，那么在快外，该函数是不可见的。下面的代码将抛出错误： “doSomething is note defined”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  function doSomething() &#123;</span><br><span class="line">    console.log(&quot;In doSomething&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">doSomething();</span><br></pre></td></tr></table></figure>
+<p>在ES5中，doSomething()声明将会被提升，并打印“In doSomething”。在ES5中并不推荐在块中声明一个函数（参加 <a href="http://mng.bz/Bvym" target="_blank" rel="noopener">http://mng.bz/Bvym</a> 中的 “ES5 Implementtation Best Practice”）,这是因为 <strong>不同浏览器会以不同的方式解析此语法</strong> ，产生不一致的结果。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="箭头函数、this和that"><a href="#箭头函数、this和that" class="headerlink" title="箭头函数、this和that"></a>箭头函数、this和that</h4><p> ES6引入了箭头函数表达式，<strong>为匿名函数提供了更短的写法</strong> ，<strong>为this变量添加了词法作用域</strong> 。在其他编程语言（如C#和Java）中，类似的语法被称为lambda表达式。</p>
+<p> 箭头函数表达式的语法包括 <strong>参数</strong> 、<strong>箭头符号</strong>（=&gt;）、以及 <strong>函数体</strong> 。如果 <strong>函数体只有一个表达式</strong>， <strong>可以不写大括号</strong> 。如果 <strong>一个单一表达式函数返回值</strong> ，那么 <strong>可以省略return语句</strong>，结果被隐式地返回：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let sun = (arg1, arg2) =&gt; arg1 + arg2;</span><br></pre></td></tr></table></figure>
+<p> 如果 <strong>函数体是多行的箭头函数表达式</strong> ，那么 <strong>需要使用大括号闭合函数体</strong> ，并 <strong>使用显式的return语句</strong> ：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(arg1, arg2) =&gt; &#123;</span><br><span class="line">  //do something</span><br><span class="line">  return someResult;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 如果箭头函数 <strong>没有任何参数</strong> ，<strong>使用空括号</strong> ：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">() =&gt; &#123;</span><br><span class="line">  // do something </span><br><span class="line">  return someResult;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 如果箭头函数 <strong>只有一个参数</strong> ，<strong>括号不是必需的</strong> ：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arg1 =&gt; &#123;</span><br><span class="line">  //do something</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 在下面的代码片段中，箭头函数作为参数传入reduce()方法用来计算合计，另一个箭头函数被传入filter()方法用来打印偶数：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var myArray = [1, 2, 3, 4, 5];</span><br><span class="line">console.log(&quot;The sum if myArray elements is &quot; + </span><br><span class="line">           myArray.reduce((a,b) = &gt; a + b); //pints 15</span><br><span class="line">console.lgo(&quot;The even numbers in myArray are &quot; +</span><br><span class="line">           myArray.filter(value =&gt; value % 2 == 0); prints 2 4</span><br></pre></td></tr></table></figure>
+<p> 在ES5中，搞清楚关键字this是那个对象的引用并不是简单的任务。在线搜索“JavaScript this and that”,会发现很多类似的文章，人们都在抱怨this指向了“错误”的对象。基于函数如何被调用以及是否严格模式（参见 <a href="http://mng.bz/VNVL" target="_blank" rel="noopener">http://mng.bz/VNVL</a> 上有关Mozila Developer NetNork的“Strict Mode”）, <strong>this 引用可以有不同的值</strong> 。</p>
+<p> 考虑thisAndThat.html文件中的代码，它会每秒调用一次getQuote()函数。getQuote()函数会在StockQuoteGenerator()构造函数中为股票代码打印随机生成的价格。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;thisAndThat.html&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  function StockQuoteGenerator(symbol) &#123;</span><br><span class="line">    // this.symbol = symbol; //is undefined inside getQuote()</span><br><span class="line">    </span><br><span class="line">    var that = this;</span><br><span class="line">    that.symbol = symbol;</span><br><span class="line">    </span><br><span class="line">    setInterval(function getQuote() &#123;</span><br><span class="line">      console.log(&quot;The price quote for &quot; + that.symbol  </span><br><span class="line">            + &quot; is &quot; + Math.random());</span><br><span class="line">    &#125;,1000);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  var stockQuoteGenerator = new StockQuoteGenerator(&quot;IBM&quot;);</span><br><span class="line">     </span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>   上述代码中被注释部分，演示了this的错误用法。当函数需要一个值时，虽然看起来是同一个this引用，但实际上并不是，。如果 <strong>没有把this变量的值保存到that中</strong> ，使用setInterval()或回调函数调用getQuote()函数 <strong>得到的this.symbol的值将是undefined</strong> 。在getQuote()中， <strong>this指向全局对象</strong> ，与StockQuoteGenerator构造函数中定义的this不一致。</p>
+<p>   另一种可能的解决方式是 <strong>使用JavaScriptcall()、apply()或bind()函数</strong> ，以 <strong>确保函数运行在指定的this对象中</strong> 。</p>
+<blockquote>
+<p><strong>提示</strong><br>   如果不了解JavaScript中this问题，详见Richard Bovell的文章“Understand JavaScript s ‘this’ with Clarity and Master It”（网址为 <a href="http://mng.bz/ZQfz" target="_blank" rel="noopener">http://mng.bz/ZQfz</a> ）</p>
+</blockquote>
+<p>   fatArrow.html文件演示了箭头函数的解决方案，无须像thisAndThat.html中所做的那样，在that中存储this。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;fatArrow.html&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">  &quot;use strict&quot;;</span><br><span class="line">  </span><br><span class="line">  function StockQuoteGenerator(symbol) &#123;</span><br><span class="line">  </span><br><span class="line">    this.symbol = symbol; </span><br><span class="line">   </span><br><span class="line">    setInterval(() =&gt; &#123;</span><br><span class="line">      console.log(&quot;The price quote for &quot; + that.symbol  </span><br><span class="line">            + &quot; is &quot; + Math.random());</span><br><span class="line">    &#125;,1000);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  var stockQuoteGenerator = new StockQuoteGenerator(&quot;IBM&quot;);</span><br><span class="line">     </span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>   箭头函数被当成参数传入setInterval()中，它 <strong>使用了封闭上下文中的this值</strong> ，因此可以识别this.symbol的值为IBM。</p>
+<ul>
+<li><h5 id="rest和扩展运算符"><a href="#rest和扩展运算符" class="headerlink" title="rest和扩展运算符"></a>rest和扩展运算符</h5><p> 在ES5中， <strong>编写可变长度参数</strong> 的函数需要 <strong>使用特殊的arguments对象</strong> 。这个 <strong>对象类似于数组</strong> ，其中包含了对应传递给函数的参数。隐式的arguments变量 <strong>在任何函数中都可以被视为局部变量</strong> 。</p>
+<p>  ES6有 <strong>rest</strong> 和 <strong>扩展运算符</strong> ，都 <strong>用三个点（…）来表示</strong> 。rest操作符被 <strong>用于为函数传递可变长度参数</strong> ，该操作符必须是 <strong>参数列表中最后一个参数</strong> 。如果函数参数的名字 <strong>以三个点开始</strong> ，函数将会 <strong>以数组的形式得到参数的剩余部分</strong> 。例如，在rest操作符的作用下只需使用一个变量名便可以向函数传递多个customers:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function processCustomers(...customers) &#123;</span><br><span class="line">  //implementation of the function goes here</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  在这个函数中，可以 <strong>像处理任何数组一样处理customers数据</strong>  。</p>
+<p>  想象一下，需要编写一个用来计算税费的函数，第一个参数是income，后面根据客户数量，可以又任意数量的参数来表示顾客的名字。下面代码显示了分别使用老语法和新语法处理可变参数。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;rest.html&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">        </span><br><span class="line">&lt;script&gt;</span><br><span class="line">        </span><br><span class="line">  &quot;use strict&quot;;</span><br><span class="line">        </span><br><span class="line">   //ES5 and arguments object</span><br><span class="line">   function calcTaxES5() &#123;</span><br><span class="line">     //income是第一个参数</span><br><span class="line">     console.log(&quot;ES5. Calculating tax for customers with the income &quot;, </span><br><span class="line">                     arguments[0]);</span><br><span class="line">        </span><br><span class="line">     //从第二个元素起提取出一个数组</span><br><span class="line">     var customers = [].slice.call(arguments, 1);</span><br><span class="line">        </span><br><span class="line">     customers.forEach(function(customer) &#123;</span><br><span class="line">       console.log(&quot;Processing &quot;, customer);</span><br><span class="line">     &#125;);</span><br><span class="line">   &#125;</span><br><span class="line">        </span><br><span class="line">   calcTaxES5(50000, &quot;Smith&quot;, &quot;Johnson&quot;, &quot;McDonald&quot;);</span><br><span class="line">   calcTaxES5(750000, &quot;Smith&quot;, &quot;Olson&quot;, &quot;Clinton&quot;);</span><br></pre></td></tr></table></figure>
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//ES6 and rest operator</span><br><span class="line">function calcTaxdES6(income, ...customers) &#123;</span><br><span class="line">console.log(&quot;ES6. Calculating tax for customers with the income &quot;,</span><br><span class="line">income);</span><br><span class="line"></span><br><span class="line">customers.forEach(function(customer) &#123;</span><br><span class="line">console.log(&quot;Processing&quot;, customer);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">calcTaxdES6(50000, &quot;Smith&quot;, &quot;Johnson&quot;, &quot;McDonald&quot;);</span><br><span class="line">calcTaxdES6(750000, &quot;Olson&quot;, &quot;Clinton&quot;);</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p> calcTaxEs5()和calcTaxEs6()函数产生相同的结果：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ES5. Calculating tax for customers with the income  50000</span><br><span class="line">Processing  Smith</span><br><span class="line">Processing  Johnson</span><br><span class="line">Processing  McDonald</span><br><span class="line">ES5. Calculating tax for customers with the income  750000</span><br><span class="line">Processing  Smith</span><br><span class="line">Processing  Olson</span><br><span class="line">Processing  Clinton</span><br><span class="line">ES6. Calculating tax for customers with the income  50000</span><br><span class="line">Processing Smith</span><br><span class="line">Processing Johnson</span><br><span class="line">Processing McDonald</span><br><span class="line">ES6. Calculating tax for customers with the income  750000</span><br><span class="line">Processing Olson</span><br><span class="line">Processing Clinton</span><br></pre></td></tr></table></figure>
+</code></pre><p>不过，它们在处理customers时还是有差异的，因为arguments对象并不是一个真正的数组，在ES5中不得不使用slice()和call()方法 <strong>创建一个数组</strong> ，并从arguments中的第二个元素开始提取顾客姓名，放入到新创建的数组中。</p>
+<p>ES6则不需要使用这些技巧，rest操作符能够返回一个正常的customers数组。rest参数能 <strong>让代码更简单</strong> ，<strong>可读性更强</strong> 。</p>
+<p>如果 <strong>rest操作符</strong> 能够把 <strong>变长参数转换为数组</strong> ，那么 <strong>扩展运算符</strong> 则执行相反的操作； <strong>把一个数组分解到参数列表中</strong> 。假设需要编写一个函数，计算给定收入的三名顾客的税费。这一次，<strong>参数的长度是固定的</strong> ，但是顾客被存放到要给数组中。可以使用扩展运算符——三个点（…）, <strong>把数组分解到独立参数的列表中</strong> 。</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;spread.html&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    </span><br><span class="line">&lt;script&gt;</span><br><span class="line">    </span><br><span class="line">  &quot;use strict&quot;;</span><br><span class="line">    </span><br><span class="line">   function calcTaxSpread(customer1, customer2, customer3, income) &#123;</span><br><span class="line">     console.log(&quot;ES6. Caclulating tax for customers with the income &quot;, income);</span><br><span class="line">     console.log(&quot;Processing&quot;, customer1, customer2, customer3);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   var customers = [&quot;Smith&quot;, &quot;Johnson&quot;, &quot;McDonald&quot;];</span><br><span class="line">   </span><br><span class="line">   //扩展运算符</span><br><span class="line">   calcTaxSpread(...customers, 50000);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">    </span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这个示例中，并不会从customers数组中提取值，然后把这些值作为函数的参数，而是使用扩展运算符处理数组，就好像在对函数说：“你需要三个参数，而我只会给你一个数组，你自己把它们提取出来吧”。注意，作为rest运算符的反向操作，  <strong>扩展运算符不一定必须是参数列表中的最后一个参数</strong> 。</p>
+</blockquote>
+</li>
+<li><h5 id="generator函数"><a href="#generator函数" class="headerlink" title="generator函数"></a>generator函数</h5><p> 当浏览器执行一个 <strong>常规的JavaScript函数</strong> 时，它 <strong>将会从头一直运行到结尾</strong> ，不会被打断。但是 <strong>generator函数</strong> 执行过程 <strong>可以被多次暂停和恢复</strong> 。generator函数可以控制运行在同一线程中的脚本调用。一旦generator函数中的代码 <strong>执行到关键字yield</strong> ，<strong>函数将会被挂起</strong> ，通过 <strong>调用generator的next()</strong> 能够 <strong>恢复函数的执行</strong> 。</p>
+<p> 为 <strong>把一个常规函数转换成generator函数</strong> ，需要 <strong>在关键词function和函数名之间添加一个星号</strong> 。下面是一个示例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function* doSomething() &#123;</span><br><span class="line">  console.log(&quot;Started processing&quot;);</span><br><span class="line">  yield;</span><br><span class="line">  console.log(&quot;Resumed processing&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 当调用这个函数时，它并 <strong>不会立即执行函数代码</strong> ，而是会 <strong>返回一个特殊的generator对象</strong> ，它 <strong>可以被认为是一个 迭代器</strong> 。下面的代码 <strong>不会打印任何东西</strong> ：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var iterator = dosomething();</span><br></pre></td></tr></table></figure>
+<p> 为了开始执行函数体，需要 <strong>调用generator的next()方法</strong> ：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iterator.next();</span><br></pre></td></tr></table></figure>
+<p> 在这行代码执行后，doSomething()函数将会 <strong>打印“Started processing”</strong> ,并且由于 <strong>执行到yield操作符</strong> ， <strong>函数将暂停执行</strong> 。再次 <strong>调用next()方法</strong> 将会 <strong>打印“Resumed peocessing”</strong> 。</p>
+<p> 当需要 <strong>编写一个产生数据流的函数</strong> 时，generator函数是非常有用的。想象一下，需要一个函数能够检索和生成指定代码（IBM、MSFT等）的股票价格。如果股票价格第一指定的价格（限价），那么购买这只股票。</p>
+<p> 下面的generator函数getStockPrice()模拟了这种场景。为了简单起见，它并不会从股票交易所检索价格，而是采用由Math。random()生成的随机数代替。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function* getStockPrice(symbol) &#123;</span><br><span class="line">  </span><br><span class="line">  while(true) &#123;</span><br><span class="line">    yield Math.random() * 100;</span><br><span class="line">    </span><br><span class="line">    console.log(`resuming for $&#123;symbol&#125;`);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 如果在yield之后的值，那么它应该被返回给调用函数，但是这个函数并没有执行完。尽管getStockPrice()中有一个无限循环，但只有当调用getStockPrice()的脚本在这个genernator上调用next()时，才会产生（返回）价格，如下所示：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//创建Generator对象，但是不执行getStockPrice()函数体，getStockPrice将会提供IBM价格的数据流。</span><br><span class="line">let priceGenerator = getStockPrice(&quot;IBM&quot;);</span><br><span class="line"></span><br><span class="line">//设置限价为$15初始化价格为$100</span><br><span class="line">const limitPrice = 15;</span><br><span class="line">let price = 100;</span><br><span class="line"></span><br><span class="line">//请求股票价格，直到价格低于$15</span><br><span class="line">while(price &gt; limitPrice) &#123;</span><br><span class="line">  </span><br><span class="line">  //请求价格并打印到控制台</span><br><span class="line">  price = priceGenerator.next().value;</span><br><span class="line">  console.log(`The generator returned $&#123;price&#125;`);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//如果价格低于$15,循环结束，打印一条关于购买的股票以及购买价格的消息</span><br><span class="line">console.log(`buying at $&#123;price&#125; !!!`);</span><br></pre></td></tr></table></figure>
+<p> 运行代码，在浏览器的控制台将会打印类似于下面的输出：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">The generator returned 83.18050163853641</span><br><span class="line">resuming for IBM</span><br><span class="line">The generator returned 88.87640154512837</span><br><span class="line">resuming for IBM</span><br><span class="line">The generator returned 46.90606158470856</span><br><span class="line">resuming for IBM</span><br><span class="line">The generator returned 1.1542147358593269</span><br><span class="line">buying at 1.1542147358593269 !!!</span><br></pre></td></tr></table></figure>
+<p> 注意消息的顺序。当调用priceGenerator的next()方法时，被暂停的getStockPrice方法会被恢复，yield下面的代码会打印出“resuming for IBM”，即使控制流退出函数，之后再次进入函数，getStockPrice()也仍然记录symbol的值为“IBM”。当yield操作符把控制权还给外部脚本后，它将 <strong>会创建堆栈的快照</strong> ，<strong>以便能够记录所有本地变量值</strong> ，即便generator函数恢复，这些值也不会丢。</p>
+<p> 利用generator函数，可以 <strong>分离某些操作执行 （如获取报价）以及这些操作产生数据的消耗</strong> 。数据使用者可以 <strong>惰性求值</strong> 并且 <strong>决定是否需要请求更多的数据</strong> 。</p>
+</li>
+<li><h5 id="解构"><a href="#解构" class="headerlink" title="解构"></a>解构</h5><p><strong>创建对象</strong> 意味着 <strong>在内存中构造它们</strong> 。<strong>解构</strong>（Destructuring）意味着<strong> 将对象分解</strong> 。在ES5中可以 <strong>编写一个方法来解构任何对象和数组</strong> 。ES6引入了 <strong>解构赋值语法</strong> ，允许通过 <strong>指定匹配模式</strong>（matching pattern），<strong>利用简单的表达式从一个对象的属性或一个数组中提取数据</strong> 。</p>
+<p>解构表达式由 <strong>匹配模式</strong> 、<strong>等号</strong>  以及需要分解的 <strong>对象</strong> 或 <strong>数组</strong> 组成。用示例说明会更容易理解。下面会有一个具体示例：</p>
+<ul>
+<li><h6 id="解构对象"><a href="#解构对象" class="headerlink" title="解构对象"></a>解构对象</h6><p>假设getStock()函数返回一个Stock对象，其中包括symbol和price属性。在ES5中，如过想要把这些属性的值分配给不同的变量，首先需要 <strong>创建一个变量来存储Stock对象</strong>，之后编写两条语句， <strong>把对象属性分配到对应的变量中</strong> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var stock = getStock();</span><br><span class="line">var symbol = stock.symbol;</span><br><span class="line">var price = stock.price;</span><br></pre></td></tr></table></figure>
+<p>在ES6中，只需要在等号左侧 <strong>写一个匹配模式</strong>，并 <strong>把Stock对象分配给它</strong> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let &#123;symbol, price&#125;= getStock();</span><br></pre></td></tr></table></figure>
+<p>在等号左侧，你会看到大括号与平时的用法有些不太一样，这是 <strong>匹配表达式语法</strong> 的一部分。当在左侧看到的大括号时，应该把它们认为是 <strong>代码块</strong> 而 <strong>不是对象字面量</strong> 。<br>下面的代码演示了如何从getStock()函数中得到Stock对象，并把其解构到两个变量中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function getStock() &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    symbol: &quot;IBM&quot;,</span><br><span class="line">    price: 100.00</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let  &#123;symbol, price&#125; = getStock();</span><br><span class="line"></span><br><span class="line">concole.log(`The price of $&#123;symbol&#125; is $&#123;price&#125;`);</span><br></pre></td></tr></table></figure>
+<p>运行上面的代码将会打印如下输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The price of IBM is 100</span><br></pre></td></tr></table></figure>
+<p>换句话说，通过一个 <strong>赋值表达式</strong> ，将 <strong>一组数据</strong>（在本例中是对象属性）绑定到<strong>另一组变量</strong> （symbol和price）中。即使Stock对象除了这两个属性外 <strong>还有其他属性</strong> ，结构表达式也 <strong>仍然可以工作</strong> ，因为symbol和price <strong>满足匹配模式</strong> 。<strong>匹配表达式</strong> 仅列出 <strong>希望提取</strong> 的对象属性对应的变量。</p>
+<p>上面代码，只有在变量名称与Stock对象属性名称一致时才会工作。让我们把symbol改变称sym:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let &#123;sym, price&#125; = getStock();</span><br></pre></td></tr></table></figure>
+<p>这样输出结果将会发生变化，因为JavaScript并不知道要把对象的symbol属性赋给sym变量：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The price of undefined is 100</span><br></pre></td></tr></table></figure>
+<p>这是一个错误的模式匹配示例。如果确实需要用变量sym映射到symbol属性，那么需要  <strong>为symbol分配一个别名</strong> ：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let &#123;symnol: sym, price&#125; = getStock();</span><br></pre></td></tr></table></figure>
+<p>如果等号左侧变量的 <strong>数量超过对象属性的数量</strong> ， <strong>额外的变量将会被分配值undefined</strong>。<br>如果在等号左侧 <strong>添加了一个StockExchange变量</strong> ，它 <strong>将会被初始化为undefined</strong> ,这是因为getStock()返回的对象中没有同名的属性：</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let &#123;sym, price, stockExchange&#125; = getStock();</span><br><span class="line">console..log(`The price of $&#123;symbol&#125; is $&#123;price&#125; $&#123;stockExchange&#125;`);</span><br></pre></td></tr></table></figure>
+<p>如果将上面的结构表达式应用到同一个Stock对象上，控制台输出将如下所示：</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The price of IBM is 100 undefined</span><br></pre></td></tr></table></figure>
+<p>如果希望stockExchange变量有一个 <strong>默认值</strong> ，比如“NASDAQ”,可以重写解构表达式，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let &#123;sym, price, stockExchange=&quot;NASDAQ&quot;&#125; = getStock();</span><br></pre></td></tr></table></figure>
+<p><strong>嵌套对象也可以解构。</strong> 在下面代码中创建了一个嵌套对象用来表示MSFT股票，并把其传递给printStockInfo()函数，该函数从对象中提取股票代码这证券交易所的名称。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">let msft = &#123;symbol: &quot;MSFT&quot;，</span><br><span class="line">    lastPrice: 50。00，</span><br><span class="line">    exchange: &#123;</span><br><span class="line">      name: &quot;NASDAQ&quot;,</span><br><span class="line">      tradingHours: &quot;9:30am-4pm&quot;,</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br><span class="line">    </span><br><span class="line"> function printStockInfo(stock) &#123;</span><br><span class="line">   let &#123;symbol, exchange: &#123;name&#125;&#125; = stock;</span><br><span class="line">   console.log(`The $&#123;symbol&#125; stock is traded at $&#123;name&#125;`);</span><br><span class="line"> &#125;</span><br><span class="line">    </span><br><span class="line"> printStockInfo(msft);</span><br></pre></td></tr></table></figure>
+<p>运行这个脚本将会打印如下输出：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The MSFT stock if traded at NASDAQ</span><br></pre></td></tr></table></figure>
+</li>
+<li><h6 id="解构数组"><a href="#解构数组" class="headerlink" title="解构数组"></a>解构数组</h6><p><strong>数组解构</strong> 与对象解构 <strong>类似</strong> ，但是会用 <strong>方括号</strong> 代替大括号。当 <strong>解构对象*8 时，需要 </strong>声明匹配属性的变量<strong> ；而当 </strong>解构数组<strong> 时，则需要 </strong>声明匹配索引的变量** 。下面的代码会从数组中提取两个数组元素并复制给两个变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let [name1, name2] = [&quot;Smith&quot;, &quot;Clinton&quot;];</span><br><span class="line">console.log(`name1 = $&#123;name1&#125;, name2 = $&#123;name2&#125;`);</span><br></pre></td></tr></table></figure>
+<p>输出如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name1 = Smith, name2 = Clinton</span><br></pre></td></tr></table></figure>
+<p>如果仅需要 <strong>提取数组的第二个元素</strong> ，匹配模式应该这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let [, name2] = [&quot;Smith&quot;, &quot;Clinton&quot;];</span><br></pre></td></tr></table></figure>
+<p>如果 <strong>函数返回一个数组</strong> ，结构语法会将其 <strong>转换为一个返回多个数据的函数</strong> ，如下面的getCustomers()函数所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function getCustomers() &#123;</span><br><span class="line">  return [&quot;Smith&quot;, , , &quot;Gonzales&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let [firstCustomer, , , lastCustomer] = getCustomers();</span><br><span class="line">console.log(`The first customer is $&#123;firstCustomer&#125; and the last one is $&#123;lastCustomer&#125;`);</span><br></pre></td></tr></table></figure>
+<p>现在我们可以 <strong>将rest参数和数据结构组合在一起使用</strong> 。假设有一个数组，其中包含了若干名顾客，但是只需处理最开始的两个元素。下面的代码片段展示了如何实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let customers = [&quot;Smith&quot;, &quot;Clinton&quot;, &quot;Lou&quot;, &quot;Gonzles&quot;];</span><br><span class="line"></span><br><span class="line">let [firstCust, secondCust, ...otherCust] = customers;</span><br><span class="line"></span><br><span class="line">console.log(`The first customer is $&#123;firstCust&#125; and the second one is $&#123;secondCust&#125;`);</span><br><span class="line">console.log(`Other customers are $&#123;otherCust&#125;`);</span><br></pre></td></tr></table></figure>
+<p>代码在控制台产生的输出如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The first customer is Smith and the second one is Clinton</span><br><span class="line">Other customers are Lou,Gonzles</span><br></pre></td></tr></table></figure>
+<p>另外一种用法，可以匹配模式以及rest参数一起传递给函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var customers = [&quot;Smith&quot;, &quot;Clinton&quot;, &quot;Lou&quot;, &quot;Gonzles&quot;];</span><br><span class="line"></span><br><span class="line">function processFirstTwoCustomers([firstCust, secondCust, ...otherCust]) &#123;</span><br><span class="line">  console.log(`The first customer is $&#123;firstCust&#125; and the second one is $&#123;secondCust&#125;`);</span><br><span class="line">  console.log(`Other customers are $&#123;otherCust&#125;`);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">processFirstTwoCustomers(customers);</span><br></pre></td></tr></table></figure>
+<p>输出与上次执行是一致的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The first customer is Smith and the second one is Clinton</span><br><span class="line">Other customers are Lou,Gonzles</span><br></pre></td></tr></table></figure>
+<p>总而言之，解构的好处是当 <strong>需要从对象属性或数组中初始一些变量</strong> 时，可以 <strong>写更少的代码</strong> 。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h4><p>用forEach()、for-in和for-of进行迭代</p>
+<p>可以使用不同的JavaScript关键字和API对对象集合进行遍历。在本节中，将会展示如何使用新的for-of循环，将会对for-of、for-in以及forEach()方法进行比较。</p>
+<ul>
+<li><h5 id="使用forEach-方法"><a href="#使用forEach-方法" class="headerlink" title="使用forEach()方法"></a>使用forEach()方法</h5><p>考虑下面的代码，对一个包含了4个数字的数组进行迭代。该数组还有一个额外的desciption属性，这个 <strong>属性会被forEach()忽略</strong> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var numbersArray = [1, 2, 3, 4];</span><br><span class="line">numbersArray.description = &quot;four numbers&quot;;</span><br><span class="line"></span><br><span class="line">numbersArray.forEach(forEach(n) =&gt; console.log(n));</span><br></pre></td></tr></table></figure>
+<p>脚本输出如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+<p>forEach()方法将一个函数作为参数，并从数组中正确的打印四个数字，忽略了description属性。forEach()的另一个限制是 <strong>无法提前打断循环</strong> 。可以使用every()方法代替forEach()或借助其他一些hack手段来实现这个功能。</p>
+</li>
+<li><h5 id="使用for-in循环"><a href="#使用for-in循环" class="headerlink" title="使用for-in循环"></a>使用for-in循环</h5><p>for-in能够 <strong>循环遍历对象的属性以及集合数据</strong> 。在JavaScript中，任何一个对象都是 <strong>键值对集合</strong> 。键对应的是属性名称，值是属性的值。数组有五个属性：numbers Array其中有四个为数字，一个是description属性。让我们遍历这数组的属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var numbersArray = [1, 2, 3, 4];</span><br><span class="line">numbersArray.description = &quot;four numbers&quot;;</span><br><span class="line"></span><br><span class="line">for(let n in numbersArray) &#123;</span><br><span class="line">   console.log(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码的输出如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">0</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">description</span><br></pre></td></tr></table></figure>
+<p>通过调试器运行此代码，显示每个属性都是字符串。为了 <strong>查看属性实际的值</strong> ，可以使用numbersArray[n]打印数组元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var numbersArray = [1, 2, 3, 4];</span><br><span class="line">numbersArray.description = &quot;four numbers&quot;;</span><br><span class="line"></span><br><span class="line">for(let n in numbersArray) &#123;</span><br><span class="line">   console.log(numbersArray[n]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">four numbers</span><br></pre></td></tr></table></figure>
+<p>正如你看到的，for-in循环 <strong>遍历的是所有属性</strong> ，而 <strong>不仅仅是数据</strong> ，这个可能并非预期效果。</p>
+</li>
+<li><h5 id="使用for-of循环"><a href="#使用for-of循环" class="headerlink" title="使用for-of循环"></a>使用for-of循环</h5><p>ES6引入了for-of循环，能够做到 <strong>只遍历数据</strong> 而 <strong>不读取数据集合中的其他属性</strong> 。可以使用break关键字打断循环：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var numbersArray = [1, 2, 3, 4];</span><br><span class="line">numbersArray.description = &quot;four numbers&quot;;</span><br><span class="line"></span><br><span class="line">console.log(&quot;Running for of  for the entire array&quot;);</span><br><span class="line">for (let n of numbersArray) &#123;</span><br><span class="line">  console.log(n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(&quot;Running for of with a break&quot;);</span><br><span class="line">for (let n of numbersArray) &#123;</span><br><span class="line">  if (n &gt; 2) break;</span><br><span class="line">  console.log(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Running for of  for the entire array</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">Running for of with a break</span><br><span class="line">1</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+<p>for-of 可以遍历 <strong>任何一个可被迭代的对象</strong> ，包括Array、Map、Set以及其他一些对象。字符串同样是可迭代的。下面的代码将会打印字符串“John”,一次一个字母。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (let char of &quot;John&quot;) &#123;</span><br><span class="line">  console.log(char);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h4 id="类与继承"><a href="#类与继承" class="headerlink" title="类与继承"></a>类与继承</h4><p>ES3和ES5都支持 <strong>面向对象编程</strong> 以及 <strong>继承</strong> ,但是使用ES6的 <strong>类</strong> 够更容易地 <strong>开发代码</strong> 和 <strong>理解代码</strong> 。</p>
+<p>在ES5中，既可以 <strong>创建一个全新的对象</strong> ，也可以 <strong>从其他对象继承得到一个对象</strong> 。默认所有JavaScript对象 <strong>继承自Object类</strong> 。对象的继承是由一个名为 <strong>prototype的特殊属性</strong> 实现的，该属性 <strong>指向对象的父级</strong> ，这被称为 <strong>原型继承</strong> （prototypal inheritance）。例如，为了创建继承自对象Tax的NJTax对象，需要这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function Tax() &#123;</span><br><span class="line">  //The code of the tax object goes here</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function NJTax() &#123;</span><br><span class="line">  //The code of New Jersey tax object goes here </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//NJTax继承自Tax</span><br><span class="line">NJTax.prototype = new Tax();</span><br><span class="line">var njTax = new NJTax();</span><br></pre></td></tr></table></figure>
+<p>ES6新引入关键字 <strong>class</strong> 和 <strong>extends</strong> ,使其在语法与其他面向对象编程语言（如Java和C#）保持一致。上面的代码按照ES6的写法如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Tax &#123;</span><br><span class="line">  //The code of the tax class goes here</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class NJTax extends Tax &#123;</span><br><span class="line">  // The code of New Jersey tax object goes here</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var njTax = new NJTax();</span><br></pre></td></tr></table></figure>
+<p>Tax是父级或者称为超类，NJTax是子级或者称为子类。可以认为NJTax类与Tax类是“is a”的关系。换句话说，NJTax是一个Tax。可以在NJTax中 <strong>实现额外的功能</strong> ，但NJTax始终是一个（“is a”）Tax,或者说是一种（“is a kind of”） Tax。同样，如果创建一个继承自Person的类Employee,那么Employee是Person。<br>可以创建一个或多个对象，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//Tax对象的第一个实例</span><br><span class="line">var tax1 = new Tax();</span><br><span class="line">//Tax对象的第二个实例</span><br><span class="line">var tax2 = new Tax();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>提示</strong><br>类声明是不会被提升的。在使用类之前需要首先声明它。</p>
+</blockquote>
+<p>这些对象 <strong>都具有Tax类的属性和方法</strong> ，但是它们 <strong>保持不同的状态</strong> 。例如，第一个实例可以创建一名年收入$50 000的客户，而第二个实例可以创建为一名年收入$75 000的客户。每一个实例 <strong>共享同一份Tax中声明的方法的拷贝</strong> ，因此 <strong>不会有重复的代码存在</strong> 。</p>
+<p>在ES5中，为了 <strong>避免代码重复</strong> ，可以通过不在对象中声明方法而是在 <strong>属性中声明方法</strong> 来解决：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function Tax() &#123;</span><br><span class="line">  //The code of the tax object goes here</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Tax.prototype = &#123;</span><br><span class="line"> calcTax: function() &#123;</span><br><span class="line">   // code to calculate tax goes here</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>JavaScript依旧是 <strong>原型继承的语言</strong> ，但是ES6能够令开发者 <strong>编写更优雅的代码</strong> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Tax &#123;</span><br><span class="line"></span><br><span class="line">  calcTax() &#123;</span><br><span class="line">    // code to calculate tax goes here</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>不支持成员变量</strong><br>ES6语法不支持声明Java、C#或TypeScript中类似的类成员变量。下面的语法是不受支持的：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Tax &#123;</span><br><span class="line">  var income;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h5 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h5><p>在实例化的过程中，类会执行一些特使方法中的代码，这些方法被称为 <strong>构造函数</strong> 。在Java和C#这类开发语言中，构造函数的名称必须与类的名称保持一致；但在ES6中，使用<strong>constructor关键字</strong> 声明类的构造函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Tax &#123;</span><br><span class="line">  constructor (income) &#123;</span><br><span class="line">    this.income = income;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var myTax = new Tax(50000);</span><br></pre></td></tr></table></figure>
+<p>构造函数是 <strong>一类特殊的方法</strong> ，当对象 <strong>创建时只会被执行一次</strong> 。如果对Java或C#语言熟悉的话，就会发现上面的代码看起来有些不同；并<strong>没有</strong> 单独 <strong>声明一个类级别的income变量</strong> ，而是 <strong>动态的创建在this对象上</strong> ，使用构造函数的参数来初始化this.income。<strong>this变量</strong> 指向 <strong>当前对象的实例</strong> 。</p>
+<p>下面的示例将会展示如何创建子类NJTax的实例，并把50 000传入到它的构造函数中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Tax &#123;</span><br><span class="line">  constructor(income) &#123;</span><br><span class="line">    this.income = income;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class NJTax extends Tax &#123;</span><br><span class="line">  // The code of New Jersey tax object goes here</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var njTax = new NJTax(50000);</span><br><span class="line"></span><br><span class="line">console.log(`The income in njTax instance is $&#123;njTax.income&#125;`);</span><br></pre></td></tr></table></figure>
+<p>上面代码片段的输出如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The income in njTax instance is 50000</span><br></pre></td></tr></table></figure>
+<p>由于子类NJTax并没有定义自己的构造函数，因此当初始化NJTax时， <strong>父类Tax的构造函数会自动被调用</strong> 。</p>
+<p>注意通过njTax引用变量可以类的外部访问到income变量。</p>
+</li>
+<li><h5 id="静态变量"><a href="#静态变量" class="headerlink" title="静态变量"></a>静态变量</h5><p>如果一个类的属性希望能够 <strong>被它的多个实例共享</strong> ，那么需要在类声明的 <strong>外部创建这个属性</strong> 。在下面的示例中，counter变量被对象A的两个实例所共享：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class A &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">A.counter =  0;</span><br><span class="line"></span><br><span class="line">var a1  = new A();</span><br><span class="line">A.counter++;</span><br><span class="line">console.log(A.counter);</span><br><span class="line"></span><br><span class="line">var a2  = new A();</span><br><span class="line">A.counter++;</span><br><span class="line">console.log(A.counter);</span><br></pre></td></tr></table></figure>
+<p>执行代码后，输出如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="访问器、设置器"><a href="#访问器、设置器" class="headerlink" title="访问器、设置器"></a>访问器、设置器</h5><p>访问器、设置器以及方法定义</p>
+<p>对象的访问器（getter）和设置器（setter）方法并不是ES6的新语法，在介绍新的方法定义语法之前，先回顾一下。设置器和生成器把函数 <strong>绑定到对象的属性中</strong> 。考虑对象字面量Tax声明和使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var Tax = &#123;</span><br><span class="line">  taxableIncome: 0,</span><br><span class="line">  get income() &#123;return  this.taxableIncome;&#125;,</span><br><span class="line">  set income(value) &#123;this.taxableIncome = value&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Tax.income = 50000;</span><br><span class="line">console.log(&quot;Income: &quot; + Tax.income); // prints Income: 50000</span><br></pre></td></tr></table></figure>
+<p>注意分配和检索income的值时使用的是 <strong>点符号</strong> ，就好像它是Tax对象的 <strong>一个声明属性一样</strong> 。</p>
+<p>在ES5中，需要使用function关键字声明函数，如calculateTax = function(){…}。ES6允许在定义任何方法的时候 <strong>忽略function关键字</strong> 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var Tax = &#123;</span><br><span class="line">  taxableIncome: 0,</span><br><span class="line">  get income() &#123;return this.taxableIncome&#125;</span><br><span class="line">  set income(value) &#123;this.taxtableIncome=value&#125;,</span><br><span class="line">  calculateTax() &#123;return this.taxableIncome*0.13&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Tax.income = 50000;</span><br><span class="line">console.log(`For the income $&#123;Tax.income&#125; your tax is $&#123;Tax.calculateTax()&#125;`);</span><br></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">For the incoem 50000 your tax is 6500</span><br></pre></td></tr></table></figure>
+<p><strong>访问器和设置器为处理属性提供了一种方便的语法</strong> 。例如，如果决定为income访问器添加校验代码，那么使用Tax.income的脚本不需要改动。缺点是ES6并 <strong>不支持</strong> 在类中 <strong>声明私有变量</strong> ，因此访问器和设置器中的变量（如taxtableIncome）总是可以被直接访问。</p>
+</li>
+<li><h5 id="super和super"><a href="#super和super" class="headerlink" title="super和super()"></a>super和super()</h5><p>super关键字和super()函数, <strong>super()函数</strong> 允许 <strong>子类（后代）调用父类（祖先）的构造函数</strong> 。super关键字 <strong>用于调用父类声明的方法</strong> 。下面代码展示了super()函数和super关键字。Tax类中定义一个calculateFrderalTax()方法，在它的子类NJTax中添加calculateStateTax()方法。父类和子类分别有自己的calcMinTax()方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"></span><br><span class="line">class Tax &#123;</span><br><span class="line">  constructor(income) &#123;</span><br><span class="line">    this.income = income;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  calculateFederalTax() &#123;</span><br><span class="line">    console.log(`Calculating federal tax for income $&#123;this.income&#125;`);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  calcMinTax() &#123;</span><br><span class="line">    console.log(&quot;In Tax. Calculating min tax&quot;);</span><br><span class="line">    return 123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class NJTax extends Tax &#123;</span><br><span class="line">  constructor(income, stateTaxPersent) &#123;</span><br><span class="line">    super(income);</span><br><span class="line">    this.stateTaxPersent=stateTaxPersent;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  calculateStateTax() &#123;</span><br><span class="line">    console.log(`Calculating state tax for income $&#123;this.income&#125;`);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  calcMinTax() &#123;</span><br><span class="line">    super.calcMinTax();</span><br><span class="line">    console.log(&quot;In NJTax. Adjusting min tax&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var theTax = new NJTax(50000, 6);</span><br><span class="line"></span><br><span class="line">theTax.calculateFederalTax();</span><br><span class="line">theTax.calculateStateTax();</span><br><span class="line"></span><br><span class="line">theTax.calcMinTax();</span><br></pre></td></tr></table></figure>
+<p>运行代码，得到以下输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Calculating federal tax for income 50000</span><br><span class="line">Calculating state tax for income 50000</span><br><span class="line">In Tax. Calculating min tax</span><br><span class="line">In NJTax. Adjusting min tax</span><br></pre></td></tr></table></figure>
+<p>NJTax类有自己显式定义的构造函数，拥有两个参数，分别是income和stateTaxPersent，当实例化NJTax时需要提供两个参数。为了确保Tax的构造函数被调用（其中会设置对象的inome属性），在子类的构造函数中 <strong>显式调用了父类的构造方法</strong> ：super(“50000”)。如果不加入上面的代码，下面的代码将会保错；即使不报错，Tax中的代码也不会得到income的值。</p>
+<p>如果需要 <strong>调用父类的构造函数</strong> ，只能通过在 <strong>子类的构造函数中调用super()函数</strong> 来实现。另一种 <strong>调用父类代码的方法</strong> 是 <strong>使用super关键字</strong> 。Tax和NJTax都有calcMinTax()方法。父类Tax中的calMinTax根据美国联邦税法计算最基本的最少纳税金额，子类中的calcMinTax获得基本值并对其进行调整。两个方法拥有同样的签名，因此这也是 <strong>方法重写</strong>（method overriding）的一个例子。</p>
+<p>通过 <strong>调用super.calcMinTax()</strong> ，确保了计算州税时会考虑联邦税金。如果没有调用super.calcMinTax(),方法重写将会启动，子类的calcMinTax()方法将会被执行。方法重写被 <strong>用于替换父类方法的功能</strong> ，而 <strong>不改变父类的代码</strong> 。</p>
+<blockquote>
+<p><strong>关于类和继承的警告</strong><br>ES6中的类 <strong>只是提高代码的可读性的语法糖</strong> 。在底层实现中， <strong>JavaScript仍然使用原型链继承</strong> ，这使得子运行时能够动态替换父级，而类只有一个父级。尽量 <strong>避免</strong> 创建 <strong>深层继承结构</strong> ，因为这会 <strong>降低代码的灵活性</strong> ，也会 <strong>让重构代码变得复杂</strong> 。<br>尽管使用super关键字和super()函数能够调用父级的代码，但是应该 <strong>尽量避免使用它们</strong> ，这是因为它们 <strong>会在父类之间产生高度耦合性</strong> 。子类知道关于父类的内容越少越好。如果对象的父类发生了变化，新的父类可能并没有super()试图调用的方法。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="promise处理异步流程"><a href="#promise处理异步流程" class="headerlink" title="promise处理异步流程"></a>promise处理异步流程</h4><p> 使用promise处理异步流程,在之前的ECMAScript实现中，如果希望 <strong>处理异步流程</strong> ，将不得不使用 <strong>回调</strong> ，把一个函数作为另一个函数的参数传入其中以便调用。回调可以被 <strong>同步</strong> 或 <strong>异步</strong> 的调用。</p>
+<p> 在上面的章节中，把一个 <strong>回调函数</strong> 传给了 <strong>forEach()函数</strong> 用于 <strong>同步调用</strong> 。向服务器发送一个 <strong>AJAX请求</strong> 时，设置一个 <strong>回调函数</strong> ，当从服务器 <strong>返回结果时该回调函数将会被调用</strong> 。</p>
+<pre><code>- ##### 回调地狱
+
+假设一种情况：需要从服务器获得若干订单数据，整个流程开始于一个异步调用，用于从服务器获得顾客信息，之后需要为每位顾客调用另一个函数获得订单。根据每一个订单获得产品。调用最后一个方法得到产品详情。
+
+在 **异步流过程中** ，**无获知每一步操作是否完成** ，因此需要编写回调函数，以便操作完成时调用它。示例中使用setTimeout()函数模拟延迟，每一个操作需要一秒钟的时间来完成。
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function getProductDetails() &#123;</span><br><span class="line">  setTimeout(function()&#123;</span><br><span class="line">    console.log(&apos;Getting customers&apos;);</span><br><span class="line">    setTimeout(function()&#123;</span><br><span class="line">      console.log(&apos;Getting orders&apos;);</span><br><span class="line">      setTimeout(function() &#123;</span><br><span class="line">        console.log(&apos;Getting products&apos;);</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">          console.log(&apos;Getting products details&apos;);</span><br><span class="line">        &#125;, 1000);</span><br><span class="line">      &#125;, 1000);</span><br><span class="line">    &#125;, 1000);</span><br><span class="line">    </span><br><span class="line">  &#125;, 1000);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getProductDetails();</span><br></pre></td></tr></table></figure>
+
+运行代码后将会以每一秒延迟的间隔打印如下信息：
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Getting customers</span><br><span class="line">Getting orders</span><br><span class="line">Getting products</span><br><span class="line">Getting products details</span><br></pre></td></tr></table></figure>
+
+上面的 **代码嵌套程度已经令人很难阅读了** ，现在想象一下，如果需要向其中添加业务逻辑或错误处理，这样编写代码的方式通常被称为  **回调地狱** 或 **回调金字塔**（代码的空格令其看起来像个三角形）。
+
+- ##### ES6 promise
+
+ES6引入了promise，在 **保持与回调相同功能** 的同时，**消除回调嵌套** 并 **令代码更易阅读** 。Promise对象 **等待并监听异步操作的结果** ，**通知代码执行是否执行成功或失败** ,以便能够相应地处理下一步操作。Promise对象 **表示一个未来结果的操作** ，可能是以下状态之一：
+
+- Fulfilled: 操作成功完成。
+- Rejected: 操作失败并返回一个错误。
+- Pending: 操作正在处理中，既没有fulfilled,也没有rejected。
+
+可以通过为构造函数提供两个函数来实例化一个Promise对象：一个函数在 **操作处于fullfilled状态时会被调用** ；另一个函数在 **操作处于rejected时被调用** 。考虑一下带getCustomers()函数的脚本。
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function getCustomers() &#123;</span><br><span class="line">  return new Promise(function(resolve, reject) &#123;</span><br><span class="line">    console.log(&quot;Getting customers&quot;);</span><br><span class="line">    // Emulate an async server call here</span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">      var success = true;</span><br><span class="line">      if (success) &#123;</span><br><span class="line">        //得到顾客</span><br><span class="line">        resolve(&quot;John Somith&quot;);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reject(&quot;Can&apos;t get customers&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, 1000);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let promise = getCustomers()</span><br><span class="line">   .then((cust) =&gt; console.log(cust))</span><br><span class="line">   .catch((err) =&gt; console.error(err));</span><br><span class="line">   </span><br><span class="line">console.log(&quot;Invoked getCustomers. Waiting for results&quot;);</span><br></pre></td></tr></table></figure>
+
+getCustomers()函数返回一个promise对象，这个对象被初始化时，构造函数接收一个函数作为参数，该函数持有resolve和reject。在上面的代码中，如果接收到顾客信息，就调用resolve()。为了简单起见，setTimeout()模拟一个持续一秒钟的异步请求，并且通过硬编码的方式设置success标志为true.在真实场景中，可以利用XMLHttpRequest对象制造一个请求。如果请求结果成功返回，则调用resolve()；如果又异常发生，则调用reject()。
+
+在上面代码的底部，向Promise()实例附加then()和catch()方法。在这两个方法中只有一个会被调用。当从函数内部调用resolve(&quot;John Smith&quot;)时，这会导致then()被调用，并接收“John Smith”作为参数。如果把success改为false，catch()方法将会被调用，并接收“Can&apos;t get coustomers”作为参数。
+
+运行代码，会在控制塔打印下面的信息：
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Getting customers</span><br><span class="line">Invoked getCustomers. Waiting for results</span><br><span class="line">John Somith</span><br></pre></td></tr></table></figure>
+
+注意信息“Invoked getCustomers. Waiting for results”比“John Somith”更早被打印，这证明getCustomers()函数是异步工作的。
+
+每个promise表示一个异步操作，通过**链式调用** 来 **保证特定的操作顺序** 。现在添加一个getOrders()函数，该函数能够找到指定的顾客的订单，与getCustomeers()一起链式调用。
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">function getCustomers() &#123;</span><br><span class="line">  let promise = new Promise(function(resolve, reject) &#123;</span><br><span class="line">    console.log(&quot;Getting customers&quot;);</span><br><span class="line">    // Emulate an async server call here</span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">      var success = true;</span><br><span class="line">      if (success) &#123;</span><br><span class="line">        //得到顾客</span><br><span class="line">        resolve(&quot;John Somith&quot;);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reject(&quot;Can&apos;t get customers&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, 1000);</span><br><span class="line">  &#125;);</span><br><span class="line">  </span><br><span class="line">  return promise;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getOders(customer) &#123;</span><br><span class="line">  let promise = new Promise(function(resolve, reject) &#123;</span><br><span class="line">    </span><br><span class="line">    // Emulate an async server call here</span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">      var success = true;</span><br><span class="line">      if (success) &#123;</span><br><span class="line">        //得到订单</span><br><span class="line">        resolve(`Found the order 123 for $&#123;customer&#125;`);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reject(&quot;Can&apos;t get orders&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, 1000);</span><br><span class="line">  &#125;);</span><br><span class="line">  </span><br><span class="line">  return promise;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getCustomers()</span><br><span class="line">   .then((cust) =&gt; &#123;console.log(cust); return cust&#125;)</span><br><span class="line">   .then((cust) =&gt; getOders(cust))</span><br><span class="line">   .then((order) =&gt; console.log(order))</span><br><span class="line">   .catch((err) =&gt; console.error(err));</span><br><span class="line">   </span><br><span class="line">console.log(&quot;Invoked getCustomers and getOrders. Waiting for results&quot;);</span><br></pre></td></tr></table></figure>
+
+上面的代码不仅仅 **声明和链式调用了两个函数** ，还演示了如何在控制台中 **打印中间信息** 。上面代码输出如下（注意getCustomers()返回的顾客数据被正确传给了getOders()）：
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Getting customers</span><br><span class="line">Invoked getCustomers and getOrders. Waiting for results</span><br><span class="line">John Somith</span><br><span class="line">Found the order 123 for John Somith</span><br></pre></td></tr></table></figure>
+
+可以使用then()链式调用多个函数，而整个链式调用过程中只使用一个错误处理脚本。如果有错误发生，将会 **遍历整个then()方法链** ，直到找到一个错误处理函数。**发生错误后不会再有then()方法被调用** 。
+
+在上面代码中，把变量success的值改为false将会打印信息“Can&apos;t get customers”,并且getOders()方法将不会被调用。如果删除这些控制台打印，检索顾客和订单的 **代码看起来整洁并易于理解** ：
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getCustomers()</span><br><span class="line">  .then((cust) =&gt; getOders(cust))</span><br><span class="line">  .catch((err) =&gt; console.error(err));</span><br></pre></td></tr></table></figure>
+
+即使添加更多的then()方法，也不会让代码的可读性降低。
+</code></pre><ul>
+<li><h5 id="多个promise"><a href="#多个promise" class="headerlink" title="多个promise"></a>多个promise</h5><p> 一次resolve多个promise,需要考虑的另一种情况是不相互依赖的异步函数。假设需要调用两个函数，这两个函数并没有特定的调用顺序，但是只有在两者完成之后才能执行某些操作。Promise有一个all()方法，可以 <strong>处理一个可迭代的promise集合并执行（resolve）它们</strong> 。因为all()方法返回一个promise对象，所以可以为执行结果添加then()或catch()，或者两者都添加。</p>
+<p> 让我们看看如何使用all()处理getCustomers()和getOders()函数：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Promise.all([getCustomers(), getOders()]).</span><br><span class="line">then((order) =&gt; console.log(order))</span><br></pre></td></tr></table></figure>
+<p> 上面代码产生如下的输出如下：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Getting customers</span><br><span class="line">Getting orders for undefined</span><br><span class="line">        [&quot;John Somith&quot;, &quot;Found the order 123 for undefined&quot;]</span><br></pre></td></tr></table></figure>
+<p> 注意信息“Getting orders for undefined”。这是因为没有以有序的方式resolve promise,因此getOders()没有接收到顾客作为参数。当然，这种场景下使用Promise.all()并不是什么好主意，但在有些情况下Promise.all()是很好的解决方案。想象一下，有一个Web门户网站，它需要调用过个异步请求以获得天气、股票市场新闻以及交通信息。如果希望在所有异步请求都完成之后才显示门户页面，Promise.all()正是所需要的：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Promise.all([getWrather(), getStockMarketNews(), getTraffic()])</span><br><span class="line">  .then(renderGUI);</span><br></pre></td></tr></table></figure>
+<p> 与回调相比，promise能够 <strong>让代码更线性</strong> ，<strong>更加容易阅读</strong> ，并且 <strong>能够表示应用程序的多种状态</strong> 。promise的劣势是，<strong>promise无法被取消</strong> 。想象一下，一位不耐烦的客户单击一个按钮很多次，想从服务器获取数据。每次单击都会创建一个promise并初始化一个HTTP请求，并没有办法能做到只保持最新的请求而取消没有完成的请求。Promise对象下一步的优化是obervable对象，Observable对象在未来的ECMAScript规范中可能会被引入。</p>
+<blockquote>
+<p><strong>注意</strong><br> 用来从网络中获取资源的新推出的 <strong>Fetch API</strong> 可能很快将会取代XMLRequest对象。Fetch API基于promise,有关详细信息，请参阅Mozilla开发人员网络文档（详见 <a href="http://mng.bz/mbMe" target="_blank" rel="noopener">http://mng.bz/mbMe</a> ）。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><h4 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h4><p> 在任何一种编程语言中，把代码拆分到模块中都有助于 <strong>将应用程序组织成具有逻辑的可复用单元</strong> 。模块化应用程序能够 <strong>让软件开发者更有效地拆分开发任务</strong> 。开发者可以决定模块应该暴露 <strong>那些API以提供外部使用</strong> ，<strong>哪些API应该仅在内部使用</strong> 。</p>
+<p> ES5并没有用于创建模块的语言结构，因此不得不采用以下方法：</p>
+<ul>
+<li><p>利用 <strong>立即执行函数</strong> 来手动实现一种模块设计模式（请参阅Todd Motto的文章“Mastering the Module Pattern”, 网址为 <a href="http://toddmotto.com/mastering-the-module-pattern/" target="_blank" rel="noopener">http://toddmotto.com/mastering-the-module-pattern/</a> ）</p>
+</li>
+<li><p>使用AMD(详见 <a href="http://mng.bz/7L1d" target="_blank" rel="noopener">http://mng.bz/7L1d</a> ) 或CommonJS（详见 <a href="http://mng.bz/JKVc" target="_blank" rel="noopener">http://mng.bz/JKVc</a> ）标准的第三方实现。</p>
+<p>CommonJS被创建用于 <strong>模块化</strong> 那些  <strong>运行在非Web浏览器环境中的JavaScript应用程序</strong> （比如那些用Node.js开发并部署在Google V8引擎下的应用程序）。AMD主要用于 <strong>运行在Web浏览器中的应用程序</strong> 。</p>
+<p>在任何“体面”（decent-sized）的应用程序中，都应该尽量 <strong>减少客户端需要加载的JavaScript代码量</strong> 。想象一个典型的电商网站。是否需要在打开应用程序首页的时候就加载处理支付的代码？如果用户从来就没有点击过订单提交按钮呢？把应用程序模块化将会是非常好的事情，这样 <strong>代码就能够被按需加载</strong> 。<strong>RequireJs</strong> 可能是 <strong>最流行的实现AMD标准的第三方库</strong> 。它可以 <strong>定义模块间的依赖关系</strong> ，并把它们 <strong>按需加载到浏览器中</strong> 。</p>
+<p>从ES6开始， <strong>模块已经成为语言的一部分</strong> ，这就意味着开发者 <strong>将会停止使用第三方库来实现各种标准</strong> 。即使Web浏览器原生不支持ES6模块，也还是有一些 <strong>polyfill</strong> 能够让你从现在开始使用JavaScript模块。我们将使用 <strong>SystemJs</strong> 作为polyfill。</p>
+</li>
+<li><h5 id="导入和导出"><a href="#导入和导出" class="headerlink" title="导入和导出"></a>导入和导出</h5><p>通常来说，模块只是一个 <strong>JavaScript代码文件</strong> ，它 <strong>实现了特定的功能</strong> 并 <strong>对外提供公共API</strong> 以便其他JavaScript程序能够使用，并没有特殊的关键字用来声明特定文件中的代码是模块。但是在脚本中，关键字 <strong>import</strong> 和 <strong>export</strong> 会 <strong>将脚本转换成ES6模块</strong> 。</p>
+<p><strong>import关键字</strong> 允许一个脚本 <strong>声明它需要使用在另一个脚本文件中定义的变量和函数</strong> 。同样， <strong>export关键字</strong> 能够 <strong>声明模块需要导出给其他脚本使用的变量、函数或类</strong> 。换句话说，通过使用export关键字，可以 <strong>将选择的API提供给其他模块使用</strong> 。模块中 <strong>没有被显式导出函数、变量和类仍然被封装在模块中</strong> 。</p>
+<blockquote>
+<p><strong>注意</strong><br>模块和常规JavaScript文件之间的主要区别是：当使用 <code>&lt;script&gt;</code> 标签添加一个常规JavaScript文件到页面时，它 <strong>会变成全局上下文的一部分</strong> ，而 <strong>模块中的声明则是局部的</strong> ，不会变成全局命名空间的一部分。即使是被导出的成员，也仅对那些导入它们的模块可用。</p>
+</blockquote>
+<p>ES6提供了两种export用法：<strong>命名导出</strong> 和 <strong>默认导出</strong> 。<strong>使用命名导出</strong>，可以 <strong>在模块的多个成员（如类、函数和变量）的前面添加export关键字</strong> 。下面文件（tax.js）中的代码会导出变量taxCode和函数calcTaxes(),但是doSomethingEles()函数仍然对外部脚本隐藏：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export var taxCode;</span><br><span class="line">export function calcTaxes()&#123; // the code goes here&#125;</span><br><span class="line">export doSomethingElse() &#123; //the code goes here&#125;</span><br></pre></td></tr></table></figure>
+<p>当其他脚本需要 <strong>导入这些命名导出的成员时</strong> ，它们的 <strong>名字必须放在大括号中</strong> 。main.js文件说明如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123;taxCode, calcTaxes&#125; from &apos;tax&apos;;</span><br><span class="line">if (taxCode === 1) &#123; // do something &#125;</span><br><span class="line">calcTaxes();</span><br></pre></td></tr></table></figure>
+<p>此处tax引用的是文件名，去掉后缀名。<br>模块中所有被导出的成员中 <strong>可以有一个标记为default</strong>,这 <strong>意味着它是匿名导出</strong> ，其他模块可以在导入它的语句中为它指定任何名字。在my_modules.js文件中导出一个函数，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export default function() &#123; // do something &#125; //没有分号</span><br><span class="line">export var taxCode;</span><br></pre></td></tr></table></figure>
+<p>main.js文件既导入默认导出的函数，又导入命名导出的变量，并将coolFunction分配给默认导出的函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import coolFunction, &#123; taxCode &#125; from &apos;my_module&apos;;</span><br><span class="line">coolFunction();</span><br></pre></td></tr></table></figure>
+<p>注意对于coolFunction，并 <strong>不需要用大括号括起来</strong>，但是taxCode需要用大括号括起来。脚本导入由default关键词导出的类、变量或函数，可以在 <strong>不需要使用任何特殊关键字的情况下为它们指定新的名字</strong> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import aVeryCoolFunction, &#123;taxCode&#125; form &apos;my_module’；</span><br><span class="line">aVeryCoolFunction();</span><br></pre></td></tr></table></figure>
+<p>但是，如果需要给一个<strong>已经命名导出成员一个别名</strong> ，需要这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import coolFunction, &#123;taxCode as taxCode2016&#125; from &apos;my_module&apos;;</span><br></pre></td></tr></table></figure>
+<p>import语句并不会复制导出的代码。<strong>导入的是引用。</strong> 脚本不会修改导入的模块或成员，如果导入模块中的值发生变化，那么新值会立刻反映到所有导入该模块的地方。</p>
+</li>
+<li><h5 id="动态加载模块"><a href="#动态加载模块" class="headerlink" title="动态加载模块"></a>动态加载模块</h5><p> 使用ES6模块加载器动态加载模块,ES6规范的早期草稿定义了一个动态模块加载器，名为 <strong>System</strong>,但它并没有被写入到规范的最终版本中。在未来，<strong>System对象将会被浏览器作为原生的基于promise的加载器实现</strong> ，使用方法如下所示：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">System.import(&apos;someModule&apos;)</span><br><span class="line">  .then(function(modulr) &#123;</span><br><span class="line">    module.dosomething();</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(function(error) &#123;</span><br><span class="line">    // handle error here</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p> 现在还没有浏览器实现System对象，因此需要使用polyfill。System有很多polyfill，ES6模块加载器是其中一个，另一个是SystemJS。</p>
+<blockquote>
+<p><strong>注意</strong><br> 尽管es6-module-loader.js是System对象的一个polyfill，但它仅能加载ES6模块；而通过SystemJS加载器不仅支持ES6模块，同样支持AMD和CommonJS模块。</p>
+</blockquote>
+<p> ES6模块加载器的polyfill可以在GitHub上找到，网址为<a href="http://mng.bz/MD8w" target="_blank" rel="noopener">http://mng.bz/MD8w</a> 。下载并解压这个加载器，复制es6-module-loader.js文件到工程目录下，并把其引入到HTML文件中，早于应用程序脚本加载：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;es6-module-loader.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;my_app.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p> 为了确保ES6脚本能够在所有浏览器中工作，需要把其转码成ES5。这个任务 <strong>可以作为构建工程</strong> 的一部分，也 <strong>可以在浏览器中实时完成</strong> 。我们将使用Traceur编译器来演示如何在浏览器中实时转码。</p>
+<p> 首先需要把转码器、模块加载器以及代码脚本全部引入到HTML文件中。既可以将Traceur脚本下载到本地目录中，也可以直接使用远程链接，如下所示：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://google.github.io/traceur-compiler/bin/traceur.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;es6-module-loader.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;my-es6-app.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p> 下面考虑一个在线电商的简单示例，其中包括能够按需加载的运输模块和账单模块。应用程序由一个HTML文件以及两个模块组成。HTML文件中有一个名为加载运输模块（Load the Shipping Module）的按钮。若用户单击这个按钮，应用程序将会加载并运行运输模块，运输模块依赖于账单谋爱。运输模块如下所示：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import &#123;processPayment&#125; from &apos;billing&apos;</span><br><span class="line"></span><br><span class="line">export function ship() &#123;</span><br><span class="line">  processPayment();</span><br><span class="line">  console.log(&quot;shipping products...&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function calculateShippingCost() &#123;</span><br><span class="line">  console.log(&quot;Calculating shipping cost&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> ship()函数可以被外部脚本调用，calculateShippingCost()是私有的。运输模块以import语句开始，因此能够调用账单模块processPayment()函数。下面为账单模块的代码：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function validateBillingInfo() &#123;</span><br><span class="line">  console.log(&quot;validating billing info...&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export function processPayment() &#123;</span><br><span class="line">   console.log(&quot;processing payment...&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 账单模块中也有一个公共的processPayment()函数，以及一个私有的validateBillingInfo(0函数。<br> HTML文件中包括一个按钮，该按钮的单击事件会触发使用es6-module-loader的System.import()加载运输模块。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;modules.html&lt;/title&gt;</span><br><span class="line">  &lt;script src=&quot;https://google.github.io/traceur-compiler/bin/traceur.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script src=&quot;es6-module-loader.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;button id=&quot;shippingBtn&quot;&gt;Load the Shipping Module&lt;/button&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;script type=&quot;module&quot;&gt;</span><br><span class="line">  let btn = document.querySelector(&apos;#shippingBtn&apos;);</span><br><span class="line">  btn.addEventListener(&apos;click&apos;, () =&gt; &#123;</span><br><span class="line">    System.import(&apos;shipping&apos;)</span><br><span class="line">      .then(function(module) &#123;</span><br><span class="line">        console.log(&quot;Shpping module Loaded.&quot;, module);</span><br><span class="line">        </span><br><span class="line">        module.ship();</span><br><span class="line">        </span><br><span class="line">        //抛出一个异常</span><br><span class="line">        module.calculateShippingCost();</span><br><span class="line">      &#125;)</span><br><span class="line">      .catch(function(err) &#123;</span><br><span class="line">        console.log(&quot;In error handler&quot;, err);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">  </span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p> System。import()返回一个ES6promise对象；当模块被加载时，执行then()中指定的函数。如果发生错误，错误由catch()函数捕获。<br> 在then()中，把信息打印到控制台，并调用运输模块的ship()函数，在ship()函数中调用账单模块的processPayment()。之后，当试图调用calculateShippingCost()函数时，会发现发生异常，这是因为calculateShippingCost()函数并没有被导出，而是私有的。</p>
+<blockquote>
+<p><strong>提示</strong><br> 如果使用Traceur并且在HTML文件中又有一个内联脚本，，使用type=”module”确保Traceur能够把它转换为ES5。如果不声明type=”module”,这个脚本在那些不支持let关键词和箭头函数的浏览器中是无法工作的。</p>
+</blockquote>
+<p> 为了能够运行这个示例，需要npm和node.js。之后在任何目录中下载并安装es6-module加载器，运行如下命令：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install es6-module-loader</span><br></pre></td></tr></table></figure>
+<p> 在此之后，创建一个application文件夹，并把es6-module-loader.js文件（从npm下载器的压缩版本）复制到该文件夹中。示例应用程序有三个额外的文件，如上面代码所示。为简单起见，将所有这些文件放到一个文件夹中。</p>
+<blockquote>
+<p><strong>注意</strong><br> 为了查看此代码，需要启动一台Web服务器来运行代码。可以安装一个基本的HTTP服务器作为Web服务器，如live-server。</p>
+</blockquote>
+<p> 在Google Chrome中运行moduleLoader.html，打开Chrome Developer Tools。</p>
+<p> 如果应用程序中包括10个500KB大小的模块，延迟加载模块就很有必要了。</p>
+<blockquote>
+<p>如果想深入了解ES6语法，可以阅读Axel Rauschmayer撰写的Exploring ES6（参见 <a href="http://exploringjs.com/es6" target="_blank" rel="noopener">http://exploringjs.com/es6</a> ）。Eric Douglas在GitHub（参见 <a href="http://mng.bz/cZFX" target="_blank" rel="noopener">http://mng.bz/cZFX</a> ）上维护包括各种ES6学习资料的汇总信息。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/25/Angular-2-primary/" rel="next" title="《Angular 2开发实战》学习笔记-Angular入门">
+                <i class="fa fa-chevron-left"></i> 《Angular 2开发实战》学习笔记-Angular入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/29/markdown-command/" rel="prev" title="Markdown常用命令">
+                Markdown常用命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="songxingguo">
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">131</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ECMAScript-6概述"><span class="nav-number">1.</span> <span class="nav-text">ECMAScript 6概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ECMASript的故事"><span class="nav-number">1.1.</span> <span class="nav-text">ECMASript的故事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模板字面量"><span class="nav-number">1.2.</span> <span class="nav-text">模板字面量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#多行字符串"><span class="nav-number">1.2.1.</span> <span class="nav-text">多行字符串</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#带标签的模板字符串"><span class="nav-number">1.2.2.</span> <span class="nav-text">带标签的模板字符串</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可选参数和默认值"><span class="nav-number">1.3.</span> <span class="nav-text">可选参数和默认值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量的作用域"><span class="nav-number">1.4.</span> <span class="nav-text">变量的作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#变量提升"><span class="nav-number">1.4.1.</span> <span class="nav-text">变量提升</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#let和const"><span class="nav-number">1.4.2.</span> <span class="nav-text">let和const</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数的块级作用域"><span class="nav-number">1.4.3.</span> <span class="nav-text">函数的块级作用域</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#箭头函数、this和that"><span class="nav-number">1.5.</span> <span class="nav-text">箭头函数、this和that</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#rest和扩展运算符"><span class="nav-number">1.5.1.</span> <span class="nav-text">rest和扩展运算符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#generator函数"><span class="nav-number">1.5.2.</span> <span class="nav-text">generator函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解构"><span class="nav-number">1.5.3.</span> <span class="nav-text">解构</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#解构对象"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">解构对象</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#解构数组"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">解构数组</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#迭代"><span class="nav-number">1.6.</span> <span class="nav-text">迭代</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用forEach-方法"><span class="nav-number">1.6.1.</span> <span class="nav-text">使用forEach()方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用for-in循环"><span class="nav-number">1.6.2.</span> <span class="nav-text">使用for-in循环</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用for-of循环"><span class="nav-number">1.6.3.</span> <span class="nav-text">使用for-of循环</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类与继承"><span class="nav-number">1.7.</span> <span class="nav-text">类与继承</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#构造函数"><span class="nav-number">1.7.1.</span> <span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#静态变量"><span class="nav-number">1.7.2.</span> <span class="nav-text">静态变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#访问器、设置器"><span class="nav-number">1.7.3.</span> <span class="nav-text">访问器、设置器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#super和super"><span class="nav-number">1.7.4.</span> <span class="nav-text">super和super()</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#promise处理异步流程"><span class="nav-number">1.8.</span> <span class="nav-text">promise处理异步流程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#多个promise"><span class="nav-number">1.8.1.</span> <span class="nav-text">多个promise</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模块"><span class="nav-number">1.9.</span> <span class="nav-text">模块</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#导入和导出"><span class="nav-number">1.9.1.</span> <span class="nav-text">导入和导出</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#动态加载模块"><span class="nav-number">1.9.2.</span> <span class="nav-text">动态加载模块</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":90,"vOffset":-25},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
