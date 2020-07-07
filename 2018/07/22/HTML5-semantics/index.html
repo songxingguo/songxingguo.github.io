@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="用语义元素构造网页  为了能够把侧边栏与页眉分开，以及把广告条与菜单分开。HTML5为此引入了一组构造页面的新元素，这组元素能发挥 &amp;lt;div&amp;gt; 一样的作用，但是却能传达出更多的语义。  语义元素 &amp;lt;time&amp;gt;元素 1Registration begins on &amp;lt;time&amp;gt;2014-11-25&amp;lt;/time&amp;gt;. 代码在网页中呈现的结果如下所示： 1Re">
+<meta name="keywords" content="HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《HTML5秘籍》学习笔记-用语义元素构造网页">
+<meta property="og:url" content="https://www.songxingguo.com/2018/07/22/HTML5-semantics/index.html">
+<meta property="og:site_name" content="阿有的生活">
+<meta property="og:description" content="用语义元素构造网页  为了能够把侧边栏与页眉分开，以及把广告条与菜单分开。HTML5为此引入了一组构造页面的新元素，这组元素能发挥 &amp;lt;div&amp;gt; 一样的作用，但是却能传达出更多的语义。  语义元素 &amp;lt;time&amp;gt;元素 1Registration begins on &amp;lt;time&amp;gt;2014-11-25&amp;lt;/time&amp;gt;. 代码在网页中呈现的结果如下所示： 1Re">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/%E9%A1%B5%E9%9D%A2%E7%BB%93%E6%9E%84.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/%E6%9E%84%E9%80%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80.jpg">
+<meta property="og:updated_time" content="2020-07-07T09:10:26.899Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《HTML5秘籍》学习笔记-用语义元素构造网页">
+<meta name="twitter:description" content="用语义元素构造网页  为了能够把侧边栏与页眉分开，以及把广告条与菜单分开。HTML5为此引入了一组构造页面的新元素，这组元素能发挥 &amp;lt;div&amp;gt; 一样的作用，但是却能传达出更多的语义。  语义元素 &amp;lt;time&amp;gt;元素 1Registration begins on &amp;lt;time&amp;gt;2014-11-25&amp;lt;/time&amp;gt;. 代码在网页中呈现的结果如下所示： 1Re">
+<meta name="twitter:image" content="https://graphbed.qiniu.songxingguo.com/Angular/%E9%A1%B5%E9%9D%A2%E7%BB%93%E6%9E%84.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/07/22/HTML5-semantics/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《HTML5秘籍》学习笔记-用语义元素构造网页 | 阿有的生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">131</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">43</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/07/22/HTML5-semantics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《HTML5秘籍》学习笔记-用语义元素构造网页
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-22 06:28:00" itemprop="dateCreated datePublished" datetime="2018-07-22T06:28:00+00:00">2018-07-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-07-07 09:10:26" itemprop="dateModified" datetime="2020-07-07T09:10:26+00:00">2020-07-07</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/22/HTML5-semantics/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/07/22/HTML5-semantics/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/07/22/HTML5-semantics/" class="leancloud_visitors" data-flag-title="《HTML5秘籍》学习笔记-用语义元素构造网页">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="用语义元素构造网页"><a href="#用语义元素构造网页" class="headerlink" title="用语义元素构造网页"></a>用语义元素构造网页</h3><p>  为了能够把侧边栏与页眉分开，以及把广告条与菜单分开。HTML5为此引入了一组构造页面的新元素，这组元素能发挥 <code>&lt;div&gt;</code> 一样的作用，但是却能传达出更多的语义。</p>
+<ul>
+<li><h4 id="语义元素"><a href="#语义元素" class="headerlink" title="语义元素"></a>语义元素</h4><ul>
+<li><p><code>&lt;time&gt;</code>元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Registration begins on &lt;time&gt;2014-11-25&lt;/time&gt;.</span><br></pre></td></tr></table></figure>
+<p>代码在网页中呈现的结果如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Registration begins on 2014-11-25.</span><br></pre></td></tr></table></figure>
+<p><code>&lt;time&gt;</code> 元素没有任何内置的样式，元素中的文本和普通文本没有区别。</p>
+<p>设计 <code>&lt;time&gt;</code> 元素的用意是让它包含一小段信息。但大多数HTML5语义元素的用途是 <strong>标识页面中的一个内容区块</strong> 。比如， <code>&lt;nav&gt;</code> 元素用于标识一组导航链接。而 <code>&lt;footer&gt;</code> 元素用于标识通常放在页面底部的文脚（或页脚）。大概有十几个类似的新元素。</p>
+<p>所有语义元素都有一个显著的特点： <strong>不真正做任何事</strong>。相对来说， <code>&lt;video&gt;</code> 元素则囊括了在页面中充当视频播放器的全部能力。</p>
+<a id="more"></a>
+<p>使用这些新元素的理由：</p>
+<ul>
+<li><h5 id="容易修改和维护"><a href="#容易修改和维护" class="headerlink" title="容易修改和维护"></a>容易修改和维护</h5><p>通过HTML5的语义元素，通过标记就可以传达出额外的结构化信息。</p>
+</li>
+<li><h5 id="无障碍性"><a href="#无障碍性" class="headerlink" title="无障碍性"></a>无障碍性</h5><p>现代Web设计的一个重要主题，就是让任何人都能无障碍的访问网页。换句话说，要让使用屏幕阅读器和其他辅助工具的人都能够在页面中自由导航。兼容HTML5的无障碍工具可以为残疾人士提供更好的上网体验。（仅举一个例子，有了 <code>&lt;nav&gt;</code> 元素，屏幕阅读器就能迅速返回导航区，进而找到网页链接。）</p>
+</li>
+<li><h5 id="搜索引擎优化"><a href="#搜索引擎优化" class="headerlink" title="搜索引擎优化"></a>搜索引擎优化</h5><p>如果搜索引擎能更好的理解你的站点，那搜索者的查询就会越容易与你的内容匹配，因而你的网站列在搜索结果中的可能性也就越大。</p>
+</li>
+<li><h5 id="未来功能"><a href="#未来功能" class="headerlink" title="未来功能"></a>未来功能</h5><p>新浏览器和Web编辑器工具一定会利用语义元素。比如，浏览器可以提供一个页面内容的纲要，以方便跳转到页面适当的区块。类似地，网页设计工具也能包含一些方便你构建或编辑菜单的功能，而方法就是组织你放在 <code>&lt;nav&gt;</code> 区块中的内容。</p>
+</li>
+</ul>
+<p>最关键的问题在于，如果正确地使用了语义元素，就能够 <strong>创建更加清晰的页面结构 </strong> ，就能 <strong>适应未来的浏览器和Web设计工具的发展趋势</strong> 。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="改造传统的HTML页面"><a href="#改造传统的HTML页面" class="headerlink" title="改造传统的HTML页面"></a>改造传统的HTML页面</h4><p> 要了解和熟悉新的语义元素（包括学习如何使用它们来构造页面），最好的方式莫过于拿一个经典的HTML文档作为例子，然后把HTML5的一些新鲜营养充实进去。例子访问 <a href="http://prosetech.com/html5" target="_blank" rel="noopener">http://prosetech.com/html5</a> 。</p>
+<ul>
+<li><h5 id="构造页面的老办法"><a href="#构造页面的老办法" class="headerlink" title="构造页面的老办法"></a>构造页面的老办法</h5><p>这个示例页面使用的是HTML最佳实践，没有任何通过标记来格式化的痕迹。没有粗体或斜体元素，没有嵌入的样式。总之，这是一个格式非常规范的页面， <strong>所有样式均来自外部样式表</strong> 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;header&quot;&gt;</span><br><span class="line">  &lt;h1&gt;How the  World Could End&lt;/h1&gt;</span><br><span class="line">  &lt;p class=&quot;Teaser&quot;&gt;Scenarios that spell the end of life as we know it&lt;/p&gt;</span><br><span class="line">  &lt;p class=&quot;Byline&quot;&gt;by Ray N.Carnation&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;content&quot;&gt;</span><br><span class="line">  &lt;p&gt;&lt;span class=&quot;LeadIn&quot;&gt;Right now&lt;/span&gt;, you&apos;re probably ...&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;...&lt;/p&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;h2&gt;Mayna Doomsday&lt;/h2&gt;</span><br><span class="line">  &lt;p&gt;Skeptics suggest...&lt;/p&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;footer&quot;&gt;</span><br><span class="line">  &lt;p class=&quot;Disclaimer&quot;&gt;These apocalyptic predictions ...&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;</span><br><span class="line">    &lt;a href=&quot;AboutUs.html&quot;&gt;About Us&lt;/a&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/p&gt; </span><br><span class="line">  &lt;p&gt;Copyright @ 2014&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>编写规范的传统HTML页面中，通过使用 <code>&lt;div&gt;</code> 和 <code>&lt;span&gt;</code> 元素，已经把大部分工作移交给了样式表。通过 <code>&lt;span&gt;</code> 可以为 <strong>处在其他元素中的少量文本添加样式 </strong>，而通过 <code>&lt;div&gt;</code> 不仅可以为 <strong>整个内容区块添加样式</strong> ，还可以 <strong>构建起整个页面结构</strong> 。</p>
+<p>因为使用了 <code>&lt;div&gt;</code> 元素，所以添加样式很容易。使用下列规则为页眉及其中内容添加样式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">/* 为&lt;div&gt;添加样式，使其具有页眉的外观（蓝色带边框）*/</span><br><span class="line">.Header &#123;</span><br><span class="line">  background-color: #7695FE;</span><br><span class="line">  boder:thin #336699 solid;</span><br><span class="line">  padding: 10px;</span><br><span class="line">  margin: 10px;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 为页眉中的 &lt;h1&gt; 添加样式(这是文章的标题）*/</span><br><span class="line">.Header h1 &#123;</span><br><span class="line">  margin: 0px;</span><br><span class="line">  color: white;</span><br><span class="line">  font-size: xx-large;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 为页眉中的子标题添加样式 */</span><br><span class="line">.Header .Teaser &#123;</span><br><span class="line">  margin: 0px;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 为页面中的署名行添加样式 */</span><br><span class="line">.Header .Byline &#123;</span><br><span class="line">  font-style: italic;</span><br><span class="line">  font-size: small;</span><br><span class="line">  margin: 0px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="使用H5构造页面"><a href="#使用H5构造页面" class="headerlink" title="使用H5构造页面"></a>使用H5构造页面</h5><p><code>&lt;div&gt;</code> 目前依旧是Web设计中的必备元素，它是 <strong>一个直观、多用途的容器</strong> ，可以通过它 <strong>为页面中的任何区块应用样式</strong> 。但 <code>&lt;div&gt;</code> 的问题在于，它本身 <strong>不反映与页面相关的任何信息</strong> 。</p>
+<p>要通过HTML5改进这种情况，可以把 <code>&lt;div&gt;</code> 替换成更具有描述性的语义元素。这些语义元素的行为与 <code>&lt;div&gt;</code> 元素类似：它们 <strong>仅包含一组标记，除此之外没有其他作用</strong> ，可以将它 <strong>作为“格式挂钩”来为页面应用样式</strong> 。不过，除此之外，它们还会 <strong>为页面添加一点语义</strong> 。</p>
+<p>下面代码是对传统页面的简单修改之后的结果，删除了两个 <code>&lt;div&gt;</code> 元素，但添加了两个HTML5的语义元素：<code>&lt;header&gt;</code> 和 <code>&lt;footer&gt;</code> 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;header class=&quot;header&quot;&gt;</span><br><span class="line">  &lt;h1&gt;How the  World Could End&lt;/h1&gt;</span><br><span class="line">  &lt;p class=&quot;Teaser&quot;&gt;Scenarios that spell the end of life as we know it&lt;/p&gt;</span><br><span class="line">  &lt;p class=&quot;Byline&quot;&gt;by Ray N.Carnation&lt;/p&gt;</span><br><span class="line">&lt;/header&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;content&quot;&gt;</span><br><span class="line">  &lt;p&gt;&lt;span class=&quot;LeadIn&quot;&gt;Right now&lt;/span&gt;, you&apos;re probably ...&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;...&lt;/p&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;h2&gt;Mayna Doomsday&lt;/h2&gt;</span><br><span class="line">  &lt;p&gt;Skeptics suggest...&lt;/p&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;footer class=&quot;footer&quot;&gt;</span><br><span class="line">  &lt;p class=&quot;Disclaimer&quot;&gt;These apocalyptic predictions ...&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;</span><br><span class="line">    &lt;a href=&quot;AboutUs.html&quot;&gt;About Us&lt;/a&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/p&gt; </span><br><span class="line">  &lt;p&gt;Copyright @ 2014&lt;/p&gt;</span><br><span class="line">&lt;/footer&gt;</span><br></pre></td></tr></table></figure>
+<p>如果修改一个大型网站，可以考虑用HTML5中相应的 <strong>语义元素来包装已有的 <code>&lt;div&gt;</code> 元素</strong> 。</p>
+<p>不管怎么说，这里的类名还是有点多余。可以变成这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;header&gt;</span><br><span class="line">   &lt;h1&gt;How the  World Could End&lt;/h1&gt;</span><br><span class="line">   &lt;p class=&quot;Teaser&quot;&gt;Scenarios that spell the end of life as we know it&lt;/p&gt;</span><br><span class="line">   &lt;p class=&quot;Byline&quot;&gt;by Ray N.Carnation&lt;/p&gt;</span><br><span class="line"> &lt;/header&gt;</span><br></pre></td></tr></table></figure>
+<p>但这样修改后，就得修改样式表规则，直接 <strong>通过元素名来应用样式</strong> 。</p>
+<p>下面是修改之后的为 <code>&lt;header&gt;</code>及其包含的所有元素应用样式规则：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/* 为&lt;header&gt;添加样式，使其具有页眉的外观（蓝色带边框）*/</span><br><span class="line">header &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">/* 为&lt;header&gt;中的 &lt;h1&gt; 添加样式(这是文章的标题）*/</span><br><span class="line">header h1 &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">/* 为&lt;header&gt;中的子标题添加样式 */</span><br><span class="line">header .Teaser &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">/* 为&lt;header&gt;中的署名行添加样式 */</span><br><span class="line">header .Byline &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>HTML5页面经常会混合各种语义元素和更通用的 <code>&lt;div&gt;</code> 容器。</p>
+<p><strong>注意：</strong> 上面的网页在IE9之前的Internet Explorer 中无法显示。</p>
+<p>最后，还有一个元素有必要用在示例页面中。那就是HTML5的 <code>&lt;article&gt;</code> 元素，这个元素 <strong>表示一个完整的、自成一体的内容块</strong> ，比如博客文章或新闻报道。 <code>&lt;article&gt;</code> 元素应该包含所有相关的内容，包括标题、作者署名以及正文。添加了 <code>&lt;article&gt;</code> 元素之后的页面结构就变成如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;article&gt;</span><br><span class="line">  &lt;header&gt;</span><br><span class="line">    &lt;h1&gt;How the  World Could End&lt;/h1&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/header&gt;</span><br><span class="line"></span><br><span class="line">  &lt;div class=&quot;content&quot;&gt;</span><br><span class="line">    &lt;p&gt;&lt;span class=&quot;LeadIn&quot;&gt;Right now&lt;/span&gt;, you&apos;re probably ...&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;...&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">    &lt;h2&gt;Mayna Doomsday&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;Skeptics suggest...&lt;/p&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/article&gt;</span><br><span class="line"></span><br><span class="line">&lt;footer&gt;</span><br><span class="line">  &lt;p class=&quot;Disclaimer&quot;&gt;These apocalyptic predictions ...&lt;/p&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/footer&gt;</span><br></pre></td></tr></table></figure>
+<p>最终的页面结构示意图：</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/Angular/%E9%A1%B5%E9%9D%A2%E7%BB%93%E6%9E%84.jpg" alt="页面结构示意图"></p>
+</li>
+<li><h5 id="添加插图"><a href="#添加插图" class="headerlink" title="添加插图"></a>添加插图</h5><p>HTML5规范建议我们将插图想象成一本书中的附图；换句话说，<strong>插图虽独立于文本，但文本中会提到它</strong> 。</p>
+<p>一般来说，插图应该是浮动的；换句话说，应该把它 <strong>放在相关文本旁边的一个比较近便的位置上</strong> ，而不要把它们锁定在特定的词或元素旁边。而且，插图通常 <strong>还会有与之相伴的浮动图题</strong> 。</p>
+<p>下面是个这篇文章添加插图的HTML标记。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;&lt;span class=&quot;LeadIn&quot;&gt;Right now&lt;/span&gt;, you&apos;re probably ...&lt;/p&gt;</span><br><span class="line">&lt;div class=&quot;FloatFigure&quot;&gt;</span><br><span class="line">  &lt;img src=&quot;human_skull.jpg&quot; alt=&quot;Human skull&quot;&gt;</span><br><span class="line">  &lt;p&gt;Will you be the last person standing if one of these apocalyptic scenarios play out?&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;But don&apos;t get too smug ...&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p>下面是给出的样式规则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/* 为插图应用样式 */</span><br><span class="line">.FloatFigure &#123;</span><br><span class="line">  float: left;</span><br><span class="line">  margin-left: 0px; </span><br><span class="line">  margin-top: opx;</span><br><span class="line">  margin-right: 20px;</span><br><span class="line">  margin-bottom: 0px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 为题图应用样式 */</span><br><span class="line">.FloatFigure p &#123;</span><br><span class="line">  max-width: 200px;</span><br><span class="line">  font-size: small;</span><br><span class="line">  font-style: italic;</span><br><span class="line">  margin-bottom: 5px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>HTML5专门量身打造了一个了一个新的语义元素为内容添加插图，下面是用 <code>&lt;figure&gt;</code> 改造后的HTML5文档：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;figure class=&quot;FloatFigure&quot;&gt;</span><br><span class="line">  &lt;img src=&quot;human_skull.jpg&quot; alt=&quot;Human skull&quot;&gt;</span><br><span class="line">  &lt;figcaption&gt;Will you be the last person standing if one of these apocalyptic scenarios play out?&lt;/figcaption&gt;</span><br><span class="line">&lt;/figure&gt;</span><br></pre></td></tr></table></figure>
+<p>而题图是放在 <code>&lt;figure&gt;</code> 中的 <code>&lt;figcaption&gt;</code> 元素里的。</p>
+<p>当然，给插图和图题应用什么样式，把它们放在什么位置上，还是由你说了算。使用新元素之后，插图还是那样，但不同的是标注插图的标记现在的含义已经非常明确了。（随便在提个醒，<code>&lt;figcaption&gt;</code> 元素不是只能包含文本——任何HTML元素都可以，比如链接、小图标等。）</p>
+<p>因为图题中经常包含了对图片的完整说明，所以alt文本就显得有点多余了。这种情况下，可以把 <code>&lt;img&gt;</code> 元素中的alt属性删除：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;figure class=&quot;FloatFigure&quot;&gt;</span><br><span class="line">  &lt;img src=&quot;human_skull.jpg&quot;&gt;</span><br><span class="line">  &lt;figcaption&gt;A human skull lies on the sand&lt;/figcaption&gt;</span><br><span class="line">&lt;/figure&gt;</span><br></pre></td></tr></table></figure>
+<p>这里要小心的是，不能把alt文本设成空字符串。因为这意味着你的图片纯粹是装饰用的，屏幕阅读器会忽略不读。</p>
+</li>
+<li><h5 id="添加附注"><a href="#添加附注" class="headerlink" title="添加附注"></a>添加附注</h5><p>新的 <code>&lt;aside&gt;</code> 元素 <strong>表示与它周围的文本没有密切关系的内容</strong> 。这就是说，你可以像在印刷品中使用附录栏一样使用 <code>&lt;aside&gt;</code> 元素，可以通过它 <strong>介绍另一个相关的话题</strong> ，或者 <strong>对主文档中提出的某个观点进行解释</strong> 。另外，也可以用 <code>&lt;aside&gt;</code> 来盛放广告、相关内容链接，甚至醒目引文（pull quote）。</p>
+<p>当然，使用熟悉的 <code>&lt;div&gt;</code> 元素也可以创造出这种效果，但用 <code>&lt;aside&gt;</code> 元素包装同样的内容，可以让标记更富有意义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;... (in a suitably robotic voice) &quot;who&apos; s your daddy now?&quot;&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;aside class=&quot;PullQuote&quot;&gt;</span><br><span class="line">  &lt;img src=-&quot;quotes_start.png&quot; alt=&quot;Quote&quot;&gt;</span><br><span class="line">  We don&apos;t know how the universe started, so we can&apos;t be sure it won&apos;t just end, maybe today.</span><br><span class="line">  &lt;img src=&quot;quotes_end.png&quot; alt=&quot;End quote&quot;&gt;</span><br><span class="line">&lt;/aside&gt;</span><br><span class="line"></span><br><span class="line">&lt;h2&gt;Unexplained Singularity&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
+<p>下面给出了相应的样式：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.PullQuote &#123;</span><br><span class="line">  float: right;</span><br><span class="line">  max-width: 300px;</span><br><span class="line">  border-top: thin black solid;</span><br><span class="line">  border-bottom: thick black solid;</span><br><span class="line">  font-size: 30px;</span><br><span class="line">  line-height: 130%;</span><br><span class="line">  font-style: italic;</span><br><span class="line">  padding-top: 5px;</span><br><span class="line">  padding-bottom: 5px;</span><br><span class="line">  margin-left: 15px;</span><br><span class="line">  margin-bottom: 10px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.PullQuote img &#123;</span><br><span class="line">  vertical-align: bottom;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>语义元素的来历：可以看看这里： <a href="https://developers.google.com/webmasters/state-of-the-web/" target="_blank" rel="noopener">https://developers.google.com/webmasters/state-of-the-web/</a> 。</strong></p>
+</li>
+</ul>
+</li>
+<li><h4 id="对语义元素的支持情况"><a href="#对语义元素的支持情况" class="headerlink" title="对语义元素的支持情况"></a>对语义元素的支持情况</h4><p>所幸的是，HTML5的这些语义元素已经基本得到了所有现代浏览器的支持。最大绊脚石还是IE9之前的Internet Expolorer，包括仍然占很大比例的IE8.</p>
+<p>幸运的是，语义元素还是一个比较容易弥补的功能。只要让浏览器把它们当做普通的 <code>&lt;div&gt;</code> 元素就行了。</p>
+<ul>
+<li><h5 id="为语义元素添加样式"><a href="#为语义元素添加样式" class="headerlink" title="为语义元素添加样式"></a>为语义元素添加样式</h5><p>浏览器在遇到不认识的元素时，会把它们 <strong>当成内联（inline）元素</strong> 。大多数HTML5语义元素（包括已经介绍的这些，但除 <code>&lt;time&gt;</code> 之外）都是 <strong>块级元素</strong> ，也就是 <strong>需要在单独一行上来呈现它们</strong> ，同时在 <strong>它们与前后元素之间各添加一些空间</strong> 。</p>
+<p>为解决浏览器不认识HTML5语义元素，只要在样式表中添加一条“超级规则”即可。下面就是一条为9个HTML5元素应用块级显示格式的规则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">article, aside, figure, figcaption, footer, header, main, nav, section, summary &#123;</span><br><span class="line">  display: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这条规则 <strong>对于能够识别HTML5元素的浏览器没有作用</strong> ，因为它们的display属性已经被默认设成了block.而且这条规则 <strong>也不影响我们已经为这些元素应用的样式</strong> ，那些样式照样可以添加到它们身上。</p>
+</li>
+<li><h5 id="使用H5“垫片”"><a href="#使用H5“垫片”" class="headerlink" title="使用H5“垫片”"></a>使用H5“垫片”</h5><p>对于大多数浏览器而言，上面的技术可以解决兼容问题。但这里的“大多数”不包括IE8及更早的版本。换句话说，对于较早版本的IE,还要面临一个挑战：它们会拒绝给无法识别的元素应用样式。好在，有一个变通方案：通过JavaScript创建新元素，就可以骗过IE,让它识别外来元素。比如，下面的脚本可以让IE识别并为 <code>&lt;header&gt;</code> 元素应用样式：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  document.createElement(&apos;header&apos;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p> 实际上，不用自己亲自写这些代码，因为已经有人写好了，只要拿过来用就可以了。<br> 要使用这个脚本，<strong>只要在页面的 <code>&lt;header&gt;</code> 区块中引用它即可</strong> ，就像这样：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;...&lt;.title&gt;</span><br><span class="line">  &lt;script src=&quot;http://html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;script&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></table></figure>
+<p> 这行代码会从html5.goolecode.com这个Web服务器上取得脚本，然后在浏览器处理页面其余部分之前运行。</p>
+<p> 这个脚本  <strong>使用前面描述的JavaScript代码创建所有的新HTML5元素</strong> ，然后还会 <strong>为它们动态应用上面提到的样式</strong> ，确保新元素能正确的显示为块元素。</p>
+<p> 前面的html5.js脚本应该是有条件执行的—— <strong>只有你使用旧版本Internet Explorer的情况下才会执行</strong> 。为了避免不必要地加载JavaScript文件，可以像下面这样 <strong>把引用脚本的代码放在IE的条件注释中：</strong></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--[if lt IE 9]&gt;</span><br><span class="line">  &lt;script src=&quot;http://html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;script&gt;</span><br><span class="line">&lt;![endif]--&gt;</span><br></pre></td></tr></table></figure>
+<p> 这样，其他浏览器（IE9及更高版本）就会忽略这行脚本，为页面节省数毫秒的加载时间。</p>
+<p> 也可以 <strong>下载垫片脚本放在本地目录里</strong> ，地址为 <a href="http://tinyurl.com/the-shiv" target="_blank" rel="noopener">http://tinyurl.com/the-shiv</a> 。</p>
+<p> <strong>注意：</strong> 可以在页面开头添加“Web标志”解决IE的安全提示条问题。</p>
+</li>
+<li><h5 id="一站式解决方案"><a href="#一站式解决方案" class="headerlink" title="一站式解决方案"></a>一站式解决方案</h5><p> <strong>Modernizr内置了HTML5垫片脚本</strong> ，因此 <strong>会自动解决上述问题</strong> ，不用再使用html5.js或者添加什么样式规则了。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="使用语义元素设计站点"><a href="#使用语义元素设计站点" class="headerlink" title="使用语义元素设计站点"></a>使用语义元素设计站点</h4><ul>
+<li><h5 id="理解-lt-header-gt"><a href="#理解-lt-header-gt" class="headerlink" title="理解 &lt;header&gt;"></a>理解 <code>&lt;header&gt;</code></h5><p> 对于 <code>&lt;header&gt;</code> 元素来说，又两种使用方式，但差别并不大。一种是 <strong>用它标注内容的标题</strong> ，另一种是 <strong>用它标注网页的页眉</strong> 。</p>
+<p> 如果处理的是内容，那么除非必要，一般不必使用 <code>&lt;header&gt;</code> 。只有在内容标题还附带了其他信息的情况下，才有必要考虑 <code>&lt;header&gt;</code> 。也就是说，其中包含标题、摘要、发表日期、作者署名、图片、或子主题链接等很多内容，例如：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;header&gt;</span><br><span class="line">  &lt;h1&gt;How the world Could End&lt;/h1&gt;</span><br><span class="line">  &lt;p class=&quot;Tagline&quot;&gt;Scenarios that spell the end of life as we know it &lt;/p&gt;</span><br><span class="line">  &lt;p class=&quot;Byline&quot;&gt; by Ray N.Carnation&lt;/p&gt;</span><br><span class="line">&lt;/header&gt;</span><br></pre></td></tr></table></figure>
+<p>  不过，在为网站创建页眉的时候，人们多数会直接考虑 <code>&lt;header&gt;</code> 元素，即便这个页眉就是一个CSS控制的长盒子，里面啥都没有。</p>
+<p><strong>结论如下：</strong> 网页中 <strong>可以包含多个 <code>&lt;header&gt;</code> 元素（通常也应该如此）</strong> ，即使相应的区块在页面中的角色不一样。</p>
+<p>在真实的网站中，可能几十个甚至更多个页面都会有相同的布局（以及相同的侧边栏）。访客点击页面的链接之后，唯一变化的地方就是主页面中的内容。</p>
+<p>使用开发网站的技术和技巧把网页变成网站：</p>
+<ul>
+<li><p>服务器端框架</p>
+<p>其实背后的思想都很简单，在浏览器请求某个页面时，Web服务器 <strong>临时将页面的各个部分组装起来</strong>，包括公共的元素（如导航条）和内容。这是目前最常用的一种技术，也是构建大型、专业网站的必由之路。以不同方式实现这种手段的技术不计其数，包括很早就出现的服务器端包含的功能，一些 <strong>富Web应用平台</strong>（如ASP.NET和PHP），还有 <strong>内容管理系统</strong>（如Drupal和WordPress）。</p>
+</li>
+<li><p>页面模板</p>
+<p> Dreamwraver、Expression Web等功能强大的页面编辑器中就有页面模板功能。模板就是 <strong>一个定义了页面结构并且包含页面中会重复出现的内容（像页眉和侧边栏）的页面</strong> 。有了模板，就 <strong>可以利用它来创建网站的所有页面</strong> 。最关键的是，更新模板之后网页编辑器会自动更新使用该模板的所有页面。</p>
+</li>
+</ul>
+<p><strong>站点标题结构：</strong></p>
+<p> 随着HTML5获得胜利并统治Web,好像过多个 <code>&lt;h1&gt;</code> 的设计会越来越时髦。不过现在，很多开发人员为了让屏幕阅读器开心，仍然坚持只使用一个 <code>&lt;h1&gt;</code> 。</p>
+</li>
+<li><h5 id="标注导航链接"><a href="#标注导航链接" class="headerlink" title="标注导航链接"></a>标注导航链接</h5><p>在传统的HTML网站中，可能会把整个侧边栏都放到一个 <code>&lt;div&gt;</code> 中。而在HTML5时代，则应该主要使用两个针对性更强的元素： <code>&lt;aside&gt;</code> 和 <code>&lt;nav&gt;</code> 。</p>
+<p>要说 <code>&lt;aside&gt;</code> 元素 ，倒是跟 <code>&lt;header&gt;</code> 元素有点像， <code>&lt;aside&gt;</code> 的含义也有些发散。可以用它来 <strong>标注一段与正文相关的内容</strong> ，也可以用它 <strong>表示页面中一个完全独立的区块</strong> ——作为页面主要内容的陪衬。</p>
+<p>而 <code>&lt;nav&gt;</code> 元素则 <strong>用于包装一组链接</strong> 。这些链接可以指向当前页面中的主题，也可以指向网站中的其他页面。多数页面中都会 <strong>包含多个 <code>&lt;nav&gt;</code> 区块</strong> 。但不是所有链接都需要 <code>&lt;nav&gt;</code> 区块——相反， <code>&lt;nav&gt;</code> 通常 <strong>用于页面中最大最主要的导航区</strong> 。</p>
+<p>事实上，如下图所示，至少有两个比较合理的方式来构造侧边栏。</p>
+<p> <img src="https://graphbed.qiniu.songxingguo.com/Angular/%E6%9E%84%E9%80%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F.jpg" alt="构造侧边栏"></p>
+<ul>
+<li><p>第一种，侧边栏这里的导航又长又复杂(比如都用上了可折叠的菜单形式），只是后面跟着一段小内容。</p>
+</li>
+<li><p>第二种，侧边栏有多种用途，而没有哪一种用途是主要用途。</p>
+</li>
+</ul>
+<p>以下就是构成侧边栏的标记，包含三个区块：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;aside&gt;</span><br><span class="line">  &lt;nav&gt;</span><br><span class="line">    &lt;h2&gt;Articles&lt;/h2&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &lt;li&gt;&lt;a href=&quot;...&quot;&gt;How The World Could End&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">      &lt;li&gt;&lt;a href=&quot;...&quot;&gt;Would Aliens Enslave or Eradicate Us?&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  &lt;/nav&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;section&gt;</span><br><span class="line">    &lt;h2&gt;About Us&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;Apocalypse Today is a world leader in conspiracy theories ...&quot;&lt;/p&gt;</span><br><span class="line">  &lt;/section&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;img src=&quot;ad.jpg&quot; alt=&quot;Luckies cigarette ad: it&apos;s toasted&quot;&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/aside&gt;</span><br></pre></td></tr></table></figure>
+<p> 看完这些代码，应该注意到如下关键点。</p>
+<ul>
+<li><p>标题（Articles和About Us）使用的是二级标题。这样，它们就自然位于网站的一级标题之下，从而方便屏幕阅读器无障碍的阅读标题。</p>
+</li>
+<li><p>链接以 <code>&lt;ul&gt;</code> 和 <code>&lt;li&gt;</code> 元素组成的无序列表来标记。处理一组链接的最佳方式，也是最无障碍的方式，就是使用列表。不过，得通过样式表删除列表项默认的缩进和项目符号。</p>
+</li>
+<li><p>“About Us”包含在一个 <code>&lt;section&gt;</code> 元素中。<code>&lt;section&gt;</code> 适合任何以标题开头的内容区块。</p>
+</li>
+<li><p>图片广告放在一个 <code>&lt;div&gt;</code>里。有了 <code>&lt;di&gt;</code> 区块在之间的关系就更加明确了。</p>
+</li>
+</ul>
+<p>复杂的侧边栏可能会以 <code>&lt;header&gt;</code> 和 <code>&lt;footer&gt;</code> 元素作为开头和结尾，也可能包含多个 <code>&lt;nav&gt;</code> 区块——存档文章链接一个、新闻报道连接诶一个、友情链接一个或相关站点链接一个，等等。</p>
+<p>下面是侧边栏的样式表：</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">aside .NavSidebar &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 179px;</span><br><span class="line">  left: 0px;</span><br><span class="line">  paddding: 5px 15px 0px 15px;</span><br><span class="line">  width: 203px;</span><br><span class="line">  min-height: 1500px;</span><br><span class="line">  background-color: #eee;</span><br><span class="line">  font-size: small;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其他样式可以从 <a href="http://prosetech.com/html5" target="_blank" rel="noopener">http://prosetech.com/html5</a> 下载示例代码。</p>
+<p><strong>注意：</strong> <code>&lt;nav&gt;</code> 通常会单独出现，有时候也会出现在 <code>&lt;aside&gt;</code> 中。其实，还有经常出现在顶部的 <code>&lt;header&gt;</code> 元素中。</p>
+<p>下面是整个页面布局关系：</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/Angular/%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80.jpg" alt="页面布局"></p>
+<pre><code>使用 `&lt;details&gt;` 和 `&lt;summary&gt;` 的折叠框,HTML5新添加了两个语义元素，用于辅助将折叠区块（通过单击区块标题能够显示或隐藏其中的内容）这种行为自动化。具体做法是可以把折叠的区块放在一个 `&lt;details&gt;` 元素中，而把标题放在一个 `&lt;summary&gt;` 元素中。最终结构类似如下这样：
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">  &lt;summary&gt;Section #1&lt;/summary&gt;</span><br><span class="line">  &lt;p&gt;If you can see this content, the section is expanded&lt;/p&gt;</span><br><span class="line">&lt;/details&gt;</span><br></pre></td></tr></table></figure>
+
+**注意：** 对这两个元素支持的浏览器还很少。
+</code></pre></li>
+<li><h5 id="理解区块"><a href="#理解区块" class="headerlink" title="理解区块"></a>理解区块</h5><p> 区块元素 <code>&lt;section&gt;</code> 是应该最后考虑的语义元素。如果有一个带标题的内容块而其他语义元素都不合适，那么选择 <code>&lt;section&gt;</code> 通常比选择 <code>&lt;div&gt;</code> 更好些。</p>
+<p> 可以放在 <code>&lt;section&gt;</code> 中的内容有以下几种。</p>
+<ul>
+<li>与页面主体内容并列显示的小内容块。</li>
+<li>独立性内容，但却不能用文章（ <code>&lt;article&gt;</code>）来描述，比如客户的购物记录或产品清单。</li>
+<li>分组内容——例如，新闻站点中的一组文章。</li>
+<li><p>比较长的文档中的一部分。</p>
+<p>最后， <code>&lt;section&gt;</code> 元素也会影响网页的纲要。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h5 id="理解-lt-footer-gt"><a href="#理解-lt-footer-gt" class="headerlink" title="理解 &lt;footer&gt;"></a>理解 <code>&lt;footer&gt;</code></h5><p>  <code>&lt;footer&gt;</code>与内容丰富的“胖” <code>&lt;header&gt;</code> 可谓天生一对。在 <code>&lt;header&gt;</code> 中 <strong>不仅可以放副标题和作者署名，还可以添加图片、导航区域（使用 <code>&lt;nav&gt;</code> 元素）、以及任何有必要放在页面顶部的内容</strong> 。</p>
+<p>  但HTML5规定，只能在 <code>&lt;footer&gt;</code> 元素中放一些 <strong>网站版权信息、作品来源、法律限制以及链接之类的信息</strong> 。<strong>不能</strong> 在 <code>&lt;footer&gt;</code> 里面放太多链接、重要的内容或无关的内容，如广告、社交媒体按钮以及网站部件等。</p>
+<p>  “胖” 页脚中经常会用到如下所示的一些花哨的技术。</p>
+<ul>
+<li><p>固定位置，这样就可以让页脚始终固定在浏览器窗口底部。</p>
+</li>
+<li><p>关闭按钮，这样用户看完页脚内容后，单击它们就可以腾出页面空间。</p>
+</li>
+<li><p>部分透明的背景，这样就可以透过页脚看到内容。</p>
+</li>
+<li><p>动画，页脚在视图中弹出，或者滑入视图(例如，可以看看在 <a href="http://www.nytimes.com" target="_blank" rel="noopener">http://www.nytimes.com</a> 上阅读到一篇文章最后时弹出的相关文章提示框）。</p>
+</li>
+</ul>
+<p>如果站点中包含这种页脚，就要作出选择。比较简单的方法就是无视规定。可是，假如不想违反标准规定，那就调整一下标记。</p>
+<p>调整标记的关键在于从多余的内容中提取出标准的页脚来。这些内容看起来还是一个页脚，但在标记中，其他内容都不包含在 <code>&lt;footer&gt;</code> 元素中。以下就是“胖”页脚的实际结构：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;FatFooter&quot;&gt;</span><br><span class="line">  &lt;!-- “胖” 页脚的内容 --&gt;</span><br><span class="line">  &lt;img onclick=&quot;CloseBox()&quot; src=&quot;close_icon.png&quot; class=&quot;CloseButton&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;footer&gt;</span><br><span class="line">    &lt;!-- 标准页脚内容 --&gt;</span><br><span class="line">    &lt;p&gt;The views expressed on this site do not ... &lt;/p&gt;</span><br><span class="line">  &lt;/footer&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>最外围的 <code>&lt;div&gt;</code> 没有特殊含义，它只负责把多余的内容和标准的页脚内容包装起来。同样，下面给出了应用的一些样式表规则：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#FatFooter &#123;</span><br><span class="line">  position: fixed;</span><br><span class="line">  bootom: 0px;</span><br><span class="line">  height: 145px;</span><br><span class="line">  width: 100%;</span><br><span class="line">  background:#ECD672;</span><br><span class="line">  border-top: thin solid black;</span><br><span class="line">  font-size: small;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然，也可以把页脚中其余内容放在一个 <code>&lt;aside&gt;</code> 元素中，从而清晰地表明其中内容属于一个独立区块，与页面中的其他内容无关。相应的标记结构类似如下所示：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;FatFooter&quot;&gt;</span><br><span class="line">  &lt;aside&gt;</span><br><span class="line">    &lt;!-- “胖” 页脚的内容 --&gt;</span><br><span class="line">    &lt;img onclick=&quot;CloseBox()&quot; src=&quot;close_icon.png&quot; class=&quot;CloseButton&quot;&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/aside&gt;</span><br><span class="line">  &lt;footer&gt;</span><br><span class="line">    &lt;!-- 标准页脚内容 --&gt;</span><br><span class="line">    &lt;p&gt;The views expressed on this site do not ... &lt;/p&gt;</span><br><span class="line">  &lt;/footer&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>这里最重要的一点是没有把 <code>&lt;footer&gt;</code> 放到 <code>&lt;aside&gt;</code> 元素中。因为 <code>&lt;footer&gt;</code> 并不属于 <code>&lt;aside&gt;</code>, 而是整个网站的一部分。类似地，如果有一个 <code>&lt;footer&gt;</code> 属于某些内容，那么就应该将这个 <code>&lt;footer&gt;</code> 放在包含相应内容的元素中。</p>
+<p><strong>注意：</strong> 如果一个元素看起来不适合你标注的内容，那就不要用。当然，，也可以上网去讨论，最好的一个去处就是 <a href="http://html5doctor.com" target="_blank" rel="noopener">http://html5doctor.com</a> 。</p>
+</li>
+<li><h5 id="标识主要内容"><a href="#标识主要内容" class="headerlink" title="标识主要内容"></a>标识主要内容</h5><p><code>&lt;main&gt;</code> 元素用于标识网页中的主要内容。</p>
+<p>在启示录网站中，就用 <code>&lt;main&gt;</code> 包装了 <code>&lt;article&gt;</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;header&gt;</span><br><span class="line">      ...</span><br><span class="line">    &lt;/header&gt;</span><br><span class="line">    &lt;aside&gt;</span><br><span class="line">      ...</span><br><span class="line">    &lt;/aside&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;main&gt;</span><br><span class="line">      &lt;article&gt;</span><br><span class="line">        ...</span><br><span class="line">      &lt;/article&gt;</span><br><span class="line">    &lt;/main&gt;</span><br><span class="line">    &lt;footer&gt;</span><br><span class="line">      ...</span><br><span class="line">    &lt;/footer&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>不能</strong> 把 <code>&lt;main&gt;</code> 元素嵌套到 <code>&lt;article&gt;</code>（或其他任何语义元素）里边。这是因为 <code>&lt;main&gt;</code> 元素的使命就是 <strong>包裹页面中的主要内容</strong> ，<strong>而非标识文档中某个重要的部分</strong> 。换句话说，一个页面中 <strong>只能有一个 <code>&lt;main&gt;</code> 元素</strong>。</p>
+<p><code>&lt;main&gt;</code> 元素对屏幕阅读器很重要 ，有了它，屏幕阅读器就可以跳过那些次要的内容，比如页眉、导航菜单、广告、和侧边栏，直达内容。这个例子中 <code>&lt;main&gt;</code> 紧挨着 <code>&lt;article&gt;</code> ，这 <strong>不</strong> 是必须的。在复杂些的页面中，比如包含多个 <code>&lt;article&gt;</code> 元素时， <code>&lt;main&gt;</code> 应该包含所有 <code>&lt;article&gt;</code>,像这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;main&gt;</span><br><span class="line">  &lt;article&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/article&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;article&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/article&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;article&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/article&gt;</span><br><span class="line">  </span><br><span class="line">  ...</span><br><span class="line">&lt;/main&gt;</span><br></pre></td></tr></table></figure>
+<p>很明显，每个 <code>&lt;article&gt;</code> 都包含自己的内容，而 <code>&lt;main&gt;</code> 包含所有文章。</p>
+<p>总之一句话，就是 <code>&lt;main&gt;</code> <strong>只应该包含主要内容，而不是上下左右的外部细节</strong>。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="HTML5纲要"><a href="#HTML5纲要" class="headerlink" title="HTML5纲要"></a>HTML5纲要</h4><p>HTML5定义了一组规则，<strong>用于说明如何为网页创建文档纲要（document outline）</strong> 。网页纲要能够提高很多便利：</p>
+<ul>
+<li>浏览器可以让你从纲要中的一处跳到另一处。</li>
+<li>设计工具可以让你通过在纲要视图中拖放来重排区块。</li>
+<li>搜索引擎可以使用纲要构建更好的页面预览。</li>
+<li>屏幕阅读器通过使用纲要可以引导视力障碍的用户在深度嵌套的区块和子区块中导航。</li>
+</ul>
+<ul>
+<li><h5 id="如何查看纲要"><a href="#如何查看纲要" class="headerlink" title="如何查看纲要"></a>如何查看纲要</h5><p>目前，还没有浏览器实现HTML5纲要（或者提供一种查看方式）。不过，有几个工具填补了这个空白。</p>
+<ul>
+<li><p>在线HTML纲要生成器</p>
+<p>访问 <a href="http://gsnedders.html5.org/outliner/" target="_blank" rel="noopener">http://gsnedders.html5.org/outliner/</a> ，告诉纲要生成器你想为那个网页生成纲要。可以通过三种方式提交网页：从本地电脑中上传、提供URL或直接在文本框中粘贴标记。</p>
+</li>
+<li><p>Chrome扩展</p>
+<p>在Chrome浏览器中查看网页纲要是，可以使用h5o插件分析纲要。访问 <a href="http://code.google.com/p/h5o" target="_blank" rel="noopener">http://code.google.com/p/h5o</a> 安装插件，然后在网上打开一个HTML5页面看一看。然后浏览器地址栏中会出现一个纲要图标，点击该图标就会显示页面的结构。</p>
+</li>
+<li><p>Opera扩展</p>
+<p>Chrome的h5o扩展也有一个针对Opera开发的版本，安装地址在 <a href="http://tinyurl.com/3k3ecdy" target="_blank" rel="noopener">http://tinyurl.com/3k3ecdy</a> 。</p>
+</li>
+</ul>
+</li>
+<li><h5 id="基本纲要"><a href="#基本纲要" class="headerlink" title="基本纲要"></a>基本纲要</h5><p>要知道自己网页的纲要是什么样子，可以想象把页面中的所有内容都剥离，只 <strong>剩下编号的标题元素（ <code>&lt;h1&gt;</code>、<code>&lt;h2&gt;</code>、<code>&lt;h3&gt;</code>等）中的文本</strong>。然后，根据它们在 <strong>标记中位置缩进标题</strong> ，那么嵌套最深的标题在纲要中的缩进也最多。</p>
+<p>以最初的还没有应用HTML5元素之前的启示录文章页面的标记为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;dody&gt;</span><br><span class="line">  &lt;div class=&quot;Header&quot;&gt;</span><br><span class="line">    &lt;h1&gt;How World Could End&lt;/h1&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;h2&gt;Mayan Doomsday&lt;/h2&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;h2&gt;Robot Takeover&lt;/h2&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;h2&gt;Unexplained Singularity&lt;/h2&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;h2&gt;Runaway Climate Change&lt;/h2&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;h2&gt;Global Epidenmic&lt;/h2&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;div class=&quot;Footer&quot;&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>这个简单的结构会生成如下所示的纲要：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.How World Could End</span><br><span class="line"> 1.Mayan Doomsday</span><br><span class="line"> 2.Robot Takeover</span><br><span class="line"> 3.Unexplained Singularity</span><br><span class="line"> 4.Runaway Climate Change</span><br><span class="line"> 5.Global Epidenmic</span><br></pre></td></tr></table></figure>
+<p>两个级别的标题（ <code>&lt;h1&gt;</code>和<code>&lt;h2&gt;</code>）就创建两级的纲要。<strong>这种对应关系与文字处理软件中的纲要功能类似</strong> 。比如，可以在微软Word的文档结构图窗格中看到类似的纲要。<br>换个例子，对于下面的标记：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;Level-1 Heading&lt;/h1&gt;</span><br><span class="line">&lt;h2&gt;Level-2 Heading&lt;/h2&gt;</span><br><span class="line">&lt;h2&gt;Level-2 Heading&lt;/h2&gt;</span><br><span class="line">&lt;h3&gt;Level-3 Heading&lt;/h3&gt;</span><br><span class="line">&lt;h2&gt;Level-2 Heading&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
+<p>会生成如下所示的纲要：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.一级标题</span><br><span class="line">  2.二级标题</span><br><span class="line">  2.二级标题</span><br><span class="line">    1.三级标题</span><br><span class="line">  3.二级标题</span><br></pre></td></tr></table></figure>
+<p>最后，纲要算法也很聪明，<strong>能够自动忽略跳过的级别</strong> 。例如，如果写的标记有点不太规范，从 <code>&lt;h1&gt;</code> 直接就跳到了 <code>&lt;h3&gt;</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;Level-1 Heading&lt;/h1&gt;</span><br><span class="line">&lt;h2&gt;Level-2 Heading&lt;/h2&gt;</span><br><span class="line">&lt;h1&gt;Level-1 Heading&lt;/h1&gt;</span><br><span class="line">&lt;h3&gt;Level-3 Heading&lt;/h3&gt;</span><br><span class="line">&lt;h2&gt;Level-2 Heading&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
+<p>那会得到如下纲要：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.一级标题</span><br><span class="line">  1.二级标题</span><br><span class="line">2.一级标题</span><br><span class="line">  1.三级标题</span><br><span class="line">  2.二级标题</span><br></pre></td></tr></table></figure>
+<p>本来的三级标题与二级标题放在同一层次上了，正是由于这种纲要算法可以消除网页标题级别不完美匹配的问题。</p>
+</li>
+<li><h5 id="分块元素"><a href="#分块元素" class="headerlink" title="分块元素"></a>分块元素</h5><p>分块元素（sectioning element）是指那些 <strong>在页面中创建新的、嵌套纲要的元素</strong> 。这些元素有 <code>&lt;article&gt;</code> 、 <code>&lt;aside&gt;</code> 、 <code>&lt;nav&gt;</code> 和 <code>&lt;section&gt;</code> 。要理解分块元素的作用，可以想象一个包含两个 <code>&lt;article&gt;</code> 元素的页面。因为 <code>&lt;article&gt;</code> 是一个分块元素，所以 <strong>这个页面中（至少）有三个纲要：整个页面有一个纲要、每篇文章有一个嵌套的纲要 </strong>。</p>
+<p>为了进一步弄清楚到底是什么情况，我们来看一看用HTML5改造之后的启示录文章页面：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;dody&gt;</span><br><span class="line">  &lt;article&gt;</span><br><span class="line">    &lt;header&gt;</span><br><span class="line">      &lt;h1&gt;How World Could End&lt;/h1&gt;</span><br><span class="line">      ...</span><br><span class="line">    &lt;/header&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;div class=&quot;Content&quot;&gt;</span><br><span class="line">      ...</span><br><span class="line">      &lt;h2&gt;Mayan Doomsday&lt;/h2&gt;</span><br><span class="line">      ...</span><br><span class="line">      &lt;h2&gt;Robot Takeover&lt;/h2&gt;</span><br><span class="line">      ...</span><br><span class="line">      &lt;h2&gt;Unexplained Singularity&lt;/h2&gt;</span><br><span class="line">      ...</span><br><span class="line">      &lt;h2&gt;Runaway Climate Change&lt;/h2&gt;</span><br><span class="line">      ...</span><br><span class="line">      &lt;h2&gt;Global Epidenmic&lt;/h2&gt;</span><br><span class="line">      ...</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/article&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;footer&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/footer&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>将这些标记复制到 <a href="http://gsnedders.html5.org/outliner/" target="_blank" rel="noopener">http://gsnedders.html5.org/outliner/</a> 中，可以看到下面的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.Untitled Section</span><br><span class="line">  1.How World Could End</span><br><span class="line">    1.Mayan Doomsday</span><br><span class="line">    2.Robot Takeover</span><br><span class="line">    3.Unexplained Singularity</span><br><span class="line">    4.Runaway Climate Change</span><br><span class="line">    5.Global Epidenmic</span><br></pre></td></tr></table></figure>
+<p>这个纲要开始于 <strong>一个无标题的区块（Untitled Section）</strong>，也就是 <strong>最上层的 <code>&lt;body&gt;</code> 元素</strong> 。然后，<code>&lt;article&gt;</code> 元素开始一个新的嵌套的纲要，其中包含一个 <code>&lt;h1&gt;</code> 元素和几个 <code>&lt;h2&gt;</code> 元素。</p>
+<p>有时候，Untitled Section意味着一个错误。尽管 <code>&lt;aside&gt;</code> 和 <code>&lt;nav&gt;</code> 元素可以不带标题，但 <code>&lt;article&gt;</code> 和 <code>&lt;section&gt;</code> 则万万不可。</p>
+<p>现在，再看一个复杂一点的例子。比如带有导航侧边栏的启示录站：<br>   <a href="http://prosetech.com/html5/Chapter%2002/FatFooter.html" target="_blank" rel="noopener">http://prosetech.com/html5/Chapter%2002/FatFooter.html</a> 。<br>把相应的链接放到纲要生成器中，可以得到如下结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1.Apocalypse Today</span><br><span class="line">  1.Untitled Section</span><br><span class="line">    1.Articles</span><br><span class="line">    2.About Us</span><br><span class="line">  2.How the World Could End</span><br><span class="line">    1.Scenarios that spell the end of life as we know</span><br><span class="line">    2.Mayan Doomsday</span><br><span class="line">    3.Robot Takeover</span><br><span class="line">    4.Untitled Section</span><br><span class="line">    5.Unexplained Singularity</span><br><span class="line">    6.Runaway Climate Change</span><br><span class="line">    7.Global Epidemic</span><br><span class="line">  3.Untitled Section</span><br></pre></td></tr></table></figure>
+<p>这一次，标记包含三个分块元素，因此就有 <strong>三个嵌套的纲要：</strong>一个属于侧边栏，一个属于文章，另外一个属于页脚。此外，也有 <strong>三个无标题区块</strong> ，但都是合乎规范的-第一个是属于侧边栏的 <code>&lt;aside&gt;</code> 元素，第二个是文章中醒目引文的 <code>&lt;aside&gt;</code> 元素，第三个是页脚“胖”页脚部分的 <code>&lt;aside&gt;</code> 元素。</p>
+<p>除了分块元素之外，还有一些元素被称作 <strong>区块根</strong> （section root）。这些元素不是从已有纲要向下分支，而是 <strong>产生自己的纲要，但不会出现在包含页面的主纲要视图中</strong> 。比如包含网页内容的 <code>&lt;body&gt;</code> 元素就是一个区块根，这当然合理。但HTML5还把下列元素视为区块根：<code>&lt;blockquote&gt;</code> 、<code>&lt;td&gt;</code>、 <code>&lt;fieldset&gt;</code> 、 <code>&lt;figure&gt;</code> 和 <code>&lt;details&gt;</code> 。</p>
+<p>分块元素对复杂页面的意义：</p>
+<p>分块对联合（syndication）和聚合（aggregation）都有很大的意义，这两种方式都是从一个页面取得内容，然后注入到另一个页面的技术。</p>
+<p>在HTML5中，只要把这篇文章嵌套在一个 <code>&lt;article&gt;</code> 元素中，那么抓过来的内容就会变成它自己嵌套纲要的一部分。而这个纲要可以从任意级别的标题开始，几级标题都无所谓。</p>
+<p><strong>最后的结论是：</strong> HTML5有一个讲究逻辑的纲要机制，让组合文档变得更容易。在这种纲要机制下，标题的位置变得更加重要，而实际的级别则没有那么重要了。</p>
+</li>
+<li><h5 id="解决一个纲要问题"><a href="#解决一个纲要问题" class="headerlink" title="解决一个纲要问题"></a>解决一个纲要问题</h5><p> 有时候也会出现一个问题。比如：你创建了一下页面结构：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;article&gt;</span><br><span class="line">    &lt;h1&gt;Natural Wonders to Visit Before You Die&lt;/h1&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;h2&gt;In North America&lt;/h2&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;h3&gt;The Grand Canyon&lt;/h3&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;h3&gt;Yellowstone National Park&lt;/h3&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;h2&gt;In the Rest of the World&lt;/h2&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;aside&gt;...&lt;/aside&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;h3&gt;Galapagos Islands&lt;/h3&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;h3&gt;The Swisss Alps&lt;/h3&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/article&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p> 然后，你觉得这个页面的纲要应该是这样的：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.Untitled Section for the &lt;body&gt;</span><br><span class="line">  1.Natural Wonders to Visit Before You Die</span><br><span class="line">    1.In North America</span><br><span class="line">     1.The Grand Canyon</span><br><span class="line">     2.Yellowstone National Park</span><br><span class="line">  2.In the Rest of the World</span><br><span class="line">  3.Untitled Section for the &lt;aside&gt;</span><br><span class="line">     1.Galapagos Islands</span><br><span class="line">     2.The Swisss Alps</span><br></pre></td></tr></table></figure>
+<p> 但实际上纲要确实这样的：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. Untitled Section for the &lt;body&gt;</span><br><span class="line">  1.Natural Wonders to Visit Before You Die</span><br><span class="line">    1.In North America</span><br><span class="line">      1.The Grand Canyon</span><br><span class="line">      2.Yellowstone National Park</span><br><span class="line">   2.In the Rest of the World</span><br><span class="line">   3.Untitled Section for the &lt;aside&gt;</span><br><span class="line">   4.Galapagos Islands</span><br><span class="line">   5.The Swisss Alps</span><br></pre></td></tr></table></figure>
+<p> 不知怎么地， <code>&lt;h2&gt;</code> 后面多出来的那个 <code>&lt;aside&gt;</code> 把后面的两个 <code>&lt;h3&gt;</code> 元素都带了出来，让它们在逻辑上跟 <code>&lt;h2&gt;</code> 元素排在了同一层次上。这显然不是想要的结果。</p>
+<p>为解决这个问题，首先需要理解HTML5的纲要机制，即每次遇到编号标题元素（ <code>&lt;h1&gt;</code>、 <code>&lt;h2&gt;</code>、<code>&lt;h3&gt;</code> ，等等），只要该元素 <strong>不在某个区块顶部 </strong>，就会为它 <strong>自动创建一个新的区块</strong> 。</p>
+<p>对这个例子来说，纲要机制对一开头的 <code>&lt;h1&gt;</code> 元素什么都不做，因为它位于 <code>&lt;article&gt;</code> 区块的顶部。但纲要算法却会为接下来的 <code>&lt;h2&gt;</code> 和 <code>&lt;h3&gt;</code> 创建新的区块，就好像你写了如下标记一样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;article&gt;</span><br><span class="line">    &lt;h1&gt;Natural Wonders to Visit Before You Die&lt;/h1&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;section&gt;</span><br><span class="line">      &lt;h2&gt;In North America&lt;/h2&gt;</span><br><span class="line">      ...</span><br><span class="line">      &lt;section&gt;</span><br><span class="line">        &lt;h3&gt;The Grand Canyon&lt;/h3&gt;</span><br><span class="line">        ...</span><br><span class="line">      &lt;/section&gt;</span><br><span class="line">      &lt;section&gt;</span><br><span class="line">        &lt;h3&gt;Yellowstone National Park&lt;/h3&gt;</span><br><span class="line">        ...</span><br><span class="line">      &lt;/section&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;section&gt;</span><br><span class="line">      &lt;h2&gt;In the Rest of the World&lt;/h2&gt;</span><br><span class="line">      ...</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">    &lt;aside&gt;...&lt;/aside&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;section&gt;</span><br><span class="line">      &lt;h3&gt;Galapagos Islands&lt;/h3&gt;</span><br><span class="line">      ...</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">    &lt;section&gt;</span><br><span class="line">      &lt;h3&gt;The Swisss Alps&lt;/h3&gt;</span><br><span class="line">      ...</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">  &lt;/article&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>多数情况下，这些自动创建的区块不是问题。事实上，这些区块通常还很有用，因为这样可以确保为正确编号的标题仍然能排在正确的纲要级别上。但这样做的代价就是偶尔会出现小差错，就像我们这个例子。</p>
+<p>而这个问题的原因就是因为 <strong>碰到了 <code>&lt;aside&gt;</code> 元素，而关闭了为 <code>&lt;h2&gt;</code> 创建的子区块</strong> 。</p>
+<p>为了纠正这个问题，需要通过自己定义区块和子区块，来代替纲要机制的自动创建行为。在标记中 <strong>明确为该 <code>&lt;h2&gt;</code> 定义一个区块即可解决问题：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;article&gt;</span><br><span class="line">    &lt;h1&gt;Natural Wonders to Visit Before You Die&lt;/h1&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;h2&gt;In North America&lt;/h2&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;h3&gt;The Grand Canyon&lt;/h3&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;h3&gt;Yellowstone National Park&lt;/h3&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;section&gt;</span><br><span class="line">      &lt;h2&gt;In the Rest of the World&lt;/h2&gt;</span><br><span class="line">      ...</span><br><span class="line">      &lt;aside&gt;...&lt;/aside&gt;</span><br><span class="line">      ...</span><br><span class="line">      &lt;h3&gt;Galapagos Islands&lt;/h3&gt;</span><br><span class="line">      ...</span><br><span class="line">      &lt;h3&gt;The Swisss Alps&lt;/h3&gt;</span><br><span class="line">      ...</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">  &lt;/article&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>这样，纲要算法就不必再为第二个 <code>&lt;h2&gt;</code> 自动创建区块了，因而也就避免了在它发现 <code>&lt;aside&gt;</code> 时去关闭该区块的风险。</p>
+<p>修改后的纲要：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.Untitled Section for the &lt;body&gt;</span><br><span class="line">  1.Natural Wonders to Visit Before You Die</span><br><span class="line">    1.In North America</span><br><span class="line">      1.The Grand Canyon</span><br><span class="line">      2.Yellowstone National Park</span><br><span class="line">   2.In the Rest of the World</span><br><span class="line">      1.Untitled Section for the &lt;aside&gt;</span><br><span class="line">      2.Galapagos Islands</span><br><span class="line">      3.The Swisss Alps</span><br></pre></td></tr></table></figure>
+<p>另一个办法是用 <code>&lt;div&gt;</code> 元素替换 <code>&lt;aside&gt;</code> 。因为 <code>&lt;div&gt;</code> 不是分块元素，因此不会导致前面的区块意外关闭。</p>
+<p>假如不小心在 <strong>两个不同级别的标题之间插入了一个分块元素 </strong>，那就要检查一下纲要，看这样干是不是说得过去。</p>
+<p>最好是把HTML5的纲要机制当成一种 <strong>质量保障工具</strong> ，它有时候可以帮上你的忙。通过在纲要生成器中查看自己的标记，有可能 <strong>发现其他问题导致的错误</strong>，而且能够 <strong>确保你正确地使用语义元素</strong> 。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>​<br>​    </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTML/" rel="tag"># HTML</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/20/Angular-2-introduce/" rel="next" title="《Angular 2开发实战》学习笔记-Angular 2介绍">
+                <i class="fa fa-chevron-left"></i> 《Angular 2开发实战》学习笔记-Angular 2介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/25/HTML5-sign/" rel="prev" title="《HTML5秘籍》学习笔记-编写更有意义的标记">
+                《HTML5秘籍》学习笔记-编写更有意义的标记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="songxingguo">
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">131</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#用语义元素构造网页"><span class="nav-number">1.</span> <span class="nav-text">用语义元素构造网页</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语义元素"><span class="nav-number">1.1.</span> <span class="nav-text">语义元素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#容易修改和维护"><span class="nav-number">1.1.1.</span> <span class="nav-text">容易修改和维护</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#无障碍性"><span class="nav-number">1.1.2.</span> <span class="nav-text">无障碍性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#搜索引擎优化"><span class="nav-number">1.1.3.</span> <span class="nav-text">搜索引擎优化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#未来功能"><span class="nav-number">1.1.4.</span> <span class="nav-text">未来功能</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#改造传统的HTML页面"><span class="nav-number">1.2.</span> <span class="nav-text">改造传统的HTML页面</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#构造页面的老办法"><span class="nav-number">1.2.1.</span> <span class="nav-text">构造页面的老办法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用H5构造页面"><span class="nav-number">1.2.2.</span> <span class="nav-text">使用H5构造页面</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加插图"><span class="nav-number">1.2.3.</span> <span class="nav-text">添加插图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加附注"><span class="nav-number">1.2.4.</span> <span class="nav-text">添加附注</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对语义元素的支持情况"><span class="nav-number">1.3.</span> <span class="nav-text">对语义元素的支持情况</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#为语义元素添加样式"><span class="nav-number">1.3.1.</span> <span class="nav-text">为语义元素添加样式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用H5“垫片”"><span class="nav-number">1.3.2.</span> <span class="nav-text">使用H5“垫片”</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#一站式解决方案"><span class="nav-number">1.3.3.</span> <span class="nav-text">一站式解决方案</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用语义元素设计站点"><span class="nav-number">1.4.</span> <span class="nav-text">使用语义元素设计站点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#理解-lt-header-gt"><span class="nav-number">1.4.1.</span> <span class="nav-text">理解 &lt;header&gt;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#标注导航链接"><span class="nav-number">1.4.2.</span> <span class="nav-text">标注导航链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#理解区块"><span class="nav-number">1.4.3.</span> <span class="nav-text">理解区块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#理解-lt-footer-gt"><span class="nav-number">1.4.4.</span> <span class="nav-text">理解 &lt;footer&gt;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#标识主要内容"><span class="nav-number">1.4.5.</span> <span class="nav-text">标识主要内容</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML5纲要"><span class="nav-number">1.5.</span> <span class="nav-text">HTML5纲要</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#如何查看纲要"><span class="nav-number">1.5.1.</span> <span class="nav-text">如何查看纲要</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#基本纲要"><span class="nav-number">1.5.2.</span> <span class="nav-text">基本纲要</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分块元素"><span class="nav-number">1.5.3.</span> <span class="nav-text">分块元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解决一个纲要问题"><span class="nav-number">1.5.4.</span> <span class="nav-text">解决一个纲要问题</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":90,"vOffset":-25},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
