@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="React学习React渲染页面的过程JSX 到页面的渲染如下图：  有些同学可能会问，为什么不直接从 JSX 直接渲染构造 DOM 结构，而是要经过中间这么一层呢？ 第一个原因是，当我们拿到一个表示 UI 的结构和信息的对象以后，不一定会把元素渲染到浏览器的普通页面上，我们有可能把这个结构渲染到 canvas 上，或者是手机 App 上。所以这也是为什么会要把 react-dom 单独抽离出来的">
+<meta name="keywords" content="React,JSX">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React入门">
+<meta property="og:url" content="https://www.songxingguo.com/2018/03/25/react-primer/index.html">
+<meta property="og:site_name" content="阿有的生活">
+<meta property="og:description" content="React学习React渲染页面的过程JSX 到页面的渲染如下图：  有些同学可能会问，为什么不直接从 JSX 直接渲染构造 DOM 结构，而是要经过中间这么一层呢？ 第一个原因是，当我们拿到一个表示 UI 的结构和信息的对象以后，不一定会把元素渲染到浏览器的普通页面上，我们有可能把这个结构渲染到 canvas 上，或者是手机 App 上。所以这也是为什么会要把 react-dom 单独抽离出来的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/pasted-5.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/pasted-1.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/pasted-6.png">
+<meta property="og:updated_time" content="2020-07-22T09:19:01.484Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React入门">
+<meta name="twitter:description" content="React学习React渲染页面的过程JSX 到页面的渲染如下图：  有些同学可能会问，为什么不直接从 JSX 直接渲染构造 DOM 结构，而是要经过中间这么一层呢？ 第一个原因是，当我们拿到一个表示 UI 的结构和信息的对象以后，不一定会把元素渲染到浏览器的普通页面上，我们有可能把这个结构渲染到 canvas 上，或者是手机 App 上。所以这也是为什么会要把 react-dom 单独抽离出来的">
+<meta name="twitter:image" content="https://graphbed.qiniu.songxingguo.com/pasted-5.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/03/25/react-primer/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>React入门 | 阿有的生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">131</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">43</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/03/25/react-primer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">React入门
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-03-25 17:19:00" itemprop="dateCreated datePublished" datetime="2018-03-25T17:19:00+00:00">2018-03-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-07-22 09:19:01" itemprop="dateModified" datetime="2020-07-22T09:19:01+00:00">2020-07-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发者手册/" itemprop="url" rel="index"><span itemprop="name">开发者手册</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/25/react-primer/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/03/25/react-primer/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/03/25/react-primer/" class="leancloud_visitors" data-flag-title="React入门">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="React学习"><a href="#React学习" class="headerlink" title="React学习"></a>React学习</h2><h3 id="React渲染页面的过程"><a href="#React渲染页面的过程" class="headerlink" title="React渲染页面的过程"></a>React渲染页面的过程</h3><p>JSX 到页面的渲染如下图：</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/pasted-5.png" alt="渲染图"></p>
+<p>有些同学可能会问，为什么不直接从 JSX 直接渲染构造 DOM 结构，而是要经过中间这么一层呢？</p>
+<p>第一个原因是，当我们拿到一个表示 UI 的结构和信息的对象以后，不一定会把元素渲染到浏览器的普通页面上，我们有可能把这个结构渲染到 canvas 上，或者是手机 App 上。所以这也是为什么会要把 react-dom 单独抽离出来的原因，可以想象有一个叫 react-canvas 可以帮我们把 UI 渲染到 canvas 上，或者是有一个叫 react-app 可以帮我们把它转换成原生的 App（实际上这玩意叫 ReactNative）。</p>
+<p>第二个原因是，有了这样一个对象。当数据变化，需要更新组件的时候，就可以用比较快的算法操作这个 JavaScript 对象，而不用直接操作页面上的 DOM，这样可以尽量少的减少浏览器重排，极大地优化性能。这个在以后的章节中我们会提到。</p>
+<a id="more"></a>
+<h3 id="JSX中-的使用"><a href="#JSX中-的使用" class="headerlink" title="JSX中{}的使用"></a>JSX中{}的使用</h3><p>简而言之，{} 内可以放任何 JavaScript 的代码，包括变量、表达式计算、函数执行等等</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="function"><span class="title">render</span></span> () &#123;</span><br><span class="line">  const isGoodWord = <span class="literal">true</span></span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;</span><br><span class="line">        React 小书</span><br><span class="line">        &#123;isGoodWord</span><br><span class="line">          ? &lt;strong&gt; is good&lt;/strong&gt;</span><br><span class="line">          : null</span><br><span class="line">        &#125;</span><br><span class="line">      &lt;/h1&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>这样就相当于在 isGoodWord 为 true 的时候显示 <strong>is good</strong>，否则就隐藏。</p>
+<p>条件返回 JSX 的方式在 React.js 中很常见，组件的呈现方式随着数据的变化而不一样，你可以利用 JSX 这种灵活的方式随时组合构建不同的页面结构。</p>
+<h4 id="JSX-元素变量"><a href="#JSX-元素变量" class="headerlink" title="JSX 元素变量"></a>JSX 元素变量</h4><p>同样的，如果你能理解 JSX 元素就是 JavaScript 对象。那么你就可以联想到，JSX 元素其实可以像 JavaScript 对象那样自由地赋值给变量，或者作为函数参数传递、或者作为函数的返回值。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="function"><span class="title">render</span></span> () &#123;</span><br><span class="line">  const isGoodWord = <span class="literal">true</span></span><br><span class="line">  const goodWord = &lt;strong&gt; is good&lt;/strong&gt;</span><br><span class="line">  const badWord = &lt;span&gt; is not good&lt;/span&gt;</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;</span><br><span class="line">        React 小书</span><br><span class="line">        &#123;isGoodWord ? goodWord : badWord&#125;</span><br><span class="line">      &lt;/h1&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">renderGoodWord (goodWord, badWord) &#123;</span><br><span class="line">  const isGoodWord = <span class="literal">true</span></span><br><span class="line">  <span class="built_in">return</span> isGoodWord ? goodWord : badWord</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">render</span></span> () &#123;</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;</span><br><span class="line">        React 小书</span><br><span class="line">        &#123;this.renderGoodWord(</span><br><span class="line">          &lt;strong&gt; is good&lt;/strong&gt;,</span><br><span class="line">          &lt;span&gt; is not good&lt;/span&gt;</span><br><span class="line">        )&#125;</span><br><span class="line">      &lt;/h1&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>这里我们定义了一个 renderGoodWord 函数，这个函数接受两个 JSX 元素作为参数，并且随机返回其中一个。在 render 方法中，我们把上面例子的两个 JSX 元素传入 renderGoodWord 当中，通过表达式插入把该函数返回的 JSX 元素插入到页面上</p>
+<h3 id="JSX与html中不不同之处"><a href="#JSX与html中不不同之处" class="headerlink" title="JSX与html中不不同之处"></a>JSX与html中不不同之处</h3><p>直接使用 class 在 React.js 的元素上添加类名如 <div class="“xxx”"> 这种方式是不合法的。因为 class 是 JavaScript 的关键字，所以 React.js 中定义了一种新的方式：className 来帮助我们给元素添加类名。</div></p>
+<p>还有一个特例就是 for 属性，例如 <label for="male">Male</label>，因为 for 也是 JavaScript 的关键字，所以在 JSX 用 htmlFor 替代，即 <label htmlfor="male">Male</label>。而其他的 HTML 属性例如 style 、data-* 等就可以像普通的 HTML 属性那样直接添加上去。</p>
+<h3 id="自定义组件和组件树"><a href="#自定义组件和组件树" class="headerlink" title="自定义组件和组件树"></a>自定义组件和组件树</h3><p>自定义的组件都必须要用大写字母开头，普通的 HTML 标签都用小写字母开头。</p>
+<p>组件可以和组件组合在一起，组件内部可以使用别的组件。就像普通的 HTML 标签一样使用就可以。这样的组合嵌套，最后构成一个所谓的组件树，就正如上面的例子那样，Index 用了 Header、Main、Footer，Header 又使用了 Title 。这样用这样的树状结构表示它们之间的关系：</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/pasted-1.png" alt="树形结构"></p>
+<p>这里的结构还是比较简单，因为我们的页面结构并不复杂。当页面结构复杂起来，有许多不同的组件嵌套组合的话，组件树会相当的复杂和庞大。理解组件树的概念对后面理解数据是如何在组件树内自上往下流动过程很重要。</p>
+<h3 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h3><p>在 React.js 里面监听事件是很容易的事情，你只需要给需要监听事件的元素加上属性类似于 onClick、onKeyDown 这样的属性，例如我们现在要给 Title 加上点击的事件监听：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Title extends Component &#123;</span><br><span class="line">  <span class="function"><span class="title">handleClickOnTitle</span></span> () &#123;</span><br><span class="line">    console.log(<span class="string">'Click on title.'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="title">render</span></span> () &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;h1 onClick=&#123;this.handleClickOnTitle&#125;&gt;React 小书&lt;/h1&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>只需要给 h1 标签加上 onClick 的事件，onClick 紧跟着是一个表达式插入，这个表达式返回一个 Title 自己的一个实例方法。当用户点击 h1 的时候，React.js 就会调用这个方法，所以你在控制台就可以看到 Click on title. 打印出来。</p>
+<p>在 React.js 不需要手动调用浏览器原生的 addEventListener 进行事件监听。React.js 帮我们封装好了一系列的 on<em> 的属性，当你需要为某个元素监听某个事件的时候，只需要简单地给它加上 on</em> 就可以了。而且你不需要考虑不同浏览器兼容性的问题，React.js 都帮我们封装好这些细节了。</p>
+<p>React.js 封装了不同类型的事件:<br><a href="https://facebook.github.io/react/docs/events.html#supported-events" target="_blank" rel="noopener">https://facebook.github.io/react/docs/events.html#supported-events</a></p>
+<p>另外要注意的是，这些事件属性名都必须要用驼峰命名法。</p>
+<p>这些 on* 的事件监听只能用在普通的 HTML 的标签上，而不能用在组件标签上。</p>
+<h4 id="event-对象"><a href="#event-对象" class="headerlink" title="event 对象"></a>event 对象</h4><p>和普通浏览器一样，事件监听函数会被自动传入一个 event 对象，这个对象和普通的浏览器 event 对象所包含的方法和属性都基本一致。不同的是 React.js 中的 event 对象并不是浏览器提供的，而是它自己内部所构建的。React.js 将浏览器原生的 event 对象封装了一下，对外提供统一的 API 和属性，这样你就不用考虑不同浏览器的兼容性问题。这个 event 对象是符合 W3C 标准（ W3C UI Events ）的，它具有类似于event.stopPropagation、event.preventDefault 这种常用的方法。</p>
+<h4 id="关于事件中的-this"><a href="#关于事件中的-this" class="headerlink" title="关于事件中的 this"></a>关于事件中的 this</h4><p>一般在某个类的实例方法里面的 this 指的是这个实例本身。但是你在上面的 handleClickOnTitle 中把 this 打印出来，你会看到 this 是 null 或者 undefined。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  handleClickOnTitle (e) &#123;</span><br><span class="line">    console.log(this) // =&gt; null or undefined</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>这是因为 React.js 调用你所传给它的方法的时候，并不是通过对象方法的方式调用（this.handleClickOnTitle），而是直接通过函数调用 （handleClickOnTitle），所以事件监听函数内并不能通过 this 获取到实例。</p>
+<p>如果你想在事件函数当中使用当前的实例，你需要手动地将实例方法 bind 到当前实例上再传入给 React.js。</p>
+<p>bind 会把实例方法绑定到当前实例上，然后我们再把绑定后的函数传给 React.js 的 onClick 事件监听。</p>
+<p>你也可以在 bind 的时候给事件监听函数传入一些参数：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Title extends Component &#123;</span><br><span class="line">  handleClickOnTitle (word, e) &#123;</span><br><span class="line">    console.log(this, word)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span> () &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;h1 onClick=&#123;this.handleClickOnTitle.bind(this, <span class="string">'Hello'</span>)&#125;&gt;React 小书&lt;/h1&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这种 bind 模式在 React.js 的事件监听当中非常常见，bind 不仅可以帮我们把事件监听方法中的 this 绑定到当前组件实例上；还可以帮助我们在在渲染列表元素的时候，把列表元素传入事件监听函数当中——这个将在以后的章节提及。</p>
+<p>如果有些同学对 JavaScript 的 this 模式或者 bind 函数的使用方式不是特别了解到话，可能会对这部分内容会有些迷惑，可以补充对 JavaScript 的 this 和 bind 相关的知识再来回顾这部分内容。</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind</a></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>为 React 的组件添加事件监听是很简单的事情，你只需要使用 React.js 提供了一系列的 on* 方法即可。</p>
+<p>React.js 会给每个事件监听传入一个 event 对象，这个对象提供的功能和浏览器提供的功能一致，而且它是兼容所有浏览器的。</p>
+<p>React.js 的事件监听方法需要手动 bind 到当前实例，这种模式在 React.js 中非常常用。</p>
+<h3 id="组件的state和setState"><a href="#组件的state和setState" class="headerlink" title="组件的state和setState"></a>组件的state和setState</h3><p>一个组件的显示形态是可以由它数据状态和配置参数决定的。一个组件可以拥有自己的状态，就像一个点赞按钮，可以有“已点赞”和“未点赞”状态，并且可以在这两种状态之间进行切换。React.js 的 state 就是用来存储这种可变化的状态的。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from <span class="string">'react'</span></span><br><span class="line">import ReactDOM from <span class="string">'react-dom'</span></span><br><span class="line">import <span class="string">'./index.css'</span></span><br><span class="line"></span><br><span class="line">class LikeButton extends Component &#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span></span> () &#123;</span><br><span class="line">    super()</span><br><span class="line">    this.state = &#123; isLiked: <span class="literal">false</span> &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">handleClickOnLikeButton</span></span> () &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      isLiked: !this.state.isLiked</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span> () &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;button onClick=&#123;this.handleClickOnLikeButton.bind(this)&#125;&gt;</span><br><span class="line">        &#123;this.state.isLiked ? <span class="string">'取消'</span> : <span class="string">'点赞'</span>&#125; ??</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>isLiked 存放在实例的 state 对象当中，这个对象在构造函数里面初始化。这个组件的 render 函数内，会根据组件的 state 的中的isLiked不同显示“取消”或“点赞”内容。并且给 button 加上了点击的事件监听。</p>
+<h4 id="setState-接受对象参数"><a href="#setState-接受对象参数" class="headerlink" title="setState 接受对象参数"></a>setState 接受对象参数</h4><p>setState 方法由父类 Component 所提供。当我们调用这个函数的时候，React.js 会更新组件的状态 state ，并且重新调用 render 方法，然后再把 render 方法所渲染的最新的内容显示到页面上。</p>
+<p>注意，当我们要改变组件的状态的时候，不能直接用 this.state = xxx 这种方式来修改，如果这样做 React.js 就没办法知道你修改了组件的状态，它也就没有办法更新页面。所以，一定要使用 React.js 提供的 setState 方法，它接受一个对象或者函数作为参数。</p>
+<p>传入一个对象的时候，这个对象表示该组件的新状态。但你只需要传入需要更新的部分就可以了，而不需要传入整个对象。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  constructor (props) &#123;</span><br><span class="line">    super(props)</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      name: <span class="string">'Tomy'</span>,</span><br><span class="line">      isLiked: <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">handleClickOnLikeButton</span></span> () &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      isLiked: !this.state.isLiked</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>因为点击的时候我们并不需要修改 name，所以只需要传入 isLiked 就行了。Tomy 还是那个 Tomy，而 isLiked 已经不是那个 isLiked 了。</p>
+<h4 id="setState-接受函数参数"><a href="#setState-接受函数参数" class="headerlink" title="setState 接受函数参数"></a>setState 接受函数参数</h4><p>这里还有要注意的是，当你调用 setState 的时候，React.js 并不会马上修改 state。而是把这个对象放到一个更新队列里面，稍后才会从队列当中把新的状态提取出来合并到 state 当中，然后再触发组件更新。这一点要好好注意。可以体会一下下面的代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  <span class="function"><span class="title">handleClickOnLikeButton</span></span> () &#123;</span><br><span class="line">    console.log(this.state.isLiked)</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      isLiked: !this.state.isLiked</span><br><span class="line">    &#125;)</span><br><span class="line">    console.log(this.state.isLiked)</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>你会发现两次打印的都是 false，即使我们中间已经 setState 过一次了。这并不是什么 bug，只是 React.js 的 setState 把你的传进来的状态缓存起来，稍后才会帮你更新到 state 上，所以你获取到的还是原来的 isLiked。</p>
+<p>所以如果你想在 setState 之后使用新的 state 来做后续运算就做不到了，例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  <span class="function"><span class="title">handleClickOnLikeButton</span></span> () &#123;</span><br><span class="line">    this.setState(&#123; count: 0 &#125;) // =&gt; this.state.count 还是 undefined</span><br><span class="line">    this.setState(&#123; count: this.state.count + 1&#125;) // =&gt; undefined + 1 = NaN</span><br><span class="line">    this.setState(&#123; count: this.state.count + 2&#125;) // =&gt; NaN + 2 = NaN</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码的运行结果并不能达到我们的预期，我们希望 count 运行结果是 3 ，可是最后得到的是 NaN。但是这种后续操作依赖前一个 setState 的结果的情况并不罕见。</p>
+<p>这里就自然地引出了 setState 的第二种使用方式，可以接受一个函数作为参数。React.js 会把上一个 setState 的结果传入这个函数，你就可以使用该结果进行运算、操作，然后返回一个对象作为更新 state 的对象：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  <span class="function"><span class="title">handleClickOnLikeButton</span></span> () &#123;</span><br><span class="line">    this.setState((prevState) =&gt; &#123;</span><br><span class="line">      <span class="built_in">return</span> &#123; count: 0 &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    this.setState((prevState) =&gt; &#123;</span><br><span class="line">      <span class="built_in">return</span> &#123; count: prevState.count + 1 &#125; // 上一个 setState 的返回是 count 为 0，当前返回 1</span><br><span class="line">    &#125;)</span><br><span class="line">    this.setState((prevState) =&gt; &#123;</span><br><span class="line">      <span class="built_in">return</span> &#123; count: prevState.count + 2 &#125; // 上一个 setState 的返回是 count 为 1，当前返回 3</span><br><span class="line">    &#125;)</span><br><span class="line">    // 最后的结果是 this.state.count 为 3</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>这样就可以达到上述的利用上一次 setState 结果进行运算的效果。</p>
+<p>上面我们进行了三次 setState，但是实际上组件只会重新渲染一次，而不是三次；这是因为在 React.js 内部会把 JavaScript 事件循环中的消息队列的同一个消息中的 setState 都进行合并以后再重新渲染组件。</p>
+<p>深层的原理并不需要过多纠结，你只需要记住的是：在使用 React.js 的时候，并不需要担心多次进行 setState 会带来性能问题。</p>
+<h3 id="配置组件的-props"><a href="#配置组件的-props" class="headerlink" title="配置组件的 props"></a>配置组件的 props</h3><p>组件是相互独立、可复用的单元，一个组件可能在不同地方被用到。但是在不同的场景下对这个组件的需求可能会根据情况有所不同，例如一个点赞按钮组件，在我这里需要它显示的文本是“点赞”和“取消”，当别的同事拿过去用的时候，却需要它显示“赞”和“已赞”。如何让组件能适应不同场景下的需求，我们就要让组件具有一定的“可配置”性。</p>
+<p>React.js 的 props 就可以帮助我们达到这个效果。每个组件都可以接受一个 props 参数，它是一个对象，包含了所有你对这个组件的配置。</p>
+<p>下面的代码可以让它达到上述的可配置性：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class LikeButton extends Component &#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span></span> () &#123;</span><br><span class="line">    super()</span><br><span class="line">    this.state = &#123; isLiked: <span class="literal">false</span> &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">handleClickOnLikeButton</span></span> () &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      isLiked: !this.state.isLiked</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span> () &#123;</span><br><span class="line">    const likedText = this.props.likedText || <span class="string">'取消'</span></span><br><span class="line">    const unlikedText = this.props.unlikedText || <span class="string">'点赞'</span></span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;button onClick=&#123;this.handleClickOnLikeButton.bind(this)&#125;&gt;</span><br><span class="line">        &#123;this.state.isLiked ? likedText : unlikedText&#125; ??</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从 render 函数可以看出来，组件内部是通过 this.props 的方式获取到组件的参数的，如果 this.props 里面有需要的属性我们就采用相应的属性，没有的话就用默认的属性。</p>
+<p>那么怎么把 props 传进去呢？在使用一个组件的时候，可以把参数放在标签的属性当中，所有的属性都会作为 props 对象的键值：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Index extends Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span> () &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;LikeButton likedText=<span class="string">'已赞'</span> unlikedText=<span class="string">'赞'</span> /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>就像你在用普通的 HTML 标签的属性一样，可以把参数放在表示组件的标签上，组件内部就可以通过 this.props 来访问到这些配置参数了。</p>
+<p>前面的章节我们说过，JSX 的表达式插入可以在标签属性上使用。所以其实可以把任何类型的数据作为组件的参数，包括字符串、数字、对象、数组、甚至是函数等等。例如现在我们把一个对象传给点赞组件作为参数：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Index extends Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span> () &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;LikeButton wordings=&#123;&#123;likedText: <span class="string">'已赞'</span>, unlikedText: <span class="string">'赞'</span>&#125;&#125; /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在我们把 likedText 和 unlikedText 这两个参数封装到一个叫 wordings 的对象参数内，然后传入点赞组件中。大家看到 这样的代码的时候，不要以为是什么新语法。之前讨论过，JSX 的 {} 内可以嵌入任何表达式，</p>
+<p>这时候，点赞按钮的内部就要用 this.props.wordings 来获取到到参数了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class LikeButton extends Component &#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span></span> () &#123;</span><br><span class="line">    super()</span><br><span class="line">    this.state = &#123; isLiked: <span class="literal">false</span> &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">handleClickOnLikeButton</span></span> () &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      isLiked: !this.state.isLiked</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span> () &#123;</span><br><span class="line">    const wordings = this.props.wordings || &#123;</span><br><span class="line">      likedText: <span class="string">'取消'</span>,</span><br><span class="line">      unlikedText: <span class="string">'点赞'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;button onClick=&#123;this.handleClickOnLikeButton.bind(this)&#125;&gt;</span><br><span class="line">        &#123;this.state.isLiked ? wordings.likedText : wordings.unlikedText&#125; ??</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>甚至可以往组件内部传入函数作为参数：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Index extends Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span> () &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;LikeButton</span><br><span class="line">          wordings=&#123;&#123;likedText: <span class="string">'已赞'</span>, unlikedText: <span class="string">'赞'</span>&#125;&#125;</span><br><span class="line">          onClick=&#123;() =&gt; console.log(<span class="string">'Click on like button!'</span>)&#125;/&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样可以通过 this.props.onClick 获取到这个传进去的函数，修改 LikeButton 的 handleClickOnLikeButton 方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  <span class="function"><span class="title">handleClickOnLikeButton</span></span> () &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      isLiked: !this.state.isLiked</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">if</span> (this.props.onClick) &#123;</span><br><span class="line">      this.props.onClick()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>当每次点击按钮的时候，控制台会显示 Click on like button! 。但这个行为不是点赞组件自己实现的，而是我们传进去的。所以，一个组件的行为、显示形态都可以用 props 来控制，就可以达到很好的可配置性。</p>
+<h4 id="默认配置-defaultProps"><a href="#默认配置-defaultProps" class="headerlink" title="默认配置 defaultProps"></a>默认配置 defaultProps</h4><p>上面的组件默认配置我们是通过 || 操作符来实现。这种需要默认配置的情况在 React.js 中非常常见，所以 React.js 也提供了一种方式 defaultProps，可以方便的做到默认配置。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class LikeButton extends Component &#123;</span><br><span class="line">  static defaultProps = &#123;</span><br><span class="line">    likedText: <span class="string">'取消'</span>,</span><br><span class="line">    unlikedText: <span class="string">'点赞'</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span></span> () &#123;</span><br><span class="line">    super()</span><br><span class="line">    this.state = &#123; isLiked: <span class="literal">false</span> &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">handleClickOnLikeButton</span></span> () &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      isLiked: !this.state.isLiked</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span> () &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;button onClick=&#123;this.handleClickOnLikeButton.bind(this)&#125;&gt;</span><br><span class="line">        &#123;this.state.isLiked</span><br><span class="line">          ? this.props.likedText</span><br><span class="line">          : this.props.unlikedText&#125; ??</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意，我们给点赞组件加上了以下的代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">static defaultProps = &#123;</span><br><span class="line">  likedText: <span class="string">'取消'</span>,</span><br><span class="line">  unlikedText: <span class="string">'点赞'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>defaultProps 作为点赞按钮组件的类属性，里面是对 props 中各个属性的默认配置。这样我们就不需要判断配置属性是否传进来了：如果没有传进来，会直接使用 defaultProps 中的默认属性。 所以可以看到，在 render 函数中，我们会直接使用 this.props 而不需要再做判断。</p>
+<h4 id="props-不可变"><a href="#props-不可变" class="headerlink" title="props 不可变"></a>props 不可变</h4><p>props 一旦传入进来就不能改变。我们尝试改变 this.props.likedText，<br>然后你会看到控制台报错了：</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/pasted-6.png" alt="控制台报错"></p>
+<p>你不能改变一个组件被渲染的时候传进来的 props。React.js 希望一个组件在输入确定的 props 的时候，能够输出确定的 UI 显示形态。如果 props 渲染过程中可以被修改，那么就会导致这个组件显示形态和行为变得不可预测，这样会可能会给组件使用者带来困惑。</p>
+<p>但这并不意味着由 props 决定的显示形态不能被修改。组件的使用者可以主动地通过重新渲染的方式把新的 props 传入组件当中，这样这个组件中由 props 决定的显示形态也会得到相应的改变。</p>
+<p>修改上面的例子的 Index 组件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class Index extends Component &#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span></span> () &#123;</span><br><span class="line">    super()</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      likedText: <span class="string">'已赞'</span>,</span><br><span class="line">      unlikedText: <span class="string">'赞'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">handleClickOnChange</span></span> () &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      likedText: <span class="string">'取消'</span>,</span><br><span class="line">      unlikedText: <span class="string">'点赞'</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span> () &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;LikeButton</span><br><span class="line">          likedText=&#123;this.state.likedText&#125;</span><br><span class="line">          unlikedText=&#123;this.state.unlikedText&#125; /&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;button onClick=&#123;this.handleClickOnChange.bind(this)&#125;&gt;</span><br><span class="line">            修改 wordings</span><br><span class="line">          &lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在这里，我们把 Index 的 state 中的 likedText 和 unlikedText 传给 LikeButton 。Index 还有另外一个按钮，点击这个按钮会通过 setState 修改 Index 的 state 中的两个属性。</p>
+<p>由于 setState 会导致 Index 重新渲染，所以 LikedButton 会接收到新的 props，并且重新渲染，于是它的显示形态也会得到更新。这就是通过重新渲染的方式来传入新的 props 从而达到修改 LikedButton 显示形态的效果。</p>
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><p>为了使得组件的可定制性更强，在使用组件的时候，可以在标签上加属性来传入配置参数。<br>组件可以在内部通过 this.props 获取到配置参数，组件可以根据 props 的不同来确定自己的显示形态，达到可配置的效果。<br>可以通过给组件添加类属性 defaultProps 来配置默认参数。<br>props 一旦传入，你就不可以在组件内部对它进行修改。但是你可以通过父组件主动重新渲染的方式来传入新的 props，从而达到更新的效果。</p>
+<h3 id="state-vs-props"><a href="#state-vs-props" class="headerlink" title="state vs props"></a>state vs props</h3><p>state 的主要作用是用于组件保存、控制、修改自己的可变状态。state 在组件内部初始化，可以被组件自身修改，而外部不能访问也不能修改。你可以认为 state 是一个局部的、只能被组件自身控制的数据源。state 中状态可以通过 this.setState 方法进行更新，setState 会导致组件的重新渲染。</p>
+<p>props 的主要作用是让使用该组件的父组件可以传入参数来配置该组件。它是外部传进来的配置参数，组件内部无法控制也无法修改。除非外部组件主动传入新的 props，否则组件的 props 永远保持不变。</p>
+<p>state 和 props 有着千丝万缕的关系。它们都可以决定组件的行为和显示形态。一个组件的 state 中的数据可以通过 props 传给子组件，一个组件可以使用外部传入的 props 来初始化自己的 state。但是它们的职责其实非常明晰分明：state 是让组件控制自己的状态，props 是让外部对组件自己进行配置。</p>
+<p>如果你觉得还是搞不清 state 和 props 的使用场景，那么请记住一个简单的规则：尽量少地用 state，尽量多地用 props。</p>
+<p>没有 state 的组件叫无状态组件（stateless component），设置了 state 的叫做有状态组件（stateful component）。因为状态会带来管理的复杂性，我们尽量多地写无状态组件，尽量少地写有状态的组件。这样会降低代码维护的难度，也会在一定程度上增强组件的可复用性。前端应用状态管理是一个复杂的问题，我们后续会继续讨论。</p>
+<p>React.js 非常鼓励无状态组件，在 0.14 版本引入了函数式组件——一种定义不能使用 state 组件，例如一个原来这样写的组件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class HelloWorld extends Component &#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span></span>() &#123;</span><br><span class="line">    super()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">sayHi</span></span> () &#123;</span><br><span class="line">    alert(<span class="string">'Hello World'</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span> () &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;div onClick=&#123;this.sayHi.bind(this)&#125;&gt;Hello World&lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用函数式组件的编写方式就是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const HelloWorld = (props) =&gt; &#123;</span><br><span class="line">  const sayHi = (event) =&gt; alert(<span class="string">'Hello World'</span>)</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;div onClick=&#123;sayHi&#125;&gt;Hello World&lt;/div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以前一个组件是通过继承 Component 来构建，一个子类就是一个组件。而用函数式的组件编写方式是一个函数就是一个组件，你可以和以前一样通过 <hellworld> 使用该组件。不同的是，函数式组件只能接受 props 而无法像跟类组件一样可以在 constructor 里面初始化 state。你可以理解函数式组件就是一种只能接受 props 和提供 render 方法的类组件。</hellworld></p>
+<h3 id="渲染列表数据"><a href="#渲染列表数据" class="headerlink" title="渲染列表数据"></a>渲染列表数据</h3><p>React.js 当然也允许我们处理列表数据，但在使用 React.js 处理列表数据的时候，需要掌握一些规则。</p>
+<h4 id="渲染存放-JSX-元素的数组"><a href="#渲染存放-JSX-元素的数组" class="headerlink" title="渲染存放 JSX 元素的数组"></a>渲染存放 JSX 元素的数组</h4><p>假设现在我们有这么一个用户列表数据，存放在一个数组当中：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const users = [</span><br><span class="line">  &#123; username: <span class="string">'Jerry'</span>, age: 21, gender: <span class="string">'male'</span> &#125;,</span><br><span class="line">  &#123; username: <span class="string">'Tomy'</span>, age: 22, gender: <span class="string">'male'</span> &#125;,</span><br><span class="line">  &#123; username: <span class="string">'Lily'</span>, age: 19, gender: <span class="string">'female'</span> &#125;,</span><br><span class="line">  &#123; username: <span class="string">'Lucy'</span>, age: 20, gender: <span class="string">'female'</span> &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>React.js 把插入表达式数组里面的每一个 JSX 元素一个个罗列下来，渲染到页面上。所以这里有个关键点：如果你往 {} 放一个数组，React.js 会帮你把数组里面一个个元素罗列并且渲染出来。</p>
+<h4 id="使用-map-渲染列表数据"><a href="#使用-map-渲染列表数据" class="headerlink" title="使用 map 渲染列表数据"></a>使用 map 渲染列表数据</h4><p>知道这一点以后你就可以知道怎么用循环把元素渲染到页面上：循环上面用户数组里面的每一个用户，为每个用户数据构建一个 JSX，然后把 JSX 放到一个新的数组里面，再把新的数组插入 render 方法的 JSX 里面。看看代码怎么写：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">const users = [</span><br><span class="line">  &#123; username: <span class="string">'Jerry'</span>, age: 21, gender: <span class="string">'male'</span> &#125;,</span><br><span class="line">  &#123; username: <span class="string">'Tomy'</span>, age: 22, gender: <span class="string">'male'</span> &#125;,</span><br><span class="line">  &#123; username: <span class="string">'Lily'</span>, age: 19, gender: <span class="string">'female'</span> &#125;,</span><br><span class="line">  &#123; username: <span class="string">'Lucy'</span>, age: 20, gender: <span class="string">'female'</span> &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">class Index extends Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span> () &#123;</span><br><span class="line">    const usersElements = [] // 保存每个用户渲染以后 JSX 的数组</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">let</span> user of users) &#123;</span><br><span class="line">      usersElements.push( // 循环每个用户，构建 JSX，push 到数组中</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;div&gt;姓名：&#123;user.username&#125;&lt;/div&gt;</span><br><span class="line">          &lt;div&gt;年龄：&#123;user.age&#125;&lt;/div&gt;</span><br><span class="line">          &lt;div&gt;性别：&#123;user.gender&#125;&lt;/div&gt;</span><br><span class="line">          &lt;hr /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;div&gt;&#123;usersElements&#125;&lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Index /&gt;,</span><br><span class="line">  document.getElementById(<span class="string">'root'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>这里用了一个新的数组 usersElements，然后循环 users 数组，为每个 user 构建一个 JSX 结构，然后 push 到 usersElements 中。然后直接用表达式插入，把这个 userElements 插到 return 的 JSX 当中。因为 React.js 会自动化帮我们把数组当中的 JSX 罗列渲染出来。</p>
+<p>但我们一般不会手动写循环来构建列表的 JSX 结构，可以直接用 ES6 自带的 map（不了解 map 函数的同学可以先了解相关的知识再来回顾这里），代码可以简化成：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Index extends Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span> () &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &#123;users.map((user) =&gt; &#123;</span><br><span class="line">          <span class="built_in">return</span> (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">              &lt;div&gt;姓名：&#123;user.username&#125;&lt;/div&gt;</span><br><span class="line">              &lt;div&gt;年龄：&#123;user.age&#125;&lt;/div&gt;</span><br><span class="line">              &lt;div&gt;性别：&#123;user.gender&#125;&lt;/div&gt;</span><br><span class="line">              &lt;hr /&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">          )</span><br><span class="line">        &#125;)&#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样的模式在 JavaScript 中非常常见，一般来说，在 React.js 处理列表就是用 map 来处理、渲染的。现在进一步把渲染单独一个用户的结构抽离出来作为一个组件，继续优化代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">const users = [</span><br><span class="line">  &#123; username: <span class="string">'Jerry'</span>, age: 21, gender: <span class="string">'male'</span> &#125;,</span><br><span class="line">  &#123; username: <span class="string">'Tomy'</span>, age: 22, gender: <span class="string">'male'</span> &#125;,</span><br><span class="line">  &#123; username: <span class="string">'Lily'</span>, age: 19, gender: <span class="string">'female'</span> &#125;,</span><br><span class="line">  &#123; username: <span class="string">'Lucy'</span>, age: 20, gender: <span class="string">'female'</span> &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">class User extends Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span> () &#123;</span><br><span class="line">    const &#123; user &#125; = this.props</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;div&gt;姓名：&#123;user.username&#125;&lt;/div&gt;</span><br><span class="line">        &lt;div&gt;年龄：&#123;user.age&#125;&lt;/div&gt;</span><br><span class="line">        &lt;div&gt;性别：&#123;user.gender&#125;&lt;/div&gt;</span><br><span class="line">        &lt;hr /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Index extends Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span> () &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &#123;users.map((user) =&gt; &lt;User user=&#123;user&#125; /&gt;)&#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Index /&gt;,</span><br><span class="line">  document.getElementById(<span class="string">'root'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>这里把负责展示用户数据的 JSX 结构抽离成一个组件 User ，并且通过 props 把 user 数据作为组件的配置参数传进去；这样改写 Index 就非常清晰了，看一眼就知道负责渲染 users 列表，而用的组件是 User。</p>
+<p>这样 React.js 就简单的通过 key 来判断出来，这两个列表元素只是交换了位置，可以尽量复用元素内部的结构。</p>
+<p>这里没听懂没有关系，后面有机会会继续讲解这部分内容。现在只需要记住一个简单的规则：对于用表达式套数组罗列到页面上的元素，都要为每个元素加上 key 属性，这个 key 必须是每个元素唯一的标识。一般来说，key 的值可以直接后台数据返回的 id，因为后台的 id 都是唯一的。</p>
+<p>记住一点：在实际项目当中，如果你的数据顺序可能发生变化，标准做法是最好是后台数据返回的 id 作为列表元素的 key。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React/" rel="tag"># React</a>
+          
+            <a href="/tags/JSX/" rel="tag"># JSX</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/25/git-command/" rel="next" title="git常用命令">
+                <i class="fa fa-chevron-left"></i> git常用命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/26/react-advanced/" rel="prev" title="React进阶">
+                React进阶 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="songxingguo">
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">131</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#React学习"><span class="nav-number">1.</span> <span class="nav-text">React学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#React渲染页面的过程"><span class="nav-number">1.1.</span> <span class="nav-text">React渲染页面的过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSX中-的使用"><span class="nav-number">1.2.</span> <span class="nav-text">JSX中{}的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JSX-元素变量"><span class="nav-number">1.2.1.</span> <span class="nav-text">JSX 元素变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSX与html中不不同之处"><span class="nav-number">1.3.</span> <span class="nav-text">JSX与html中不不同之处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义组件和组件树"><span class="nav-number">1.4.</span> <span class="nav-text">自定义组件和组件树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件监听"><span class="nav-number">1.5.</span> <span class="nav-text">事件监听</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#event-对象"><span class="nav-number">1.5.1.</span> <span class="nav-text">event 对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于事件中的-this"><span class="nav-number">1.5.2.</span> <span class="nav-text">关于事件中的 this</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.5.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件的state和setState"><span class="nav-number">1.6.</span> <span class="nav-text">组件的state和setState</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#setState-接受对象参数"><span class="nav-number">1.6.1.</span> <span class="nav-text">setState 接受对象参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setState-接受函数参数"><span class="nav-number">1.6.2.</span> <span class="nav-text">setState 接受函数参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置组件的-props"><span class="nav-number">1.7.</span> <span class="nav-text">配置组件的 props</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#默认配置-defaultProps"><span class="nav-number">1.7.1.</span> <span class="nav-text">默认配置 defaultProps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#props-不可变"><span class="nav-number">1.7.2.</span> <span class="nav-text">props 不可变</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结-1"><span class="nav-number">1.7.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#state-vs-props"><span class="nav-number">1.8.</span> <span class="nav-text">state vs props</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渲染列表数据"><span class="nav-number">1.9.</span> <span class="nav-text">渲染列表数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#渲染存放-JSX-元素的数组"><span class="nav-number">1.9.1.</span> <span class="nav-text">渲染存放 JSX 元素的数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-map-渲染列表数据"><span class="nav-number">1.9.2.</span> <span class="nav-text">使用 map 渲染列表数据</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":90,"vOffset":-25},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
