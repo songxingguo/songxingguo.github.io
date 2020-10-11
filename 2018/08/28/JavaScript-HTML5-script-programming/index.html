@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="HTML5 脚本编程本书前面讨论过，HTML5 规范定义了很多新 HTML 标记。为了配合这些标记的变化，HTML5 规范也用显著篇幅定义了很多 JavaScript API 。定义这些 API 的用意就是 简化此前实现起来困难重重的任务 ，最终简化创建动态 Web 界面的工作 。">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《JavaScript 高级程序设计》学习笔记-HTML5 脚本编程">
+<meta property="og:url" content="https://www.songxingguo.com/2018/08/28/JavaScript-HTML5-script-programming/index.html">
+<meta property="og:site_name" content="阿有的生活">
+<meta property="og:description" content="HTML5 脚本编程本书前面讨论过，HTML5 规范定义了很多新 HTML 标记。为了配合这些标记的变化，HTML5 规范也用显著篇幅定义了很多 JavaScript API 。定义这些 API 的用意就是 简化此前实现起来困难重重的任务 ，最终简化创建动态 Web 界面的工作 。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-HTML5-script-programming/%E5%85%B1%E6%9C%89%E7%9A%84%E5%B1%9E%E6%80%A7.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-HTML5-script-programming/%E4%BA%8B%E4%BB%B6.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/%E9%9F%B3%E9%A2%91%E6%A0%BC%E5%BC%8F%E5%92%8C%E7%BC%96%E7%A0%81%E5%99%A8.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F%E5%92%8C%E7%BC%96%E7%A0%81%E5%99%A8.png">
+<meta property="og:updated_time" content="2020-10-11T09:57:32.153Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《JavaScript 高级程序设计》学习笔记-HTML5 脚本编程">
+<meta name="twitter:description" content="HTML5 脚本编程本书前面讨论过，HTML5 规范定义了很多新 HTML 标记。为了配合这些标记的变化，HTML5 规范也用显著篇幅定义了很多 JavaScript API 。定义这些 API 的用意就是 简化此前实现起来困难重重的任务 ，最终简化创建动态 Web 界面的工作 。">
+<meta name="twitter:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-HTML5-script-programming/%E5%85%B1%E6%9C%89%E7%9A%84%E5%B1%9E%E6%80%A7.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/08/28/JavaScript-HTML5-script-programming/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《JavaScript 高级程序设计》学习笔记-HTML5 脚本编程 | 阿有的生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">132</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">43</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/08/28/JavaScript-HTML5-script-programming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《JavaScript 高级程序设计》学习笔记-HTML5 脚本编程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-28 13:30:00" itemprop="dateCreated datePublished" datetime="2018-08-28T13:30:00+00:00">2018-08-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-10-11 09:57:32" itemprop="dateModified" datetime="2020-10-11T09:57:32+00:00">2020-10-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/28/JavaScript-HTML5-script-programming/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/08/28/JavaScript-HTML5-script-programming/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/08/28/JavaScript-HTML5-script-programming/" class="leancloud_visitors" data-flag-title="《JavaScript 高级程序设计》学习笔记-HTML5 脚本编程">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="HTML5-脚本编程"><a href="#HTML5-脚本编程" class="headerlink" title="HTML5 脚本编程"></a>HTML5 脚本编程</h1><p>本书前面讨论过，HTML5 规范定义了很多新 HTML 标记。<strong>为了配合这些标记的变化，HTML5 规范也用显著篇幅定义了很多 JavaScript API</strong> 。定义这些 API 的用意就是 <strong>简化此前实现起来困难重重的任务</strong> ，<strong>最终简化创建动态 Web 界面的工作</strong> 。</p>
+<a id="more"></a>
+<h2 id="跨文档消息传递"><a href="#跨文档消息传递" class="headerlink" title="跨文档消息传递"></a>跨文档消息传递</h2><p><strong>跨文档消息传送</strong>（cross-document messaging），有时候简称为 <strong>XDM</strong> ，指的是 <strong>在来自不同域的页面间传递消息</strong> 。例如，<strong><a href="http://www.wrox.com" target="_blank" rel="noopener">www.wrox.com</a> 域中的页面与位于一个内嵌框架中的 p2p.wrox.com 域中的页面通信</strong> 。在 XDM 机制出现之前，要稳妥地实现这种通信需要花很多工夫。XDM 把这种机制规范化，让我们能既稳妥又简单地实现跨文档通信。</p>
+<p><strong>XDM 的核心是 postMessage() 方法</strong> 。在 HTML5 规范中，除了 XDM部分之外的其他部分也会提到这个方法名，但都是为了同一个目的：<strong>向另一个地方传递数据</strong> 。<strong>对于 XDM 而言，“另一个地方”指的是包含在当前页面中的 <code>&lt;iframe&gt;</code> 元素</strong> ，或者 <strong>由当前页面弹出的窗口</strong> 。</p>
+<p><strong>postMessage() 方法</strong> 接收两个参数：<strong>一条消息</strong> 和 <strong>一个表示消息接收方来自哪个域的字符串</strong> 。<strong>第二个参数对保障安全通信非常重要</strong> ，<strong>可以防止浏览器把消息发送到不安全的地方</strong> 。来看下面的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//注意：所有支持 XDM 的浏览器也支持 iframe 的 contentWindow 属性</span></span><br><span class="line"><span class="keyword">var</span> iframeWindow = <span class="built_in">document</span>.getElementById(<span class="string">"myframe"</span>).contentWindow;</span><br><span class="line">iframeWindow.postMessage(<span class="string">"A secret"</span>, <span class="string">"http://www.wrox.com"</span>);</span><br></pre></td></tr></table></figure>
+<p>最后一行代码尝试向内嵌框架中发送一条消息，并指定框架中的文档必须来源于 “<a href="http://www.wrox.com" target="_blank" rel="noopener">http://www.wrox.com</a> “ 域。<strong>如果来源匹配，消息会传递到内嵌框架中</strong> ；<strong>否则， postMessage() 什么也不做</strong> 。这一限制可以避免窗口中的位置在你不知情的情况下发生改变。<strong>如果传给 postMessage() 的第二个参数是 “*” ，则表示可以把消息发送给来自任何域的文档，但我们不推荐这样做</strong> 。</p>
+<p><strong>接收到 XDM 消息时，会触发 window 对象的 message 事件</strong> 。这个事件是以异步形式触发的，因此从发送消息到接收消息（触发接收窗口的 message 事件）可能要经过一段时间的延迟。触发 message 事件后，传递给 onmessage 处理程序的事件对象包含以下三方面的重要信息。</p>
+<ul>
+<li>data ：作为 postMessage() 第一个参数传入的字符串数据。</li>
+<li>origin ：发送消息的文档所在的域，例如 “<a href="http://www.wrox.com" target="_blank" rel="noopener">http://www.wrox.com</a> “ 。</li>
+<li>source ：发送消息的文档的 window 对象的代理。这个代理对象主要用于在发送上一条消息的窗口中调用 postMessage() 方法。如果发送消息的窗口来自同一个域，那这个对象就是 window 。</li>
+</ul>
+<p><strong>接收到消息后验证发送窗口的来源是至关重要的</strong> 。就像给 postMessage() 方法指定第二个参数，以确保浏览器不会把消息发送给未知页面一样，在 <strong>onmessage 处理程序中检测消息来源可以确保传入的消息来自已知的页面</strong> 。基本的检测模式如下。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">EventUtil.addHandler(<span class="built_in">window</span>, <span class="string">"message"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//确保发送消息的域是已知的域</span></span><br><span class="line">  <span class="keyword">if</span> (event.origin == <span class="string">"http://www.wrox.com"</span>)&#123;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">//处理接收到的数据</span></span><br><span class="line">    processMessage(event.data);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//可选：向来源窗口发送回执</span></span><br><span class="line">    event.source.postMessage(<span class="string">"Received!"</span>, <span class="string">"http://p2p.wrox.com"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>还是要提醒大家，<strong>event.source 大多数情况下只是 window 对象的代理，并非实际的 window 对象</strong> 。换句话说，<strong>不能通过这个代理对象访问 window 对象的其他任何信息</strong> 。记住，只通过这个代理调用 postMessage() 就好，这个方法永远存在，永远可以调用。</p>
+<p>XDM 还有一些怪异之处。首先， postMessage() 的第一个参数最早是作为“永远都是字符串”来实现的。但后来这个参数的定义改了，改成允许传入任何数据结构。可是，并非所有浏览器都实现了这一变化。为保险起见，<strong>使用 postMessage() 时，最好还是只传字符串</strong> 。<strong>如果你想传入结构化的数据，最佳选择是先在要传入的数据上调用 JSON.stringify()</strong> ，<strong>通过 postMessage() 传入得到的字符串，然后再在 onmessage 事件处理程序中调用 JSON.parse()</strong> 。</p>
+<p><strong>在通过内嵌框架加载其他域的内容时，使用 XDM 是非常方便的</strong> 。因此，在混搭（mashup）和社交网络应用中，这种传递消息的方法极为常用。<strong>有了 XDM，包含 <code>&lt;iframe&gt;</code> 的页面可以确保自身不受恶意内容的侵扰，因为它只通过 XDM 与嵌入的框架通信</strong> 。而  <strong>XDM 也可以在来自相同域的页面间使用</strong> 。</p>
+<p>支持 XDM 的浏览器有 IE8+、Firefox 3.5+、Safari 4+、Opera、Chrome、iOS 版 Safari 及 Android 版 WebKit。XDM 已经作为一个规范独立出来，现在它的名字叫 Web Messaging，官方页面是 <a href="http://dev.w3.org/html5/postmsg/" target="_blank" rel="noopener">http://dev.w3.org/html5/postmsg/</a> 。</p>
+<h2 id="原生拖放"><a href="#原生拖放" class="headerlink" title="原生拖放"></a>原生拖放</h2><p>最早在网页中引入 JavaScript 拖放功能的是 IE4。当时，网页中只有两种对象可以拖放：<strong>图像和某些文本</strong> 。拖动图像时，把鼠标放在图像上，按住鼠标不放就可以拖动它。拖动文本时，要先选中文本，然后可以像拖动图像一样拖动被选中的文本。在 IE 4 中，唯一有效的放置目标是文本框。到了 IE5，拖放功能得到扩展，添加了新的事件，而且几乎网页中的任何元素都可以作为放置目标。IE5.5 更进一步，让网页中的任何元素都可以拖放。（IE6 同样也支持这些功能。）HTML5 以 IE 的实例为基础制定了拖放规范。Firefox 3.5、Safari 3+和 Chrome 也根据 HTML5 规范实现了原生拖放功能。</p>
+<p>说到拖放，<strong>最有意思的恐怕就是能够在框架间、窗口间</strong> ，<strong>甚至在应用间拖放网页元素了</strong> 。浏览器对拖放的支持为实现这些功能提供了便利。</p>
+<h3 id="拖放事件"><a href="#拖放事件" class="headerlink" title="拖放事件"></a>拖放事件</h3><p>通过拖放事件，可以控制拖放相关的各个方面。其中 <strong>最关键的地方在于确定哪里发生了拖放事件</strong> ，<strong>有些事件是在被拖动的元素上触发的</strong> ，<strong>而有些事件是在放置目标上触发的</strong> 。<strong>拖动某元素时</strong> ，将依次触发下列事件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(1)  dragstart</span><br><span class="line">(2)  drag</span><br><span class="line">(3)  dragend</span><br></pre></td></tr></table></figure>
+<p><strong>按下鼠标键并开始移动鼠标</strong> 时，<strong>会在被拖放的元素上触发 dragstart 事件</strong> 。此时光标变成“不能放”符号（圆环中有一条反斜线），表示不能把元素放到自己上面。<strong>拖动开始</strong> 时，<strong>可以通过 ondragstart 事件处理程序来运行 JavaScript 代码</strong> 。</p>
+<p>触发 dragstart 事件后，随即会 <strong>触发 drag 事件</strong> ，而且 <strong>在元素被拖动期间会持续触发该事件</strong> 。这个事件 <strong>与 mousemove 事件相似</strong> ，在鼠标移动过程中， mousemove 事件也会持续发生。<strong>当拖动停止时</strong>（无论是把元素放到了有效的放置目标，还是放到了无效的放置目标上），<strong>会触发 dragend 事件</strong> 。</p>
+<p><strong>上述三个事件的目标都是被拖动的元素</strong> 。<strong>默认情况下，浏览器不会在拖动期间改变被拖动元素的外观，但你可以自己修改</strong> 。不过，<strong>大多数浏览器会为正被拖动的元素创建一个半透明的副本，这个副本始终跟随着光标移动</strong> 。</p>
+<p><strong>当某个元素被拖动到一个有效的放置目标上时</strong> ，下列事件会依次发生：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(1)  dragenter</span><br><span class="line">(2)  dragover</span><br><span class="line">(3)  dragleave 或 drop</span><br></pre></td></tr></table></figure>
+<p><strong>只要有元素被拖动到放置目标上</strong> ，就会 <strong>触发 dragenter 事件</strong>（类似于 mouseover 事件）。紧随其后的是 <strong>dragover 事件</strong> ，而且 <strong>在被拖动的元素还在放置目标的范围内移动时</strong> ，<strong>就会持续触发该事件</strong> 。<strong>如果元素被拖出了放置目标， dragover 事件不再发生</strong> ，但会 <strong>触发 dragleave 事件</strong> （类似于 mouseout 事件）。<strong>如果元素被放到了放置目标中</strong> ，则会 <strong>触发 drop 事件</strong> 而不是 dragleave 事件。<strong>上述三个事件的目标都是作为放置目标的元素</strong> 。</p>
+<h3 id="自定义放置目标"><a href="#自定义放置目标" class="headerlink" title="自定义放置目标"></a>自定义放置目标</h3><p><strong>在拖动元素经过某些无效放置目标时</strong> ，<strong>可以看到一种特殊的光标</strong>（圆环中有一条反斜线），<strong>表示不能放置</strong> 。虽然 <strong>所有元素都支持放置目标事件</strong> ，但 <strong>这些元素默认是不允许放置的</strong> 。<strong>如果拖动元素经过不允许放置的元素</strong> ，<strong>无论用户如何操作</strong> ，<strong>都不会发生 drop 事件</strong> 。不过，<strong>你可以把任何元素变成有效的放置目标</strong> ，<strong>方法是重写 dragenter 和 dragover 事件的默认行为</strong> 。例如，假设有一个 ID 为 “droptarget”的 <code>&lt;div&gt;</code> 元素，可以用如下代码将它变成一个放置目标。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> droptarget = <span class="built_in">document</span>.getElementById(<span class="string">"droptarget"</span>);</span><br><span class="line">EventUtil.addHandler(droptarget, <span class="string">"dragover"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  EventUtil.preventDefault(event);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">EventUtil.addHandler(droptarget, <span class="string">"dragenter"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  EventUtil.preventDefault(event);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>以上代码执行后，你就会发现 <strong>当拖动着元素移动到放置目标上时</strong> ，<strong>光标变成了允许放置的符号</strong> 。当然，<strong>释放鼠标也会触发 drop 事件</strong> 。</p>
+<p>在 Firefox 3.5+中，放置事件的默认行为是打开被放到放置目标上的 URL。换句话说，<strong>如果是把图像拖放到放置目标上，页面就会转向图像文件</strong> ；而 <strong>如果是把文本拖放到放置目标上，则会导致无效 URL 错误</strong> 。因此，为了让 Firefox 支持正常的拖放，还要取消 drop 事件的默认行为，阻止它打开 URL：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EventUtil.addHandler(droptarget, <span class="string">"drop"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  EventUtil.preventDefault(event);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="dataTransfer-对象"><a href="#dataTransfer-对象" class="headerlink" title="dataTransfer 对象"></a>dataTransfer 对象</h3><p><strong>只有简单的拖放而没有数据变化是没有什么用的</strong> 。<strong>为了在拖放操作时实现数据交换</strong> ，IE 5 引入了 <strong>dataTransfer 对象</strong> ，它是事件对象的一个属性，<strong>用于从被拖动元素向放置目标传递字符串格式的数据</strong> 。</p>
+<p>因为它是事件对象的属性，所以 <strong>只能在拖放事件的事件处理程序中访问 dataTransfer 对象</strong> 。在事件处理程序中，<strong>可以使用这个对象的属性和方法来完善拖放功能</strong> 。目前，HTML5 规范草案也收入了 dataTransfer 对象。</p>
+<p><strong>dataTransfer 对象</strong> 有两个主要方法：<strong>getData()</strong> 和 <strong>setData()</strong> 。不难想象， getData() 可以取得由 setData() 保存的值。 setData() 方法的第一个参数，也是 getData() 方法唯一的一个参数，是一个字符串，<strong>表示保存的数据类型</strong> ，取值为 “<strong>text</strong>“ 或 “<strong>URL</strong>“ ，如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置和接收文本数据</span></span><br><span class="line">event.dataTransfer.setData(<span class="string">"text"</span>, <span class="string">"some text"</span>);</span><br><span class="line"><span class="keyword">var</span> text = event.dataTransfer.getData(<span class="string">"text"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置和接收 URL</span></span><br><span class="line">event.dataTransfer.setData(<span class="string">"URL"</span>, <span class="string">"http://www.wrox.com/"</span>);</span><br><span class="line"><span class="keyword">var</span> url = event.dataTransfer.getData(<span class="string">"URL"</span>);</span><br></pre></td></tr></table></figure>
+<p>IE只定义了 “text” 和 “URL” 两种有效的数据类型，而 HTML5 则对此加以扩展，<strong>允许指定各种 MIME 类型</strong> 。考虑到向后兼容，<strong>HTML5 也支持 “text” 和 “URL” ，但这两种类型会被映射为 “text/plain” 和 “text/uri-list”</strong> 。</p>
+<p>实际上， <strong>dataTransfer 对象可以为每种 MIME 类型都保存一个值</strong> 。换句话说，<strong>同时在这个对象中保存一段文本和一个 URL 不会有任何问题</strong> 。不过，保存在 <strong>dataTransfer 对象中的数据只能在 drop 事件处理程序中读取</strong> 。<strong>如果在 ondrop 处理程序中没有读到数据，那就是 dataTransfer 对象已经被销毁，数据也丢失了</strong> 。</p>
+<p>在 <strong>拖动文本框中的文本</strong> 时，<strong>浏览器会调用 setData() 方法，将拖动的文本以 “text” 格式保存在 dataTransfer 对象中</strong> 。类似地，在 <strong>拖放链接或图像</strong> 时，<strong>会调用 setData() 方法并保存 URL</strong> 。然后，<strong>在这些元素被拖放到放置目标时，就可以通过 getData() 读到这些数据</strong> 。当然，作为开发人员，你也 <strong>可以在 dragstart 事件处理程序中调用 setData()</strong> ，<strong>手工保存自己要传输的数据</strong> ，<strong>以便将来使用</strong> 。</p>
+<p><strong>将数据保存为文本和保存为 URL 是有区别的</strong> 。如果 <strong>将数据保存为文本格式</strong> ，那么 <strong>数据不会得到任何特殊处理</strong> 。而如果 <strong>将数据保存为 URL</strong> ，<strong>浏览器会将其当成网页中的链接</strong> 。换句话说，<strong>如果你把它放置到另一个浏览器窗口中，浏览器就会打开该 URL</strong> 。</p>
+<p>Firefox 在其第 5 个版本之前不能正确地将 “url” 和 “text” 映射为 “text/uri-list” 和 “text/plain” 。但是却能把 “Text” （T 大写）映射为 “text/plain” 。<strong>为了更好地在跨浏览器的情况下从 dataTransfer 对象取得数据</strong> ，<strong>最好在取得 URL 数据时检测两个值，而在取得文本数据时使用 “Text”</strong>  。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dataTransfer = event.dataTransfer;</span><br><span class="line"></span><br><span class="line"><span class="comment">//读取 URL</span></span><br><span class="line"><span class="keyword">var</span> url = dataTransfer.getData(<span class="string">"url"</span>) ||dataTransfer.getData(<span class="string">"text/uri-list"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//读取文本</span></span><br><span class="line"><span class="keyword">var</span> text = dataTransfer.getData(<span class="string">"Text"</span>);</span><br></pre></td></tr></table></figure>
+<p>注意，一定要把短数据类型放在前面，因为 IE 10 及之前的版本仍然不支持扩展的 MIME 类型名，而它们在遇到无法识别的数据类型时，会抛出错误。</p>
+<h3 id="dropEffect-与-effectAllowed"><a href="#dropEffect-与-effectAllowed" class="headerlink" title="dropEffect 与 effectAllowed"></a>dropEffect 与 effectAllowed</h3><p>利用 <strong>dataTransfer 对象</strong> ，可 <strong>不光是能够传输数据</strong> ，还能 <strong>通过它来确定被拖动的元素以及作为放置目标的元素能够接收什么操作</strong> 。为此，需要访问 dataTransfer 对象的两个属性： <strong>dropEffect</strong> 和 <strong>effectAllowed</strong> 。</p>
+<p>其中，<strong>通过 dropEffect 属性可以知道被拖动的元素能够执行哪种放置行为</strong> 。这个属性有下列 4 个可能的值。</p>
+<ul>
+<li>“none” ：不能把拖动的元素放在这里。这是除文本框之外所有元素的默认值。</li>
+<li>“move” ：应该把拖动的元素移动到放置目标。</li>
+<li>“copy” ：应该把拖动的元素复制到放置目标。</li>
+<li>“link” ：表示放置目标会打开拖动的元素（但拖动的元素必须是一个链接，有 URL）。</li>
+</ul>
+<p>在把元素拖动到放置目标上时，以上每一个值都会导致光标显示为不同的符号。然而，要怎样实现光标所指示的动作完全取决于你。换句话说，如果你不介入，没有什么会自动地移动、复制，也不会打开链接。总之，<strong>浏览器只能帮你改变光标的样式，而其他的都要靠你自己来实现</strong> 。<strong>要使用 dropEffect 属性，必须在 ondragenter 事件处理程序中针对放置目标来设置它</strong> 。</p>
+<p><strong>dropEffect 属性只有搭配 effectAllowed 属性才有用</strong> 。 <strong>effectAllowed 属性表示允许拖动元素的哪种 dropEffect</strong> ， <strong>effectAllowed 属性</strong> 可能的值如下。</p>
+<ul>
+<li>“uninitialized” ：没有给被拖动的元素设置任何放置行为。</li>
+<li>“none” ：被拖动的元素不能有任何行为。</li>
+<li>“copy” ：只允许值为 “copy” 的 dropEffect 。</li>
+<li>“link” ：只允许值为 “link” 的 dropEffect 。</li>
+<li>“move” ：只允许值为 “move” 的 dropEffect 。</li>
+<li>“copyLink” ：允许值为 “copy” 和 “link” 的 dropEffect 。</li>
+<li>“copyMove” ：允许值为 “copy” 和 “move” 的 dropEffect 。</li>
+<li>“linkMove” ：允许值为 “link” 和 “move” 的 dropEffect 。</li>
+<li>“all” ：允许任意 dropEffect 。</li>
+</ul>
+<p><strong>必须在 ondragstart 事件处理程序中设置 effectAllowed 属性</strong> 。</p>
+<p>假设你想允许用户把文本框中的文本拖放到一个 <code>&lt;div&gt;</code> 元素中。首先，必须将 dropEffect 和 effectAllowed 设置为 “move” 。但是，由于 <code>&lt;div&gt;</code> 元素的放置事件的默认行为是什么也不做，所以文本不可能自动移动。<strong>重写这个默认行为，就能从文本框中移走文本</strong> 。然后 <strong>你就可以自己编写代码将文本插入到 <code>&lt;div&gt;</code> 中，这样整个拖放操作就完成了</strong> 。<strong>如果你将 dropEffect 和 effectAllowed 的值设置为 “copy” ，那就不会自动移走文本框中的文本</strong> 。</p>
+<blockquote>
+<p>Firefox 5 及之前的版本在处理 effectAllowed 属性时有一个问题，即如果你在代码中设置了这个属性的值，那不一定会触发 drop 事件。</p>
+</blockquote>
+<h3 id="可拖动"><a href="#可拖动" class="headerlink" title="可拖动"></a>可拖动</h3><p><strong>默认情况下，图像、链接和文本是可以拖动的</strong> ，也就是说，<strong>不用额外编写代码，用户就可以拖动它们</strong> 。<strong>文本只有在被选中的情况下才能拖动</strong> ，而 <strong>图像和链接在任何时候都可以拖动</strong> 。</p>
+<p><strong>让其他元素可以拖动也是可能的</strong> 。<strong>HTML5 为所有 HTML 元素规定了一个 draggable 属性</strong> ，<strong>表示元素是否可以拖动</strong> 。<strong>图像和链接的 draggable 属性自动被设置成了 true</strong> ，而 <strong>其他元素这个属性的默认值都是 false</strong> 。要想让其他元素可拖动，或者让图像或链接不能拖动，都可以设置这个属性。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 让这个图像不可以拖动 --&gt;</span><br><span class="line">&lt;img src=<span class="string">"smile.gif"</span> draggable=<span class="string">"false"</span> alt=<span class="string">"Smiley face"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 让这个元素可以拖动 --&gt;</span><br><span class="line">&lt;div draggable=<span class="string">"true"</span>&gt;...&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+<p>支持 draggable 属性的浏览器有 IE 10+、Firefox 4+、Safari 5+和 Chrome。Opera<br>11.5 及之前的版本都不支持 HTML5 的拖放功能。另外，为了让 Firefox 支持可拖动属性，还必须添加一个 ondragstart 事件处理程序，并在 dataTransfer 对象中保存一些信息。</p>
+<blockquote>
+<p>在 IE9 及更早版本中，通过 mousedown 事件处理程序调用 dragDrop() 能够让任何元素可拖动。而在 Safari 4 及之前版本中，必须额外给相应元素设置 CSS 样式–khtml-user-drag: element 。</p>
+</blockquote>
+<h3 id="其他成员"><a href="#其他成员" class="headerlink" title="其他成员"></a>其他成员</h3><p>HTML5 规范规定 dataTransfer 对象还应该包含下列方法和属性。</p>
+<ul>
+<li><p>addElement(element) ：为拖动操作添加一个元素。添加这个元素只影响数据（即增加作为拖动源而响应回调的对象），不会影响拖动操作时页面元素的外观。在写作本书时，只有 Firefox 3.5+ 实现了这个方法。</p>
+</li>
+<li><p>clearData(format) ：清除以特定格式保存的数据。实现这个方法的浏览器有 IE、Fireforx 3.5+、Chrome 和 Safari 4+。</p>
+</li>
+<li><p>setDragImage(element, x, y) ：指定一幅图像，当拖动发生时，显示在光标下方。这个方法接收的三个参数分别是要显示的 HTML 元素和光标在图像中的 x、y 坐标。其中，HTML 元素可以是一幅图像，也可以是其他元素。是图像则显示图像，是其他元素则显示渲染后的元素。实现这个方法的浏览器有 Firefox 3.5+、Safari 4+和 Chrome。</p>
+</li>
+<li><p>types ：当前保存的数据类型。这是一个类似数组的集合，以 “text” 这样的字符串形式保存着数据类型。实现这个属性的浏览器有 IE10+、Firefox 3.5+和 Chrome。</p>
+</li>
+</ul>
+<h2 id="媒体元素"><a href="#媒体元素" class="headerlink" title="媒体元素"></a>媒体元素</h2><p>随着音频和视频在 Web 上的迅速流行，大多数提供富媒体内容的站点为了保证跨浏览器兼容性，不得不选择使用 Flash。<strong>HTML5 新增了两个与媒体相关的标签</strong> ，<strong>开发人员不必依赖任何插件就能在网页中嵌入跨浏览器的音频和视频内容</strong> 。这两个标签就是 <code>&lt;audio&gt;</code> 和 <code>&lt;video&gt;</code> 。</p>
+<p>这两个标签 <strong>除了能让开发人员方便地嵌入媒体文件之外</strong> ，<strong>都提供了用于实现常用功能的 JavaScript API</strong> ，<strong>允许为媒体创建自定义的控件</strong> 。这两个元素的用法如下。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 嵌入视频 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">"conference.mpg"</span> <span class="attr">id</span>=<span class="string">"myVideo"</span>&gt;</span>Video player not available.<span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 嵌入音频 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">src</span>=<span class="string">"song.mp3"</span> <span class="attr">id</span>=<span class="string">"myAudio"</span>&gt;</span>Audio player not available.<span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>使用这两个元素时，至少要在标签中包含 src 属性，指向要加载的媒体文件</strong> 。还可以设置 width 和 height 属性以指定视频播放器的大小，而为 <strong>poster 属性指定图像的 URI 可以在加载视频内容期间显示一幅图像</strong> 。另外，<strong>如果标签中有 controls 属性，则意味着浏览器应该显示 UI 控件，以便用户直接操作媒体</strong> 。<strong>位于开始和结束标签之间的任何内容都将作为后备内容</strong> ，<strong>在浏览器不支持这两个媒体元素的情况下显示</strong> 。</p>
+<p>因为 <strong>并非所有浏览器都支持所有媒体格式</strong> ，所以 <strong>可以指定多个不同的媒体来源</strong> 。为此，<strong>不用在标签中指定 src 属性，而是要像下面这样使用一或多个 <code>&lt;source&gt;</code> 元素</strong> 。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 嵌入视频 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">"myVideo"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"conference.webm"</span> <span class="attr">type</span>=<span class="string">"video/webm; codecs='vp8, vorbis'"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"conference.ogv"</span> <span class="attr">type</span>=<span class="string">"video/ogg; codecs='theora, vorbis'"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"conference.mpg"</span>&gt;</span></span><br><span class="line">  Video player not available.</span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 嵌入音频 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">id</span>=<span class="string">"myAudio"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"song.ogg"</span> <span class="attr">type</span>=<span class="string">"audio/ogg"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"song.mp3"</span> <span class="attr">type</span>=<span class="string">"audio/mpeg"</span>&gt;</span></span><br><span class="line">  Audio player not available.</span><br><span class="line"><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>关于视频和音频编解码器的内容超出了本书讨论的范围。作者在此只想告诉大家，<strong>不同的浏览器支持不同的编解码器</strong> ，<strong>因此一般来说指定多种格式的媒体来源是必需的</strong> 。支持这两个媒体元素的浏览器有 IE9+、Firefox 3.5+、Safari 4+、Opera 10.5+、Chrome、iOS 版 Safari 和 Android 版 WebKit。</p>
+<p><strong><code>&lt;video&gt;</code> 和 <code>&lt;audio&gt;</code> 元素都提供了完善的 JavaScript 接口</strong> 。下表列出了这两个元素共有的属性，<strong>通过这些属性可以知道媒体的当前状态</strong> 。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-HTML5-script-programming/%E5%85%B1%E6%9C%89%E7%9A%84%E5%B1%9E%E6%80%A7.png" alt="共有的属性"></p>
+<p>其中很多属性也可以直接在 <code>&lt;audio&gt;</code> 和 <code>&lt;video&gt;</code> 元素中设置。</p>
+<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p><strong>除了大量属性之外，这两个媒体元素还可以触发很多事件</strong> 。<strong>这些事件监控着不同的属性的变化，这些变化可能是媒体播放的结果，也可能是用户操作播放器的结果</strong> 。下表列出了媒体元素相关的事件。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-HTML5-script-programming/%E4%BA%8B%E4%BB%B6.png" alt="事件"></p>
+<p>这些事件之所以如此具体，就是 <strong>为了让开发人员只使用少量 HTML 和 JavaScript（与创建 Flash 影片相比）即可编写出自定义的音频/视频播放器</strong> 。</p>
+<h3 id="自定义媒体播放器"><a href="#自定义媒体播放器" class="headerlink" title="自定义媒体播放器"></a>自定义媒体播放器</h3><p><strong>使用 <code>&lt;audio&gt;</code> 和 <code>&lt;video&gt;</code> 元素的 play() 和 pause() 方法</strong> ，<strong>可以手工控制媒体文件的播放</strong> 。组合使用属性、事件和这两个方法，很容易创建一个自定义的媒体播放器，如下面的例子所示。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"mediaplayer"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"video"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">"player"</span> <span class="attr">src</span>=<span class="string">"movie.mov"</span> <span class="attr">poster</span>=<span class="string">"mymovie.jpg"</span> <span class="attr">width</span>=<span class="string">"300"</span> <span class="attr">height</span>=<span class="string">"200"</span>&gt;</span></span><br><span class="line">      Video player not available.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"controls"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"Play"</span> <span class="attr">id</span>=<span class="string">"video-btn"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"curtime"</span>&gt;</span>0<span class="tag">&lt;/<span class="name">span</span>&gt;</span>/<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"duration"</span>&gt;</span>0<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>以上基本的 HTML 再加上一些 JavaScript 就可以变成一个简单的视频播放器。以下就是 JavaScript 代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//取得元素的引用</span></span><br><span class="line"><span class="keyword">var</span> player = <span class="built_in">document</span>.getElementById(<span class="string">"player"</span>),</span><br><span class="line">   btn = <span class="built_in">document</span>.getElementById(<span class="string">"video-btn"</span>),</span><br><span class="line">   curtime = <span class="built_in">document</span>.getElementById(<span class="string">"curtime"</span>),</span><br><span class="line">   duration = <span class="built_in">document</span>.getElementById(<span class="string">"duration"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//更新播放时间</span></span><br><span class="line">duration.innerHTML = player.duration;</span><br><span class="line"></span><br><span class="line"><span class="comment">//为按钮添加事件处理程序</span></span><br><span class="line">EventUtil.addHandler(btn, <span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (player.paused)&#123;</span><br><span class="line">    player.play();</span><br><span class="line">    btn.value = <span class="string">"Pause"</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    player.pause();</span><br><span class="line">    btn.value = <span class="string">"Play"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//定时更新当前时间</span></span><br><span class="line">setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  curtime.innerHTML = player.currentTime;</span><br><span class="line">&#125;, <span class="number">250</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>以上 JavaScript 代码给按钮添加了一个事件处理程序，单击它能让视频在暂停时播放，在播放时暂停</strong> 。<strong>通过 <code>&lt;video&gt;</code> 元素的 load 事件处理程序，设置了加载完视频后显示播放时间</strong> 。最后，<strong>设置了一个计时器，以更新当前显示的时间</strong> 。你可以进一步扩展这个视频播放器，监听更多事件，利用更多属性。而同样的代码也可以用于 <code>&lt;audio&gt;</code> 元素，以创建自定义的音频播放器。</p>
+<h3 id="检测编解码器的支持情况"><a href="#检测编解码器的支持情况" class="headerlink" title="检测编解码器的支持情况"></a>检测编解码器的支持情况</h3><p>如前所述，<strong>并非所有浏览器都支持 <code>&lt;video&gt;</code> 和 <code>&lt;audio&gt;</code> 的所有编解码器</strong> ，而这基本上就意味着 <strong>你必须提供多个媒体来源</strong> 。不过，<strong>也有一个 JavaScript API 能够检测浏览器是否支持某种格式和编解码器</strong> 。这两个媒体元素都有一个 <strong>canPlayType() 方法</strong> ，该方法 <strong>接收一种格式/编解码器字符串</strong> ，<strong>返回 “probably” 、 “maybe” 或 “” （ 空字符串）</strong> 。空字符串是假值，因此可以像下面这样在 if 语句中使用 canPlayType() ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (audio.canPlayType(<span class="string">"audio/mpeg"</span>))&#123;</span><br><span class="line">  <span class="comment">//进一步处理</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而 “probably” 和 “maybe” 都是真值，因此在 if 语句的条件测试中可以转换成 true 。</p>
+<p><strong>如果给 canPlayType() 传入了一种 MIME 类型，则返回值很可能是 “maybe” 或空字符串</strong> 。这是因为 <strong>媒体文件本身只不过是音频或视频的一个容器</strong> ，而 <strong>真正决定文件能否播放的还是编码的格式</strong> 。<strong>在同时传入 MIME 类型和编解码器的情况下，可能性就会增加，返回的字符串会变成 “probably” </strong> 。下面来看几个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> audio = <span class="built_in">document</span>.getElementById(<span class="string">"audio-player"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//很可能"maybe"</span></span><br><span class="line"><span class="keyword">if</span> (audio.canPlayType(<span class="string">"audio/mpeg"</span>))&#123;</span><br><span class="line">  <span class="comment">//进一步处理</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//可能是"probably"</span></span><br><span class="line"><span class="keyword">if</span> (audio.canPlayType(<span class="string">"audio/ogg; codecs=\"vorbis\""</span>))&#123;</span><br><span class="line">  <span class="comment">//进一步处理</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，<strong>编解码器必须用引号引起来才行</strong> 。下表列出了已知的已得到支持的音频格式和编解码器。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/%E9%9F%B3%E9%A2%91%E6%A0%BC%E5%BC%8F%E5%92%8C%E7%BC%96%E7%A0%81%E5%99%A8.png" alt="音频格式和编解码器"></p>
+<p>当然，也可以使用 canPlayType() 来检测视频格式。下表列出了已知的已得到支持的视频格式和编解码器。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F%E5%92%8C%E7%BC%96%E7%A0%81%E5%99%A8.png" alt="视频格式和编解码器"></p>
+<h3 id="Audio-类型"><a href="#Audio-类型" class="headerlink" title="Audio 类型"></a>Audio 类型</h3><p><strong><code>&lt;audio&gt;</code> 元素还有一个原生的 JavaScript 构造函数 Audio</strong> ，<strong>可以在任何时候播放音频</strong> 。从同为 DOM 元素的角度看，<strong>Audio 与 Image 很相似</strong> ，但 <strong>Audio 不用像 Image 那样必须插入到文档中</strong> 。<strong>只要创建一个新实例，并传入音频源文件即可</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> audio = <span class="keyword">new</span> Audio(<span class="string">"sound.mp3"</span>);</span><br><span class="line">EventUtil.addHandler(audio, <span class="string">"canplaythrough"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  audio.play();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>创建新的 Audio 实例即可开始下载指定的文件</strong> 。<strong>下载完成后，调用 play() 就可以播放音频</strong> 。在 iOS 中，调用 play() 时会弹出一个对话框，得到用户的许可后才能播放声音。<strong>如果想在一段音频播放后再播放另一段音频，必须在 onfinish 事件处理程序中调用 play() 方法</strong> 。</p>
+<h2 id="历史状态管理"><a href="#历史状态管理" class="headerlink" title="历史状态管理"></a>历史状态管理</h2><p>历史状态管理是现代 Web 应用开发中的一个难点。在现代 Web 应用中，<strong>用户的每次操作不一定会打开一个全新的页面，因此“后退”和“前进”按钮也就失去了作用，导致用户很难在不同状态间切换</strong> 。要解决这个问题，首选 <strong>使用 hashchange 事件</strong>（第 13 章曾讨论过）。<strong>HTML5 通过更新 history 对象为管理历史状态提供了方便</strong> 。</p>
+<p><strong>通过 hashchange 事件，可以知道 URL 的参数什么时候发生了变化，即什么时候该有所反应</strong> 。而 <strong>通过状态管理 API，能够在不加载新页面的情况下改变浏览器的 URL</strong> 。为此，<strong>需要使用 history.pushState() 方法</strong> ，该方法可以接收三个参数：<strong>状态对象</strong> 、<strong>新状态的标题</strong> 和 <strong>可选的相对 URL</strong> 。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history.pushState(&#123;<span class="attr">name</span>:<span class="string">"Nicholas"</span>&#125;, <span class="string">"Nicholas' page"</span>, <span class="string">"nicholas.html"</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>执行 pushState() 方法后，新的状态信息就会被加入历史状态栈，而浏览器地址栏也会变成新的相对 URL</strong> 。但是，<strong>浏览器并不会真的向服务器发送请求，即使状态改变之后查询 location.href 也会返回与地址栏中相同的地址</strong> 。另外，第二个参数目前还没有浏览器实现，因此完全可以只传入一个空字符串，或者一个短标题也可以。而 <strong>第一个参数则应该尽可能提供初始化页面状态所需的各种信息</strong> 。</p>
+<p>因为 <strong>pushState() 会创建新的历史状态</strong> ，所以 <strong>你会发现“后退”按钮也能使用了</strong> 。<strong>按下“后退”按钮，会触发 window 对象的 popstate 事件</strong>（popstate 事件发生后，事件对象中的状态对象（event.state）是当前状态。） 。 <strong>popstate 事件的事件对象有一个 state 属性</strong> ，<strong>这个属性就包含着当初以第一个参数传递给 pushState() 的状态对象</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EventUtil.addHandler(<span class="built_in">window</span>, <span class="string">"popstate"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> state = event.state;</span><br><span class="line">  <span class="keyword">if</span> (state)&#123; <span class="comment">//第一个页面加载时 state 为空</span></span><br><span class="line">    processState(state);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>得到这个状态对象后，必须把页面重置为状态对象中的数据表示的状态（因为浏览器不会自动为你做这些）。记住，浏览器加载的第一个页面没有状态，因此单击“后退”按钮返回浏览器加载的第一个页面时， event.state 值为 null 。</p>
+<p><strong>要更新当前状态，可以调用 replaceState() ，传入的参数与 pushState() 的前两个参数相同</strong> 。<strong>调用这个方法不会在历史状态栈中创建新状态，只会重写当前状态</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history.replaceState(&#123;<span class="attr">name</span>:<span class="string">"Greg"</span>&#125;, <span class="string">"Greg's page"</span>);</span><br></pre></td></tr></table></figure>
+<p>支持 HTML5 历史状态管理的浏览器有 Firefox 4+、Safari 5+、Opera 11.5+和 Chrome。在 Safari和 Chrome 中，传递给 pushState() 或 replaceState() 的状态对象中不能包含 DOM 元素。而 Firefox 支持在状态对象中包含 DOM 元素。Opera 还支持一个 history.state 属性，它返回当前状态的状态对象。</p>
+<blockquote>
+<p><strong>在使用 HTML5 的状态管理机制时，请确保使用 pushState() 创造的每一个“假” URL</strong> ，<strong>在 Web 服务器上都有一个真的、实际存在的 URL 与之对应</strong> 。否则，<strong>单击“刷新”按钮会导致 404 错误</strong> 。</p>
+</blockquote>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>HTML5 除了定义了新的标记规则，还定义了一些 JavaScript API。这些 API 是为了让开发人员创建出更好的、能够与桌面应用媲美的用户界面而设计的。本章讨论了如下 API。</p>
+<ul>
+<li><p>跨文档消息传递 API 能够让我们在不降低同源策略安全性的前提下，在来自不同域的文档间传递消息。</p>
+</li>
+<li><p>原生拖放功能让我们可以方便地指定某个元素可拖动，并在操作系统要放置时做出响应。还可以创建自定义的可拖动元素及放置目标。</p>
+</li>
+<li><p>新的媒体元素 <code>&lt;audio&gt;</code> 和 <code>&lt;video&gt;</code> 拥有自己的与音频和视频交互的 API。并非所有浏览器支持所有的媒体格式，因此应该使用 canPlayType() 检查浏览器是否支持特定的格式。</p>
+</li>
+<li><p>历史状态管理让我们不必卸载当前页面即可修改浏览器的历史状态栈。有了这种机制，用户就可以通过“后退”和“前进”按钮在页面状态间切换，而这些状态完全由 JavaScript 进行控制。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/27/JavaScript-canvas-drawing/" rel="next" title="《JavaScript 高级程序设计》学习笔记-使用 Canvas 绘图">
+                <i class="fa fa-chevron-left"></i> 《JavaScript 高级程序设计》学习笔记-使用 Canvas 绘图
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/28/JavaScript-JSON/" rel="prev" title="《JavaScript 高级程序设计》学习笔记-JSON">
+                《JavaScript 高级程序设计》学习笔记-JSON <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="songxingguo">
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">132</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML5-脚本编程"><span class="nav-number">1.</span> <span class="nav-text">HTML5 脚本编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#跨文档消息传递"><span class="nav-number">1.1.</span> <span class="nav-text">跨文档消息传递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原生拖放"><span class="nav-number">1.2.</span> <span class="nav-text">原生拖放</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拖放事件"><span class="nav-number">1.2.1.</span> <span class="nav-text">拖放事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义放置目标"><span class="nav-number">1.2.2.</span> <span class="nav-text">自定义放置目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dataTransfer-对象"><span class="nav-number">1.2.3.</span> <span class="nav-text">dataTransfer 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dropEffect-与-effectAllowed"><span class="nav-number">1.2.4.</span> <span class="nav-text">dropEffect 与 effectAllowed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可拖动"><span class="nav-number">1.2.5.</span> <span class="nav-text">可拖动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他成员"><span class="nav-number">1.2.6.</span> <span class="nav-text">其他成员</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#媒体元素"><span class="nav-number">1.3.</span> <span class="nav-text">媒体元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件"><span class="nav-number">1.3.1.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义媒体播放器"><span class="nav-number">1.3.2.</span> <span class="nav-text">自定义媒体播放器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测编解码器的支持情况"><span class="nav-number">1.3.3.</span> <span class="nav-text">检测编解码器的支持情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Audio-类型"><span class="nav-number">1.3.4.</span> <span class="nav-text">Audio 类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#历史状态管理"><span class="nav-number">1.4.</span> <span class="nav-text">历史状态管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.5.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":90,"vOffset":-25},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
