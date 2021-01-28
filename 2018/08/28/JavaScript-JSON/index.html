@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="JSON曾经有一段时间，XML 是互联网上传输结构化数据的事实标准 。Web 服务的第一次浪潮很大程度上都是建立在 XML 之上的，突出的特点是服务器与服务器间通信 。然而，业界一直不乏质疑 XML 的声音。不少人认为 XML 过于烦琐、冗长。为解决这个问题，也涌现了一些方案。不过，Web 的发展方向已经改变了。 2006 年，Douglas Crockford 把 JSON（JavaScript">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《JavaScript 高级程序设计》学习笔记-JSON">
+<meta property="og:url" content="https://www.songxingguo.com/2018/08/28/JavaScript-JSON/index.html">
+<meta property="og:site_name" content="阿有的生活">
+<meta property="og:description" content="JSON曾经有一段时间，XML 是互联网上传输结构化数据的事实标准 。Web 服务的第一次浪潮很大程度上都是建立在 XML 之上的，突出的特点是服务器与服务器间通信 。然而，业界一直不乏质疑 XML 的声音。不少人认为 XML 过于烦琐、冗长。为解决这个问题，也涌现了一些方案。不过，Web 的发展方向已经改变了。 2006 年，Douglas Crockford 把 JSON（JavaScript">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-01-28T10:54:28.112Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《JavaScript 高级程序设计》学习笔记-JSON">
+<meta name="twitter:description" content="JSON曾经有一段时间，XML 是互联网上传输结构化数据的事实标准 。Web 服务的第一次浪潮很大程度上都是建立在 XML 之上的，突出的特点是服务器与服务器间通信 。然而，业界一直不乏质疑 XML 的声音。不少人认为 XML 过于烦琐、冗长。为解决这个问题，也涌现了一些方案。不过，Web 的发展方向已经改变了。 2006 年，Douglas Crockford 把 JSON（JavaScript">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/08/28/JavaScript-JSON/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《JavaScript 高级程序设计》学习笔记-JSON | 阿有的生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">132</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">43</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/08/28/JavaScript-JSON/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《JavaScript 高级程序设计》学习笔记-JSON
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-28 15:55:00" itemprop="dateCreated datePublished" datetime="2018-08-28T15:55:00+00:00">2018-08-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-01-28 10:54:28" itemprop="dateModified" datetime="2021-01-28T10:54:28+00:00">2021-01-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/28/JavaScript-JSON/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/08/28/JavaScript-JSON/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/08/28/JavaScript-JSON/" class="leancloud_visitors" data-flag-title="《JavaScript 高级程序设计》学习笔记-JSON">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h1><p>曾经有一段时间，<strong>XML 是互联网上传输结构化数据的事实标准</strong> 。<strong>Web 服务的第一次浪潮很大程度上都是建立在 XML 之上的，突出的特点是服务器与服务器间通信</strong> 。然而，业界一直不乏质疑 XML 的声音。不少人认为 XML 过于烦琐、冗长。为解决这个问题，也涌现了一些方案。不过，Web 的发展方向已经改变了。</p>
+<p>2006 年，Douglas Crockford 把 <strong>JSON</strong>（JavaScript Object Notation，<strong>JavaScript 对象表示法</strong> ）作为 IETF RFC 4627 提交给 IETF，而 JSON 的应用早在 2001 年就已经开始了。<strong>JSON 是 JavaScript 的一个严格的子集，利用了JavaScript中的一些模式来表示结构化数据</strong> 。Crockford 认为与 XML 相比，<strong>JSON是在JavaScript 中读写结构化数据的更好的方式</strong> 。<strong>因为可以把 JSON 直接传给 eval() ，而且不必创建 DOM 对象</strong> 。</p>
+<p>关于 JSON，最重要的是要理解它是 <strong>一种数据格式</strong> ，<strong>不是一种编程语言</strong> 。<strong>虽然具有相同的语法形式，但 JSON 并不从属于 JavaScript</strong> 。而且，<strong>并不是只有 JavaScript 才使用 JSON</strong> ，<strong>毕竟 JSON 只是一种数据格式</strong> 。<strong>很多编程语言都有针对 JSON 的解析器和序列化器</strong> 。</p>
+<a id="more"></a>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>JSON 的语法可以表示以下三种类型的值。</p>
+<ul>
+<li><p><strong>简单值</strong> ：使用与 JavaScript 相同的语法，可以在 JSON 中表示字符串、数值、布尔值和 null 。但 JSON 不支持 JavaScript 中的特殊值 undefined 。</p>
+</li>
+<li><p><strong>对象</strong> ：对象作为一种复杂数据类型，表示的是一组无序的键值对儿。而每个键值对儿中的值可以是简单值，也可以是复杂数据类型的值。</p>
+</li>
+<li><p><strong>数组</strong> ：数组也是一种复杂数据类型，表示一组有序的值的列表，可以通过数值索引来访问其中的值。数组的值也可以是任意类型——简单值、对象或数组。</p>
+</li>
+</ul>
+<p><strong>JSON 不支持变量、函数或对象实例</strong> ，<strong>它就是一种表示结构化数据的格式</strong> ，<strong>虽然与 JavaScript 中表示数据的某些语法相同</strong> ，<strong>但它并不局限于 JavaScript 的范畴</strong> 。</p>
+<h3 id="简单值"><a href="#简单值" class="headerlink" title="简单值"></a>简单值</h3><p><strong>最简单的 JSON 数据形式就是简单值</strong> 。例如，下面这个值是有效的 JSON 数据：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>这是 JSON 表示数值 5 的方式。类似地，下面是 <strong>JSON 表示字符串的方式</strong> ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"Hello world!"</span></span><br></pre></td></tr></table></figure>
+<p>JavaScript 字符串与 JSON 字符串的最大区别在于，<strong>JSON 字符串必须使用双引号</strong>（单引号会导致语法错误）。</p>
+<p><strong>布尔值和 null 也是有效的 JSON 形式</strong> 。但是，在实际应用中，<strong>JSON 更多地用来表示更复杂的数据结构，而简单值只是整个数据结构中的一部分</strong> 。</p>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p><strong>JSON 中的对象与 JavaScript 字面量稍微有一些不同</strong> 。下面是一个 JavaScript 中的对象字面量：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">  name: <span class="string">"Nicholas"</span>,</span><br><span class="line">  age: <span class="number">29</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这虽然是开发人员在 JavaScript 中创建对象字面量的标准方式，但 <strong>JSON 中的对象要求给属性加引号</strong> 。实际上，<strong>在 JavaScript 中，前面的对象字面量完全可以写成下面这样</strong> ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> object = &#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"Nicholas"</span>,</span><br><span class="line">  <span class="string">"age"</span>: <span class="number">29</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>JSON 表示上述对象的方式</strong> 如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"Nicholas"</span>,</span><br><span class="line">  <span class="string">"age"</span>: <span class="number">29</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与 JavaScript 的对象字面量相比，JSON 对象有两个地方不一样。首先，<strong>没有声明变量</strong>（JSON 中没有变量的概念）。其次，<strong>没有末尾的分号</strong>（因为这不是 JavaScript 语句，所以不需要分号）。再说一遍，<strong>对象的属性必须加双引号</strong> ，这在 JSON 中是必需的。<strong>属性的值可以是简单值</strong> ，<strong>也可以是复杂类型值</strong> ，因此可以像下面这样在对象中嵌入对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"Nicholas"</span>,</span><br><span class="line">  <span class="string">"age"</span>: <span class="number">29</span>,</span><br><span class="line">  <span class="string">"school"</span>: &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Merrimack College"</span>,</span><br><span class="line">    <span class="string">"location"</span>: <span class="string">"North Andover, MA"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个例子在顶级对象中嵌入了学校（ “school” ）信息。<strong>虽然有两个 “name” 属性</strong> ，但 <strong>由于它们分别属于不同的对象</strong> ，<strong>因此这样完全没有问题</strong> 。不过，<strong>同一个对象中绝对不应该出现两个同名属性</strong> 。</p>
+<p>与 JavaScript 不同，<strong>JSON 中对象的属性名任何时候都必须加双引号</strong> 。手工编写 JSON 时，<strong>忘了给对象属性名加双引号</strong> 或者 <strong>把双引号写成单引号</strong> 都是 <strong>常见的错误</strong> 。</p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>JSON 中的第二种复杂数据类型是数组。<strong>JSON 数组采用的就是 JavaScript 中的数组字面量形式</strong> 。例如，下面是 JavaScript 中的数组字面量：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> values = [<span class="number">25</span>, <span class="string">"hi"</span>, <span class="literal">true</span>];</span><br></pre></td></tr></table></figure>
+<p><strong>在 JSON 中，可以采用同样的语法表示同一个数组</strong> ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">25</span>, <span class="string">"hi"</span>, <span class="literal">true</span>]</span><br></pre></td></tr></table></figure>
+<p>同样要注意，<strong>JSON 数组也没有变量和分号</strong> 。<strong>把数组和对象结合起来，可以构成更复杂的数据集合</strong> ，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"title"</span>: <span class="string">"Professional JavaScript"</span>, </span><br><span class="line">        <span class="string">"authors"</span>: [</span><br><span class="line">            <span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">        ], </span><br><span class="line">        <span class="string">"edition"</span>: <span class="number">3</span>, </span><br><span class="line">        <span class="string">"year"</span>: <span class="number">2011</span></span><br><span class="line">    &#125;, </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"title"</span>: <span class="string">"Professional JavaScript"</span>, </span><br><span class="line">        <span class="string">"authors"</span>: [</span><br><span class="line">            <span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">        ], </span><br><span class="line">        <span class="string">"edition"</span>: <span class="number">2</span>, </span><br><span class="line">        <span class="string">"year"</span>: <span class="number">2009</span></span><br><span class="line">    &#125;, </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"title"</span>: <span class="string">"Professional Ajax"</span>, </span><br><span class="line">        <span class="string">"authors"</span>: [</span><br><span class="line">            <span class="string">"Nicholas C. Zakas"</span>, </span><br><span class="line">            <span class="string">"Jeremy McPeak"</span>, </span><br><span class="line">            <span class="string">"Joe Fawcett"</span></span><br><span class="line">        ], </span><br><span class="line">        <span class="string">"edition"</span>: <span class="number">2</span>, </span><br><span class="line">        <span class="string">"year"</span>: <span class="number">2008</span></span><br><span class="line">    &#125;, </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"title"</span>: <span class="string">"Professional Ajax"</span>, </span><br><span class="line">        <span class="string">"authors"</span>: [</span><br><span class="line">            <span class="string">"Nicholas C. Zakas"</span>, </span><br><span class="line">            <span class="string">"Jeremy McPeak"</span>, </span><br><span class="line">            <span class="string">"Joe Fawcett"</span></span><br><span class="line">        ], </span><br><span class="line">        <span class="string">"edition"</span>: <span class="number">1</span>, </span><br><span class="line">        <span class="string">"year"</span>: <span class="number">2007</span></span><br><span class="line">    &#125;, </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"title"</span>: <span class="string">"Professional JavaScript"</span>, </span><br><span class="line">        <span class="string">"authors"</span>: [</span><br><span class="line">            <span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">        ], </span><br><span class="line">        <span class="string">"edition"</span>: <span class="number">1</span>, </span><br><span class="line">        <span class="string">"year"</span>: <span class="number">2006</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>这个数组中包含一些表示图书的对象。每个对象都有几个属性，其中一个属性是 “authors” ，这个属性的值又是一个数组。对象和数组通常是 JSON 数据结构的最外层形式（当然，这不是强制规定的），利用它们能够创造出各种各样的数据结构。</p>
+<h2 id="解析与序列化"><a href="#解析与序列化" class="headerlink" title="解析与序列化"></a>解析与序列化</h2><p>JSON 之所以流行，拥有与 JavaScript 类似的语法并不是全部原因。更重要的一个原因是，<strong>可以把 JSON 数据结构解析为有用的 JavaScript 对象</strong> 。<strong>与 XML 数据结构要解析成 DOM 文档而且从中提取数据极为麻烦相比</strong> ，<strong>JSON 可以解析为 JavaScript 对象的优势极其明显</strong> 。就以上一节中包含一组图书的 JSON 数据结构为例，在解析为 JavaScript 对象后，只需要下面一行简单的代码就可以取得第三本书的书名：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">books[<span class="number">2</span>].title</span><br></pre></td></tr></table></figure>
+<p>当然，这里是假设把解析 JSON 数据结构后得到的对象保存到了变量 books 中。再看看下面在 DOM 结构中查找数据的代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doc.getElementsByTagName(<span class="string">"book"</span>)[<span class="number">2</span>].getAttribute(<span class="string">"title"</span>)</span><br></pre></td></tr></table></figure>
+<p>看看这些多余的方法调用，就不难理解为什么 JSON 能得到 JavaScript 开发人员的热烈欢迎了。从此以后，<strong>JSON 就成了 Web 服务开发中交换数据的事实标准</strong> 。</p>
+<h3 id="JSON对象"><a href="#JSON对象" class="headerlink" title="JSON对象"></a>JSON对象</h3><p>早期的 JSON 解析器基本上就是使用 <strong>JavaScript 的 eval() 函数</strong> 。<strong>由于 JSON 是 JavaScript 语法的子集</strong> ，因此 <strong>eval() 函数可以解析、解释并返回 JavaScript 对象和数组</strong> 。<strong>ECMAScript 5 对解析 JSON 的行为进行规范，定义了全局对象 JSON</strong> 。支持这个对象的浏览器有 IE 8+、Firefox 3.5+、Safari 4+、Chrome 和 Opera 10.5+。对于较早版本的浏览器，可以使用一个 shim：<a href="https://github.com/douglascrockford/JSON-js" target="_blank" rel="noopener">https://github.com/douglascrockford/JSON-js</a> 。<strong>在旧版本的浏览器中，使用 eval() 对 JSON 数据结构求值存在风险，因为可能会执行一些恶意代码</strong> 。<strong>对于不能原生支持 JSON 解析的浏览器，使用这个 shim 是最佳选择</strong> 。</p>
+<p><strong>JSON 对象</strong> 有两个方法： <strong>stringify()</strong> 和 <strong>parse()</strong> 。在最简单的情况下，这两个方法分别用于 <strong>把 JavaScript 对象序列化为 JSON 字符串</strong> 和 <strong>把 JSON 字符串解析为原生 JavaScript 值</strong> 。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var book = &#123;</span><br><span class="line">  title: &quot;Professional JavaScript&quot;,</span><br><span class="line">  authors: [</span><br><span class="line">    &quot;Nicholas C. Zakas&quot;</span><br><span class="line">  ],</span><br><span class="line">  edition: 3,</span><br><span class="line">  year: 2011</span><br><span class="line">&#125;;</span><br><span class="line">        </span><br><span class="line">var jsonText = JSON.stringify(book);</span><br></pre></td></tr></table></figure>
+<p>这个例子使用 <strong>JSON.stringify() 把一个 JavaScript 对象序列化为一个 JSON 字符串</strong> ，然后 <strong>将它保存在变量 jsonText 中</strong> 。默认情况下， <strong>JSON.stringify() 输出的 JSON 字符串不包含任何空格字符或缩进</strong> ，因此 <strong>保存在 jsonText 中的字符串如下所示</strong> ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">"title"</span>:<span class="string">"Professional JavaScript"</span>,<span class="string">"authors"</span>:[<span class="string">"Nicholas C. Zakas"</span>],<span class="string">"edition"</span>:<span class="number">3</span>, <span class="string">"year"</span>:<span class="number">2011</span>&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>在序列化 JavaScript 对象时，所有函数及原型成员都会被有意忽略，不体现在结果中</strong> 。此外，<strong>值为 undefined 的任何属性也都会被跳过</strong> 。<strong>结果中最终都是值为有效 JSON 数据类型的实例属性</strong> 。</p>
+<p><strong>将 JSON 字符串直接传递给 JSON.parse() 就可以得到相应的 JavaScript 值</strong> 。例如，使用下列代码就可以创建与 book 类似的对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bookCopy = <span class="built_in">JSON</span>.parse(jsonText);</span><br></pre></td></tr></table></figure>
+<p>注意，虽然 book 与 bookCopy 具有相同的属性，但它们是两个独立的、没有任何关系的对象。</p>
+<p><strong>如果传给 JSON.parse() 的字符串不是有效的 JSON，该方法会抛出错误</strong> 。</p>
+<h3 id="序列化选项"><a href="#序列化选项" class="headerlink" title="序列化选项"></a>序列化选项</h3><p>实际上，<strong>JSON.stringify() 除了要序列化的 JavaScript 对象外</strong> ，还可以 <strong>接收另外两个参数</strong> ，这两个参数 <strong>用于指定以不同的方式序列化 JavaScript 对象</strong> 。第一个参数是个 <strong>过滤器</strong> ，<strong>可以是一个数组</strong> ，也 <strong>可以是一个函数</strong> ；第二个参数是一个 <strong>选项</strong> ，表示 <strong>是否在 JSON 字符串中保留缩进</strong> 。单独或组合使用这两个参数，可以更全面深入地控制 JSON 的序列化。</p>
+<ul>
+<li><h4 id="过滤结果"><a href="#过滤结果" class="headerlink" title="过滤结果"></a>过滤结果</h4><p>如果过滤器参数是数组，那么 JSON.stringify() 的结果中将只包含数组中列出的属性。来看下面的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">  <span class="string">"title"</span>: <span class="string">"Professional JavaScript"</span>,</span><br><span class="line">  <span class="string">"authors"</span>: [</span><br><span class="line">    <span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">  ],</span><br><span class="line">  edition: <span class="number">3</span>,</span><br><span class="line">  year: <span class="number">2011</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book, [<span class="string">"title"</span>, <span class="string">"edition"</span>]);</span><br></pre></td></tr></table></figure>
+<p>JSON.stringify() 的第二个参数是一个数组，其中包含两个字符串： “title” 和 “edition” 。这两个属性与将要序列化的对象中的属性是对应的，因此在返回的结果字符串中，就只会包含这两个属性：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">"title"</span>:<span class="string">"Professional JavaScript"</span>,<span class="string">"edition"</span>:<span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>如果第二个参数是函数，行为会稍有不同。传入的函数接收两个参数，属性（键）名和属性值。根据属性（键）名可以知道应该如何处理要序列化的对象中的属性。属性名只能是字符串，而在值并非键值对儿结构的值时，键名可以是空字符串。</p>
+<p>为了改变序列化对象的结果，函数返回的值就是相应键的值。不过要注意，如果函数返回了undefined ，那么相应的属性会被忽略。还是看一个例子吧。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">  <span class="string">"title"</span>: <span class="string">"Professional JavaScript"</span>,</span><br><span class="line">  <span class="string">"authors"</span>: [</span><br><span class="line">    <span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">  ],</span><br><span class="line">  edition: <span class="number">3</span>,</span><br><span class="line">  year: <span class="number">2011</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book, <span class="function"><span class="keyword">function</span>(<span class="params">key, value</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">switch</span>(key)&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"authors"</span>:</span><br><span class="line">      <span class="keyword">return</span> value.join(<span class="string">","</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="string">"year"</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="number">5000</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="string">"edition"</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这里，函数过滤器根据传入的键来决定结果。如果键为 “authors” ，就将数组连接为一个字符串；如果键为 “year” ，则将其值设置为 5000 ；如果键为 “edition” ，通过返回 undefined 删除该属性。最后，一定要提供 default 项，此时返回传入的值，以便其他值都能正常出现在结果中。实际上，第一次调用这个函数过滤器，传入的键是一个空字符串，而值就是 book 对象。序列化后的 JSON 字符串如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">"title"</span>:<span class="string">"Professional JavaScript"</span>,<span class="string">"authors"</span>:<span class="string">"Nicholas C. Zakas"</span>,<span class="string">"year"</span>:<span class="number">5000</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>要序列化的对象中的每一个对象都要经过过滤器，因此数组中的每个带有这些属性的对象经过过滤之后，每个对象都只会包含 “title” 、 “authors” 和 “year” 属性。</p>
+<p>Firefox 3.5 和 3.6 对 JSON.stringify() 的实现有一个 bug，在将函数作为该方法的第二个参数时这个 bug 就会出现，即这个函数只能作为过滤器：返回 undefined 意味着要跳过某个属性，而返回其他任何值都会在结果中包含相应的属性。Firefox 4 修复了这个 bug。</p>
+</li>
+<li><h4 id="字符串缩进"><a href="#字符串缩进" class="headerlink" title="字符串缩进"></a>字符串缩进</h4><p><strong>JSON.stringify() 方法的第三个参数用于控制结果中的缩进和空白符</strong> 。<strong>如果这个参数是一个数值，那它表示的是每个级别缩进的空格数</strong> 。例如，要在每个级别缩进 4 个空格，可以这样写代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">  <span class="string">"title"</span>: <span class="string">"Professional JavaScript"</span>,</span><br><span class="line">  <span class="string">"authors"</span>: [</span><br><span class="line">    <span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">  ],</span><br><span class="line">  edition: <span class="number">3</span>,</span><br><span class="line">  year: <span class="number">2011</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book, <span class="literal">null</span>, <span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+<p>保存在 jsonText 中的字符串如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;title&quot;: &quot;Professional JavaScript&quot;,</span><br><span class="line">  &quot;authors&quot;: [</span><br><span class="line">     &quot;Nicholas C. Zakas&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;edition&quot;: 3,</span><br><span class="line">  &quot;year&quot;: 2011</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不知道读者注意到没有，<strong>JSON.stringify() 也在结果字符串中插入了换行符以提高可读性</strong> 。<strong>只要传入有效的控制缩进的参数值，结果字符串就会包含换行符</strong> 。（只缩进而不换行意义不大。）<strong>最大缩进空格数为 10</strong> ，所有 <strong>大于 10 的值都会自动转换为 10</strong> 。如果缩进参数是一个字符串而非数值，则这个字符串将在 JSON 字符串中被用作缩进字符（不再使用空格）。<strong>在使用字符串的情况下，可以将缩进字符设置为制表符，或者两个短划线之类的任意字符</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book, <span class="literal">null</span>, <span class="string">" - -"</span>);</span><br></pre></td></tr></table></figure>
+<p>这样， jsonText 中的字符串将变成如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">--<span class="string">"title"</span>: <span class="string">"Professional JavaScript"</span>,</span><br><span class="line">--<span class="string">"authors"</span>: [</span><br><span class="line">----<span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">--],</span><br><span class="line">--<span class="string">"edition"</span>: <span class="number">3</span>,</span><br><span class="line">--<span class="string">"year"</span>: <span class="number">2011</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>缩进字符串最长不能超过 10 个字符长</strong> 。如果 <strong>字符串长度超过了 10 个</strong> ，<strong>结果中将只出现前 10 个字符</strong> 。</p>
+</li>
+<li><h4 id="toJSON-方法"><a href="#toJSON-方法" class="headerlink" title="toJSON() 方法"></a>toJSON() 方法</h4><p>有时候， JSON.stringify() 还是不能满足对某些对象进行自定义序列化的需求。在这些情况下，<strong>可以给对象定义 toJSON() 方法</strong> ，<strong>返回其自身的 JSON 数据格式</strong> 。<strong>原生 Date 对象有一个 toJSON() 方法</strong> ，<strong>能够将JavaScript的 Date 对象自动转换成ISO 8601日期字符串</strong>（与在 Date 对象上调用 toISOString() 的结果完全一样）。</p>
+<p><strong>可以为任何对象添加 toJSON() 方法</strong> ，比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">  <span class="string">"title"</span>: <span class="string">"Professional JavaScript"</span>,</span><br><span class="line">  <span class="string">"authors"</span>: [</span><br><span class="line">    <span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">  ],</span><br><span class="line">  edition: <span class="number">3</span>,</span><br><span class="line">  year: <span class="number">2011</span>,</span><br><span class="line">  toJSON: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.title;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book);</span><br></pre></td></tr></table></figure>
+<p>以上代码在 book 对象上定义了一个 toJSON() 方法，该方法返回图书的书名。与 Date 对象类似，这个对象也将被序列化为一个简单的字符串而非对象。可以让 toJSON() 方法返回任何值，它都能正常工作。比如，可以让这个方法返回 undefined ，此时如果包含它的对象嵌入在另一个对象中，会导致它的值变成 null ，而如果它是顶级对象，结果就是 undefined 。</p>
+<p>toJSON() 可以作为函数过滤器的补充，因此理解序列化的内部顺序十分重要。假设 <strong>把一个对象传入 JSON.stringify()</strong> ，<strong>序列化该对象的顺序如下</strong> 。</p>
+<ol>
+<li>如果存在 toJSON() 方法而且能通过它取得有效的值，则调用该方法。否则，返回对象本身。</li>
+<li>如果提供了第二个参数，应用这个函数过滤器。传入函数过滤器的值是第 1 步返回的值。</li>
+<li>对第 2 步返回的每个值进行相应的序列化。</li>
+<li>如果提供了第三个参数，执行相应的格式化。</li>
+</ol>
+<p>无论是考虑定义 toJSON() 方法，还是考虑使用函数过滤器，亦或需要同时使用两者，理解这个顺序都是至关重要的。</p>
+</li>
+</ul>
+<h3 id="解析选项"><a href="#解析选项" class="headerlink" title="解析选项"></a>解析选项</h3><p>JSON.parse() 方法也可以接收另一个参数，该参数是一个函数，将在每个键值对儿上调用。为了区别 JSON.stringify() 接收的替换（过滤）函数（replacer），这个函数被称为还原函数（reviver），但实际上这两个函数的签名是相同的——它们都接收两个参数，一个键和一个值，而且都需要返回一个值。</p>
+<p>如果还原函数返回 undefined ，则表示要从结果中删除相应的键；如果返回其他值，则将该值插入到结果中。在将日期字符串转换为 Date 对象时，经常要用到还原函数。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var book = &#123;</span><br><span class="line">  &quot;title&quot;: &quot;Professional JavaScript&quot;,</span><br><span class="line">  &quot;authors&quot;: [</span><br><span class="line">    &quot;Nicholas C. Zakas&quot;</span><br><span class="line">  ],</span><br><span class="line">  edition: 3,</span><br><span class="line">  year: 2011,</span><br><span class="line">  releaseDate: new Date(2011, 11, 1)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var jsonText = JSON.stringify(book);</span><br><span class="line"></span><br><span class="line">var bookCopy = JSON.parse(jsonText, function(key, value)&#123;</span><br><span class="line">  if (key == &quot;releaseDate&quot;)&#123;</span><br><span class="line">    return new Date(value);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">alert(bookCopy.releaseDate.getFullYear());</span><br></pre></td></tr></table></figure>
+<p>以上代码先是为 book 对象新增了一个 releaseDate 属性，该属性保存着一个 Date 对象。这个对象在经过序列化之后变成了有效的 JSON 字符串，然后经过解析又在 bookCopy 中还原为一个 Date 对象。还原函数在遇到 “releaseDate” 键时，会基于相应的值创建一个新的 Date 对象。结果就是 bookCopy.releaseDate 属性中会保存一个 Date 对象。正因为如此，才能基于这个对象调用 getFullYear() 方法。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><strong>JSON 是一个轻量级的数据格式，可以简化表示复杂数据结构的工作量</strong> 。JSON 使用 JavaScript 语法的子集表示 <strong>对象</strong>、<strong>数组</strong> 、<strong>字符串</strong> 、<strong>数值</strong>、<strong>布尔值</strong> 和 <strong>null</strong> 。即使 XML 也能表示同样复杂的数据结果，但 JSON 没有那么烦琐，而且在 JavaScript 中使用更便利。</p>
+<p><strong>ECMAScript 5 定义了一个原生的 JSON 对象</strong> ，<strong>可以用来将对象序列化为 JSON 字符串或者将 JSON 数据解析为 JavaScript 对象</strong> 。 JSON.stringify() 和 JSON.parse() 方法分别用来实现上述两项功能。这两个方法都有一些选项，通过它们可以改变过滤的方式，或者改变序列化的过程。</p>
+<p>原生的 JSON 对象也得到了很多浏览器的支持，比如 IE8+、Firefox 3.5+、Safari 4+、Opera 10.5 和 Chrome。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/28/JavaScript-HTML5-script-programming/" rel="next" title="《JavaScript 高级程序设计》学习笔记-HTML5 脚本编程">
+                <i class="fa fa-chevron-left"></i> 《JavaScript 高级程序设计》学习笔记-HTML5 脚本编程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/28/JavaScript-Ajax-and-Comet/" rel="prev" title="《JavaScript 高级程序设计》学习笔记- Ajax 与 Comet">
+                《JavaScript 高级程序设计》学习笔记- Ajax 与 Comet <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="songxingguo">
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">132</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JSON"><span class="nav-number">1.</span> <span class="nav-text">JSON</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">1.1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单值"><span class="nav-number">1.1.1.</span> <span class="nav-text">简单值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象"><span class="nav-number">1.1.2.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">1.1.3.</span> <span class="nav-text">数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析与序列化"><span class="nav-number">1.2.</span> <span class="nav-text">解析与序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON对象"><span class="nav-number">1.2.1.</span> <span class="nav-text">JSON对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列化选项"><span class="nav-number">1.2.2.</span> <span class="nav-text">序列化选项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#过滤结果"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">过滤结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串缩进"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">字符串缩进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#toJSON-方法"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">toJSON() 方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析选项"><span class="nav-number">1.2.3.</span> <span class="nav-text">解析选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.3.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":90,"vOffset":-25},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
