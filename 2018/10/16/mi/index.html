@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="用肯定自信的方式回答问题尽可能的把自己知道的东西讲出来，尽可能的多表达。 尽最大努力去争取许。 一面为什么来小米喜欢小米的产品，小米的产品都性价比很高。我很喜欢小米的 MIUI 系统，设计很人性化，比如：短信的验证码复制功能，动态音乐闹钟。我是一个米粉，我用过手环、小爱同学、耳机、手机，看小米的新平发布会。我看过《雷军传》、《互联网+：小米案例》，对雷总的经历很佩服，对小米的创立也很佩服，很想加入">
+<meta name="keywords" content="找工作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小米面试准备">
+<meta property="og:url" content="https://www.songxingguo.com/2018/10/16/mi/index.html">
+<meta property="og:site_name" content="阿有的生活">
+<meta property="og:description" content="用肯定自信的方式回答问题尽可能的把自己知道的东西讲出来，尽可能的多表达。 尽最大努力去争取许。 一面为什么来小米喜欢小米的产品，小米的产品都性价比很高。我很喜欢小米的 MIUI 系统，设计很人性化，比如：短信的验证码复制功能，动态音乐闹钟。我是一个米粉，我用过手环、小爱同学、耳机、手机，看小米的新平发布会。我看过《雷军传》、《互联网+：小米案例》，对雷总的经历很佩服，对小米的创立也很佩服，很想加入">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/web-interview/cookie%E3%80%81sessionStorage%E4%B8%8ElacalStrage%E7%9A%84%E5%8C%BA%E5%88%AB.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/mi/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/mi/%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/cross-domain/%E8%B7%A8%E5%9F%9F.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/cross-domain/%E8%B7%A8%E5%9F%9F%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/cross-domain/%E8%B7%A8%E5%9F%9F%E7%9A%84%E7%B1%BB%E5%9E%8B.jpg">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2075673-3afda32a13a68c6b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://gw.alipayobjects.com/os/skylark-tools/public/files/81fdbf664f654970835e5426b55959f6">
+<meta property="og:updated_time" content="2021-06-14T12:12:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小米面试准备">
+<meta name="twitter:description" content="用肯定自信的方式回答问题尽可能的把自己知道的东西讲出来，尽可能的多表达。 尽最大努力去争取许。 一面为什么来小米喜欢小米的产品，小米的产品都性价比很高。我很喜欢小米的 MIUI 系统，设计很人性化，比如：短信的验证码复制功能，动态音乐闹钟。我是一个米粉，我用过手环、小爱同学、耳机、手机，看小米的新平发布会。我看过《雷军传》、《互联网+：小米案例》，对雷总的经历很佩服，对小米的创立也很佩服，很想加入">
+<meta name="twitter:image" content="https://graphbed.qiniu.songxingguo.com/web-interview/cookie%E3%80%81sessionStorage%E4%B8%8ElacalStrage%E7%9A%84%E5%8C%BA%E5%88%AB.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/10/16/mi/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>小米面试准备 | 阿有的生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">132</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">43</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/10/16/mi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">小米面试准备
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-16 08:54:00" itemprop="dateCreated datePublished" datetime="2018-10-16T08:54:00+00:00">2018-10-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-06-14 12:12:19" itemprop="dateModified" datetime="2021-06-14T12:12:19+00:00">2021-06-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/备忘录/" itemprop="url" rel="index"><span itemprop="name">备忘录</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/16/mi/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/16/mi/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/10/16/mi/" class="leancloud_visitors" data-flag-title="小米面试准备">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="用肯定自信的方式回答问题"><a href="#用肯定自信的方式回答问题" class="headerlink" title="用肯定自信的方式回答问题"></a>用肯定自信的方式回答问题</h1><p>尽可能的把自己知道的东西讲出来，尽可能的多表达。</p>
+<p>尽最大努力去争取许。</p>
+<h2 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h2><h3 id="为什么来小米"><a href="#为什么来小米" class="headerlink" title="为什么来小米"></a>为什么来小米</h3><h4 id="喜欢小米的产品，小米的产品都性价比很高。"><a href="#喜欢小米的产品，小米的产品都性价比很高。" class="headerlink" title="喜欢小米的产品，小米的产品都性价比很高。"></a>喜欢小米的产品，小米的产品都性价比很高。</h4><h4 id="我很喜欢小米的-MIUI-系统，设计很人性化，比如：短信的验证码复制功能，动态音乐闹钟。"><a href="#我很喜欢小米的-MIUI-系统，设计很人性化，比如：短信的验证码复制功能，动态音乐闹钟。" class="headerlink" title="我很喜欢小米的 MIUI 系统，设计很人性化，比如：短信的验证码复制功能，动态音乐闹钟。"></a>我很喜欢小米的 MIUI 系统，设计很人性化，比如：短信的验证码复制功能，动态音乐闹钟。</h4><h4 id="我是一个米粉，我用过手环、小爱同学、耳机、手机，看小米的新平发布会。"><a href="#我是一个米粉，我用过手环、小爱同学、耳机、手机，看小米的新平发布会。" class="headerlink" title="我是一个米粉，我用过手环、小爱同学、耳机、手机，看小米的新平发布会。"></a>我是一个米粉，我用过手环、小爱同学、耳机、手机，看小米的新平发布会。</h4><h4 id="我看过《雷军传》、《互联网-：小米案例》，对雷总的经历很佩服，对小米的创立也很佩服，很想加入加入小米，也能做出有我参与的人性化产品。"><a href="#我看过《雷军传》、《互联网-：小米案例》，对雷总的经历很佩服，对小米的创立也很佩服，很想加入加入小米，也能做出有我参与的人性化产品。" class="headerlink" title="我看过《雷军传》、《互联网+：小米案例》，对雷总的经历很佩服，对小米的创立也很佩服，很想加入加入小米，也能做出有我参与的人性化产品。"></a>我看过《雷军传》、《互联网+：小米案例》，对雷总的经历很佩服，对小米的创立也很佩服，很想加入加入小米，也能做出有我参与的人性化产品。</h4><a id="more"></a>
+<h3 id="为什么要做前端"><a href="#为什么要做前端" class="headerlink" title="为什么要做前端"></a>为什么要做前端</h3><p>  喜欢前端、可以展示自己、能将学到的东西学以致用，并能马上看到效果，很有成就感。</p>
+<p>  对前端感兴趣。</p>
+<p>  我很喜欢写博客，将重要的知识点记录下来，问题记录下来、或者自己的想法记录下来。</p>
+<h3 id="简单的自我介绍一下吧"><a href="#简单的自我介绍一下吧" class="headerlink" title="简单的自我介绍一下吧"></a>简单的自我介绍一下吧</h3><p>我叫宋兴国，来自重庆理工大学软件工程系，家是重庆永川的。在2016年7月到2018年2月期间加入了专业实验室、曾做过一个以AngualrJS为前端框架的新能源物流车综合运营平台项目，离开实验室之后自己搭建了一个个人博客、独立设计和开发了一款微信小程序、以及了解了一下前端的框架 React、Angualr，打包工具 Webpack、ES6、Node（koa）。总的来说，具有一定的项目经验，属性项目开发的整个流程、具有一定的自学能力，以及对前端新技术有一定的敏感度。喜欢电影，打羽毛球。</p>
+<p>很喜欢小米，是小米的忠实米粉。</p>
+<p>我有什么需要提高、最希望提升的特质？ （比如：经验还不够丰富）。</p>
+<p>说一说你做过的印象深刻的项目（着重说一个，你是怎么思考的，怎么解决了问题的，事后如何复盘的）。</p>
+<p>优点：够努力。<br>缺点：犹豫、不够坚定。</p>
+<p>熟悉HTML、CSS、JavaScript。</p>
+<h3 id="笔试题怎么想的"><a href="#笔试题怎么想的" class="headerlink" title="笔试题怎么想的"></a>笔试题怎么想的</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var fib = function(num) &#123;</span><br><span class="line">  if (num == 1 || num == 2) &#123;</span><br><span class="line">    return 1;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return arguments.callee(num - 1) + arguments.callee(num - 2);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//		    var getRow = function(num) &#123;</span><br><span class="line">//		    	var  n = 1;</span><br><span class="line">//		    	while(sumFib(n) &lt;= num) &#123;</span><br><span class="line">//		    		n++;</span><br><span class="line">//		    	&#125;</span><br><span class="line">//		    	return sumFib(n - 1);</span><br><span class="line">//		    &#125;</span><br><span class="line">var sumFib = function(n) &#123;</span><br><span class="line">  var sum = 0;</span><br><span class="line">  for (var i = 0; i &lt; n; i++) &#123;</span><br><span class="line">    sum += fib(i);</span><br><span class="line">  &#125;</span><br><span class="line">  return sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(sumFib(2));</span><br><span class="line">//          var  n = getRow(6);</span><br><span class="line">//          console.log(n);</span><br><span class="line">//		    console.log(sumFib(5));</span><br></pre></td></tr></table></figure>
+<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p><a href="http://www.runoob.com/regexp/regexp-syntax.html" target="_blank" rel="noopener">正则表达式</a></p>
+<p><a href="http://www.runoob.com/js/js-regexp.html" target="_blank" rel="noopener">JavaScript 正则表达式</a></p>
+<p><a href="https://www.cnblogs.com/ldq2016/p/5528177.html" target="_blank" rel="noopener">正则表达式基本语法</a></p>
+<p><a href="https://blog.csdn.net/u010760374/article/details/79974586" target="_blank" rel="noopener">正则表达式简单语法及常用正则表达式</a></p>
+<h3 id="html5用过哪些标签？"><a href="#html5用过哪些标签？" class="headerlink" title="html5用过哪些标签？"></a>html5用过哪些标签？</h3><p>header、footer、main、nav、video 、audio、canvas、section、article</p>
+<h3 id="css3用过什么？"><a href="#css3用过什么？" class="headerlink" title="css3用过什么？"></a>css3用过什么？</h3><p>2D/3D转换、动画、Flex布局</p>
+<h3 id="css选择器"><a href="#css选择器" class="headerlink" title="css选择器"></a>css选择器</h3><p>元素选择器、ID选择器、类选择器、后代选择器、属性选择器、子元素选择器()、相邻兄弟选择器、<a href="http://www.w3school.com.cn/css/css_pseudo_classes.asp" target="_blank" rel="noopener">伪类</a>、伪元素(CSS 伪元素用于向某些选择器设置特殊效果。)</p>
+<p>在支持 CSS 的浏览器中，链接的不同状态都可以不同的方式显示，这些状态包括：活动状态，已被访问状态，未被访问状态，和鼠标悬停状态。</p>
+<p>提示：在 CSS 定义中，a:hover 必须被置于 a:link 和 a:visited 之后，才是有效的。</p>
+<p>提示：在 CSS 定义中，a:active 必须被置于 a:hover 之后，才是有效的。</p>
+<p>提示：伪类名称对大小写不敏感。</p>
+<p><a href="http://www.w3school.com.cn/cssref/css_selectors.asp" target="_blank" rel="noopener">CSS3 选择器</a></p>
+<h3 id="webstorage和cookie有什么区别？"><a href="#webstorage和cookie有什么区别？" class="headerlink" title="webstorage和cookie有什么区别？"></a>webstorage和cookie有什么区别？</h3><p><img src="https://graphbed.qiniu.songxingguo.com/web-interview/cookie%E3%80%81sessionStorage%E4%B8%8ElacalStrage%E7%9A%84%E5%8C%BA%E5%88%AB.png" alt="session和cookie之间的区别"></p>
+<p><a href="https://www.songxingguo.com/2018/08/06/web-front-end-interview-network/">session和cookie之间的区别</a></p>
+<h3 id="你知道有哪些js的继承方式"><a href="#你知道有哪些js的继承方式" class="headerlink" title="你知道有哪些js的继承方式"></a>你知道有哪些js的继承方式</h3><p>JavaScript 主要通过原型链实现继承。原型链的构建是通过将一个类型的实例赋值给另一个构造函数的原型实现的。这样，子类型就能够访问超类型的所有属性和方法，这一点与基于类的继承很相似。原型链的问题是 <strong>对对象实例共享所有继承的属性和方法</strong>  ，因此 <strong>不适宜单独使用</strong> 。解决这个问题的技术是 <strong>借用构造函数</strong> ，即 <strong>在子类型构造函数的内部调用超类型构造函数</strong> 。这样就 <strong>可以做到每个实例都具有自己的属性，同时还能保证只使用构造函数模式来定义类型</strong> 。使用最多的继承模式是 <strong>组合继承</strong> ，这种模式 <strong>使用原型链继承共享的属性和方法</strong> ，而 <strong>通过借用构造函数继承实例属性</strong> 。</p>
+<p>此外，还存在下列可供选择的继承模式。</p>
+<p><strong>原型式继承</strong> ，可以在不必预先定义构造函数的情况下实现继承，其本质是 <strong>执行对给定对象的浅复制</strong> 。而复制得到的副本还可以得到进一步改造。</p>
+<p><strong>寄生式继承</strong> ，与 <strong>原型式继承非常相似，也是基于某个对象或某些信息创建一个对象，然后增强对象，最后返回对象</strong> 。为了解决组合继承模式由于多次调用超类型构造函数而导致的低效率问题，可以将这个模式与组合继承一起使用。</p>
+<p><strong>寄生组合式继承</strong> ，<strong>集寄生式继承和组合继承优点与一身</strong> ，，是 <strong>实现基于类型继承的最有效方式</strong> 。</p>
+<h3 id="git-pull-和-git-fetch区别"><a href="#git-pull-和-git-fetch区别" class="headerlink" title="git pull 和 git fetch区别"></a>git pull 和 git fetch区别</h3><ol>
+<li><p>git fetch：相当于是从远程获取最新版本到本地，不会自动merge</p>
+</li>
+<li><p>git pull：相当于是从远程获取最新版本并merge到本地</p>
+<p>上述命令其实相当于git fetch 和 git merge</p>
+<p>在实际使用中，git fetch更安全一些</p>
+<p>因为在merge前，我们可以查看更新情况，然后再决定是否合并</p>
+</li>
+</ol>
+<h3 id="设计一个团队开发流程的git工作流，要求每天发布一个版本-重点就是发布到主分支还是每天的分支上，应该是发布到主分支"><a href="#设计一个团队开发流程的git工作流，要求每天发布一个版本-重点就是发布到主分支还是每天的分支上，应该是发布到主分支" class="headerlink" title="设计一个团队开发流程的git工作流，要求每天发布一个版本,重点就是发布到主分支还是每天的分支上，应该是发布到主分支"></a>设计一个团队开发流程的git工作流，要求每天发布一个版本,重点就是发布到主分支还是每天的分支上，应该是发布到主分支</h3><p><img src="https://graphbed.qiniu.songxingguo.com/mi/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="常用 命令流程图"></p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/mi/%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B.png" alt="发布流程"></p>
+<h3 id="this的描述和绑定规则，我回答的是按照《你不知道的js》"><a href="#this的描述和绑定规则，我回答的是按照《你不知道的js》" class="headerlink" title="this的描述和绑定规则，我回答的是按照《你不知道的js》"></a>this的描述和绑定规则，我回答的是按照《你不知道的js》</h3><ul>
+<li><p>this永远指向最后调用它的上级对象。</p>
+</li>
+<li><p>New 关键字可以改变 this 指向。</p>
+</li>
+<li><p>自行改变 this 指向 call()、apply()、bind()。</p>
+</li>
+<li><p>返回值是对象，this 指向对象，否则指向函数实例（null 也为对象）。</p>
+</li>
+<li><p>ES6 中箭头函数中 this 指向定义时所在对象。</p>
+</li>
+</ul>
+<p>严格模式中默认的 this 不再是 window，而是 undefined。</p>
+<h3 id="函数作用域，有哪些改变方式apply-call，怎样不在运行时才决定this（用箭头函数）"><a href="#函数作用域，有哪些改变方式apply-call，怎样不在运行时才决定this（用箭头函数）" class="headerlink" title="函数作用域，有哪些改变方式apply call，怎样不在运行时才决定this（用箭头函数）"></a>函数作用域，有哪些改变方式apply call，怎样不在运行时才决定this（用箭头函数）</h3><p>每个函数都包含两个非继承而来的方法： apply() 和 call() 。这两个方法的用途都是 在特定的作用域中调用函数 ，实际上等于 设置函数体内 this 对象的值 。首先， apply() 方法 接收两个参数：一个是 在其中 <strong>运行函数的作用域</strong>  ，另一个是 参数数组 。其中，第二个参数可以是 <strong>Array 的实例</strong> ，也可以是 <strong>arguments 对象</strong> 。</p>
+<p>call() 方法 与 apply() 方法的作用相同，它们的区别仅在于接收参数的方式不同。对于 call()方法而言，第一个参数是 this 值没有变化 ，变化的是其余参数都直接传递给函数 。换句话说，在使用 call() 方法时，<strong>传递给函数的参数必须逐个列举出来</strong>。 </p>
+<p>使用 call() （或 apply() ）来扩充作用域的最大好处，就是 对象不需要与方法有任何耦合关系 。</p>
+<p>ECMAScript 5 还定义了一个方法： bind() 。这个方法会 创建一个函数的实例 ，其 this 值会被绑定到传给 bind() 函数的值 。</p>
+<h3 id="es6了解吗？了解一些"><a href="#es6了解吗？了解一些" class="headerlink" title="es6了解吗？了解一些"></a>es6了解吗？了解一些</h3><p><a href="https://www.songxingguo.com/2018/10/10/qunar/">去哪儿网面试准备</a></p>
+<h3 id="说一说你觉得es6高效好用的地方？promise"><a href="#说一说你觉得es6高效好用的地方？promise" class="headerlink" title="说一说你觉得es6高效好用的地方？promise"></a>说一说你觉得es6高效好用的地方？promise</h3><p>箭头函数（简化函数定义）、扩展运算符（减少传参）、结构运算符、模块化（import、export、default export）、promise（解决了回调地域）</p>
+<h3 id="promise有几种状态？分别是什么？"><a href="#promise有几种状态？分别是什么？" class="headerlink" title="promise有几种状态？分别是什么？"></a>promise有几种状态？分别是什么？</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getProductDetails</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Getting customers'</span>);</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'Getting orders'</span>);</span><br><span class="line">      setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Getting products'</span>);</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">'Getting products details'</span>);</span><br><span class="line">        &#125;, <span class="number">1000</span>);</span><br><span class="line">      &#125;, <span class="number">1000</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">    </span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getProductDetails();</span><br></pre></td></tr></table></figure>
+<p>ES6引入了promise，在 保持与回调相同功能 的同时，<strong>消除回调嵌套并令代码更易阅读</strong> 。Promise对象 等待并监听异步操作的结果 ，通知代码执行是否执行成功或失败 ,以便能够相应地处理下一步操作。Promise对象 表示一个未来结果的操作 ，可能是以下状态之一：</p>
+<ul>
+<li>Fulfilled: 操作成功完成。</li>
+<li>Rejected: 操作失败并返回一个错误。</li>
+<li>Pending: 操作正在处理中，既没有fulfilled,也没有rejected。</li>
+</ul>
+<h4 id="promise-then返回的是什么？"><a href="#promise-then返回的是什么？" class="headerlink" title="promise.then返回的是什么？"></a>promise.then返回的是什么？</h4><p>Deferred对象的用途是与Promise对象相关联，提供一些API处理成功或失败的任务状态，具有如下方法和属性：</p>
+<ul>
+<li>resolve(value)：用于标识当前任务状态成功，可以继续链式调用then方法。</li>
+<li>reject(reason)：用于标识当前任务状态失败，会跳转到catch方法，类似于编程语言中的try…catch语法。</li>
+<li>notify(value)：用于更新Promise的执行状态，在Promise被处理或被拒绝之前可能会被调用多次。</li>
+<li>promise - {Promise}：和Deferred对象相关联的Promise对象。</li>
+</ul>
+<p>Promise对象具有then、catch、finally三个方法，每个方法的调用都返回一个Promise对象，这为链式调用提供了支撑，finally方法和编程语言中的try…catch…finally语句类似，一定会被执行到。</p>
+<h3 id="promise-原理"><a href="#promise-原理" class="headerlink" title="promise 原理"></a>promise 原理</h3><h3 id="箭头函数用过吗？用过-箭头函数的优点是什么？"><a href="#箭头函数用过吗？用过-箭头函数的优点是什么？" class="headerlink" title="箭头函数用过吗？用过,箭头函数的优点是什么？"></a>箭头函数用过吗？用过,箭头函数的优点是什么？</h3><ul>
+<li><p>为匿名函数提供了更短的写法。</p>
+</li>
+<li><p>为this变量添加了词法作用域。</p>
+</li>
+</ul>
+<h3 id="for-of-循环"><a href="#for-of-循环" class="headerlink" title="for-of 循环"></a>for-of 循环</h3><ul>
+<li>every() ：对数组中的每一项运行给定函数，如果该函数对每一项都返回 true ，则返回 true 。</li>
+<li>filter() ：对数组中的每一项运行给定函数，返回该函数会返回 true 的项组成的数组。</li>
+<li>forEach() ：对数组中的每一项运行给定函数。这个方法没有返回值。</li>
+<li>map() ：对数组中的每一项运行给定函数，返回每次函数调用的结果组成的数组。</li>
+<li><p>some() ：对数组中的每一项运行给定函数，如果该函数对任一项返回 true ，则返回 true 。</p>
+</li>
+<li><p>使用forEach()方法</p>
+<p>考虑下面的代码，对一个包含了4个数字的数组进行迭代。</p>
+<p>forEach()方法将一个函数作为参数，并从数组中正确的打印四个数字，忽略了description属性。forEach()的另一个限制是 无法提前打断循环 。可以使用every()方法代替forEach()或借助其他一些hack手段来实现这个功能。</p>
+</li>
+<li><p>for-in能够 循环遍历对象的属性以及集合数据 。</p>
+<p>正如你看到的，for-in循环 遍历的是所有属性 ，而 不仅仅是数据 ，这个可能并非预期效果。</p>
+</li>
+<li><p>ES6引入了for-of循环，能够做到 只遍历数据 而 不读取数据集合中的其他属性 。可以使用break关键字打断循环。</p>
+<p>for-of 可以遍历 任何一个可被迭代的对象 ，包括Array、Map、Set以及其他一些对象</p>
+</li>
+</ul>
+<h3 id="浏览器跨域了解吗？具体怎么实现？-答的是document-domain和jsonp"><a href="#浏览器跨域了解吗？具体怎么实现？-答的是document-domain和jsonp" class="headerlink" title="浏览器跨域了解吗？具体怎么实现？ 答的是document.domain和jsonp"></a>浏览器跨域了解吗？具体怎么实现？ 答的是document.domain和jsonp</h3><h4 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域"></a>什么是跨域</h4><ul>
+<li><p>域名地址的组成</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/cross-domain/%E8%B7%A8%E5%9F%9F.jpg" alt="域名地址的组成"></p>
+</li>
+<li><p>跨域错误代码</p>
+<p> <img src="https://graphbed.qiniu.songxingguo.com/cross-domain/%E8%B7%A8%E5%9F%9F%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81.jpg" alt="跨域错误代码"></p>
+</li>
+<li><p>跨域的定义</p>
+<p> 跨域是JavaScript出于安全方面的考虑，不允许跨域调用其他页面对象。是JavaScript同源策略的限制。</p>
+</li>
+<li><p>常见跨域场景</p>
+<p> <img src="https://graphbed.qiniu.songxingguo.com/cross-domain/%E8%B7%A8%E5%9F%9F%E7%9A%84%E7%B1%BB%E5%9E%8B.jpg" alt="常见跨域场景"></p>
+</li>
+</ul>
+<h4 id="处理跨域的方法"><a href="#处理跨域的方法" class="headerlink" title="处理跨域的方法"></a>处理跨域的方法</h4><h5 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h5><p>服务器后台做代理，a.com 调用 b.com的服务时不直接调用，而是通过a.com的服务器后台去调用b.com的服务。</p>
+<h5 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h5><h6 id="jsonp的原理"><a href="#jsonp的原理" class="headerlink" title="jsonp的原理"></a>jsonp的原理</h6><p>ajax请求受同源策略影响，不允许进行跨域请求，而script标签src属性中的链接却可以访问跨域的js脚本，利用这个特性，服务端不再返回JSON格式的数据，而是返回一段调用某个函数的js代码，在src中进行了调用，这样实现了跨域。</p>
+<p><a href="https://blog.csdn.net/u011897301/article/details/52679486" target="_blank" rel="noopener">简单透彻理解JSONP原理及使用</a></p>
+<h6 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h6><ul>
+<li><p>用JSONP定义参数名称，只支持GET请求。</p>
+</li>
+<li><p>在登录模块中需要用到session来判断当前用户的登录状态,这时候由于是跨域的原因,前后台的取到的session是不一样的,那么就不能就行session来判断.</p>
+</li>
+<li><p>由于jsonp存在安全性问题</p>
+</li>
+</ul>
+<h5 id="XHR2"><a href="#XHR2" class="headerlink" title="XHR2"></a>XHR2</h5><p>跨域资源共享（CORS）</p>
+<p>普通跨域请求：只服务端设置Access-Control-Allow-Origin即可，前端无须设置。<br>带cookie请求：前后端都需要设置字段，另外需注意：所带cookie为跨域请求接口所在域的cookie，而非当前页。</p>
+<p>目前，所有浏览器都支持该功能(IE8+：IE8/9需要使用XDomainRequest对象来支持CORS）)，CORS也已经成为主流的跨域解决方案。</p>
+<h5 id="nginx代理"><a href="#nginx代理" class="headerlink" title="nginx代理"></a>nginx代理</h5><p>设置监听域和转发域。</p>
+<h4 id="nodejs中间件"><a href="#nodejs中间件" class="headerlink" title="nodejs中间件"></a>nodejs中间件</h4><p>node中间件实现跨域代理，原理大致与nginx相同，都是通过启一个代理服务器，实现数据的转发。</p>
+<h5 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h5><p>WebSocket protocol是HTML5一种新的协议。它实现了浏览器与服务器全双工通信，同时允许跨域通讯，是server push技术的一种很好的实现。</p>
+<p><a href="https://www.songxingguo.com/2018/07/15/cross-domain/">跨域问题</a></p>
+<h3 id="标签语义化的理解"><a href="#标签语义化的理解" class="headerlink" title="标签语义化的理解"></a>标签语义化的理解</h3><h4 id="什么是语义元素呢？"><a href="#什么是语义元素呢？" class="headerlink" title="什么是语义元素呢？"></a>什么是语义元素呢？</h4><p>语义元素 为它们标注的内容赋予额外的含义 ，让网页的结构更加清晰 ，语义元素都有一个显著的特点： 不真正做任何事 。</p>
+<h4 id="容易修改和维护"><a href="#容易修改和维护" class="headerlink" title="容易修改和维护"></a>容易修改和维护</h4><p>通过 HTML5的语义元素 ，通过标记就可以传达出 额外的结构化信息 。</p>
+<h4 id="无障碍性"><a href="#无障碍性" class="headerlink" title="无障碍性"></a>无障碍性</h4><p>现代Web设计的一个重要主题，就是 让任何人都能无障碍的访问网页 。换句话说，要让使用屏幕阅读器和其他辅助工具的人都能够在页面中自由导航。</p>
+<h4 id="搜索引擎优化"><a href="#搜索引擎优化" class="headerlink" title="搜索引擎优化"></a>搜索引擎优化</h4><p>如果搜索引擎能更好的理解你的站点，那 搜索者的查询就会越容易与你的内容匹配 ，因而你的网站列在搜索结果中的可能性也就越大。</p>
+<h4 id="未来功能"><a href="#未来功能" class="headerlink" title="未来功能"></a>未来功能</h4><p>新浏览器和 Web编辑器工具 一定会 利用语义元素 。</p>
+<p>最关键的问题在于，如果正确地使用了语义元素，就能够 创建更加清晰的页面结构 ，就能 适应未来的浏览器和Web设计工具的发展趋势 。</p>
+<h3 id="了解doctype么？html5的和html4的有什么区别（我当时以为要问声明html5以下的doctype怎么写，吓的，其实是想考察doctype对盒模型的影响）"><a href="#了解doctype么？html5的和html4的有什么区别（我当时以为要问声明html5以下的doctype怎么写，吓的，其实是想考察doctype对盒模型的影响）" class="headerlink" title="了解doctype么？html5的和html4的有什么区别（我当时以为要问声明html5以下的doctype怎么写，吓的，其实是想考察doctype对盒模型的影响）"></a>了解doctype么？html5的和html4的有什么区别（我当时以为要问声明html5以下的doctype怎么写，吓的，其实是想考察doctype对盒模型的影响）</h3><p>HTML5的文档声明不包括官方规范的版本号。事实上，这个声明只表示当前页面是HTML页面。这与HTML5是一门活着的语言的远见是分不开的。换句话说，只要有新功能添加到HTML语言中，你在页面中都可以使用它们，而不必为此修改文档类型声明。</p>
+<h5 id="不同html版本采用不同的渲染模式"><a href="#不同html版本采用不同的渲染模式" class="headerlink" title="不同html版本采用不同的渲染模式"></a>不同html版本采用不同的渲染模式</h5><h5 id="HTML5只有一种DTD模型："><a href="#HTML5只有一种DTD模型：" class="headerlink" title="HTML5只有一种DTD模型："></a>HTML5只有一种DTD模型：</h5><p>HTML4有三种DTD模型：严格、过渡（最多）、框架<br>过渡 DOCTYPE 的目的是帮助开发人员从老版本迁移到新版本</p>
+<h5 id="对于-HTML-4-01-文档"><a href="#对于-HTML-4-01-文档" class="headerlink" title="对于 HTML 4.01 文档"></a>对于 HTML 4.01 文档</h5><p>包含严格 DTD 的 DOCTYPE 常常导致页面以标准模式呈现。<br>包含过渡 DTD 和 URI 的 DOCTYPE 也导致页面以标准模式呈现。<br>有过渡 DTD 而没有 URI 会导致页面以混杂模式呈现。<br>DOCTYPE 不存在或形式不正确会导致 HTML 和 XHTML 文档以混杂模式呈现。<br>对于HTML5文档 </p>
+<p>HTML5 没有 DTD ，（ HTML5 没有标准和怪异之）</p>
+<p>DTTD: 包含严格 DTD（文档类型定义(Document Type Definition)是一套为了进行程序间的数据交换而建立的关于标记符的语法规则） 的 DOCTYPE 常常导致页面以标准模式呈现。</p>
+<p><a href="https://baike.baidu.com/item/dtd/2661276?fr=aladdin" target="_blank" rel="noopener">dtd</a></p>
+<p><a href="https://blog.csdn.net/qq_35936643/article/details/79126826" target="_blank" rel="noopener">DOCTYPE声明、显示模式（标准模式、怪异模式）、盒子模型</a></p>
+<h3 id="盒模型（这里好像因为太愉悦了没深思熟虑所以好像说反了）"><a href="#盒模型（这里好像因为太愉悦了没深思熟虑所以好像说反了）" class="headerlink" title="盒模型（这里好像因为太愉悦了没深思熟虑所以好像说反了）"></a>盒模型（这里好像因为太愉悦了没深思熟虑所以好像说反了）</h3><p>盒模型的两种标准： 标准模型，IE模型。</p>
+<p>两种标准的区别：</p>
+<p>在标准模型中，盒模型的 宽高 只是 内容（content）的宽高 。</p>
+<p>在IE模型中盒模型的 宽高 是 内容(content)+填充(padding)+边框(border)的总宽高<br>。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 标准模型 */</span></span><br><span class="line"><span class="selector-tag">box-sizing</span>: <span class="selector-tag">content-box</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*IE模型*/</span></span><br><span class="line"><span class="selector-tag">box-sizing</span>: <span class="selector-tag">border-box</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*继承父元素 box-sizing 属性的值*/</span></span><br><span class="line"><span class="selector-tag">box-sizing</span>: <span class="selector-tag">inherit</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="知道BFC么？怎么生成BFC（这个不会）"><a href="#知道BFC么？怎么生成BFC（这个不会）" class="headerlink" title="知道BFC么？怎么生成BFC（这个不会）"></a>知道BFC么？怎么生成BFC（这个不会）</h3><h4 id="BFC-是什么呢？"><a href="#BFC-是什么呢？" class="headerlink" title="BFC 是什么呢？"></a>BFC 是什么呢？</h4><p>BFC 即 Block Formatting Contexts (块级格式化上下文)，它属于上述定位方案的普通流。</p>
+<p>具有 BFC 特性的元素可以看作是隔离了的独立容器，容器里面的元素不会在布局上影响到外面的元素，并且 BFC 具有普通容器所没有的一些特性。</p>
+<p>通俗一点来讲，可以把 BFC 理解为一个封闭的大箱子，箱子内部的元素无论如何翻江倒海，都不会影响到外部。</p>
+<h4 id="触发-BFC"><a href="#触发-BFC" class="headerlink" title="触发 BFC"></a>触发 BFC</h4><p>只要元素满足下面任一条件即可触发 BFC 特性(脱离文档流就会触发)：</p>
+<ul>
+<li><p>body 根元素</p>
+</li>
+<li><p>浮动元素：float 除 none 以外的值</p>
+</li>
+<li><p>绝对定位元素：position (absolute、fixed)</p>
+</li>
+<li><p>display 为 inline-block、table-cells、flex</p>
+</li>
+<li><p>overflow 除了 visible 以外的值 (hidden、auto、scroll)</p>
+</li>
+</ul>
+<h4 id="BFC-特性及应用"><a href="#BFC-特性及应用" class="headerlink" title="BFC 特性及应用"></a>BFC 特性及应用</h4><h5 id="同一个-BFC-下外边距会发生折叠；"><a href="#同一个-BFC-下外边距会发生折叠；" class="headerlink" title="同一个 BFC 下外边距会发生折叠；"></a>同一个 BFC 下外边距会发生折叠；</h5><p>这不是 CSS 的 bug，我们可以理解为一种规范，如果想要避免外边距的重叠，可以将其放在不同的 BFC 容器中。</p>
+<h5 id="BFC-可以包含浮动的元素（清除浮动）；"><a href="#BFC-可以包含浮动的元素（清除浮动）；" class="headerlink" title="BFC 可以包含浮动的元素（清除浮动）；"></a>BFC 可以包含浮动的元素（清除浮动）；</h5><p>浮动的元素会脱离普通文档流，由于容器内元素浮动，脱离了文档流，所以容器只剩下 2px 的边距高度。如果使触发容器的 BFC，那么容器将会包裹着浮动元素。</p>
+<h5 id="BFC-可以阻止元素被浮动元素覆盖；"><a href="#BFC-可以阻止元素被浮动元素覆盖；" class="headerlink" title="BFC 可以阻止元素被浮动元素覆盖；"></a>BFC 可以阻止元素被浮动元素覆盖；</h5><p>这个方法可以用来实现两列自适应布局，效果不错，这时候左边的宽度固定，右边的内容自适应宽度(去掉上面右边内容的宽度)。</p>
+<p>BFC的区域不会与float重叠。</p>
+<h5 id="内部的盒子会在垂直方向，一个个地放置；"><a href="#内部的盒子会在垂直方向，一个个地放置；" class="headerlink" title="内部的盒子会在垂直方向，一个个地放置；"></a>内部的盒子会在垂直方向，一个个地放置；</h5><h5 id="每个元素的左边，与包含的盒子的左边相接触，即使存在浮动也是如此；"><a href="#每个元素的左边，与包含的盒子的左边相接触，即使存在浮动也是如此；" class="headerlink" title="每个元素的左边，与包含的盒子的左边相接触，即使存在浮动也是如此；"></a>每个元素的左边，与包含的盒子的左边相接触，即使存在浮动也是如此；</h5><h5 id="BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之也如此；"><a href="#BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之也如此；" class="headerlink" title="BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之也如此；"></a>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之也如此；</h5><h5 id="计算BFC的高度时，浮动元素也参与计算。"><a href="#计算BFC的高度时，浮动元素也参与计算。" class="headerlink" title="计算BFC的高度时，浮动元素也参与计算。"></a>计算BFC的高度时，浮动元素也参与计算。</h5><h3 id="说说你知道的css单位（这个只说了一下px，rem，em，vh，vw，-）"><a href="#说说你知道的css单位（这个只说了一下px，rem，em，vh，vw，-）" class="headerlink" title="说说你知道的css单位（这个只说了一下px，rem，em，vh，vw，%）"></a>说说你知道的css单位（这个只说了一下px，rem，em，vh，vw，%）</h3><p>px，rem，em，vh，vw，%,rpx</p>
+<h3 id="知道引入css的方式有哪几种？"><a href="#知道引入css的方式有哪几种？" class="headerlink" title="知道引入css的方式有哪几种？"></a>知道引入css的方式有哪几种？</h3><p>内联样式、内部样式、外部样式。</p>
+<h3 id="了解js在处理不同数据类型相加时怎么做隐性转化的么？比如1-‘1’-‘11’"><a href="#了解js在处理不同数据类型相加时怎么做隐性转化的么？比如1-‘1’-‘11’" class="headerlink" title="了解js在处理不同数据类型相加时怎么做隐性转化的么？比如1+‘1’=‘11’"></a>了解js在处理不同数据类型相加时怎么做隐性转化的么？比如1+‘1’=‘11’</h3><p>如果两个操作符都是数值，执行常规的加法计算，然后根据下列规则返回结果：</p>
+<ul>
+<li>如果有一个操作数是 NaN ，则结果是 NaN ；</li>
+<li>如果是 Infinity 加 Infinity ，则结果是 Infinity ；</li>
+<li>如果是 -Infinity 加 -Infinity ，则结果是 -Infinity ；</li>
+<li>如果是 Infinity 加 -Infinity ，则结果是 NaN ；</li>
+<li>如果是+0 加+0，则结果是+0；</li>
+<li>如果是-0 加-0，则结果是-0；</li>
+<li>如果是+0 加-0，则结果是+0。</li>
+</ul>
+<p>不过，如果有一个操作数是字符串，那么就要应用如下规则：</p>
+<ul>
+<li><p>如果两个操作数都是字符串，则将第二个操作数与第一个操作数拼接起来；</p>
+</li>
+<li><p>如果只有一个操作数是字符串，则将另一个操作数转换为字符串，然后再将两个字符串拼接起来。</p>
+</li>
+<li><p>如果有一个操作数是对象、数值或布尔值，则调用它们的 toString() 方法取得相应的字符串值，然后再应用前面关于字符串的规则。对于 undefined 和 null ，则分别调用 String() 函数并取得字符串 “undefined” 和 “null” 。</p>
+</li>
+</ul>
+<h4 id="数值转换"><a href="#数值转换" class="headerlink" title="数值转换"></a>数值转换</h4><p>有 3 个函数可以 把非数值转换为数值 ： Number() 、 parseInt() 和 parseFloat() 。第一个函数，即转型函数 Number() 可以用于任何数据类型，而另两个函数则专门用于把字符串转换成数值。这 3个函数对于同样的输入会有返回不同的结果。</p>
+<p>  Number() 函数的转换规则如下。</p>
+<ul>
+<li>如果是 Boolean 值， true 和 false 将分别被转换为 1 和 0。</li>
+<li>如果是数字值，只是简单的传入和返回。</li>
+<li>如果是 null 值，返回 0。</li>
+<li>如果是 undefined ，返回 NaN 。</li>
+<li>如果是字符串，遵循下列规则：<ul>
+<li>如果字符串中只包含数字（包括前面带正号或负号的情况），则将其转换为十进制数值，即 “1”会变成 1， “123” 会变成 123，而 “011” 会变成 11（注意：前导的零被忽略了）；</li>
+<li>如果字符串中包含有效的浮点格式，如 “1.1” ，则将其转换为对应的浮点数值（同样，也会忽略前导零）；</li>
+<li>如果字符串中包含有效的十六进制格式，例如 “0xf” ，则将其转换为相同大小的十进制整数值；</li>
+<li>如果字符串是空的（不包含任何字符），则将其转换为 0；</li>
+<li>如果字符串中包含除上述格式之外的字符，则将其转换为 NaN 。</li>
+</ul>
+</li>
+<li>如果是对象，则调用对象的 valueOf() 方法，然后依照前面的规则转换返回的值。如果转换的结果是 NaN ，则调用对象的 toString() 方法，然后再次依照前面的规则转换返回的字符串值。</li>
+</ul>
+<h4 id="typeof-操作符"><a href="#typeof-操作符" class="headerlink" title="typeof 操作符"></a>typeof 操作符</h4><p>检测给定变量的数据类型。</p>
+<ul>
+<li>“undefined” ——如果这个值未定义；</li>
+<li>“boolean” ——如果这个值是布尔值；</li>
+<li>“string” ——如果这个值是字符串；</li>
+<li>“number” ——如果这个值是数值；</li>
+<li>“object” ——如果这个值是对象或 null ；</li>
+<li>“function” ——如果这个值是函数。</li>
+</ul>
+<h4 id="和-amp"><a href="#和-amp" class="headerlink" title="| 和 &amp;"></a>| 和 &amp;</h4><p>二进制操作，也是 | 一真则真，&amp;一假则假。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = <span class="number">25</span> | <span class="number">3</span>;</span><br><span class="line">alert(result); <span class="comment">//27</span></span><br></pre></td></tr></table></figure>
+<p>25 与 3 按位或的结果是 27：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">25 = 0000 0000 0000 0000 0000 0000 0001 1001</span><br><span class="line">3 = 0000 0000 0000 0000 0000 0000 0000 0011</span><br><span class="line">--------------------------------------------</span><br><span class="line">OR = 0000 0000 0000 0000 0000 0000 0001 1011</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.songxingguo.com/2018/08/30/JavaScript-basic-concepts/">按位与（AND）</a></p>
+<h3 id="new的过程中发生了什么"><a href="#new的过程中发生了什么" class="headerlink" title="new的过程中发生了什么"></a>new的过程中发生了什么</h3><p>要创建 Person 的新实例，必须使用 new 操作符。以这种方式调用构造函数实际上会经历以下 4个步骤：</p>
+<p>(1) 创建一个新对象；<br>(2) 将构造函数的作用域赋给新对象（因此 this 就指向了这个新对象） ；<br>(3) 执行构造函数中的代码（为这个新对象添加属性） ；<br>(4) 返回新对象。</p>
+<p><a href="https://www.cnblogs.com/faith3/p/6209741.html" target="_blank" rel="noopener">js中的new()到底做了些什么？？</a></p>
+<h3 id="输入url的过程中发生了什么"><a href="#输入url的过程中发生了什么" class="headerlink" title="输入url的过程中发生了什么"></a>输入url的过程中发生了什么</h3><p><img src="http://upload-images.jianshu.io/upload_images/2075673-3afda32a13a68c6b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="输入url的过程中发生了什么"></p>
+<p><a href="https://blog.csdn.net/nicexibeidage/article/details/78048773" target="_blank" rel="noopener">浏览器中输入url后发生了什么</a></p>
+<p>可以分为这几个大的过程：</p>
+<ul>
+<li>DNS解析</li>
+<li>TCP连接</li>
+<li>客户端发送HTTP请求</li>
+<li>服务器处理请求并返回HTTP报文</li>
+<li>浏览器解析渲染页面</li>
+<li>结束</li>
+</ul>
+<p><a href="https://www.cnblogs.com/zgx123/p/7379993.html" target="_blank" rel="noopener">经典面试题: 从输入URL到页面加载的过程发生了什么?</a></p>
+<h3 id="tcp三次握手和四次挥手"><a href="#tcp三次握手和四次挥手" class="headerlink" title="tcp三次握手和四次挥手"></a>tcp三次握手和四次挥手</h3><h4 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h4><p>发送端首先发送一个带SYN（synchronize）标志的数据包给接收方，接收方收到后，回传一个带有SYN/ACK(acknowledegment)标志的数据包以示传达确认信息。最后发送方再回传一个带ACK标志的数据包，代表握手结束。在这过程中若出现问题中断，TCP会再次发送相同的数据包。</p>
+<h4 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h4><p>由于TCP连接是全双工的，因此每个方向都必须单独进行关闭。这原则是当一方完成它的数据发送任务后就能发送一个FIN来终止这个方向的连接。收到一个 FIN只意味着这一方向上没有数据流动，一个TCP连接在收到一个FIN后仍能发送数据。首先进行关闭的一方将执行主动关闭，而另一方执行被动关闭。<br>（1） TCP客户端发送一个FIN，用来关闭客户到服务器的数据传送。<br>（2） 服务器收到这个FIN，它发回一个ACK，确认序号为收到的序号加1。和SYN一样，一个FIN将占用一个序号。<br>（3） 服务器关闭客户端的连接，发送一个FIN给客户端。<br>（4） 客户端发回ACK报文确认，并将确认序号设置为收到序号加1。</p>
+<p><a href="https://baike.baidu.com/item/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/7794287?fr=aladdin" target="_blank" rel="noopener">四次挥手</a></p>
+<h3 id="http缓存规则"><a href="#http缓存规则" class="headerlink" title="http缓存规则"></a>http缓存规则</h3><p>HTTP缓存有多种规则，根据是否需要重新向服务器发起请求来分类，我将其分为两大类(强制缓存，对比缓存)</p>
+<p>在详细介绍这两种规则之前，先通过时序图的方式，让大家对这两种规则有个简单了解。</p>
+<h4 id="强制缓存"><a href="#强制缓存" class="headerlink" title="强制缓存"></a>强制缓存</h4><p>对于强制缓存来说，响应header中会有两个字段来标明失效规则（Expires/Cache-Control）。</p>
+<h5 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h5><p>　　Expires的值为服务端返回的到期时间，即下一次请求时，请求时间小于服务端返回的到期时间，直接使用缓存数据。</p>
+<p>不过Expires 是HTTP 1.0的东西，现在默认浏览器均默认使用HTTP 1.1，所以它的作用基本忽略。<br>另一个问题是，到期时间是由服务端生成的，但是客户端时间可能跟服务端时间有误差，这就会导致缓存命中的误差。<br>所以HTTP 1.1 的版本，使用Cache-Control替代。</p>
+<h5 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h5><p>Cache-Control 是最重要的规则。常见的取值有private、public、no-cache、max-age，no-store，默认为private。</p>
+<ul>
+<li>private:             客户端可以缓存</li>
+<li>public:              客户端和代理服务器都可缓存（前端的同学，可以认为- - public和private是一样的）</li>
+<li>max-age=xxx:   缓存的内容将在 xxx 秒后失效</li>
+<li>no-cache:          需要使用对比缓存来验证缓存数据（后面介绍）</li>
+<li>no-store:           所有内容都不会缓存，强制缓存，对比缓存都不会触发（对于前端开发来说，缓存越多越好，so…基本上和它说886）</li>
+</ul>
+<h4 id="对比缓存"><a href="#对比缓存" class="headerlink" title="对比缓存"></a>对比缓存</h4><p>对比缓存，顾名思义，需要进行比较判断是否可以使用缓存。</p>
+<p>浏览器第一次请求数据时，服务器会将缓存标识与数据一起返回给客户端，客户端将二者备份至缓存数据库中。<br>再次请求数据时，客户端将备份的缓存标识发送给服务器，服务器根据缓存标识进行判断，判断成功后，返回304状态码，通知客户端比较成功，可以使用缓存数据。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>对于强制缓存，服务器通知浏览器一个缓存时间，在缓存时间内，下次请求，直接用缓存，不在时间内，执行比较缓存策略。<br>对于比较缓存，将缓存信息中的Etag和Last-Modified通过请求发送给服务器，由服务器校验，返回304状态码时，浏览器直接使用缓存。</p>
+<p><a href="https://www.cnblogs.com/chenqf/p/6386163.html" target="_blank" rel="noopener">彻底弄懂HTTP缓存机制及原理</a></p>
+<h3 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h3><h4 id="对父级设置合适的CSS高度。"><a href="#对父级设置合适的CSS高度。" class="headerlink" title="对父级设置合适的CSS高度。"></a>对父级设置合适的CSS高度。</h4><p>  浮动 导致 父级元素不能被撑开 。</p>
+<h4 id="使用-clear-both-清除浮动。"><a href="#使用-clear-both-清除浮动。" class="headerlink" title="使用 clear: both 清除浮动。"></a>使用 clear: both 清除浮动。</h4><p>  clear属性规定元素的哪一侧不允许其他的浮动元素。如果声明左侧或者右侧不允许浮动，会使元素的上下边框边界刚好在该边上浮动元素的下外边距边距之下。</p>
+<h4 id="父级-div-定义：-overflow：-hidden-。"><a href="#父级-div-定义：-overflow：-hidden-。" class="headerlink" title="父级 div 定义： overflow： hidden 。"></a>父级 div 定义： overflow： hidden 。</h4><h4 id="在浮动元素后面增加-标签。"><a href="#在浮动元素后面增加-标签。" class="headerlink" title="在浮动元素后面增加  标签。"></a>在浮动元素后面增加 <br> 标签。</h4><h4 id="在父级元素加上-clearfix-类（常用）"><a href="#在父级元素加上-clearfix-类（常用）" class="headerlink" title="在父级元素加上 .clearfix 类（常用）"></a>在父级元素加上 .clearfix 类（常用）</h4><p>其 原理 就是 使用 CSS 伪类 ，在 元素末尾 加 一个带有浮动功能的标签 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:after &#123;</span><br><span class="line">  visibility: hidden;</span><br><span class="line">  display: block;</span><br><span class="line">  font-size: 0;</span><br><span class="line">  content: &quot;&quot;;</span><br><span class="line">  clear: both;</span><br><span class="line">  height: 0;</span><br><span class="line">&#125;</span><br><span class="line">.clearfix &#123;</span><br><span class="line">  display: inline-table;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* Hides from IE-mac \*/</span><br><span class="line">*html .clearfix &#123;</span><br><span class="line">  height: 1%;</span><br><span class="line">&#125;</span><br><span class="line">.clearfix &#123;</span><br><span class="line">  dispaly: block;</span><br><span class="line">&#125;</span><br><span class="line">/* End hide from IE-mac */</span><br></pre></td></tr></table></figure>
+<h3 id="在白板上写出水平垂直居中的方法，一般三种就差不多了"><a href="#在白板上写出水平垂直居中的方法，一般三种就差不多了" class="headerlink" title="在白板上写出水平垂直居中的方法，一般三种就差不多了"></a>在白板上写出水平垂直居中的方法，一般三种就差不多了</h3><h3 id="水平"><a href="#水平" class="headerlink" title="水平"></a>水平</h3><ul>
+<li><p>text-align: center;</p>
+</li>
+<li><p>margin: 0 auto;</p>
+</li>
+<li><p>table, margin: 0 auto;</p>
+</li>
+<li><p>dispay:inline;text-align: center;</p>
+</li>
+<li><p>position: relative; left:50%;margin-left: -200rpx;</p>
+</li>
+</ul>
+<h3 id="垂直"><a href="#垂直" class="headerlink" title="垂直"></a>垂直</h3><ul>
+<li><p>padding: 20px 0;</p>
+</li>
+<li><p>height: 100px; line-height: 100px;</p>
+</li>
+<li><p>vertical-align:middle;</p>
+</li>
+</ul>
+<p><a href="https://www.songxingguo.com/2018/08/06/web-front-end-interview-html-css/">CSS实现居中</a></p>
+<h3 id="WebSocket-1"><a href="#WebSocket-1" class="headerlink" title="WebSocket"></a>WebSocket</h3><p><a href="https://blog.csdn.net/liuxiaoyi216/article/details/79630294" target="_blank" rel="noopener">WebSocket双向通信原理初探</a></p>
+<p><a href="https://www.cnblogs.com/fuqiang88/p/5956363.html" target="_blank" rel="noopener">看完让你彻底搞懂Websocket原理</a></p>
+<h3 id="面包屑导航"><a href="#面包屑导航" class="headerlink" title="面包屑导航"></a>面包屑导航</h3><p><a href="https://blog.csdn.net/houysx/article/details/80455226" target="_blank" rel="noopener">AngularJS(九)面包屑导航</a></p>
+<h3 id="支付宝支付"><a href="#支付宝支付" class="headerlink" title="支付宝支付"></a>支付宝支付</h3><ul>
+<li><p>订单签名</p>
+</li>
+<li><p>支付宝接口</p>
+</li>
+<li><p>验证结果（返回结果）</p>
+</li>
+<li><p>异步返回结果</p>
+</li>
+</ul>
+<p><img src="https://gw.alipayobjects.com/os/skylark-tools/public/files/81fdbf664f654970835e5426b55959f6" alt="支付宝支付"></p>
+<p><a href="https://docs.open.alipay.com/204" target="_blank" rel="noopener">支付宝支付</a></p>
+<h3 id="三栏布局的方法，这里很尴尬，手误在双飞翼模型，大家还是小心点吧。。。中间还提了一个column-count这个属性，我完全没印象"><a href="#三栏布局的方法，这里很尴尬，手误在双飞翼模型，大家还是小心点吧。。。中间还提了一个column-count这个属性，我完全没印象" class="headerlink" title="三栏布局的方法，这里很尴尬，手误在双飞翼模型，大家还是小心点吧。。。中间还提了一个column-count这个属性，我完全没印象"></a>三栏布局的方法，这里很尴尬，手误在双飞翼模型，大家还是小心点吧。。。中间还提了一个<strong>column-count</strong>这个属性，我完全没印象</h3><p> 圣杯布局和双飞翼布局基本上是一致的，都是两边固定宽度，中间自适应的三栏布局，其中，中间栏放到文档流前面，保证先行渲染。解决方案大体相同，都是三栏全部float:left浮动，区别在于解决中间栏div的内容不被遮挡上，圣杯布局是中间栏在添加相对定位，并配合left和right属性，效果上表现为三栏是单独分开的（如果可以看到空隙的话），而双飞翼布局是在中间栏的div中嵌套一个div，内容写在嵌套的div里，然后对嵌套的div设置margin-left和margin-right，效果上表现为左右两栏在中间栏的上面，中间栏还是100%宽度，只不过中间栏的内容通过margin的值显示在中间。</p>
+<p><a href="https://blog.csdn.net/wangchengiii/article/details/77926868" target="_blank" rel="noopener">圣杯布局、双飞翼布局、Flex布局和绝对定位布局的几种经典布局的具体实现示例</a></p>
+<p>[圣杯布局和双飞翼布局的理解和区别]</p>
+<h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><p><a href="https://blog.csdn.net/lu_embedded/article/details/80519898" target="_blank" rel="noopener">什么是 CDN</a></p>
+<p><a href="https://www.cnblogs.com/tinywan/p/6067126.html" target="_blank" rel="noopener">CDN是什么？</a></p>
+<h3 id="然后我主动讲了栅格系统"><a href="#然后我主动讲了栅格系统" class="headerlink" title="然后我主动讲了栅格系统"></a>然后我主动讲了栅格系统</h3><h3 id="抛开vue，自己设计双向绑定会怎么实现，还是用的脏检测"><a href="#抛开vue，自己设计双向绑定会怎么实现，还是用的脏检测" class="headerlink" title="抛开vue，自己设计双向绑定会怎么实现，还是用的脏检测"></a>抛开vue，自己设计双向绑定会怎么实现，还是用的脏检测</h3><h3 id="React比jquery高效在哪里？"><a href="#React比jquery高效在哪里？" class="headerlink" title="React比jquery高效在哪里？"></a>React比jquery高效在哪里？</h3><h3 id="手写“模拟洗牌”的代码"><a href="#手写“模拟洗牌”的代码" class="headerlink" title="手写“模拟洗牌”的代码"></a>手写“模拟洗牌”的代码</h3><h3 id="手撕字符串反转-单词位置反转有空格"><a href="#手撕字符串反转-单词位置反转有空格" class="headerlink" title="手撕字符串反转 单词位置反转有空格"></a>手撕字符串反转 单词位置反转有空格</h3><h3 id="关于个人情况：是大四吗是否可以全职实习等。"><a href="#关于个人情况：是大四吗是否可以全职实习等。" class="headerlink" title="关于个人情况：是大四吗是否可以全职实习等。"></a>关于个人情况：是大四吗是否可以全职实习等。</h3><h3 id="谈了谈可以提前去实习的问题"><a href="#谈了谈可以提前去实习的问题" class="headerlink" title="谈了谈可以提前去实习的问题"></a>谈了谈可以提前去实习的问题</h3><h3 id="职业规划？"><a href="#职业规划？" class="headerlink" title="职业规划？"></a>职业规划？</h3><h4 id="最近准备做什么？"><a href="#最近准备做什么？" class="headerlink" title="最近准备做什么？"></a>最近准备做什么？</h4><h3 id="然后和面试官握了手"><a href="#然后和面试官握了手" class="headerlink" title="然后和面试官握了手"></a>然后和面试官握了手</h3><h3 id="还有什么要问我的？"><a href="#还有什么要问我的？" class="headerlink" title="还有什么要问我的？"></a>还有什么要问我的？</h3><p>您决定我今天回答和简历有些什么需要改进的地方吗？</p>
+<p>面试官也挺有趣我问他有没有什么有趣的书推荐几本。</p>
+<h2 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h2><h3 id="js的运行环境（果然还是躲不过node），简单说了说浏览器环境和node的区别"><a href="#js的运行环境（果然还是躲不过node），简单说了说浏览器环境和node的区别" class="headerlink" title="js的运行环境（果然还是躲不过node），简单说了说浏览器环境和node的区别"></a>js的运行环境（果然还是躲不过node），简单说了说浏览器环境和node的区别</h3><p>一、全局环境下this的指向</p>
+<p>　　在node中this指向global而在浏览器中this指向window，这就是为什么underscore中一上来就定义了一 root；</p>
+<p>　而且在浏览器中的window下封装了不少的API 比如 alert 、document、location、history 等等还有很多。我们就不能在node环境中xxx();或window.xxx();了。因为这些API是浏览器级别的封装，纯javascript中是没有的。当然node中也提供了不少node特有的API。</p>
+<p>二、js引擎</p>
+<p>　　在浏览器中不同的浏览器厂商提供了不同的浏览器内核，浏览器依赖这些内核解释折我们编写的js。但是考虑到不同内核的少量差异，我们需要考虑浏览器兼容性。好在有一些优秀的库帮助我们处理这个问题，比如jquery、underscore等等。</p>
+<p>　　NodeJS是基于Chrome’s JavaScript runtime，也就是说，实际上它是对GoogleV8引擎（应用于Google Chrome浏览器）进行了封装。V8引 擎执行Javascript的速度非常快，性能非常好。</p>
+<pre><code>NodeJS并不是提供简单的封装，然后提供API调用，如果是这样的话那么它就不会有现在这么火了。Node对一些特殊用例进行了优化，提供了替代的API，使得V8在非浏览器环境下运行得更好。例如，在服务器环境中，处理二进制数据通常是必不可少的，但Javascript对此支持不足，因此，V8.Node增加了Buffer类，方便并且高效地 处理二进制数据。因此，Node不仅仅简单的使用了V8,还对其进行了优化，使其在各环境下更加给力。
+</code></pre><p>　　js引擎都固定了，还对应神马兼容性。</p>
+<p>三、DOM操作</p>
+<p>　　浏览器中的js大多数情况下是在直接或间接（一些虚拟DOM的库和框架）的操作DOM。因为浏览器中的代码主要是在表现层工作。但是node是一门服务端技术。没有一个前台页面，所以我门不会在node中操作DOM。</p>
+<p>四、I/O读写</p>
+<p>　　与浏览器不同，我们需要像其他服务端技术一样读写文件，nodejs提供了比较方便的组件。而浏览器（确保兼容性的）想在页面中直接打开一个本地的图片就麻烦了好多（别和我说这还不简单，相对路径。。。。。。试试就知道了要么找个库要么二进制流，要么上传上去有了网络地址在显示。不然人家为什么要搞一个js库呢），而这一切node都用一个组件搞定了。</p>
+<p>五、模块加载</p>
+<p>　　javascript有个特点，就是原生没提供包引用的API一次性把要加载的东西全执行一遍，这里就要看各位闭包的功力了。所用东西都在一起，没有分而治之，搞的特别没有逻辑性和复用性。如果页面简单或网站当然我们可以通过一些AMD、CMD的js库（比如requireJS 和 seaJS）搞定事实上很多大型网站都是这么干的。</p>
+<p>　　在nodeJS中提供了CMD的模块加载的API，如果你用过seaJS，那么应该上手很快。</p>
+<p>　　node还提供了npm 这种包管理工具，能更有效方便的管理我们饮用的库</p>
+<p>　　当然浏览器这边ES6也有这方面的补充，相信未来会更好。。。</p>
+<h3 id="前端调试，devTools断点的使用"><a href="#前端调试，devTools断点的使用" class="headerlink" title="前端调试，devTools断点的使用"></a>前端调试，devTools断点的使用</h3><p><a href="http://www.cnblogs.com/fundebug/p/20_chrome_devtools_debugging_tips.html" target="_blank" rel="noopener">20个Chrome DevTools调试技巧</a></p>
+<p><a href="https://www.cnblogs.com/lishanyang/p/7767135.html" target="_blank" rel="noopener">快捷键大全</a></p>
+<h3 id="字符串的方法"><a href="#字符串的方法" class="headerlink" title="字符串的方法"></a>字符串的方法</h3><p><a href="https://www.songxingguo.com/2018/08/13/JavaScript-reference-type/">String 类型</a></p>
+<h3 id="数组的方法"><a href="#数组的方法" class="headerlink" title="数组的方法"></a>数组的方法</h3><p><a href="https://www.songxingguo.com/2018/08/13/JavaScript-reference-type/">Array 类型</a></p>
+<h3 id="mvvm和mvp模式的简单描述，很简单的描述了下，3分钟左右"><a href="#mvvm和mvp模式的简单描述，很简单的描述了下，3分钟左右" class="headerlink" title="mvvm和mvp模式的简单描述，很简单的描述了下，3分钟左右"></a>mvvm和mvp模式的简单描述，很简单的描述了下，3分钟左右</h3><p>ViewModel, 然视图和数据不直接交互。</p>
+<h3 id="原生ajax的使用步骤，面试官当时的意思应该是讲讲过程就好"><a href="#原生ajax的使用步骤，面试官当时的意思应该是讲讲过程就好" class="headerlink" title="原生ajax的使用步骤，面试官当时的意思应该是讲讲过程就好"></a>原生ajax的使用步骤，面试官当时的意思应该是讲讲过程就好</h3><h3 id="Js的垃圾回收机制。"><a href="#Js的垃圾回收机制。" class="headerlink" title="Js的垃圾回收机制。"></a>Js的垃圾回收机制。</h3><h3 id="登录流程"><a href="#登录流程" class="headerlink" title="登录流程"></a>登录流程</h3><p><a href="https://blog.csdn.net/chenmiaoqin950606/article/details/79693309" target="_blank" rel="noopener">用户登录验证流程图</a></p>
+<h3 id="浏览器事件循环。"><a href="#浏览器事件循环。" class="headerlink" title="浏览器事件循环。"></a>浏览器事件循环。</h3><h3 id="Node-js事件循环。"><a href="#Node-js事件循环。" class="headerlink" title="Node.js事件循环。"></a>Node.js事件循环。</h3><h3 id="setTimeout-和-Interval"><a href="#setTimeout-和-Interval" class="headerlink" title="setTimeout 和 Interval"></a>setTimeout 和 Interval</h3><h3 id="tcp握手，以及和udp的应用场景"><a href="#tcp握手，以及和udp的应用场景" class="headerlink" title="tcp握手，以及和udp的应用场景"></a>tcp握手，以及和udp的应用场景</h3><h3 id="二叉树高度，，手写代码。"><a href="#二叉树高度，，手写代码。" class="headerlink" title="二叉树高度，，手写代码。"></a>二叉树高度，，手写代码。</h3><h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><h3 id="反转一个字符串以及优化"><a href="#反转一个字符串以及优化" class="headerlink" title="反转一个字符串以及优化"></a>反转一个字符串以及优化</h3><h3 id="说出什么是AVL（二叉反转树）"><a href="#说出什么是AVL（二叉反转树）" class="headerlink" title="说出什么是AVL（二叉反转树）"></a>说出什么是AVL（二叉反转树）</h3><h3 id="说出你知道的排序算法（冒泡排序的过程以及优化-这里就是检查一下是否已有序，没反应过来-），以及堆排序的原理，没答出来"><a href="#说出你知道的排序算法（冒泡排序的过程以及优化-这里就是检查一下是否已有序，没反应过来-），以及堆排序的原理，没答出来" class="headerlink" title="说出你知道的排序算法（冒泡排序的过程以及优化(这里就是检查一下是否已有序，没反应过来)），以及堆排序的原理，没答出来"></a>说出你知道的排序算法（冒泡排序的过程以及优化(这里就是检查一下是否已有序，没反应过来)），以及堆排序的原理，没答出来</h3><h3 id="OSI七层模型你知道吗？不知道"><a href="#OSI七层模型你知道吗？不知道" class="headerlink" title="OSI七层模型你知道吗？不知道"></a>OSI七层模型你知道吗？不知道</h3><h3 id="反转链表，没答出来。。。"><a href="#反转链表，没答出来。。。" class="headerlink" title="反转链表，没答出来。。。"></a>反转链表，没答出来。。。</h3><h3 id="setter和getter"><a href="#setter和getter" class="headerlink" title="setter和getter"></a>setter和getter</h3><h3 id="vue的响应式原理：数据劫持-观察者模式，以及vue的组件化理解"><a href="#vue的响应式原理：数据劫持-观察者模式，以及vue的组件化理解" class="headerlink" title="vue的响应式原理：数据劫持 观察者模式，以及vue的组件化理解"></a>vue的响应式原理：数据劫持 观察者模式，以及vue的组件化理解</h3><h3 id="vuex的作用，使用，以及个人的理解"><a href="#vuex的作用，使用，以及个人的理解" class="headerlink" title="vuex的作用，使用，以及个人的理解"></a>vuex的作用，使用，以及个人的理解</h3><h3 id="缓存中有last-modified规则了，为什么还要有etag。面试官告诉我是这样一种情况：当一个文件被加了一个空格，l-m"><a href="#缓存中有last-modified规则了，为什么还要有etag。面试官告诉我是这样一种情况：当一个文件被加了一个空格，l-m" class="headerlink" title="缓存中有last-modified规则了，为什么还要有etag。面试官告诉我是这样一种情况：当一个文件被加了一个空格，l-m"></a>缓存中有last-modified规则了，为什么还要有etag。面试官告诉我是这样一种情况：当一个文件被加了一个空格，l-m</h3><p>就被修改了，然后再把那个空格删掉，此时文件还是原来那个文件，但l-m就不一样了，所以这就是etag的作用。</p>
+<h3 id="jQuery里使用-attr-‘class’-方法，那么原生对应的是什么obj-classList。面试官告诉我的"><a href="#jQuery里使用-attr-‘class’-方法，那么原生对应的是什么obj-classList。面试官告诉我的" class="headerlink" title="jQuery里使用$.attr(‘class’)方法，那么原生对应的是什么obj.classList。面试官告诉我的"></a>jQuery里使用$.attr(‘class’)方法，那么原生对应的是什么obj.classList。面试官告诉我的</h3><h3 id="setTimeout-0-和Promise-then谁先执行-Vue-的nextTick如何实现。"><a href="#setTimeout-0-和Promise-then谁先执行-Vue-的nextTick如何实现。" class="headerlink" title="setTimeout 0 和Promise.then谁先执行 Vue 的nextTick如何实现。"></a>setTimeout 0 和Promise.then谁先执行 Vue 的nextTick如何实现。</h3><h3 id="for-of-for-of能拿来遍历对象吗。"><a href="#for-of-for-of能拿来遍历对象吗。" class="headerlink" title="for of for of能拿来遍历对象吗。"></a>for of for of能拿来遍历对象吗。</h3><h3 id="遍历器接口。"><a href="#遍历器接口。" class="headerlink" title="遍历器接口。"></a>遍历器接口。</h3><h3 id="Symbol的应用场景。"><a href="#Symbol的应用场景。" class="headerlink" title="Symbol的应用场景。"></a>Symbol的应用场景。</h3><h4 id="写一个call方法。"><a href="#写一个call方法。" class="headerlink" title="写一个call方法。"></a>写一个call方法。</h4><h3 id="vue双向绑定和依赖收集怎么实现"><a href="#vue双向绑定和依赖收集怎么实现" class="headerlink" title="vue双向绑定和依赖收集怎么实现"></a>vue双向绑定和依赖收集怎么实现</h3><h3 id="组件是怎么封装的"><a href="#组件是怎么封装的" class="headerlink" title="组件是怎么封装的"></a>组件是怎么封装的</h3><h3 id="有封装过哪些组件"><a href="#有封装过哪些组件" class="headerlink" title="有封装过哪些组件"></a>有封装过哪些组件</h3><h3 id="给定一个长为n数组-里面存储着n个无序的正整数，求出数组中两个相差绝对值最小数的索引，，，说思路"><a href="#给定一个长为n数组-里面存储着n个无序的正整数，求出数组中两个相差绝对值最小数的索引，，，说思路" class="headerlink" title="给定一个长为n数组,里面存储着n个无序的正整数，求出数组中两个相差绝对值最小数的索引，，，说思路"></a>给定一个长为n数组,里面存储着n个无序的正整数，求出数组中两个相差绝对值最小数的索引，，，说思路</h3><h3 id="逻辑题，共26个硬币，其中有一个是假硬币，假硬币较真硬币略轻。问用一个天平最少称几次可以找出假硬币。"><a href="#逻辑题，共26个硬币，其中有一个是假硬币，假硬币较真硬币略轻。问用一个天平最少称几次可以找出假硬币。" class="headerlink" title="逻辑题，共26个硬币，其中有一个是假硬币，假硬币较真硬币略轻。问用一个天平最少称几次可以找出假硬币。"></a>逻辑题，共26个硬币，其中有一个是假硬币，假硬币较真硬币略轻。问用一个天平最少称几次可以找出假硬币。</h3><h3 id="一个是轮播图点击小图换大图，另一个是传入一个图片的url会返回该图片颜色的rgba"><a href="#一个是轮播图点击小图换大图，另一个是传入一个图片的url会返回该图片颜色的rgba" class="headerlink" title="一个是轮播图点击小图换大图，另一个是传入一个图片的url会返回该图片颜色的rgba"></a>一个是轮播图点击小图换大图，另一个是传入一个图片的url会返回该图片颜色的rgba</h3><h3 id="讲一下什么是B-树"><a href="#讲一下什么是B-树" class="headerlink" title="讲一下什么是B 树"></a>讲一下什么是B 树</h3><h2 id="HR面"><a href="#HR面" class="headerlink" title="HR面"></a>HR面</h2><h3 id="问了下怎么学前端的和其他offer和薪资"><a href="#问了下怎么学前端的和其他offer和薪资" class="headerlink" title="问了下怎么学前端的和其他offer和薪资"></a>问了下怎么学前端的和其他offer和薪资</h3><h3 id="自我感觉如何"><a href="#自我感觉如何" class="headerlink" title="自我感觉如何"></a>自我感觉如何</h3><h3 id="有没有offer"><a href="#有没有offer" class="headerlink" title="有没有offer"></a>有没有offer</h3><h3 id="哪里人啊"><a href="#哪里人啊" class="headerlink" title="哪里人啊"></a>哪里人啊</h3><h4 id="意向工作城市"><a href="#意向工作城市" class="headerlink" title="意向工作城市"></a>意向工作城市</h4>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/找工作/" rel="tag"># 找工作</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/15/search/" rel="next" title="《大话数据结构》-读书笔记-查找">
+                <i class="fa fa-chevron-left"></i> 《大话数据结构》-读书笔记-查找
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/22/JavaScript-deep/" rel="prev" title="你所不知道的JavaScript">
+                你所不知道的JavaScript <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="songxingguo">
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">132</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#用肯定自信的方式回答问题"><span class="nav-number">1.</span> <span class="nav-text">用肯定自信的方式回答问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一面"><span class="nav-number">1.1.</span> <span class="nav-text">一面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么来小米"><span class="nav-number">1.1.1.</span> <span class="nav-text">为什么来小米</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#喜欢小米的产品，小米的产品都性价比很高。"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">喜欢小米的产品，小米的产品都性价比很高。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我很喜欢小米的-MIUI-系统，设计很人性化，比如：短信的验证码复制功能，动态音乐闹钟。"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">我很喜欢小米的 MIUI 系统，设计很人性化，比如：短信的验证码复制功能，动态音乐闹钟。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我是一个米粉，我用过手环、小爱同学、耳机、手机，看小米的新平发布会。"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">我是一个米粉，我用过手环、小爱同学、耳机、手机，看小米的新平发布会。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我看过《雷军传》、《互联网-：小米案例》，对雷总的经历很佩服，对小米的创立也很佩服，很想加入加入小米，也能做出有我参与的人性化产品。"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">我看过《雷军传》、《互联网+：小米案例》，对雷总的经历很佩服，对小米的创立也很佩服，很想加入加入小米，也能做出有我参与的人性化产品。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要做前端"><span class="nav-number">1.1.2.</span> <span class="nav-text">为什么要做前端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单的自我介绍一下吧"><span class="nav-number">1.1.3.</span> <span class="nav-text">简单的自我介绍一下吧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#笔试题怎么想的"><span class="nav-number">1.1.4.</span> <span class="nav-text">笔试题怎么想的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则表达式"><span class="nav-number">1.1.5.</span> <span class="nav-text">正则表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#html5用过哪些标签？"><span class="nav-number">1.1.6.</span> <span class="nav-text">html5用过哪些标签？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css3用过什么？"><span class="nav-number">1.1.7.</span> <span class="nav-text">css3用过什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css选择器"><span class="nav-number">1.1.8.</span> <span class="nav-text">css选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webstorage和cookie有什么区别？"><span class="nav-number">1.1.9.</span> <span class="nav-text">webstorage和cookie有什么区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你知道有哪些js的继承方式"><span class="nav-number">1.1.10.</span> <span class="nav-text">你知道有哪些js的继承方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-pull-和-git-fetch区别"><span class="nav-number">1.1.11.</span> <span class="nav-text">git pull 和 git fetch区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计一个团队开发流程的git工作流，要求每天发布一个版本-重点就是发布到主分支还是每天的分支上，应该是发布到主分支"><span class="nav-number">1.1.12.</span> <span class="nav-text">设计一个团队开发流程的git工作流，要求每天发布一个版本,重点就是发布到主分支还是每天的分支上，应该是发布到主分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this的描述和绑定规则，我回答的是按照《你不知道的js》"><span class="nav-number">1.1.13.</span> <span class="nav-text">this的描述和绑定规则，我回答的是按照《你不知道的js》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数作用域，有哪些改变方式apply-call，怎样不在运行时才决定this（用箭头函数）"><span class="nav-number">1.1.14.</span> <span class="nav-text">函数作用域，有哪些改变方式apply call，怎样不在运行时才决定this（用箭头函数）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#es6了解吗？了解一些"><span class="nav-number">1.1.15.</span> <span class="nav-text">es6了解吗？了解一些</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说一说你觉得es6高效好用的地方？promise"><span class="nav-number">1.1.16.</span> <span class="nav-text">说一说你觉得es6高效好用的地方？promise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#promise有几种状态？分别是什么？"><span class="nav-number">1.1.17.</span> <span class="nav-text">promise有几种状态？分别是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#promise-then返回的是什么？"><span class="nav-number">1.1.17.1.</span> <span class="nav-text">promise.then返回的是什么？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#promise-原理"><span class="nav-number">1.1.18.</span> <span class="nav-text">promise 原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#箭头函数用过吗？用过-箭头函数的优点是什么？"><span class="nav-number">1.1.19.</span> <span class="nav-text">箭头函数用过吗？用过,箭头函数的优点是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-of-循环"><span class="nav-number">1.1.20.</span> <span class="nav-text">for-of 循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器跨域了解吗？具体怎么实现？-答的是document-domain和jsonp"><span class="nav-number">1.1.21.</span> <span class="nav-text">浏览器跨域了解吗？具体怎么实现？ 答的是document.domain和jsonp</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是跨域"><span class="nav-number">1.1.21.1.</span> <span class="nav-text">什么是跨域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理跨域的方法"><span class="nav-number">1.1.21.2.</span> <span class="nav-text">处理跨域的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#代理"><span class="nav-number">1.1.21.2.1.</span> <span class="nav-text">代理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JSONP"><span class="nav-number">1.1.21.2.2.</span> <span class="nav-text">JSONP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#jsonp的原理"><span class="nav-number">1.1.21.2.2.1.</span> <span class="nav-text">jsonp的原理</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#缺点："><span class="nav-number">1.1.21.2.2.2.</span> <span class="nav-text">缺点：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#XHR2"><span class="nav-number">1.1.21.2.3.</span> <span class="nav-text">XHR2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#nginx代理"><span class="nav-number">1.1.21.2.4.</span> <span class="nav-text">nginx代理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nodejs中间件"><span class="nav-number">1.1.21.3.</span> <span class="nav-text">nodejs中间件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#WebSocket"><span class="nav-number">1.1.21.3.1.</span> <span class="nav-text">WebSocket</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签语义化的理解"><span class="nav-number">1.1.22.</span> <span class="nav-text">标签语义化的理解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是语义元素呢？"><span class="nav-number">1.1.22.1.</span> <span class="nav-text">什么是语义元素呢？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#容易修改和维护"><span class="nav-number">1.1.22.2.</span> <span class="nav-text">容易修改和维护</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无障碍性"><span class="nav-number">1.1.22.3.</span> <span class="nav-text">无障碍性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#搜索引擎优化"><span class="nav-number">1.1.22.4.</span> <span class="nav-text">搜索引擎优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#未来功能"><span class="nav-number">1.1.22.5.</span> <span class="nav-text">未来功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#了解doctype么？html5的和html4的有什么区别（我当时以为要问声明html5以下的doctype怎么写，吓的，其实是想考察doctype对盒模型的影响）"><span class="nav-number">1.1.23.</span> <span class="nav-text">了解doctype么？html5的和html4的有什么区别（我当时以为要问声明html5以下的doctype怎么写，吓的，其实是想考察doctype对盒模型的影响）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#不同html版本采用不同的渲染模式"><span class="nav-number">1.1.23.0.1.</span> <span class="nav-text">不同html版本采用不同的渲染模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTML5只有一种DTD模型："><span class="nav-number">1.1.23.0.2.</span> <span class="nav-text">HTML5只有一种DTD模型：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对于-HTML-4-01-文档"><span class="nav-number">1.1.23.0.3.</span> <span class="nav-text">对于 HTML 4.01 文档</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#盒模型（这里好像因为太愉悦了没深思熟虑所以好像说反了）"><span class="nav-number">1.1.24.</span> <span class="nav-text">盒模型（这里好像因为太愉悦了没深思熟虑所以好像说反了）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#知道BFC么？怎么生成BFC（这个不会）"><span class="nav-number">1.1.25.</span> <span class="nav-text">知道BFC么？怎么生成BFC（这个不会）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BFC-是什么呢？"><span class="nav-number">1.1.25.1.</span> <span class="nav-text">BFC 是什么呢？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#触发-BFC"><span class="nav-number">1.1.25.2.</span> <span class="nav-text">触发 BFC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BFC-特性及应用"><span class="nav-number">1.1.25.3.</span> <span class="nav-text">BFC 特性及应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#同一个-BFC-下外边距会发生折叠；"><span class="nav-number">1.1.25.3.1.</span> <span class="nav-text">同一个 BFC 下外边距会发生折叠；</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BFC-可以包含浮动的元素（清除浮动）；"><span class="nav-number">1.1.25.3.2.</span> <span class="nav-text">BFC 可以包含浮动的元素（清除浮动）；</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BFC-可以阻止元素被浮动元素覆盖；"><span class="nav-number">1.1.25.3.3.</span> <span class="nav-text">BFC 可以阻止元素被浮动元素覆盖；</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#内部的盒子会在垂直方向，一个个地放置；"><span class="nav-number">1.1.25.3.4.</span> <span class="nav-text">内部的盒子会在垂直方向，一个个地放置；</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#每个元素的左边，与包含的盒子的左边相接触，即使存在浮动也是如此；"><span class="nav-number">1.1.25.3.5.</span> <span class="nav-text">每个元素的左边，与包含的盒子的左边相接触，即使存在浮动也是如此；</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之也如此；"><span class="nav-number">1.1.25.3.6.</span> <span class="nav-text">BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之也如此；</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#计算BFC的高度时，浮动元素也参与计算。"><span class="nav-number">1.1.25.3.7.</span> <span class="nav-text">计算BFC的高度时，浮动元素也参与计算。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说说你知道的css单位（这个只说了一下px，rem，em，vh，vw，-）"><span class="nav-number">1.1.26.</span> <span class="nav-text">说说你知道的css单位（这个只说了一下px，rem，em，vh，vw，%）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#知道引入css的方式有哪几种？"><span class="nav-number">1.1.27.</span> <span class="nav-text">知道引入css的方式有哪几种？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#了解js在处理不同数据类型相加时怎么做隐性转化的么？比如1-‘1’-‘11’"><span class="nav-number">1.1.28.</span> <span class="nav-text">了解js在处理不同数据类型相加时怎么做隐性转化的么？比如1+‘1’=‘11’</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数值转换"><span class="nav-number">1.1.28.1.</span> <span class="nav-text">数值转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#typeof-操作符"><span class="nav-number">1.1.28.2.</span> <span class="nav-text">typeof 操作符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#和-amp"><span class="nav-number">1.1.28.3.</span> <span class="nav-text">| 和 &amp;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new的过程中发生了什么"><span class="nav-number">1.1.29.</span> <span class="nav-text">new的过程中发生了什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入url的过程中发生了什么"><span class="nav-number">1.1.30.</span> <span class="nav-text">输入url的过程中发生了什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tcp三次握手和四次挥手"><span class="nav-number">1.1.31.</span> <span class="nav-text">tcp三次握手和四次挥手</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三次握手"><span class="nav-number">1.1.31.1.</span> <span class="nav-text">三次握手</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四次挥手"><span class="nav-number">1.1.31.2.</span> <span class="nav-text">四次挥手</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http缓存规则"><span class="nav-number">1.1.32.</span> <span class="nav-text">http缓存规则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#强制缓存"><span class="nav-number">1.1.32.1.</span> <span class="nav-text">强制缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Expires"><span class="nav-number">1.1.32.1.1.</span> <span class="nav-text">Expires</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cache-Control"><span class="nav-number">1.1.32.1.2.</span> <span class="nav-text">Cache-Control</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对比缓存"><span class="nav-number">1.1.32.2.</span> <span class="nav-text">对比缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.1.32.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清除浮动"><span class="nav-number">1.1.33.</span> <span class="nav-text">清除浮动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对父级设置合适的CSS高度。"><span class="nav-number">1.1.33.1.</span> <span class="nav-text">对父级设置合适的CSS高度。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-clear-both-清除浮动。"><span class="nav-number">1.1.33.2.</span> <span class="nav-text">使用 clear: both 清除浮动。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#父级-div-定义：-overflow：-hidden-。"><span class="nav-number">1.1.33.3.</span> <span class="nav-text">父级 div 定义： overflow： hidden 。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在浮动元素后面增加-标签。"><span class="nav-number">1.1.33.4.</span> <span class="nav-text">在浮动元素后面增加  标签。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在父级元素加上-clearfix-类（常用）"><span class="nav-number">1.1.33.5.</span> <span class="nav-text">在父级元素加上 .clearfix 类（常用）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在白板上写出水平垂直居中的方法，一般三种就差不多了"><span class="nav-number">1.1.34.</span> <span class="nav-text">在白板上写出水平垂直居中的方法，一般三种就差不多了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#水平"><span class="nav-number">1.1.35.</span> <span class="nav-text">水平</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垂直"><span class="nav-number">1.1.36.</span> <span class="nav-text">垂直</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebSocket-1"><span class="nav-number">1.1.37.</span> <span class="nav-text">WebSocket</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面包屑导航"><span class="nav-number">1.1.38.</span> <span class="nav-text">面包屑导航</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支付宝支付"><span class="nav-number">1.1.39.</span> <span class="nav-text">支付宝支付</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三栏布局的方法，这里很尴尬，手误在双飞翼模型，大家还是小心点吧。。。中间还提了一个column-count这个属性，我完全没印象"><span class="nav-number">1.1.40.</span> <span class="nav-text">三栏布局的方法，这里很尴尬，手误在双飞翼模型，大家还是小心点吧。。。中间还提了一个column-count这个属性，我完全没印象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CDN"><span class="nav-number">1.1.41.</span> <span class="nav-text">CDN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#然后我主动讲了栅格系统"><span class="nav-number">1.1.42.</span> <span class="nav-text">然后我主动讲了栅格系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抛开vue，自己设计双向绑定会怎么实现，还是用的脏检测"><span class="nav-number">1.1.43.</span> <span class="nav-text">抛开vue，自己设计双向绑定会怎么实现，还是用的脏检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React比jquery高效在哪里？"><span class="nav-number">1.1.44.</span> <span class="nav-text">React比jquery高效在哪里？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手写“模拟洗牌”的代码"><span class="nav-number">1.1.45.</span> <span class="nav-text">手写“模拟洗牌”的代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手撕字符串反转-单词位置反转有空格"><span class="nav-number">1.1.46.</span> <span class="nav-text">手撕字符串反转 单词位置反转有空格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于个人情况：是大四吗是否可以全职实习等。"><span class="nav-number">1.1.47.</span> <span class="nav-text">关于个人情况：是大四吗是否可以全职实习等。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谈了谈可以提前去实习的问题"><span class="nav-number">1.1.48.</span> <span class="nav-text">谈了谈可以提前去实习的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#职业规划？"><span class="nav-number">1.1.49.</span> <span class="nav-text">职业规划？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#最近准备做什么？"><span class="nav-number">1.1.49.1.</span> <span class="nav-text">最近准备做什么？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#然后和面试官握了手"><span class="nav-number">1.1.50.</span> <span class="nav-text">然后和面试官握了手</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#还有什么要问我的？"><span class="nav-number">1.1.51.</span> <span class="nav-text">还有什么要问我的？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二面"><span class="nav-number">1.2.</span> <span class="nav-text">二面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#js的运行环境（果然还是躲不过node），简单说了说浏览器环境和node的区别"><span class="nav-number">1.2.1.</span> <span class="nav-text">js的运行环境（果然还是躲不过node），简单说了说浏览器环境和node的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端调试，devTools断点的使用"><span class="nav-number">1.2.2.</span> <span class="nav-text">前端调试，devTools断点的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串的方法"><span class="nav-number">1.2.3.</span> <span class="nav-text">字符串的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组的方法"><span class="nav-number">1.2.4.</span> <span class="nav-text">数组的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mvvm和mvp模式的简单描述，很简单的描述了下，3分钟左右"><span class="nav-number">1.2.5.</span> <span class="nav-text">mvvm和mvp模式的简单描述，很简单的描述了下，3分钟左右</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原生ajax的使用步骤，面试官当时的意思应该是讲讲过程就好"><span class="nav-number">1.2.6.</span> <span class="nav-text">原生ajax的使用步骤，面试官当时的意思应该是讲讲过程就好</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Js的垃圾回收机制。"><span class="nav-number">1.2.7.</span> <span class="nav-text">Js的垃圾回收机制。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登录流程"><span class="nav-number">1.2.8.</span> <span class="nav-text">登录流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器事件循环。"><span class="nav-number">1.2.9.</span> <span class="nav-text">浏览器事件循环。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js事件循环。"><span class="nav-number">1.2.10.</span> <span class="nav-text">Node.js事件循环。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setTimeout-和-Interval"><span class="nav-number">1.2.11.</span> <span class="nav-text">setTimeout 和 Interval</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tcp握手，以及和udp的应用场景"><span class="nav-number">1.2.12.</span> <span class="nav-text">tcp握手，以及和udp的应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉树高度，，手写代码。"><span class="nav-number">1.2.13.</span> <span class="nav-text">二叉树高度，，手写代码。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Webpack"><span class="nav-number">1.2.14.</span> <span class="nav-text">Webpack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反转一个字符串以及优化"><span class="nav-number">1.2.15.</span> <span class="nav-text">反转一个字符串以及优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说出什么是AVL（二叉反转树）"><span class="nav-number">1.2.16.</span> <span class="nav-text">说出什么是AVL（二叉反转树）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说出你知道的排序算法（冒泡排序的过程以及优化-这里就是检查一下是否已有序，没反应过来-），以及堆排序的原理，没答出来"><span class="nav-number">1.2.17.</span> <span class="nav-text">说出你知道的排序算法（冒泡排序的过程以及优化(这里就是检查一下是否已有序，没反应过来)），以及堆排序的原理，没答出来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI七层模型你知道吗？不知道"><span class="nav-number">1.2.18.</span> <span class="nav-text">OSI七层模型你知道吗？不知道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反转链表，没答出来。。。"><span class="nav-number">1.2.19.</span> <span class="nav-text">反转链表，没答出来。。。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setter和getter"><span class="nav-number">1.2.20.</span> <span class="nav-text">setter和getter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue的响应式原理：数据劫持-观察者模式，以及vue的组件化理解"><span class="nav-number">1.2.21.</span> <span class="nav-text">vue的响应式原理：数据劫持 观察者模式，以及vue的组件化理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vuex的作用，使用，以及个人的理解"><span class="nav-number">1.2.22.</span> <span class="nav-text">vuex的作用，使用，以及个人的理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存中有last-modified规则了，为什么还要有etag。面试官告诉我是这样一种情况：当一个文件被加了一个空格，l-m"><span class="nav-number">1.2.23.</span> <span class="nav-text">缓存中有last-modified规则了，为什么还要有etag。面试官告诉我是这样一种情况：当一个文件被加了一个空格，l-m</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery里使用-attr-‘class’-方法，那么原生对应的是什么obj-classList。面试官告诉我的"><span class="nav-number">1.2.24.</span> <span class="nav-text">jQuery里使用$.attr(‘class’)方法，那么原生对应的是什么obj.classList。面试官告诉我的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setTimeout-0-和Promise-then谁先执行-Vue-的nextTick如何实现。"><span class="nav-number">1.2.25.</span> <span class="nav-text">setTimeout 0 和Promise.then谁先执行 Vue 的nextTick如何实现。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-of-for-of能拿来遍历对象吗。"><span class="nav-number">1.2.26.</span> <span class="nav-text">for of for of能拿来遍历对象吗。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历器接口。"><span class="nav-number">1.2.27.</span> <span class="nav-text">遍历器接口。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol的应用场景。"><span class="nav-number">1.2.28.</span> <span class="nav-text">Symbol的应用场景。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#写一个call方法。"><span class="nav-number">1.2.28.1.</span> <span class="nav-text">写一个call方法。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue双向绑定和依赖收集怎么实现"><span class="nav-number">1.2.29.</span> <span class="nav-text">vue双向绑定和依赖收集怎么实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件是怎么封装的"><span class="nav-number">1.2.30.</span> <span class="nav-text">组件是怎么封装的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有封装过哪些组件"><span class="nav-number">1.2.31.</span> <span class="nav-text">有封装过哪些组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给定一个长为n数组-里面存储着n个无序的正整数，求出数组中两个相差绝对值最小数的索引，，，说思路"><span class="nav-number">1.2.32.</span> <span class="nav-text">给定一个长为n数组,里面存储着n个无序的正整数，求出数组中两个相差绝对值最小数的索引，，，说思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑题，共26个硬币，其中有一个是假硬币，假硬币较真硬币略轻。问用一个天平最少称几次可以找出假硬币。"><span class="nav-number">1.2.33.</span> <span class="nav-text">逻辑题，共26个硬币，其中有一个是假硬币，假硬币较真硬币略轻。问用一个天平最少称几次可以找出假硬币。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个是轮播图点击小图换大图，另一个是传入一个图片的url会返回该图片颜色的rgba"><span class="nav-number">1.2.34.</span> <span class="nav-text">一个是轮播图点击小图换大图，另一个是传入一个图片的url会返回该图片颜色的rgba</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讲一下什么是B-树"><span class="nav-number">1.2.35.</span> <span class="nav-text">讲一下什么是B 树</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HR面"><span class="nav-number">1.3.</span> <span class="nav-text">HR面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问了下怎么学前端的和其他offer和薪资"><span class="nav-number">1.3.1.</span> <span class="nav-text">问了下怎么学前端的和其他offer和薪资</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自我感觉如何"><span class="nav-number">1.3.2.</span> <span class="nav-text">自我感觉如何</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有没有offer"><span class="nav-number">1.3.3.</span> <span class="nav-text">有没有offer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#哪里人啊"><span class="nav-number">1.3.4.</span> <span class="nav-text">哪里人啊</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#意向工作城市"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">意向工作城市</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":90,"vOffset":-25},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
