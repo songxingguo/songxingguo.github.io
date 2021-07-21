@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Angular 2介绍 Angular 2（以下简称Angular）是一个由Google维护的开源JavaScript框架，它完全重写了备受欢迎的AngularJs（Angular 1.x版本）。  JavaScript框架和库框架能够让你完全控制自己应用程序中的架构、设计模式和代码风格。 Angular是用于开发Web应用程序的众多框架之一。 框架为代码提供了一个结构，并强制按照特定方式编写代码">
+<meta name="keywords" content="Angular 2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Angular 2开发实战》学习笔记-Angular 2介绍">
+<meta property="og:url" content="https://www.songxingguo.com/2018/07/20/Angular-2-introduce/index.html">
+<meta property="og:site_name" content="阿有的生活">
+<meta property="og:description" content="Angular 2介绍 Angular 2（以下简称Angular）是一个由Google维护的开源JavaScript框架，它完全重写了备受欢迎的AngularJs（Angular 1.x版本）。  JavaScript框架和库框架能够让你完全控制自己应用程序中的架构、设计模式和代码风格。 Angular是用于开发Web应用程序的众多框架之一。 框架为代码提供了一个结构，并强制按照特定方式编写代码">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/Angular%20%E6%95%85%E4%BA%8B.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%9B%BE.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%20.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/%E8%B7%AF%E7%94%B1%E4%BD%BF%E7%94%A8%20.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/index.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/Angular%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/%E7%BB%84%E4%BB%B6%E5%86%85%E9%83%A8%E5%AE%9E%E7%8E%B0.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/%E5%B7%A5%E5%85%B7.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8%E4%B8%8A.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8%E4%B8%8B.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/%E5%B7%A5%E4%BD%9C%E6%B5%81.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Angular/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.jpg">
+<meta property="og:updated_time" content="2021-07-21T12:32:38.785Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Angular 2开发实战》学习笔记-Angular 2介绍">
+<meta name="twitter:description" content="Angular 2介绍 Angular 2（以下简称Angular）是一个由Google维护的开源JavaScript框架，它完全重写了备受欢迎的AngularJs（Angular 1.x版本）。  JavaScript框架和库框架能够让你完全控制自己应用程序中的架构、设计模式和代码风格。 Angular是用于开发Web应用程序的众多框架之一。 框架为代码提供了一个结构，并强制按照特定方式编写代码">
+<meta name="twitter:image" content="https://graphbed.qiniu.songxingguo.com/Angular/Angular%20%E6%95%85%E4%BA%8B.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/07/20/Angular-2-introduce/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《Angular 2开发实战》学习笔记-Angular 2介绍 | 阿有的生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">132</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">43</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/07/20/Angular-2-introduce/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《Angular 2开发实战》学习笔记-Angular 2介绍
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-20 12:20:00" itemprop="dateCreated datePublished" datetime="2018-07-20T12:20:00+00:00">2018-07-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-07-21 12:32:38" itemprop="dateModified" datetime="2021-07-21T12:32:38+00:00">2021-07-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/20/Angular-2-introduce/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/07/20/Angular-2-introduce/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/07/20/Angular-2-introduce/" class="leancloud_visitors" data-flag-title="《Angular 2开发实战》学习笔记-Angular 2介绍">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Angular-2介绍"><a href="#Angular-2介绍" class="headerlink" title="Angular 2介绍"></a>Angular 2介绍</h3><p> Angular 2（以下简称Angular）是一个由Google维护的开源JavaScript框架，它完全重写了备受欢迎的AngularJs（Angular 1.x版本）。</p>
+<ul>
+<li><h4 id="JavaScript框架和库"><a href="#JavaScript框架和库" class="headerlink" title="JavaScript框架和库"></a>JavaScript框架和库</h4><p>框架能够让你完全控制自己应用程序中的架构、设计模式和代码风格。</p>
+<p>Angular是用于开发Web应用程序的众多框架之一。</p>
+<p>框架为代码提供了一个结构，并强制按照特定方式编写代码。库通常会提供大量的组件和API接口，它们可以在任何代码中被调用。换句话说，与库相比，框架对应用程序的设计更有用。</p>
+<a id="more"></a>
+<ul>
+<li><h5 id="重量级框架"><a href="#重量级框架" class="headerlink" title="重量级框架"></a>重量级框架</h5><p>重量级框架包含了开发一个Web应用程序需要的所有东西。这将为你的代码强加一个结构，并配套UI组件和工具以便开发和部署应用程序。<br>Ext JS是一个由Sencha创建和维护的全能型框架。它配备了一套优秀的UI框架，其中包括一个高级的数据表格和图表控件，这对于开发后台企业级应用程序是至关重要的。如果一个应用程序采用Ext JS框架，那么它的大小不会小于1MB。Ext JS是入侵式框架，一旦采用，并不能很容易切换到其他框架。</p>
+<p>Sencha同时推出了Sencha Touch框架，主要用于开发面向移动设备的Web应用程序。</p>
+</li>
+<li><h5 id="轻量级框架"><a href="#轻量级框架" class="headerlink" title="轻量级框架"></a>轻量级框架</h5><p>请量级框架为Web应用程序添加结构，提供一种在不同视图之间切换的导航方式，通常会把应用程序拆分成不同的层，实现模型-视图-控制器（Model-View-Controller,MVC）设计模式。还有一类轻量级框架，专门用于测试用JavaScript开发的应用程序。</p>
+<p>Angular是用于开发Web应用程序的开源框架。使用Angular更容易创建那些能够被插入到HTML文档中并实现了应用逻辑的自定义组件。Angular大量地使用数据绑定，包含该一个依赖注入模块，支持模块化，并提供路由机制。Angular并不像Angular那样基于MVC的，整个框架并不包括UI组件。</p>
+<p>Ember.js是用于开发Web应用程序的开源框架。它包括路由机制，支持双向数据绑定。Ember.js使用大量的代码约定，从而提高了软件开发人员的生成效率。</p>
+<p>Jasmine是一个JavaScript开源测试框架。Jasmine不需要任何一个Dom对象，它包括一系列方法用来测试应用程序中某些行为是否符合预期。Jasmine经常与Karma一起使用，Karma是一个测试运行器，能运行在不同的浏览器中。</p>
+</li>
+<li><h5 id="库"><a href="#库" class="headerlink" title="库"></a>库</h5><p>jQuery是流行的JavaScript。它的用法简单，不需要大幅改变自己的Web编程方式。jQuery用于查找和操作Dom元素，处理浏览器事件以及浏览器兼容性问题。jQuery是一个可扩展库，全世界的开发者为其开发了数以千计的插件。如果找不到符合自己要求的插件，还可以自行开发一个。</p>
+<p>Bootstrap是一个由Twitter开发的开源UI组件库。使用响应式Web设计原则构建组件。</p>
+<p>Google基于一系列设计原则开发了一套UI组件库，叫做Material Design,它可能会成为Bootstrap替代品。Material Design对跨屏幕展示做了优化，并搭配了一套漂亮的UI组件。</p>
+<p>React是一个由Facebook开发的开源用户界面库。React作为MVC模式中的V(View)层，是非侵入式的，可以与其他任何库和框架结合使用。React创建自有的虚拟DOM对象，最大限度地减少对浏览器DOM的访问，从而达到更好的性能。对于内容的渲染，React引入了JSX格式，这是一个对JavaScript的扩展，看起来像是XML。React建议使用JSX，但这并不是必需的。</p>
+<p>Polymer是一个由Google开放的基于Web Components标准构建自定义组件库。它搭配了一套非常漂亮的可定制的UI组件，可以作为标签在HTML页面中被引用。Pilymer还为应用程序提供离线工作模块以及使用GoogleAPI的组件（如日历，地图等）。</p>
+<p>RxJS是一组使用了可观察集合并组合异步请求和基于事件编程的库。它允许应用程序处理异步数据流。使用RxJS，数据流会被表示为一个可观察队列。RxJS可以单独使用，也可以与其他JavaScript框架结合使用。</p>
+<p>查看顶级网站使用了什么JavaScript框架和库，可以访问“JavaScript开发网站的使用的使用统计情况”页面，网址为 <a href="http://trends.builtwith.com/javascript" target="_blank" rel="noopener">http://trends.builtwith.com/javascript</a> 。</p>
+</li>
+<li><h5 id="什么是Node-js"><a href="#什么是Node-js" class="headerlink" title="什么是Node.js"></a>什么是Node.js</h5><p>Node.js（或者称为Node）不仅仅是一个框架或库，它还是一个运行时环境。</p>
+<p>Node.js框架可以用于开发浏览器之外运行的JavaScript程序。可以使用JavaScript或TypeScript开发Web应用程序的服务器端程序；Google为Chrome浏览器开发了一款高性能V8 JavaScript引擎，可用于运行使用Node.jsAPI编写的代码。Node.js包括一个API，具有操作文件系统、访问数据库、监听HTTP请求的功能。</p>
+<p>JavaScript社区成员们已经构建了大量的工具用于开发Web应用程序，借助于Node的JavaScript引擎，可以在命令行中运行这些工具。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="AngularJS高级概述"><a href="#AngularJS高级概述" class="headerlink" title="AngularJS高级概述"></a>AngularJS高级概述</h4><ul>
+<li><h5 id="Angular的故事"><a href="#Angular的故事" class="headerlink" title="Angular的故事"></a>Angular的故事</h5><p><img src="https://graphbed.qiniu.songxingguo.com/Angular/Angular%20%E6%95%85%E4%BA%8B.png" alt="Angular的故事"></p>
+</li>
+<li><h5 id="AngularJS流行原因"><a href="#AngularJS流行原因" class="headerlink" title="AngularJS流行原因"></a>AngularJS流行原因</h5><ul>
+<li><p>AngularJS具有利用指令概念创建自定义HTML标签和属性的机制，允许根据自己应哟程序的需要扩展HTML标签。</p>
+</li>
+<li><p>AngularJS是入侵式的，但不会产生过多的干扰。可以把ng-app属性添加到任何一个 <code>&lt;div&gt;</code> 标签上，只有这个 <code>&lt;div&gt;</code> 标签里面的内容会被影响，页面中的其他部分仍然是纯粹的HTML和JavaScript。</p>
+</li>
+<li><p>AngularJS令你能够轻松地把数据绑定到视图上，更改数据将会触发相应视图元素自动更新，反之亦然。</p>
+</li>
+<li><p>AngularJS配套有一个可配置的路由，使你能够对应用程序的组件与URL模式进行映射，当URL变化时会导致页面对应的视图发生变化。</p>
+</li>
+<li><p>在控制器中定义应用程序的数据流，数据流是JavaScript对象类型，其中包括属性和方法。</p>
+</li>
+<li><p>AngularJS应用程序使用有层级关系的作用域来存储由控制器和视图分享的数据。</p>
+</li>
+<li><p>AngularJS包含了一个依赖注入模块，使你能够以解耦方式开发应用程序。</p>
+</li>
+</ul>
+<p>与jQuery简化DOM操作相反，AngularJS允许开发者以MVC模式设计应用程序，从而把逻辑从UI层分离出来。下图描述了一个用于处理产品的AngularJS应用程序的工作流示例。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/Angular/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%9B%BE.jpg" alt="AngularJS应用程序架构示例"><br><code>AngularJS应用程序架构示例</code></p>
+<p>一旦模式中保持的数据发生变化，AngularJS就会自动更新视图。如果用户修改了视图中输入框里的数据，那么UI变化也会传递给模型。这个双向更新机制被称为双向数据绑定。如下图所示。</p>
+<p>双向绑定意味着其中一个会自动更新另一个，因此在AngularJS中，模型和视图是紧密绑定在一起的。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/Angular/%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A.jpg" alt="双向绑定"><br><code>双向绑定</code></p>
+<p>模式数据保存在一个特定$scope对象的上下文中，AngularJS作用域是一个有层级结构的对象。$rootScope是为整个应用程序创建的。控制器和指令（自定义组件）有自己的$scope对象。</p>
+<p>可以通过创建和加载模块对象来实现模块化。当一个特定模块依赖于其他对象（如控制器、模块或服务）时，Angular的注入机制将会创建这些对象的实例。下面代码片段展示了AngularJS将对象注入其他对象的一种方法：<br><img src="https://graphbed.qiniu.songxingguo.com/Angular/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%20.jpg" alt="依赖注入"></p>
+<p>AngularJS经常被用来创建单页面应用程序，用户操作或服务器返回数据只会更新页面中的指定部分（子视图）。</p>
+<p>通过配置ng-route路由组件来设置AngularJS中视图之间的导航。可以根据URL模式指定多个.when选项将应用程序导航到相应的视图。下面代码示例将会演示路由的使用。<br><img src="https://graphbed.qiniu.songxingguo.com/Angular/%E8%B7%AF%E7%94%B1%E4%BD%BF%E7%94%A8%20.jpg" alt="路由使用"></p>
+<p>AngularJS支持深度链接，当把页面加入到书签中时，不仅可以收藏整个网页，还可以收藏页面中的某个特定状态。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="Angular高级概述"><a href="#Angular高级概述" class="headerlink" title="Angular高级概述"></a>Angular高级概述</h4><p>与AngularJS相比，Angular在很多方面的表现都会更好。Angular更容易学习，应用程序的框架的结构也被简化了，并且代码更容易书写。</p>
+<ul>
+<li><h5 id="简化代码"><a href="#简化代码" class="headerlink" title="简化代码"></a>简化代码</h5><p>Angular应用程序支持ECMAScript 6(ES6)中的标准模块、异步模块定义（Asynchronous Module Definition ,AMD）以及CommonJS格式。通常一个模块一个文件。使用通用的模块加载器SystemJS，并添加import语句。</p>
+<p>应用程序的着陆页面HTML文件中包含了Angular模块以及它们的依赖。应用程序的代码通过加载自己的根模块进行引导。所有必需的组件和服务将会根据模块中声明和导入语句进行加载。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/Angular/index.jpg" alt="index.html文件"></p>
+<p>每个组件的HTML片段都可以在组件内部（template属性）或者通过templateURL属性从组件引用的文件中内联得到。</p>
+<p>组件是Angular新架构的核心内容。如下图展示了一个由4个组件和2个服务组成的示例Angular应用程序的示意图。所有这些都会被封装到一个模块中。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/Angular/Angular%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F.jpg" alt="Angular应用程序的示例框架"></p>
+<p>声明一个组件的简单方式就是用TypeScript写一个类(当然，也可以使用ES5、ES6或Dart)。</p>
+<ul>
+<li><p>如果为TypeScript的类前缀添加了一个@NgModule元数据注解，那么表示它是一个模块。</p>
+</li>
+<li><p>如果为类前缀添加了一个@Component元数据注解，那么表示它是一个组件。@Component注解（又被称为装饰器）包含了template属性，声明了一个用于浏览器渲染HTML片段。元数据注解允许在设计阶段修改组件的属性。HTML模板可能包含被双大括号包围的数据绑定表达式。事件绑定也在@Component注解的template属性中定义，并且在类中作为方法被实现。</p>
+</li>
+<li><p>另一个元数据注解是@Injectable,它表示创建的组件会被DI模块处理。</p>
+</li>
+</ul>
+<p>@Component注解还包含了selector属性，用来声明能够在HTML文档中使用的自定义标签。当Angular发现一个匹配selector属性值的HTML元素时，就会知道是哪个组件实现了这个元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;auction-application&gt;</span><br><span class="line">    &lt;search-product [productID] = &quot;123&quot;&gt;&lt;/search-product&gt;</span><br><span class="line">  &lt;/auction-aplication&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>父组件通过为子组件绑定输入属性来向其传递数据（注意上面代码中的方括号），而子元素通过经过它们的输出属性触发事件来实现与父组件的通信。</p>
+<p>下面的代码显示了一个搜索组件SearchComponent。它的selector属性被声明为search-product，因此可以在HTML文档中通过 <code>&lt;search-product&gt;</code> 标签来引用它：、</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">@Component(&#123;</span><br><span class="line"> selector: &apos;search-product&apos;,</span><br><span class="line"> template: </span><br><span class="line">   `&lt;from&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input id=&quot;prodToFind&quot; #prod&gt;</span><br><span class="line">        &lt;button (click)=&quot;findProduct(prod, value)&quot;&gt;Find Product&lt;/button&gt;</span><br><span class="line">        Product name: &#123;&#123;product.name&#125;&#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/from&gt;</span><br><span class="line">   `</span><br><span class="line">&#125;)</span><br><span class="line">class SearchComponent &#123;</span><br><span class="line">  @Input( ) productID: number;</span><br><span class="line">  </span><br><span class="line">  product: Product;</span><br><span class="line">  </span><br><span class="line">  findProduct(productName: string) &#123;</span><br><span class="line">    // Implementation of the click hander goes here</span><br><span class="line">  &#125;</span><br><span class="line">  // Other code can go here</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下图为组件内部工作原理。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/Angular/%E7%BB%84%E4%BB%B6%E5%86%85%E9%83%A8%E5%AE%9E%E7%8E%B0.jpg" alt="组件内部实现"></p>
+<p>组件从服务中获取数据并用于渲染，这些数据用类的方式来定义。在TypeScript中Product类可以是下面的结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Product &#123;</span><br><span class="line">  id：number;</span><br><span class="line">  name: string;</span><br><span class="line">  description: string;</span><br><span class="line">  bid: number;</span><br><span class="line">  price:number;</span><br><span class="line"></span><br><span class="line">  // construct and other methods go here</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，TypeScript允许在声明类变量的同时指定类型。为让UI组件SearchComponent掌握自己的数据，可以声明一个类变量，如product:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Component (&#123; /* code omitted for brevity */ &#125;)</span><br><span class="line">class SearchComponent &#123;</span><br><span class="line">  product: Product;</span><br><span class="line"></span><br><span class="line">  findProduct(productID) &#123;</span><br><span class="line">    // The implementation of the click handler</span><br><span class="line">    // for the Find components button goes here</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果SearchComponent想要返回多个产品，可以声明一个数组来存储产品：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">products: Array&lt;Product&gt;;</span><br></pre></td></tr></table></figure>
+<p>在上面代码中 <code>&lt;Product&gt;</code> 使用了泛型符号，表示TypeScript编译器中只有Product类型的对象被允许存储在这个数组中。</p>
+<p>Angular不是一个MVC框架，因此你的应用程序不会有独立的控制器（MVC模式中的C(Controller<br>层））。组件和被注入的服务（如果需要的话）囊括了所有必需的代码。在我们的例子中，SearchProduct类除了包含HTML视图中UI组件的代码，还包含了与控制器有关的代码。</p>
+<p>为了彻底地分离TypeScript代码和HTML片段，在@Component注解中不建议使用template属性，而推荐使用单独的文件存储HTML片段，并使用templaateUrl属性代替template属性引用该文件。</p>
+<p>不需要像AngularJS一样处理多层级的scrope对象，因为Angular是基于组件的，属性创建在组件的this.对象上，this对象也在组件的作用域内。</p>
+<p>创建对象实例的一种方法是使用new操作符。依赖注入（Dependency Injection, DI）是一种设计模式，能够倒置创建依赖对象的过程。不需要显式地创建对象实例（比如使用new关键字），框架将会创建这些实例对象并把它们注入到代码中。Angualr自带了一个DI模块。</p>
+<p>在AngularJS中，有几种注册依赖的方式，它们经常会令开发者感到困惑。在Angular中，只能通过组件的构造函数向其注入依赖。下面的TypeScript代码片段显示了如何将ProductService组件注入到SearchComponent中。只需要指定一个provider,并把构造函数的参数声明为该provider的类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Component(&#123;</span><br><span class="line"> selector: &apos;search-product&apos;,</span><br><span class="line"> providers: [ProductService],</span><br><span class="line"> template: `&lt;div&gt;...&lt;/div&gt;</span><br><span class="line">&#125;)     </span><br><span class="line">class SearchComponent &#123;</span><br><span class="line">  products: Array&lt;Product&gt; = [];</span><br><span class="line">  </span><br><span class="line">  constructor(productService: ProductService) &#123;</span><br><span class="line">    this.products = productServive.getProducts();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码中并没有使用new操作符。Angular将会实例化一个ProductService对象，并在SearchComponent中提供这个对象的引用。</p>
+<p>总而言之，Angular比AngularJS更简单，原因如下：</p>
+<ul>
+<li><p>应用程序的每个构建块(building block)都是一个组件，包括功能封装性良好的视图、控制器和自动生成的属性变更检测器。</p>
+</li>
+<li><p>组件可以编程为注解类。</p>
+</li>
+<li><p>不需要处理多层级作用域。</p>
+</li>
+<li><p>依赖的组件通过组件的构造函数进行注入。</p>
+</li>
+<li><p>双向绑定功能是默认关闭的。</p>
+</li>
+<li><p>变更检测机制被重写了，性能更好。</p>
+</li>
+</ul>
+<p>大多数的企业级软件开发人员都是Java、C#和C++程序员，对他们来说，Angular的概念很容易理解。</p>
+</li>
+<li><h5 id="性能提升"><a href="#性能提升" class="headerlink" title="性能提升"></a>性能提升</h5><p>Repaint Rate Challenge网站（ <a href="http://mathieuancelin.github.io/js-repaint-perfs" target="_blank" rel="noopener">http://mathieuancelin.github.io/js-repaint-perfs</a> ）对比了各种框架的渲染性能。</p>
+<p>渲染性能的提升主要得益Angular框架内部的重新设计。渲染组件与应用程序的API被解耦到两个层面，使你能够在独立的Web工作线程中允许非UI相关代码。除了同时可以运行不同层面的代码之外，Web浏览器也可能会为这些线程分配不同的CPU内核。有关新渲染框架更多信息可以在Google Docs文档“Angular 2 Rendering Architecture”中找到，网址为 <a href="http://mng.bz/K403" target="_blank" rel="noopener">http://mng.bz/K403</a> 。</p>
+<p>把渲染层解耦出来还有一个重要的好处：可以根据不同的设备选择不同的渲染引擎。每个组件都包括@Component注解，其中包含了一个定义组件外观的HTML模板。</p>
+<p>如果创建一个 <code>&lt;stock=price&gt;</code> 组件以便在页面中显示股票价格，那么UI部分的代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Component(&#123;</span><br><span class="line">  selectoe: &apos;stock-price&apos;,</span><br><span class="line">  template; &apos;&lt;div&gt;The price of an IBM chare is $165.50&lt;/div&gt;&apos;</span><br><span class="line">&#125;)</span><br><span class="line">class StockPriceComponent &#123;</span><br><span class="line"> ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Angular渲染引擎是一个独立的模块，它允许第三方供应商使用非浏览器依赖的平台作为渲染引擎，来替换默认的DOM渲染引擎。比如，可以在不同设备之间重用TypeScript代码，利用第三方UI渲染引擎在移动设备上渲染原生的组件。组件中TypeScript代码将会被保留，但是@Component装饰器的template属性中的内容可能会变更为XML或其他用于渲染原生组件的开发语言。</p>
+<p>在NativeScript框架中已经实现了上述Angular 2渲染引擎。NativeScript框架在JavaScript和原生iOS UI组件或Android UI组件之间提供了一座桥梁，可以重用组件的代码，而仅仅是在模板中把HTML替换为XML。</p>
+<p>另一种自定义UI渲染引擎允许Angular与React Native搭配使用，这是为iOS和Android创建原生（非混合）UI的一条途径。</p>
+<p>Angular引入了全新的性能更强的变更检测机制，这也为Angular带来了性能上的提升。Angular不使用自动的双向绑定，需要手动开启。单向数据绑定简化了大量相互依赖的组件间变更检测的流程。现在可以把一个组件排除在变更检测工作流之外，当检测到其他组件发生变更时，这个组件不会被检查。</p>
+<p><strong>注意：</strong> </p>
+<p>如果要使用AngularJS,可以通过使用ng-forward(参见 <a href="http://github.com/ngUpgraders/ng-forward" target="_blank" rel="noopener">http://github.com/ngUpgraders/ng-forward</a> ）来编写Angular风格的代码。另一个方法是使用ngUpgrade(参见 <a href="http://angular.io/docs/ts/latest/guide/upgrade.html" target="_blank" rel="noopener">http://angular.io/docs/ts/latest/guide/upgrade.html</a> ）,它能够令Angular和AngularJS在一个应用程序中共存，然后逐步切换到最新的版本框架，但这种方法会造成应用程序的体积变大。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="Angular开发者工具"><a href="#Angular开发者工具" class="headerlink" title="Angular开发者工具"></a>Angular开发者工具</h4><ul>
+<li><p>JavaScript是公认的Web应用程序前端开发语言。ES6是脚本语言的最新标准化规范，而JavaScript是其最流行的实现。</p>
+</li>
+<li><p>TypeScript是JavaScript的超集，令开发人员更加高效。TypeScript支持ES6的大多数功能，还额外提供了类型、接口、元数据注解等特性。</p>
+</li>
+<li><p>TypeScript代码分析器使用type-definition文件来处理那些没有使用TypeScript开发的代码。DefinitelyType是一个流行的type-definition文件集合，描述了数百个JavaScript库和框架的API。使用type-definition文件可以让IDE具备上下文相关帮助和高亮显示错误提示的功能。可以从npmjs.org@types组织安装type-definition文件。</p>
+</li>
+<li><p>因为目前大多数浏览器仅支持ECMSScript 5(ES5）语法，因此如果需要使用TypeScript或ES6编写代码，那么需要在部署时对代码执行转换。Angular开发者可能会用到Babel、Traceur和TypeScript编译器来进行代码转换。</p>
+</li>
+<li><p>SystemJs是一个通用模块加载器，能够加载ES6、AMD和CommonJs标准的模块。</p>
+</li>
+<li><p>Angular CLI是一个代码生成器，允许生成一个全新的Angular项目，包括组件、服务和路由，此外还有部署应用程序的构建工具。</p>
+</li>
+<li><p>Node.js是一个建立在Chrome的JavaScript引擎上的平台。Node包括一个框架和一个运行时环境，用于在浏览器之外允许JavaScript代码。</p>
+</li>
+<li><p>npm是一个包管理器，可以让你下载工具、JavaScript库和框架。npm中存储了数以千计的包，可以用它安装所有的包，从开发者工具（比如TypeScript编译器）到安装应用程序依赖。npm还可以运行脚本，可以用npm启动HTTP服务器以及自动化构建。</p>
+</li>
+<li><p>Bower曾经是一个非常流行的包管理器，用来解决应用程序依赖之间的关系（比如Angular 2和jQuery）。由于可以从npm下载到一切，因此现在Bower已不再使用。</p>
+</li>
+<li><p>jspm同样是另一个包管理器。现代Web应用程序是由可加载模块组成的，jspm整合了SystemJS，这使得加载模块变得轻而易举。</p>
+</li>
+<li><p>Grunt是一个任务运行器。开发代码和部署代码之间需要执行很多步骤，这些步骤必须自动化完成。可能需要转换TypeScript或ES6代码为兼容性更好的ES5语法，压缩代码、图片和CSS。可能还需要检查代码质量，以及对应用程序做单元测试。使用Grunt,可以将所有任务及其依赖关系配置到一个JSON文件中，这样整个处理过程将是100%自动完成的。</p>
+</li>
+<li><p>Gulp是另外一个任务运行器。与Grunt一样，Gulp也可以自动化执行任务。但不同的是，Gulp并不在JSON中配置整个处理过程，而是用JavaScript编码来实现。这就允许在必要时可以调试整个处理过程。</p>
+</li>
+<li><p>JSLint和ESLint是代码分析工具，用来查找JavaScript代码或JSON格式的文档中是否存在问题。它们是代码质量检查工具。通过JSLint和ESLint运行JavaScript程序会产生若干警告信息，提示如何改善程序的代码质量。</p>
+</li>
+<li><p>TSLint是TypeScript的代码质量检查工具。它具有可扩展的检查规则集合，以及强制推荐代码风格和模式。</p>
+</li>
+<li><p>压缩工具是文件的体积更小，比如UglifyJS。在JavaScript中，它们会删除代码注解和换行符，缩短变量名称。压缩还可以用于HTML、CSS和图片文件。</p>
+</li>
+<li><p>打包程序将多个文件和它们的依赖封装到一个独立的文件中，比如Webpack。</p>
+</li>
+<li><p>因为JavaScript的语法非常宽松，应用程序需要测试，所以需要选择一个测试框架。比如，使用Jasmine测试框架和Karma测试运行器。</p>
+</li>
+<li><p>现代的IDE和文本编辑器，比如WebStrom、Visual Studio、 Visual Studio Code、Sublime Text、Atom等都支持JavaScript和TypeScript。</p>
+</li>
+<li><p>所有主流的Web浏览器都带有开发者工具，可以在浏览器内部调试自己的程序。即使程序是用TypeScript所写并被部署到JavaScript中，也仍然可以用source maps；调试原始代码。</p>
+</li>
+<li><p>Web应用程序应该可以在移动设备上使用，应该选择支持响应式设计的UI组件，确保UI布局会根据用户设备的屏幕尺寸自动适应。</p>
+</li>
+</ul>
+<p>开发Angular应用程序比开发AngularJS应用程序容易，但是<strong>最初的开发环境一定要设置正确，这样才能真正享受开发过程</strong>。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/Angular/%E5%B7%A5%E5%85%B7.jpg" alt="工具"></p>
+</li>
+<li><h4 id="如何使用Angular"><a href="#如何使用Angular" class="headerlink" title="如何使用Angular"></a>如何使用Angular</h4><p><img src="https://graphbed.qiniu.songxingguo.com/Angular/%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8%E4%B8%8A.jpg" alt="任务列表上"></p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/Angular/%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8%E4%B8%8B.jpg" alt="任务列表下"></p>
+</li>
+<li><h4 id="在线拍卖示例介绍"><a href="#在线拍卖示例介绍" class="headerlink" title="在线拍卖示例介绍"></a>在线拍卖示例介绍</h4><p><img src="https://graphbed.qiniu.songxingguo.com/Angular/%E5%B7%A5%E4%BD%9C%E6%B5%81.jpg" alt="在线拍卖工作流"></p>
+<p>开发Angular应用程序总结起来就是创建组件和组合组件。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/Angular/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.jpg" alt="目录结构"></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Angular-2/" rel="tag"># Angular 2</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/20/Angular2/" rel="next" title="《Angular 2 开发实战》学习笔记-前言">
+                <i class="fa fa-chevron-left"></i> 《Angular 2 开发实战》学习笔记-前言
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/22/HTML5-semantics/" rel="prev" title="《HTML5秘籍》学习笔记-用语义元素构造网页">
+                《HTML5秘籍》学习笔记-用语义元素构造网页 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="songxingguo">
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">132</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Angular-2介绍"><span class="nav-number">1.</span> <span class="nav-text">Angular 2介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JavaScript框架和库"><span class="nav-number">1.1.</span> <span class="nav-text">JavaScript框架和库</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#重量级框架"><span class="nav-number">1.1.1.</span> <span class="nav-text">重量级框架</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#轻量级框架"><span class="nav-number">1.1.2.</span> <span class="nav-text">轻量级框架</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#库"><span class="nav-number">1.1.3.</span> <span class="nav-text">库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是Node-js"><span class="nav-number">1.1.4.</span> <span class="nav-text">什么是Node.js</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AngularJS高级概述"><span class="nav-number">1.2.</span> <span class="nav-text">AngularJS高级概述</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Angular的故事"><span class="nav-number">1.2.1.</span> <span class="nav-text">Angular的故事</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AngularJS流行原因"><span class="nav-number">1.2.2.</span> <span class="nav-text">AngularJS流行原因</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Angular高级概述"><span class="nav-number">1.3.</span> <span class="nav-text">Angular高级概述</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#简化代码"><span class="nav-number">1.3.1.</span> <span class="nav-text">简化代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#性能提升"><span class="nav-number">1.3.2.</span> <span class="nav-text">性能提升</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Angular开发者工具"><span class="nav-number">1.4.</span> <span class="nav-text">Angular开发者工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何使用Angular"><span class="nav-number">1.5.</span> <span class="nav-text">如何使用Angular</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在线拍卖示例介绍"><span class="nav-number">1.6.</span> <span class="nav-text">在线拍卖示例介绍</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":90,"vOffset":-25},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
