@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="客服端检测浏览器提供商虽然在实现公共接口方面投入了很多精力，但结果仍然是每一种浏览器都有各自的长处，也都有各自的缺点。即使是那些跨平台的浏览器，虽然从技术上看版本相同，也照样存在不一致性问题 。面对普遍存在的不一致性问题 ，开发人员要么采取迁就各方的“最小公分母”策略，要么（也是更常见的）就得 利用各种客户端检测方法 ，来突破或者规避种种局限性。迄今为止，客户端检测仍然是 Web 开发领域中一个饱">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《JavaScript 高级程序设计》学习笔记-客户端检测">
+<meta property="og:url" content="https://www.songxingguo.com/2018/08/21/JavaScript-customer-service-test/index.html">
+<meta property="og:site_name" content="阿有的生活">
+<meta property="og:description" content="客服端检测浏览器提供商虽然在实现公共接口方面投入了很多精力，但结果仍然是每一种浏览器都有各自的长处，也都有各自的缺点。即使是那些跨平台的浏览器，虽然从技术上看版本相同，也照样存在不一致性问题 。面对普遍存在的不一致性问题 ，开发人员要么采取迁就各方的“最小公分母”策略，要么（也是更常见的）就得 利用各种客户端检测方法 ，来突破或者规避种种局限性。迄今为止，客户端检测仍然是 Web 开发领域中一个饱">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-customer-service-test/%E4%BB%A3%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-customer-service-test/%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%AF%B9%E7%85%A7%E8%A1%A8.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-customer-service-test/%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%AF%B9%E7%85%A7%E8%A1%A8%EF%BC%88%E7%BB%AD%EF%BC%89.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-customer-service-test/Grcko%E7%89%88%E6%9C%AC%E5%8F%B7%E4%B8%8EFirfox%E7%89%88%E6%9C%AC%E5%AF%B9%E6%AF%94.png">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-customer-service-test/windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%8D%E5%90%8C%E5%AD%97%E7%AC%A6%E4%B8%B2.png">
+<meta property="og:updated_time" content="2021-10-03T14:04:07.801Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《JavaScript 高级程序设计》学习笔记-客户端检测">
+<meta name="twitter:description" content="客服端检测浏览器提供商虽然在实现公共接口方面投入了很多精力，但结果仍然是每一种浏览器都有各自的长处，也都有各自的缺点。即使是那些跨平台的浏览器，虽然从技术上看版本相同，也照样存在不一致性问题 。面对普遍存在的不一致性问题 ，开发人员要么采取迁就各方的“最小公分母”策略，要么（也是更常见的）就得 利用各种客户端检测方法 ，来突破或者规避种种局限性。迄今为止，客户端检测仍然是 Web 开发领域中一个饱">
+<meta name="twitter:image" content="https://graphbed.qiniu.songxingguo.com/JavaScript-customer-service-test/%E4%BB%A3%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/08/21/JavaScript-customer-service-test/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《JavaScript 高级程序设计》学习笔记-客户端检测 | 阿有的生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">132</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">43</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/08/21/JavaScript-customer-service-test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《JavaScript 高级程序设计》学习笔记-客户端检测
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-21 09:34:00" itemprop="dateCreated datePublished" datetime="2018-08-21T09:34:00+00:00">2018-08-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-10-03 14:04:07" itemprop="dateModified" datetime="2021-10-03T14:04:07+00:00">2021-10-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/21/JavaScript-customer-service-test/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/08/21/JavaScript-customer-service-test/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/08/21/JavaScript-customer-service-test/" class="leancloud_visitors" data-flag-title="《JavaScript 高级程序设计》学习笔记-客户端检测">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="客服端检测"><a href="#客服端检测" class="headerlink" title="客服端检测"></a>客服端检测</h1><p>浏览器提供商虽然在实现公共接口方面投入了很多精力，但结果仍然是每一种浏览器都有各自的长处，也都有各自的缺点。即使是那些跨平台的浏览器，<strong>虽然从技术上看版本相同</strong>，<strong>也照样存在不一致性问题</strong> 。<strong>面对普遍存在的不一致性问题</strong> ，开发人员要么采取迁就各方的“最小公分母”策略，要么（也是更常见的）就得 <strong>利用各种客户端检测方法</strong> ，来突破或者规避种种局限性。迄今为止，客户端检测仍然是 Web 开发领域中一个饱受争议的话题。一谈到这个话题，人们总会不约而同地提到浏览器应该支持一组最常用的公共功能。在理想状态下，确实应该如此。但是，在现实当中，浏览器之间的差异以及不同浏览器的“怪癖”（quirk），多得简直不胜枚举。因此，<strong>客户端检测除了是一种补救措施之外，更是一种行之有效的开发策略</strong> 。检测 Web 客户端的手段很多，而且各有利弊。但最重要的还是要知道，<strong>不到万不得已</strong> ，就 <strong>不要使用客户端检测</strong> 。<strong>只要能找到更通用的方法</strong> ，就 <strong>应该优先采用更通用的方法</strong> 。一言以蔽之，<strong>先设计最通用的方案</strong> ，<strong>然后再使用特定于浏览器的技术增强该方案</strong> 。</p>
+<a id="more"></a>
+<h2 id="能力检测"><a href="#能力检测" class="headerlink" title="能力检测"></a>能力检测</h2><p>最常用也最为人们广泛接受的客户端检测形式是 <strong>能力检测</strong>（又称特性检测）。<strong>能力检测的目标</strong> 不是识别特定的浏览器，而 <strong>是识别浏览器的能力</strong> 。采用这种方式不必顾及特定的浏览器如何如何，<strong>只要确定浏览器支持特定的能力</strong> ，<strong>就可以给出解决方案</strong> 。能力检测的基本模式如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (object.propertyInQuestion)&#123;</span><br><span class="line">  <span class="comment">//使用 object.propertyInQuestion</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>举例来说，IE5.0 之前的版本不支持 document.getElementById() 这个 DOM 方法。尽管可以使<br>用非标准的 document.all 属性实现相同的目的，但 IE 的早期版本中确实不存在 document.get-<br>ElementById() 。于是，也就有了类似下面的能力检测代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getElement</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">document</span>.getElementById)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">document</span>.getElementById(id);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.all)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">document</span>.all[id];</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"No way to retrieve element!"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里的 getElement() 函数的用途是返回具有给定 ID 的元素。因为 <strong>document.getElementById()</strong> 是 <strong>实现这一目的的标准方式</strong> ，所以 <strong>一开始就测试了这个方法</strong> 。如果 <strong>该函数存在</strong>（不是未定义），则 <strong>使用该函数</strong> 。否则，<strong>就要继续检测 document.all 是否存在</strong> ，如果是，则 <strong>使用它</strong> 。如果 <strong>上述两个特性都不存在</strong>（很有可能），则 <strong>创建并抛出错误</strong> ，表示 <strong>这个函数无法使用</strong> 。要理解能力检测，首先必须理解两个重要的概念。如前所述，第一个概念就是 <strong>先检测达成目的的最常用的特性</strong> 。对前面的例子来说，就是要先检测 <strong>document.getElementById()</strong> ，后检测 document.all 。<strong>先检测最常用的特性可以保证代码最优化</strong> ，因为在多数情况下都可以避免测试多个条件。第二个重要的概念就是必须测试实际要用到的特性。一个特性存在，不一定意味着另一个特性也存在。来看一个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getWindowWidth</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">document</span>.all)&#123; <span class="comment">//假设是 IE</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">document</span>.documentElement.clientWidth; <span class="comment">//错误的用法！！！</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">window</span>.innerWidth;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是一个 <strong>错误使用能力检测</strong> 的例子。 getWindowWidth() 函数首先检查 document.all 是否存在，如果是则返回 document.documentElement.clientWidth 。第 8 章曾经讨论过，IE8 及之前版本确实不支持 window.innerWidth 属性。但问题是 document.all 存在也不一定表示浏览器就是 IE。实际上，也可能是 Opera；Opera 支持 document.all ，也支持 window.innerWidth 。</p>
+<h3 id="更可靠的能力检测"><a href="#更可靠的能力检测" class="headerlink" title="更可靠的能力检测"></a>更可靠的能力检测</h3><p><strong>能力检测</strong> 对于 <strong>想知道某个特性是否会按照适当方式行事（而不仅仅是某个特性存在）非常有用</strong> 。上一节中的例子 <strong>利用类型转换来确定某个对象成员是否存在</strong> ，但这样你还是不知道该成员是不是你想要的。来看下面的函数，它用来确定一个对象是否支持排序。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不要这样做！这不是能力检测——只检测了是否存在相应的方法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isSortable</span>(<span class="params">object</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> !!object.sort;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个函数通过检测对象是否存在 sort() 方法，来确定对象是否支持排序。问题是，<strong>任何包含 sort属性的对象也会返回 true</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = isSortable(&#123; <span class="attr">sort</span>: <span class="literal">true</span> &#125;);</span><br></pre></td></tr></table></figure>
+<p>检测某个属性是否存在并不能确定对象是否支持排序。<strong>更好的方式是检测 sort 是不是一个函数</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这样更好：检查 sort 是不是函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isSortable</span>(<span class="params">object</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> object.sort == <span class="string">"function"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里的 <strong>typeof 操作符</strong> 用于 <strong>确定 sort 的确是一个函数</strong> ，因此可以调用它对数据进行排序。在可能的情况下，要尽量使用 typeof 进行能力检测。特别是，宿主对象没有义务让 typeof 返回合理的值。最令人发指的事儿就发生在 IE 中。大多数浏览器在检测到 document.createElement() 存在时，都会返回 true 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在 IE8 及之前版本中不行</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasCreateElement</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> <span class="built_in">document</span>.createElement == <span class="string">"function"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 IE8 及之前版本中，这个函数返回 false ，因为 <strong>typeof document.createElement</strong> 返回的是 “<strong>object</strong>“ ，而不是 “function” 。如前所述，<strong>DOM 对象是宿主对象</strong> ，IE 及更早版本中的 <strong>宿主对象是通过 COM</strong>  而非 JScript 实现的。因此， document.createElement() 函数确实是一个 COM 对象，所以 typeof 才会返回 “object” 。IE9 纠正了这个问题，<strong>对所有 DOM 方法都返回 “function”</strong> 。</p>
+<p>关于 <strong>typeof 的行为不标准</strong> ，IE 中还可以举出例子来。ActiveX 对象（只有 IE 支持）与其他对象的行为差异很大。例如，不使用 typeof 测试某个属性会导致错误，如下所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在 IE 中会导致错误</span></span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHttp"</span>);</span><br><span class="line"><span class="keyword">if</span> (xhr.open)&#123; <span class="comment">//这里会发生错误</span></span><br><span class="line">  <span class="comment">//执行操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>像这样直接把函数作为属性访问会导致 JavaScript 错误。使用 typeof 操作符会更靠谱一点，但 IE 对 typeof xhr.open 会返回 “unknown” 。这就意味着，<strong>在浏览器环境下测试任何对象的某个特性是否存在</strong> ，要使用下面这个函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//作者：Peter Michaux</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isHostMethod</span>(<span class="params">object, property</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> t = <span class="keyword">typeof</span> object[property];</span><br><span class="line">  <span class="keyword">return</span> t==<span class="string">'function'</span> ||</span><br><span class="line">       (!!(t==<span class="string">'object'</span> &amp;&amp; object[property])) ||</span><br><span class="line">       t==<span class="string">'unknown'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以像下面这样使用这个函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">result = isHostMethod(xhr, <span class="string">"open"</span>); <span class="comment">//true</span></span><br><span class="line">result = isHostMethod(xhr, <span class="string">"foo"</span>); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p>目前使用 isHostMethod() 方法还是比较可靠的，因为它考虑到了浏览器的怪异行为。不过也要注意，宿主对象没有义务保持目前的实现方式不变，也不一定会模仿已有宿主对象的行为。所以，这个函数——以及其他类似函数，都不能百分之百地保证永远可靠。作为开发人员，必须对自己要使用某个功能的风险作出理性的估计。</p>
+<blockquote>
+<p>要想深入了解围绕 JavaScript 中能力检测的一些观点，请参考 Peter Michaux的文章“Feature Detection: State of the Art Browser Scripting”，网址为  <a href="http://peter.michaux.ca/articles/feature-detection-state-of-the-art-browser-scripting" target="_blank" rel="noopener">http://peter.michaux.ca/articles/feature-detection-state-of-the-art-browser-scripting</a> 。</p>
+</blockquote>
+<h3 id="能力检测，不是浏览器检测"><a href="#能力检测，不是浏览器检测" class="headerlink" title="能力检测，不是浏览器检测"></a>能力检测，不是浏览器检测</h3><p><strong>检测某个或某几个特性并不能够确定浏览器</strong> 。下面给出的这段代码（或与之差不多的代码）可以在许多网站中看到，这种“浏览器检测”代码就是 <strong>错误地依赖能力检测</strong> 的典型示例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//错误！还不够具体</span></span><br><span class="line"><span class="keyword">var</span> isFirefox = !!(navigator.vendor &amp;&amp; navigator.vendorSub);</span><br><span class="line"></span><br><span class="line"><span class="comment">//错误！假设过头了</span></span><br><span class="line"><span class="keyword">var</span> isIE = !!(<span class="built_in">document</span>.all &amp;&amp; <span class="built_in">document</span>.uniqueID);</span><br></pre></td></tr></table></figure>
+<p>这两行代码代表了对能力检测的典型误用。以前，确实可以通过检测 navigator.vendor 和 navigator.vendorSub 来确定 Firefox 浏览器。但是，Safari 也依葫芦画瓢地实现了相同的属性。于是，这段代码就会导致人们作出错误的判断。为检测 IE，代码测试了 document.all 和 document.uniqueID 。这就相当于假设 IE 将来的版本中仍然会继续存在这两个属性，同时还假设其他浏览器都不会实现这两个属性。最后，这两个检测都使用了双逻辑非操作符来得到布尔值（比先存储后访问的效果更好）。实际上，根据浏览器不同将能力组合起来是更可取的方式。<strong>如果你知道自己的应用程序需要使用某些特定的浏览器特性</strong> ，那么 <strong>最好是一次性检测所有相关特性</strong> ，而 <strong>不要分别检测</strong> 。看下面的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//确定浏览器是否支持 Netscape 风格的插件</span></span><br><span class="line"><span class="keyword">var</span> hasNSPlugins = !!(navigator.plugins &amp;&amp; navigator.plugins.length);</span><br><span class="line"></span><br><span class="line"><span class="comment">//确定浏览器是否具有 DOM1 级规定的能力</span></span><br><span class="line"><span class="keyword">var</span> hasDOM1 = !!(<span class="built_in">document</span>.getElementById &amp;&amp; <span class="built_in">document</span>.createElement &amp;&amp;</span><br><span class="line">            <span class="built_in">document</span>.getElementsByTagName);</span><br></pre></td></tr></table></figure>
+<p>以上例子展示了两个检测：一个 <strong>检测浏览器是否支持 Netscapte 风格的插件</strong> ；另一个 <strong>检测浏览器是否具备 DOM1 级所规定的能力</strong> 。得到的布尔值可以在以后继续使用，从而节省重新检测能力的时间。</p>
+<blockquote>
+<p>在实际开发中，应该 <strong>将能力检测作为确定下一步解决方案的依据</strong> ，而 <strong>不是用它来判断用户使用的是什么浏览器</strong> 。</p>
+</blockquote>
+<h2 id="怪癖检测"><a href="#怪癖检测" class="headerlink" title="怪癖检测"></a>怪癖检测</h2><p>与能力检测类似，<strong>怪癖检测</strong>（quirks detection）的目标是 <strong>识别浏览器的特殊行为</strong> 。但与 <strong>能力检测确认浏览器支持什么能力不同</strong> ，<strong>怪癖检测是想要知道浏览器存在什么缺陷</strong>（“怪癖”也就是 bug）。这通常需要运行一小段代码，以确定某一特性不能正常工作。例如，IE8 及更早版本中存在一个 bug，即如果某个实例属性与 [[Enumerable]] 标记为 false 的某个原型属性同名，那么该实例属性将不会出现在 for-in 循环当中。可以使用如下代码来检测这种“怪癖”。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hasDontEnumQuirk = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> o = &#123; <span class="attr">toString</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125; &#125;;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> prop <span class="keyword">in</span> o)&#123;</span><br><span class="line">    <span class="keyword">if</span> (prop == <span class="string">"toString"</span>)&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<p>以上代码通过一个匿名函数来测试该“怪癖”，函数中创建了一个带有 toString() 方法的对象。在正确的 ECMAScript 实现中， toString 应该在 for-in 循环中作为属性返回。</p>
+<p>另一个经常需要检测的“怪癖”是 Safari 3 以前版本会枚举被隐藏的属性。可以用下面的函数来检测该“怪癖”。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hasEnumShadowsQuirk = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> o = &#123; <span class="attr">toString</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125; &#125;;</span><br><span class="line">  <span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> prop <span class="keyword">in</span> o)&#123;</span><br><span class="line">    <span class="keyword">if</span> (prop == <span class="string">"toString"</span>)&#123;</span><br><span class="line">      count++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> (count &gt; <span class="number">1</span>);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<p>如果浏览器存在这个 bug，那么使用 for-in 循环枚举带有自定义的 toString() 方法的对象，就会返回两个 toString 的实例。</p>
+<p>一般来说，<strong>“怪癖”都是个别浏览器所独有的</strong> ，而且通常被归为 bug。在相关浏览器的新版本中，这些问题可能会也可能不会被修复。由于检测“怪癖”涉及运行代码，因此我们建议仅检测那些对你有直接影响的“怪癖”，而且 <strong>最好在脚本一开始就执行此类检测</strong> ，<strong>以便尽早解决问题</strong> 。</p>
+<h2 id="用户代理检测"><a href="#用户代理检测" class="headerlink" title="用户代理检测"></a>用户代理检测</h2><p>第三种，也是争议最大的一种客户端检测技术叫做 <strong>用户代理检测</strong> 。用户代理检测通过 <strong>检测用户代理字符串</strong> 来 <strong>确定实际使用的浏览器</strong> 。在每一次 HTTP 请求过程中，用户代理字符串是作为响应首部发送的，而且该字符串可以通过 JavaScript 的 navigator.userAgent 属性访问。在服务器端，通过检测用户代理字符串来确定用户使用的浏览器是一种常用而且广为接受的做法。而在客户端，<strong>用户代理检测</strong> 一般 <strong>被当作一种万不得已才用的做法</strong> ，<strong>其优先级排在能力检测和（或）怪癖检测之后</strong> 。</p>
+<p>提到与用户代理字符串有关的争议，就不得不提到电子欺骗（spoofing）。所谓 <strong>电子欺骗</strong> ，就是 <strong>指浏览器通过在自己的用户代理字符串加入一些错误或误导性信息</strong> ，<strong>来达到欺骗服务器的目的</strong> 。要弄清楚这个问题的来龙去脉，必须从 Web 问世初期用户代理字符串的发展讲起。</p>
+<h3 id="用户代理字符串的历史"><a href="#用户代理字符串的历史" class="headerlink" title="用户代理字符串的历史"></a>用户代理字符串的历史</h3><p>HTTP 规范（包括 1.0 和 1.1版）明确规定，浏览器应该发送 <strong>简短的用户代理字符串</strong> ，<strong>指明浏览器的名称和版本号</strong> 。RFC 2616（即 HTTP 1.1 协议规范）是这样描述用户代理字符串的：<br>“<strong>产品标识符常用于通信应用程序标识自身，由软件名和版本组成。使用产品标识符的大多数领域也允许列出作为应用程序主要部分的子产品，由空格分隔。按照惯例，产品要按照相应的重要程度依次列出，以便标识应用程序。</strong> ”</p>
+<p>上述规范进一步规定，用户代理字符串应该以一组产品的形式给出，字符串格式为：<strong>标识符/产品版本号</strong> 。但是，现实中的用户代理字符串则绝没有如此简单。</p>
+<ul>
+<li><h4 id="早期的浏览器"><a href="#早期的浏览器" class="headerlink" title="早期的浏览器"></a>早期的浏览器</h4><p>1993 年，美国 NCSA（National Center for Supercomputing Applications，国家超级计算机中心）发布了世界上第一款 Web 浏览器 Mosaic。这款浏览器的用户代理字符串非常简单，类似如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mosaic/0.9</span><br></pre></td></tr></table></figure>
+<p>尽管这个字符串在不同操作系统和不同平台下会有所变化，但其基本格式还是简单明了的。正斜杠前面的文本表示 <strong>产品名称</strong>（有时候会出现 NCSA Mosaic 或其他类似字样），而斜杠后面的 <strong>文本是产品的版本号</strong>。</p>
+<p>Netscape Communications 公司介入浏览器开发领域后，遂将自己产品的代号定名为 Mozilla（Mosaic Killer 的简写，意即 Mosaic 杀手）。该公司第一个公开发行版，Netscape Navigator 2 的用户代理字符串具有如下格式。</p>
+<p><strong>Mozilla/版本号 [语言] (平台; 加密类型)</strong></p>
+<p>Netscape 在坚持将产品名和版本号作为用户代理字符串开头的基础上，又在后面依次添加了下列信息。</p>
+<ul>
+<li><p><strong>语言</strong> ：即语言代码，表示应用程序针对哪种语言设计。</p>
+</li>
+<li><p><strong>平台</strong> ：即操作系统和（或）平台，表示应用程序的运行环境。</p>
+</li>
+<li><p><strong>加密类型</strong> ：即安全加密的类型。可能的值有 U（128 位加密）、I（40 位加密）和 N（未加密）。典型的 Netscape Navigator 2 的用户代理字符串如下所示。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/2.02 [fr] (WinNT; I)</span><br></pre></td></tr></table></figure>
+<p>这个字符串表示浏览器是 Netscape Navigator 2.02，为法语国家编译，运行在 Windows NT 平台下，加密类型为 40 位。那个时候，通过用户代理字符串中的产品名称，至少还能够轻易地确定用户使用的是什么浏览器。</p>
+</li>
+<li><h4 id="Netscape-Navigator-3-和-Internet-Explorer-3"><a href="#Netscape-Navigator-3-和-Internet-Explorer-3" class="headerlink" title="Netscape Navigator 3 和 Internet Explorer 3"></a>Netscape Navigator 3 和 Internet Explorer 3</h4><p>1996 年，Netscape Navigator 3 发布，随即超越 Mosaic 成为当时最流行的 Web 浏览器。而用户代理字符串只作了一些小的改变，删除了语言标记，同时允许添加操作系统或系统使用的 CPU 等可选信息。于是，格式变成如下所示。</p>
+<p><strong>Mozilla/版本号 (平台; 加密类型 [; 操作系统或 CPU 说明])</strong></p>
+<p>运行在 Windows系统下的 Netscape Navigator 3的用户代理字符串大致如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/3.0 (Win95; U)</span><br></pre></td></tr></table></figure>
+<p>这个字符串表示 Netscape Navigator 3 运行在 Windows 95 中，采用了 128 位加密技术。可见，在Windows系统中，字符串中的操作系统或 CPU 说明被省略了。Netscape Navigator 3 发布后不久，微软也发布了其第一款赢得用户广泛认可的 Web 浏览器，即 Internet Explorer 3。由于 Netscape 浏览器在当时占绝对市场份额，许多服务器在提供网页之前都要专门检测该浏览器。如果用户通过 IE 打不开相关网页，那么这个新生的浏览器很可能就会夭折。于是，微软决定将 IE 的用户代理字符串修改成兼容 Netscape 的形式，结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/2.0 (compatible; MSIE 版本号; 操作系统)</span><br></pre></td></tr></table></figure>
+<p>例如，Windows 95 平台下的 Internet Explorer 3.02带有如下用户代理字符串：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/<span class="number">2.0</span> (compatible; MSIE <span class="number">3.02</span>; Windows <span class="number">95</span>)</span><br></pre></td></tr></table></figure>
+<p>由于当时的大多数浏览器嗅探程序只检测用户代理字符串中的产品名称部分，结果 IE 就成功地将自己标识为 Mozilla，从而伪装成 Netscape Navigator。微软的这一做法招致了很多批评，因为它违反了浏览器标识的惯例。更不规范的是，IE 将真正的浏览器版本号插入到了字符串的中间。字符串中另外一个有趣的地方是标识符 Mozilla 2.0（而不是 3.0）。毕竟，当时的主流版本是 3.0，<br>改成 3.0 应该对微软更有利才对。但真正的谜底到现在还没有揭开——但很可能只是人为疏忽所致。</p>
+</li>
+<li><h4 id="Netscape-Communicator-4-和-IE4～IE8"><a href="#Netscape-Communicator-4-和-IE4～IE8" class="headerlink" title="Netscape Communicator 4 和 IE4～IE8"></a>Netscape Communicator 4 和 IE4～IE8</h4><p>1997 年 8 月，Netscapte Communicator 4 发布（这一版将浏览器名字中的 Navigator 换成了 Communicator）。Netscape 继续遵循了第 3 版时的用户代理字符串格式：</p>
+<p> <strong>Mozilla/版本号 (平台; 加密类型 [; 操作系统或 CPU 说明])</strong></p>
+<p>因此，Windows 98 平台中第 4 版的用户代理字符串如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/4.0 (Win98; I)</span><br></pre></td></tr></table></figure>
+<p>Netscape 在发布补丁时，子版本号也会相应提高，用户代理字符串如下面的 4.79 版所示： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/4.79 (Win98; I)</span><br></pre></td></tr></table></figure>
+<p>但是，微软在发布 Internet Explorer 4时，顺便将用户代理字符串修改成了如下格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/4.0 (compatible; MSIE 版本号; 操作系统)</span><br></pre></td></tr></table></figure>
+<p>换句话说，对于 Windows 98 中运行的 IE4 而言，其用户代理字符串为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/4.0 (compatible; MSIE 4.0; Windows 98)</span><br></pre></td></tr></table></figure>
+<p>经过此番修改，Mozilla 版本号就与实际的 IE 版本号一致了，为识别它们的第四代浏览器提供了方便。但令人遗憾的是，两者的一致性仅限于这一个版本。在 Internet Explorer 4.5 发布时（只针对 Macs），虽然 Mozilla 版本号还是 4，但 IE 版本号则改成了如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/4.0 (compatible; MSIE 4.5; Mac_PowerPC)</span><br></pre></td></tr></table></figure>
+<p>此后，IE 的版本一直到 7 都沿袭了这个模式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)</span><br></pre></td></tr></table></figure>
+<p>而 IE8 的用户代理字符串中添加了呈现引擎（Trident）的版本号：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/4.0 (compatible; MSIE 版本号; 操作系统; Trident/Trident 版本号)</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0)</span><br></pre></td></tr></table></figure>
+<p>这个新增的 Trident 记号是为了让开发人员知道 IE8 是不是在兼容模式下运行。如果是，则 MSIE 的版本号会变成 7，但 Trident 及版本号还会留在用户代码字符串中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0)</span><br></pre></td></tr></table></figure>
+<p>增加这个记号有助于分辨浏览器到底是 IE7（没有 Trident 记号），还是运行在兼容模式下的 IE8。</p>
+<p>IE9 对字符串格式做了一点调整。Mozilla 版本号增加到了 5.0，而 Trident 的版本号也升到了 5.0。IE9默认的用户代理字符串如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)</span><br></pre></td></tr></table></figure>
+<p>如果 IE9 运行在兼容模式下，字符串中的 Mozilla 版本号和 MSIE 版本号会恢复旧的值，但 Trident 的版本号仍然是 5.0。例如，下面就是 IE9 运行在 IE7 兼容模式下的用户代理字符串：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0)</span><br></pre></td></tr></table></figure>
+<p>所有这些变化都是为了确保过去的用户代理检测脚本能够继续发挥作用，同时还能给新脚本提供更<br>丰富的信息。</p>
+</li>
+<li><h4 id="Gecko"><a href="#Gecko" class="headerlink" title="Gecko"></a>Gecko</h4><p>Gecko 是 Firefox 的呈现引擎。当初的 Gecko 是作为通用 Mozilla 浏览器的一部分开发的，而第一个采用 Gecko 引擎的浏览器是 Netscape 6。为 Netscape 6 编写的一份规范中规定了未来版本中用户代理字符串的构成。这个新格式与 4.x 版本中相对简单的字符串相比，有着非常大的区别，如下所示：</p>
+<p><strong>Mozilla/Mozilla 版本号 (平台; 加密类型; 操作系统或 CPU; 语言; 预先发行版本)<br>   Gecko/Gecko 版本号 应用程序或产品/应用程序或产品版本号</strong></p>
+<p>这个明显复杂了很多的用户代理字符串中蕴含很多新想法。下表列出了字符串中各项的用意。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-customer-service-test/%E4%BB%A3%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2.png" alt="用户代理字符串"></p>
+<p>为了帮助读者更好地理解 Gecko 的用户代理字符串，下面我们来看几个从基于 Gecko 的浏览器中取得的字符串。</p>
+<p>Windows XP 下的 Netscape 6.21：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:0.9.4) Gecko/20011128 Netscape6/6.2.1</span><br></pre></td></tr></table></figure>
+<p>Linux 下的 SeaMonkey 1.1a：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1b2) Gecko/20060823 SeaMonkey/1.1a</span><br></pre></td></tr></table></figure>
+<p>Windows XP 下的 Firefox 2.0.0.11：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11</span><br></pre></td></tr></table></figure>
+<p>Mac OS X下的 Camino 1.5.1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en; rv:1.8.1.6) Gecko/20070809 Camino/1.5.1</span><br></pre></td></tr></table></figure>
+<p>以上这些用户代理字符串都取自基于 Gecko的浏览器（只是版本有所不同）。很多时候，检测特定的浏览器还不如搞清楚它是否基于 Gecko更重要。每个字符串中的 Mozilla版本都是 5.0，自从第一个基于Gecko的浏览器发布时修改成这个样子，至今就没有改变过；而且，看起来以后似乎也不会有什么变化。随着 Firefox 4 发布，Mozilla 简化了这个用户代理字符串。主要改变包括以下几方面。</p>
+<ul>
+<li><p>删除了“语言”记号（例如，前面例子中的“en-US”）。</p>
+</li>
+<li><p>在浏览器使用强加密（默认设置）时，不显示“加密类型”。也就是说，Mozilla 用户代理字符串中不会再出现“U”，而“I”和“N”还会照常出现。</p>
+</li>
+<li><p>“平台”记号从 Windows 用户代理字符串中删除了，“操作系统或 CPU”中始终都包含 “Windows”字符串。</p>
+</li>
+<li><p>“Gecko 版本号”固定为“Gecko/20100101”。</p>
+</li>
+</ul>
+<p>最后，Firefox 4 用户代理字符串变成了下面这个样子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/20100101 Firefox 4.0.1</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="WebKit"><a href="#WebKit" class="headerlink" title="WebKit"></a>WebKit</h4><p>2003 年，Apple 公司宣布要发布自己的 Web 浏览器，名字定为 Safari。Safari 的呈现引擎叫 WebKit，是 Linux 平台中 Konqueror 浏览器的呈现引擎 KHTML 的一个分支。几年后，WebKit 独立出来成为了一个开源项目，专注于呈现引擎的开发。</p>
+<p>这款新浏览器和呈现引擎的开发人员也遇到了与 Internet Explorer 3.0 类似的问题：如何确保这款浏览器不被流行的站点拒之门外？答案就是向用户代理字符串中放入足够多的信息，以便站点能够信任它与其他流行的浏览器是兼容的。于是，WebKit 的用户代理字符串就具备了如下格式：</p>
+<p><strong>Mozilla/5.0 (平台; 加密类型; 操作系统或 CPU; 语言) AppleWebKit/AppleWebKit 版本号(KHTML, like Gecko) Safari/Safari 版本号</strong></p>
+<p>以下就是一个示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/124 (KHTML, like Gecko) Safari/125.1</span><br></pre></td></tr></table></figure>
+<p>显然，这又是一个很长的用户代理字符串。其中不仅包含了 Apple WebKit 的版本号，也包含了 Safari 的版本号。出于兼容性的考虑，有关人员很快就决定了将 Safari 标识为 Mozilla。至今，基于 WebKi所有浏览器都将自己标识为 Mozilla 5.0，与基于 Gecko 的浏览器完全一样。但 Safari 的版本号则通常浏览器的编译版本号，不一定与发布时的版本号对应。换句话说，虽然 Safari 1.25 的用户代理字符串中包含数字 125.1，但两者却不一一对应。</p>
+<p>Safari 预发行 1.0 版用户代理字符串中最耐人寻味，也是最饱受诟病的部分就是字符串 “(KHTML, like Gecko)” 。Apple 因此收到许多开发人员的反馈，他们认为这个字符串明显是在欺骗客户端和服务器，实际上是想让它们把 Safari 当成 Gecko（好像光添加 Mozilla/5.0 还嫌不够）。Apple的回应与微软在 IE 的用户代理字符串遭到责难时如出一辙：Safari 与 Mozilla 兼容，因此网站不应该将 Safari 用户拒之门外，否则用户就会认为自己的浏览器不受支持。</p>
+<p>到了 Safari 3.0 发布时，其用户代理字符串又稍微变长了一点。下面这个新增的 Version 记号一直到现在都被用来标识 Safari 实际的版本号：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/522.15.5 (KHTML, like</span><br><span class="line">Gecko) Version/3.0.3 Safari/522.15.5</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，这个变化只在 Safari 中有，在 WebKit 中没有。换句话说，其他基于 WebKit 的浏览器可能没有这个变化。一般来说，确定浏览器是否基于 WebKit 要比确定它是不是 Safari 更有价值，就像针对 Gecko 一样。</p>
+</li>
+<li><h4 id="Konqueror"><a href="#Konqueror" class="headerlink" title="Konqueror"></a>Konqueror</h4><p>与 KDE Linux 集成的 Konqueror，是一款基于 KHTML 开源呈现引擎的浏览器。尽管 Konqueror只能在 Linux 中使用，但它也有数量可观的用户。为确保最大限度的兼容性，Konqueror 效仿 IE 选择了如下用户代理字符串格式：</p>
+<p><strong>Mozilla/5.0 (compatible; Konqueror/ 版本号; 操作系统或 CPU )</strong></p>
+<p>不过，为了与 WebKit 的用户代理字符串的变化保持一致，Konqueror 3.2 又有了变化，以如下格式将自己标识为 KHTML：</p>
+<p><strong>Mozilla/5.0 (compatible; Konqueror/ 版本号; 操作系统或 CPU) KHTML/ KHTML 版本号 (like Gecko)</strong></p>
+<p>下面是一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (compatible; Konqueror/3.5; SunOS) KHTML/3.5.0 (like Gecko)</span><br></pre></td></tr></table></figure>
+<p>其中，Konqueror与KHTML的版本号比较一致，即使有差别也很小，例如Konqueror 3.5使用KHTML 3.5.1。</p>
+</li>
+<li><h4 id="Chrome"><a href="#Chrome" class="headerlink" title="Chrome"></a>Chrome</h4><p>谷歌公司的 Chrome 浏览器以 WebKit 作为呈现引擎，但使用了不同的 JavaScript 引擎。在 Chrome 0.2这个最初的 beta 版中，用户代理字符串完全取自 WebKit，只添加了一段表示 Chrome版本号的信息，格式如下：</p>
+<p><strong>Mozilla/5.0 ( 平台; 加密类型; 操作系统或 CPU; 语言) AppleWebKit/AppleWebKit 版本号 (KHTML, like Gecko) Chrome/ Chrome 版本号 Safari/ Safari 版本</strong></p>
+<p>Chrome 7的完整的用户代理字符串如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/534.7 (KHTML,</span><br><span class="line">like Gecko) Chrome/7.0.517.44 Safari/534.7</span><br></pre></td></tr></table></figure>
+<p>其中，WebKit 版本与 Safari 版本看起来似乎始终会保持一致，尽管没有十分的把握。</p>
+</li>
+<li><h4 id="Opera"><a href="#Opera" class="headerlink" title="Opera"></a>Opera</h4><p>仅就用户代理字符串而言，Opera 应该是最有争议的一款浏览器了。Opera 默认的用户代理字符串是所有现代浏览器中最合理的——正确地标识了自身及其版本号。在 Opera 8.0 之前，其用户代理字符串采用如下格式：</p>
+<p><strong>Opera/ 版本号 (操作系统或 CPU; 加密类型) [语言]</strong></p>
+<p>Windows XP 中的 Opera 7.54 会显示下面的用户代理字符串：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Opera/7.54 (Windows NT 5.1; U) [en]</span><br></pre></td></tr></table></figure>
+<p>Opera 8 发布后，用户代理字符串的“语言”部分被移到圆括号内，以便更好地与其他浏览器匹配，如下所示：</p>
+<p><strong>Opera/ 版本号 (操作系统或 CPU; 加密类型; 语言)</strong></p>
+<p>Windows XP 中的 Opera 8 会显示下面的用户代理字符串：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Opera/8.0 (Windows NT 5.1; U; en)</span><br></pre></td></tr></table></figure>
+<p>默认情况下，Opera 会以上面这种简单的格式返回一个用户代理字符串。目前来看，Opera 也是主要浏览器中唯一一个使用产品名和版本号来完全彻底地标识自身的浏览器。可是，与其他浏览器一样，Opera 在使用自己的用户代理字符串时也遇到了问题。即使技术上正确，但因特网上仍然有不少浏览器嗅探代码，只钟情于报告 Mozilla 产品名的那些用户代理字符串。另外还有相当数量的代码则只对 IE 或Gecko 感兴趣。Opera 没有选择通过修改自身的用户代理字符串来迷惑嗅探代码，而是干脆选择通过修改自身的用户代理字符串将自身标识为一个完全不同的浏览器。</p>
+<p>Opera 9 以后，出现了两种修改用户代理字符串的方式。一种方式是将自身标识为另外一个浏览器，如 Firefox 或者 IE。在这种方式下，用户代理字符串就如同 Firefox 或 IE 的用户代理字符串一样，只不过末尾追加了字符串 Opera 及 Opera 的版本号。下面是一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (Windows NT 5.1; U; en; rv:1.8.1) Gecko/20061208 Firefox/2.0.0 Opera 9.50</span><br><span class="line"></span><br><span class="line">Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; en) Opera 9.50</span><br></pre></td></tr></table></figure>
+<p>第一个字符串将 Opera 9.5 标识为 Firefox 2，同时带有 Opera 版本信息。第二个字符串将 Opera 9.5标识为 IE6，也包含了 Opera 版本信息。这两个用户代理字符串可以通过针对 Firefox 或 IE 的大多数测试，不过还是为识别 Opera 留下了余地。</p>
+<p>Opera 标识自身的另一种方式，就是把自己装扮成 Firefox 或 IE。在这种隐瞒真实身份的情况下，用户代理字符串实际上与其他浏览器返回的相同——既没有 Opera 字样，也不包含 Opera 版本信息。换句话说，在启用了身份隐瞒功能的情况下，无法将 Opera 和其他浏览器区别开来。另外，由于 Opera 喜欢在不告知用户的情况下针对站点来设置用户代理字符串，因此问题就更复杂化了。例如，打开 MyYahoo!站点（ <a href="http://my.yahoo.com" target="_blank" rel="noopener">http://my.yahoo.com</a> ）会自动导致 Opera 将自己装扮成 Firefox。如此一来，要想识别 Opera 就难上加难了。</p>
+<blockquote>
+<p>在 Opera 7 以前的版本中，Opera 会解析 Windows操作系统字符串的含义。例如， Windows NT 5.1 实际上就是 Windows XP，因此 Opera 会在用户代理字符串中包含 Windows XP 而非 Windows NT 5.1。为了与其他浏览器更兼容，Opera 7 开始包含正式的操作系统版本，而非解析后的版本。</p>
+</blockquote>
+<p>pera 10 对代理字符串进行了修改。现在的格式是：</p>
+<p><strong>Opera/9.80 (操作系统或 CPU; 加密类型; 语言) Presto/Presto 版本号 Version/版本号</strong></p>
+<p>注意，初始的版本号 Opera/9.80 是固定不变的。实际并没有 Opera 9.8，但工程师们担心写得不好的浏览器嗅探脚本会将 Opera/10.0 错误的解释为 Opera 1，而不是 Opera 10。因此，Opera 10 又增加了 Presto 记号（Presto 是 Opera 的呈现引擎）和 Version 记号，后者用以保存实际的版本号。以下是 Windows7 中 Opera 10.63 的用户代理字符串：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Opera/9.80 (Windows NT 6.1; U; en) Presto/2.6.30 Version/10.63</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="iOS-和-Android"><a href="#iOS-和-Android" class="headerlink" title="iOS 和 Android"></a>iOS 和 Android</h4><p>移动操作系统 iOS 和 Android 默认的浏览器都基于 WebKit，而且都像它们的桌面版一样，共享相同的基本用户代理字符串格式。iOS 设备的基本格式如下：</p>
+<p><strong>Mozilla/5.0 (平台; 加密类型; 操作系统或 CPU like Mac OS X; 语言) AppleWebKit/AppleWebKit 版本号 (KHTML, like Gecko) Version/浏览器版本号 Mobile/移动版本号 Safari/Safari 版本号</strong></p>
+<p>注意用于辅助确定 Mac 操作系统的 “like Mac OS X” 和额外的 Mobile 记号。一般来说，Mobile记号的版本号（移动版本号）没什么用，主要是用来确定 WebKit 是移动版，而非桌面版。而平台则可能是 “iPhone” 、 “iPod” 或 “iPad” 。例如： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_0 like Mac OS X; enus)AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7A341 Safari/528.16</span><br></pre></td></tr></table></figure>
+<p>在 iOS 3 之前，用户代理字符串中不会出现操作系统版本号。</p>
+<p>Android 浏览器中的默认格式与 iOS 的格式相似，没有移动版本号（但有 Mobile 记号）。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (Linux; U; Android 2.2; en-us; Nexus One Build/FRF91)</span><br><span class="line">AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1</span><br></pre></td></tr></table></figure>
+<p>这是 Google Nexus One 手机的用户代理字符串。不过，其他 Android 设备的模式也一样。</p>
+</li>
+</ul>
+<h3 id="用户代理字符串检测技术"><a href="#用户代理字符串检测技术" class="headerlink" title="用户代理字符串检测技术"></a>用户代理字符串检测技术</h3><p>考虑到历史原因以及现代浏览器中用户代理字符串的使用方式，通过用户代理字符串来检测特定的浏览器并不是一件轻松的事。因此，首先要确定的往往是你需要多么具体的浏览器信息。一般情况下，<strong>知道呈现引擎和最低限度的版本就足以决定正确的操作方法</strong> 了。例如，我们不推荐使用下列代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (isIE6 || isIE7) &#123; <span class="comment">//不推荐!!!</span></span><br><span class="line">  <span class="comment">//代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个例子是 <strong>想要在浏览器为 IE6 或 IE7 时执行相应代码</strong> 。<strong>这种代码其实是很脆弱的</strong> ，因为 <strong>它要依据特定的版本来决定做什么</strong> 。如果是 IE8 怎么办呢？只要 IE 有新版本出来，就必须更新这些代码。不过，像下面这样 <strong>使用相对版本号</strong> 则可以避免此问题：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (ieVer &gt;=<span class="number">6</span>)&#123;</span><br><span class="line">  <span class="comment">//代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个例子首先检测 IE 的版本号是否至少等于 6，如果是则执行相应操作。这样就可以确保相应的代码将来照样能够起作用。我们下面的浏览器检测脚本就将本着这种思路来编写。</p>
+<ul>
+<li><h4 id="识别呈现引擎"><a href="#识别呈现引擎" class="headerlink" title="识别呈现引擎"></a>识别呈现引擎</h4><p>如前所述，确切知道浏览器的名字和版本号不如 <strong>确切知道它使用的是什么呈现引擎</strong> 。如果 Firefox、Camino 和 Netscape 都使用相同版本的 Gecko，那它们一定支持相同的特性。类似地，不管是什么浏览器，只要它跟 Safari 3 使用的是同一个版本的 WebKit，那么该浏览器也就跟 Safari 3 具备同样的功能。因此，我们要编写的脚本将主要检测五大呈现引擎：<strong>IE</strong> 、<strong>Gecko</strong> 、<strong>WebKit</strong> 、<strong>KHTML</strong> 和 <strong>Opera</strong> 。</p>
+<p>为了不在全局作用域中添加多余的变量，我们将使用模块增强模式来封装检测脚本。检测脚本的基本代码结构如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> client = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> engine = &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//呈现引擎</span></span><br><span class="line">    ie: <span class="number">0</span>,</span><br><span class="line">    gecko: <span class="number">0</span>,</span><br><span class="line">    webkit: <span class="number">0</span>,</span><br><span class="line">    khtml: <span class="number">0</span>,</span><br><span class="line">    opera: <span class="number">0</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">//具体的版本号</span></span><br><span class="line">    ver: <span class="literal">null</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//在此检测呈现引擎、平台和设备</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    engine : engine</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<p>这里声明了一个名为 client 的全局变量，用于保存相关信息。匿名函数内部定义了一个局部变量 engine ，它是一个包含默认设置的对象字面量。在这个对象字面量中，每个呈现引擎都对应着一个属性，属性的值默认为 0。如果检测到了哪个呈现引擎，那么就以浮点数值形式将该引擎的版本号写入相应的属性。而呈现引擎的完整版本（是一个字符串），则被写入 ver 属性。作这样的区分可以支持像下面这样编写代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (client.engine.ie) &#123; <span class="comment">//如果是 IE，client.ie 的值应该大于 0</span></span><br><span class="line">  <span class="comment">//针对 IE 的代码</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (client.engine.gecko &gt; <span class="number">1.5</span>)&#123;</span><br><span class="line">  <span class="keyword">if</span> (client.engine.ver == <span class="string">"1.8.1"</span>)&#123;</span><br><span class="line">    <span class="comment">//针对这个版本执行某些操作</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在检测到一个呈现引擎之后，其 client.engine 中对应的属性将被设置为一个大于 0 的值，该值可以转换成布尔值 true 。这样，就可以在 if 语句中检测相应的属性，以确定当前使用的呈现引擎，连具体的版本号都不必考虑。鉴于每个属性都包含一个浮点数值，因此有可能丢失某些版本信息。例如，将字符串 “1.8.1” 传入 parseFloat() 后会得到数值 1.8。不过，在必要的时候可以检测 ver 属性，该属性中会保存完整的版本信息。</p>
+<p>要正确地识别呈现引擎，关键是检测顺序要正确。由于用户代理字符串存在诸多不一致的地方，如果检测顺序不对，很可能会导致检测结果不正确。为此，第一步就是识别 Opera，因为它的用户代理字符串有可能完全模仿其他浏览器。我们不相信 Opera，是因为（任何情况下）其用户代理字符串（都）不会将自己标识为 Opera。</p>
+<p>要识别 Opera，必须得检测 window.opera 对象。Opera 5 及更高版本中都有这个对象，用以保存与浏览器相关的标识信息以及与浏览器直接交互。在 Opera 7.6 及更高版本中，调用 version() 方法可以返回一个表示浏览器版本的字符串，而这也是确定Opera 版本号的最佳方式。要检测更早版本的 Opera，可以直接检查用户代理字符串，因为那些版本还不支持隐瞒身份。不过，2007 底 Opera 的最高版本已经是 9.5 了，所以不太可能有人还在使用 7.6 之前的版本。那么，检测呈现引擎代码的第一步，就是编写如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.opera)&#123;</span><br><span class="line">  engine.ver = <span class="built_in">window</span>.opera.version();</span><br><span class="line">  engine.opera = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里，将版本的字符串表示保存在了 engine.ver 中，将浮点数值表示的版本保存在了<br>engine.opera 中。如果浏览器是 Opera，测试 window.opera 就会返回 true ；否则，就要看看是其他的什么浏览器了。</p>
+<p>应该放在第二位检测的呈现引擎是 WebKit。因为 WebKit 的用户代理字符串中包含 “Gecko” 和”KHTML” 这两个子字符串，所以如果首先检测它们，很可能会得出错误的结论。</p>
+<p>不过，WebKit 的用户代理字符串中的”AppleWebKit” 是独一无二的，因此检测这个字符串最合适。下面就是检测该字符串的示例代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ua = navigator.userAgent;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.opera)&#123;</span><br><span class="line">  engine.ver = <span class="built_in">window</span>.opera.version();</span><br><span class="line">  engine.opera = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/AppleWebKit\/(\S+)/</span>.test(ua))&#123;</span><br><span class="line">  engine.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">  engine.webkit = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码首先将用户代理字符串保存在变量 ua 中。然后通过正则表达式来测试其中是否包含字符串”AppleWebKit” ，并使用捕获组来取得版本号。由于实际的版本号中可能会包含数字、小数点和字母，所以捕获组中使用了表示非空格的特殊字符（ \S ）。用户代理字符串中的版本号与下一部分的分隔符是一个空格，因此这个模式可以保证捕获所有版本信息。 test() 方法基于用户代理字符串运行正则表达式。如果返回 true ，就将捕获的版本号保存在 engine.ver 中，而将版本号的浮点表示保存在engine.webkit 中。WebKit 版本与 Safari 版本的详细对应情况如下表所示。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-customer-service-test/%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%AF%B9%E7%85%A7%E8%A1%A8.png" alt="WebKit 版本与 Safari 版本对照"></p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-customer-service-test/%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%AF%B9%E7%85%A7%E8%A1%A8%EF%BC%88%E7%BB%AD%EF%BC%89.png" alt="WebKit 版本与 Safari 版本对照（续）"></p>
+<blockquote>
+<p>有时候，Safari 版本并不会与 WebKit 版本严格地一一对应，也可能会存在某些小版本上的差异。这个表中只是列出了最可能的 WebKit版本，但不保证精确。</p>
+</blockquote>
+<p>接下来要测试的 <strong>呈现引擎是 KHTML</strong> 。同样，KHTML 的用户代理字符串中也包含 “Gecko”，因此在排除 KHTML 之前，我们无法准确检测基于 Gecko 的浏览器。KHTML 的版本号与 WebKit 的版本号在用户代理字符串中的格式差不多，因此可以使用类似的正则表达式。此外，由于 Konqueror 3.1 及更早版本中不包含 KHTML 的版本，故而就要使用 Konqueror 的版本来代替。下面就是相应的检测代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ua = navigator.userAgent;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.opera)&#123;</span><br><span class="line">  engine.ver = <span class="built_in">window</span>.opera.version();</span><br><span class="line">  engine.opera = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/AppleWebKit\/(\S+)/</span>.test(ua))&#123;</span><br><span class="line">  engine.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">  engine.webkit = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/KHTML\/(\S+)/</span>.test(ua) || <span class="regexp">/Konqueror\/([^;]+)/</span>.test(ua))&#123;</span><br><span class="line">  engine.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">  engine.khtml = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与前面一样，由于 KHTML 的版本号与后继的标记之间有一个空格，因此仍然要使用特殊的非空格字符来取得与版本有关的所有字符。然后，将字符串形式的版本信息保存在 engine.ver 中，将浮点数值形式的版本保存在 engin.khtml 中。如果 KHTML 不在用户代理字符串中，那么就要匹配 Konqueror 后跟一个斜杠，再后跟不包含分号的所有字符。</p>
+<p>在排除了 <strong>WebKit</strong> 和 <strong>KHTML</strong> 之后，就可以准确地检测 <strong>Gecko</strong> 了。但是，在用户代理字符串中，Gecko 的版本号不会出现在字符串 “Gecko” 的后面，而是会出现在字符串 “rv:” 的后面。这样，我们就必须使用一个比前面复杂一些的正则表达式，如下所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ua = navigator.userAgent;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.opera)&#123;</span><br><span class="line">  engine.ver = <span class="built_in">window</span>.opera.version();</span><br><span class="line">  engine.opera = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/AppleWebKit\/(\S+)/</span>.test(ua))&#123;</span><br><span class="line">  engine.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">  engine.webkit = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/KHTML\/(\S+)/</span>.test(ua)) &#123;</span><br><span class="line">  engine.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">  engine.khtml = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/rv:([^\)]+)\) Gecko\/\d&#123;8&#125;/</span>.test(ua))&#123;</span><br><span class="line">  engine.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">  engine.gecko = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Gecko 的版本号位于字符串 “rv:” 与一个闭括号之间，因此为了提取出这个版本号，正则表达式要查找所有不是闭括号的字符，还要查找字符串 “Gecko/“ 后跟 8 个数字。如果上述模式匹配，就提取出版本号并将其保存在相应的属性中。Gecko 版本号与 Firefox 版本号的对应关系如下表所示。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-customer-service-test/Grcko%E7%89%88%E6%9C%AC%E5%8F%B7%E4%B8%8EFirfox%E7%89%88%E6%9C%AC%E5%AF%B9%E6%AF%94.png" alt="Gecko 版本号与 Firefox 版本号的对应关系"></p>
+<blockquote>
+<p>与 Safari 跟 WebKit 一样，Firefox 与 Gecko 的版本号也不一定严格对应。</p>
+</blockquote>
+<p>最后一个要检测的呈现引擎就是 IE 了。IE 的版本号位于字符串 “MSIE” 的后面、一个分号的前面，因此相应的正则表达式非常简单，如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ua = navigator.userAgent;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.opera)&#123;</span><br><span class="line">  engine.ver = <span class="built_in">window</span>.opera.version();</span><br><span class="line">  engine.opera = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/AppleWebKit\/(\S+)/</span>.test(ua))&#123;</span><br><span class="line">  engine.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">  engine.webkit = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/KHTML\/(\S+)/</span>.test(ua)) &#123;</span><br><span class="line">  engine.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">  engine.khtml = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/rv:([^\)]+)\) Gecko\/\d&#123;8&#125;/</span>.test(ua))&#123;</span><br><span class="line">  engine.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">  engine.gecko = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/MSIE ([^;]+)/</span>.test(ua))&#123;</span><br><span class="line">  engine.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">  engine.ie = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上呈现引擎检测脚本的最后一部分，就是在正则表达式中使用取反的字符类来取得不是分号的所有字符。IE 通常会保证以标准浮点数值形式给出其版本号，但有时候也不一定。因此，取反的字符类 [^;] 可以确保取得多个小数点以及任何可能的字符。</p>
+</li>
+<li><h4 id="识别浏览器"><a href="#识别浏览器" class="headerlink" title="识别浏览器"></a>识别浏览器</h4><p>大多数情况下，识别了浏览器的呈现引擎就足以为我们采取正确的操作提供依据了。可是，只有呈现引擎还不能说明存在所需的 JavaScript 功能。苹果公司的 Safari 浏览器和谷歌公司的 Chrome 浏览器都使用 WebKit 作为呈现引擎，但它们的 JavaScript 引擎却不一样。在这两款浏览器中， client.webkit 都会返回非 0值，但仅知道这一点恐怕还不够。对于它们，有必要像下面这样为 client 对象再添加一些新的属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> client = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> engine = &#123;</span><br><span class="line">    <span class="comment">//呈现引擎</span></span><br><span class="line">    ie: <span class="number">0</span>,</span><br><span class="line">    gecko: <span class="number">0</span>,</span><br><span class="line">    webkit: <span class="number">0</span>,</span><br><span class="line">    khtml: <span class="number">0</span>,</span><br><span class="line">    opera: <span class="number">0</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">//具体的版本</span></span><br><span class="line">    ver: <span class="literal">null</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> browser = &#123;</span><br><span class="line">    <span class="comment">// 浏览器</span></span><br><span class="line">    ie: <span class="number">0</span>,</span><br><span class="line">    firefox: <span class="number">0</span>,</span><br><span class="line">    safari: <span class="number">0</span>,</span><br><span class="line">    konq: <span class="number">0</span>,</span><br><span class="line">    opera: <span class="number">0</span>,</span><br><span class="line">    chrome: <span class="number">0</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 具体的版本</span></span><br><span class="line">    ver: <span class="literal">null</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//在此检测呈现引擎、平台和设备</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    engine: engine,</span><br><span class="line">    browser: browser</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<p>代码中又添加了私有变量 browser ，用于保存每个主要浏览器的属性。与 engine 变量一样，除了当前使用的浏览器，其他属性的值将保持为 0；如果是当前使用的浏览器，则这个属性中保存的是浮点数值形式的版本号。同样， ver 属性中在必要时将会包含字符串形式的浏览器完整版本号。由于大多数浏览器与其呈现引擎密切相关，所以下面示例中<strong>检测浏览器</strong> 的代码与 <strong>检测呈现引擎</strong> 的代码是 <strong>混合在一起</strong> 的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//检测呈现引擎及浏览器</span></span><br><span class="line"><span class="keyword">var</span> ua = navigator.userAgent;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.opera)&#123;</span><br><span class="line">  engine.ver = browser.ver = <span class="built_in">window</span>.opera.version();</span><br><span class="line">  engine.opera = browser.opera = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/AppleWebKit\/(\S+)/</span>.test(ua))&#123;</span><br><span class="line">  engine.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">  engine.webkit = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 确定是 Chrome  还是 Safari</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/Chrome\/(\S+)/</span>.test(ua))&#123;</span><br><span class="line">    browser.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">    browser.chrome = <span class="built_in">parseFloat</span>(browser.ver);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/Version\/(\S+)/</span>.test(ua))&#123;</span><br><span class="line">    browser.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">    browser.safari = <span class="built_in">parseFloat</span>(browser.ver);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 近似地确定版本号</span></span><br><span class="line">    <span class="keyword">var</span> safariVersion = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (engine.webkit &lt; <span class="number">100</span>)&#123;</span><br><span class="line">      safariVersion = <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (engine.webkit &lt; <span class="number">312</span>)&#123;</span><br><span class="line">      safariVersion = <span class="number">1.2</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (engine.webkit &lt; <span class="number">412</span>)&#123;</span><br><span class="line">      safariVersion = <span class="number">1.3</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      safariVersion = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    browser.safari = browser.ver = safariVersion;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/KHTML\/(\S+)/</span>.test(ua) || <span class="regexp">/Konqueror\/([^;]+)/</span>.test(ua))&#123;</span><br><span class="line">  engine.ver = browser.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">  engine.khtml = browser.konq = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/rv:([^\)]+)\) Gecko\/\d&#123;8&#125;/</span>.test(ua))&#123;</span><br><span class="line">  engine.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">  engine.gecko = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 确定是不是 Firefox</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/Firefox\/(\S+)/</span>.test(ua))&#123;</span><br><span class="line">    browser.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">    browser.firefox = <span class="built_in">parseFloat</span>(browser.ver);</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/MSIE ([^;]+)/</span>.test(ua))&#123;</span><br><span class="line">  engine.ver = browser.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">  engine.ie = browser.ie = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对 Opera 和 IE 而言， browser 对象中的值等于 engine 对象中的值。对 Konqueror 而言， browser.konq 和 browser.ver 属性分别等于 engine.khtml 和 engine.ver 属性。</p>
+<p>为了检测 Chrome 和 Safari，我们在检测引擎的代码中添加了 if 语句。提取 Chrome 的版本号时，需要查找字符串 “Chrome/“ 并取得该字符串后面的数值。而提取 Safari 的版本号时，则需要查找字符串”Version/“ 并取得其后的数值。由于这种方式仅适用于 Safari 3 及更高版本，因此需要一些备用的代码，将 WebKit 的版本号近似地映射为 Safari 的版本号（参见上一小节中的表格）。</p>
+<p>在检测 Firefox 的版本时，首先要找到字符串 “Firefox/“ ，然后提取出该字符串后面的数值（即版本号）。当然，只有呈现引擎被判别为 Gecko 时才会这样做。</p>
+<p>有了上面这些代码之后，我们就可以编写下面的逻辑。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (client.engine.webkit) &#123; <span class="comment">//if it’s WebKit</span></span><br><span class="line">  <span class="keyword">if</span> (client.browser.chrome)&#123;</span><br><span class="line">    <span class="comment">//执行针对 Chrome 的代码</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (client.browser.safari)&#123;</span><br><span class="line">    <span class="comment">//执行针对 Safari 的代码</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (client.engine.gecko)&#123;</span><br><span class="line">  <span class="keyword">if</span> (client.browser.firefox)&#123;</span><br><span class="line">    <span class="comment">//执行针对 Firefox 的代码</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">//执行针对其他 Gecko 浏览器的代码</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="识别平台"><a href="#识别平台" class="headerlink" title="识别平台"></a>识别平台</h4><p>很多时候，只要知道呈现引擎就足以编写出适当的代码了。但在某些条件下，平台可能是必须关注的问题。那些具有各种平台版本的浏览器（如 Safari、Firefox 和 Opera）在不同的平台下可能会有不同的问题。目前的三大主流平台是 Windows、Mac 和 Unix（包括各种 Linux）。为了检测这些平台，还需要像下面这样再添加一个新对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> client = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> engine = &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//呈现引擎</span></span><br><span class="line">    ie: <span class="number">0</span>,</span><br><span class="line">    gecko: <span class="number">0</span>,</span><br><span class="line">    webkit: <span class="number">0</span>,</span><br><span class="line">    khtml: <span class="number">0</span>,</span><br><span class="line">    opera: <span class="number">0</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">//具体的版本号</span></span><br><span class="line">    ver: <span class="literal">null</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">var</span> browser = &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//浏览器</span></span><br><span class="line">    ie: <span class="number">0</span>,</span><br><span class="line">    firefox: <span class="number">0</span>,</span><br><span class="line">    safari: <span class="number">0</span>,</span><br><span class="line">    konq: <span class="number">0</span>,</span><br><span class="line">    opera: <span class="number">0</span>,</span><br><span class="line">    chrome: <span class="number">0</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">//具体的版本号</span></span><br><span class="line">    ver: <span class="literal">null</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">var</span> system = &#123;</span><br><span class="line">    win: <span class="literal">false</span>,</span><br><span class="line">    mac: <span class="literal">false</span>,</span><br><span class="line">    x11: <span class="literal">false</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//在此检测呈现引擎、平台和设备</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    engine: engine,</span><br><span class="line">    browser: browser,</span><br><span class="line">    system: system</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<p>显然，上面的代码中又添加了一个包含 3 个属性的新变量 system 。其中， win 属性表示是否为Windows 平台， mac 表示 Mac，而 x11 表示 Unix。与呈现引擎不同，在不能访问操作系统或版本的情况下，平台信息通常是很有限的。对这三个平台而言，浏览器一般只报告 Windows 版本。为此，新变量 system 的每个属性最初都保存着布尔值 false ，而不是像呈现引擎属性那样保存着数字值。</p>
+<p>在确定平台时，检测 navigator.platform 要比检测用户代理字符串更简单，后者在不同浏览器中会给出不同的平台信息。而 navigator.platform 属性可能的值包括 “Win32” 、 “Win64” 、”MacPPC” 、 “MacIntel” 、 “X11” 和 “Linux i686” ，这些值在不同的浏览器中都是一致的。检测平台的代码非常直观，如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = navigator.platform;</span><br><span class="line">system.win = p.indexOf(<span class="string">"Win"</span>) == <span class="number">0</span>;</span><br><span class="line">system.mac = p.indexOf(<span class="string">"Mac"</span>) == <span class="number">0</span>;</span><br><span class="line">system.x11 = (p.indexOf(<span class="string">"X11"</span>) == <span class="number">0</span>) || (p.indexOf(<span class="string">"Linux"</span>) == <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>以上代码使用 indexOf() 方法来查找平台字符串的开始位置。虽然 “Win32” 是当前浏览器唯一支持的 Windows 字符串，但随着向 64 位 Windows架构的迁移，将来很可能会出现 “Win64” 平台信息值。为了对此有所准备，检测平台的代码中查找的只是字符串 “Win” 的开始位置。而检测 Mac 平台的方式也类似，同样是考虑到了 MacPPC 和 MacIntel 。在检测 Unix 时，则同时检查了字符串 “X11” 和 “Linux”在平台字符串中的开始位置，从而确保了代码能够向前兼容其他变体。</p>
+<blockquote>
+<p>Gecko的早期版本在所有 Windows平台中都返回字符串 “Windows” ，在所有 Mac平<br>台中则都返回字符串 “Macintosh” 。不过，这都是 Firefox 1发布以前的事了，Firefox 1 确定了 navigator.platform 的值。</p>
+</blockquote>
+</li>
+<li><h4 id="识别-Windows-操作系统"><a href="#识别-Windows-操作系统" class="headerlink" title="识别 Windows 操作系统"></a>识别 Windows 操作系统</h4><p>在 Windows平台下，还可以 <strong>从用户代理字符串中进一步取得具体的操作系统信息</strong> 。在 Windows XP之前，Windows有两种版本，分别针对家庭用户和商业用户。针对家庭用户的版本分别是 Windows 95、98 和 Windows ME。而针对商业用户的版本则一直叫做 Window NT，最后由于市场原因改名为 Windows2000。这两个产品线后来又合并成一个由 Windows NT 发展而来的公共的代码基，代表产品就是 WindowsXP。随后，微软在 Windows XP 基础上又构建了 Windows Vista。只有了解这些信息，才能搞清楚用户代理字符串中 Windows操作系统的具体版本。下表列出了不同浏览器在表示不同的 Windows操作系统时给出的不同字符串。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/JavaScript-customer-service-test/windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%8D%E5%90%8C%E5%AD%97%E7%AC%A6%E4%B8%B2.png" alt="Windows操作系统的不同字符串"></p>
+<p>由于用户代理字符串中的 Windows 操作系统版本表示方法各异，因此检测代码并不十分直观。好在，从 Windows 2000 开始，表示操作系统的字符串大部分都还相同，只有版本号有变化。<strong>为了检测不同的 Windows 操作系统</strong> ，<strong>必须要使用正则表达式</strong>。由于使用 Opera 7 之前版本的用户已经不多了，因此我们可以忽略这部分浏览器。</p>
+<p>第一步就是匹配 Windows 95 和 Windows 98 这两个字符串。对这两个字符串，只有 Gecko 与其他浏览器不同，即没有 “dows” ，而且 “Win” 与版本号之间没有空格。要匹配这个模式，可以使用下面这个简单的正则表达式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Win(?:dows )?([^do]&#123;2&#125;)/</span><br></pre></td></tr></table></figure>
+<p>这个正则表达式中的捕获组会返回操作系统的版本。由于版本可能是任何两个字符编码（例如 95、98、9x、NT、ME 及 XP），因此要使用两个非空格字符。Gecko 在表示 Windows NT 时会在末尾添加 “4.0” ，与其查找实际的字符串，不如像下面这样查找小数值更合适。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Win(?:dows )?([^do]&#123;2&#125;)(\d+\.\d+)?/</span><br></pre></td></tr></table></figure>
+<p>这样，正则表达式中就包含了第二个捕获组，用于取得 NT 的版本号。由于该版本号对于 Windows 95 和 Windows 98 而言是不存在的，所以必须设置为可选。这个模式与 Opera 表示 Windows NT 的字符串之间唯一的区别，就是 “NT” 与 “4.0” 之间的空格，这在模式中很容易添加。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Win(?:dows )?([^do]&#123;2&#125;)\s?(\d+\.\d+)?/</span><br></pre></td></tr></table></figure>
+<p>经过一番修改之后，这个 <strong>正则表达式也可以成功地匹配 Windows ME、Windows XP 和 Windows Vista的字符串</strong> 了。具体来说，第一个捕获组将会匹配 95、98、9x、NT、ME 或 XP。第二个捕获组则只针对 Windows ME 及所有 Windows NT 的变体。这个信息可以作为具体的操作系统信息保存在 system.win 属性中，如下所示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (system.win)&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/Win(?:dows )?([^do]&#123;2&#125;)\s?(\d+\.\d+)?/</span>.test(ua))&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">RegExp</span>[<span class="string">"$1"</span>] == <span class="string">"NT"</span>)&#123;</span><br><span class="line">      <span class="keyword">switch</span>(<span class="built_in">RegExp</span>[<span class="string">"$2"</span>])&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"5.0"</span>:</span><br><span class="line">          system.win = <span class="string">"2000"</span>;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"5.1"</span>:</span><br><span class="line">          system.win = <span class="string">"XP"</span>;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"6.0"</span>:</span><br><span class="line">          system.win = <span class="string">"Vista"</span>;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"6.1"</span>:</span><br><span class="line">          system.win = <span class="string">"7"</span>;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">          system.win = <span class="string">"NT"</span>;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">RegExp</span>[<span class="string">"$1"</span>] == <span class="string">"9x"</span>)&#123;</span><br><span class="line">      system.win = <span class="string">"ME"</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      system.win = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果 system.win 的值为 true ，那么就使用这个正则表达式从用户代理字符串中提取具体的信息。鉴于 Windows 将来的某个版本也许不能使用这个方法来检测，所以第一步应该先检测用户代理字符串是否与这个模式匹配。在模式匹配的情况下，第一个捕获组中可能会包含 “95” 、 “98” 、 “9x” 或 “NT” 。如果这个值是 “NT” ，可以将 system.win 设置为相应操作系统的字符串；如果是 “9x” ，那么 system.win 就要设置成 “ME” ；如果是其他值，则将所捕获的值直接赋给 system.win 。有了这些检测平台的代码后，我们就可以编写如下代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (client.system.win)&#123;</span><br><span class="line">  <span class="keyword">if</span> (client.system.win == <span class="string">"XP"</span>) &#123;</span><br><span class="line">    <span class="comment">//说明是 XP</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (client.system.win == <span class="string">"Vista"</span>)&#123;</span><br><span class="line">    <span class="comment">//说明是 Vista</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于非空字符串会转换为布尔值 true ，因此可以将 client.system.win 作为布尔值用在 if 语句中。而在需要更多有关操作系统的信息时，则可以使用其中保存的字符串值。</p>
+</li>
+<li><h4 id="识别移动设备"><a href="#识别移动设备" class="headerlink" title="识别移动设备"></a>识别移动设备</h4><p> 2006 年到 2007 年，移动设备中 Web 浏览器的应用呈爆炸性增长。四大主要浏览器都推出了手机版和在其他设备中运行的版本。要检测相应的设备，第一步是为要 <strong>检测的所有移动设备添加属性</strong> ，如下所示。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> client = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> engine = &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//呈现引擎</span></span><br><span class="line">    ie: <span class="number">0</span>,</span><br><span class="line">    gecko: <span class="number">0</span>,</span><br><span class="line">    webkit: <span class="number">0</span>,</span><br><span class="line">    khtml: <span class="number">0</span>,</span><br><span class="line">    opera: <span class="number">0</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">//具体的版本号</span></span><br><span class="line">    ver: <span class="literal">null</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> browser = &#123;</span><br><span class="line">    <span class="comment">//浏览器</span></span><br><span class="line">    ie: <span class="number">0</span>,</span><br><span class="line">    firefox: <span class="number">0</span>,</span><br><span class="line">    safari: <span class="number">0</span>,</span><br><span class="line">    konq: <span class="number">0</span>,</span><br><span class="line">    opera: <span class="number">0</span>,</span><br><span class="line">    chrome: <span class="number">0</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">//具体的版本号</span></span><br><span class="line">    ver: <span class="literal">null</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> system = &#123;</span><br><span class="line">    win: <span class="literal">false</span>,</span><br><span class="line">    mac: <span class="literal">false</span>,</span><br><span class="line"></span><br><span class="line">    x11: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">// 移动设备</span></span><br><span class="line">    iphone: <span class="literal">false</span>,</span><br><span class="line">    ipod: <span class="literal">false</span>,</span><br><span class="line">    ipad: <span class="literal">false</span>,</span><br><span class="line">    ios: <span class="literal">false</span>,</span><br><span class="line">    android: <span class="literal">false</span>,</span><br><span class="line">    nokiaN: <span class="literal">false</span>,</span><br><span class="line">    winMobile: <span class="literal">false</span> &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//在此检测呈现引擎、平台和设备</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    engine: engine,</span><br><span class="line">    browser: browser,</span><br><span class="line">    system: system</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<p> 然后，通常简单地检测字符串 “iPhone” 、 “iPod” 和 “iPad” ，就可以分别设置相应属性的值了。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">system.iphone = ua.indexOf(<span class="string">"iPhone"</span>) &gt; <span class="number">-1</span>;</span><br><span class="line">system.ipod = ua.indexOf(<span class="string">"iPod"</span>) &gt; <span class="number">-1</span>;</span><br><span class="line">system.ipod = ua.indexOf(<span class="string">"iPad"</span>) &gt; <span class="number">-1</span>;</span><br></pre></td></tr></table></figure>
+<p> 除了知道iOS设备，最好还能知道iOS的版本号。在iOS 3之前，用户代理字符串中只包含 “CPU like Mac OS” ，后来 iPhone 中又改成 “CPU iPhone OS 3_0 like Mac OS X” ，iPad 中又改成 “CPU OS 3_2 like Mac OS X” 。也就是说，检测 iOS 需要正则表达式反映这些变化。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//检测 iOS 版本</span></span><br><span class="line"><span class="keyword">if</span> (system.mac &amp;&amp; ua.indexOf(<span class="string">"Mobile"</span>) &gt; <span class="number">-1</span>)&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/CPU (?:iPhone )?OS (\d+_\d+)/</span>.test(ua))&#123;</span><br><span class="line">     system.ios = <span class="built_in">parseFloat</span>(<span class="built_in">RegExp</span>.$<span class="number">1.</span>replace(<span class="string">"_"</span>, <span class="string">"."</span>));</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    system.ios = <span class="number">2</span>; <span class="comment">//不能真正检测出来，所以只能猜测</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 检查系统是不是 Mac OS、字符串中是否存在 “Mobile” ，可以保证无论是什么版本， system.ios中都不会是 0。然后，再使用正则表达式确定是否存在 iOS 的版本号。如果有，将 system.ios 设置为表示版本号的浮点值；否则，将版本设置为 2。（因为没有办法确定到底是什么版本，所以设置为更早的版本比较稳妥。）</p>
+<p> 检测 Android 操作系统也很简单，也就是搜索字符串 “Android” 并取得紧随其后的版本号。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//检测 Android 版本</span></span><br><span class="line"><span class="keyword">if</span> (<span class="regexp">/Android (\d+\.\d+)/</span>.test(ua))&#123;</span><br><span class="line">  system.android = <span class="built_in">parseFloat</span>(<span class="built_in">RegExp</span>.$<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 由于所有版本的 Android 都有版本值，因此这个正则表达式可以精确地检测所有版本，并将 system.android 设置为正确的值。诺基亚 N 系列手机使用的也是 WebKit，其用户代理字符串与其他基于 WebKit 的手机很相似，例如：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/<span class="number">5.0</span> (SymbianOS/<span class="number">9.2</span>; U; Series60/<span class="number">3.1</span> NokiaN95/<span class="number">11.0</span><span class="number">.026</span>; Profile MIDP<span class="number">-2.0</span> Configuration/CLDC<span class="number">-1.1</span>) AppleWebKit/<span class="number">413</span> (KHTML, like Gecko) Safari/<span class="number">413</span></span><br></pre></td></tr></table></figure>
+<p> 虽然诺基亚 N 系列手机在用户代理字符串中声称使用的是 “Safari” ，但实际上并不是 Safari，尽管确实是基于 WebKit 引擎。只要像下面检测一下用户代理字符串中是否存在 “NokiaN” ，就足以确定是不是该系列的手机了。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system.nokiaN = ua.indexOf(<span class="string">"NokiaN"</span>) &gt; <span class="number">-1</span>;</span><br></pre></td></tr></table></figure>
+<p> 在了解这些设备信息的基础上，就可以通过下列代码来确定用户使用的是什么设备中的 WebKit 来访问网页：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (client.engine.webkit)&#123;</span><br><span class="line">  <span class="keyword">if</span> (client.system. iOS)&#123;</span><br><span class="line">    <span class="comment">//iOS 手机的内容</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (client.system.android)&#123;</span><br><span class="line">    <span class="comment">//Android 手机的内容</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (client.system.nokiaN)&#123;</span><br><span class="line">    <span class="comment">//诺基亚手机的内容</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 最后一种主要的移动设备平台是 Windows Mobile（也称为 Windows CE），用于 Pocket PC 和 Smartphone 中。由于从技术上说这些平台都属于 Windows 平台，因此 Windows 平台和操作系统都会返回正确的值。对于 Windows Mobile 5.0 及以前版本，这两种设备的用户代理字符串非常相似，如下所示：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/<span class="number">4.0</span> (compatible; MSIE <span class="number">4.01</span>; Windows CE; PPC; <span class="number">240</span>x320)</span><br><span class="line">Mozilla/<span class="number">4.0</span> (compatible; MSIE <span class="number">4.01</span>; Windows CE; Smartphone; <span class="number">176</span>x220)</span><br></pre></td></tr></table></figure>
+<p> 第一个来自 Pocket PC中的移动 Internet Explorer 4.01，第二个来自 Smartphone 中的同一个浏览器。当 Windows 操作系统检测脚本检测这两个字符串时， system.win 将被设置为 “CE” ，因此在检测 Windows Mobile 时可以使用这个值：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system.winMobile = (system.win == <span class="string">"CE"</span>);</span><br></pre></td></tr></table></figure>
+<p> 不建议测试字符串中的 “PPC” 或 “Smartphone” ，因为在 Windows Mobile 5.0 以后版本的浏览器中，这些记号已经被移除了。不过，一般情况下，只知道某个设备使用的是 Windows Mobile 也就足够了。Windows Phone 7 的用户代理字符串稍有改进，基本格式如下：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/<span class="number">4.0</span> (compatible; MSIE <span class="number">7.0</span>; Windows Phone OS <span class="number">7.0</span>; Trident/<span class="number">3.1</span>; IEMobile/<span class="number">7.0</span>) Asus;Galaxy6</span><br></pre></td></tr></table></figure>
+<p> 其中，Windows 操作符的标识符与已往完全不同，因此在这个用户代理中client.system.win 等于 “Ph” 。从中可以取得有关系统的更多信息：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//windows mobile</span></span><br><span class="line"><span class="keyword">if</span> (system.win == <span class="string">"CE"</span>)&#123;</span><br><span class="line">  system.winMobile = system.win;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (system.win == <span class="string">"Ph"</span>)&#123;</span><br><span class="line">  <span class="keyword">if</span>(<span class="regexp">/Windows Phone OS (\d+.\d+)/</span>.test(ua))&#123;;</span><br><span class="line">    system.win = <span class="string">"Phone"</span>;</span><br><span class="line">    system.winMobile = <span class="built_in">parseFloat</span>(<span class="built_in">RegExp</span>[<span class="string">"$1"</span>]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 如果 system.win 的值是 “CE” ，就说明是老版本的 Windows Mobile，因此 system.winMobile 会被设置为相同的值（只能知道这个信息）。如果 system.win 的值是 “Ph” ，那么这个设备就可能是Windows Phone 7 或更新版本。因此就用正则表达式来测试格式并提取版本号，将 system.win 的值重置为 “Phone” ，而将 system.winMobile 设置为版本号。</p>
+</li>
+<li><h4 id="识别游戏系统"><a href="#识别游戏系统" class="headerlink" title="识别游戏系统"></a>识别游戏系统</h4><p>除了移动设备之外，视频游戏系统中的 Web 浏览器也开始日益普及。任天堂 Wii 和 Playstation 3 或者内置 Web 浏览器，或者提供了浏览器下载。Wii 中的浏览器实际上是定制版的 Opera，是专门为 WiiRemote 设计的。Playstation 的浏览器是自己开发的，没有基于前面提到的任何呈现引擎。这两个浏览器中的用户代理字符串如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Opera/9.10 (Nintendo Wii;U; ; 1621; en)</span><br><span class="line">Mozilla/5.0 (PLAYSTATION 3; 2.00)</span><br></pre></td></tr></table></figure>
+<p>第一个字符串来自运行在 Wii 中的 Opera，它忠实地继承了 Opera 最初的用户代理字符串格式（Wii 上的 Opera 不具备隐瞒身份的能力）。第二个字符串来自 Playstation3，虽然它为了兼容性而将自己标识为 Mozilla 5.0，但并没有给出太多信息。而且，设备名称居然全部使用了大写字母，让人觉得很奇怪；强烈希望将来的版本能够改变这种情况。</p>
+<p>在检测这些设备以前，我们必须先为 client.system 中添加适当的属性，如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> client = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> engine = &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//呈现引擎</span></span><br><span class="line">    ie: <span class="number">0</span>,</span><br><span class="line">    gecko: <span class="number">0</span>,</span><br><span class="line">    webkit: <span class="number">0</span>,</span><br><span class="line">    khtml: <span class="number">0</span>,</span><br><span class="line">    opera: <span class="number">0</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">//具体的版本号</span></span><br><span class="line">    ver: <span class="literal">null</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> browser = &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//浏览器</span></span><br><span class="line">    ie: <span class="number">0</span>,</span><br><span class="line">    firefox: <span class="number">0</span>,</span><br><span class="line">    safari: <span class="number">0</span>,</span><br><span class="line">    konq: <span class="number">0</span>,</span><br><span class="line">    opera: <span class="number">0</span>,</span><br><span class="line">    chrome: <span class="number">0</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">//具体的版本号</span></span><br><span class="line">    ver: <span class="literal">null</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> system = &#123;</span><br><span class="line">    win: <span class="literal">false</span>,</span><br><span class="line">    mac: <span class="literal">false</span>,</span><br><span class="line">    x11: <span class="literal">false</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">//移动设备</span></span><br><span class="line">    iphone: <span class="literal">false</span>,</span><br><span class="line">    ipod: <span class="literal">false</span>,</span><br><span class="line">    ipad: <span class="literal">false</span>,</span><br><span class="line">    ios: <span class="literal">false</span>,</span><br><span class="line">    android: <span class="literal">false</span>,</span><br><span class="line">    nokiaN: <span class="literal">false</span>,</span><br><span class="line">    winMobile: <span class="literal">false</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 游戏系统</span></span><br><span class="line">    wii: <span class="literal">false</span>,</span><br><span class="line">    ps: <span class="literal">false</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//在此检测呈现引擎、平台和设备</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    engine: engine,</span><br><span class="line">    browser: browser,</span><br><span class="line">    system: system</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;();</span><br><span class="line">​<span class="string">`</span></span><br></pre></td></tr></table></figure>
+<p>检测前述游戏系统的代码如下：</p>
+<p>​<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">system.wii = ua.indexOf(<span class="string">"Wii"</span>) &gt; <span class="number">-1</span>;</span><br><span class="line">system.ps = <span class="regexp">/playstation/i</span>.test(ua);</span><br></pre></td></tr></table></figure></p>
+<p>对于 Wii，只要检测字符串 “Wii” 就够了，而其他代码将发现这是一个 Opera 浏览器，并将正确的版本号保存在 client.browser.opera 中。对于 Playstation，我们则使用正则表达式来以不区分大小写的方式测试用户代理字符串。</p>
+</li>
+</ul>
+<h3 id="完整的代码"><a href="#完整的代码" class="headerlink" title="完整的代码"></a>完整的代码</h3><p>以下是完整的用户代理字符串检测脚本，包括检测 <strong>呈现引擎</strong> 、<strong>平台</strong> 、<strong>Windows操作系统</strong> 、<strong>移动设备</strong> 和 <strong>游戏系统</strong> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> client = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//呈现引擎</span></span><br><span class="line">  <span class="keyword">var</span> engine = &#123;</span><br><span class="line">    ie: <span class="number">0</span>,</span><br><span class="line">    gecko: <span class="number">0</span>,</span><br><span class="line">    webkit: <span class="number">0</span>,</span><br><span class="line">    khtml: <span class="number">0</span>,</span><br><span class="line">    opera: <span class="number">0</span>,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//完整的版本号</span></span><br><span class="line">    ver: <span class="literal">null</span></span><br><span class="line">  &#125;;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//浏览器</span></span><br><span class="line">  <span class="keyword">var</span> browser = &#123;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">//主要浏览器</span></span><br><span class="line">    ie: <span class="number">0</span>,</span><br><span class="line">    firefox: <span class="number">0</span>,</span><br><span class="line">    safari: <span class="number">0</span>,</span><br><span class="line">    konq: <span class="number">0</span>,</span><br><span class="line">    opera: <span class="number">0</span>,</span><br><span class="line">    chrome: <span class="number">0</span>,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//具体的版本号</span></span><br><span class="line">    ver: <span class="literal">null</span></span><br><span class="line">  &#125;;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//平台、设备和操作系统</span></span><br><span class="line">  <span class="keyword">var</span> system = &#123;</span><br><span class="line">    win: <span class="literal">false</span>,</span><br><span class="line">    mac: <span class="literal">false</span>,</span><br><span class="line">    x11: <span class="literal">false</span>,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//移动设备</span></span><br><span class="line">    iphone: <span class="literal">false</span>,</span><br><span class="line">    ipod: <span class="literal">false</span>,</span><br><span class="line">    ipad: <span class="literal">false</span>,</span><br><span class="line">    ios: <span class="literal">false</span>,</span><br><span class="line">    android: <span class="literal">false</span>,</span><br><span class="line">    nokiaN: <span class="literal">false</span>,</span><br><span class="line">    winMobile: <span class="literal">false</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">//游戏系统</span></span><br><span class="line">    wii: <span class="literal">false</span>,</span><br><span class="line">    ps: <span class="literal">false</span></span><br><span class="line">  &#125;;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//检测呈现引擎和浏览器</span></span><br><span class="line">  <span class="keyword">var</span> ua = navigator.userAgent;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.opera)&#123;</span><br><span class="line">    engine.ver = browser.ver = <span class="built_in">window</span>.opera.version();</span><br><span class="line">    engine.opera = browser.opera = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/AppleWebKit\/(\S+)/</span>.test(ua))&#123;</span><br><span class="line">  </span><br><span class="line">    engine.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">    engine.webkit = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//确定是 Chrome 还是 Safari</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="regexp">/Chrome\/(\S+)/</span>.test(ua))&#123;</span><br><span class="line">      browser.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">      browser.chrome = <span class="built_in">parseFloat</span>(browser.ver);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/Version\/(\S+)/</span>.test(ua))&#123;</span><br><span class="line">      browser.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">      browser.safari = <span class="built_in">parseFloat</span>(browser.ver);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">//近似地确定版本号</span></span><br><span class="line">      <span class="keyword">var</span> safariVersion = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span> (engine.webkit &lt; <span class="number">100</span>)&#123;</span><br><span class="line">        safariVersion = <span class="number">1</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (engine.webkit &lt; <span class="number">312</span>)&#123;</span><br><span class="line">        safariVersion = <span class="number">1.2</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (engine.webkit &lt; <span class="number">412</span>)&#123;</span><br><span class="line">        safariVersion = <span class="number">1.3</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        safariVersion = <span class="number">2</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      browser.safari = browser.ver = safariVersion;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/KHTML\/(\S+)/</span>.test(ua) || <span class="regexp">/Konqueror\/([^;]+)/</span>.test(ua))&#123;</span><br><span class="line">    engine.ver = browser.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">    engine.khtml = browser.konq = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/rv:([^\)]+)\) Gecko\/\d&#123;8&#125;/</span>.test(ua))&#123;</span><br><span class="line">    engine.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">    engine.gecko = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//确定是不是 Firefox</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="regexp">/Firefox\/(\S+)/</span>.test(ua))&#123;</span><br><span class="line">      browser.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">      browser.firefox = <span class="built_in">parseFloat</span>(browser.ver);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/MSIE ([^;]+)/</span>.test(ua))&#123;</span><br><span class="line">    engine.ver = browser.ver = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">    engine.ie = browser.ie = <span class="built_in">parseFloat</span>(engine.ver);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//检测浏览器</span></span><br><span class="line">  browser.ie = engine.ie;</span><br><span class="line">  browser.opera = engine.opera;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//检测平台</span></span><br><span class="line">  <span class="keyword">var</span> p = navigator.platform;</span><br><span class="line">  system.win = p.indexOf(<span class="string">"Win"</span>) == <span class="number">0</span>;</span><br><span class="line">  system.mac = p.indexOf(<span class="string">"Mac"</span>) == <span class="number">0</span>;</span><br><span class="line">  system.x11 = (p == <span class="string">"X11"</span>) || (p.indexOf(<span class="string">"Linux"</span>) == <span class="number">0</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//检测 Windows 操作系统</span></span><br><span class="line">  <span class="keyword">if</span> (system.win)&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="regexp">/Win(?:dows )?([^do]&#123;2&#125;)\s?(\d+\.\d+)?/</span>.test(ua))&#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">RegExp</span>[<span class="string">"$1"</span>] == <span class="string">"NT"</span>)&#123;</span><br><span class="line">        <span class="keyword">switch</span>(<span class="built_in">RegExp</span>[<span class="string">"$2"</span>])&#123;</span><br><span class="line">          <span class="keyword">case</span> <span class="string">"5.0"</span>:</span><br><span class="line">            system.win = <span class="string">"2000"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">case</span> <span class="string">"5.1"</span>:</span><br><span class="line">            system.win = <span class="string">"XP"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">case</span> <span class="string">"6.0"</span>:</span><br><span class="line">            system.win = <span class="string">"Vista"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">case</span> <span class="string">"6.1"</span>:</span><br><span class="line">            system.win = <span class="string">"7"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">default</span>:</span><br><span class="line">            system.win = <span class="string">"NT"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">RegExp</span>[<span class="string">"$1"</span>] == <span class="string">"9x"</span>)&#123;</span><br><span class="line">        system.win = <span class="string">"ME"</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        system.win = <span class="built_in">RegExp</span>[<span class="string">"$1"</span>];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//移动设备</span></span><br><span class="line">  system.iphone = ua.indexOf(<span class="string">"iPhone"</span>) &gt; <span class="number">-1</span>;</span><br><span class="line">  system.ipod = ua.indexOf(<span class="string">"iPod"</span>) &gt; <span class="number">-1</span>;</span><br><span class="line">  system.ipad = ua.indexOf(<span class="string">"iPad"</span>) &gt; <span class="number">-1</span>;</span><br><span class="line">  system.nokiaN = ua.indexOf(<span class="string">"NokiaN"</span>) &gt; <span class="number">-1</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//windows mobile</span></span><br><span class="line">  <span class="keyword">if</span> (system.win == <span class="string">"CE"</span>)&#123;</span><br><span class="line">    system.winMobile = system.win;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (system.win == <span class="string">"Ph"</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="regexp">/Windows Phone OS (\d+.\d+)/</span>.test(ua))&#123;;</span><br><span class="line">      system.win = <span class="string">"Phone"</span>;</span><br><span class="line">      system.winMobile = <span class="built_in">parseFloat</span>(<span class="built_in">RegExp</span>[<span class="string">"$1"</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//检测 iOS 版本</span></span><br><span class="line">  <span class="keyword">if</span> (system.mac &amp;&amp; ua.indexOf(<span class="string">"Mobile"</span>) &gt; <span class="number">-1</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="regexp">/CPU (?:iPhone )?OS (\d+_\d+)/</span>.test(ua))&#123;</span><br><span class="line">      system.ios = <span class="built_in">parseFloat</span>(<span class="built_in">RegExp</span>.$<span class="number">1.</span>replace(<span class="string">"_"</span>, <span class="string">"."</span>));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      system.ios = <span class="number">2</span>; <span class="comment">//不能真正检测出来，所以只能猜测</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//检测 Android 版本</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/Android (\d+\.\d+)/</span>.test(ua))&#123;</span><br><span class="line">    system.android = <span class="built_in">parseFloat</span>(<span class="built_in">RegExp</span>.$<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//游戏系统</span></span><br><span class="line">  system.wii = ua.indexOf(<span class="string">"Wii"</span>) &gt; <span class="number">-1</span>;</span><br><span class="line">  system.ps = <span class="regexp">/playstation/i</span>.test(ua);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//返回这些对象</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    engine: engine,</span><br><span class="line">    browser: browser,</span><br><span class="line">    system: system</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>我们在前面已经强调过了，用户代理检测是客户端检测的最后一个选择。只要可能，都应该优先采用能力检测和怪癖检测。用户代理检测一般适用于下列情形。</p>
+<ul>
+<li><p><strong>不能直接准确地使用能力检测或怪癖检测</strong> 。例如，某些浏览器实现了为将来功能预留的存根（stub）函数。在这种情况下，仅测试相应的函数是否存在还得不到足够的信息。</p>
+</li>
+<li><p><strong>同一款浏览器在不同平台下具备不同的能力</strong> 。这时候，可能就有必要确定浏览器位于哪个平台下。</p>
+</li>
+<li><p><strong>为了跟踪分析等目的需要知道确切的浏览器</strong> 。</p>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>客户端检测是 JavaScript 开发中最具争议的一个话题。由于浏览器间存在差别，通常需要根据不同浏览器的能力分别编写不同的代码。有不少客户端检测方法，但下列是最经常使用的。</p>
+<ul>
+<li><p><strong>能力检测</strong> ：在编写代码之前先检测特定浏览器的能力。例如，脚本在调用某个函数之前，可能要先检测该函数是否存在。这种检测方法将开发人员从考虑具体的浏览器类型和版本中解放出来，让他们把注意力集中到相应的能力是否存在上。能力检测无法精确地检测特定的浏览器和版本。</p>
+</li>
+<li><p><strong>怪癖检测</strong> ：怪癖实际上是浏览器实现中存在的 bug，例如早期的 WebKit 中就存在一个怪癖，即它会在 for-in 循环中返回被隐藏的属性。怪癖检测通常涉及到运行一小段代码，然后确定浏览器是否存在某个怪癖。由于怪癖检测与能力检测相比效率更低，因此应该只在某个怪癖会干扰脚本运行的情况下使用。怪癖检测无法精确地检测特定的浏览器和版本。</p>
+</li>
+<li><p><strong>用户代理检测</strong> ：通过检测用户代理字符串来识别浏览器。用户代理字符串中包含大量与浏览器有关的信息，包括浏览器、平台、操作系统及浏览器版本。用户代理字符串有过一段相当长的发展历史，在此期间，浏览器提供商试图通过在用户代理字符串中添加一些欺骗性信息，欺骗网站相信自己的浏览器是另外一种浏览器。用户代理检测需要特殊的技巧，特别是要注意 Opera会隐瞒其用户代理字符串的情况。即便如此，通过用户代理字符串仍然能够检测出浏览器所用的呈现引擎以及所在的平台，包括移动设备和游戏系统。</p>
+</li>
+</ul>
+<p>在决定使用哪种客户端检测方法时，一般应 <strong>优先考虑</strong> 使用 <strong>能力检测</strong> 。<strong>怪癖检测</strong> 是确定应该如何处理代码的 <strong>第二选择</strong> 。而 <strong>用户代理检测则</strong> 是客户端检测的 <strong>最后一种方案</strong> ，因为这种方法对用户代理字符串具有很强的依赖性。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/20/JavaScript-BOM/" rel="next" title="《JavaScript 高级程序设计》学习笔记-BOM">
+                <i class="fa fa-chevron-left"></i> 《JavaScript 高级程序设计》学习笔记-BOM
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/21/JavaScript-DOM/" rel="prev" title="《JavaScript 高级程序设计》学习笔记-DOM">
+                《JavaScript 高级程序设计》学习笔记-DOM <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="songxingguo">
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">132</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#客服端检测"><span class="nav-number">1.</span> <span class="nav-text">客服端检测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#能力检测"><span class="nav-number">1.1.</span> <span class="nav-text">能力检测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更可靠的能力检测"><span class="nav-number">1.1.1.</span> <span class="nav-text">更可靠的能力检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#能力检测，不是浏览器检测"><span class="nav-number">1.1.2.</span> <span class="nav-text">能力检测，不是浏览器检测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怪癖检测"><span class="nav-number">1.2.</span> <span class="nav-text">怪癖检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户代理检测"><span class="nav-number">1.3.</span> <span class="nav-text">用户代理检测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户代理字符串的历史"><span class="nav-number">1.3.1.</span> <span class="nav-text">用户代理字符串的历史</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#早期的浏览器"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">早期的浏览器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Netscape-Navigator-3-和-Internet-Explorer-3"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">Netscape Navigator 3 和 Internet Explorer 3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Netscape-Communicator-4-和-IE4～IE8"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">Netscape Communicator 4 和 IE4～IE8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gecko"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">Gecko</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WebKit"><span class="nav-number">1.3.1.5.</span> <span class="nav-text">WebKit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Konqueror"><span class="nav-number">1.3.1.6.</span> <span class="nav-text">Konqueror</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Chrome"><span class="nav-number">1.3.1.7.</span> <span class="nav-text">Chrome</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Opera"><span class="nav-number">1.3.1.8.</span> <span class="nav-text">Opera</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iOS-和-Android"><span class="nav-number">1.3.1.9.</span> <span class="nav-text">iOS 和 Android</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户代理字符串检测技术"><span class="nav-number">1.3.2.</span> <span class="nav-text">用户代理字符串检测技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#识别呈现引擎"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">识别呈现引擎</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#识别浏览器"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">识别浏览器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#识别平台"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">识别平台</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#识别-Windows-操作系统"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">识别 Windows 操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#识别移动设备"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">识别移动设备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#识别游戏系统"><span class="nav-number">1.3.2.6.</span> <span class="nav-text">识别游戏系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整的代码"><span class="nav-number">1.3.3.</span> <span class="nav-text">完整的代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方法"><span class="nav-number">1.3.4.</span> <span class="nav-text">使用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.4.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":90,"vOffset":-25},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
