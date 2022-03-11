@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="理解BufferJavaScript对于字符串（string）的操作十分友好，无论是宽字节字符串还是单字节字符串，都被认为是一个字符串。示例代码如下所示： 123console.log(&quot;0123456789&quot;.length); // 10console.log(&quot;零一二三四五六七八九&quot;.length); //10console.log(&quot;\u00bd&quot;.length); // 1">
+<meta name="keywords" content="Node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《深入浅出Node.js》-读书笔记-理解Buffer">
+<meta property="og:url" content="https://www.songxingguo.com/2018/10/06/Node-Buffer/index.html">
+<meta property="og:site_name" content="阿有的生活">
+<meta property="og:description" content="理解BufferJavaScript对于字符串（string）的操作十分友好，无论是宽字节字符串还是单字节字符串，都被认为是一个字符串。示例代码如下所示： 123console.log(&quot;0123456789&quot;.length); // 10console.log(&quot;零一二三四五六七八九&quot;.length); //10console.log(&quot;\u00bd&quot;.length); // 1">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Node-Buffer/Buffer%E5%88%86%E5%B7%A5.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Node-Buffer/%E6%96%B0%E6%9E%84%E9%80%A0%E7%9A%84slab%E5%8D%95%E5%85%83%E7%A4%BA%E4%BE%8B.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Node-Buffer/%E4%BB%8E%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84slab%E5%8D%95%E5%85%83%E4%B8%AD%E5%88%9D%E6%AC%A1%E5%88%86%E9%85%8D%E4%B8%80%E4%B8%AABuffer%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/Node-Buffer/%E4%BB%8Eslab%E5%8D%95%E5%85%83%E4%B8%AD%E5%86%8D%E6%AC%A1%E5%88%86%E9%85%8D%E4%B8%80%E4%B8%AABuffer%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
+<meta property="og:updated_time" content="2022-03-11T15:38:08.876Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《深入浅出Node.js》-读书笔记-理解Buffer">
+<meta name="twitter:description" content="理解BufferJavaScript对于字符串（string）的操作十分友好，无论是宽字节字符串还是单字节字符串，都被认为是一个字符串。示例代码如下所示： 123console.log(&quot;0123456789&quot;.length); // 10console.log(&quot;零一二三四五六七八九&quot;.length); //10console.log(&quot;\u00bd&quot;.length); // 1">
+<meta name="twitter:image" content="https://graphbed.qiniu.songxingguo.com/Node-Buffer/Buffer%E5%88%86%E5%B7%A5.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/10/06/Node-Buffer/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《深入浅出Node.js》-读书笔记-理解Buffer | 阿有的生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">132</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">43</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/10/06/Node-Buffer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《深入浅出Node.js》-读书笔记-理解Buffer
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-06 11:23:00" itemprop="dateCreated datePublished" datetime="2018-10-06T11:23:00+00:00">2018-10-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2022-03-11 15:38:08" itemprop="dateModified" datetime="2022-03-11T15:38:08+00:00">2022-03-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/06/Node-Buffer/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/06/Node-Buffer/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/10/06/Node-Buffer/" class="leancloud_visitors" data-flag-title="《深入浅出Node.js》-读书笔记-理解Buffer">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="理解Buffer"><a href="#理解Buffer" class="headerlink" title="理解Buffer"></a>理解Buffer</h2><p>JavaScript对于字符串（string）的操作十分友好，无论是宽字节字符串还是单字节字符串，都被认为是一个字符串。示例代码如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"0123456789"</span>.length); <span class="comment">// 10</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"零一二三四五六七八九"</span>.length); <span class="comment">//10</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"\u00bd"</span>.length); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>对比PHP中的字符串统计，我们需要动用额外的函数来获取字符串的长度。示例代码如下所示：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span><span class="keyword">echo</span> strlen(<span class="string">"0123456789"</span>); <span class="comment">// 10</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"\n"</span>;<span class="keyword">echo</span> strlen(<span class="string">"零一二三四五六七八九"</span>); <span class="comment">// 30</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"\n"</span>;<span class="keyword">echo</span> mb_strlen(<span class="string">"零一二三四五六七八九"</span>, <span class="string">"utf-8"</span>); <span class="comment">//10</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"\n"</span>;<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>文件和网络I/O对于前端开发者而言都是不曾有的应用场景，因为前端只需做一些简单的字符串操作或DOM操作基本就能满足业务需求，在ECMAScript规范中，也没有对这些方面做任何的定义，只有CommonJS中有部分二进制的定义。由于应用场景不同，在Node中，应用需要处理网络协议、操作数据库、处理图片、接收上传文件等，在网络流和文件的操作中，还要处理大量二进制数据，JavaScript自有的字符串远远不能满足这些需求，于是Buffer对象应运而生。</p>
+<h3 id="Buffer结构"><a href="#Buffer结构" class="headerlink" title="Buffer结构"></a>Buffer结构</h3><p>Buffer是一个像Array的对象，但它主要用于操作字节。下面我们从模块结构和对象结构的层面上来认识它。</p>
+<h4 id="模块结构"><a href="#模块结构" class="headerlink" title="模块结构"></a>模块结构</h4><p>Buffer是一个典型的JavaScript与C++结合的模块，它将性能相关部分用C++实现，将非性能相关的部分用JavaScript实现，如下图所示。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/Node-Buffer/Buffer%E5%88%86%E5%B7%A5.jpg" alt="Buffer分工"></p>
+<p>第5章揭示了Buffer所占用的内存不是通过V8分配的，属于堆外内存。由于V8垃圾回收性能的影响，将常用的操作对象用更高效和专有的内存分配回收策略来管理是个不错的思路。</p>
+<p>由于Buffer太过常见，Node在进程启动时就已经加载了它，并将其放在全局对象（global）上。所以 <strong>在使用Buffer时，无须通过require()即可直接使用。</strong></p>
+<h4 id="Buffer对象"><a href="#Buffer对象" class="headerlink" title="Buffer对象"></a>Buffer对象</h4><p>Buffer对象类似于数组，它的元素为16进制的两位数，即0到255的数值。示例代码如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"深入浅出node.js"</span>;</span><br><span class="line"><span class="keyword">var</span> buf = <span class="keyword">new</span> Buffer(str, <span class="string">'utf-8'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(buf);</span><br><span class="line"><span class="comment">// =&gt; &lt;Buffer e6 b7 b1 e5 85 a5 e6 b5 85 e5 87 ba 6e 6f 64 65 2e 6a 73&gt;</span></span><br></pre></td></tr></table></figure>
+<p>由上面的示例可见，不同编码的字符串占用的元素个数各不相同，上面代码中的中文字在UTF-8编码下占用3个元素，字母和半角标点符号占用1个元素。Buffer受Array类型的影响很大，可以访问length属性得到长度，也可以通过下标访问元素，在构造对象时也十分相似，代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buf = <span class="keyword">new</span> Buffer(<span class="number">100</span>);</span><br><span class="line"><span class="built_in">console</span>.log(buf.length); <span class="comment">// =&gt; 100</span></span><br></pre></td></tr></table></figure>
+<p>上述代码分配了一个长100字节的Buffer对象。可以通过下标访问刚初始化的Buffer的元素，代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(buf[<span class="number">10</span>]);</span><br></pre></td></tr></table></figure>
+<p>这里会得到一个比较奇怪的结果，它的元素值是一个0到255的随机值。同样，我们也可以通过下标对它进行赋值：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">buf[<span class="number">10</span>] = <span class="number">100</span>;</span><br><span class="line"><span class="built_in">console</span>.log(buf[<span class="number">10</span>]); <span class="comment">// =&gt; 100</span></span><br></pre></td></tr></table></figure>
+<p>值得注意的是，如果给元素赋值不是0到255的整数而是小数时会怎样呢？示例代码如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">buf[<span class="number">20</span>] = <span class="number">-100</span>;</span><br><span class="line"><span class="built_in">console</span>.log(buf[<span class="number">20</span>]); <span class="comment">// 156</span></span><br><span class="line">buf[<span class="number">21</span>] = <span class="number">300</span>;</span><br><span class="line"><span class="built_in">console</span>.log(buf[<span class="number">21</span>]); <span class="comment">// 44</span></span><br><span class="line">buf[<span class="number">22</span>] = <span class="number">3.1415</span>;</span><br><span class="line"><span class="built_in">console</span>.log(buf[<span class="number">22</span>]); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>给元素的赋值如果小于0，就将该值逐次加256，直到得到一个0到255之间的整数。如果得到的数值大于255，就逐次减256，直到得到0~255区间内的数值。如果是小数，舍弃小数部分，只保留整数部分。</p>
+<h3 id="Buffer内存分配"><a href="#Buffer内存分配" class="headerlink" title="Buffer内存分配"></a>Buffer内存分配</h3><p>Buffer对象的内存分配不是在V8的堆内存中，而是在Node的C++层面实现内存的申请的。因为处理大量的字节数据不能采用需要一点内存就向操作系统申请一点内存的方式，这可能造成大量的内存申请的系统调用，对操作系统有一定压力。为此Node在内存的使用上应用的是在C++层面申请内存、在JavaScript中分配内存的策略。</p>
+<p>为了高效地使用申请来的内存，Node采用了slab分配机制。slab是一种动态内存管理机制，最早诞生于SunOS操作系统（Solaris）中，目前在一些*nix操作系统中有广泛的应用，如FreeBSD和Linux。</p>
+<p>简单而言，slab就是一块申请好的固定大小的内存区域。slab具有如下3种状态。</p>
+<ul>
+<li>full：完全分配状态。</li>
+<li>partial：部分分配状态。</li>
+<li>empty：没有被分配状态。</li>
+</ul>
+<p>当我们需要一个Buffer对象，可以通过以下方式分配指定大小的Buffer对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Buffer(size);</span><br></pre></td></tr></table></figure>
+<p>Node以8 KB为界限来区分Buffer是大对象还是小对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Buffer.poolSize = <span class="number">8</span> * <span class="number">1024</span>;</span><br></pre></td></tr></table></figure>
+<p>这个8 KB的值也就是每个slab的大小值，在JavaScript层面，以它作为单位单元进行内存的分配。</p>
+<ol>
+<li>分配小Buffer对象</li>
+</ol>
+<p>如果指定Buffer的大小少于8 KB，Node会按照小对象的方式进行分配。Buffer的分配过程中主要使用一个局部变量pool作为中间处理对象，处于分配状态的slab单元都指向它。以下是分配一个全新的slab单元的操作，它会将新申请的SlowBuffer对象指向它：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pool;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">allocPool</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  pool = <span class="keyword">new</span> SlowBuffer(Buffer.poolSize); </span><br><span class="line">  pool.used = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下图为一个新构造的slab单元示例。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/Node-Buffer/%E6%96%B0%E6%9E%84%E9%80%A0%E7%9A%84slab%E5%8D%95%E5%85%83%E7%A4%BA%E4%BE%8B.jpg" alt="新构造的slab单元示例"></p>
+<p>在上图中，slab处于empty状态。</p>
+<p>构造小Buffer对象时的代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Buffer(<span class="number">1024</span>);</span><br></pre></td></tr></table></figure>
+<p>这次构造将会去检查pool对象，如果pool没有被创建，将会创建一个新的slab单元指向它：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!pool || pool.length - pool.used &lt; <span class="keyword">this</span>.length) allocPool();</span><br></pre></td></tr></table></figure>
+<p>同时当前Buffer对象的parent属性指向该slab，并记录下是从这个slab的哪个位置（offset）开始使用的，slab对象自身也记录被使用了多少字节，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">this.parent = pool;</span><br><span class="line">this.offset = pool.used;</span><br><span class="line">pool.used += this.length;</span><br><span class="line">if (pool.used &amp; 7) pool.used = (pool.used + 8) &amp; ~7;</span><br></pre></td></tr></table></figure>
+<p>下图为从一个新的slab单元中初次分配一个Buffer对象的示意图。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/Node-Buffer/%E4%BB%8E%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84slab%E5%8D%95%E5%85%83%E4%B8%AD%E5%88%9D%E6%AC%A1%E5%88%86%E9%85%8D%E4%B8%80%E4%B8%AABuffer%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="从一个新的slab单元中初次分配一个Buffer对象的示意图"></p>
+<p>这时候的slab状态为partial。</p>
+<p>当再次创建一个Buffer对象时，构造过程中将会判断这个slab的剩余空间是否足够。如果足够，使用剩余空间，并更新slab的分配状态。下面的代码创建了一个新的Buffer对象，它会引起一次slab分配：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Buffer(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+<p>下图为再次分配的示意图。</p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/Node-Buffer/%E4%BB%8Eslab%E5%8D%95%E5%85%83%E4%B8%AD%E5%86%8D%E6%AC%A1%E5%88%86%E9%85%8D%E4%B8%80%E4%B8%AABuffer%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="从slab单元中再次分配一个Buffer对象的示意图"></p>
+<p>如果slab剩余的空间不够，将会构造新的slab，原slab中剩余的空间会造成浪费。例如，第一次构造1字节的Buffer对象，第二次构造8192字节的Buffer对象，由于第二次分配时slab中的空间不够，所以创建并使用新的slab，第一个slab的8 KB将会被第一个1字节的Buffer对象独占。下面的代码一共使用了两个slab单元：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Buffer(<span class="number">1</span>);<span class="keyword">new</span> Buffer(<span class="number">8192</span>);</span><br></pre></td></tr></table></figure>
+<p>这里要注意的事项是，由于同一个slab可能分配给多个Buffer对象使用，只有这些小Buffer对象在作用域释放并都可以回收时，slab的8 KB空间才会被回收。尽管创建了1个字节的Buffer对象，但是如果不释放它，实际可能是8 KB的内存没有释放。</p>
+<ol start="2">
+<li>分配大Buffer对象</li>
+</ol>
+<p>如果需要超过8 KB的Buffer对象，将会直接分配一个SlowBuffer对象作为slab单元，这个slab单元将会被这个大Buffer对象独占。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Big buffer, just alloc one</span></span><br><span class="line"><span class="keyword">this</span>.parent = <span class="keyword">new</span> SlowBuffer(<span class="keyword">this</span>.length);</span><br><span class="line"><span class="keyword">this</span>.offset = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>这里的SlowBuffer类是在C++中定义的，虽然引用buffer模块可以访问到它，但是不推荐直接操作它，而是用Buffer替代。上面提到的Buffer对象都是JavaScript层面的，能够被V8的垃圾回收标记回收。但是其内部的parent属性指向的SlowBuffer对象却来自于Node自身C++中的定义，是C++层面上的Buffer对象，所用内存不在V8的堆中。</p>
+<ol start="3">
+<li>小结</li>
+</ol>
+<p>简单而言，真正的内存是在Node的C++层面提供的，JavaScript层面只是使用它。当进行小而频繁的Buffer操作时，采用slab的机制进行预先申请和事后分配，使得JavaScript到操作系统之间不必有过多的内存申请方面的系统调用。对于大块的Buffer而言，则直接使用C++层面提供的内存，而无需细腻的分配操作。</p>
+<h3 id="Buffer的转换"><a href="#Buffer的转换" class="headerlink" title="Buffer的转换"></a>Buffer的转换</h3><p>Buffer对象可以与字符串之间相互转换。目前支持的字符串编码类型有如下这几种。</p>
+<ul>
+<li>ASCII</li>
+<li>UTF-8</li>
+<li>UTF-16LE/UCS-2</li>
+<li>Base64</li>
+<li>Binary</li>
+<li>Hex</li>
+</ul>
+<h4 id="字符串转Buffer"><a href="#字符串转Buffer" class="headerlink" title="字符串转Buffer"></a>字符串转Buffer</h4><p>字符串转Buffer对象主要是通过构造函数完成的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Buffer(str, [encoding]);</span><br></pre></td></tr></table></figure>
+<p>通过构造函数转换的Buffer对象，存储的只能是一种编码类型。encoding参数不传递时，默认按UTF-8编码进行转码和存储。</p>
+<p>一个Buffer对象可以存储不同编码类型的字符串转码的值，调用write()方法可以实现该目的，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">buf.write(string, [offset], [length], [encoding])</span><br></pre></td></tr></table></figure>
+<p>由于可以不断写入内容到Buffer对象中，并且每次写入可以指定编码，所以Buffer对象中可以存在多种编码转化后的内容。需要小心的是，每种编码所用的字节长度不同，将Buffer反转回字符串时需要谨慎处理。</p>
+<h4 id="Buffer转字符串"><a href="#Buffer转字符串" class="headerlink" title="Buffer转字符串"></a>Buffer转字符串</h4><p>实现Buffer向字符串的转换也十分简单，Buffer对象的toString()可以将Buffer对象转换为字符串，代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">buf.toString([encoding], [start], [end])</span><br></pre></td></tr></table></figure>
+<p>比较精巧的是，可以设置encoding（默认为UTF-8）、start、end这3个参数实现整体或局部的转换。如果Buffer对象由多种编码写入，就需要在局部指定不同的编码，才能转换回正常的编码。</p>
+<h4 id="Buffer不支持的编码类型"><a href="#Buffer不支持的编码类型" class="headerlink" title="Buffer不支持的编码类型"></a>Buffer不支持的编码类型</h4><p>目前比较遗憾的是，Node的Buffer对象支持的编码类型有限，只有少数的几种编码类型可以在字符串和Buffer之间转换。为此，Buffer提供了一个isEncoding()函数来判断编码是否支持转换：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Buffer.isEncoding(encoding)</span><br></pre></td></tr></table></figure>
+<p>将编码类型作为参数传入上面的函数，如果支持转换返回值为true，否则为false。很遗憾的是，在中国常用的GBK、GB2312和BIG-5编码都不在支持的行列中。</p>
+<p>对于不支持的编码类型，可以借助Node生态圈中的模块完成转换。iconv和iconv-lite两个模块可以支持更多的编码类型转换，包括Windows 125系列、ISO-8859系列、IBM/DOS代码页系列、Macintosh系列、KOI8系列，以及Latin1、US-ASCII，也支持宽字节编码GBK和GB2312。iconv-lite采用纯JavaScript实现，iconv则通过C++调用libiconv库完成。前者比后者更轻量，无须编译和处理环境依赖直接使用。在性能方面，由于转码都是耗用CPU，在V8的高性能下，少了C++到JavaScript的层次转换，纯JavaScript的性能比C++实现得更好。</p>
+<p>以下为iconv-lite的示例代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> iconv = <span class="built_in">require</span>(<span class="string">'iconv-lite'</span>);</span><br><span class="line"><span class="comment">// Buffer转字符串</span></span><br><span class="line"><span class="keyword">var</span> str = iconv.decode(buf, <span class="string">'win1251'</span>);</span><br><span class="line"><span class="comment">// 字符串转Buffervar buf = iconv.encode("Sample input string", 'win1251');</span></span><br></pre></td></tr></table></figure>
+<p>另外，iconv和iconv-lite对无法转换的内容进行降级处理时的方案不尽相同。iconv-lite无法转换的内容如果是多字节，会输出&lt;图&gt;；如果是单字节，则输出?。iconv则有三级降级策略，会尝试翻译无法转换的内容，或者忽略这些内容。如果不设置忽略，iconv对于无法转换的内容将会得到EILSEQ异常。如下是iconv的示例代码兼选项设置方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> iconv = <span class="keyword">new</span> Iconv(<span class="string">'UTF-8'</span>, <span class="string">'ASCII'</span>);</span><br><span class="line">iconv.convert(<span class="string">'ça va'</span>); <span class="comment">// throws EILSEQ</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> iconv = <span class="keyword">new</span> Iconv(<span class="string">'UTF-8'</span>, <span class="string">'ASCII//IGNORE'</span>);iconv.convert(<span class="string">'ça va'</span>); <span class="comment">// returns "a va"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> iconv = <span class="keyword">new</span> Iconv(<span class="string">'UTF-8'</span>, <span class="string">'ASCII//TRANSLIT'</span>);</span><br><span class="line">iconv.convert(<span class="string">'ça va'</span>); <span class="comment">// "ca va"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> iconv = <span class="keyword">new</span> Iconv(<span class="string">'UTF-8'</span>, <span class="string">'ASCII//TRANSLIT//IGNORE'</span>);iconv.convert(<span class="string">'ça va が'</span>); <span class="comment">// "ca va "</span></span><br></pre></td></tr></table></figure>
+<h3 id="Buffer的拼接"><a href="#Buffer的拼接" class="headerlink" title="Buffer的拼接"></a>Buffer的拼接</h3><p>Buffer在使用场景中，通常是以一段一段的方式传输。以下是常见的从输入流中读取内容的示例代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> rs = fs.createReadStream(<span class="string">'test.md'</span>);</span><br><span class="line"><span class="keyword">var</span> data = <span class="string">''</span>;</span><br><span class="line">rs.on(<span class="string">"data"</span>,</span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">trunk</span>) </span>&#123;</span><br><span class="line">  data += trunk;</span><br><span class="line">&#125;);</span><br><span class="line">rs.on(<span class="string">"end"</span>,</span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面这段代码常见于国外，用于流读取的示范，data事件中获取的chunk对象即是Buffer对象。对于初学者而言，容易将Buffer当做字符串来理解，所以在接受上面的示例时不会觉得有任何异常。一旦输入流中有宽字节编码时，问题就会暴露出来。如果你在通过Node开发的网站上看到&lt;图&gt;乱码符号，那么该问题的起源多半来自于这里。<br>这里潜藏的问题在于如下这句代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data += trunk;</span><br></pre></td></tr></table></figure>
+<p>这句代码里隐藏了toString()操作，它等价于如下的代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = data.toString() + trunk.toString();</span><br></pre></td></tr></table></figure>
+<p>值得注意的是，外国人的语境通常是指英文环境，在他们的场景下，这个toString()不会造成任何问题。但对于宽字节的中文，却会形成问题。为了重现这个问题，下面我们模拟近似的场景，将文件可读流的每次读取的Buffer长度限制为11，代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rs = fs.createReadStream(<span class="string">'test.md'</span>, &#123;<span class="attr">highWaterMark</span>: <span class="number">11</span>&#125;);</span><br></pre></td></tr></table></figure>
+<p>搭配该代码的测试数据为李白的《静夜思》。执行该程序，将会得到以下输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">床前明&lt;图&gt;&lt;图&gt;&lt;图&gt;光，疑&lt;图&gt;&lt;图&gt;&lt;图&gt;地上霜；举头&lt;图&gt;&lt;图&gt;&lt;图&gt;明月，&lt;图&gt;&lt;图&gt;&lt;图&gt;头思故乡。</span><br></pre></td></tr></table></figure>
+<h4 id="乱码是如何产生的"><a href="#乱码是如何产生的" class="headerlink" title="乱码是如何产生的"></a>乱码是如何产生的</h4><p>上面的诗歌中，“月”、“是”、“望”、“低”4个字没有被正常输出，取而代之的是3个&lt;图&gt;。产生这个输出结果的原因在于文件可读流在读取时会逐个读取Buffer。这首诗的原始Buffer应存储为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Buffer e5 ba 8a e5 89 8d e6 98 8e e6 9c 88 e5 85 89 ef bc 8c e7 96 91 e6 98 af e5 9c b0 e4 b8 8a e9 9c 9c ef bc 9b e4 b8 be e5 a4 b4 e6 9c 9b e6 98 8e e6 9c 88 ...&gt;</span><br></pre></td></tr></table></figure>
+<p>由于我们限定了Buffer对象的长度为11，因此只读流需要读取7次才能完成完整的读取，结果是以下几个Buffer对象依次输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;Buffer e5 ba 8a e5 89 8d e6 98 8e e6 9c&gt;&lt;Buffer 88 e5 85 89 ef bc 8c e7 96 91 e6&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>上文提到的buf.toString()方法默认以UTF-8为编码，中文字在UTF-8下占3个字节。所以第一个Buffer对象在输出时，只能显示3个字符，Buffer中剩下的2个字节（e6 9c）将会以乱码的形式显示。第二个Buffer对象的第一个字节也不能形成文字，只能显示乱码。于是形成一些文字无法正常显示的问题。</p>
+<p>在这个示例中我们构造了11这个限制，但是对于任意长度的Buffer而言，宽字节字符串都有可能存在被截断的情况，只不过Buffer的长度越大出现的概率越低而已，但该问题依然不可忽视。</p>
+<h4 id="setEncoding-与string-decoder"><a href="#setEncoding-与string-decoder" class="headerlink" title="setEncoding()与string_decoder()"></a>setEncoding()与string_decoder()</h4><p>在看过上述的示例后，也许我们忘记了可读流还有一个设置编码的方法setEncoding()，示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">readable.setEncoding(encoding)</span><br></pre></td></tr></table></figure>
+<p>该方法的作用是让data事件中传递的不再是一个Buffer对象，而是编码后的字符串。为此，我们继续改进前面诗歌的程序，添加setEncoding()的步骤如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rs = fs.createReadStream(<span class="string">'test.md'</span>, &#123; <span class="attr">highWaterMark</span>: <span class="number">11</span>&#125;);rs.setEncoding(<span class="string">'utf8'</span>);</span><br></pre></td></tr></table></figure>
+<p>重新执行程序，得到输出：</p>
+<p>床前明月光，疑是地上霜；举头望明月，低头思故乡。</p>
+<p>这是令人开心的输出结果，说明输出不再受Buffer大小的影响了。那Node是如何实现这个输出结果的呢？</p>
+<p>要知道，无论如何设置编码，触发data事件的次数依旧相同，这意味着设置编码并未改变按段读取的基本方式。</p>
+<p>事实上，在调用setEncoding()时，可读流对象在内部设置了一个decoder对象。每次data事件都通过该decoder对象进行Buffer到字符串的解码，然后传递给调用者。是故设置编码后，data不再收到原始的Buffer对象。但是这依旧无法解释为何设置编码后乱码问题被解决掉了，因为在前述分析中，无论如何转码，总是存在宽字节字符串被截断的问题。</p>
+<p>最终乱码问题得以解决，还是在于decoder的神奇之处。decoder对象来自于string_decoder模块StringDecoder的实例对象。它神奇的原理是什么，下面我们以代码来说明：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> StringDecoder = <span class="built_in">require</span>(<span class="string">'string_decoder'</span>).StringDecoder;<span class="keyword">var</span> decoder = <span class="keyword">new</span> StringDecoder(<span class="string">'utf8'</span>);</span><br><span class="line"><span class="keyword">var</span> buf1 = <span class="keyword">new</span> Buffer([<span class="number">0xE5</span>, <span class="number">0xBA</span>, <span class="number">0x8A</span>, <span class="number">0xE5</span>, <span class="number">0x89</span>, <span class="number">0x8D</span>, <span class="number">0xE6</span>, <span class="number">0x98</span>, <span class="number">0x8E</span>, <span class="number">0xE6</span>, <span class="number">0x9C</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(decoder.write(buf1));<span class="comment">// =&gt; 床前明</span></span><br><span class="line"><span class="keyword">var</span> buf2 = <span class="keyword">new</span> Buffer([<span class="number">0x88</span>, <span class="number">0xE5</span>, <span class="number">0x85</span>, <span class="number">0x89</span>, <span class="number">0xEF</span>, <span class="number">0xBC</span>, <span class="number">0x8C</span>, <span class="number">0xE7</span>, <span class="number">0x96</span>, <span class="number">0x91</span>, <span class="number">0xE6</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(decoder.write(buf2));<span class="comment">// =&gt; 月光，疑</span></span><br></pre></td></tr></table></figure>
+<p>我将前文提到的前两个Buffer对象写入decoder中。奇怪的地方在于“月”的转码并没有如平常一样在两个部分分开输出。StringDecoder在得到编码后，知道宽字节字符串在UTF-8编码下是以3个字节的方式存储的，所以第一次write()时，只输出前9个字节转码形成的字符，“月”字的前两个字节被保留在StringDecoder实例内部。第二次write()时，会将这2个剩余字节和后续11个字节组合在一起，再次用3的整数倍字节进行转码。于是乱码问题通过这种中间形式被解决了。</p>
+<p>虽然string_decoder模块很奇妙，但是它也并非万能药，它目前只能处理UTF-8、Base64和UCS-2/UTF-16LE这3种编码。所以，通过setEncoding()的方式不可否认能解决大部分的乱码问题，但并不能从根本上解决该问题。</p>
+<h4 id="正确拼接Buffer"><a href="#正确拼接Buffer" class="headerlink" title="正确拼接Buffer"></a>正确拼接Buffer</h4><p>淘汰掉setEncoding()方法后，剩下的解决方案只有将多个小Buffer对象拼接为一个Buffer对象，然后通过iconv-lite一类的模块来转码这种方式。+=的方式显然不行，那么正确的Buffer拼接方法应该如下面展示的形式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> chunks = [];</span><br><span class="line"><span class="keyword">var</span> size = <span class="number">0</span>;</span><br><span class="line">res.on(<span class="string">'data'</span>,</span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">  chunks.push(chunk);</span><br><span class="line">  size += chunk.length;</span><br><span class="line">&#125;);</span><br><span class="line">res.on(<span class="string">'end'</span>,</span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> buf = Buffer.concat(chunks, size);</span><br><span class="line">  <span class="keyword">var</span> str = iconv.decode(buf, <span class="string">'utf8'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(str);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>正确的拼接方式是用一个数组来存储接收到的所有Buffer片段并记录下所有片段的总长度，然后调用Buffer.concat()方法生成一个合并的Buffer对象。Buffer.concat()方法封装了从小Buffer对象向大Buffer对象的复制过程，实现十分细腻，值得围观学习：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Buffer.concat = <span class="function"><span class="keyword">function</span>(<span class="params">list, length</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">Array</span>.isArray(list)) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Usage: Buffer.concat(list, [length])'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (list.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Buffer(<span class="number">0</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (list.length === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> list[<span class="number">0</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> length !== <span class="string">'number'</span>) &#123;</span><br><span class="line">    length = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; list.length; i++) &#123;</span><br><span class="line">      <span class="keyword">var</span> buf = list[i];</span><br><span class="line">      length += buf.length;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> buffer = <span class="keyword">new</span> Buffer(length);</span><br><span class="line">  <span class="keyword">var</span> pos = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; list.length; i++) &#123;</span><br><span class="line">    <span class="keyword">var</span> buf = list[i];</span><br><span class="line">    buf.copy(buffer, pos);</span><br><span class="line">    pos += buf.length;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> buffer;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Buffer与性能"><a href="#Buffer与性能" class="headerlink" title="Buffer与性能"></a>Buffer与性能</h3><p>Buffer在文件I/O和网络I/O中运用广泛，尤其在网络传输中，它的性能举足轻重。在应用中，我们通常会操作字符串，但一旦在网络中传输，都需要转换为Buffer，以进行二进制数据传输。在Web应用中，字符串转换到Buffer是时时刻刻发生的，提高字符串到Buffer的转换效率，可以很大程度地提高网络吞吐率。</p>
+<p>在展开Buffer与网络传输的关系之前，我们可以先来进行一次性能测试。下面的例子中构造了一个10 KB大小的字符串。我们首先通过纯字符串的方式向客户端发送，代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">var</span> helloworld = <span class="string">""</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1024</span> * <span class="number">10</span>; i++) &#123;</span><br><span class="line">  helloworld += <span class="string">"a"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// helloworld = new Buffer(helloworld);</span></span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.writeHead(<span class="number">200</span>);</span><br><span class="line">  res.end(helloworld);</span><br><span class="line">&#125;).listen(<span class="number">8001</span>);</span><br></pre></td></tr></table></figure>
+<p>我们通过ab进行一次性能测试，发起200个并发客户端：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ab -c 200 -t 100 </span><br><span class="line">http://127.0.0.1:8001/</span><br></pre></td></tr></table></figure>
+<p>得到的测试结果如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTML transferred: 512000000 bytesRequests per second: 2527.64 [#/sec] (mean)</span><br><span class="line">Time per request: 79.125 [ms] (mean)</span><br><span class="line">Time per request: 0.396 [ms] (mean, across all concurrent requests)</span><br><span class="line">Transfer rate: 25370.16 [Kbytes/sec] received</span><br></pre></td></tr></table></figure>
+<p>测试的QPS（每秒查询次数）是2527.64，传输率为每秒25 370.16 KB。</p>
+<p>接下来我们注释掉helloworld = new Buffer(helloworld);使向客户端输出的是一个Buffer对象，无须在每次响应时进行转换。再次进行性能测试的结果如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Total transferred: <span class="number">513900000</span> bytes</span><br><span class="line">HTML transferred: 512000000 bytesRequests per second: 4843.28 [#/sec] (mean)</span><br><span class="line">Time per request: <span class="number">41.294</span> [ms] (mean)</span><br><span class="line">Time per request: <span class="number">0.206</span> [ms] (mean, across all concurrent requests)</span><br><span class="line">Transfer rate: <span class="number">48612.56</span> [Kbytes/sec] received</span><br></pre></td></tr></table></figure>
+<p>QPS的提升到4843.28，传输率为每秒48 612.56 KB，性能提高近一倍。</p>
+<p>通过预先转换静态内容为Buffer对象，可以有效地减少CPU的重复使用，节省服务器资源。在Node构建的Web应用中，可以选择将页面中的动态内容和静态内容分离，静态内容部分可以通过预先转换为Buffer的方式，使性能得到提升。由于文件自身是二进制数据，所以在不需要改变内容的场景下，尽量只读取Buffer，然后直接传输，不做额外的转换，避免损耗。</p>
+<p>文件读取</p>
+<p>Buffer的使用除了与字符串的转换有性能损耗外，在文件的读取时，有一个highWaterMark设置对性能的影响至关重要。在fs.createReadStream(path, opts)时，我们可以传入一些参数，代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  flags: <span class="string">'r'</span>,</span><br><span class="line">  encoding: <span class="literal">null</span>,</span><br><span class="line">  fd: <span class="literal">null</span>,</span><br><span class="line">  mode: <span class="number">0666</span>,</span><br><span class="line">  highWaterMark: <span class="number">64</span> * <span class="number">1024</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们还可以传递start和end来指定读取文件的位置范围：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;start: 90, end: 99&#125;</span><br></pre></td></tr></table></figure></p>
+<p>fs.createReadStream()的工作方式是在内存中准备一段Buffer，然后在fs.read()读取时逐步从磁盘中将字节复制到Buffer中。完成一次读取时，则从这个Buffer中通过slice()方法取出部分数据作为一个小Buffer对象，再通过data事件传递给调用方。如果Buffer用完，则重新分配一个；如果还有剩余，则继续使用。下面为分配一个新的Buffer对象的操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var pool;</span><br><span class="line">function allocNewPool(poolSize) &#123;</span><br><span class="line">  pool = new Buffer(poolSize);</span><br><span class="line">  pool.used = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在理想的状况下，每次读取的长度就是用户指定的highWaterMark。但是有可能读到了文件结尾，或者文件本身就没有指定的highWaterMark那么大，这个预先指定的Buffer对象将会有部分剩余，不过好在这里的内存可以分配给下次读取时使用。pool是常驻内存的，只有当pool单元剩余数量小于128（kMinPoolSpace）字节时，才会重新分配一个新的Buffer对象。Node源代码中分配新的Buffer对象的判断条件如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!pool || pool.length - pool.used &lt; kMinPoolSpace) &#123; <span class="comment">// discard the old pool</span></span><br><span class="line">  pool = <span class="literal">null</span>;</span><br><span class="line">  allocNewPool(<span class="keyword">this</span>._readableState.highWaterMark);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里与Buffer的内存分配比较类似，highWaterMark的大小对性能有两个影响的点。</p>
+<ul>
+<li>highWaterMark设置对Buffer内存的分配和使用有一定影响。</li>
+<li>highWaterMark设置过小，可能导致系统调用次数过多。</li>
+</ul>
+<p>文件流读取基于Buffer分配，Buffer则基于SlowBuffer分配，这可以理解为两个维度的分配策略。如果文件较小（小于8 KB），有可能造成slab未能完全使用。</p>
+<p>由于fs.createReadStream()内部采用fs.read()实现，将会引起对磁盘的系统调用，对于大文件而言，highWaterMark的大小决定会触发系统调用和data事件的次数。</p>
+<p>以下为Node自带的基准测试，在benchmark/fs/read-stream-throughput.js中可以找到：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">runTest</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  assert(fs.statSync(filename).size === filesize);</span><br><span class="line">  <span class="keyword">var</span> rs = fs.createReadStream(filename, &#123;</span><br><span class="line">    highWaterMark: size,</span><br><span class="line">    encoding: encoding</span><br><span class="line">  &#125;);</span><br><span class="line">  rs.on(<span class="string">'open'</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    bench.start();</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">var</span> bytes = <span class="number">0</span>;</span><br><span class="line">  rs.on(<span class="string">'data'</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">    bytes += chunk.length;</span><br><span class="line">  &#125;);</span><br><span class="line">  rs.on(<span class="string">'end'</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      fs.unlinkSync(filename);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(e) &#123;&#125;</span><br><span class="line">    <span class="comment">// MB/sec bench.end(bytes / (1024 * 1024));</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面为某次执行的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fs/read-stream-throughput.js type=buf size=1024: 46.284</span><br><span class="line">fs/read-stream-throughput.js type=buf size=4096: 139.62</span><br><span class="line">fs/read-stream-throughput.js type=buf size=65535: 681.88</span><br><span class="line">fs/read-stream-throughput.js type=buf size=1048576: 857.98</span><br></pre></td></tr></table></figure>
+<p>从上面的执行结果我们可以看到，读取一个相同的大文件时，highWaterMark值的大小与读取速度的关系：该值越大，读取速度越快。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>体验过JavaScript友好的字符串操作后，有些开发者可能会形成思维定势，将Buffer当做字符串来理解。但字符串与Buffer之间有实质上的差异，即Buffer是二进制数据，字符串与Buffer之间存在编码关系。因此，理解Buffer的诸多细节十分必要，对于如何高效处理二进制数据十分有用。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Node/" rel="tag"># Node</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/06/Node-async-program/" rel="next" title="《深入浅出Node.js》-读书笔记-异步编程">
+                <i class="fa fa-chevron-left"></i> 《深入浅出Node.js》-读书笔记-异步编程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/06/Node-Web-App/" rel="prev" title="《深入浅出Node.js》-读书笔记-构建Web应用">
+                《深入浅出Node.js》-读书笔记-构建Web应用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="songxingguo">
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">132</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理解Buffer"><span class="nav-number">1.</span> <span class="nav-text">理解Buffer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Buffer结构"><span class="nav-number">1.1.</span> <span class="nav-text">Buffer结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模块结构"><span class="nav-number">1.1.1.</span> <span class="nav-text">模块结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Buffer对象"><span class="nav-number">1.1.2.</span> <span class="nav-text">Buffer对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Buffer内存分配"><span class="nav-number">1.2.</span> <span class="nav-text">Buffer内存分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Buffer的转换"><span class="nav-number">1.3.</span> <span class="nav-text">Buffer的转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串转Buffer"><span class="nav-number">1.3.1.</span> <span class="nav-text">字符串转Buffer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Buffer转字符串"><span class="nav-number">1.3.2.</span> <span class="nav-text">Buffer转字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Buffer不支持的编码类型"><span class="nav-number">1.3.3.</span> <span class="nav-text">Buffer不支持的编码类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Buffer的拼接"><span class="nav-number">1.4.</span> <span class="nav-text">Buffer的拼接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#乱码是如何产生的"><span class="nav-number">1.4.1.</span> <span class="nav-text">乱码是如何产生的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setEncoding-与string-decoder"><span class="nav-number">1.4.2.</span> <span class="nav-text">setEncoding()与string_decoder()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正确拼接Buffer"><span class="nav-number">1.4.3.</span> <span class="nav-text">正确拼接Buffer</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Buffer与性能"><span class="nav-number">1.5.</span> <span class="nav-text">Buffer与性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.6.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":90,"vOffset":-25},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
