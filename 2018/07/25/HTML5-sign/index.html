@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="编写更有意义的标记  使用微数据（microdata）,解决文件级语义问题的前言标准，可以让网页和搜索结果的内容更加丰富。  回顾语义元素从页面结构开始讨论语义是因为页面结构容易把握。绝大多数网站在规划布局时，都会使用为数不多的几种常见设计元素（页眉、页脚、侧边栏、菜单），结果网站的布局——除了外观装饰有所不同外——都很相似。">
+<meta name="keywords" content="HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《HTML5秘籍》学习笔记-编写更有意义的标记">
+<meta property="og:url" content="https://www.songxingguo.com/2018/07/25/HTML5-sign/index.html">
+<meta property="og:site_name" content="阿有的生活">
+<meta property="og:description" content="编写更有意义的标记  使用微数据（microdata）,解决文件级语义问题的前言标准，可以让网页和搜索结果的内容更加丰富。  回顾语义元素从页面结构开始讨论语义是因为页面结构容易把握。绝大多数网站在规划布局时，都会使用为数不多的几种常见设计元素（页眉、页脚、侧边栏、菜单），结果网站的布局——除了外观装饰有所不同外——都很相似。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/HTML5/%E9%A1%B5%E9%9D%A2%E7%BB%93%E6%9E%84%E7%9B%B8%E5%85%B3%E8%AF%AD%E4%B9%89%E5%85%83%E7%B4%A0%E4%B8%8A.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/HTML5/%E9%A1%B5%E9%9D%A2%E7%BB%93%E6%9E%84%E7%9B%B8%E5%85%B3%E8%AF%AD%E4%B9%89%E5%85%83%E7%B4%A0%E4%B8%8B.jpg">
+<meta property="og:image" content="https://graphbed.qiniu.songxingguo.com/HTML5/mark%E8%AF%AD%E4%B9%89%E5%85%83%E7%B4%A0.png">
+<meta property="og:updated_time" content="2022-04-04T15:51:59.769Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《HTML5秘籍》学习笔记-编写更有意义的标记">
+<meta name="twitter:description" content="编写更有意义的标记  使用微数据（microdata）,解决文件级语义问题的前言标准，可以让网页和搜索结果的内容更加丰富。  回顾语义元素从页面结构开始讨论语义是因为页面结构容易把握。绝大多数网站在规划布局时，都会使用为数不多的几种常见设计元素（页眉、页脚、侧边栏、菜单），结果网站的布局——除了外观装饰有所不同外——都很相似。">
+<meta name="twitter:image" content="https://graphbed.qiniu.songxingguo.com/HTML5/%E9%A1%B5%E9%9D%A2%E7%BB%93%E6%9E%84%E7%9B%B8%E5%85%B3%E8%AF%AD%E4%B9%89%E5%85%83%E7%B4%A0%E4%B8%8A.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/07/25/HTML5-sign/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《HTML5秘籍》学习笔记-编写更有意义的标记 | 阿有的生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">132</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">43</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/07/25/HTML5-sign/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《HTML5秘籍》学习笔记-编写更有意义的标记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-25 08:50:00" itemprop="dateCreated datePublished" datetime="2018-07-25T08:50:00+00:00">2018-07-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2022-04-04 15:51:59" itemprop="dateModified" datetime="2022-04-04T15:51:59+00:00">2022-04-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/25/HTML5-sign/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/07/25/HTML5-sign/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/07/25/HTML5-sign/" class="leancloud_visitors" data-flag-title="《HTML5秘籍》学习笔记-编写更有意义的标记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="编写更有意义的标记"><a href="#编写更有意义的标记" class="headerlink" title="编写更有意义的标记"></a>编写更有意义的标记</h3><p>  使用微数据（microdata）,解决文件级语义问题的前言标准，可以让网页和搜索结果的内容更加丰富。</p>
+<ul>
+<li><h4 id="回顾语义元素"><a href="#回顾语义元素" class="headerlink" title="回顾语义元素"></a>回顾语义元素</h4><p>从页面结构开始讨论语义是因为页面结构容易把握。绝大多数网站在规划布局时，都会使用为数不多的几种常见设计元素（页眉、页脚、侧边栏、菜单），结果网站的布局——除了外观装饰有所不同外——都很相似。</p>
+<a id="more"></a>
+<p><img src="https://graphbed.qiniu.songxingguo.com/HTML5/%E9%A1%B5%E9%9D%A2%E7%BB%93%E6%9E%84%E7%9B%B8%E5%85%B3%E8%AF%AD%E4%B9%89%E5%85%83%E7%B4%A0%E4%B8%8A.jpg" alt="页面结构相关语义元素上"></p>
+<p><img src="https://graphbed.qiniu.songxingguo.com/HTML5/%E9%A1%B5%E9%9D%A2%E7%BB%93%E6%9E%84%E7%9B%B8%E5%85%B3%E8%AF%AD%E4%B9%89%E5%85%83%E7%B4%A0%E4%B8%8B.jpg" alt="页面结构相关语义元素下"></p>
+<p>由于结构化的内容是又很多更小的内容片段构成的，而组织这些内容片段的方式没有一定之规。</p>
+<p>HTML5的策略是双管齐下。一方面，它 <strong>只增强了很少几个文本级语义元素</strong> ；另一方面，任何人都 <strong>可以定义自己的信息</strong> 。HTML5支持一个 <strong>独立的微数据标准</strong> 。这个标准为人们提供了扩展的可能性，任何人都可以定义自己的信息，在自己的页面中为信息添加标注。</p>
+<p>首先，来认识三个新的文本级的语义元素： <code>&lt;time&gt;</code> 、 <code>&lt;output&gt;</code> 和 <code>&lt;mark&gt;</code> 。</p>
+<ul>
+<li><h5 id="标注日期和时间"><a href="#标注日期和时间" class="headerlink" title="标注日期和时间"></a>标注日期和时间</h5><p>网页中经常会出现日期和时间信息。有了 <code>&lt;time&gt;</code> 元素可以解决 没有标准的方式来标注日期的问题，通过它可以标注日期、时间或日期与时间的组合。先看个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The Party starts &lt;time&gt;2014-03-21&lt;/time&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>用 `&lt;time&gt;` 元素来标注日期似乎有点违反直觉，这是HTML5的古怪行为之一。更适合的元素显然应该是 `&lt;datatime&gt;`。
+</code></pre><p><code>&lt;time&gt;</code> 元素在这儿扮演两个角色。首先，它 <strong>表示日期和时间位于标记的哪个地方</strong> 。其次，它 <strong>以任何软件程序都能理解的方式提供日期和时间</strong>。  </p>
+<p>前面的例子符合第二个角色的要求，使用了通用日期格式。</p>
+<p>可以采用任何格式来表示日期，只要你在datetime属性中提供计算机能看懂的通用格式日期就行，比如： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The party starts &lt;time datetime=&quot;2014-03-21&quot;&gt;March 21&lt;sup&gt;st&lt;/sup&gt;&lt;/time&gt;</span><br></pre></td></tr></table></figure>
+<p>在浏览器中的效果如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The party starts March 21^st.</span><br></pre></td></tr></table></figure>
+<p>对于时间部分， <code>&lt;time&gt;</code> 也有类似的规则，标准的时间格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HH:MM</span><br></pre></td></tr></table></figure>
+<p>首先是2位数的小时（24小时制），然后是2位数的分钟。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Parties starts &lt;time datatime=&quot;2014-03-21 16:30&quot;&gt;4:30 p.m.&lt;/time&gt;</span><br></pre></td></tr></table></figure>
+<p>最后，组合以上两个规则可以指定具体日期和时间，日期在前，空一个格，时间在后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The party starts &lt;time datatime=&quot;2014-03-21 16:30&quot;&gt;March 21&lt;sup&gt;st&lt;/sup&gt; at 4:30 p.m.&lt;/time&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>最初 `&lt;time&gt;` 元素要求用一种稍有不同的格式组合日期和时间。2014-03-21T16:30的格式还可以用，因此在别人的网页也可能出现。
+</code></pre><p>在组合日期和时间的情况下，有时候还需要 <strong>后缀时区信息</strong> 。比如：纽约在东五区，即UTC-5:00。（关于时区的划分，请参见 <a href="http://en.wikipedia.org/wiki/Time_zone。）要表示纽约时间下午4:30，应该使用如下标记：" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Time_zone。）要表示纽约时间下午4:30，应该使用如下标记：</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The party starts &lt;time datetime=&quot;2014-03-21 16:30-05:00&quot;&gt;March 21&lt;sup&gt;st&lt;/sup&gt; at 4:30 p.m.&lt;/time&gt;</span><br></pre></td></tr></table></figure>
+<p>这样，看你网页的人，能看到他们想看到的格式，而搜索机器人和其他软件则能看到它们可以处理的值，而且毫无歧义。</p>
+<p>另外， <code>&lt;time&gt;</code> 还有 <strong>一个pubdate属性</strong> 。如果当前内容（例如 <code>&lt;time&gt;</code> 元素所在的 <code>&lt;article&gt;</code> ）对应一个发表日期，可以使用这个属性。下面就是一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Published on &lt;time datetime=&quot;2014-03-21&quot; pubdate&gt;March 31,2014&lt;/time&gt;.</span><br></pre></td></tr></table></figure>
+<pre><code>因为 `&lt;time&gt;`元素是纯粹是信息性的，没有任何附加样式，所以可以在任何浏览器中使用。不必担心兼容性问题。
+</code></pre></li>
+<li><h5 id="使用-lt-output-gt-标注JavaScript返回值"><a href="#使用-lt-output-gt-标注JavaScript返回值" class="headerlink" title="使用 &lt;output&gt; 标注JavaScript返回值"></a>使用 <code>&lt;output&gt;</code> 标注JavaScript返回值</h5><p>HTML5还包含一个语义元素 <code>&lt;output&gt;</code>,它能使 <strong>某种JavaScript驱动页面更加清晰</strong> 。实际上，这个元素是 <strong>一个占位符</strong> ，<strong>用于展示一小段计算后的信息</strong> 。</p>
+<p>通常的做法是给占位符指定一个ID属性，这样JavaScript代码就可以在计算时找到它。Web开发人员一般将 <code>&lt;span&gt;</code> 元素用作占位符，而唯一的问题是该元素不提供任何语义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;Your BMI: &lt;span id=&quot;result&quot;&gt;&lt;/span&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p>以下则是使用HTML5的更有意义的版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;Your BMI：&lt;output id=&quot;result&quot;&gt;&lt;/output&gt;&lt;/</span><br></pre></td></tr></table></figure>
+<p>实际的JavaScript代码无需改变，因为它只是根据ID属性查找元素，不用考虑元素类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var resultElement = document.getElementById(&quot;result&quot;);</span><br></pre></td></tr></table></figure>
+<p>通常，这种页面都会采用一个 <code>&lt;form&gt;</code> 元素。在这个例子中，需要包含3个文本框，以便用户使用在其中输入信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;#&quot; id=&quot;bmiCalculator&quot;&gt;</span><br><span class="line">  &lt;label for=&quot;feet&quot; inches&gt;Height:&lt;/label&gt;</span><br><span class="line">  &lt;input name=&quot;feet&quot;&gt;feet&lt;/br&gt;</span><br><span class="line">  &lt;input name=&quot;inches&quot;&gt;inches&lt;br&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;labelfor=&quot;punds&quot;&gt;Weight:&lt;/label&gt;</span><br><span class="line">  &lt;input name=&quot;pounds&quot;&gt;pounds&lt;br&gt;&lt;br&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<p>可以为 <code>&lt;output&gt;</code> 元素添加form和for属性，前者的值是 <strong>包含相关控件表单ID</strong> ,后者的值是 <strong>以空格分隔的相关控件的ID</strong> 。比如下面的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line"> Your BMI: &lt;output id=&quot;result&quot; from=&quot;bniCalculator&quot; for=&quot;feet inches punds&quot; &gt;</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p>这些属性的唯一用处就是 <strong>表明 <code>&lt;output&gt;</code> 从那些控件获取结果这一信息</strong> 。<br>如果其他人需要编辑你的页面， <strong>那些属性可以帮他们理清思路</strong> 。</p>
+<blockquote>
+<p><strong>提示</strong><br>可以在 <a href="http://prosetech.com/html5" target="_blank" rel="noopener">http://prosetech.com/html5</a> 找到所有示例页面。</p>
+</blockquote>
+</li>
+<li><h5 id="使用-lt-mark-gt-标注突显文本"><a href="#使用-lt-mark-gt-标注突显文本" class="headerlink" title="使用 &lt;mark&gt; 标注突显文本"></a>使用 <code>&lt;mark&gt;</code> 标注突显文本</h5><p><code>&lt;mark&gt;</code>  <strong>用于标注一段文本</strong> ， <strong>这段文本会突出显示</strong> 。在需要引用其他人的内容，而你想引起别人的注意，就可以使用 <code>&lt;mark&gt;</code> 元素：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">  &lt;p&gt;In 2009, Facebook made a bold grab to own everyone&apos;s content,</span><br><span class="line">&lt;em&gt;forever&lt;/em&gt;. This is the text they put in their terms of service:&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">  &lt;blockquote&gt;</span><br><span class="line">You hereby grant Facebook an &lt;mark&gt;irrevocable, perpetual, non-exclusive, transferable, fully paid, worldwide license&lt;/mark&gt; (with the right to sublicense) to &lt;mark&gt;use, copy, publish&lt;/mark&gt;, stream, store, retain, publicly perform or display, transmit, scan, reformat, modify, edit, frame, translate, excerpt, adapt, create derivative works and distribute (through multiple tiers), &lt;mark&gt;any user content you post&lt;/mark&gt; on or in connection with the Facebook Service or the promotion thereof subject only to your privacy settings or enable a user to post.</span><br><span class="line">  &lt;/blockquote&gt;</span><br><span class="line"></span><br><span class="line">  &lt;p&gt;Fortunately, they&apos;ve since backtracked and weakened the language considerably.</span><br><span class="line">Here&apos;s the relevant section today:&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">  &lt;blockquote&gt;</span><br><span class="line">&lt;mark&gt;You own all of the content and information you post on Facebook&lt;/mark&gt;, and you can control how it is shared through your privacy and application settings. In addition: 1. For content that is covered by intellectual property rights, like photos and videos (&quot;IP content&quot;), you&lt;/mark&gt; specifically give us the following permission, subject to your privacy and application settings: &lt;mark&gt;you grant us a non-exclusive, transferable, sub-licensable, royalty-free, worldwide license to use any content that you post&lt;/mark&gt; on or in connection with Facebook. &lt;mark&gt;This license ends when you delete your content or your account&lt;/mark&gt; unless your content has been shared with others, and they have not deleted it.</span><br><span class="line">  &lt;/blockquote&gt;</span><br></pre></td></tr></table></figure>
+<p> 如下图3-2所示，浏览器会给 <code>&lt;mark&gt;</code> 中的文本添加黄色背景。</p>
+<p> <img src="https://graphbed.qiniu.songxingguo.com/HTML5/mark%E8%AF%AD%E4%B9%89%E5%85%83%E7%B4%A0.png" alt="mark语义元素"><br> <code>图3-2</code></p>
+<p> 也可以使用 <code>&lt;mark&gt;</code> <strong>标注重要的内容或关键字</strong> ——就像搜索引擎在搜索结果中显示匹配的文本那样，还 <strong>可以与 <code>&lt;del&gt;</code>（删除的文本）和 <code>&lt;ins&gt;</code>（插入的文本）组合使用</strong> ,以标注文档的变化。</p>
+<p> <code>&lt;mark&gt;</code> 元素并不十分必要，HTML5规范认为它是一个语义元素，但实际上它更多地则是被用于表现目的。默认情况下，被标注的文本会带有浅黄色的背景（见图3-2），不过可以通过样式规则为它应用不同的样式。</p>
+<blockquote>
+<p><strong>提示</strong><br> 应该坚持只用 <code>&lt;mark&gt;</code>（结合你想使用的任意CSS格式）来传达适当的语义。那就是 <strong>使用 <code>&lt;mark&gt;</code>来吸引人注意那些变得很重要的文本</strong> 。</p>
+</blockquote>
+<p> 即使沿用默认的黄色背景，也应该为不支持HTML5的浏览器添加后备样式表。以下就是相应的样式规则：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mark &#123;</span><br><span class="line"> bakground-color: yellow;</span><br><span class="line"> color: black;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h4 id="其他语义元素"><a href="#其他语义元素" class="headerlink" title="其他语义元素"></a>其他语义元素</h4><ul>
+<li><h5 id="ARIA"><a href="#ARIA" class="headerlink" title="ARIA"></a>ARIA</h5><p> ARIA（Accessible Rich Internet Application, 无障碍富因特网应用）是一个还在制定中的标准， <strong>它规定了在任意HTML元素上使用属性</strong> ， <strong>而通过这些属性可以为屏幕阅读器提供额外的信息</strong> 。例如，ARIA中规定了一个role属性，表示所在元素的用途。下面就以一个表示页眉的 <code>&lt;div&gt;</code> 元素为例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;header&quot;</span><br></pre></td></tr></table></figure>
+<p> 通过为其指定值为banner的role属性，可以告诉屏幕阅读器它的用途是保存横幅广告：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;header&quot; role=&quot;banner&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p> HTML5为标注页眉提供了一个语义元素。因此，最适合的方式莫过于：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;header role=&quot;banner&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p> 这个示例说明了两方面的问题: 首先，ARIA规定了一些推荐的角色名。（要了解所有角色名，请参考规范中相应部分： <a href="http://tinyurl.com/roles-aria" target="_blank" rel="noopener">http://tinyurl.com/roles-aria</a> 。）其次，部分ARIA与新HTML5语义元素重复——只是合情合理的，因为ARIA早于HTML5。不过重复也不是完全重复。</p>
+<p> ARIA还 <strong>针对表单定义了属性</strong> 。文本框的 <strong>aria-required属性</strong> 表示 <strong>用户必须输入值</strong> 。而文本框的 <strong>aria-invalid属性</strong> 表示 <strong>当前值不正确</strong> 。这些属性可以让屏幕阅读器用户，特别是视力不好的用户，不会因为看不到提示信息（比如必填字段旁的星号，或闪烁的红色错误图标）而受影响。</p>
+<p> 如果想创造一个 <strong>可以无障碍访问的网站</strong> ，必须 <strong>既要考虑ARIA,又要考虑HTML5</strong> 。因为屏幕阅读器支持ARIA，不支持HTML5。</p>
+<blockquote>
+<p><strong>注意</strong><br> 要了解有关ARIA（全名是WAI-ARIA, 因为它是由Web Accessibility Initiative 工作组负责制定的）的 更多信息，请参考其规范： <a href="http://www.w3.org/TR/wai-aria/" target="_blank" rel="noopener">http://www.w3.org/TR/wai-aria/</a> 。</p>
+</blockquote>
+</li>
+<li><h5 id="RDFa"><a href="#RDFa" class="headerlink" title="RDFa"></a>RDFa</h5><p>RDFa（Rrsource Description Framework, 资源描述框架） <strong>也是一种使用属性向网页中嵌入详细信息的标准</strong> 。RDFa有一个明显的优点;  <strong>它是一个稳定不变的标准</strong> 。RDFa也有两个明显的缺点。首先，RDFa最初是为XHTML而非HTML5设计的，因此关于严格的RDFa与松散的HTML5如何混写的争论一直不绝于耳。其次，RDFa很复杂，嵌入RDFa元数据后的网页比最初要长得多，而且显得很笨重。</p>
+<p>可以在Wikipedia上看到完整的介绍： <a href="http://en.wikipedia.org/wiki/RDFa" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/RDFa</a> 。</p>
+</li>
+<li><h5 id="微格式"><a href="#微格式" class="headerlink" title="微格式"></a>微格式</h5><p><strong>微格式</strong> （Microformats）是 <strong>一种在网页中嵌入元数据的简单而又比较合理的方式</strong> 。它是一组统一的宽松的约定，这些约定 <strong>有助于网页之间共享结构化信息</strong> ，但 <strong>又不会导致像采用RDFa那样复杂</strong> 。</p>
+<p>微格式的应用的方式比较新颖，它们附加在通常用于添加样式的class属性上。你可以根据数据的类型，<strong>使用某些标准样式名来标注数据</strong> 。然后，其他程序可以读取你的标记，提取数据并 <strong>通过检查class属性来确定数据的含义</strong> 。</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTML/" rel="tag"># HTML</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/22/HTML5-semantics/" rel="next" title="《HTML5秘籍》学习笔记-用语义元素构造网页">
+                <i class="fa fa-chevron-left"></i> 《HTML5秘籍》学习笔记-用语义元素构造网页
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/25/Angular-2-primary/" rel="prev" title="《Angular 2开发实战》学习笔记-Angular入门">
+                《Angular 2开发实战》学习笔记-Angular入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="songxingguo">
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">132</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#编写更有意义的标记"><span class="nav-number">1.</span> <span class="nav-text">编写更有意义的标记</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#回顾语义元素"><span class="nav-number">1.1.</span> <span class="nav-text">回顾语义元素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#标注日期和时间"><span class="nav-number">1.1.1.</span> <span class="nav-text">标注日期和时间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-lt-output-gt-标注JavaScript返回值"><span class="nav-number">1.1.2.</span> <span class="nav-text">使用 &lt;output&gt; 标注JavaScript返回值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-lt-mark-gt-标注突显文本"><span class="nav-number">1.1.3.</span> <span class="nav-text">使用 &lt;mark&gt; 标注突显文本</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他语义元素"><span class="nav-number">1.2.</span> <span class="nav-text">其他语义元素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ARIA"><span class="nav-number">1.2.1.</span> <span class="nav-text">ARIA</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RDFa"><span class="nav-number">1.2.2.</span> <span class="nav-text">RDFa</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#微格式"><span class="nav-number">1.2.3.</span> <span class="nav-text">微格式</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":90,"vOffset":-25},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
