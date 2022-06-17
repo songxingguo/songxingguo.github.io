@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="多说，想到什么，就说什么。为什么走前端  喜欢前端、可以展示自己、能将学到的东西学以致用，并能马上看到效果，很有成就感。 this 指向 this永远指向最后调用它的上级对象。  New 关键字可以改变 this 指向（调用了call()方法）。  自行改变 this 指向 call()、apply()、bind()。  返回值是对象，this 指向对象，否则指向函数实例（null 也为对象）。">
+<meta name="keywords" content="找工作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="去哪儿网面试准备">
+<meta property="og:url" content="https://www.songxingguo.com/2018/10/10/qunar/index.html">
+<meta property="og:site_name" content="阿有的生活">
+<meta property="og:description" content="多说，想到什么，就说什么。为什么走前端  喜欢前端、可以展示自己、能将学到的东西学以致用，并能马上看到效果，很有成就感。 this 指向 this永远指向最后调用它的上级对象。  New 关键字可以改变 this 指向（调用了call()方法）。  自行改变 this 指向 call()、apply()、bind()。  返回值是对象，this 指向对象，否则指向函数实例（null 也为对象）。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2022-06-17T16:30:27.099Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="去哪儿网面试准备">
+<meta name="twitter:description" content="多说，想到什么，就说什么。为什么走前端  喜欢前端、可以展示自己、能将学到的东西学以致用，并能马上看到效果，很有成就感。 this 指向 this永远指向最后调用它的上级对象。  New 关键字可以改变 this 指向（调用了call()方法）。  自行改变 this 指向 call()、apply()、bind()。  返回值是对象，this 指向对象，否则指向函数实例（null 也为对象）。">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.songxingguo.com/2018/10/10/qunar/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>去哪儿网面试准备 | 阿有的生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阿有的生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">爱技术，也爱生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">132</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">43</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-works">
+    <a href="/works/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>作品</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2018/10/10/qunar/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">去哪儿网面试准备
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-10 22:45:00" itemprop="dateCreated datePublished" datetime="2018-10-10T22:45:00+00:00">2018-10-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2022-06-17 16:30:27" itemprop="dateModified" datetime="2022-06-17T16:30:27+00:00">2022-06-17</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/备忘录/" itemprop="url" rel="index"><span itemprop="name">备忘录</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/10/qunar/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/10/qunar/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/10/10/qunar/" class="leancloud_visitors" data-flag-title="去哪儿网面试准备">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="多说，想到什么，就说什么。"><a href="#多说，想到什么，就说什么。" class="headerlink" title="多说，想到什么，就说什么。"></a>多说，想到什么，就说什么。</h1><h3 id="为什么走前端"><a href="#为什么走前端" class="headerlink" title="为什么走前端"></a>为什么走前端</h3><p>  喜欢前端、可以展示自己、能将学到的东西学以致用，并能马上看到效果，很有成就感。</p>
+<h3 id="this-指向"><a href="#this-指向" class="headerlink" title="this 指向"></a>this 指向</h3><ol>
+<li><p>this永远指向最后调用它的上级对象。</p>
+</li>
+<li><p>New 关键字可以改变 this 指向（调用了call()方法）。</p>
+</li>
+<li><p>自行改变 this 指向 call()、apply()、bind()。</p>
+</li>
+<li><p>返回值是对象，this 指向对象，否则指向函数实例（null 也为对象）。</p>
+</li>
+<li><p>ES6 中箭头函数中 this 指向定义时所在对象。</p>
+</li>
+</ol>
+<blockquote>
+<p>严格模式中默认的 this 不再是 window，而是 undefined。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>在JavaScript中能形成作用域的有 函数调用 with 以及 全局作用域。</p>
+<p>函数在每次被调用时会创建对应的作用域，函数执行结束后，该作用域将会销毁。同时作用域中声明的局部变量分配在该作用域上，随作用域的销毁而销毁。只被局部变量引用的对象存活周期较短。</p>
+<h3 id="标识符查找"><a href="#标识符查找" class="headerlink" title="标识符查找"></a>标识符查找</h3><p>与作用域相关的即是标识符查找。所谓 <strong>标识符</strong>，可以理解为 <strong>变量名</strong> 。</p>
+<h3 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h3><p>由于标识符的查找方向是向上的，所以变量只能向外访问，而不能向内访问。</p>
+<h3 id="变量的主动释放"><a href="#变量的主动释放" class="headerlink" title="变量的主动释放"></a>变量的主动释放</h3><p>如果变量是全局变量（不通过var声明或定义在global变量上），由于全局作用域需要直到进程退出才能释放，此时将导致引用的对象常驻内存（常驻在老生代中）。如果需要释放常驻内存的对象，可以通过delete操作来删除引用关系。或者将变量重新赋值，让旧的对象脱离引用关系。在接下来的老生代内存清除和整理的过程中，会被回收释放。</p>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>我们知道作用域链上的对象访问只能向上，这样外部无法向内部访问。</p>
+<p>在JavaScript中，实现外部作用域访问内部作用域中变量的方法 叫做 闭包（closure）。这得益于高阶函数的特性：函数可以作为参数或者返回值 。</p>
+<h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><p>ECMAScript 中描述了原型链的概念，并 将原型链作为实现继承的主要方法 。其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法 。简单回顾一下构造函数、原型和实例的关系：每个构造函数都有一个原型对象 ，原型对象都包含一个指向构造函数的指针 ，而 实例都包含一个指向原型对象的内部指针 。</p>
+<p>在通过原型链实现继承的情况下，搜索过程就得沿着原型链继续向上。</p>
+<p>问题： 包含引用类型值的原型属性会被所有实例共享。（Java中的静态变量）</p>
+<p>JavaScript 主要通过原型链实现继承。原型链的构建是通过将一个类型的实例赋值给另一个构造函数的原型实现的。这样，子类型就能够访问超类型的所有属性和方法，这一点与基于类的继承很相似。原型链的问题是对对象实例共享所有继承的属性和方法，因此不适宜单独使用。解决这个问题的技术是借用构造函数，即在子类型构造函数的内部调用超类型构造函数。这样就可以做到每个实例都具有自己的属性，同时还能保证只使用构造函数模式来定义类型。使用最多的继承模式是组合继承，这种模式使用原型链继承共享的属性和方法，而通过借用构造函数继承实例属性。<br>此外，还存在下列可供选择的继承模式。</p>
+<p>原型式继承，可以在不必预先定义构造函数的情况下实现继承，其本质是执行对给定对象的浅复制。而复制得到的副本还可以得到进一步改造。</p>
+<p>寄生式继承，与原型式继承非常相似，也是基于某个对象或某些信息创建一个对象，然后增强对象，最后返回对象。为了解决组合继承模式由于多次调用超类型构造函数而导致的低效率问题，可以将这个模式与组合继承一起使用。</p>
+<p>寄生组合式继承，集寄生式继承和组合继承优点与一身，，是实现基于类型继承的最有效方式。</p>
+<p><a href="http://localhost:4000/2018/08/14/JavaScript-object-oriented/" target="_blank" rel="noopener">面向对象程序设计</a></p>
+<h3 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h3><p>想象画在一张纸上的一组同心圆 。如果你把手指放在圆心上，那么你的手指指向的不是一个圆，而是纸上的所有圆 。</p>
+<p>换句话说，在单击按钮的同时，你也单击了按钮的容器元素，甚至也单击了整个页面 。</p>
+<p>事件流描述的是从页面中接收事件的顺序 。IE 的事件流是事件冒泡流 ，而 Netscape Communicator 的事件流是事件捕获流 。</p>
+<h4 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h4><p>IE 的事件流叫做事件冒泡,事件开始时由最具体的元素（文档中嵌套层次最深的那个节点）接收 ，然后逐级向上传播到较为不具体的节点 （文档）。</p>
+<h4 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h4><p>Netscape Communicator团队提出的另一种事件流 叫做 事件捕获 （event capturing）。事件捕获的思想是不太具体的节点应该更早接收到事件 ，最具体的节点应该最后接收到事件 。事件捕获的用意在于在事件到达预定目标之前捕获它 。</p>
+<p>由于老版本的浏览器不支持，因此很少有人使用事件捕获 。</p>
+<p>事件流包括三个阶段：事件捕获阶段 、处于目标阶段 和事件冒泡阶段 。</p>
+<p>首先发生的是 事件捕获 ，为截获事件提供了机会 。然后是实际的 目标接收到事件 。最后一个阶段是 冒泡阶段 ，可以在这个阶段对事件做出响应 。</p>
+<p>阻止冒泡，只有 cancelable 属性设置为 true 的事件 ，才可以使用 preventDefault() 来取消其默认行为 。</p>
+<p> stopPropagation() 方法用于立即停止事件在 DOM 层次中的传播 ，即 取消进一步的事件捕获或冒泡 。</p>
+<h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><p>Ajax，是对 Asynchronous JavaScript + XML 的简写 。这一技术能够向服务器请求额外的数据而无须卸载页面 ，会带来更好的用户体验。（前后端分类，数据与视图的分离,有别于服务器端渲染的JSP）。</p>
+<p>Ajax 技术的核心 是 XMLHttpRequest 对象（简称 XHR）。</p>
+<p>在 XHR 出现之前，Ajax 式的通信必须借助一些 hack 手段来实现，大多数是使用隐藏的框架或内嵌框架 。XHR 为向服务器发送请求和解析服务器响应提供了流畅的接口 。能够以异步方式从服务器取得更多信息，意味着 用户单击后 ，可以不必刷新页面也能取得新数据 。也就是说，可以使用 XHR 对象取得新数据 ，然后 再通过 DOM 将新数据插入到页面中 。另外，虽然名字中包含 XML 的成分，但 Ajax 通信与数据格式无关 ；这种技术就是 无须刷新页面即可从服务器取得数据 ，但不一定是 XML 数据。</p>
+<p><a href="http://localhost:4000/2018/10/10/qunar/" target="_blank" rel="noopener">Ajax</a></p>
+<h3 id="跨域解决"><a href="#跨域解决" class="headerlink" title="跨域解决"></a>跨域解决</h3><h4 id="图像Ping"><a href="#图像Ping" class="headerlink" title="图像Ping"></a>图像Ping</h4><p>述第一种跨域请求技术是 使用 <code>&lt;img&gt;</code> 标签 。我们知道，一个网页可以从任何网页中加载图像 ，不用担心跨域不跨域 。</p>
+<p>动态创建图像经常用于图像 Ping 。图像 Ping 是 与服务器进行简单、单向的跨域通信的一种方式 。</p>
+<h4 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h4><p>SONP 由两部分组成：回调函数 和 数据 。回调函数 是 当响应到来时应该在页面中调用的函数 。回调函数的名字一般是在请求中指定的。而 数据 就是 传入回调函数中的JSON数据 。</p>
+<h4 id="Comet"><a href="#Comet" class="headerlink" title="Comet"></a>Comet</h4><p>一种更高级的 Ajax 技术（经常也有人称为“服务器推送”）。Ajax 是一种 从页面向服务器请求数据的技术 ，而 Comet 则是一种 服务器向页面推送数据的技术 。Comet 能够让信息近乎实时地被推送到页面上 ，非常适合处理 体育比赛的分数 和 股票报价 。</p>
+<p>有两种实现 Comet 的方式：长轮询 和 流 。长轮询 是 传统轮询（也称为短轮询）的一个翻版 ，即 浏览器定时向服务器发送请求，看有没有更新的数据 。</p>
+<h3 id="XHTML"><a href="#XHTML" class="headerlink" title="XHTML"></a>XHTML</h3><p>XHTML 是以 XML 格式编写的 HTML（历史原因）。</p>
+<p><a href="http://localhost:4000/2018/09/23/XHTML/#%E4%B8%8E-HTML-%E7%9B%B8%E6%AF%94%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A" target="_blank" rel="noopener">HTML-相比最重要的区别</a></p>
+<h3 id="CSS-布局"><a href="#CSS-布局" class="headerlink" title="CSS 布局"></a>CSS 布局</h3><p>圣杯布局、双飞翼布局。</p>
+<h3 id="Web-语义化"><a href="#Web-语义化" class="headerlink" title="Web 语义化"></a>Web 语义化</h3><ul>
+<li><p>容易修改和维护</p>
+<p>通过HTML5的语义元素，通过标记就可以传达出额外的结构化信息。</p>
+</li>
+<li><p>无障碍性</p>
+<p>现代Web设计的一个重要主题，就是让任何人都能无障碍的访问网页。换句话说，要让使用屏幕阅读器和其他辅助工具的人都能够在页面中自由导航。兼容HTML5的无障碍工具可以为残疾人士提供更好的上网体验。（仅举一个例子，有了 <nav> 元素，屏幕阅读器就能迅速返回导航区，进而找到网页链接。）</nav></p>
+</li>
+<li><p>搜索引擎优化</p>
+<p>如果搜索引擎能更好的理解你的站点，那搜索者的查询就会越容易与你的内容匹配，因而你的网站列在搜索结果中的可能性也就越大。</p>
+</li>
+<li><p>未来功能</p>
+<p>新浏览器和Web编辑器工具一定会利用语义元素。比如，浏览器可以提供一个页面内容的纲要，以方便跳转到页面适当的区块。类似地，网页设计工具也能包含一些方便你构建或编辑菜单的功能，而方法就是组织你放在 <nav> 区块中的内容。</nav></p>
+</li>
+</ul>
+<p>最关键的问题在于，如果正确地使用了语义元素，就能够 创建更加清晰的页面结构 ，就能 适应未来的浏览器和Web设计工具的发展趋势 。</p>
+<h3 id="解决问题的能力"><a href="#解决问题的能力" class="headerlink" title="解决问题的能力"></a>解决问题的能力</h3><ol>
+<li>AngularJS 自定义指令的开发（如何定义指令）；</li>
+<li>公共组件的开发（货币格式转换）；</li>
+<li>关键插件的整合（echarts）；</li>
+<li>第三方支付的实现（支付宝、微信）；</li>
+<li>消息推送的实现（websocket,http建立连接）；</li>
+<li>核心流程代码的重构（多人开发，分模块开发，将同一个东西写了多次。去除重复代码，统一接口）；</li>
+<li>与用户沟通需求、项目计划的制定、执行、监管（合同管理、原型设计）。</li>
+</ol>
+<h3 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h3><p>HTML5 中的一些有趣的新特性：</p>
+<ul>
+<li>用于绘画的 canvas 元素</li>
+<li>用于媒介回放的 video 和 audio 元素</li>
+<li>对本地离线存储的更好的支持</li>
+<li>新的特殊内容元素，比如 article、footer、header、nav、section</li>
+<li>新的表单控件，比如 calendar、date、time、email、url、search</li>
+</ul>
+<p>HTML5 的改进</p>
+<ul>
+<li>新元素</li>
+<li>新属性</li>
+<li>完全支持 CSS3</li>
+<li>Video 和 Audio</li>
+<li>2D/3D 制图</li>
+<li>本地存储</li>
+<li>本地 SQL 数据</li>
+<li>Web 应用</li>
+</ul>
+<p><a href="http://localhost:4000/2018/09/23/HTML5/" target="_blank" rel="noopener">HTML5</a></p>
+<h3 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h3><p>CSS3被拆分为”模块”。旧规范已拆分成小块，还增加了新的。</p>
+<p>一些最重要CSS3模块如下：</p>
+<ul>
+<li>选择器</li>
+<li>盒模型</li>
+<li>背景和边框</li>
+<li>文字特效</li>
+<li>2D/3D转换</li>
+<li>动画</li>
+<li>多列布局</li>
+</ul>
+<h4 id="CSS3-动画"><a href="#CSS3-动画" class="headerlink" title="CSS3 动画"></a>CSS3 动画</h4><p>在CSS3诞生之前，除了通过一些浏览器插件（例如Flash、Applet等）实现动画外，Web动画基本都是通过JavaScript操作CSS来实现的。CSS3（GPU加速）的诞生为Web动画的创建带来了一种新的方式。</p>
+<p>CSS3动画的属性主要分为3类：transform、transition以及animation。transform属性主要用于控制网页元素的旋转、平移、缩放等操作。transition属性则用于控制元素的渐变效果。animation属性就相对复杂些了，可以通过不同的关键帧组合成一幅完整的动画，通常用于实现非常复杂的动画效果。</p>
+<h3 id="AngularJS"><a href="#AngularJS" class="headerlink" title="AngularJS"></a>AngularJS</h3><p>AngularJS以HTML作为模板语言并扩展HTML元素及属性，使得应用组件开发保持高度清晰、一致。</p>
+<h4 id="AngularJS表达式"><a href="#AngularJS表达式" class="headerlink" title="AngularJS表达式"></a>AngularJS表达式</h4><ul>
+<li><p>AngularJS框架遇到嵌套的两层大括号时会把嵌套大括号中的内容作为表达式处理。</p>
+</li>
+<li><p>表达式中的四则运算</p>
+</li>
+<li><p>表达式中的逻辑运算</p>
+</li>
+</ul>
+<h4 id="双向数据绑定"><a href="#双向数据绑定" class="headerlink" title="双向数据绑定"></a>双向数据绑定</h4><p>数据绑定是AngularJS框架最优秀的特性之一，能够帮助Web前端开发人员在很大程度上 减少对DOM的操作。</p>
+<p>数据绑定 是 AngularJS框架在视图（DOM元素）与作用域之间建立的数据同步机制 。所谓“双向”，是指 界面的操作能够实时同步到作用域中 ，作用域中的数据修改也能够实时回显到界面中 。</p>
+<p><a href="http://localhost:4000/2018/10/02/AngularJs/#%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A" target="_blank" rel="noopener">双向数据绑定</a></p>
+<p>为了建立数据绑定，我们需要用到AngularJS另外一个内置指令ng-model，该指令 只能用在表单元素上 。</p>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><p>$apply与$digest是AngularJS中两个核心的概念，AngularJS双向数据绑定实现原理。</p>
+<p>AngularJS是如何知晓name属性发生了变化才调用了对应的回调方法呢？它会周期性地运行一个函数来检查scope模型中的数据是否发生了变化，这就是所谓的$digest循环（弊端，性能影响）。</p>
+<p>在$digest循环中，watchers会被触发。当一个watcher被触发时，AngularJS会检测scope模型，如果它发生了变化，那么关联到该watcher的回调方法就会被调用。</p>
+<p><a href="http://localhost:4000/2018/10/02/AngularJs/#apply%E4%B8%8E-digest%E5%BA%94%E7%94%A8%E5%AE%9E%E6%88%98" target="_blank" rel="noopener">$apply与$digest</a></p>
+<h4 id="AngularJS与MVC"><a href="#AngularJS与MVC" class="headerlink" title="AngularJS与MVC"></a>AngularJS与MVC</h4><p>如果读者接触过Web服务端编程，就不会对MVC模式陌生。MVC是一种软件架构模式，在Java EE领域，基于MVC的框架就有很多，例如较为优秀的Struts、WebWork、Spring MVC等。</p>
+<p>MVC是Model（模型）、View（视图）、Controller（控制器）的首字母缩写，MVC的核心思想是把数据的管理、业务逻辑控制和数据的展示分离开，使程序的逻辑性和可维护性更强。</p>
+<ul>
+<li><p>View（视图）为用户可操作的软件界面，用户通过视图和程序进行交互，在视图中会触发不同的事件，例如单击按钮、输入文字等，不同的事件能够触发控制器执行相应的业务逻辑处理。</p>
+</li>
+<li><p>Controller（控制器）主要用于响应用户请求，在控制器中可操作模型数据，进行业务逻辑处理，根据处理结果分发到不同的视图。</p>
+</li>
+<li><p>Model（模型）为程序中的模型数据，是控制器与视图之间传递信息的载体。</p>
+</li>
+</ul>
+<h4 id="AngularJS中的MVC"><a href="#AngularJS中的MVC" class="headerlink" title="AngularJS中的MVC"></a>AngularJS中的MVC</h4><ul>
+<li><p>Model（模型）：前面章节中提到过的 作用域对象（例如$rootScope对象）中的属性。</p>
+</li>
+<li><p>View（视图）：大家所熟悉的 DOM元素 ，从用户的角度来看就是 HTML页面 ，在View中可以通过AngularJS表达式访问模型数据。</p>
+</li>
+<li><p>Controller（控制器）：用户自定义的构造方法 ，作用域中的模型数据可以通过依赖注入的方式注入控制器中。</p>
+</li>
+</ul>
+<blockquote>
+<p>目前普遍认为AngularJS是一款MVW（Model-View-Whatever）框架，这是因为早期的AngularJS框架比较接近于MVC，而随着新版本代码的重构与API的改进，$scope对象可以认为是由一个方法（Controller）包装后的ViewModel，看上去更接近于MVVM（Model-View-ViewModel）框架，那么到底是MVC还是MVVM呢？不管怎样都行（Whatever），这就是MVW框架的由来。</p>
+</blockquote>
+<p><a href="http://localhost:4000/2018/10/02/AngularJs/#AngularJS%E4%B8%8EMVC" target="_blank" rel="noopener">AngularJS中的MVC</a></p>
+<h4 id="应用模块化（CommonJS、AMD、CMD）"><a href="#应用模块化（CommonJS、AMD、CMD）" class="headerlink" title="应用模块化（CommonJS、AMD、CMD）"></a>应用模块化（CommonJS、AMD、CMD）</h4><p>在软件设计过程中对软件进行模块划分可以拥有以下好处：</p>
+<ul>
+<li>使程序实现的逻辑更加清晰，可读性强。</li>
+<li>使多人合作开发的分工更加明确，容易控制。</li>
+<li>能充分利用可以重用的代码。</li>
+<li>抽象出可公用的模块，可维护性强，以避免同一处修改在多个地方出现。</li>
+<li>系统运行可方便地选择不同的流程。</li>
+<li>可基于模块化设计优秀的遗留系统，方便组装开发新的相似系统，甚至一个全新的系统。</li>
+</ul>
+<h5 id="AngularJS模块的定义"><a href="#AngularJS模块的定义" class="headerlink" title="AngularJS模块的定义"></a>AngularJS模块的定义</h5><p>前面章节中提到过，AngularJS框架在window对象下新增了一个全局的angular对象，我们可以调用angular对象的module()方法返回一个模块实例。</p>
+<h5 id="使用模块解决命名冲突问题"><a href="#使用模块解决命名冲突问题" class="headerlink" title="使用模块解决命名冲突问题"></a>使用模块解决命名冲突问题</h5><p>调用angular.module()方法创建了两个模块实例，名称分别为loginModule和registerModule，然后分别调用这两个模块实例的controller()方法创建两个名称均为UserController的控制器，这两个控制器属于不同的模块，在login.html页面中使用ng-app=”loginModule”指定页面使用loginModule模块中的内容，而在register.html页面中使用ng-app=”registerModule”指定使用registerModule模块中的内容。</p>
+<h4 id="AngularJS指令"><a href="#AngularJS指令" class="headerlink" title="AngularJS指令"></a>AngularJS指令</h4><p>一般情况下，AngularJS的内置指令并不是总能够满足我们的需求，必要时需要我们自定义指令。</p>
+<p>指令是AngularJS应用最重要的组成部分之一，是对HTML属性或元素的扩展，通常情况下Web浏览器并不能识别这些属性或元素，但是AngularJS框架会把它们作为指令，然后执行相应的逻辑处理，最终将这些指令解析为Web浏览器能够识别的元素。</p>
+<ul>
+<li><p>作为HTML元素出现</p>
+</li>
+<li><p>作为HTML元素属性出现</p>
+</li>
+<li><p>作为CSS类样式出现</p>
+</li>
+<li><p>作为HTML注释内容出现</p>
+</li>
+</ul>
+<p>AngularJS模块对象提供了一个directive()方法来帮助我们实现自定义指令。</p>
+<p>directive()方法接收两个参数：第一个参数为指令名称，采用驼峰式命名法；第二个参数为指令定义方法，需要返回一个对象（称为指令定义对象DDO），用于描述指令的特征及指令对应的处理逻辑。</p>
+<h4 id="JavaScript依赖注入实现"><a href="#JavaScript依赖注入实现" class="headerlink" title="JavaScript依赖注入实现"></a>JavaScript依赖注入实现</h4><p>依赖注入（Dependency Injection）是AngularJS中最优秀的特性之一，与之对应的另一个概念是控制反转（Inversion of Control, IoC），如果读者不是一个纯粹的Web前端开发人员，对Java EE或者.Net开发有一定了解，那么对这两个概念一定不会陌生，例如在Java EE应用中，通过Spring框架对Web层、业务逻辑层、DAO层对象进行统一管理，而这些对象之间复杂的依赖关系都是通过Spring的IoC机制建立的。</p>
+<p>有些读者可能会把控制反转（IoC）和依赖注入（DI）混为一谈，认为两者是相同的概念，事实上这两者还是有一点区别的，控制反转是一种软件设计思想，而依赖注入是实现控制反转最直接也最简单的方式，当然控制反转也并不一定非要通过依赖注入这种方式实现不可。</p>
+<p>“如何向一个5岁小孩解释什么是依赖注入”，其中得分最高的一个答案如下：</p>
+<p>当你需要从冰箱里为自己拿一些东西的时候，你可能会遇到一些麻烦。你可能忘了关冰箱门，或者拿了一些你父母不希望你拿的东西，甚至你可能在寻找一些我们根本就没有或者已经过期的东西。所以你需要做的只是静静地坐在那里，告诉我们你想喝什么或者吃什么，我们会把你需要的所有东西送到你面前。</p>
+<h4 id="Cookie读写"><a href="#Cookie读写" class="headerlink" title="Cookie读写"></a>Cookie读写</h4><p>Cookie的中文释义为“小型文本文件”或“小甜饼”，指某些网站为了辨别用户身份而储存在用户本地的数据。这些数据通常是经过加密的，总是保存在客户端。按照在客户端中的存储位置，Cookie可分为内存Cookie和硬盘Cookie。内存Cookie由浏览器维护，保存在内存中，浏览器关闭后消失，存活时间是比较短暂的。硬盘Cookie保存在硬盘里，有一个过期时间，除非用户手工清理或到了过期时间，否则硬盘Cookie不会被删除，其存在时间是长期的。所以，按存在时间，Cookie可分为非持久Cookie和持久Cookie。</p>
+<p>Cookie技术的出现，在某种意义上将是为了弥补HTTP协议的不足，因为HTTP协议是无状态的，即服务器不知道用户上一次做了什么，这严重阻碍了交互式Web应用程序的实现。</p>
+<p>虽然Cookie技术被浏览器广泛使用，但是也存在一定的缺陷，具体表现为以下几点：</p>
+<ul>
+<li>Cookie会被附加在每个HTTP请求中，所以无形中增加服务端请求的数据量。</li>
+<li>由于在HTTP请求中的Cookie是明文传递的，因此安全性存在一定的问题。</li>
+<li>Cookie的大小一般限制在4KB左右，对于复杂的存储需求来说总是不够用的。</li>
+</ul>
+<h4 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h4><p>romise代表未来某个将要发生的事件（通常是一个异步操作）。它的好处在于，有了Promise对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。此外，Promise对象还提供了一整套完整的接口，使得可以更加容易地控制异步操作。</p>
+<p>Promise作为一个异步操作的结果，主要通过then()方法与其交互，then()方法接收一个回调方法作为参数，这个回调方法接收执行成功的返回值或执行失败的错误原因，错误原因一般是Error对象。需要注意的是，then()方法执行的返回值是一个Promise对象，而then()方法接收回调方法的返回值则可以是任意JavaScript对象（包括Promise对象），基于这种机制，Promise对象就实现了链式调用效果。</p>
+<p>Deferred对象的用途是与Promise对象相关联，提供一些API处理成功或失败的任务状态，具有如下方法和属性：</p>
+<ul>
+<li>resolve(value)：用于标识当前任务状态成功，可以继续链式调用then方法。</li>
+<li>reject(reason)：用于标识当前任务状态失败，会跳转到catch方法，类似于编程语言中的try…catch语法。</li>
+<li>notify(value)：用于更新Promise的执行状态，在Promise被处理或被拒绝之前可能会被调用多次。</li>
+<li>promise - {Promise}：和Deferred对象相关联的Promise对象。</li>
+</ul>
+<p>Promise对象具有then、catch、finally三个方法，每个方法的调用都返回一个Promise对象，这为链式调用提供了支撑，finally方法和编程语言中的try…catch…finally语句类似，一定会被执行到。</p>
+<h4 id="RESTful"><a href="#RESTful" class="headerlink" title="RESTful"></a>RESTful</h4><h3 id="React"><a href="#React" class="headerlink" title="React"></a>React</h3><h4 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h4><p>所谓JSX，是 JavaScript的语法扩展（eXtension），让我们 在JavaScript中可以编写像HTML一样的代码 。</p>
+<h5 id="JSX是进步还是倒退"><a href="#JSX是进步还是倒退" class="headerlink" title="JSX是进步还是倒退"></a>JSX是进步还是倒退</h5><p>以前用HTML来代表内容，用CSS代表样式，用JavaScript来定义交互行为，这三种语言分在三种不同的文件里面，实际上是把不同技术分开管理了，而不是逻辑上的“分而治之”。</p>
+<p>React的组件可以把JavaScript、HTML和CSS的功能在一个文件中，实现真正的组件封装。</p>
+<h4 id="React的理念"><a href="#React的理念" class="headerlink" title="React的理念"></a>React的理念</h4><p>React只是用于构建用户界面的 JavaScript 库（MVC中的视图，Redu处理数据流）。</p>
+<p>打一个比方，React是一个聪明的建筑工人，而jQuery是一个比较傻的建筑工人，开发者你就是一个建筑的设计师，如果是jQuery这个建筑工人为你工作，你不得不事无巨细地告诉jQuery“如何去做”，要告诉他这面墙要拆掉重建，那面墙上要新开一个窗户，反之，如果是React这个建筑工人为你工作，你所要做的就是告诉这个工人“我想要什么样子”，只要把图纸递给React这个工人 ，他就会替你搞定一切，当然他不会把整个建筑拆掉重建，而是很聪明地把这次的图纸和上次的图纸做一个对比，发现不同之处，然后只去做适当的修改就完成任务了。</p>
+<p>显而易见，React的工作方式把开发者从繁琐的操作中解放出来，开发者只需要着重“ 我想要显示什么 ”，而 不用操心 “ 怎样去做 ”。</p>
+<p>这种新的思维方式，对于一个 简单的例子 也要编写不少代码，感觉像是用高射炮打蚊子 ，但是对于一个 大型的项目 ，这种方式编写的 代码会更容易管理 ，因为整个React应用要做的就是渲染，开发者关注的是渲染成成什么样子，而不用关心如何实现增量渲染。</p>
+<p>React的理念，归结为一个公式，就像下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UI＝render（data）</span><br></pre></td></tr></table></figure>
+<p>render是一个纯函数 ，所谓纯函数，指的是 没有任何副作用，输出完全依赖于输入的函数，两次函数调用如果输入相同，得到的结果也绝对相同 。如此一来，最终的用户界面，在render函数确定的情况下完全取决于输入数据 。</p>
+<h4 id="Virtual-DOM。"><a href="#Virtual-DOM。" class="headerlink" title="Virtual DOM。"></a>Virtual DOM。</h4><p>jQuery 操作的是实际的DOM，所以效率相对较低。</p>
+<p>React利用Virtual DOM，让每次渲染都只重新渲染最少的DOM元素 。</p>
+<p>Web前端开发关于性能优化有一个原则：尽量 减少DOM操作 。虽然DOM操作也只是一些简单的JavaScript语句，但是 DOM操作会引起浏览器对网页进行重新布局，重新绘制 ，这就是一个比JavaScript语句执行慢很多的过程。</p>
+<p>虽然 JSX看起来很像是一个模板 ，但 是最终会被Babel解析为一条条创建React组件或者HTML元素的语句 （JSX 还可以解析成移动代码，也就是 ReactNative），神奇之处在于，React并不是通过这些语句直接构建DOM树 ，而是 首先构建Virtual DOM 。</p>
+<p>既然 DOM树是对HTML的抽象 ，那 Virtual DOM就是对DOM树的抽象 。Virutal DOM不会触及浏览器的部分，只是存在于JavaScript空间的树形结构，每次自上而下渲染React组件时，会对比这一次产生的Virtual DOM和上一次渲染的Virtual DOM，对比就会发现差别，然后修改真正的DOM树时就只需要触及差别中的部分就行 。</p>
+<h4 id="React组件的数据"><a href="#React组件的数据" class="headerlink" title="React组件的数据"></a>React组件的数据</h4><p>React组件的数据分为两种，prop 和 state ，prop是组件的对外接口 ，state是组件的内部状态 ，对外用prop，内部用state 。</p>
+<p>在本章中我们利用CountrolPanel和Counter两个组件演示了组件之间的通信方式，包括子组件向父组件传递信息的方式，同时也看出了使用React的state来存储状态的一个缺点，那就是数据的冗余和重复，这就是我们接下来要解决的问题(redux)。</p>
+<h4 id="组件的生命周期"><a href="#组件的生命周期" class="headerlink" title="组件的生命周期"></a>组件的生命周期</h4><p>React严格定义了组件的生命周期，生命周期可能会经历如下三个过程：</p>
+<ul>
+<li>装载过程（Mount），也就是把组件第一次在DOM树中渲染的过程；</li>
+<li>更新过程（Update），当组件被重新渲染的过程；</li>
+<li>卸载过程（Unmount），组件从DOM中删除的过程。</li>
+</ul>
+<p>三种不同的过程，React库会依次调用组件的一些成员函数，这些函数称为生命周期函数。所以，要 定制一个React组件，实际上就是定制这些生命周期函数 。</p>
+<h3 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h3><p><a href="http://localhost:4000/2018/10/05/Node-brief/" target="_blank" rel="noopener">简介</a></p>
+<p>高性能 、符合事件驱动 、没有历史包袱 这3个主要原因，JavaScript成为了Node的实现语言。</p>
+<p>JavaScript作为一门图灵完备的语言，长久以来却限制在浏览器的沙箱中运行，它的能力取决于浏览器中间层提供的支持有多少。</p>
+<p>Node打破了过去JavaScript只能在浏览器中运行的局面。</p>
+<h4 id="Node的特点"><a href="#Node的特点" class="headerlink" title="Node的特点"></a>Node的特点</h4><p>作为后端JavaScript的运行平台，Node保留了前端浏览器JavaScript中那些熟悉的接口，没有改写语言本身的任何特性，依旧基于作用域和原型链，区别在于它将前端中广泛运用的思想迁移到了服务器端。</p>
+<h4 id="异步调用"><a href="#异步调用" class="headerlink" title="异步调用"></a>异步调用</h4><p>异步调用中对于结果值的捕获是符合“Don’t call me, I will call you”的原则的，这也是注重结果，不关心过程的一种表现（Ajax）。</p>
+<h4 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h4><p>Node保持了JavaScript在浏览器中单线程的特点。而且在Node中，JavaScript与其余线程是无法共享任何状态的。单线程的最大好处是不用像多线程编程那样处处在意状态的同步问题，这里没有死锁的存在，也没有线程上下文交换所带来的性能上的开销。</p>
+<p>同样，单线程也有他自身的弱点，这些弱点是学习Node的过程中必须面对的。单线程的弱点具体有以下3方面。</p>
+<ul>
+<li>无法利用多核CPU。</li>
+<li>错误会引起整个应用退出，应用的健壮性值得考验。</li>
+<li>大量计算占用CPU导致无法继续调用异步I/O。 </li>
+</ul>
+<p>Node采用了与Web Workers相同的思路来解决单线程中大计算量的问题：child_process。</p>
+<p>子进程的出现，意味着Node可以从容地应对单线程在健壮性和无法利用多核CPU方面的问题。通过将计算分发到各个子进程，可以将大量计算分解掉，然后再通过进程之间的事件消息来传递结果，这可以很好地保持应用模型的简单和低依赖。</p>
+<h4 id="跨平台"><a href="#跨平台" class="headerlink" title="跨平台"></a>跨平台</h4><p>兼容Windows和*nix平台主要得益于Node在架构层面的改动，它在操作系统与Node上层模块系统之间构建了一层平台层架构，即libuv。目前，libuv已经成为许多系统实现跨平台的基础组件。</p>
+<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><p>I/O密集的优势主要在于Node利用事件循环的处理能力，而不是启动每一个线程为每一个请求服务，资源占用极少。</p>
+<p>CPU密集型应用给Node带来的挑战主要是：由于JavaScript单线程的原因，如果有长时间运行的计算（比如大循环），将会导致CPU时间片不能释放，使得后续I/O无法发起 。但是 适当调整和分解大型运算任务为多个小任务，使得运算能够适时释放，不阻塞I/O调用的发起，这样既可同时享受到并行异步I/O的好处，又能充分利用CPU 。</p>
+<p>Node虽然没有提供多线程用于计算支持，但是还是有以下两个方式来充分利用CPU（管家与伙计）。</p>
+<ul>
+<li><p>Node可以通过编写C/C++扩展的方式更高效地利用CPU，将一些V8不能做到性能极致的地方通过C/C++来实现。由上面的测试结果可以看到，通过C/C++扩展的方式实现斐波那契数列计算，速度比Java还快。</p>
+</li>
+<li><p>如果单线程的Node不能满足需求，甚至用了C/C++扩展后还觉得不够，那么通过子进程的方式，将一部分Node进程当做常驻服务进程用于计算，然后利用进程间的消息来传递结果，将计算与I/O分离，这样还能充分利用多CPU。</p>
+</li>
+</ul>
+<p>CPU密集不可怕，如何合理调度是诀窍。</p>
+<h5 id="分布式应用"><a href="#分布式应用" class="headerlink" title="分布式应用"></a>分布式应用</h5><p>里巴巴开发了中间层应用NodeFox、ITier，将数据库集群做了划分和映射，查询调用依旧是针对单张表进行SQL查询，中间层分解查询SQL，并行地去多台数据库中获取数据并合并。</p>
+<h3 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h3><h4 id="模板字面量"><a href="#模板字面量" class="headerlink" title="模板字面量"></a>模板字面量</h4><p>ES6引入了一种新的语法，用来处理包含了嵌入式语法的字符串字面量 ，此功能被称为 字符串插值 （string interpolation）。</p>
+<p>在ES5中，可以使用 字符串拼接 创建一个包含字符串字面量与变量的混合字符串。</p>
+<h4 id="可选参数和默认值"><a href="#可选参数和默认值" class="headerlink" title="可选参数和默认值"></a>可选参数和默认值</h4><p>在ES6中，可以 为函数参数指定默认值 ，这对于当函数被调用却没有传参数的情况是非常有用的。</p>
+<h4 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h4><p>ES5中作用域机制相当混乱。无论在哪里使用var声明的变量，声明都会被移动到作用域的顶部 ，这被称为 变量提升（hoisting）。 this 关键字的使用也不像Java或C#语言那么简单。</p>
+<p>ES6通过引入 关键字let 来 消除变量提升带来的混乱 ，通过 箭头函数 来 解决this带来的混乱 。</p>
+<h5 id="let和const"><a href="#let和const" class="headerlink" title="let和const"></a>let和const</h5><p>使用ES6关键字let代替var声明变量，能够 让变量拥有块级作用域 。</p>
+<p>let关键字允许为变量无限制地分配值 。</p>
+<p>如果要声明一个变量，使其 在分配了值之后不会被重新分配 ，可以使用const关键词。常量同样支持块级作用域 。</p>
+<p>let和const的唯一区别是：const不允许改变已经被分配的值 。</p>
+<h5 id="函数的块级作用域"><a href="#函数的块级作用域" class="headerlink" title="函数的块级作用域"></a>函数的块级作用域</h5><p>如果在一个块（一对大括号）中声明了一个函数，那么在快外，该函数是不可见的。</p>
+<h4 id="箭头函数、this和that"><a href="#箭头函数、this和that" class="headerlink" title="箭头函数、this和that"></a>箭头函数、this和that</h4><p>ES6引入了箭头函数表达式，为匿名函数提供了更短的写法 ，为this变量添加了词法作用域 。在其他编程语言（如C#和Java）中，类似的语法被称为lambda表达式。</p>
+<p>箭头函数表达式的语法包括 参数 、箭头符号（=&gt;）、以及 函数体 。如果 函数体只有一个表达式， 可以不写大括号 。如果 一个单一表达式函数返回值 ，那么 可以省略return语句，结果被隐式地返回。</p>
+<p>如果 函数体是多行的箭头函数表达式 ，那么 需要使用大括号闭合函数体 ，并 使用显式的return语句 。</p>
+<p>如果箭头函数 没有任何参数 ，使用空括号 。</p>
+<p>如果箭头函数 只有一个参数 ，括号不是必需的。</p>
+<p>一种是that保存 this,另一种可能的解决方式是 使用JavaScriptcall()、apply()或bind()函数 ，以 确保函数运行在指定的this对象中 。</p>
+<h4 id="rest和扩展运算符"><a href="#rest和扩展运算符" class="headerlink" title="rest和扩展运算符"></a>rest和扩展运算符</h4><p>ES6有 rest 和 扩展运算符 ，都 用三个点（…）来表示 。rest操作符被 用于为函数传递可变长度参数 ，该操作符必须是 参数列表中最后一个参数 。如果函数参数的名字 以三个点开始 ，函数将会 以数组的形式得到参数的剩余部分 。</p>
+<p>扩展运算符 则执行相反的操作； 把一个数组分解到参数列表中 。展运算符不一定必须是参数列表中的最后一个参数 。</p>
+<h4 id="generator函数"><a href="#generator函数" class="headerlink" title="generator函数"></a>generator函数</h4><p>当浏览器执行一个 常规的JavaScript函数 时，它 将会从头一直运行到结尾 ，不会被打断。但是 generator函数 执行过程 可以被多次暂停和恢复 。generator函数可以控制运行在同一线程中的脚本调用。一旦generator函数中的代码 执行到关键字yield ，函数将会被挂起 ，通过 调用generator的next() 能够 恢复函数的执行 。</p>
+<h4 id="解构"><a href="#解构" class="headerlink" title="解构"></a>解构</h4><p>创建对象 意味着 在内存中构造它们 。解构（Destructuring）意味着 将对象分解 。在ES5中可以 编写一个方法来解构任何对象和数组 。ES6引入了 解构赋值语法 ，允许通过 指定匹配模式（matching pattern），利用简单的表达式从一个对象的属性或一个数组中提取数据 。</p>
+<p><a href="http://localhost:4000/2018/07/25/Angular-2-ECMAScript-6/#%E8%A7%A3%E6%9E%84%E6%95%B0%E7%BB%84" target="_blank" rel="noopener">解构</a></p>
+<h4 id="promise处理异步流程"><a href="#promise处理异步流程" class="headerlink" title="promise处理异步流程"></a>promise处理异步流程</h4><p>使用promise处理异步流程,在之前的ECMAScript实现中，如果希望 处理异步流程 ，将不得不使用 回调 ，把一个函数作为另一个函数的参数传入其中以便调用。回调可以被 同步 或 异步 的调用。</p>
+<h5 id="回调地狱"><a href="#回调地狱" class="headerlink" title="回调地狱"></a>回调地狱</h5><p>在 异步流过程中 ，无获知每一步操作是否完成 ，因此需要编写回调函数，以便操作完成时调用它。</p>
+<p>上面的 代码嵌套程度已经令人很难阅读了 ，现在想象一下，如果需要向其中添加业务逻辑或错误处理，这样编写代码的方式通常被称为 回调地狱 或 回调金字塔（代码的空格令其看起来像个三角形）。</p>
+<p><a href="http://localhost:4000/2018/07/25/Angular-2-ECMAScript-6/#%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1" target="_blank" rel="noopener">回调地狱</a></p>
+<h5 id="ES6-promise"><a href="#ES6-promise" class="headerlink" title="ES6 promise"></a>ES6 promise</h5><p>ES6引入了promise，在 保持与回调相同功能 的同时，消除回调嵌套 并 令代码更易阅读 。Promise对象 等待并监听异步操作的结果 ，通知代码执行是否执行成功或失败 ,以便能够相应地处理下一步操作。Promise对象 表示一个未来结果的操作 ，可能是以下状态之一：</p>
+<ul>
+<li>Fulfilled: 操作成功完成。</li>
+<li>Rejected: 操作失败并返回一个错误。</li>
+<li>Pending: 操作正在处理中，既没有fulfilled,也没有rejected。</li>
+</ul>
+<h4 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h4><p>import关键字 允许一个脚本 声明它需要使用在另一个脚本文件中定义的变量和函数 。同样， export关键字 能够 声明模块需要导出给其他脚本使用的变量、函数或类 。</p>
+<p>ES6提供了两种export用法：命名导出 和 默认导出 。使用命名导出，可以 在模块的多个成员（如类、函数和变量）的前面添加export关键字 。</p>
+<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/找工作/" rel="tag"># 找工作</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/10/Written /" rel="next" title="笔试题">
+                <i class="fa fa-chevron-left"></i> 笔试题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/14/sort/" rel="prev" title="《大话数据结构》-读书笔记-排序">
+                《大话数据结构》-读书笔记-排序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="songxingguo">
+            
+              <p class="site-author-name" itemprop="name">songxingguo</p>
+              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">132</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#多说，想到什么，就说什么。"><span class="nav-number">1.</span> <span class="nav-text">多说，想到什么，就说什么。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么走前端"><span class="nav-number">1.0.1.</span> <span class="nav-text">为什么走前端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this-指向"><span class="nav-number">1.0.2.</span> <span class="nav-text">this 指向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域"><span class="nav-number">1.0.3.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标识符查找"><span class="nav-number">1.0.4.</span> <span class="nav-text">标识符查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域链"><span class="nav-number">1.0.5.</span> <span class="nav-text">作用域链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量的主动释放"><span class="nav-number">1.0.6.</span> <span class="nav-text">变量的主动释放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包"><span class="nav-number">1.0.7.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型链"><span class="nav-number">1.0.8.</span> <span class="nav-text">原型链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件流"><span class="nav-number">1.0.9.</span> <span class="nav-text">事件流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事件冒泡"><span class="nav-number">1.0.9.1.</span> <span class="nav-text">事件冒泡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件捕获"><span class="nav-number">1.0.9.2.</span> <span class="nav-text">事件捕获</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ajax"><span class="nav-number">1.0.10.</span> <span class="nav-text">Ajax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨域解决"><span class="nav-number">1.0.11.</span> <span class="nav-text">跨域解决</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图像Ping"><span class="nav-number">1.0.11.1.</span> <span class="nav-text">图像Ping</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSONP"><span class="nav-number">1.0.11.2.</span> <span class="nav-text">JSONP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Comet"><span class="nav-number">1.0.11.3.</span> <span class="nav-text">Comet</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XHTML"><span class="nav-number">1.0.12.</span> <span class="nav-text">XHTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-布局"><span class="nav-number">1.0.13.</span> <span class="nav-text">CSS 布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-语义化"><span class="nav-number">1.0.14.</span> <span class="nav-text">Web 语义化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决问题的能力"><span class="nav-number">1.0.15.</span> <span class="nav-text">解决问题的能力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5"><span class="nav-number">1.0.16.</span> <span class="nav-text">HTML5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS3"><span class="nav-number">1.0.17.</span> <span class="nav-text">CSS3</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS3-动画"><span class="nav-number">1.0.17.1.</span> <span class="nav-text">CSS3 动画</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AngularJS"><span class="nav-number">1.0.18.</span> <span class="nav-text">AngularJS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AngularJS表达式"><span class="nav-number">1.0.18.1.</span> <span class="nav-text">AngularJS表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#双向数据绑定"><span class="nav-number">1.0.18.2.</span> <span class="nav-text">双向数据绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现原理"><span class="nav-number">1.0.18.3.</span> <span class="nav-text">实现原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AngularJS与MVC"><span class="nav-number">1.0.18.4.</span> <span class="nav-text">AngularJS与MVC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AngularJS中的MVC"><span class="nav-number">1.0.18.5.</span> <span class="nav-text">AngularJS中的MVC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用模块化（CommonJS、AMD、CMD）"><span class="nav-number">1.0.18.6.</span> <span class="nav-text">应用模块化（CommonJS、AMD、CMD）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#AngularJS模块的定义"><span class="nav-number">1.0.18.6.1.</span> <span class="nav-text">AngularJS模块的定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用模块解决命名冲突问题"><span class="nav-number">1.0.18.6.2.</span> <span class="nav-text">使用模块解决命名冲突问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AngularJS指令"><span class="nav-number">1.0.18.7.</span> <span class="nav-text">AngularJS指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JavaScript依赖注入实现"><span class="nav-number">1.0.18.8.</span> <span class="nav-text">JavaScript依赖注入实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie读写"><span class="nav-number">1.0.18.9.</span> <span class="nav-text">Cookie读写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Promise"><span class="nav-number">1.0.18.10.</span> <span class="nav-text">Promise</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RESTful"><span class="nav-number">1.0.18.11.</span> <span class="nav-text">RESTful</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React"><span class="nav-number">1.0.19.</span> <span class="nav-text">React</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JSX"><span class="nav-number">1.0.19.1.</span> <span class="nav-text">JSX</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#JSX是进步还是倒退"><span class="nav-number">1.0.19.1.1.</span> <span class="nav-text">JSX是进步还是倒退</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React的理念"><span class="nav-number">1.0.19.2.</span> <span class="nav-text">React的理念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Virtual-DOM。"><span class="nav-number">1.0.19.3.</span> <span class="nav-text">Virtual DOM。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React组件的数据"><span class="nav-number">1.0.19.4.</span> <span class="nav-text">React组件的数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件的生命周期"><span class="nav-number">1.0.19.5.</span> <span class="nav-text">组件的生命周期</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node"><span class="nav-number">1.0.20.</span> <span class="nav-text">Node</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Node的特点"><span class="nav-number">1.0.20.1.</span> <span class="nav-text">Node的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异步调用"><span class="nav-number">1.0.20.2.</span> <span class="nav-text">异步调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单线程"><span class="nav-number">1.0.20.3.</span> <span class="nav-text">单线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#跨平台"><span class="nav-number">1.0.20.4.</span> <span class="nav-text">跨平台</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用"><span class="nav-number">1.0.20.5.</span> <span class="nav-text">应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分布式应用"><span class="nav-number">1.0.20.5.1.</span> <span class="nav-text">分布式应用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6"><span class="nav-number">1.0.21.</span> <span class="nav-text">ES6</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模板字面量"><span class="nav-number">1.0.21.1.</span> <span class="nav-text">模板字面量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可选参数和默认值"><span class="nav-number">1.0.21.2.</span> <span class="nav-text">可选参数和默认值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量的作用域"><span class="nav-number">1.0.21.3.</span> <span class="nav-text">变量的作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#let和const"><span class="nav-number">1.0.21.3.1.</span> <span class="nav-text">let和const</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数的块级作用域"><span class="nav-number">1.0.21.3.2.</span> <span class="nav-text">函数的块级作用域</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#箭头函数、this和that"><span class="nav-number">1.0.21.4.</span> <span class="nav-text">箭头函数、this和that</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rest和扩展运算符"><span class="nav-number">1.0.21.5.</span> <span class="nav-text">rest和扩展运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#generator函数"><span class="nav-number">1.0.21.6.</span> <span class="nav-text">generator函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解构"><span class="nav-number">1.0.21.7.</span> <span class="nav-text">解构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#promise处理异步流程"><span class="nav-number">1.0.21.8.</span> <span class="nav-text">promise处理异步流程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#回调地狱"><span class="nav-number">1.0.21.8.1.</span> <span class="nav-text">回调地狱</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ES6-promise"><span class="nav-number">1.0.21.8.2.</span> <span class="nav-text">ES6 promise</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模块"><span class="nav-number">1.0.21.9.</span> <span class="nav-text">模块</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP"><span class="nav-number">1.0.22.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构"><span class="nav-number">1.0.23.</span> <span class="nav-text">数据结构</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
+        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":90,"vOffset":-25},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
