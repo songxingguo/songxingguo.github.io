@@ -12,7 +12,9 @@
     "status": "pm2 status blog",
     "restart": "pm2 restart blog",
     "server": "hexo s",
-    "sync": "YUQUE_TOKEN=y4XjkakPywEAUfR7Ko4U1aHDFQpdPlpD73RwBUM2 yuque-hexo sync"
+    "build": "hexo generate",
+    "sync": "yuque-hexo sync",
+    "update": "yuque-hexo update"
   },
   "dependencies": {
     "hexo": "^3.8.0",
@@ -31,11 +33,11 @@
     "hexo-renderer-ejs": "^0.3.0",
     "hexo-renderer-marked": "^0.3.0",
     "hexo-renderer-sass": "^0.3.2",
-    "hexo-renderer-scss": "^1.2.0",
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.0",
     "live2d-widget-model-z16": "^1.0.5",
-    "npm": "^6.1.0"
+    "npm": "^6.1.0",
+    "yuque-hexo-publish": "^1.0.2"
   },
   "devDependencies": {
     "pm2": "^2.10.4"

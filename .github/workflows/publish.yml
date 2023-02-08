@@ -1,0 +1,27 @@
+name: Deploy To Github Pages
+on: [push, repository_dispatch]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: Install and Build 🔧
+        env:
+          YUQUE_TOKEN: ${{ secrets.YUQUE_TOKEN }}
+          SLUG: ${{ github.event.client_payload.slug }}
+        run: |
+          npm i
+          npm run update
+          npm run build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: public
+          CLEAN: true
