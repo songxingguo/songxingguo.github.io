@@ -11,7 +11,8 @@
     "delete": "pm2 delete blog",
     "status": "pm2 status blog",
     "restart": "pm2 restart blog",
-    "server": "hexo s"
+    "server": "hexo s",
+    "sync": "YUQUE_TOKEN=y4XjkakPywEAUfR7Ko4U1aHDFQpdPlpD73RwBUM2 yuque-hexo sync"
   },
   "dependencies": {
     "hexo": "^3.8.0",
@@ -38,5 +39,13 @@
   },
   "devDependencies": {
     "pm2": "^2.10.4"
+  },
+  "yuqueConfig": {
+    "postPath": "source/_posts",
+    "baseUrl": "https://www.yuque.com/api/v2",
+    "login": "songxingguo",
+    "repo": "devhints",
+    "onlyPublished": false,
+    "onlyPublic": false
   }
 }
