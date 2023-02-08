@@ -18,6 +18,8 @@ jobs:
         env:
           YUQUE_TOKEN: ${{ secrets.YUQUE_TOKEN }}
           SLUG: ${{ github.event.client_payload.slug }}
+          SECRET_ID: songxingguo
+          SECRET_KEY: ${{ secrets.ACCESS_TOKEN }}
         run: |
           npm i
           npm run update
