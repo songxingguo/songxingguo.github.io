@@ -48,6 +48,14 @@
     "login": "songxingguo",
     "repo": "devhints",
     "onlyPublished": false,
-    "onlyPublic": false
+    "onlyPublic": false,
+    "imgCdn": {
+      "concurrency": 1,
+      "imageBed": "github",
+      "enabled": true,
+      "bucket": "songxingguo.github.io",
+      "host": "cdn.jsdelivr.net",
+      "prefixKey": "static/images"
+    }
   }
 }
