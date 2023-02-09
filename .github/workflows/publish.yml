@@ -1,5 +1,5 @@
 name: Deploy To Github Pages
-on: [push, repository_dispatch]
+on: [repository_dispatch]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
