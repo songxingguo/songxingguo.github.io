@@ -39,7 +39,8 @@ jobs:
       - name: 推送文章到仓库
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.ACCESS_TOKEN }}
+        	# GITHUB_TOKEN不用配置在secrets
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
