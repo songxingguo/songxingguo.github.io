@@ -54,7 +54,6 @@
       "imageBed": "github",
       "enabled": true,
       "bucket": "songxingguo.github.io",
-      "host": "cdn.jsdelivr.net",
       "prefixKey": "static/images"
     }
   }
