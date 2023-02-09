@@ -13,7 +13,7 @@ categories: []
 ## 传送门
 
 - [项目地址](https://github.com/songxingguo/songxingguo.github.io)
-- 使用效果
+- 使用效果（视频）
 
 ## 设计思路
 
