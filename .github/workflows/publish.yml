@@ -35,7 +35,7 @@ jobs:
           git pull
           echo `date +"%Y-%m-%d %H:%M:%S"` begin > time.txt
           git add .
-          git commit -m "提交文章" -a
+          git commit -m "feat:提交文章" -a
 
       - name: 推送文章到仓库
         uses: ad-m/github-push-action@master
