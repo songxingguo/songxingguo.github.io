@@ -32,6 +32,7 @@ jobs:
 
       - name: 提交yuque拉取的文章到GitHub仓库
         run: |
+          git pull
           echo `date +"%Y-%m-%d %H:%M:%S"` begin > time.txt
           git add .
           git commit -m "提交文章" -a
@@ -39,8 +40,7 @@ jobs:
       - name: 推送文章到仓库
         uses: ad-m/github-push-action@master
         with:
-        	# GITHUB_TOKEN不用配置在secrets
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
