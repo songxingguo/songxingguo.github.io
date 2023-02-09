@@ -22,7 +22,7 @@ jobs:
           SECRET_KEY: ${{ secrets.ACCESS_TOKEN }}
         run: |
           npm i
-          npm run update
+          npm run pulish
           npm run build
 
       - name: 配置Git用户名邮箱
@@ -33,7 +33,6 @@ jobs:
       - name: 提交yuque拉取的文章到GitHub仓库
         run: |
           git pull
-          echo `date +"%Y-%m-%d %H:%M:%S"` begin > time.txt
           git add .
           git commit -m "feat:提交文章" -a
 

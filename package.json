@@ -14,7 +14,7 @@
     "server": "hexo s",
     "build": "hexo generate",
     "sync": "yuque-hexo sync",
-    "update": "yuque-hexo update"
+    "pulish": "yuque-hexo publish"
   },
   "dependencies": {
     "hexo": "^3.8.0",
