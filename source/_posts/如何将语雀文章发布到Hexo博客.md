@@ -8,16 +8,17 @@ categories: []
 
 ## 写在前面
 
-实现语雀上的文章自动化发布到个人博客，首先是因为语雀本身是一个优秀的创作的平台，能方便的编辑和管理文章，但缺点是它本身是一个封闭的系统，就像微信公众号一样，不利于 SEO。其次个人博客是由自己搭建，没有任何限制，也能更好的进行 SEO。基于这两点原因，语雀+个人博客就是一个完美的组合，个人博客作为前台，语雀作为后台，既能能很好的创造和管理文章，有能够将需要共享的文章发布到个人博客，供大家搜索。下面要做的就是建立起两者的桥梁。
+实现语雀上的文章自动化发布到个人博客，首先是因为语雀本身是一个优秀的创作的平台，能方便的编辑和管理文章，但缺点是它本身是一个封闭的系统，就像微信公众号一样，不利于 SEO。其次个人博客是由自己搭建，没有任何限制，也能更好的进行 SEO。基于这两点原因，语雀+个人博客就是一个完美的组合，个人博客作为前台，语雀作为后台，既能很好的创造和管理文章，有能够将需要共享的文章发布到个人博客，供大家搜索。下面要做的就是建立起两者的桥梁。
 
 ## 传送门
 
 - [项目地址](https://github.com/songxingguo/songxingguo.github.io)
 - 使用效果（视频）
+  [![](https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FvYEuJlUXy5ADawCvwN-yUw1zlI_.com/mdn/prod_resou/afts/img/A*NNs6TKOR3isAAAAAAAAAAABkARQnAQ)](https://www.yuque.com/songxingguo/devhints/gwpsg4dq6tp27z3s?_lake_card=%7B%22status%22%3A%22done%22%2C%22name%22%3A%22%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62023-02-09%2019.39.30.mov%22%2C%22size%22%3A204453355%2C%22taskId%22%3A%22ua4cb8283-502b-4a55-b53e-7f0a9dd0a84%22%2C%22taskType%22%3A%22upload%22%2C%22url%22%3Anull%2C%22cover%22%3Anull%2C%22videoId%22%3A%22inputs%2Fprod%2Fyuque%2F2023%2F394169%2Fmov%2F1675943595043-2a636a15-97b2-4fd2-9038-a34841d5d6a3.mov%22%2C%22download%22%3Afalse%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22pqOSi%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22video%22%7D#pqOSi)
 
 ## 设计思路
 
-![](https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fv4SHStOd0NQNbe-P78SUpwLcqdJ.jpeg)
+![](https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FlChHeNiAySN1-R3hmWCTrVo3BxH.jpeg)
 整体的设计思路是每次语雀更新文档都通过 Webhook 发送钉钉消息，当手动点击【发布】的时候再触发 GithubAction 将 slug 对应的文章从语雀拉取下去并推送到博客仓库，最后部署博客。触发流程虽然是从语雀到 Github 的过程，但开发的过程是优先处理 Github 部分然后再由语雀触发 Webhook，开发过程主要包括以下几个步骤。
 
 1. 配置`yuque-heox-publish`
@@ -196,7 +197,7 @@ axios
   });
 ```
 
-其中`GITHUB_TOKEN`是 github 的授权码，获取和配置可以参考[使用 Github Action 部署静态网站](https://www.yuque.com/songxingguo/devhints/tfub27hk86lsdrpb)。`event_type`是活动类型这个和`.github/workflows/publish.yml`里面的`types`是一一对应的，如果`.github/workflows/publish.yml`中没有指定具体`types`，那这儿填任何值都是可以。具体信息可以查看[详细配置](https://docs.github.com/zh/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#repository_dispatch)。
+其中`GITHUB_TOKEN`是 github 的授权码，获取和配置可以参考[使用 Github Action 部署静态网站](https://www.yuque.com/songxingguo/devhints/tfub27hk86lsdrpb)。`event_type`是活动类型这个和`.github/workflows/publish.yml`里面的`types`是一一对应的，如果`.github/workflows/publish.yml`中没有指定具体`types`，那这儿填任何值都是可以。更多信息可以查看[详细配置](https://docs.github.com/zh/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#repository_dispatch)。
 ![](https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FveEzFT5TggObDiemqVIn5zlRzAd.png)
 完整代码如下。
 
