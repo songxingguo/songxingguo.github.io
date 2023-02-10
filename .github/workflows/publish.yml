@@ -22,7 +22,7 @@ jobs:
           SECRET_KEY: ${{ secrets.ACCESS_TOKEN }}
         run: |
           npm i
-          npm run pulish
+          npm run publish
           npm run build
 
       - name: 配置Git用户名邮箱
