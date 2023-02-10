@@ -1,6 +1,6 @@
 title: 手撕代码
 author: songxingguo
-tags: 
+tags:
   - 找工作
 categories:
   - 备忘录
