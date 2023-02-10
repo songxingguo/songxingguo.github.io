@@ -12,6 +12,7 @@
     "status": "pm2 status blog",
     "restart": "pm2 restart blog",
     "server": "hexo s",
+    "clean": "hexo clean",
     "build": "hexo generate",
     "sync": "yuque-hexo sync",
     "publish": "yuque-hexo publish"
