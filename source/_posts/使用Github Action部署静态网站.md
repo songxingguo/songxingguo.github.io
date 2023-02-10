@@ -12,6 +12,8 @@ categories: []
 
 ![](https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FpT1FXfdY0l7BGM5m1bJf8CpX2vJ.png)
 
+<!-- more -->
+
 2. 将仓库权限设置中的 Content 项，设置为读和写。
 
 ![](https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fq0KQlr3rLfbLvpcG3eeBuR3obCM.png)
