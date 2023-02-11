@@ -119,12 +119,12 @@ index_with_subtitle: false
 menu:
   home: / || home
   archives: /archives/ || archive
-  categories: /categories/ || th
-  tags: /tags/ || tags
-  works: /works/
-  about: /about/ || user
+  # categories: /categories/ || th
+  # tags: /tags/ || tags
+  # works: /works/
+  # sitemap: https://www.songxingguo.com/ || sitemap
+  # about: https://resume.songxingguo.com/ || user
   # schedule: /schedule/ || calendar
-  #sitemap: /sitemap.xml || sitemap
   # commonweal: /404/ || heartbeat
 
 # Enable/Disable menu icons / item badges.
@@ -156,7 +156,10 @@ site_state: true
 # Value before `||` delimeter is the target permalink.
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
 social:
+  Home: https://www.songxingguo.com || home
   GitHub: https://github.com/songxingguo || github
+  Yuque: https://www.yuque.com/songxingguo || edit
+  Resume: https://resume.songxingguo.com || id-card
   #E-Mail: mailto:yourname@gmail.com || envelope
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter
@@ -171,6 +174,7 @@ social_icons:
   enable: true
   icons_only: true
   transition: true
+  Yuque: copyright
   # Dependencies: exturl: true in Tags Settings section below.
   # To encrypt links above use https://www.base64encode.org
   # Example encoded link: `GitHub: aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQ= || github`
