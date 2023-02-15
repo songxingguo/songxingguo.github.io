@@ -122,8 +122,8 @@ menu:
   # categories: /categories/ || th
   # tags: /tags/ || tags
   # works: /works/
-  # sitemap: https://www.songxingguo.com/ || sitemap
-  # about: https://resume.songxingguo.com/ || user
+  sitemap: /hi || sitemap
+  about: /resume || user
   # schedule: /schedule/ || calendar
   # commonweal: /404/ || heartbeat
 
