@@ -262,7 +262,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">3</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">4</span></a>
   </li>
         
         
@@ -358,6 +358,883 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2023/04/29/Git指令速查🚀/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxingguo">
+      <meta itemprop="description" content="< 写文章 && 做分享 />">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿有的生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2023/04/29/Git指令速查🚀/" itemprop="url">
+                  Git指令速查🚀
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2023-04-29 09:14:52" itemprop="dateCreated datePublished" datetime="2023-04-29T09:14:52+00:00">2023-04-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2023-04-30 01:15:23" itemprop="dateModified" datetime="2023-04-30T01:15:23+00:00">2023-04-30</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2023/04/29/Git指令速查🚀/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2023/04/29/Git指令速查🚀/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2023/04/29/Git指令速查🚀/" class="leancloud_visitors" data-flag-title="Git指令速查🚀">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FojivBC2iy6WcdLcl88n9CGxYQje.jpeg" alt></p>
+<blockquote>
+<p>文中 Git 相关术语都来源于中文版 Sourcetree。</p>
+</blockquote>
+<h1 id="Git-指令"><a href="#Git-指令" class="headerlink" title="Git 指令"></a>Git 指令</h1><h2 id="全局指令"><a href="#全局指令" class="headerlink" title="全局指令"></a>全局指令</h2><table>
+<thead>
+<tr>
+<th><strong>指令</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>版本信息</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git –version</td>
+<td>git 版本</td>
+</tr>
+<tr>
+<td><strong>指令帮助</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git [指令] -h</td>
+<td>查看指令帮助信息</td>
+</tr>
+<tr>
+<td>git [指令] –help</td>
+<td>打开指令详细帮助页面</td>
+</tr>
+<tr>
+<td><strong>查看日志：</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git log -n20</td>
+<td>查看日志(最近 20 条)，可省略 n 为-20；参数–graph 可视化显示分支关系</td>
+</tr>
+<tr>
+<td>git log –follow [file]</td>
+<td>显示某个文件的版本历史，包括文件改名</td>
+</tr>
+<tr>
+<td>git log -n20 –graph</td>
+<td>参数“–graph”可视化显示分支关系</td>
+</tr>
+<tr>
+<td>git log –follow [file]</td>
+<td>显示某个文件的版本历史</td>
+</tr>
+<tr>
+<td>git reflog</td>
+<td>查看所有可用的历史版本记录（实际是 HEAD 变更记录），包含被回退的记录，常用来撤销回退</td>
+</tr>
+<tr>
+<td>git blame [file]</td>
+<td>以列表形式查看指定文件的历史修改记录</td>
+</tr>
+<tr>
+<td><strong>格式化日志</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git log -n20 –oneline</td>
+<td>参数“–oneline”可以让日志输出更简洁（一行）</td>
+</tr>
+<tr>
+<td>git log –pretty=oneline</td>
+<td>一行显示提交信息</td>
+</tr>
+<tr>
+<td><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FuWCRNpZRL3DthGQmtXZ2PmEXWhC.png" alt></td>
+</tr>
+<tr>
+<td>git log –pretty=format:”%h %s” –graph</td>
+<td>自定义输出格式</td>
+</tr>
+<tr>
+<td><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fi3loaRpO70Ko7Lj8TKZX9StjUbr.png" alt></td>
+</tr>
+<tr>
+<td><strong>筛选日志</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git log –pretty=format:”%s” –since=”2019-07-17 07:36pm” –until=”2019-07-29 08:28pm”</td>
+<td>查询指定时间区间的提交</td>
+</tr>
+<tr>
+<td>git log –pretty=format:”%s” –since=”2019-07-17 07:36pm” –until=”2019-07-29 08:28pm” –grep=”feat”</td>
+<td>查询包含指定字段的提交</td>
+</tr>
+<tr>
+<td><strong>导出日志</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git log &gt; log.txt</td>
+<td>导出 Git log 日志</td>
+</tr>
+<tr>
+<td>git log –pretty=format:”%s” –graph –since=”2019-10-14 02 18 pm” –grep=”feat” &gt; log.txt</td>
+<td>同上，日志格式化后导出日志</td>
+</tr>
+<tr>
+<td><strong>创建仓库</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git init [文件目录]</td>
+<td>初始化创建 Git 仓库，如果不指定[文件目录]，则在当前目录创建</td>
+</tr>
+<tr>
+<td><strong>Git 配置</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git config –list</td>
+<td>查看配置信息，包括系统（–system）+全局（–global）+项目（–local）配置</td>
+</tr>
+<tr>
+<td>git config –list –system</td>
+<td>查看系统配置，全局（–global）、项目（–local）配置配置类似</td>
+</tr>
+<tr>
+<td>git config –global user.name “名称”</td>
+<td>配置用户名</td>
+</tr>
+<tr>
+<td>git config –global user.email “邮箱”</td>
+<td>配置邮箱</td>
+</tr>
+<tr>
+<td><strong>查看文件</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>cat [file]</td>
+<td>读取一个文件，展示其文件内容</td>
+</tr>
+</tbody>
+</table>
+<h2 id="本地操作"><a href="#本地操作" class="headerlink" title="本地操作"></a>本地操作</h2><p>本地操作<img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fi1V3kEfywqqGsGVyTMiHF2CCh2D.png" alt></p>
+<h3 id="指令-代码"><a href="#指令-代码" class="headerlink" title="指令-代码"></a>指令-代码</h3><table>
+<thead>
+<tr>
+<th><strong>指令</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>状态</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git status</td>
+<td>查看本地仓库状态，加参数-s 简洁模式</td>
+</tr>
+<tr>
+<td><strong>添加到/移除暂存区</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git add [file1] [file2]</td>
+<td>添加文件到暂存区，包括修改的文件、新增的文件</td>
+</tr>
+<tr>
+<td>git add [dir]</td>
+<td>同上，添加目录到暂存区，包括子目录</td>
+</tr>
+<tr>
+<td>git add .</td>
+<td>同上，添加所有修改、新增文件（未跟踪）到暂存区</td>
+</tr>
+<tr>
+<td>git rm [file]</td>
+<td>删除工作区文件，并且将这次删除放入暂存区</td>
+</tr>
+<tr>
+<td><strong>提交到工作区</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git commit -m “说明”</td>
+<td>‘说明’ 提交变更，参数-m 设置提交的描述信息，应该正确提交，不带该参数会进入说明编辑模式</td>
+</tr>
+<tr>
+<td>git commit -a</td>
+<td>参数-a，表示直接从工作区提交到版本库，略过了 git add 步骤，不包括新增的文件</td>
+</tr>
+<tr>
+<td>git commit [file]</td>
+<td>提交暂存区的指定文件到仓库区</td>
+</tr>
+<tr>
+<td>git commit –amend -m</td>
+<td>使用一次新的 commit，替代上一次提交，会修改 commit 的 hash 值（id）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="指令-提交"><a href="#指令-提交" class="headerlink" title="指令-提交"></a>指令-提交</h3><table>
+<thead>
+<tr>
+<th><strong>指令</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>拣选提交</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git cherry-pick [commit]</td>
+<td>拣选提交，复制一个特定的提交到当前分支，而不管这个提交在哪个分支</td>
+</tr>
+<tr>
+<td><strong>整理提交</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git rebase master</td>
+<td>将当前分支变基合并到 master 分支， 注意 ⚠️ 只在从未推送至共用仓库的提交上执行变基命令。</td>
+</tr>
+<tr>
+<td><strong>重置提交</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git reset</td>
+<td>撤销暂存区状态，同 git reset HEAD，不影响工作区，默认使用混合重置(mixed)模式</td>
+</tr>
+<tr>
+<td>git reset HEAD [file]</td>
+<td>同上，指定文件 file，HEAD 可省略</td>
+</tr>
+<tr>
+<td>git reset [commit]</td>
+<td>回退到指定版本，清空暂存区，不影响工作区。工作区需要手动 git checkout 签出</td>
+</tr>
+<tr>
+<td>git reset –soft [commit]</td>
+<td>移动分支 master、HEAD 到指定的版本，不影响暂存区、工作区，需手动 git checkout 签出更新</td>
+</tr>
+<tr>
+<td>git reset –hard HEAD</td>
+<td>撤销工作区、暂存区的修改，用当前最新版</td>
+</tr>
+<tr>
+<td>git reset –hard HEAD~</td>
+<td>回退到上一个版本，并重置工作区、暂存区内容</td>
+</tr>
+<tr>
+<td>git reset –hard [commit]</td>
+<td>回退到指定版本，并重置工作区、暂存区内容，举例：<code>git reset --hard 7678a31</code></td>
+</tr>
+<tr>
+<td><strong>撤销提交</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git revert [commit]</td>
+<td>撤销一个提交，会用一个新的提交（原提交的逆向操作）来完成撤销操作，如果已 push 则重新 push 即可</td>
+</tr>
+</tbody>
+</table>
+<h3 id="指令-储藏"><a href="#指令-储藏" class="headerlink" title="指令-储藏"></a>指令-储藏</h3><table>
+<thead>
+<tr>
+<th><strong>指令</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>查看暂存</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git stash list</td>
+<td>查看所有被隐藏的内容列表</td>
+</tr>
+<tr>
+<td>储藏<strong>代码</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git stash save “message”</td>
+<td>同 git stash，可以备注说明 message git stash apply 恢复被隐藏的文件，但是隐藏记录不删除</td>
+</tr>
+<tr>
+<td>git stash</td>
+<td>把未提交内容隐藏起来，包括未暂存、已暂存。 等以后恢复现场后继续工作</td>
+</tr>
+<tr>
+<td><strong>恢复代码</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git stash pop</td>
+<td>恢复被隐藏的内容，同时删除隐藏记录</td>
+</tr>
+<tr>
+<td><strong>删除</strong>储藏</td>
+<td></td>
+</tr>
+<tr>
+<td>git stash drop</td>
+<td>删除隐藏记录</td>
+</tr>
+</tbody>
+</table>
+<h2 id="远程交互"><a href="#远程交互" class="headerlink" title="远程交互"></a>远程交互</h2><p>远程交互<img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FtfIh_8MpJOKVw4wChaxrxqruY-m.png" alt></p>
+<h3 id="指令-仓库"><a href="#指令-仓库" class="headerlink" title="指令-仓库"></a>指令-仓库</h3><table>
+<thead>
+<tr>
+<th><strong>指令</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>查看/新建/修改/删除仓库</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git remote -v</td>
+<td>查看所有远程仓库，不带参数-v 只显示名称</td>
+</tr>
+<tr>
+<td>git remote show [remote]</td>
+<td>显示某个远程仓库的信息</td>
+</tr>
+<tr>
+<td>git remote add [name] [url]</td>
+<td>增加一个新的远程仓库，并命名</td>
+</tr>
+<tr>
+<td>git remote rename [old] [new]</td>
+<td>修改远程仓库名称</td>
+</tr>
+<tr>
+<td>git remote rm [remote-name]</td>
+<td>删除远程仓库</td>
+</tr>
+<tr>
+<td><strong>克隆仓库</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git clone [git 地址]</td>
+<td>从远程仓库克隆到本地（当前目录）</td>
+</tr>
+<tr>
+<td><strong>拉取仓库</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git pull [remote] [branch]</td>
+<td>取回远程仓库的变化，并与本地版本合并</td>
+</tr>
+<tr>
+<td>git pull</td>
+<td>同上，针对当前分支</td>
+</tr>
+<tr>
+<td>git pull –rebase</td>
+<td>使用 rebase 的模式进行合并</td>
+</tr>
+<tr>
+<td>git fetch [remote]</td>
+<td>获取远程仓库的所有变动到本地仓库，不会自动合并！需要手动合并</td>
+</tr>
+<tr>
+<td><strong>推送仓库</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git push</td>
+<td>推送当前分支到远程仓库</td>
+</tr>
+<tr>
+<td>git push [remote] [branch]</td>
+<td>推送本地当前分支到远程仓库的指定分支</td>
+</tr>
+<tr>
+<td>git push [remote] –force/-f</td>
+<td>强行推送当前分支到远程仓库，即使有冲突，⚠️ 很危险！</td>
+</tr>
+<tr>
+<td>git push [remote] –all</td>
+<td>推送所有分支到远程仓库</td>
+</tr>
+<tr>
+<td>git push –u</td>
+<td>参数–u 表示与远程分支建立关联，第一次执行的时候用，后面就不需要了</td>
+</tr>
+</tbody>
+</table>
+<h3 id="指令-分支"><a href="#指令-分支" class="headerlink" title="指令-分支"></a>指令-分支</h3><table>
+<thead>
+<tr>
+<th><strong>指令</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>分支查询</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git branch</td>
+<td>列出所有本地分支，加参数-v 显示详细列表，下同</td>
+</tr>
+<tr>
+<td>git branch -r</td>
+<td>列出所有远程分支</td>
+</tr>
+<tr>
+<td>git branch -a</td>
+<td>列出所有本地分支和远程分支，用不同颜色区分</td>
+</tr>
+<tr>
+<td><strong>分支新建</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git branch [branch-name]</td>
+<td>新建一个分支，但依然停留在当前分支</td>
+</tr>
+<tr>
+<td>git branch [branch] [commit]</td>
+<td>新建一个分支，指向指定 commit id</td>
+</tr>
+<tr>
+<td>git branch –track [branch] [remote-branch]</td>
+<td>新建一个分支，与指定的远程分支建立关联</td>
+</tr>
+<tr>
+<td><strong>分支切换</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git checkout .</td>
+<td>撤销工作区的（未暂存）修改，把暂存区恢复到工作区。不影响暂存区，如果没暂存，则撤销所有工作区修改</td>
+</tr>
+<tr>
+<td>git checkout [file]</td>
+<td>同上，file 指定文件</td>
+</tr>
+<tr>
+<td>git checkout HEAD .</td>
+<td>撤销工作区、暂存区的修改，用 HEAD 指向的当前分支最新版本替换工作区、暂存区</td>
+</tr>
+<tr>
+<td>git checkout HEAD [file]</td>
+<td>同上，file 指定文件</td>
+</tr>
+<tr>
+<td>git checkout -b dev</td>
+<td>从当前分支创建并切换到 dev 分支</td>
+</tr>
+<tr>
+<td>git checkout -b feature1 dev</td>
+<td>从本地 dev 分支代码创建一个 feature1 分支，并切换到新分支</td>
+</tr>
+<tr>
+<td>git checkout -b hotfix remote hotfix</td>
+<td>从远端 remote 的 hotfix 分支创建本地 hotfix 分支</td>
+</tr>
+<tr>
+<td><strong>分支切换：</strong>✅switch：新的分支切换指令，切换功能和 checkout 一样，switch 只单纯的用于切换</td>
+<td></td>
+</tr>
+<tr>
+<td>git switch master</td>
+<td>切换到已有的 master 分支</td>
+</tr>
+<tr>
+<td>git switch -c dev</td>
+<td>创建并切换到新的 dev 分支</td>
+</tr>
+<tr>
+<td><strong>分支合并</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git merge [branch]</td>
+<td>合并指定分支到当前分支</td>
+</tr>
+<tr>
+<td>git merge –no-ff dev</td>
+<td>合并 dev 分支到当前分支，参数–no-ff 禁用快速合并模式</td>
+</tr>
+<tr>
+<td><strong>分支删除</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git branch -d dev</td>
+<td>删除 dev 分支，-D（大写）强制删除</td>
+</tr>
+<tr>
+<td>git push origin –delete [branch-name]</td>
+<td>删除远程分支</td>
+</tr>
+<tr>
+<td>git branch -r</td>
+<td>grep ‘origin/dependabot’</td>
+<td>sed ‘s/origin\///g’</td>
+<td>xargs -I {} git push origin :{}</td>
+<td>批量删除远端分支</td>
+</tr>
+<tr>
+<td><strong>跟踪分支</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git branch –set-upstream [branch] [remote-branch]</td>
+<td>在现有分支与指定的远程分支之间建立跟踪关联：</td>
+</tr>
+</tbody>
+</table>
+<p><code>git branch --set-upstream hotfix remote/hotfix git checkout [branch-name]</code><br>切换到指定分支，并更新工作区 |</p>
+<h3 id="指令-标签"><a href="#指令-标签" class="headerlink" title="指令-标签"></a>指令-标签</h3><table>
+<thead>
+<tr>
+<th><strong>指令</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>查看标签</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git tag</td>
+<td>查看标签列表</td>
+</tr>
+<tr>
+<td>git tag -l ‘a*‘</td>
+<td>查看名称是“a”开头的标签列表，带查询参数</td>
+</tr>
+<tr>
+<td>git show [tagname]</td>
+<td>查看标签信息</td>
+</tr>
+<tr>
+<td><strong>创建标签</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git tag [tagname]</td>
+<td>创建一个标签，默认标签是打在最新提交的 commit 上的</td>
+</tr>
+<tr>
+<td>git tag [tagname] <commit id></commit></td>
+<td>新建一个 tag 在指定 commit 上</td>
+</tr>
+<tr>
+<td>git tag -a v5.1 -m’v5.1 版本’</td>
+<td>创建标签 v5.1.1039，-a 指定标签名，-m 指定说明文字</td>
+</tr>
+<tr>
+<td><strong>切换标签</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git checkout v5.1.1039</td>
+<td>切换标签，同切换分支</td>
+</tr>
+<tr>
+<td><strong>推送标签</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git push [remote] v5.1</td>
+<td>推送标签，标签不会默认随代码推送推送到服务端</td>
+</tr>
+<tr>
+<td>git push [remote] –tags</td>
+<td>提交所有 tag</td>
+</tr>
+<tr>
+<td><strong>删除标签</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>git tag -d [tagname]</td>
+<td>删除本地标签</td>
+</tr>
+</tbody>
+</table>
+<h2 id="高级操作"><a href="#高级操作" class="headerlink" title="高级操作"></a>高级操作</h2><h3 id="指令-bisect"><a href="#指令-bisect" class="headerlink" title="指令-bisect"></a>指令-bisect</h3><blockquote>
+<p>git bisect 是一个很有用的命令，执行一个二分搜索，用来查找哪一次代码提交引入了错误。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FlyEWYZF1R8tq_oF5hPeYqRn9Mxn.png" alt></p>
+<table>
+<thead>
+<tr>
+<th><strong>指令</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git bisect start [终点] [起点]</td>
+<td>启动查错，举例：<code>git bisect start HEAD 4d83cf</code></td>
+</tr>
+<tr>
+<td>git bisect good</td>
+<td>标识本次提交没有问题</td>
+</tr>
+<tr>
+<td>git bisect bad</td>
+<td>标识本次提交有问题</td>
+</tr>
+<tr>
+<td>git bisect reset</td>
+<td>退出查错，回到最近一次的代码提交</td>
+</tr>
+</tbody>
+</table>
+<h3 id="指令-diff"><a href="#指令-diff" class="headerlink" title="指令-diff"></a>指令-diff</h3><table>
+<thead>
+<tr>
+<th><strong>指令</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git diff</td>
+<td>查看暂存区和工作区的差异，举例<code>git diff 595d0dc11b6b34668b1620de2c29a313b024092c 1855846d6b49c2f4e3d7a05e4b9d76b9d435b4b9</code></td>
+</tr>
+<tr>
+<td>git diff [file]</td>
+<td>同上，指定文件</td>
+</tr>
+<tr>
+<td>git diff –cached</td>
+<td>查看已暂存的改动，就是暂存区与新版本 HEAD 进行比较</td>
+</tr>
+<tr>
+<td>git diff –staged</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>git diff –cached [file]</td>
+<td>同上，指定文件</td>
+</tr>
+<tr>
+<td>git diff HEAD</td>
+<td>查看已暂存的+未暂存的所有改动，就是与最新版本 HEAD 进行比较</td>
+</tr>
+<tr>
+<td>git diff HEAD~</td>
+<td>同上，与上一个版本比较。HEAD~表示上一个版本，HEAD~10 为最近第 10 个版本</td>
+</tr>
+<tr>
+<td>git diff [id] [id]</td>
+<td>查看两次提交之间的差异</td>
+</tr>
+<tr>
+<td>git diff [branch]</td>
+<td>查看工作区和分支直接的差异</td>
+</tr>
+</tbody>
+</table>
+<h3 id="指令-submodule"><a href="#指令-submodule" class="headerlink" title="指令-submodule"></a>指令-submodule</h3><blockquote>
+<p>子模块是链接；子树是复制的。</p>
+</blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/143100657" target="_blank" rel="noopener">使用子模块和子树来管理 Git 项目</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 逆初始化模块，其中&#123;MOD_NAME&#125;为模块目录，执行后可发现模块目录被清空</span></span><br><span class="line">git submodule deinit &#123;MOD_NAME&#125;</span><br><span class="line"><span class="comment"># 删除.gitmodules中记录的模块信息（--cached选项清除.git/modules中的缓存）</span></span><br><span class="line">git rm --cached &#123;MOD_NAME&#125;</span><br><span class="line"><span class="comment"># 提交更改到代码库，可观察到'.gitmodules'内容发生变更</span></span><br><span class="line">git commit -am <span class="string">"Remove a submodule."</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git submodule deinit -f path/to/submodule</span><br><span class="line">rm -rf .git/modules/path/to/submodule</span><br><span class="line">git rm -f path/to/submodule</span><br></pre></td></tr></table></figure>
+<p><a href="https://murphypei.github.io/blog/2018/09/git-delete-submodule" target="_blank" rel="noopener">Git 删除子模块和远程分支</a></p>
+<h1 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h1><h2 id="使用原则"><a href="#使用原则" class="headerlink" title="使用原则"></a>使用原则</h2><ul>
+<li>多建分支，没有什么是新建一个分支无法解决的。</li>
+<li>多提交代码，方便后续如果有问题可以进行快速回滚。</li>
+<li>善于使用变基命令整理没有推送的提交，让提交记录更加整洁。注意 ⚠️<strong>只在从未推送至共用仓库的提交上执行变基命令</strong>。</li>
+</ul>
+<h2 id="工作流"><a href="#工作流" class="headerlink" title="工作流"></a>工作流</h2><p>Git Flow<img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fn2kcc6kKLjHaEHQ0Ge_YooUUnov.png" alt></p>
+<h1 id="Git-练习场"><a href="#Git-练习场" class="headerlink" title="Git 练习场"></a>Git 练习场</h1><ul>
+<li>，Git 在线练习。</li>
+<li>，Git 学习网站，通过示例仓库，提供一系列 Git 的小练习，帮助用户掌握这个版本管理工具。</li>
+</ul>
+<hr>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.yuque.com/kanding/ktech/ccgylqhnb94ug4bu?view=doc_embed" target="_blank" rel="noopener">Git 入门图文教程(1.5W 字 40 图)🔥</a><br><a href="https://www.yuque.com/kanding/ktech/ai3d3ky8f0dgixto?view=doc_embed" target="_blank" rel="noopener">Git 常用指令集合 🔥🔥</a></p>
+<p><a href="https://www.yuque.com/kanding/ktech/ng8w19?view=doc_embed" target="_blank" rel="noopener">📖ProGit-Git 教程</a></p>
+<p><a href="https://www.yuque.com/xavior.wx/blog/git-review?view=doc_embed&amp;inner=b87ebc48" target="_blank" rel="noopener">git 使用学习总结</a></p>
+<hr>
+<p>最后，重学前端，将思考固定下来。</p>
+<ul>
+<li>笔记和记忆力是提高开发效率的最好方法。</li>
+<li>如果没有对旧事物进行大量练习，你不太可能发现新事物。</li>
+<li>努力学习最感兴趣的东西。<blockquote>
+<p>©️ 版权申明：版权所有@宋玉，本文内容仅供学习，欢迎指正、交流，转载请注明出处！<a href="https://www.yuque.com/songxingguo/devhints/bw0kwn12a6af5yg9" target="_blank" rel="noopener">原文地址-语雀</a></p>
+</blockquote>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2023/02/07/如何将语雀文章发布到Hexo博客/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -421,7 +1298,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2023-04-30 01:15:15" itemprop="dateModified" datetime="2023-04-30T01:15:15+00:00">2023-04-30</time>
+                <time title="修改时间：2023-04-30 01:15:23" itemprop="dateModified" datetime="2023-04-30T01:15:23+00:00">2023-04-30</time>
               
             
           </span>
@@ -598,7 +1475,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2023-04-30 01:15:15" itemprop="dateModified" datetime="2023-04-30T01:15:15+00:00">2023-04-30</time>
+                <time title="修改时间：2023-04-30 01:15:23" itemprop="dateModified" datetime="2023-04-30T01:15:23+00:00">2023-04-30</time>
               
             
           </span>
@@ -780,7 +1657,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2023-04-30 01:15:15" itemprop="dateModified" datetime="2023-04-30T01:15:15+00:00">2023-04-30</time>
+                <time title="修改时间：2023-04-30 01:15:23" itemprop="dateModified" datetime="2023-04-30T01:15:23+00:00">2023-04-30</time>
               
             
           </span>
@@ -927,7 +1804,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
