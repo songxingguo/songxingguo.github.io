@@ -10,6 +10,8 @@ categories: []
 
 > 文中 Git 相关术语都来源于中文版 Sourcetree。
 
+<!--more-->
+
 # Git 指令
 
 ## 全局指令
