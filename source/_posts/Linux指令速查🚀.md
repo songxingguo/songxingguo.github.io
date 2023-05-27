@@ -6,7 +6,7 @@ tags: []
 categories: []
 ---
 
-![](https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fi3TCMSeF32kRYmI8qEfGc16lXNU.jpeg)
+# ![](https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fi3TCMSeF32kRYmI8qEfGc16lXNU.jpeg)
 
 <!--more-->
 
@@ -464,3 +464,12 @@ Vim 是从 vi 发展出来的一个文本编辑器。代码补全、编译及错
 [Curl 使用指南](https://www.liuxing.io/blog/curl/)
 [Homebrew 安装、使用、升级和卸载](https://blog.devhitao.com/2020/01/18/homebrew-usage/)
 [报错：Failed to upgrade Homebrew Portable Ruby](https://www.jianshu.com/p/53a7d11a7250)
+
+---
+
+最后，重学前端，将思考固定下来。
+
+- 笔记和记忆力是提高开发效率的最好方法。
+- 如果没有对旧事物进行大量练习，你不太可能发现新事物。
+- 努力学习最感兴趣的东西。
+  > ©️ 版权申明：版权所有@宋玉，本文内容仅供学习，欢迎指正、交流，转载请注明出处！[原文地址-语雀](https://www.yuque.com/songxingguo/devhints/vtheqvmkw27cx4k8)
