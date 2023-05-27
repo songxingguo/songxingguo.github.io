@@ -8,6 +8,8 @@ categories: []
 
 ![](https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fi3TCMSeF32kRYmI8qEfGc16lXNU.jpeg)
 
+<!--more-->
+
 # 指令速查
 
 ## 指令-帮助
