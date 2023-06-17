@@ -8,6 +8,8 @@ categories: []
 
 ![](https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fg2BDn7uyE_NJeeZ1oP_r6bF8g5R.jpeg)
 
+<!--more-->
+
 # 静态 API
 
 ## 全局配置
