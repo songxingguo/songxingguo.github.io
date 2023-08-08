@@ -1,0 +1,37 @@
+# 留言平台
+message: "<p>Hi，大家好，我是李靖，网名小胡子哥（Barret Lee），</p>\
+          <p>欢迎交流~</p>"
+
+notice:
+
+# 友情链接
+friends_Info: "<p>欢迎交流~（<a href='/about/#contact'>我的联系方式</a>）</p>"
+
+friends:
+  旧博客:
+    我的旧博客（博客园荣誉博客）: http://hustskyking.cnblogs.com
+  大额:
+    大额大额哼歌等日落: http://www.zhangmengxue.com
+  张鑫旭:
+    原来大学我俩一个团队的~: http://www.zhangxinxu.com
+  次碳酸钴:
+    深度交流的一个好朋友: http://web-tinker.com
+  屈屈:
+    蛐蛐同学: http://imququ.com
+  阮一峰:
+    阮老师: http://www.ruanyifeng.com
+
+# 标准规范副本
+st:
+  ECMAScript 5.1 Standard: /ST/ES5.1/
+  ECMAScript 6 Draft: /ST/ES6/
+  RFC-HTTP: /ST/RFC-HTTP/
+  RFC-HTTP1.1: /ST/RFC-HTTP1.1/
+
+# 工具列表
+tools:
+  # JavaScript Parser: /tools/jsparser/
+  RegExp-Learning in 30 Minutes: /tools/reg/
+
+# 实验室
+demos: http://demo.barretlee.com

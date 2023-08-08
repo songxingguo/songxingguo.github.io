@@ -1,0 +1,45 @@
+author: Barret李靖
+author_en: Barret Lee
+
+source_tree: https://github.com/barretlee/blog/tree/master/blog/src/_posts/
+source_edit: https://github.com/barretlee/blog/edit/master/blog/src/_posts/
+source_new: https://github.com/barretlee/blog/new/master/blog/src/_posts
+
+imgs:
+  favicon: https://img.alicdn.com/imgextra/i3/O1CN01EVx62B1eyZLyJsJnY_!!6000000003940-2-tps-100-100.png
+  avatar: https://img.alicdn.com/imgextra/i1/O1CN01zmj6R326ehPa0NZO2_!!6000000007687-2-tps-1200-1200.png
+  avatar150: https://img.alicdn.com/imgextra/i3/O1CN01tDYnfz23AWT1ag79p_!!6000000007215-2-tps-1200-1200.png
+  app_icon: https://img.alicdn.com/imgextra/i4/O1CN01LKRotr20M1ZGJkT3v_!!6000000006834-2-tps-1200-1200.png
+  loading: https://img.alicdn.com/imgextra/i4/O1CN01Czgiur21V0xDDZVK1_!!6000000006989-1-tps-1200-1200.gif
+
+pages:
+  about: /about/
+  friends: /friends/
+  translation: /translation/
+  demos: /demos/
+  feed: /rss2.xml
+  comments: /comments/
+  message: /message/
+  demo: http://demo.barretlee.com
+  md: http://md.barretlee.com
+  snippets: http://snippets.barretlee.com
+
+# social
+social:
+  about: https://about.me/barretlee
+  github: https://github.com/barretlee
+  weibo: http://weibo.com/173248656
+  zhihu: http://www.zhihu.com/people/barretlee
+  douban: http://www.douban.com/people/hustskyking/
+  jike: https://web.okjike.com/u/83F8C091-4C46-43B7-B7AC-B90CD72255E7
+  mail: barret.china@gmail.com
+  facebook: barret.china
+  google: https://plus.google.com/112634278852964994392?hl=zh-cn
+  twitter: https://twitter.com/barret_china
+  linkedin: https://cn.linkedin.com/in/barretlee
+  cnblog: http://hustskyking.cnblogs.com
+
+# Content
+excerpt_link: 阅读全文 >>
+
+gitalk: barretlee

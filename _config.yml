@@ -18,15 +18,14 @@ permalink: :year/:month/:day/:title/
 permalink_defaults:
 
 # Directory
-source_dir: source
-public_dir: public
-tag_dir: tags
-archive_dir: archives
-category_dir: categories
-works_dir: works
-code_dir: downloads/code
-i18n_dir: :lang
-skip_render:
+source_dir: src
+public_dir: build
+tag_dir: blog/tags
+archive_dir: blog/archives
+category_dir: blog/categories
+code_dir: blog/downloads/code
+i18n_dir: blog/:lang
+skip_render: tmp
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -73,7 +72,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: hexo-theme-moustache
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
