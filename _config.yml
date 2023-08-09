@@ -18,11 +18,11 @@ permalink: :year/:month/:day/:title/
 permalink_defaults:
 
 # Directory
-source_dir: src
+source_dir: source
 public_dir: build
 tag_dir: blog/tags
 archive_dir: blog/archives
-category_dir: blog/categories
+# category_dir: blog/categories
 code_dir: blog/downloads/code
 i18n_dir: blog/:lang
 skip_render: tmp

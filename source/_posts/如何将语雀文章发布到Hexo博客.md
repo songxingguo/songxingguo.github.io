@@ -3,7 +3,7 @@ title: 如何将语雀文章发布到Hexo博客
 urlname: gwpsg4dq6tp27z3s
 date: '2023-02-07 05:15:12 +0000'
 tags: []
-categories: []
+categories: [前端]
 ---
 
 ## 写在前面
