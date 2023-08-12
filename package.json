@@ -18,7 +18,7 @@
     "publish": "yuque-hexo publish"
   },
   "dependencies": {
-    "hexo": "^3.8.0",
+    "hexo": "^3.9.0",
     "hexo-admin": "^2.3.0",
     "hexo-asset-image": "0.0.3",
     "hexo-baidu-url-submit": "0.0.5",
