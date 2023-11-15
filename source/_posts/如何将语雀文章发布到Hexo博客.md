@@ -15,6 +15,7 @@ categories: []
 ## 传送门
 
 - [项目地址](https://github.com/songxingguo/songxingguo.github.io)
+- [博客地址](https://blog.songxingguo.com/)
 - 使用效果（视频）
   [![](https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FvYEuJlUXy5ADawCvwN-yUw1zlI_.com/mdn/prod_resou/afts/img/A*NNs6TKOR3isAAAAAAAAAAABkARQnAQ)](https://www.yuque.com/songxingguo/devhints/gwpsg4dq6tp27z3s?_lake_card=%7B%22status%22%3A%22done%22%2C%22name%22%3A%22%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62023-02-09%2019.39.30.mov%22%2C%22size%22%3A204453355%2C%22taskId%22%3A%22ua4cb8283-502b-4a55-b53e-7f0a9dd0a84%22%2C%22taskType%22%3A%22upload%22%2C%22url%22%3Anull%2C%22cover%22%3Anull%2C%22videoId%22%3A%22inputs%2Fprod%2Fyuque%2F2023%2F394169%2Fmov%2F1675943595043-2a636a15-97b2-4fd2-9038-a34841d5d6a3.mov%22%2C%22download%22%3Afalse%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22pqOSi%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22video%22%7D#pqOSi)
 
@@ -31,7 +32,7 @@ categories: []
 
 ### `yuque-hexo-publish`是什么
 
-`[yuque-hexo](https://github.com/x-cold/yuque-hexo)`是一个很优秀的插件，能将语雀的文章完全**同步**到个人博客上。但这并不满足我的需求，我需要的是发布而不是同步，我并不想把所有文章都**同步**到个人博客上，也不希望只能有一个知识库里面的文章能**发布**到个人博客，而是希望能把我想发布的文章都能**发布**到个人博客上。基于这个这个考虑我在`yuque-hexo`的基础上新增了发布功能，`yuque-hexo-publish`就此诞生了。yuque-hexo-publish 在功能上和 yuque-hexo 是完全一致的，只是新增了命令 publish。
+`[yuque-hexo](https://github.com/x-cold/yuque-hexo)`是一个很优秀的插件，能将语雀的文章完全**同步**到个人博客上。但这并不满足我的需求，我需要的是发布而不是同步，我并不想把所有文章都**同步**到个人博客上，也不希望只能有一个知识库里面的文章能**发布**到个人博客，而是希望能把我想发布的文章都能**发布**到个人博客上。基于这个考虑我在`yuque-hexo`的基础上新增了发布功能，`yuque-hexo-publish`就此诞生了。yuque-hexo-publish 在功能上和 yuque-hexo 是完全一致的，只是新增了命令 publish。
 
 ## 具体实施
 
@@ -436,9 +437,14 @@ Hoppscotch 和 postman 的功能是一样的，但这个是线上的版本，更
 
 ## [拓展阅读](https://www.yuque.com/songxingguo/devhints/gwpsg4dq6tp27z3s)
 
+[Node.js\_函数计算-阿里云帮助中心](https://help.aliyun.com/document_detail/74754.html)
 [Github Actions 持续集成 Docker 构建并部署 Node 项目到云服务器](https://www.yuque.com/1874w/1874.cool/ovugli?view=doc_embed)
-
+[使用语雀、GitHub 和阿里云函数计算构建博客](https://www.xiayinchang.top/post/b2362878.html)
 [yueque-hexo 图床配置](https://github.com/LetTTGACO/yuque-hexo-example)
-
+[Hexo：语雀云端写作 Github Actions 持续集成 | HONGWEI](https://www.zhwei.cn/hexo-github-actions-yuque/#toc-heading-5)
+[一键部署 hexo 博客到腾讯云 COS 对象存储](https://werty.cn/2019/06/hexo/%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2hexo%E5%8D%9A%E5%AE%A2%E5%88%B0%E8%85%BE%E8%AE%AF%E4%BA%91COS%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/)
 [语雀云端写作 Hexo+Github Actions+COS 持续集成](https://www.yuque.com/1874w/1874.cool/roeayv?view=doc_embed)
 [Webhooks](https://www.yuque.com/yuque/developer/doc-webhook?view=doc_embed)
+[语雀文章自动同步到个人博客 - 掘金](https://juejin.cn/post/6844904193094844423)
+[阿里云登录 - 欢迎登录阿里云，安全稳定的云计算服务平台](https://fcnext.console.aliyun.com/overview)
+[登录 - 腾讯云](https://cloud.tencent.com/login?s_url=https%3A%2F%2Fconsole.cloud.tencent.com%2Fscf%2Flist%3Frid%3D1%26ns%3Ddefault)
