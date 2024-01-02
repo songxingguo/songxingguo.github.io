@@ -2,25 +2,25 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>使用Github Action部署静态网站 | 阿有的生活</title>
+  <title>Git使用 | 阿有的生活</title>
   <meta name="HandheldFriendly" content="True" />
   <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=0">
   <meta name="author" content="https://plus.google.com/112634278852964994392?hl=zh-cn">
   <meta name="email" content="barret.china@gmail.com">
-  <meta name="description" content="生成 token进入 Github 生成授权 token 的页面，创建一个 token，修改名称并选择所有仓库。将仓库权限设置中的 Content 项，设置为读和写。最后点击确认生成 token，并复制，注意 ⚠️ 刷新之后就没有办法复制了。设置环境变量进入到项目设置页面，选择添加Actions 的">
+  <meta name="description" content="更新代码的时候尽量，这样代码的diff要好看一些。111git pull --rebase撤销本地操作:1git reset --hard撤销一个文件的本地操作：12git checkout -- file`查看哪一次commit删除了某个文件1git log -- file清除所有untracke">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="使用Github Action部署静态网站 | 阿有的生活">
-  <meta property="og:url" content="https://www.songxingguo.com/2023/01/15/使用Github Action部署静态网站/">
-  <meta property="og:site_name" content="使用Github Action部署静态网站">
-  <meta property="og:description" content="生成 token进入 Github 生成授权 token 的页面，创建一个 token，修改名称并选择所有仓库。将仓库权限设置中的 Content 项，设置为读和写。最后点击确认生成 token，并复制，注意 ⚠️ 刷新之后就没有办法复制了。设置环境变量进入到项目设置页面，选择添加Actions 的">
+  <meta property="og:title" content="Git使用 | 阿有的生活">
+  <meta property="og:url" content="https://www.songxingguo.com/2024/01/02/git/">
+  <meta property="og:site_name" content="Git使用">
+  <meta property="og:description" content="更新代码的时候尽量，这样代码的diff要好看一些。111git pull --rebase撤销本地操作:1git reset --hard撤销一个文件的本地操作：12git checkout -- file`查看哪一次commit删除了某个文件1git log -- file清除所有untracke">
   <meta name="generator" content="https://hexo.io" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="renderer" content="webkit">
   <link href="https://blog.songxingguo.com/images/logo.png" rel="apple-touch-icon-precomposed">
   <link rel="shoticon" href="https://blog.songxingguo.com/images/logo.png" type="image/x-icon">
   <link rel="alternate" type="application/rss+xml" href="https://www.songxingguo.com/rss2.xml" title="阿有的生活" />
-  <link rel="prev" href="https://www.songxingguo.com/2023/02/05/从零开始搭建在线个人简历/" title="从零开始搭建在线个人简历" />
   
+  <link rel="next" href="https://www.songxingguo.com/2023/06/17/Vue指令速查🚀/" title="Vue指令速查🚀" />
   <link rel="start" href="https://www.songxingguo.com/entry/" title="Blog Entry" />
   <link rel="stylesheet" href="/public/css/style-20230627-2.css">
 </head>
@@ -43,55 +43,35 @@
 
       </div>
       <div class="post-title-wrapper">
-        <h1 class="post-title" itemprop="name">使用Github Action部署静态网站</h1>
+        <h1 class="post-title" itemprop="name">Git使用</h1>
         <a href="/about/"><img src="https://blog.songxingguo.com/images/logo.png" alt="宋兴国" /></a>
       </div>
       <div class="post-info">
         <span>作者: <a href="/about/">宋兴国</a></span>
         <span>
-          <time itemprop="timeCreated" aria-hidden="true">2023-01-15 12:05:37</time>
-          <span class="aria-readonly">本文发布时间为2023年01月15日12时05分37秒</span>
+          <time itemprop="timeCreated" aria-hidden="true">2024-01-02 17:34:00</time>
+          <span class="aria-readonly">本文发布时间为2024年01月02日17时34分00秒</span>
         </span>
         
         
         <span class="aria-readonly">下面是正文内容</span>
         <span tabindex="0" aria-hidden="true">评论数: <a href="#comments"
                       class="ds-thread-count hash-to-comments disqus-comment-count"
-                      data-thread-key="使用Github Action部署静态网站"
-                      data-disqus-identifier="使用Github Action部署静态网站"></a></span>
+                      data-thread-key="git"
+                      data-disqus-identifier="git"></a></span>
       </div>
       <div class="post-content" itemprop="articleBody">
         
-        <h2 id="生成-token"><a href="#生成-token" class="headerlink" title="生成 token"></a>生成 token</h2><ol>
-<li>进入 Github 生成<a href="https://github.com/settings/apps" target="_blank" rel="noopener">授权 token 的页面</a>，创建一个 token，修改名称并选择所有仓库。</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FpT1FXfdY0l7BGM5m1bJf8CpX2vJ.png" alt></p>
-<a id="more"></a>
-<ol start="2">
-<li>将仓库权限设置中的 Content 项，设置为读和写。</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fq0KQlr3rLfbLvpcG3eeBuR3obCM.png" alt></p>
-<ol start="3">
-<li>最后点击确认生成 token，并<strong>复制</strong>，<strong>注意 ⚠️ 刷新之后就没有办法复制了</strong>。</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fv9aHq1-NNLTVgSUqUFagqiuXnKq.png" alt></p>
-<h2 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h2><ol>
-<li>进入到<strong>项目</strong>设置页面，选择添加<a href="https://github.com/songxingguo/resume/settings/secrets/actions" target="_blank" rel="noopener">Actions 的环境变量</a>。</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FrIY5Jtbgpf4f6dVbJw05tgPrnLU.png" alt></p>
-<ol start="2">
-<li>输入变量名称<code>ACCESS_TOKEN</code>，密钥一栏粘贴刚才复制的 Token，点击添加就完成了。</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fl6OpNuIfRyDofKm-aKoQSfW8LAr.png" alt></p>
-<h2 id="项目中添加配置文件"><a href="#项目中添加配置文件" class="headerlink" title="项目中添加配置文件"></a>项目中添加配置文件</h2><ol>
-<li>在项目的更目录下创建<code>.github/workflows/static.yml</code>。</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">name: GitHub Actions Build and Deploy</span><br><span class="line">on:</span><br><span class="line">  push:</span><br><span class="line">    branches:</span><br><span class="line">      - main #触发自动化部署的分支</span><br><span class="line">jobs:</span><br><span class="line">  build-and-deploy:</span><br><span class="line">    runs-on: ubuntu-latest</span><br><span class="line">    steps:</span><br><span class="line">      - name: Checkout 🛎️ #从触发分支检出代码</span><br><span class="line">        uses: actions/checkout@v3</span><br><span class="line">        <span class="keyword">with</span>:</span><br><span class="line">          persist-credentials: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">      - name: Install and Build 🔧 #安装依赖并且打包静态文件</span><br><span class="line">        run: |</span><br><span class="line">          npm i</span><br><span class="line">          npm run build</span><br><span class="line">      - name: Deploy 🚀</span><br><span class="line">        uses: JamesIves/github-pages-deploy-action@v4</span><br><span class="line">        <span class="keyword">with</span>:</span><br><span class="line">          ACCESS_TOKEN: $&#123;&#123; secrets.ACCESS_TOKEN &#125;&#125;</span><br><span class="line">          BRANCH: gh-pages #部署的分支</span><br><span class="line">          FOLDER: dist #打包后静态文件所在的位置</span><br><span class="line">          CLEAN: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>然后提交代码就开始自动部署了。</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FtBuIbPHuD4YxSJImJg7yFsektPM.png" alt></p>
-<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2>
+        <p>更新代码的时候尽量，这样代码的diff要好看一些。11</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull --rebase</span><br></pre></td></tr></table></figure>
+<p>撤销本地操作:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard</span><br></pre></td></tr></table></figure>
+<p>撤销一个文件的本地操作：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- file</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<p>查看哪一次commit删除了某个文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log -- file</span><br></pre></td></tr></table></figure>
+<p>清除所有untracked files in Git repo:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clean -fxd</span><br></pre></td></tr></table></figure></p>
+
       </div>
     </div>
     
@@ -103,15 +83,15 @@
 		<li>作者: <a href="/about/" itemprop="name">宋玉</a></li>
 		
 		
-		<li>发表日期: 2023-01-15 12:05:37</li>
+		<li>发表日期: 2024-01-02 17:34:00</li>
 		<li>最后编辑时间: 2024-01-02 15:27:05</li>
 		<li>本文 Markdown 地址: <a target="_
-			" href="https://github.com/songxingguo/blog/tree/master/blog/src/_posts/2023-01-15-使用Github Action部署静态网站.md">使用Github Action部署静态网站</a></li>
+			" href="https://github.com/songxingguo/blog/tree/master/blog/src/_posts/2024-01-02-git.md">Git使用</a></li>
 		<li>版权声明：<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank">CC BY-NC-ND 3.0</a></li>
 		<li>
 			Feed 订阅: <a href="/rss2.xml"><i class="icon">&#x25c8;</i></a>
 			<div style="opacity:.3;text-align:right;margin:5px -5px -10px 0;float:right;font-size: 12px;">
-				编辑本文：<a href="https://github.com/songxingguo/blog/edit/master/blog/src/_posts/2023-01-15-使用Github Action部署静态网站.md" target="_blank" aria-hidden="true"><i class="icon">&#xe622;</i></a>；
+				编辑本文：<a href="https://github.com/songxingguo/blog/edit/master/blog/src/_posts/2024-01-02-git.md" target="_blank" aria-hidden="true"><i class="icon">&#xe622;</i></a>；
 				新建文章：<a href="https://github.com/songxingguo/blog/new/master/blog/src/_posts" target="_blank" aria-hidden="true"><i class="icon">&#xe616;</i></a>
 			</div>
 		</li>
@@ -134,27 +114,23 @@
   <div class="post-relative">
 <div class="page-relative">
   
-    <a href="/2023/02/05/从零开始搭建在线个人简历/" class="post-prev">
-      <i class="icon" tabindex="0" aria-hidden="true">&#x261c;</i>
-      <span class="aria-readonly">上一篇文章</span>
-      
-        <b>从零开始搭建在线个人简历</b>
-      
-    </a>
   
+    <a href="/2023/06/17/Vue指令速查🚀/" class="post-next">
+      <span class="aria-readonly">下一篇文章</span>
+      <b>Vue指令速查🚀</b>
+      <i class="icon" tabindex="0" aria-hidden="true">&#xe602;</i>
+    </a>
   
 </div>
 
 
 <div class="page-relative-fixed" tabindex="0" aria-hidden="true">
   
-  <a href="/2023/02/05/从零开始搭建在线个人简历/" class="prev" title="从零开始搭建在线个人简历">
-    <i class="icon">&#xe600;</i>
-    
-    <b>从零开始搭建在线个人简历</b>
-    
-  </a>
   
+  <a href="/2023/06/17/Vue指令速查🚀/" class="next" title="Vue指令速查🚀">
+    <i class="icon">&#x261e;</i>
+    <b>Vue指令速查🚀</b>
+  </a>
   
 </div>
 </div>
@@ -226,8 +202,8 @@
 		<div class="footer-content">
 			<div class="footer-nav">
 	<a href="javascript: void(0);" class="ds-thread-count disqus-comment-count"
-	   data-thread-key="使用Github Action部署静态网站"
-	   data-disqus-identifier="使用Github Action部署静态网站" 
+	   data-thread-key="git"
+	   data-disqus-identifier="git" 
 		 tabindex="0" aria-hidden="true">评论内容</a>
 	<a href="javascript: void(0);" id="comments">相关文章</a>
 	<!-- <a href="/friends/" tabindex="0" aria-hidden="true" style="display: none;">友情链接</a> -->
@@ -235,7 +211,7 @@
 <div class="nav-detail">
 	<div tabindex="0">
 		
-  <div id="gitalk" sid="使用Github Action部署静态网站"></div>
+  <div id="gitalk" sid="git"></div>
   <script charset="utf-8" type="text/javascript" src="/public/js/gitalk.js"></script>
   <script type="text/javascript">
   var postContent = document.querySelectorAll('.post-content>p');
@@ -253,7 +229,7 @@
     repo: 'songxingguo.github.io',
     owner: 'songxingguo',
     admin: ['songxingguo'],
-    id: "使用Github Action部署静态网站",
+    id: "git",
     body: '原文地址：' + location.href + '\n\n文摘：' + postContent,
     distractionFreeMode: false,
     proxy: `https://vercel.prohibitorum.top/github_access_token`
@@ -310,7 +286,7 @@
 </div>
 			<!-- 
 <div class="website-info" aria-hidden="true">
-	<a class="page_editor" href="/admin/#/posts/clqwi6vv3000ahqqe02oq9u0r" target="_blank">🙈</a>
+	<a class="page_editor" href="/admin/#/posts/clqwi6vv00008hqqemekzpsos" target="_blank">🙈</a>
 	<span>&copy;2013-2024 <small><a href="https://www.miit.gov.cn/" about="_blank">湘ICP备14007107号-1</a></small></span>
 	本站由 <a href="/">宋兴国</a> 纯手工打造 | <a href="/about#contact">联系方式</a>
 	<a href='https://union.zhaodao.ai/#random' title="随机跳转到一个有意思的网站" target='_blank' class="zhidao_ai"><img src='https://img.alicdn.com/imgextra/i2/O1CN01VjiZUL1r0eXge4taM_!!6000000005569-55-tps-300-300.svg' width="20" height="20"></a>

@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Git使用</title>
+      <link href="/2024/01/02/git/"/>
+      <url>/2024/01/02/git/</url>
+      
+        <content type="html"><![CDATA[<p>更新代码的时候尽量，这样代码的diff要好看一些。11</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull --rebase</span><br></pre></td></tr></table></figure><p>撤销本地操作:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard</span><br></pre></td></tr></table></figure><p>撤销一个文件的本地操作：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- file</span><br><span class="line">`</span><br></pre></td></tr></table></figure><p>查看哪一次commit删除了某个文件</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log -- file</span><br></pre></td></tr></table></figure><p>清除所有untracked files in Git repo:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clean -fxd</span><br></pre></td></tr></table></figure></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Vue指令速查🚀</title>
       <link href="/2023/06/17/Vue%E6%8C%87%E4%BB%A4%E9%80%9F%E6%9F%A5%F0%9F%9A%80/"/>
       <url>/2023/06/17/Vue%E6%8C%87%E4%BB%A4%E9%80%9F%E6%9F%A5%F0%9F%9A%80/</url>
