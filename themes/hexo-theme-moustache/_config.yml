@@ -1,9 +1,9 @@
 author: 宋玉
 author_en: SongYu
 
-source_tree: https://github.com/barretlee/blog/tree/master/blog/src/_posts/
-source_edit: https://github.com/barretlee/blog/edit/master/blog/src/_posts/
-source_new: https://github.com/barretlee/blog/new/master/blog/src/_posts
+source_tree: https://github.com/songxingguo/blog/tree/master/blog/src/_posts/
+source_edit: https://github.com/songxingguo/blog/edit/master/blog/src/_posts/
+source_new: https://github.com/songxingguo/blog/new/master/blog/src/_posts
 
 imgs:
   favicon: https://blog.songxingguo.com/images/logo.png
@@ -20,26 +20,26 @@ pages:
   feed: /rss2.xml
   comments: /comments/
   message: /message/
-  demo: http://demo.barretlee.com
-  md: http://md.barretlee.com
-  snippets: http://snippets.barretlee.com
+  demo: http://demo.songxingguo.com
+  md: http://md.songxingguo.com
+  snippets: http://snippets.songxingguo.com
 
 # social
 social:
-  about: https://about.me/barretlee
-  github: https://github.com/barretlee
+  about: https://about.me/songxingguo
+  github: https://github.com/songxingguo
   weibo: http://weibo.com/173248656
-  zhihu: http://www.zhihu.com/people/barretlee
+  zhihu: http://www.zhihu.com/people/songxingguo
   douban: http://www.douban.com/people/hustskyking/
   jike: https://web.okjike.com/u/83F8C091-4C46-43B7-B7AC-B90CD72255E7
   mail: barret.china@gmail.com
   facebook: barret.china
   google: https://plus.google.com/112634278852964994392?hl=zh-cn
   twitter: https://twitter.com/barret_china
-  linkedin: https://cn.linkedin.com/in/barretlee
+  linkedin: https://cn.linkedin.com/in/songxingguo
   cnblog: http://hustskyking.cnblogs.com
 
 # Content
 excerpt_link: 阅读全文 >>
 
-gitalk: barretlee
+gitalk: songxingguo
