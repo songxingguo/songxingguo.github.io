@@ -4,7 +4,7 @@ db.json
 package-lock.json
 *.log
 node_modules/
-public/
+build/
 .deploy*/
 
 source/works/
