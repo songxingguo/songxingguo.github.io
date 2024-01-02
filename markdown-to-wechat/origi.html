@@ -1,0 +1,21 @@
+<p>更新代码的时候尽量，这样代码的diff要好看一些。</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>git<span style="color: #f8f8f2"> </span>pull<span style="color: #f8f8f2"> </span>--rebase
+</code></pre></div>
+
+<p>撤销本地操作:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>git<span style="color: #f8f8f2"> </span>reset<span style="color: #f8f8f2"> </span>--hard
+</code></pre></div>
+
+<p>撤销一个文件的本地操作：</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>git<span style="color: #f8f8f2"> </span>checkout<span style="color: #f8f8f2"> </span>--<span style="color: #f8f8f2"> </span>file
+<span style="color: #e6db74">````</span>
+
+查看哪一次commit删除了某个文件
+
+<span style="color: #e6db74">```</span>shell
+git<span style="color: #f8f8f2"> </span>log<span style="color: #f8f8f2"> </span>--<span style="color: #f8f8f2"> </span>file
+</code></pre></div>
+
+<p>清除所有untracked files in Git repo:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>git<span style="color: #f8f8f2"> </span>clean<span style="color: #f8f8f2"> </span>-fxd
+</code></pre></div>

@@ -1,0 +1,22 @@
+<section id="nice" style="font-size: 17px; color: black; padding: 0 10px; line-height: 1.7; word-spacing: 0px; letter-spacing: 0.01px; word-break: break-word; word-wrap: break-word; text-align: left; font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+<p style="font-size: 17px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px;">更新代码的时候尽量，这样代码的diff要好看一些。</p>
+<div class="codehilite" style="background: #272822; border-radius: 3px; word-wrap: break-word; overflow: scroll; padding: 12px 13px; font-size: 13px;"><pre style="line-height: 125%;"><span></span><code>git<span style="color: #f8f8f2"> </span>pull<span style="color: #f8f8f2"> </span>--rebase
+</code></pre></div>
+
+<p style="font-size: 17px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px;">撤销本地操作:</p>
+<div class="codehilite" style="background: #272822; border-radius: 3px; word-wrap: break-word; overflow: scroll; padding: 12px 13px; font-size: 13px;"><pre style="line-height: 125%;"><span></span><code>git<span style="color: #f8f8f2"> </span>reset<span style="color: #f8f8f2"> </span>--hard
+</code></pre></div>
+
+<p style="font-size: 17px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px;">撤销一个文件的本地操作：</p>
+<div class="codehilite" style="background: #272822; border-radius: 3px; word-wrap: break-word; overflow: scroll; padding: 12px 13px; font-size: 13px;"><pre style="line-height: 125%;"><span></span><code>git<span style="color: #f8f8f2"> </span>checkout<span style="color: #f8f8f2"> </span>--<span style="color: #f8f8f2"> </span>file
+<span style="color: #e6db74">````</span>
+
+查看哪一次commit删除了某个文件
+
+<span style="color: #e6db74">```</span>shell
+git<span style="color: #f8f8f2"> </span>log<span style="color: #f8f8f2"> </span>--<span style="color: #f8f8f2"> </span>file
+</code></pre></div>
+
+<p style="font-size: 17px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px;">清除所有untracked files in Git repo:</p>
+<div class="codehilite" style="background: #272822; border-radius: 3px; word-wrap: break-word; overflow: scroll; padding: 12px 13px; font-size: 13px;"><pre style="line-height: 125%;"><span></span><code>git<span style="color: #f8f8f2"> </span>clean<span style="color: #f8f8f2"> </span>-fxd
+</code></pre></div></section>

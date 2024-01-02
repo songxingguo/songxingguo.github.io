@@ -1,0 +1,26 @@
+name: Python application
+
+on: [push]
+
+jobs:
+  # a single job
+  a-job-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Python3
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: 安装依赖
+        run: |
+            pip3 install markdown Pygments werobot pyquery
+      - name: 同步文章
+        env:
+          WECHAT_APP_ID: ${{ secrets.WECHAT_APP_ID }}
+          WECHAT_APP_SECRET: ${{ secrets.WECHAT_APP_SECRET }}
+        run: |
+          cd markdown-to-wechat
+          python3 sync.py    
+
