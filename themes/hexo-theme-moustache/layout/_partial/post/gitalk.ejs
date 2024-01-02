@@ -1,5 +1,5 @@
 <% if(theme.gitalk) { %>
-  <div id="gitalk" sid="<%- page.slug || page.path || 'barretlee-blog' %>"></div>
+  <div id="gitalk" sid="<%- page.slug || page.path || 'songxingguo-blog' %>"></div>
   <script charset="utf-8" type="text/javascript" src="/public/js/gitalk.js"></script>
   <script type="text/javascript">
   var postContent = document.querySelectorAll('.post-content>p');
@@ -9,15 +9,15 @@
   }
 
   var gitalk = new Gitalk({
-    clientID: '50a1b3aa7854b01a1c85',
-    clientSecret: '226ac154f80a6aea0985da874126b35795f22eed',
+    clientID: 'f55a398461d56a3e691e',
+    clientSecret: '77359a5d140ac109d31a3a6f2711f0ddb16c69fe',
     language: "zh-CN",
     perPage: 100,
     createIssueManually: false,
-    repo: 'blog',
-    owner: 'barretlee',
-    admin: ['barretlee'],
-    id: "<%- page.slug || page.path || 'barretlee-blog' %>",
+    repo: 'songxingguo.github.io',
+    owner: 'songxingguo',
+    admin: ['songxingguo'],
+    id: "<%- page.slug || page.path || 'songxingguo-blog' %>",
     body: '原文地址：' + location.href + '\n\n文摘：' + postContent,
     distractionFreeMode: false
   });
