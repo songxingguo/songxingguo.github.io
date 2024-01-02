@@ -19,7 +19,8 @@
     admin: ['songxingguo'],
     id: "<%- page.slug || page.path || 'songxingguo-blog' %>",
     body: '原文地址：' + location.href + '\n\n文摘：' + postContent,
-    distractionFreeMode: false
+    distractionFreeMode: false,
+    proxy: `https://vercel.prohibitorum.top/github_access_token`
   });
 
   window.addEventListener('load', function () {
