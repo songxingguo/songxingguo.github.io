@@ -1,495 +1,78 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.9.0">
+<html lang="zh-CN">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png?v=6.4.2">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png?v=6.4.2">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png?v=6.4.2">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '6.4.2',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-<script>
-(function() {
-    var OriginTitile = document.title, titleTime;
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            document.title = '死鬼去哪里了！';
-            clearTimeout(titleTime);
-        } else {
-            document.title = '(つェ⊂)咦!又好了!';
-            titleTime = setTimeout(function() {
-                document.title = OriginTitile;
-            },2000);
-        }
-    });
-})();
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="写在前面实现语雀上的文章自动化发布到个人博客，首先是因为语雀本身是一个优秀的创作的平台，能方便的编辑和管理文章，但缺点是它本身是一个封闭的系统，就像微信公众号一样，不利于 SEO。其次个人博客是由自己搭建，没有任何限制，也能更好的进行 SEO。基于这两点原因，语雀+个人博客就是一个完美的组合，个人博客作为前台，语雀作为后台，既能很好的创造和管理文章，有能够将需要共享的文章发布到个人博客，供大家搜索">
-<meta name="keywords" content="宋兴国, 兴国，宋，songxingguo, im.songxingguo.com, www.songxingguo.com, songxingguo.com">
-<meta property="og:type" content="article">
-<meta property="og:title" content="如何将语雀文章发布到Hexo博客">
-<meta property="og:url" content="https://www.songxingguo.com/2023/02/07/如何将语雀文章发布到Hexo博客/index.html">
-<meta property="og:site_name" content="阿有的生活">
-<meta property="og:description" content="写在前面实现语雀上的文章自动化发布到个人博客，首先是因为语雀本身是一个优秀的创作的平台，能方便的编辑和管理文章，但缺点是它本身是一个封闭的系统，就像微信公众号一样，不利于 SEO。其次个人博客是由自己搭建，没有任何限制，也能更好的进行 SEO。基于这两点原因，语雀+个人博客就是一个完美的组合，个人博客作为前台，语雀作为后台，既能很好的创造和管理文章，有能够将需要共享的文章发布到个人博客，供大家搜索">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FvYEuJlUXy5ADawCvwN-yUw1zlI_.com/mdn/prod_resou/afts/img/A*NNs6TKOR3isAAAAAAAAAAABkARQnAQ">
-<meta property="og:image" content="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FlChHeNiAySN1-R3hmWCTrVo3BxH.jpeg">
-<meta property="og:image" content="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FmgXhivkd1GDSXivmeXk4GFgJ5mW.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fn9FBWVuiHojlCDdNBudsnalwEXs.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FrNF5Qqv5Z8c-GdIRsTEUU9fR6Rq.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fm13C_KkS6MOfXCgdToHQqHVS7-p.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FveEzFT5TggObDiemqVIn5zlRzAd.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FhiBRGA1W_Z4-GzqzjiH5esIggKG.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FqEYt6cimbEW4pJDET2YEsevO3bQ.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FqxbJqsBt0_l1REj_8luZiqzFBxH.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FgwZMGzVe6xjsIMMsYyDrVxql0ku.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fmtzly3_0hghg_uvqaK6eDgmsT-M.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FkPke4qlMP1Zv2PALiW8f-dAATr5.png">
-<meta property="og:updated_time" content="2023-11-15T04:34:02.706Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何将语雀文章发布到Hexo博客">
-<meta name="twitter:description" content="写在前面实现语雀上的文章自动化发布到个人博客，首先是因为语雀本身是一个优秀的创作的平台，能方便的编辑和管理文章，但缺点是它本身是一个封闭的系统，就像微信公众号一样，不利于 SEO。其次个人博客是由自己搭建，没有任何限制，也能更好的进行 SEO。基于这两点原因，语雀+个人博客就是一个完美的组合，个人博客作为前台，语雀作为后台，既能很好的创造和管理文章，有能够将需要共享的文章发布到个人博客，供大家搜索">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FvYEuJlUXy5ADawCvwN-yUw1zlI_.com/mdn/prod_resou/afts/img/A*NNs6TKOR3isAAAAAAAAAAABkARQnAQ">
-
-
-
-
-
-
-  <link rel="canonical" href="https://www.songxingguo.com/2023/02/07/如何将语雀文章发布到Hexo博客/">
-
-
-
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
   <title>如何将语雀文章发布到Hexo博客 | 阿有的生活</title>
-  
-
-
-
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?ea29d0cf9dda7fe5403ba0f70fb2c10d";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
-
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=0">
+  <meta name="author" content="https://plus.google.com/112634278852964994392?hl=zh-cn">
+  <meta name="email" content="barret.china@gmail.com">
+  <meta name="description" content="写在前面实现语雀上的文章自动化发布到个人博客，首先是因为语雀本身是一个优秀的创作的平台，能方便的编辑和管理文章，但缺点是它本身是一个封闭的系统，就像微信公众号一样，不利于 SEO。其次个人博客是由自己搭建，没有任何限制，也能更好的进行 SEO。基于这两点原因，语雀+个人博客就是一个完美的组合，个人博">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="如何将语雀文章发布到Hexo博客 | 阿有的生活">
+  <meta property="og:url" content="https://www.songxingguo.com/2023/02/07/如何将语雀文章发布到Hexo博客/">
+  <meta property="og:site_name" content="如何将语雀文章发布到Hexo博客">
+  <meta property="og:description" content="写在前面实现语雀上的文章自动化发布到个人博客，首先是因为语雀本身是一个优秀的创作的平台，能方便的编辑和管理文章，但缺点是它本身是一个封闭的系统，就像微信公众号一样，不利于 SEO。其次个人博客是由自己搭建，没有任何限制，也能更好的进行 SEO。基于这两点原因，语雀+个人博客就是一个完美的组合，个人博">
+  <meta name="generator" content="https://hexo.io" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <link href="https://blog.songxingguo.com/images/logo.png" rel="apple-touch-icon-precomposed">
+  <link rel="shoticon" href="https://blog.songxingguo.com/images/logo.png" type="image/x-icon">
+  <link rel="alternate" type="application/rss+xml" href="https://www.songxingguo.com/rss2.xml" title="阿有的生活" />
+  <link rel="prev" href="https://www.songxingguo.com/2023/04/29/Git指令速查🚀/" title="Git指令速查🚀" />
+  <link rel="next" href="https://www.songxingguo.com/2023/02/05/从零开始搭建在线个人简历/" title="从零开始搭建在线个人简历" />
+  <link rel="start" href="https://www.songxingguo.com/entry/" title="Blog Entry" />
+  <link rel="stylesheet" href="/public/css/style-20230627-2.css">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta custom-logo">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">阿有的生活</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-    
-      
-        <p class="site-subtitle">爱技术，也爱生活。</p>
-      
-    
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
+<body>
+  <!-- <div class="rainbow notice"> [object Object]</div> -->
+  <div class="container">
+  <span class="local-search local-search-google local-search-plugin" style="display: none;">
+  <input type="search" placeholder="站内搜索" id="local-search-input" class="local-search-input-cls" style="">
+  <i class="icon" aria-hidden="true" title="点击进入 Google 搜索">&#x2708;</i>
+  <div id="local-search-result" class="local-search-result-cls"></div>
+</span>
+  <div class="article" itemscope itemtype="http://schema.org/Article">
+    <div class="post">
+      <div class="bread">
+        <a href="/">宋兴国</a> »
+        <a href="/entry/">博客</a> »
+        
+	<a class="category-link" href="/categories/前端/">前端</a>
 
 
+      </div>
+      <div class="post-title-wrapper">
+        <h1 class="post-title" itemprop="name">如何将语雀文章发布到Hexo博客</h1>
+        <a href="/about/"><img src="https://blog.songxingguo.com/images/logo.png" alt="宋兴国" /></a>
+      </div>
+      <div class="post-info">
+        <span>作者: <a href="/about/">宋兴国</a></span>
+        <span>
+          <time itemprop="timeCreated" aria-hidden="true">2023-02-07 05:15:12</time>
+          <span class="aria-readonly">本文发布时间为2023年02月07日05时15分12秒</span>
+        </span>
+        
+        <span>分类: 
+	<a class="category-link" href="/categories/前端/">前端</a>
 
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
+</span>
         
         
+        <span class="aria-readonly">下面是正文内容</span>
+        <span tabindex="0" aria-hidden="true">评论数: <a href="#comments"
+                      class="ds-thread-count hash-to-comments disqus-comment-count"
+                      data-thread-key="如何将语雀文章发布到Hexo博客"
+                      data-disqus-identifier="如何将语雀文章发布到Hexo博客"></a></span>
+      </div>
+      <div class="post-content" itemprop="articleBody">
         
-          
-          <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">7</span></a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-sitemap">
-    <a href="/hi" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
-    <a href="/resume" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
-  </li>
-
-      
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
-        </li>
-      
-    </ul>
-  
-
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
-</nav>
-
-
-
-  
-
-
-
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-            
-
-          
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.songxingguo.com/2023/02/07/如何将语雀文章发布到Hexo博客/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxingguo">
-      <meta itemprop="description" content="< 写文章 && 做分享 />">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阿有的生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">如何将语雀文章发布到Hexo博客
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2023-02-07 05:15:12" itemprop="dateCreated datePublished" datetime="2023-02-07T05:15:12+00:00">2023-02-07</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2023-11-15 04:34:02" itemprop="dateModified" datetime="2023-11-15T04:34:02+00:00">2023-11-15</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2023/02/07/如何将语雀文章发布到Hexo博客/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2023/02/07/如何将语雀文章发布到Hexo博客/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2023/02/07/如何将语雀文章发布到Hexo博客/" class="leancloud_visitors" data-flag-title="如何将语雀文章发布到Hexo博客">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>实现语雀上的文章自动化发布到个人博客，首先是因为语雀本身是一个优秀的创作的平台，能方便的编辑和管理文章，但缺点是它本身是一个封闭的系统，就像微信公众号一样，不利于 SEO。其次个人博客是由自己搭建，没有任何限制，也能更好的进行 SEO。基于这两点原因，语雀+个人博客就是一个完美的组合，个人博客作为前台，语雀作为后台，既能很好的创造和管理文章，有能够将需要共享的文章发布到个人博客，供大家搜索。下面要做的就是建立起两者的桥梁。</p>
 <a id="more"></a>
 <h2 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h2><ul>
 <li><a href="https://github.com/songxingguo/songxingguo.github.io" target="_blank" rel="noopener">项目地址</a></li>
-<li><a href="https://blog.songxingguo.com/" target="_blank" rel="noopener">博客地址</a></li>
 <li>使用效果（视频）<br><a href="https://www.yuque.com/songxingguo/devhints/gwpsg4dq6tp27z3s?_lake_card=%7B%22status%22%3A%22done%22%2C%22name%22%3A%22%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62023-02-09%2019.39.30.mov%22%2C%22size%22%3A204453355%2C%22taskId%22%3A%22ua4cb8283-502b-4a55-b53e-7f0a9dd0a84%22%2C%22taskType%22%3A%22upload%22%2C%22url%22%3Anull%2C%22cover%22%3Anull%2C%22videoId%22%3A%22inputs%2Fprod%2Fyuque%2F2023%2F394169%2Fmov%2F1675943595043-2a636a15-97b2-4fd2-9038-a34841d5d6a3.mov%22%2C%22download%22%3Afalse%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22pqOSi%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22video%22%7D#pqOSi" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FvYEuJlUXy5ADawCvwN-yUw1zlI_.com/mdn/prod_resou/afts/img/A*NNs6TKOR3isAAAAAAAAAAABkARQnAQ" alt></a></li>
 </ul>
 <h2 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h2><p><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FlChHeNiAySN1-R3hmWCTrVo3BxH.jpeg" alt><br>整体的设计思路是每次语雀更新文档都通过 Webhook 发送钉钉消息，当手动点击【发布】的时候再触发 GithubAction 将 slug 对应的文章从语雀拉取下去并推送到博客仓库，最后部署博客。触发流程虽然是从语雀到 Github 的过程，但开发的过程是优先处理 Github 部分然后再由语雀触发 Webhook，开发过程主要包括以下几个步骤。</p>
@@ -500,7 +83,7 @@
 <li>使用云函数推送钉钉消息</li>
 <li>配置语雀 Webhook</li>
 </ol>
-<h3 id="yuque-hexo-publish是什么"><a href="#yuque-hexo-publish是什么" class="headerlink" title="yuque-hexo-publish是什么"></a><code>yuque-hexo-publish</code>是什么</h3><p><code>[yuque-hexo](https://github.com/x-cold/yuque-hexo)</code>是一个很优秀的插件，能将语雀的文章完全<strong>同步</strong>到个人博客上。但这并不满足我的需求，我需要的是发布而不是同步，我并不想把所有文章都<strong>同步</strong>到个人博客上，也不希望只能有一个知识库里面的文章能<strong>发布</strong>到个人博客，而是希望能把我想发布的文章都能<strong>发布</strong>到个人博客上。基于这个考虑我在<code>yuque-hexo</code>的基础上新增了发布功能，<code>yuque-hexo-publish</code>就此诞生了。yuque-hexo-publish 在功能上和 yuque-hexo 是完全一致的，只是新增了命令 publish。</p>
+<h3 id="yuque-hexo-publish是什么"><a href="#yuque-hexo-publish是什么" class="headerlink" title="yuque-hexo-publish是什么"></a><code>yuque-hexo-publish</code>是什么</h3><p><code>[yuque-hexo](https://github.com/x-cold/yuque-hexo)</code>是一个很优秀的插件，能将语雀的文章完全<strong>同步</strong>到个人博客上。但这并不满足我的需求，我需要的是发布而不是同步，我并不想把所有文章都<strong>同步</strong>到个人博客上，也不希望只能有一个知识库里面的文章能<strong>发布</strong>到个人博客，而是希望能把我想发布的文章都能<strong>发布</strong>到个人博客上。基于这个这个考虑我在<code>yuque-hexo</code>的基础上新增了发布功能，<code>yuque-hexo-publish</code>就此诞生了。yuque-hexo-publish 在功能上和 yuque-hexo 是完全一致的，只是新增了命令 publish。</p>
 <h2 id="具体实施"><a href="#具体实施" class="headerlink" title="具体实施"></a>具体实施</h2><h3 id="Hexo-博客开发"><a href="#Hexo-博客开发" class="headerlink" title="Hexo 博客开发"></a>Hexo 博客开发</h3><h4 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a>项目配置</h4><ol>
 <li><code>package.json</code>中配置 yuque-hexo-publish。</li>
 </ol>
@@ -567,741 +150,289 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> getRawBody = <span class="built_in">require</span>(<span class="string">"raw-body"</span>);</span><br><span class="line"><span class="keyword">var</span> getFormBody = <span class="built_in">require</span>(<span class="string">"body/form"</span>);</span><br><span class="line"><span class="keyword">var</span> body = <span class="built_in">require</span>(<span class="string">"body"</span>);</span><br><span class="line"><span class="keyword">var</span> axios = <span class="built_in">require</span>(<span class="string">"axios"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">To enable the initializer feature (https://help.aliyun.com/document_detail/156876.html)</span></span><br><span class="line"><span class="comment">please implement the initializer function as below：</span></span><br><span class="line"><span class="comment">exports.initializer = (context, callback) =&gt; &#123;</span></span><br><span class="line"><span class="comment">  console.log('initializing');</span></span><br><span class="line"><span class="comment">  callback(null, '');</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">exports.handler = <span class="function">(<span class="params">req, resp, context</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"hello world"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> params = &#123;</span><br><span class="line">    path: req.path,</span><br><span class="line">    queries: req.queries,</span><br><span class="line">    headers: req.headers,</span><br><span class="line">    method: req.method,</span><br><span class="line">    requestURI: req.url,</span><br><span class="line">    clientIP: req.clientIP,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  getRawBody(req, <span class="keyword">async</span> (err, body) =&gt; &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> req.queries) &#123;</span><br><span class="line">      <span class="keyword">var</span> value = req.queries[key];</span><br><span class="line">      resp.setHeader(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">    resp.setHeader(<span class="string">"Content-Type"</span>, <span class="string">"text/plain"</span>);</span><br><span class="line">    params.body = body.toString();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> data = <span class="built_in">JSON</span>.parse(params.body);</span><br><span class="line">    <span class="keyword">const</span> &#123; slug, title &#125; = data.data;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"slug"</span>, slug);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> options = &#123;</span><br><span class="line">      method: <span class="string">"POST"</span>,</span><br><span class="line">      url: <span class="string">"https://oapi.dingtalk.com/robot/send"</span>,</span><br><span class="line">      params: &#123;</span><br><span class="line">        access_token: <span class="string">""</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      headers: &#123; <span class="string">"content-type"</span>: <span class="string">"application/json"</span> &#125;,</span><br><span class="line">      data: &#123;</span><br><span class="line">        msgtype: <span class="string">"actionCard"</span>,</span><br><span class="line">        actionCard: &#123;</span><br><span class="line">          title: <span class="string">"文档发布"</span>,</span><br><span class="line">          text: <span class="string">`<span class="subst">$&#123;title&#125;</span>`</span>,</span><br><span class="line">          btnOrientation: <span class="string">"0"</span>,</span><br><span class="line">          btns: [</span><br><span class="line">            &#123;</span><br><span class="line">              title: <span class="string">"发布"</span>,</span><br><span class="line">              actionURL: <span class="string">`https://xx-xx-xx.cn-hangzhou.fcapp.run?slug=<span class="subst">$&#123;slug&#125;</span>`</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">              title: <span class="string">"Actions"</span>,</span><br><span class="line">              actionURL:</span><br><span class="line">                <span class="string">"https://github.com/songxingguo/songxingguo.github.io/actions"</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">          ],</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> axios</span><br><span class="line">      .request(options)</span><br><span class="line">      .then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(response.data);</span><br><span class="line">      &#125;)</span><br><span class="line">      .catch(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.error(error);</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">    resp.send(<span class="built_in">JSON</span>.stringify(params, <span class="literal">null</span>, <span class="string">"    "</span>));</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h4 id="配置语雀-Webhook"><a href="#配置语雀-Webhook" class="headerlink" title="配置语雀 Webhook"></a>配置语雀 Webhook</h4><p>进入语雀<a href="https://www.yuque.com/songxingguo/devhints/settings/webhooks" target="_blank" rel="noopener">webhook 配置页面</a>，填写名称和<strong>推送钉钉消息</strong>云函数的公网地址，并选择<strong>更新文档</strong>时触发。<br><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fmtzly3_0hghg_uvqaK6eDgmsT-M.png" alt></p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="Hoppscotch"><a href="#Hoppscotch" class="headerlink" title="Hoppscotch"></a><a href="https://hoppscotch.io/" target="_blank" rel="noopener">Hoppscotch</a></h3><p>Hoppscotch 和 postman 的功能是一样的，但这个是线上的版本，更加的方便。有时请求会出现请求无法到达的问题，需要配置插件代理，将请求的域名加入到插件中。<br><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FkPke4qlMP1Zv2PALiW8f-dAATr5.png" alt></p>
-<h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a><a href="https://www.yuque.com/songxingguo/devhints/gwpsg4dq6tp27z3s" target="_blank" rel="noopener">拓展阅读</a></h2><p><a href="https://help.aliyun.com/document_detail/74754.html" target="_blank" rel="noopener">Node.js_函数计算-阿里云帮助中心</a><br><a href="https://www.yuque.com/1874w/1874.cool/ovugli?view=doc_embed" target="_blank" rel="noopener">Github Actions 持续集成 Docker 构建并部署 Node 项目到云服务器</a><br><a href="https://www.xiayinchang.top/post/b2362878.html" target="_blank" rel="noopener">使用语雀、GitHub 和阿里云函数计算构建博客</a><br><a href="https://github.com/LetTTGACO/yuque-hexo-example" target="_blank" rel="noopener">yueque-hexo 图床配置</a><br><a href="https://www.zhwei.cn/hexo-github-actions-yuque/#toc-heading-5" target="_blank" rel="noopener">Hexo：语雀云端写作 Github Actions 持续集成 | HONGWEI</a><br><a href="https://werty.cn/2019/06/hexo/%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2hexo%E5%8D%9A%E5%AE%A2%E5%88%B0%E8%85%BE%E8%AE%AF%E4%BA%91COS%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/" target="_blank" rel="noopener">一键部署 hexo 博客到腾讯云 COS 对象存储</a><br><a href="https://www.yuque.com/1874w/1874.cool/roeayv?view=doc_embed" target="_blank" rel="noopener">语雀云端写作 Hexo+Github Actions+COS 持续集成</a><br><a href="https://www.yuque.com/yuque/developer/doc-webhook?view=doc_embed" target="_blank" rel="noopener">Webhooks</a><br><a href="https://juejin.cn/post/6844904193094844423" target="_blank" rel="noopener">语雀文章自动同步到个人博客 - 掘金</a><br><a href="https://fcnext.console.aliyun.com/overview" target="_blank" rel="noopener">阿里云登录 - 欢迎登录阿里云，安全稳定的云计算服务平台</a><br><a href="https://cloud.tencent.com/login?s_url=https%3A%2F%2Fconsole.cloud.tencent.com%2Fscf%2Flist%3Frid%3D1%26ns%3Ddefault" target="_blank" rel="noopener">登录 - 腾讯云</a></p>
+<h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a><a href="https://www.yuque.com/songxingguo/devhints/gwpsg4dq6tp27z3s" target="_blank" rel="noopener">拓展阅读</a></h2><p><a href="https://www.yuque.com/1874w/1874.cool/ovugli?view=doc_embed" target="_blank" rel="noopener">Github Actions 持续集成 Docker 构建并部署 Node 项目到云服务器</a></p>
+<p><a href="https://github.com/LetTTGACO/yuque-hexo-example" target="_blank" rel="noopener">yueque-hexo 图床配置</a></p>
+<p><a href="https://www.yuque.com/1874w/1874.cool/roeayv?view=doc_embed" target="_blank" rel="noopener">语雀云端写作 Hexo+Github Actions+COS 持续集成</a><br><a href="https://www.yuque.com/yuque/developer/doc-webhook?view=doc_embed" target="_blank" rel="noopener">Webhooks</a></p>
 
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2023/02/05/从零开始搭建在线个人简历/" rel="next" title="从零开始搭建在线个人简历">
-                <i class="fa fa-chevron-left"></i> 从零开始搭建在线个人简历
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2023/04/29/Git指令速查🚀/" rel="prev" title="Git指令速查🚀">
-                Git指令速查🚀 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-    <div class="comments" id="comments">
-    </div>
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="songxingguo">
-            
-              <p class="site-author-name" itemprop="name">songxingguo</p>
-              <p class="site-description motion-element" itemprop="description">< 写文章 && 做分享 /></p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">7</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-
-              
-            </nav>
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  <a href="https://www.songxingguo.com" target="_blank" title="Home"><i class="fa fa-fw fa-home"></i></a>
-                  
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/songxingguo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
-                  
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://www.yuque.com/songxingguo" target="_blank" title="Yuque"><i class="fa fa-fw fa-edit"></i></a>
-                  
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://resume.songxingguo.com" target="_blank" title="Resume"><i class="fa fa-fw fa-id-card"></i></a>
-                  
-                </span>
-              
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传送门"><span class="nav-number">2.</span> <span class="nav-text">传送门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计思路"><span class="nav-number">3.</span> <span class="nav-text">设计思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#yuque-hexo-publish是什么"><span class="nav-number">3.1.</span> <span class="nav-text">yuque-hexo-publish是什么</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体实施"><span class="nav-number">4.</span> <span class="nav-text">具体实施</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo-博客开发"><span class="nav-number">4.1.</span> <span class="nav-text">Hexo 博客开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#项目配置"><span class="nav-number">4.1.1.</span> <span class="nav-text">项目配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何本地调试"><span class="nav-number">4.1.2.</span> <span class="nav-text">如何本地调试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阿里云函数开发"><span class="nav-number">4.2.</span> <span class="nav-text">阿里云函数开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化云函数"><span class="nav-number">4.2.1.</span> <span class="nav-text">初始化云函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调试云函数"><span class="nav-number">4.2.2.</span> <span class="nav-text">调试云函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用云函数触发-GithubAction"><span class="nav-number">4.2.3.</span> <span class="nav-text">使用云函数触发 GithubAction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用云函数推送钉钉消息"><span class="nav-number">4.2.4.</span> <span class="nav-text">使用云函数推送钉钉消息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#调试钉钉消息类型及数据格式"><span class="nav-number">4.2.4.1.</span> <span class="nav-text">调试钉钉消息类型及数据格式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置语雀-Webhook"><span class="nav-number">4.2.5.</span> <span class="nav-text">配置语雀 Webhook</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">5.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hoppscotch"><span class="nav-number">5.1.</span> <span class="nav-text">Hoppscotch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拓展阅读"><span class="nav-number">6.</span> <span class="nav-text">拓展阅读</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
       </div>
-    </main>
+    </div>
+    
+    <!-- <div class="follow-wechat"><img src="/blogimgs/follow.jpg"></div> -->
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">songxingguo</span>
+<div class="copyright" itemscope itemtype="http://schema.org/ProfilePage" tabindex="0" aria-hidden="true">
+	<!-- <a href="/about/#support" class="supportme">赏</a> -->
+	<ul>
+		<li>作者: <a href="/about/" itemprop="name">宋玉</a></li>
+		
+		<li>文章分类: 
+	<a class="category-link" href="/categories/前端/">前端</a>
 
+</li>
+		
+		
+		<li>发表日期: 2023-02-07 05:15:12</li>
+		<li>最后编辑时间: 2024-01-02 03:27:24</li>
+		<li>本文 Markdown 地址: <a target="_
+			" href="https://github.com/songxingguo/blog/tree/master/blog/src/_posts/2023-02-07-如何将语雀文章发布到Hexo博客.md">如何将语雀文章发布到Hexo博客</a></li>
+		<li>版权声明：<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank">CC BY-NC-ND 3.0</a></li>
+		<li>
+			Feed 订阅: <a href="/rss2.xml"><i class="icon">&#x25c8;</i></a>
+			<div style="opacity:.3;text-align:right;margin:5px -5px -10px 0;float:right;font-size: 12px;">
+				编辑本文：<a href="https://github.com/songxingguo/blog/edit/master/blog/src/_posts/2023-02-07-如何将语雀文章发布到Hexo博客.md" target="_blank" aria-hidden="true"><i class="icon">&#xe622;</i></a>；
+				新建文章：<a href="https://github.com/songxingguo/blog/new/master/blog/src/_posts" target="_blank" aria-hidden="true"><i class="icon">&#xe616;</i></a>
+			</div>
+		</li>
+		
+	</ul>
+	<a href="/about/"><img src="https://blog.songxingguo.com/images/logo.png" /></a>
+</div>
+
+    <em  class="arrow-expend" tabindex="0" aria-hidden="0" aria-label="点击展开网页导航" aria-selected="true" aria-lable="网页导航" aria-expanded="false" id="i1">▾
+<ul role="group" aria-labelledby="i1" aria-expanded="false">
+  <li><a href="/entry/">博客</a></li>
+  <!-- <li><a href="/translation/">翻译</a></li> -->
+  <!-- <li><a href="/message/">留言</a></li> -->
+  <!-- <li><a href="/demo/">实验室</a></li> -->
+  <!-- <a><a href="/comments/">最近评论</a></li> -->
+  <!-- <li><a href="/friends/">友情链接</a></li> -->
+</ul>
+</em>
+  </div>
+  <div class="post-relative">
+<div class="page-relative">
   
-
+    <a href="/2023/04/29/Git指令速查🚀/" class="post-prev">
+      <i class="icon" tabindex="0" aria-hidden="true">&#x261c;</i>
+      <span class="aria-readonly">上一篇文章</span>
+      
+        <b>Git指令速查🚀</b>
+      
+    </a>
+  
+  
+    <a href="/2023/02/05/从零开始搭建在线个人简历/" class="post-next">
+      <span class="aria-readonly">下一篇文章</span>
+      <b>从零开始搭建在线个人简历</b>
+      <i class="icon" tabindex="0" aria-hidden="true">&#xe602;</i>
+    </a>
   
 </div>
 
 
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
-  </div>
-
+<div class="page-relative-fixed" tabindex="0" aria-hidden="true">
   
+  <a href="/2023/04/29/Git指令速查🚀/" class="prev" title="Git指令速查🚀">
+    <i class="icon">&#xe600;</i>
+    
+    <b>Git指令速查🚀</b>
+    
+  </a>
+  
+  
+  <a href="/2023/02/05/从零开始搭建在线个人简历/" class="next" title="从零开始搭建在线个人简历">
+    <i class="icon">&#x261e;</i>
+    <b>从零开始搭建在线个人简历</b>
+  </a>
+  
+</div>
+</div>
+</div>
+<div class="sidebar" tabindex="0" aria-hidden="true">
+	<div class="func-btns func-btns-up">
+    <span class="func-item">
+        <i class="func-nav icon">&#xe618;<span>目录</span></i>
+        <div>
+          <i class="left-arrow"></i><i class="left-arrow-clone"></i>
+          <a href="javascript:void(0);" onclick="return false;">显示目录</a>
+        </div>
+    </span>
+    <span class="func-item">
+        <i class="func-font icon">&#xe604;<span>夜间</span></i>
+        <div class="font-choose-box">
+          <i class="left-arrow"></i><i class="left-arrow-clone"></i>
+          <div class="font-choose bg-choose">
+            <a href="javascript:void(0)" onclick="return false;" class="bg-type bg-type-sun font-type-song"><i class="icon">&#xe61a;</i></a>
+            <a href="javascript:void(0)" onclick="return false;" class="bg-type bg-type-moon font-type-hei"><i class="icon">&#xe619;</i></a>
+          </div>
+          <!-- <div class="font-choose">
+            <a href="javascript:void(0)" onclick="return false;" class="font-type font-type-song">黑体</a>
+            <a href="javascript:void(0)" onclick="return false;" class="font-type font-type-hei">宋体</a>
+          </div> -->
+        </div>
+    </span>
+    <span class="func-item">
+        <i class="func-about icon">&#x263b;<span>关于</span></i>
+        <div>
+          <i class="left-arrow"></i><i class="left-arrow-clone"></i>
+          <p><a href="https://resume.songxingguo.com/" class="func-about-link" target="_blank">关于作者</a></p>
+          <!-- <div id="followMeOnWeibo"></div> -->
+        </div>
+    </span>
+	</div>
+	<div class="func-btns">
+    <!-- <span class="func-item">
+        <a href="http://demo.songxingguo.com" target="_blank"><i class="func-rss icon">&#xe603;<span>实验</span></i></a>
+        <div><i class="left-arrow"></i><i class="left-arrow-clone"></i>
+          <p class="seperator"><a href="http://demo.songxingguo.com" target="_blank">Demo平台</a></p>
+          <p class="seperator"><a href="http://md.songxingguo.com" target="_blank">WX格式</a></p>
+          <p><a href="http://snippets.songxingguo.com" target="_blank">Snippet应用</a></p>
+        </div>
+    </span> -->
+    <!-- <span class="func-item">
+        <i class="func-fb icon">&#x2121;<span>留言</span></i>
+        <div><i class="left-arrow"></i><i class="left-arrow-clone"></i>
+          <p class="seperator"><a href="/message/" target="_blank">给我留言</a></p>
+          <p><a href="/comments/" target="_blank">近期留言</a></p>
+        </div>
+    </span> -->
+    <!-- <span class="func-item">
+        <a href="/friends/" target="_blank"><i class="func-rss icon">&#xe601;<span>链接</span></i></a>
+        <div><i class="left-arrow"></i><i class="left-arrow-clone"></i>
+          <a href="/friends/" target="_blank">友情链接</a>
+        </div>
+    </span> -->
+    <span class="func-item">
+        <a href="/rss2.xml" target="_blank"><i class="func-rss icon">&#x25c8;<span>订阅</span></i></a>
+        <div><i class="left-arrow"></i><i class="left-arrow-clone"></i><a href="/rss2.xml" target="_blank">订阅我吧！</a></div>
+    </span>
+	</div>
+</div>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+<div class="single-page-footer">
+<div class="footer">
+	<div class="footer-wraper">
+		<div class="footer-content">
+			<div class="footer-nav">
+	<a href="javascript: void(0);" class="ds-thread-count disqus-comment-count"
+	   data-thread-key="如何将语雀文章发布到Hexo博客"
+	   data-disqus-identifier="如何将语雀文章发布到Hexo博客" 
+		 tabindex="0" aria-hidden="true">评论内容</a>
+	<a href="javascript: void(0);" id="comments">相关文章</a>
+	<!-- <a href="/friends/" tabindex="0" aria-hidden="true" style="display: none;">友情链接</a> -->
+</div>
+<div class="nav-detail">
+	<div tabindex="0">
+		
+  <div id="gitalk" sid="如何将语雀文章发布到Hexo博客"></div>
+  <script charset="utf-8" type="text/javascript" src="/public/js/gitalk.js"></script>
+  <script type="text/javascript">
+  var postContent = document.querySelectorAll('.post-content>p');
+  if (postContent && postContent.length) {
+    postContent = postContent.item(0).textContent + (postContent.item(1) && postContent.item(1).textContent || '');
+    postContent = postContent.length > 140 ? postContent.slice(0, 140) + '...' : postContent;
   }
-</script>
 
+  var gitalk = new Gitalk({
+    clientID: 'f55a398461d56a3e691e',
+    clientSecret: '77359a5d140ac109d31a3a6f2711f0ddb16c69fe',
+    language: "zh-CN",
+    perPage: 100,
+    createIssueManually: false,
+    repo: 'songxingguo.github.io',
+    owner: 'songxingguo',
+    admin: ['songxingguo'],
+    id: "如何将语雀文章发布到Hexo博客",
+    body: '原文地址：' + location.href + '\n\n文摘：' + postContent,
+    distractionFreeMode: false
+  });
 
+  window.addEventListener('load', function () {
+    gitalk.render('gitalk');
+  });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  
-  
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(function (item) {
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: false,
-        appId: '5KNE77KGRoBwz0eTtPxWksTj-gzGzoHsz',
-        appKey: '2oU4tvtGWAXp5i6kWAnhd2rm',
-        placeholder: 'Just go go',
-        avatar:'mm',
-        meta:guest,
-        pageSize:'10' || 10,
-        visitor: true
-    });
+  // show count
+  var commentTimer = setInterval(() => {
+    var count = document.querySelector('.gt-link-counts');
+    var showCount = document.querySelector('.hash-to-comments');
+    if (count && showCount) {
+      showCount.textContent = count.textContent;
+      clearInterval(commentTimer);
+    }
+  }, 500);
+  setTimeout(() => {
+    clearInterval(commentTimer);
+  }, 60 * 1E3);
   </script>
-
-
-
   
+	</div>
+	<div style="display:block;">
+		<div class="relative-wrapper">
+	<div class="relative-article">
+		
+		<ul>
+			<li>
+				<span><font aria-hidden="true">2023-02-05 »</font> </span>
+				<a href="/2023/02/05/从零开始搭建在线个人简历/">从零开始搭建在线个人简历</a>
+				<span class="aria-readonly">发表时间为2023年02月05日</span>
+				<div class="relative-box">
+          <a href="/2023/02/05/从零开始搭建在线个人简历/" class="relative-img-wrapper"><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FohM8kpQxrzWA2KnUa7KGYQPG_5s.png" style="width:100%" loading="lazy" data-original="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FohM8kpQxrzWA2KnUa7KGYQPG_5s.png"/></a>
+          <span class="aria-readonly">文章概要 </span>写在前面做这个在线简历是出于两点考虑。word 文档式的简历没有办法展示到网上，不能体现我作为一个前端开发工程师的专长。之前也写过一个在线简历，但是现在不好维护了。主要原因是之前使用 Webpack 打包，对于一个简历的小项目来说比较重。然后之前的图床是使用七牛云进行存储的，但现在七牛云所有域名都需要备案，我之前的域名地址也被莫名其妙（😡）的被删除了，已经无力去维护。如果后面有时间和精力再进行升级优化吧。基于上面的两点考虑，我决定做一个简单的且易于维护的在线简历。这次打包采用了开箱即用的parceljs，对于在线简历这个小项目正好合适。而且这次简历依然是使用了模版引擎ejs，让数据和模版分离，通过 json 文件来配置简历，在设计思想上这个参考了Json-Resume，在样式上参考了SHOYUF的简历。
+        </div>
+			</li>
+			
+		</ul>
+	</div>
+</div>
 
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
+		<div class="relative-to-comment" tabindex="0" aria-hidden="true"><span>留下评论</span></div>
+		<!-- <a href="/entry/" class="relative-to-comment-wrapper" tabindex="0" aria-hidden="true"><div class="relative-to-comment">回到首页</div></a> -->
+	</div>
+	<div class="friends-box">
+		<ul>
+			
+			<li><a href="http://hustskyking.cnblogs.com" target="_blank">旧博客</a> <font aria-hidden="true">»</font> <span>我的旧博客（博客园荣誉博客）</span></li>
+			
+			<li><a href="http://www.zhangmengxue.com" target="_blank">大额</a> <font aria-hidden="true">»</font> <span>大额大额哼歌等日落</span></li>
+			
+			<li><a href="http://www.zhangxinxu.com" target="_blank">张鑫旭</a> <font aria-hidden="true">»</font> <span>原来大学我俩一个团队的~</span></li>
+			
+			<li><a href="http://web-tinker.com" target="_blank">次碳酸钴</a> <font aria-hidden="true">»</font> <span>深度交流的一个好朋友</span></li>
+			
+			<li><a href="http://imququ.com" target="_blank">屈屈</a> <font aria-hidden="true">»</font> <span>蛐蛐同学</span></li>
+			
+			<li><a href="http://www.ruanyifeng.com" target="_blank">阮一峰</a> <font aria-hidden="true">»</font> <span>阮老师</span></li>
+			
+			<li><a href="/friends/">更多列表 <font aria-hidden="true">»</font></a></li>
+		</ul>
+	</div>
+</div>
+			
+<div class="website-info" aria-hidden="true">
+	<a class="page_editor" href="/admin/#/posts/clqvshdca0007h3q0qbrd216q" target="_blank">🙈</a>
+	<span>&copy;2013-2024 <small><a href="https://www.miit.gov.cn/" about="_blank">湘ICP备14007107号-1</a></small></span>
+	本站由 <a href="/">宋兴国</a> 纯手工打造 | <a href="/about#contact">联系方式</a>
+	<a href='https://union.zhaodao.ai/#random' title="随机跳转到一个有意思的网站" target='_blank' class="zhidao_ai"><img src='https://img.alicdn.com/imgextra/i2/O1CN01VjiZUL1r0eXge4taM_!!6000000005569-55-tps-300-300.svg' width="20" height="20"></a>
+</div>
 
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+		</div>
+	</div>
+</div>
+</div>
+<div class="tools-wrapper" tabindex="0" aria-hidden="true">
+	<a class="gotop icon" href="#" title="回到顶部">&#x2191;</a>
+	<!-- <a class="wechart icon">&#xe60d;<span><img src="/blogimgs/wechart.png" title="扫码添加小胡子哥微信"/> </span></a> -->
+	<a class="hash-to-comments icon" title="我要评论">&#x2121;</a>
+</div>
+<div class="fixerr" tabindex="0" aria-hidden="true">纠错模式</div>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":90,"vOffset":-25},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+<script src="/public/js/jquery.js"></script>
+<script src="/public/js/main-20230626.js"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?3524fff9629f2c80f8ea5daa13e67003";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+  window.onerror = function(e) {
+    window.console && window.console.log && window.console.log(e);
+    $('#loadLayer').remove();
+    return true;
+  };
+</script>
+</script>
 </html>

@@ -1,0 +1,176 @@
+/* body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: calc(10px + 0.33vw);
+  -webkit-font-smoothing: antialiased;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+} */
+/* .container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #eaf5ff;
+} */
+.comments {
+  background-color: #fff;
+  margin: 5vh 3vw;
+  border-radius: 30px;
+}
+.v {
+  padding: 2vh 3vw;
+}
+.v .vwrap {
+  border: none !important;
+}
+.bg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(135deg, #81fbb8 10%, #28c76f 100%);
+  background: linear-gradient(#ffffff 50%, rgba(255, 255, 255, 0) 0) 0 0,
+    radial-gradient(circle closest-side, #ffffff 53%, rgba(255, 255, 255, 0) 0)
+      0 0,
+    radial-gradient(circle closest-side, #ffffff 50%, rgba(255, 255, 255, 0) 0)
+      55px 0 #48b;
+  background-size: 110px 130px;
+  background-repeat: repeat-x;
+}
+.content {
+  position: absolute;
+  padding: 10vh 10vw;
+}
+h1 {
+  font-size: 4.5em;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+p {
+  font-size: 1.6em;
+  font-weight: 300;
+  line-height: 1.4;
+  max-width: 45em;
+  margin-bottom: 0.75em;
+  margin-top: 0.75em;
+}
+a {
+  text-decoration: none;
+  color: #fff;
+  position: relative;
+}
+a:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 95%;
+  left: -0.1em;
+  right: -0.1em;
+  bottom: 0;
+  transition: top 200ms cubic-bezier(0, 0.8, 0.13, 1);
+  background-color: #fdf3be;
+}
+a:hover:after {
+  top: 0%;
+}
+a:hover {
+  color: #121314;
+}
+li {
+  margin-top: 0.3em;
+  font-size: 1.6em;
+  font-weight: 300;
+  line-height: 1.4;
+}
+/* 数字 */
+.visitors {
+  position: absolute;
+  top: 2.5vh;
+  right: 4vw;
+}
+.number {
+  font-size: 35px;
+  font-weight: 600;
+  font-feature-settings: "tnum";
+}
+.number + .number {
+  margin-left: 2vw;
+}
+.orange {
+  color: #ff5627;
+}
+.green {
+  color: #49c628;
+}
+/* 文字 */
+.word {
+  position: absolute;
+  top: 15vh;
+  right: 5vw;
+  color: #fff143;
+  font-size: 3.2rem;
+  letter-spacing: 0.3rem;
+  -webkit-writing-mode: vertical-lr;
+  writing-mode: vertical-lr;
+  text-align-last: justify;
+  text-align: justify;
+  text-justify: distribute-all-lines;
+  /* 这行必加，兼容ie浏览器 font-family: TChinese, SimSun, FangSong, STSong, STZhongsong, LiSu, KaiTi, "Microsoft YaHei"; */
+  transition: transform 0.4s ease-in 0s;
+}
+/*箭头*/
+#node-scroll-button {
+  position: absolute;
+  bottom: 1vh;
+  padding: 1vw;
+  animation: bounce 2s infinite;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in;
+}
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+/*回到顶部*/
+#goTop {
+  position: fixed;
+  bottom: 2vh;
+  right: 0.5vw;
+  padding: 10px;
+  cursor: pointer;
+  display: none;
+}
+@media (max-width: 639px) {
+  .word {
+    right: 2vw;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 700px) {
+  .three-container {
+    display: none;
+  }
+}
+/* three.js */
+.three-container {
+  position: absolute;
+  top: 12vh;
+  left: 68vw;
+  visibility: hidden;
+  cursor: pointer;
+}
