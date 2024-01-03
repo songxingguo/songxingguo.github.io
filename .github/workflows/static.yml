@@ -12,7 +12,7 @@ jobs:
       - name: Install and Build 🔧
         run: |
           npm i
-          npm run buildgit
+          npm run build
       - name: 推送到代码仓库
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
