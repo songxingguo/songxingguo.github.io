@@ -23,7 +23,7 @@ jobs:
           CO_TOKEN: ${{ secrets.CO_TOKEN }}
           CO_REF: 'e.coding.net/songxingguo/songxingguo.coding.me.git'
         run: |
-          cd ./dist
+          cd ./build
           git init
           git config user.name "songxingguo"
           git config user.email "1328989942@qq.com"
