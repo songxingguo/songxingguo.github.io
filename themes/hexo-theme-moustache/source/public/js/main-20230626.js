@@ -1,4 +1,4 @@
-var weiboName = "@Barret李靖";
+var weiboName = "@Barret宋兴国";
 if (window.location.hostname === 'barretlee.com') {
   window.location.href = location.url.replace('barretlee.com', 'www.barretlee.com');
 }
@@ -17,7 +17,7 @@ var params = {};
 
 if (params['share']) {
   $('html').addClass('shareMode');
-  $('<p style="color:#555;text-align:right; font-size:14px;" id="authorAppend">文 / Barret李靖</p>').prependTo('.post-content');
+  $('<p style="color:#555;text-align:right; font-size:14px;" id="authorAppend">文 / Barret宋兴国</p>').prependTo('.post-content');
 } else {
   $('html').removeClass('shareMode');
   $('#authorAppend').remove();
@@ -266,7 +266,7 @@ var operation = {
     var $ctt = $(".article .post-content");
     // $('.wechat-info').remove();
     // var wechatStr = '<div class="wechat-info"><b>温馨提示：</b>您现在处在 <span class="wechat-net">WiFi</span>' +
-    //   ' 网络下。若文章表述存在问题，可点击右下角留言框，或者直接给小胡子哥 <span class="wechat-email">邮件 ← 点击</span>。</div>';
+    //   ' 网络下。若文章表述存在问题，可点击右下角留言框，或者直接给宋玉 <span class="wechat-email">邮件 ← 点击</span>。</div>';
     // if (isWeiXin) {
     //   $(".alipay, .wechatpay i").hide();
     //   $(".wechatpay b").css('display', 'block');
@@ -622,7 +622,7 @@ var decoration = {
       window.consoled = true;
       // var url = "//" + window.location.host;
       // console.log("\n\n\n\n\n\n\n\n\n\n%c", "background:url('" + url + "/blogimgs/avatar150.png'); background-repeat:no-repeat; font-size:0; line-height:30px; padding-top:150px;padding-left:150px;");
-      console.log("\n欢迎踩点小胡子哥的博客，在这里与你一起分享生活，分享技术。%c\n\n联系方式: http://barretlee.com/about/", "color:red");
+      console.log("\n欢迎踩点宋玉的博客，在这里与你一起分享生活，分享技术。%c\n\n联系方式: http://barretlee.com/about/", "color:red");
     }
   },
   // 鼠标移动添加效果
