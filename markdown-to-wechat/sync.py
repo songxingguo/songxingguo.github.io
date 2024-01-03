@@ -51,7 +51,7 @@ class NewClient:
         self.__leftTime = 0
 
     def __real_get_access_token(self):
-        postUrl = ("https://api.weixin.qq.com/cgi-bin/token?grant_type="
+        postUrl = ("https://oa-sync-yuque-sync-wbvojtgzqm.cn-hangzhou.fcapp.run?grant_type="
                    "client_credential&appid=%s&secret=%s" % (os.getenv('WECHAT_APP_ID', 'wx33231767c727d0ea'), os.getenv('WECHAT_APP_SECRET', '4e9b31ce4189ea21152734ada36772bc')))
         urlResp = urllib.request.urlopen(postUrl)
         urlResp = json.loads(urlResp.read())
@@ -64,11 +64,15 @@ class NewClient:
         return self.__accessToken
 
 def Client():
-    robot = WeRoBot()
+    newClient = NewClient()
+    token = newClient.get_access_token()
+    print(token)
+    robot = WeRoBot(token)
+    # robot.config["TOKEN"] = token
     robot.config["APP_ID"] = os.getenv('WECHAT_APP_ID', 'wx33231767c727d0ea')
     robot.config["APP_SECRET"] = os.getenv('WECHAT_APP_SECRET', '4e9b31ce4189ea21152734ada36772bc')
     client = robot.client
-    token = client.grant_token()
+    # token = client.grant_token()
     return client, token
 
 def cache_get(key):
