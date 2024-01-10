@@ -21,7 +21,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GH_REF: 'github.com/songxingguo/songxingguo.github.io.git'
           CO_TOKEN: ${{ secrets.CO_TOKEN }}
-          CO_REF: 'e.coding.net/songxingguo/songxingguo.coding.me.git'
+          CO_REF: 'e.coding.net/songxingguo/songxingguo.coding.me/blog.git'
         run: |
           cd ./build
           git init
