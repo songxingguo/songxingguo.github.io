@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>从零开始搭建在线个人简历 | 阿有的生活</title>
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=0">
+  <meta name="author" content="https://plus.google.com/112634278852964994392?hl=zh-cn">
+  <meta name="email" content="xg.song@gmail.com">
+  <meta name="description" content="写在前面做这个在线简历是出于两点考虑。word 文档式的简历没有办法展示到网上，不能体现我作为一个前端开发工程师的专长。之前也写过一个在线简历，但是现在不好维护了。主要原因是之前使用 Webpack 打包，对于一个简历的小项目来说比较重。然后之前的图床是使用七牛云进行存储的，但现在七牛云所有域名都需">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="从零开始搭建在线个人简历 | 阿有的生活">
+  <meta property="og:url" content="https://www.songxingguo.com/2023/02/05/从零开始搭建在线个人简历/">
+  <meta property="og:site_name" content="从零开始搭建在线个人简历">
+  <meta property="og:description" content="写在前面做这个在线简历是出于两点考虑。word 文档式的简历没有办法展示到网上，不能体现我作为一个前端开发工程师的专长。之前也写过一个在线简历，但是现在不好维护了。主要原因是之前使用 Webpack 打包，对于一个简历的小项目来说比较重。然后之前的图床是使用七牛云进行存储的，但现在七牛云所有域名都需">
+  <meta name="generator" content="https://hexo.io" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <link href="https://blog.songxingguo.com/images/logo.png" rel="apple-touch-icon-precomposed">
+  <link rel="shoticon" href="https://blog.songxingguo.com/images/logo.png" type="image/x-icon">
+  <link rel="alternate" type="application/rss+xml" href="https://www.songxingguo.com/rss2.xml" title="阿有的生活" />
+  <link rel="prev" href="https://www.songxingguo.com/2023/02/07/如何将语雀文章发布到Hexo博客/" title="如何将语雀文章发布到Hexo博客" />
+  <link rel="next" href="https://www.songxingguo.com/2023/01/15/使用Github Action部署静态网站/" title="使用Github Action部署静态网站" />
+  <link rel="start" href="https://www.songxingguo.com/entry/" title="Blog Entry" />
+  <link rel="stylesheet" href="/public/css/style-20230627-2.css">
+</head>
+
+
+<body>
+  <!-- <div class="rainbow notice"> [object Object]</div> -->
+  <div class="container">
+  <span class="local-search local-search-google local-search-plugin" style="display: none;">
+  <input type="search" placeholder="站内搜索" id="local-search-input" class="local-search-input-cls" style="">
+  <i class="icon" aria-hidden="true" title="点击进入 Google 搜索">&#x2708;</i>
+  <div id="local-search-result" class="local-search-result-cls"></div>
+</span>
+  <div class="article" itemscope itemtype="http://schema.org/Article">
+    <div class="post">
+      <div class="bread">
+        <a href="/">宋兴国</a> »
+        <a href="/entry/">博客</a> »
+        
+	<a class="category-link" href="/categories/前端/">前端</a>
+
+
+      </div>
+      <div class="post-title-wrapper">
+        <h1 class="post-title" itemprop="name">从零开始搭建在线个人简历</h1>
+        <a href="https://resume.songxingguo.com/"><img src="https://blog.songxingguo.com/images/logo.png" alt="宋兴国" /></a>
+      </div>
+      <div class="post-info">
+        <span>作者: <a href="https://resume.songxingguo.com/">宋兴国</a></span>
+        <span>
+          <time itemprop="timeCreated" aria-hidden="true">2023-02-05 01:44:50</time>
+          <span class="aria-readonly">本文发布时间为2023年02月05日01时44分50秒</span>
+        </span>
+        
+        <span>分类: 
+	<a class="category-link" href="/categories/前端/">前端</a>
+
+</span>
+        
+        
+        <span class="aria-readonly">下面是正文内容</span>
+        <span tabindex="0" aria-hidden="true">评论数: <a href="#comments"
+                      class="ds-thread-count hash-to-comments disqus-comment-count"
+                      data-thread-key="从零开始搭建在线个人简历"
+                      data-disqus-identifier="从零开始搭建在线个人简历"></a></span>
+      </div>
+      <div class="post-content" itemprop="articleBody">
+        
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>做这个在线简历是出于两点考虑。</p>
+<ul>
+<li>word 文档式的简历没有办法展示到网上，不能体现我作为一个前端开发工程师的专长。</li>
+<li>之前也写过一个在线简历，但是现在不好维护了。主要原因是之前使用 Webpack 打包，对于一个简历的小项目来说比较重。然后之前的图床是使用七牛云进行存储的，但现在七牛云所有域名都需要备案，我之前的域名地址也被莫名其妙（😡）的被删除了，已经无力去维护。如果后面有时间和精力再进行升级优化吧。</li>
+</ul>
+<p>基于上面的两点考虑，我决定做一个简单的且易于维护的在线简历。这次打包采用了开箱即用的<a href="https://parceljs.org/" target="_blank" rel="noopener">parceljs</a>，对于在线简历这个小项目正好合适。而且这次简历依然是使用了模版引擎<a href="https://ejs.bootcss.com/" target="_blank" rel="noopener">ejs</a>，让数据和模版分离，通过 json 文件来配置简历，在设计思想上这个参考了<a href="https://jsonresume.org/" target="_blank" rel="noopener">Json-Resume</a>，在样式上参考了<a href="https://shoyuf.top/resume" target="_blank" rel="noopener">SHOYUF</a>的简历。</p>
+<a id="more"></a>
+<h3 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h3><ul>
+<li>如果不想从零开始配置就可以直接下载<code>[example](https://github.com/sarscode/parcel-transformer-ejs)</code>运行。</li>
+<li>该项目的<a href="https://github.com/songxingguo/resume" target="_blank" rel="noopener">开源地址</a>在 github 上，分支为<code>feature-ejs</code>。</li>
+<li>如果想将简历发布到线上可以参考<a href="https://www.yuque.com/songxingguo/devhints/tfub27hk86lsdrpb" target="_blank" rel="noopener">使用 Github Action 部署静态网站</a>。</li>
+</ul>
+<h2 id="从零开始搭建一个-MVP-项目"><a href="#从零开始搭建一个-MVP-项目" class="headerlink" title="从零开始搭建一个 MVP 项目"></a>从零开始搭建一个 MVP 项目</h2><h3 id="安装和配置parcel"><a href="#安装和配置parcel" class="headerlink" title="安装和配置parcel"></a>安装和配置<code>parcel</code></h3><ol>
+<li>创建一个 resume 文件夹</li>
+<li>使用 <code>npm init</code>初始化<code>package.json</code>，全部都选择默认选项。</li>
+<li>安装<code>parcel</code></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev parcel</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>在<code>package.json</code>中添加任务脚本</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">    "dev": "parcel",</span><br><span class="line">    "build": "parcel build"</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>新建 src 目录，并在目录下新建<code>index.ejs</code>文件，并在<code>index.ejs</code>中添加内容。</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello parcel！<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello parcel!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后在配置<code>package.json</code>中配置 parcel 的入口文件。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"source": "src/index.ejs",</span><br></pre></td></tr></table></figure>
+<h3 id="安装和配置parcel-transformer-ejs"><a href="#安装和配置parcel-transformer-ejs" class="headerlink" title="安装和配置parcel-transformer-ejs"></a>安装和配置<code>parcel-transformer-ejs</code></h3><ol start="6">
+<li>安装<code>parcel-transformer-ejs</code></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -D parcel-transformer-ejs</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.npmjs.com/package/parcel-transformer-ejs" target="_blank" rel="noopener">parcel-transformer-ejs</a> 是一个 ejs 转换器，将 ejs 转换成 html，这个库唯一的缺点就是修改了 json 配置文件之后，页面并没有更新，对开发效率还是影响蛮大的。</p>
+<blockquote>
+<p>现在的解决办法是，修改了<code>.ejsrc</code>再立即修改一下<code>index.ejs</code>就会更新页面了。</p>
+</blockquote>
+<ol start="7">
+<li>在根目录下新建<code>.parcelrc</code>，配置<a href="https://parceljs.org/" target="_blank" rel="noopener">parcel</a>转换器。</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"extends"</span>: [<span class="string">"@parcel/config-default"</span>],</span><br><span class="line">  <span class="attr">"transformers"</span>: &#123;</span><br><span class="line">    <span class="attr">"*.ejs"</span>: [<span class="string">"parcel-transformer-ejs"</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="8">
+<li>在 src 目录下新建<code>.ejsrc</code>作为<strong>简历配置</strong>文件，json 格式可以参考<a href="https://jsonresume.org/schema/" target="_blank" rel="noopener">jsonresume</a>。</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"basics"</span>: &#123;</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"John Doe"</span>,</span><br><span class="line">    <span class="attr">"label"</span>: <span class="string">"Programmer"</span>,</span><br><span class="line">    <span class="attr">"image"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="attr">"email"</span>: <span class="string">"john@gmail.com"</span>,</span><br><span class="line">    <span class="attr">"phone"</span>: <span class="string">"(912) 555-4321"</span>,</span><br><span class="line">    <span class="attr">"url"</span>: <span class="string">"https://johndoe.com"</span>,</span><br><span class="line">    <span class="attr">"summary"</span>: <span class="string">"A summary of John Doe…"</span>,</span><br><span class="line">    <span class="attr">"location"</span>: &#123;</span><br><span class="line">      <span class="attr">"address"</span>: <span class="string">"2712 Broadway St"</span>,</span><br><span class="line">      <span class="attr">"postalCode"</span>: <span class="string">"CA 94115"</span>,</span><br><span class="line">      <span class="attr">"city"</span>: <span class="string">"San Francisco"</span>,</span><br><span class="line">      <span class="attr">"countryCode"</span>: <span class="string">"US"</span>,</span><br><span class="line">      <span class="attr">"region"</span>: <span class="string">"California"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"profiles"</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"network"</span>: <span class="string">"Twitter"</span>,</span><br><span class="line">        <span class="attr">"username"</span>: <span class="string">"john"</span>,</span><br><span class="line">        <span class="attr">"url"</span>: <span class="string">"https://twitter.com/john"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"work"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"Company"</span>,</span><br><span class="line">      <span class="attr">"position"</span>: <span class="string">"President"</span>,</span><br><span class="line">      <span class="attr">"url"</span>: <span class="string">"https://company.com"</span>,</span><br><span class="line">      <span class="attr">"startDate"</span>: <span class="string">"2013-01-01"</span>,</span><br><span class="line">      <span class="attr">"endDate"</span>: <span class="string">"2014-01-01"</span>,</span><br><span class="line">      <span class="attr">"summary"</span>: <span class="string">"Description…"</span>,</span><br><span class="line">      <span class="attr">"highlights"</span>: [<span class="string">"Started the company"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"volunteer"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"organization"</span>: <span class="string">"Organization"</span>,</span><br><span class="line">      <span class="attr">"position"</span>: <span class="string">"Volunteer"</span>,</span><br><span class="line">      <span class="attr">"url"</span>: <span class="string">"https://organization.com/"</span>,</span><br><span class="line">      <span class="attr">"startDate"</span>: <span class="string">"2012-01-01"</span>,</span><br><span class="line">      <span class="attr">"endDate"</span>: <span class="string">"2013-01-01"</span>,</span><br><span class="line">      <span class="attr">"summary"</span>: <span class="string">"Description…"</span>,</span><br><span class="line">      <span class="attr">"highlights"</span>: [<span class="string">"Awarded 'Volunteer of the Month'"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"education"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"institution"</span>: <span class="string">"University"</span>,</span><br><span class="line">      <span class="attr">"url"</span>: <span class="string">"https://institution.com/"</span>,</span><br><span class="line">      <span class="attr">"area"</span>: <span class="string">"Software Development"</span>,</span><br><span class="line">      <span class="attr">"studyType"</span>: <span class="string">"Bachelor"</span>,</span><br><span class="line">      <span class="attr">"startDate"</span>: <span class="string">"2011-01-01"</span>,</span><br><span class="line">      <span class="attr">"endDate"</span>: <span class="string">"2013-01-01"</span>,</span><br><span class="line">      <span class="attr">"score"</span>: <span class="string">"4.0"</span>,</span><br><span class="line">      <span class="attr">"courses"</span>: [<span class="string">"DB1101 - Basic SQL"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"awards"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"title"</span>: <span class="string">"Award"</span>,</span><br><span class="line">      <span class="attr">"date"</span>: <span class="string">"2014-11-01"</span>,</span><br><span class="line">      <span class="attr">"awarder"</span>: <span class="string">"Company"</span>,</span><br><span class="line">      <span class="attr">"summary"</span>: <span class="string">"There is no spoon."</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"certificates"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"Certificate"</span>,</span><br><span class="line">      <span class="attr">"date"</span>: <span class="string">"2021-11-07"</span>,</span><br><span class="line">      <span class="attr">"issuer"</span>: <span class="string">"Company"</span>,</span><br><span class="line">      <span class="attr">"url"</span>: <span class="string">"https://certificate.com"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"publications"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"Publication"</span>,</span><br><span class="line">      <span class="attr">"publisher"</span>: <span class="string">"Company"</span>,</span><br><span class="line">      <span class="attr">"releaseDate"</span>: <span class="string">"2014-10-01"</span>,</span><br><span class="line">      <span class="attr">"url"</span>: <span class="string">"https://publication.com"</span>,</span><br><span class="line">      <span class="attr">"summary"</span>: <span class="string">"Description…"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"skills"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"Web Development"</span>,</span><br><span class="line">      <span class="attr">"level"</span>: <span class="string">"Master"</span>,</span><br><span class="line">      <span class="attr">"keywords"</span>: [<span class="string">"HTML"</span>, <span class="string">"CSS"</span>, <span class="string">"JavaScript"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"languages"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"language"</span>: <span class="string">"English"</span>,</span><br><span class="line">      <span class="attr">"fluency"</span>: <span class="string">"Native speaker"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"interests"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"Wildlife"</span>,</span><br><span class="line">      <span class="attr">"keywords"</span>: [<span class="string">"Ferrets"</span>, <span class="string">"Unicorns"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"references"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"Jane Doe"</span>,</span><br><span class="line">      <span class="attr">"reference"</span>: <span class="string">"Reference…"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"projects"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"Project"</span>,</span><br><span class="line">      <span class="attr">"description"</span>: <span class="string">"Description…"</span>,</span><br><span class="line">      <span class="attr">"highlights"</span>: [<span class="string">"Won award at AIHacks 2016"</span>],</span><br><span class="line">      <span class="attr">"keywords"</span>: [<span class="string">"HTML"</span>],</span><br><span class="line">      <span class="attr">"startDate"</span>: <span class="string">"2019-01-01"</span>,</span><br><span class="line">      <span class="attr">"endDate"</span>: <span class="string">"2021-01-01"</span>,</span><br><span class="line">      <span class="attr">"url"</span>: <span class="string">"https://project.com/"</span>,</span><br><span class="line">      <span class="attr">"roles"</span>: [<span class="string">"Team Lead"</span>],</span><br><span class="line">      <span class="attr">"entity"</span>: <span class="string">"Entity"</span>,</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"application"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li>修改一下<code>index.ejs</code>，添加一些<a href="https://www.yuque.com/songxingguo/devhints/xnf7wu5wxoucphtg" target="_blank" rel="noopener">ejs 语法</a>。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">  &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"IE=edge"</span>&gt;</span><br><span class="line">  &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">  &lt;title&gt;Hello EJS！&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;h2&gt;&lt;%= basics.name %&gt;&lt;/h2&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>最后，你就能运行它了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以开发模式运行</span></span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以生成模式运行</span></span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+<p>下面是运行效果。<br><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FohM8kpQxrzWA2KnUa7KGYQPG_5s.png" alt></p>
+<h2 id="一些小优化"><a href="#一些小优化" class="headerlink" title="一些小优化"></a>一些小优化</h2><h3 id="加粗文字或者添加链接"><a href="#加粗文字或者添加链接" class="headerlink" title="加粗文字或者添加链接"></a>加粗文字或者添加链接</h3><ol>
+<li>在文本中添加标签。</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"basics"</span>: &#123;</span><br><span class="line">    <span class="attr">"summary"</span>: <span class="string">"A &lt;b&gt;summary&lt;/b&gt; of &lt;a href='https://www.songxingguo.com/'&gt;John Doe&lt;/a&gt;…"</span>,</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>输出是使用<code>&lt;%-</code>可以不转义 html。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%- basics.summary %&gt;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>效果如下。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fu-fmOUIpyTJCfvtcquiD09XdaBq.png" alt></p>
+
+      </div>
+    </div>
+    
+    <!-- <div class="follow-wechat"><img src="/blogimgs/follow.jpg"></div> -->
+
+<div class="copyright" itemscope itemtype="http://schema.org/ProfilePage" tabindex="0" aria-hidden="true">
+	<!-- <a href="/about/#support" class="supportme">赏</a> -->
+	<ul>
+		<li>作者: <a href="https://resume.songxingguo.com/" itemprop="name">宋玉</a></li>
+		
+		<li>文章分类: 
+	<a class="category-link" href="/categories/前端/">前端</a>
+
+</li>
+		
+		
+		<li>发表日期: 2023-02-05 01:44:50</li>
+		<li>最后编辑时间: 2024-01-14 01:46:54</li>
+		<li>本文 Markdown 地址: <a target="_
+			" href="https://github.com/songxingguo/blog/tree/master/blog/src/_posts/2023-02-05-从零开始搭建在线个人简历.md">从零开始搭建在线个人简历</a></li>
+		<li>版权声明：<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank">CC BY-NC-ND 3.0</a></li>
+		<li>
+			Feed 订阅: <a href="/rss2.xml"><i class="icon">&#x25c8;</i></a>
+			<div style="opacity:.3;text-align:right;margin:5px -5px -10px 0;float:right;font-size: 12px;">
+				编辑本文：<a href="https://github.com/songxingguo/blog/edit/master/blog/src/_posts/2023-02-05-从零开始搭建在线个人简历.md" target="_blank" aria-hidden="true"><i class="icon">&#xe622;</i></a>；
+				新建文章：<a href="https://github.com/songxingguo/blog/new/master/blog/src/_posts" target="_blank" aria-hidden="true"><i class="icon">&#xe616;</i></a>
+			</div>
+		</li>
+		
+	</ul>
+	<a href="https://resume.songxingguo.com/"><img src="https://blog.songxingguo.com/images/logo.png" /></a>
+</div>
+
+    <em  class="arrow-expend" tabindex="0" aria-hidden="0" aria-label="点击展开网页导航" aria-selected="true" aria-lable="网页导航" aria-expanded="false" id="i1">▾
+<ul role="group" aria-labelledby="i1" aria-expanded="false">
+  <li><a href="/entry/">博客</a></li>
+  <!-- <li><a href="/translation/">翻译</a></li> -->
+  <!-- <li><a href="/message/">留言</a></li> -->
+  <!-- <li><a href="/demo/">实验室</a></li> -->
+  <!-- <a><a href="/comments/">最近评论</a></li> -->
+  <!-- <li><a href="/friends/">友情链接</a></li> -->
+</ul>
+</em>
+  </div>
+  <div class="post-relative">
+<div class="page-relative">
+  
+    <a href="/2023/02/07/如何将语雀文章发布到Hexo博客/" class="post-prev">
+      <i class="icon" tabindex="0" aria-hidden="true">&#x261c;</i>
+      <span class="aria-readonly">上一篇文章</span>
+      
+        <b>如何将语雀文章发布到Hexo博客</b>
+      
+    </a>
+  
+  
+    <a href="/2023/01/15/使用Github Action部署静态网站/" class="post-next">
+      <span class="aria-readonly">下一篇文章</span>
+      <b>使用Github Action部署静态网站</b>
+      <i class="icon" tabindex="0" aria-hidden="true">&#xe602;</i>
+    </a>
+  
+</div>
+
+
+<div class="page-relative-fixed" tabindex="0" aria-hidden="true">
+  
+  <a href="/2023/02/07/如何将语雀文章发布到Hexo博客/" class="prev" title="如何将语雀文章发布到Hexo博客">
+    <i class="icon">&#xe600;</i>
+    
+    <b>如何将语雀文章发布到Hexo博客</b>
+    
+  </a>
+  
+  
+  <a href="/2023/01/15/使用Github Action部署静态网站/" class="next" title="使用Github Action部署静态网站">
+    <i class="icon">&#x261e;</i>
+    <b>使用Github Action部署静态网站</b>
+  </a>
+  
+</div>
+</div>
+</div>
+<div class="sidebar" tabindex="0" aria-hidden="true">
+	<div class="func-btns func-btns-up">
+    <span class="func-item">
+        <i class="func-nav icon">&#xe618;<span>目录</span></i>
+        <div>
+          <i class="left-arrow"></i><i class="left-arrow-clone"></i>
+          <a href="javascript:void(0);" onclick="return false;">显示目录</a>
+        </div>
+    </span>
+    <span class="func-item">
+        <i class="func-font icon">&#xe604;<span>夜间</span></i>
+        <div class="font-choose-box">
+          <i class="left-arrow"></i><i class="left-arrow-clone"></i>
+          <div class="font-choose bg-choose">
+            <a href="javascript:void(0)" onclick="return false;" class="bg-type bg-type-sun font-type-song"><i class="icon">&#xe61a;</i></a>
+            <a href="javascript:void(0)" onclick="return false;" class="bg-type bg-type-moon font-type-hei"><i class="icon">&#xe619;</i></a>
+          </div>
+          <!-- <div class="font-choose">
+            <a href="javascript:void(0)" onclick="return false;" class="font-type font-type-song">黑体</a>
+            <a href="javascript:void(0)" onclick="return false;" class="font-type font-type-hei">宋体</a>
+          </div> -->
+        </div>
+    </span>
+    <span class="func-item">
+        <i class="func-about icon">&#x263b;<span>关于</span></i>
+        <div>
+          <i class="left-arrow"></i><i class="left-arrow-clone"></i>
+          <p><a href="https://resume.songxingguo.com/" class="func-about-link" target="_blank">关于作者</a></p>
+          <!-- <div id="followMeOnWeibo"></div> -->
+        </div>
+    </span>
+	</div>
+	<div class="func-btns">
+    <!-- <span class="func-item">
+        <a href="http://demo.songxingguo.com" target="_blank"><i class="func-rss icon">&#xe603;<span>实验</span></i></a>
+        <div><i class="left-arrow"></i><i class="left-arrow-clone"></i>
+          <p class="seperator"><a href="http://demo.songxingguo.com" target="_blank">Demo平台</a></p>
+          <p class="seperator"><a href="http://md.songxingguo.com" target="_blank">WX格式</a></p>
+          <p><a href="http://snippets.songxingguo.com" target="_blank">Snippet应用</a></p>
+        </div>
+    </span> -->
+    <!-- <span class="func-item">
+        <i class="func-fb icon">&#x2121;<span>留言</span></i>
+        <div><i class="left-arrow"></i><i class="left-arrow-clone"></i>
+          <p class="seperator"><a href="/message/" target="_blank">给我留言</a></p>
+          <p><a href="/comments/" target="_blank">近期留言</a></p>
+        </div>
+    </span> -->
+    <!-- <span class="func-item">
+        <a href="/friends/" target="_blank"><i class="func-rss icon">&#xe601;<span>链接</span></i></a>
+        <div><i class="left-arrow"></i><i class="left-arrow-clone"></i>
+          <a href="/friends/" target="_blank">友情链接</a>
+        </div>
+    </span> -->
+    <span class="func-item">
+        <a href="/rss2.xml" target="_blank"><i class="func-rss icon">&#x25c8;<span>订阅</span></i></a>
+        <div><i class="left-arrow"></i><i class="left-arrow-clone"></i><a href="/rss2.xml" target="_blank">订阅我吧！</a></div>
+    </span>
+	</div>
+</div>
+
+<div class="single-page-footer">
+<div class="footer">
+	<div class="footer-wraper">
+		<div class="footer-content">
+			<div class="footer-nav">
+	<a href="javascript: void(0);" class="ds-thread-count disqus-comment-count"
+	   data-thread-key="从零开始搭建在线个人简历"
+	   data-disqus-identifier="从零开始搭建在线个人简历" 
+		 tabindex="0" aria-hidden="true">评论内容</a>
+	<a href="javascript: void(0);" id="comments">相关文章</a>
+	<!-- <a href="/friends/" tabindex="0" aria-hidden="true" style="display: none;">友情链接</a> -->
+</div>
+<div class="nav-detail">
+	<div tabindex="0">
+		
+  <div id="gitalk" sid="从零开始搭建在线个人简历"></div>
+  <script charset="utf-8" type="text/javascript" src="/public/js/gitalk.js"></script>
+  <script type="text/javascript">
+  var postContent = document.querySelectorAll('.post-content>p');
+  if (postContent && postContent.length) {
+    postContent = postContent.item(0).textContent + (postContent.item(1) && postContent.item(1).textContent || '');
+    postContent = postContent.length > 140 ? postContent.slice(0, 140) + '...' : postContent;
+  }
+
+  var gitalk = new Gitalk({
+    clientID: 'f55a398461d56a3e691e',
+    clientSecret: '77359a5d140ac109d31a3a6f2711f0ddb16c69fe',
+    language: "zh-CN",
+    perPage: 100,
+    createIssueManually: false,
+    repo: 'songxingguo.github.io',
+    owner: 'songxingguo',
+    admin: ['songxingguo'],
+    id: "从零开始搭建在线个人简历",
+    body: '原文地址：' + location.href + '\n\n文摘：' + postContent,
+    distractionFreeMode: false,
+    proxy: `https://vercel.prohibitorum.top/github_access_token`
+  });
+
+  window.addEventListener('load', function () {
+    gitalk.render('gitalk');
+  });
+
+  // show count
+  var commentTimer = setInterval(() => {
+    var count = document.querySelector('.gt-link-counts');
+    var showCount = document.querySelector('.hash-to-comments');
+    if (count && showCount) {
+      showCount.textContent = count.textContent;
+      clearInterval(commentTimer);
+    }
+  }, 500);
+  setTimeout(() => {
+    clearInterval(commentTimer);
+  }, 60 * 1E3);
+  </script>
+  
+	</div>
+	<div style="display:block;">
+		<div class="relative-wrapper">
+	<div class="relative-article">
+		
+		<ul>
+			<li>
+				<span><font aria-hidden="true">2023-02-07 »</font> </span>
+				<a href="/2023/02/07/如何将语雀文章发布到Hexo博客/">如何将语雀文章发布到Hexo博客</a>
+				<span class="aria-readonly">发表时间为2023年02月07日</span>
+				<div class="relative-box">
+          <a href="/2023/02/07/如何将语雀文章发布到Hexo博客/" class="relative-img-wrapper"><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FvYEuJlUXy5ADawCvwN-yUw1zlI_.com/mdn/prod_resou/afts/img/A*NNs6TKOR3isAAAAAAAAAAABkARQnAQ" style="width:100%" loading="lazy" data-original="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FvYEuJlUXy5ADawCvwN-yUw1zlI_.com/mdn/prod_resou/afts/img/A*NNs6TKOR3isAAAAAAAAAAABkARQnAQ"/></a>
+          <span class="aria-readonly">文章概要 </span>写在前面实现语雀上的文章自动化发布到个人博客，首先是因为语雀本身是一个优秀的创作的平台，能方便的编辑和管理文章，但缺点是它本身是一个封闭的系统，就像微信公众号一样，不利于 SEO。其次个人博客是由自己搭建，没有任何限制，也能更好的进行 SEO。基于这两点原因，语雀+个人博客就是一个完美的组合，个人博客作为前台，语雀作为后台，既能很好的创造和管理文章，有能够将需要共享的文章发布到个人博客，供大家搜索。下面要做的就是建立起两者的桥梁。
+        </div>
+			</li>
+			
+		</ul>
+	</div>
+</div>
+
+		<div class="relative-to-comment" tabindex="0" aria-hidden="true"><span>留下评论</span></div>
+		<!-- <a href="/entry/" class="relative-to-comment-wrapper" tabindex="0" aria-hidden="true"><div class="relative-to-comment">回到首页</div></a> -->
+	</div>
+	<div class="friends-box">
+		<ul>
+			
+			<li><a href="http://hustskyking.cnblogs.com" target="_blank">旧博客</a> <font aria-hidden="true">»</font> <span>我的旧博客（博客园荣誉博客）</span></li>
+			
+			<li><a href="http://www.zhangmengxue.com" target="_blank">大额</a> <font aria-hidden="true">»</font> <span>大额大额哼歌等日落</span></li>
+			
+			<li><a href="http://www.zhangxinxu.com" target="_blank">张鑫旭</a> <font aria-hidden="true">»</font> <span>原来大学我俩一个团队的~</span></li>
+			
+			<li><a href="http://web-tinker.com" target="_blank">次碳酸钴</a> <font aria-hidden="true">»</font> <span>深度交流的一个好朋友</span></li>
+			
+			<li><a href="http://imququ.com" target="_blank">屈屈</a> <font aria-hidden="true">»</font> <span>蛐蛐同学</span></li>
+			
+			<li><a href="http://www.ruanyifeng.com" target="_blank">阮一峰</a> <font aria-hidden="true">»</font> <span>阮老师</span></li>
+			
+			<li><a href="/friends/">更多列表 <font aria-hidden="true">»</font></a></li>
+		</ul>
+	</div>
+</div>
+			
+<div class="website-info" aria-hidden="true">
+	<a class="page_editor" href="https://www.yuque.com/songxingguo" target="_blank">🙈</a>
+	<span>&copy;2018-2024 <small><a href="https://www.miit.gov.cn/" about="_blank">渝ICP备2024019360号-1</a></small></span>
+	<a href="https://resume.songxingguo.com/">联系方式</a> | Power by <a href="https://www.barretlee.com/">小胡子哥</a> 
+	<a href='https://union.zhaodao.ai/#random' title="随机跳转到一个有意思的网站" target='_blank' class="zhidao_ai"><img src='https://img.alicdn.com/imgextra/i2/O1CN01VjiZUL1r0eXge4taM_!!6000000005569-55-tps-300-300.svg' width="20" height="20"></a>
+</div>
+
+		</div>
+	</div>
+</div>
+</div>
+<div class="tools-wrapper" tabindex="0" aria-hidden="true">
+	<a class="gotop icon" href="#" title="回到顶部">&#x2191;</a>
+	<!-- <a class="wechart icon">&#xe60d;<span><img src="/blogimgs/wechart.png" title="扫码添加宋玉微信"/> </span></a> -->
+	<a class="hash-to-comments icon" title="我要评论">&#x2121;</a>
+</div>
+<div class="fixerr" tabindex="0" aria-hidden="true">纠错模式</div>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":90,"vOffset":-25},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+<script src="/public/js/jquery.js"></script>
+<script src="/public/js/main-20230626.js"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?3524fff9629f2c80f8ea5daa13e67003";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+  window.onerror = function(e) {
+    window.console && window.console.log && window.console.log(e);
+    $('#loadLayer').remove();
+    return true;
+  };
+</script>
+</script>
+</html>
