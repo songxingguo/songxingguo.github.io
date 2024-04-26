@@ -1,0 +1,31 @@
+name: 静态博客构建
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - name: Setup Node.js
+        uses: actions/setup-node@master
+        with:
+          node-version: "14.0.0"
+      - name: Install and Build 🔧
+        run: |
+          npm i
+          npm run build
+      - name: 推送到代码仓库
+        env:
+          CO_TOKEN: ${{ secrets.CO_TOKEN }}
+          CO_REF: "e.coding.net/songxingguo/songxingguo.coding.me/blog-old.git"
+        run: |
+          cd ./public
+          git init
+          git config user.name "songxingguo"
+          git config user.email "1328989942@qq.com"
+          git add .
+          git commit -m "Update Blog By GithubAction With Build $TRAVIS_BUILD_NUMBER"
+          # Coding Pages
+          git push --force --quiet "https://zrUWsPQJyF:${CO_TOKEN}@${CO_REF}" master:master
