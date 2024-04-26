@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>如何将语雀文章发布到Hexo博客 | 阿有的生活</title>
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=0">
+  <meta name="author" content="https://plus.google.com/112634278852964994392?hl=zh-cn">
+  <meta name="email" content="xg.song@gmail.com">
+  <meta name="description" content="写在前面实现语雀上的文章自动化发布到个人博客，首先是因为语雀本身是一个优秀的创作的平台，能方便的编辑和管理文章，但缺点是它本身是一个封闭的系统，就像微信公众号一样，不利于 SEO。其次个人博客是由自己搭建，没有任何限制，也能更好的进行 SEO。基于这两点原因，语雀+个人博客就是一个完美的组合，个人博">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="如何将语雀文章发布到Hexo博客 | 阿有的生活">
+  <meta property="og:url" content="https://www.songxingguo.com/2023/02/07/如何将语雀文章发布到Hexo博客/">
+  <meta property="og:site_name" content="如何将语雀文章发布到Hexo博客">
+  <meta property="og:description" content="写在前面实现语雀上的文章自动化发布到个人博客，首先是因为语雀本身是一个优秀的创作的平台，能方便的编辑和管理文章，但缺点是它本身是一个封闭的系统，就像微信公众号一样，不利于 SEO。其次个人博客是由自己搭建，没有任何限制，也能更好的进行 SEO。基于这两点原因，语雀+个人博客就是一个完美的组合，个人博">
+  <meta name="generator" content="https://hexo.io" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <link href="https://blog.songxingguo.com/images/logo.png" rel="apple-touch-icon-precomposed">
+  <link rel="shoticon" href="https://blog.songxingguo.com/images/logo.png" type="image/x-icon">
+  <link rel="alternate" type="application/rss+xml" href="https://www.songxingguo.com/rss2.xml" title="阿有的生活" />
+  
+  <link rel="next" href="https://www.songxingguo.com/2023/02/05/从零开始搭建在线个人简历/" title="从零开始搭建在线个人简历" />
+  <link rel="start" href="https://www.songxingguo.com/entry/" title="Blog Entry" />
+  <link rel="stylesheet" href="/public/css/style-20230627-2.css">
+</head>
+
+
+<body>
+  <!-- <div class="rainbow notice"> [object Object]</div> -->
+  <div class="container">
+  <span class="local-search local-search-google local-search-plugin" style="display: none;">
+  <input type="search" placeholder="站内搜索" id="local-search-input" class="local-search-input-cls" style="">
+  <i class="icon" aria-hidden="true" title="点击进入 Google 搜索">&#x2708;</i>
+  <div id="local-search-result" class="local-search-result-cls"></div>
+</span>
+  <div class="article" itemscope itemtype="http://schema.org/Article">
+    <div class="post">
+      <div class="bread">
+        <a href="/">宋兴国</a> »
+        <a href="/entry/">博客</a> »
+        
+	<a class="category-link" href="/categories/前端/">前端</a>
+
+
+      </div>
+      <div class="post-title-wrapper">
+        <h1 class="post-title" itemprop="name">如何将语雀文章发布到Hexo博客</h1>
+        <a href="https://resume.songxingguo.com/"><img src="https://blog.songxingguo.com/images/logo.png" alt="宋兴国" /></a>
+      </div>
+      <div class="post-info">
+        <span>作者: <a href="https://resume.songxingguo.com/">宋兴国</a></span>
+        <span>
+          <time itemprop="timeCreated" aria-hidden="true">2023-02-07 05:15:12</time>
+          <span class="aria-readonly">本文发布时间为2023年02月07日05时15分12秒</span>
+        </span>
+        
+        <span>分类: 
+	<a class="category-link" href="/categories/前端/">前端</a>
+
+</span>
+        
+        
+        <span class="aria-readonly">下面是正文内容</span>
+        <span tabindex="0" aria-hidden="true">评论数: <a href="#comments"
+                      class="ds-thread-count hash-to-comments disqus-comment-count"
+                      data-thread-key="如何将语雀文章发布到Hexo博客"
+                      data-disqus-identifier="如何将语雀文章发布到Hexo博客"></a></span>
+      </div>
+      <div class="post-content" itemprop="articleBody">
+        
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>实现语雀上的文章自动化发布到个人博客，首先是因为语雀本身是一个优秀的创作的平台，能方便的编辑和管理文章，但缺点是它本身是一个封闭的系统，就像微信公众号一样，不利于 SEO。其次个人博客是由自己搭建，没有任何限制，也能更好的进行 SEO。基于这两点原因，语雀+个人博客就是一个完美的组合，个人博客作为前台，语雀作为后台，既能很好的创造和管理文章，有能够将需要共享的文章发布到个人博客，供大家搜索。下面要做的就是建立起两者的桥梁。</p>
+<a id="more"></a>
+<h2 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h2><ul>
+<li><a href="https://github.com/songxingguo/songxingguo.github.io" target="_blank" rel="noopener">项目地址</a></li>
+<li>使用效果（视频）<br><a href="https://www.yuque.com/songxingguo/devhints/gwpsg4dq6tp27z3s?_lake_card=%7B%22status%22%3A%22done%22%2C%22name%22%3A%22%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62023-02-09%2019.39.30.mov%22%2C%22size%22%3A204453355%2C%22taskId%22%3A%22ua4cb8283-502b-4a55-b53e-7f0a9dd0a84%22%2C%22taskType%22%3A%22upload%22%2C%22url%22%3Anull%2C%22cover%22%3Anull%2C%22videoId%22%3A%22inputs%2Fprod%2Fyuque%2F2023%2F394169%2Fmov%2F1675943595043-2a636a15-97b2-4fd2-9038-a34841d5d6a3.mov%22%2C%22download%22%3Afalse%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22pqOSi%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22video%22%7D#pqOSi" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FvYEuJlUXy5ADawCvwN-yUw1zlI_.com/mdn/prod_resou/afts/img/A*NNs6TKOR3isAAAAAAAAAAABkARQnAQ" alt></a></li>
+</ul>
+<h2 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h2><p><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FlChHeNiAySN1-R3hmWCTrVo3BxH.jpeg" alt><br>整体的设计思路是每次语雀更新文档都通过 Webhook 发送钉钉消息，当手动点击【发布】的时候再触发 GithubAction 将 slug 对应的文章从语雀拉取下去并推送到博客仓库，最后部署博客。触发流程虽然是从语雀到 Github 的过程，但开发的过程是优先处理 Github 部分然后再由语雀触发 Webhook，开发过程主要包括以下几个步骤。</p>
+<ol>
+<li>配置<code>yuque-heox-publish</code></li>
+<li>配置<code>.github/workflows/publish.yml</code></li>
+<li>使用云函数触发 GithubAction</li>
+<li>使用云函数推送钉钉消息</li>
+<li>配置语雀 Webhook</li>
+</ol>
+<h3 id="yuque-hexo-publish是什么"><a href="#yuque-hexo-publish是什么" class="headerlink" title="yuque-hexo-publish是什么"></a><code>yuque-hexo-publish</code>是什么</h3><p><code>[yuque-hexo](https://github.com/x-cold/yuque-hexo)</code>是一个很优秀的插件，能将语雀的文章完全<strong>同步</strong>到个人博客上。但这并不满足我的需求，我需要的是发布而不是同步，我并不想把所有文章都<strong>同步</strong>到个人博客上，也不希望只能有一个知识库里面的文章能<strong>发布</strong>到个人博客，而是希望能把我想发布的文章都能<strong>发布</strong>到个人博客上。基于这个这个考虑我在<code>yuque-hexo</code>的基础上新增了发布功能，<code>yuque-hexo-publish</code>就此诞生了。yuque-hexo-publish 在功能上和 yuque-hexo 是完全一致的，只是新增了命令 publish。</p>
+<h2 id="具体实施"><a href="#具体实施" class="headerlink" title="具体实施"></a>具体实施</h2><h3 id="Hexo-博客开发"><a href="#Hexo-博客开发" class="headerlink" title="Hexo 博客开发"></a>Hexo 博客开发</h3><h4 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a>项目配置</h4><ol>
+<li><code>package.json</code>中配置 yuque-hexo-publish。</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">"yuqueConfig":</span> <span class="string">&#123;</span></span><br><span class="line">  <span class="attr">"postPath":</span> <span class="string">"source/_posts"</span><span class="string">,</span> <span class="string">//文章目录</span></span><br><span class="line">  <span class="attr">"baseUrl":</span> <span class="string">"https://www.yuque.com/api/v2"</span><span class="string">,</span></span><br><span class="line">  <span class="attr">"login":</span> <span class="string">"songxingguo"</span><span class="string">,//用户名</span></span><br><span class="line">  <span class="attr">"repo":</span> <span class="string">"devhints"</span><span class="string">,</span> <span class="string">//知识库名称</span></span><br><span class="line">  <span class="attr">"onlyPublished":</span> <span class="literal">false</span><span class="string">,</span></span><br><span class="line">  <span class="attr">"onlyPublic":</span> <span class="literal">false</span><span class="string">,</span></span><br><span class="line">  <span class="attr">"imgCdn":</span> <span class="string">&#123;</span></span><br><span class="line">    <span class="attr">"concurrency":</span> <span class="number">1</span><span class="string">,</span></span><br><span class="line">    <span class="attr">"imageBed":</span> <span class="string">"github"</span><span class="string">,</span> <span class="string">//图床类型</span></span><br><span class="line">    <span class="attr">"enabled":</span> <span class="literal">true</span><span class="string">,</span></span><br><span class="line">    <span class="attr">"bucket":</span> <span class="string">"songxingguo.github.io"</span><span class="string">,</span> <span class="string">//仓库地址</span></span><br><span class="line">    <span class="attr">"prefixKey":</span> <span class="string">"static/images"</span> <span class="string">//图片文件上传到仓库后的目录</span></span><br><span class="line">  <span class="string">&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>更详细的配置说明可以查看<code>[yuque-hexo-publish](https://github.com/songxingguo/yuque-hexo/tree/feature-publish)</code>。</p>
+<ol start="2">
+<li><code>package.json</code>中添加任务脚本。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"build"</span>: <span class="string">"hexo generate"</span>,</span><br><span class="line">  <span class="string">"pulish"</span>: <span class="string">"yuque-hexo publish"</span>,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>根目录下新建<code>.github/workflows/publish.yml</code>。</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Deploy</span> <span class="string">To</span> <span class="string">Github</span> <span class="string">Pages</span></span><br><span class="line"><span class="attr">on:</span> <span class="string">[repository_dispatch]</span></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">build-and-deploy:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span> <span class="string">🛎️</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v3</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">persist-credentials:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Setup</span> <span class="string">Node.js</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@master</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="string">"12.0.0"</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">and</span> <span class="string">Build</span> <span class="string">🔧</span></span><br><span class="line">        <span class="attr">env:</span></span><br><span class="line">          <span class="attr">YUQUE_TOKEN:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.YUQUE_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">SLUG:</span> <span class="string">$&#123;&#123;</span> <span class="string">github.event.client_payload.slug</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">SECRET_ID:</span> <span class="string">songxingguo</span></span><br><span class="line">          <span class="attr">SECRET_KEY:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.ACCESS_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">          <span class="string">npm</span> <span class="string">i</span></span><br><span class="line">          <span class="string">npm</span> <span class="string">run</span> <span class="string">publish</span></span><br><span class="line">          <span class="string">npm</span> <span class="string">run</span> <span class="string">build</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">配置Git用户名邮箱</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">          <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.name</span> <span class="string">"songxingguo"</span></span><br><span class="line">          <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.email</span> <span class="string">"1328989942@qq.com"</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">提交yuque拉取的文章到GitHub仓库</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">          <span class="string">git</span> <span class="string">pull</span></span><br><span class="line">          <span class="string">git</span> <span class="string">add</span> <span class="string">.</span></span><br><span class="line">          <span class="string">git</span> <span class="string">commit</span> <span class="string">-m</span> <span class="string">"feat:提交文章"</span> <span class="string">-a</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">推送文章到仓库</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">ad-m/github-push-action@master</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">github_token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.ACCESS_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span> <span class="string">🚀</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">JamesIves/github-pages-deploy-action@v4</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">ACCESS_TOKEN:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.ACCESS_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">BRANCH:</span> <span class="string">master</span></span><br><span class="line">          <span class="attr">FOLDER:</span> <span class="string">public</span></span><br><span class="line">          <span class="attr">CLEAN:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p><code>YUQUE_TOKE</code>和<code>ACCESS_TOKEN</code>都是 Github 的环境变量，<code>github.event.client_payload.slug</code>是<code>[repository_dispatch](https://docs.github.com/zh/actions/using-workflows/events-that-trigger-workflows#repository_dispatch)</code>事件中传递的参数。</p>
+<h4 id="如何本地调试"><a href="#如何本地调试" class="headerlink" title="如何本地调试"></a>如何本地调试</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">YUQUE_TOKEN=xxx SLUG=xxx yuque-hexo publish</span><br></pre></td></tr></table></figure>
+<p><code>yuque-hexo publish</code>需要两个环境变量，<code>YUQUE_TOKEN</code>是语雀的<a href="https://www.yuque.com/settings/tokens" target="_blank" rel="noopener">授权码</a>，<code>SLUG</code>是语雀文章的 id。</p>
+<h3 id="阿里云函数开发"><a href="#阿里云函数开发" class="headerlink" title="阿里云函数开发"></a>阿里云函数开发</h3><h4 id="初始化云函数"><a href="#初始化云函数" class="headerlink" title="初始化云函数"></a>初始化云函数</h4><ol>
+<li>创建一个处理 http 请求的 node.js 云函数，<a href="https://fcnext.console.aliyun.com/cn-hangzhou/tasks" target="_blank" rel="noopener">云函数创建地址</a>。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FmgXhivkd1GDSXivmeXk4GFgJ5mW.png" alt></p>
+<ol start="2">
+<li>创建好后的效果如下。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fn9FBWVuiHojlCDdNBudsnalwEXs.png" alt></p>
+<h4 id="调试云函数"><a href="#调试云函数" class="headerlink" title="调试云函数"></a>调试云函数</h4><ol>
+<li>配置测试请求。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FrNF5Qqv5Z8c-GdIRsTEUU9fR6Rq.png" alt></p>
+<ol start="2">
+<li>部署代码之后，点击【测试函数】，就可以看到日志输出。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fm13C_KkS6MOfXCgdToHQqHVS7-p.png" alt></p>
+<h4 id="使用云函数触发-GithubAction"><a href="#使用云函数触发-GithubAction" class="headerlink" title="使用云函数触发 GithubAction"></a>使用云函数触发 GithubAction</h4><p>这个函数是通过 Get 请求进行调用的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//xx-xx-opbwmocbhe.cn-hangzhou.fcapp.run?slug=$&#123;slug&#125;`</span></span><br></pre></td></tr></table></figure>
+<p>首先需要从参数中获取 slug。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> slug = params.queries.slug;</span><br></pre></td></tr></table></figure>
+<p>然后使用<code>[repository_dispatch](https://docs.github.com/zh/actions/using-workflows/events-that-trigger-workflows#repository_dispatch)</code>事件触发 GithubAction，并将<code>slug</code>传给<code>client_payload</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> axios = <span class="built_in">require</span>(<span class="string">"axios"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> options = &#123;</span><br><span class="line">  method: <span class="string">"POST"</span>,</span><br><span class="line">  url: <span class="string">"https://api.github.com/repos/songxingguo/songxingguo.github.io/dispatches"</span>,</span><br><span class="line">  headers: &#123;</span><br><span class="line">    <span class="string">"content-type"</span>: <span class="string">"application/json"</span>,</span><br><span class="line">    Accept: <span class="string">"application/vnd.github+json"</span>,</span><br><span class="line">    Authorization: <span class="string">"Bearer GITHUB_TOKEN"</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  data: &#123; <span class="attr">event_type</span>: <span class="string">"publish"</span>, <span class="attr">client_payload</span>: &#123; slug &#125; &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">axios</span><br><span class="line">  .request(options)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(response.data);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.error(error);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>其中<code>GITHUB_TOKEN</code>是 github 的授权码，获取和配置可以参考<a href="https://www.yuque.com/songxingguo/devhints/tfub27hk86lsdrpb" target="_blank" rel="noopener">使用 Github Action 部署静态网站</a>。<code>event_type</code>是活动类型这个和<code>.github/workflows/publish.yml</code>里面的<code>types</code>是一一对应的，如果<code>.github/workflows/publish.yml</code>中没有指定具体<code>types</code>，那这儿填任何值都是可以。更多信息可以查看<a href="https://docs.github.com/zh/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#repository_dispatch" target="_blank" rel="noopener">详细配置</a>。<br><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FveEzFT5TggObDiemqVIn5zlRzAd.png" alt><br>完整代码如下。</p>
+<blockquote>
+<p>需要注意 ⚠️ 异步执行的问题，可以通过<code>async-await</code>保证请求是在<code>resp.send</code>之前执行的。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> axios = <span class="built_in">require</span>(<span class="string">"axios"</span>);</span><br><span class="line"><span class="keyword">var</span> getRawBody = <span class="built_in">require</span>(<span class="string">"raw-body"</span>);</span><br><span class="line"><span class="keyword">var</span> getFormBody = <span class="built_in">require</span>(<span class="string">"body/form"</span>);</span><br><span class="line"><span class="keyword">var</span> body = <span class="built_in">require</span>(<span class="string">"body"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">To enable the initializer feature (https://help.aliyun.com/document_detail/156876.html)</span></span><br><span class="line"><span class="comment">please implement the initializer function as below：</span></span><br><span class="line"><span class="comment">exports.initializer = (context, callback) =&gt; &#123;</span></span><br><span class="line"><span class="comment">  console.log('initializing');</span></span><br><span class="line"><span class="comment">  callback(null, '');</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">exports.handler = <span class="function">(<span class="params">req, resp, context</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> params = &#123;</span><br><span class="line">    path: req.path,</span><br><span class="line">    queries: req.queries,</span><br><span class="line">    headers: req.headers,</span><br><span class="line">    method: req.method,</span><br><span class="line">    requestURI: req.url,</span><br><span class="line">    clientIP: req.clientIP,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  getRawBody(req, <span class="keyword">async</span> (err, body) =&gt; &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> req.queries) &#123;</span><br><span class="line">      <span class="keyword">var</span> value = req.queries[key];</span><br><span class="line">      resp.setHeader(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">    resp.setHeader(<span class="string">"Content-Type"</span>, <span class="string">"text/plain"</span>);</span><br><span class="line">    params.body = body.toString();</span><br><span class="line">    <span class="keyword">const</span> slug = params.queries.slug;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"slug"</span>, slug);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> options = &#123;</span><br><span class="line">      method: <span class="string">"POST"</span>,</span><br><span class="line">      url: <span class="string">"https://api.github.com/repos/songxingguo/songxingguo.github.io/dispatches"</span>,</span><br><span class="line">      headers: &#123;</span><br><span class="line">        <span class="string">"content-type"</span>: <span class="string">"application/json"</span>,</span><br><span class="line">        Accept: <span class="string">"application/vnd.github+json"</span>,</span><br><span class="line">        Authorization: <span class="string">"Bearer xxx"</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      data: &#123; <span class="attr">event_type</span>: <span class="string">"publish"</span>, <span class="attr">client_payload</span>: &#123; slug &#125; &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> axios</span><br><span class="line">      .request(options)</span><br><span class="line">      .then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(response.data);</span><br><span class="line">      &#125;)</span><br><span class="line">      .catch(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.error(error);</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">    resp.send(<span class="built_in">JSON</span>.stringify(params, <span class="literal">null</span>, <span class="string">"    "</span>));</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="使用云函数推送钉钉消息"><a href="#使用云函数推送钉钉消息" class="headerlink" title="使用云函数推送钉钉消息"></a>使用云函数推送钉钉消息</h4><h5 id="调试钉钉消息类型及数据格式"><a href="#调试钉钉消息类型及数据格式" class="headerlink" title="调试钉钉消息类型及数据格式"></a>调试钉钉消息类型及数据格式</h5><ol>
+<li>创建钉钉机器人，并复制 webhook 地址。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FhiBRGA1W_Z4-GzqzjiH5esIggKG.png" alt></p>
+<ol start="2">
+<li>打开<a href="https://hoppscotch.io/" target="_blank" rel="noopener">在线接口调试工具</a>，输入 Webhook 地址，配置钉钉<a href="https://open.dingtalk.com/document/robots/custom-robot-access#title-72m-8ag-pqw" target="_blank" rel="noopener">消息类型及数据格式</a>。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FqEYt6cimbEW4pJDET2YEsevO3bQ.png" alt></p>
+<ol start="3">
+<li>调试到自己想要的效果后复制请求的代码。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FqxbJqsBt0_l1REj_8luZiqzFBxH.png" alt></p>
+<hr>
+<p>这个函数是通过 post 请求进行调用，首先需要从请求体中获取<code>slug</code>和<code>title</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = <span class="built_in">JSON</span>.parse(params.body);</span><br><span class="line"><span class="keyword">const</span> &#123; slug, title &#125; = data.data;</span><br></pre></td></tr></table></figure>
+<p>然后再请求钉钉机器人的 Webhook 地址。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> axios = <span class="built_in">require</span>(<span class="string">"axios"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> options = &#123;</span><br><span class="line">  method: <span class="string">"POST"</span>,</span><br><span class="line">  url: <span class="string">"https://oapi.dingtalk.com/robot/send"</span>,</span><br><span class="line">  params: &#123;</span><br><span class="line">    access_token: <span class="string">""</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  headers: &#123; <span class="string">"content-type"</span>: <span class="string">"application/json"</span> &#125;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    msgtype: <span class="string">"actionCard"</span>,</span><br><span class="line">    actionCard: &#123;</span><br><span class="line">      title: <span class="string">"文档发布"</span>,</span><br><span class="line">      text: <span class="string">`<span class="subst">$&#123;title&#125;</span>`</span>,</span><br><span class="line">      btnOrientation: <span class="string">"0"</span>,</span><br><span class="line">      btns: [</span><br><span class="line">        &#123;</span><br><span class="line">          title: <span class="string">"发布"</span>,</span><br><span class="line">          actionURL: <span class="string">`https://xx-xx-xx.cn-hangzhou.fcapp.run?slug=<span class="subst">$&#123;slug&#125;</span>`</span>,</span><br><span class="line">        &#125;, <span class="comment">// 触发GithubAction云函数的公网地址</span></span><br><span class="line">        &#123;</span><br><span class="line">          title: <span class="string">"Actions"</span>,</span><br><span class="line">          actionURL:</span><br><span class="line">            <span class="string">"https://github.com/songxingguo/songxingguo.github.io/actions"</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      ],</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">axios</span><br><span class="line">  .request(options)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(response.data);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.error(error);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>其中<code>access_token</code>为钉钉 webhook 地址中的授权码。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//oapi.dingtalk.com/robot/send?access_token=xx</span></span><br></pre></td></tr></table></figure>
+<p>最终的效果如下所示。<br><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FgwZMGzVe6xjsIMMsYyDrVxql0ku.png" alt><br>完整代码如下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> getRawBody = <span class="built_in">require</span>(<span class="string">"raw-body"</span>);</span><br><span class="line"><span class="keyword">var</span> getFormBody = <span class="built_in">require</span>(<span class="string">"body/form"</span>);</span><br><span class="line"><span class="keyword">var</span> body = <span class="built_in">require</span>(<span class="string">"body"</span>);</span><br><span class="line"><span class="keyword">var</span> axios = <span class="built_in">require</span>(<span class="string">"axios"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">To enable the initializer feature (https://help.aliyun.com/document_detail/156876.html)</span></span><br><span class="line"><span class="comment">please implement the initializer function as below：</span></span><br><span class="line"><span class="comment">exports.initializer = (context, callback) =&gt; &#123;</span></span><br><span class="line"><span class="comment">  console.log('initializing');</span></span><br><span class="line"><span class="comment">  callback(null, '');</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">exports.handler = <span class="function">(<span class="params">req, resp, context</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"hello world"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> params = &#123;</span><br><span class="line">    path: req.path,</span><br><span class="line">    queries: req.queries,</span><br><span class="line">    headers: req.headers,</span><br><span class="line">    method: req.method,</span><br><span class="line">    requestURI: req.url,</span><br><span class="line">    clientIP: req.clientIP,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  getRawBody(req, <span class="keyword">async</span> (err, body) =&gt; &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> req.queries) &#123;</span><br><span class="line">      <span class="keyword">var</span> value = req.queries[key];</span><br><span class="line">      resp.setHeader(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">    resp.setHeader(<span class="string">"Content-Type"</span>, <span class="string">"text/plain"</span>);</span><br><span class="line">    params.body = body.toString();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> data = <span class="built_in">JSON</span>.parse(params.body);</span><br><span class="line">    <span class="keyword">const</span> &#123; slug, title &#125; = data.data;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"slug"</span>, slug);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> options = &#123;</span><br><span class="line">      method: <span class="string">"POST"</span>,</span><br><span class="line">      url: <span class="string">"https://oapi.dingtalk.com/robot/send"</span>,</span><br><span class="line">      params: &#123;</span><br><span class="line">        access_token: <span class="string">""</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      headers: &#123; <span class="string">"content-type"</span>: <span class="string">"application/json"</span> &#125;,</span><br><span class="line">      data: &#123;</span><br><span class="line">        msgtype: <span class="string">"actionCard"</span>,</span><br><span class="line">        actionCard: &#123;</span><br><span class="line">          title: <span class="string">"文档发布"</span>,</span><br><span class="line">          text: <span class="string">`<span class="subst">$&#123;title&#125;</span>`</span>,</span><br><span class="line">          btnOrientation: <span class="string">"0"</span>,</span><br><span class="line">          btns: [</span><br><span class="line">            &#123;</span><br><span class="line">              title: <span class="string">"发布"</span>,</span><br><span class="line">              actionURL: <span class="string">`https://xx-xx-xx.cn-hangzhou.fcapp.run?slug=<span class="subst">$&#123;slug&#125;</span>`</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">              title: <span class="string">"Actions"</span>,</span><br><span class="line">              actionURL:</span><br><span class="line">                <span class="string">"https://github.com/songxingguo/songxingguo.github.io/actions"</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">          ],</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> axios</span><br><span class="line">      .request(options)</span><br><span class="line">      .then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(response.data);</span><br><span class="line">      &#125;)</span><br><span class="line">      .catch(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.error(error);</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">    resp.send(<span class="built_in">JSON</span>.stringify(params, <span class="literal">null</span>, <span class="string">"    "</span>));</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="配置语雀-Webhook"><a href="#配置语雀-Webhook" class="headerlink" title="配置语雀 Webhook"></a>配置语雀 Webhook</h4><p>进入语雀<a href="https://www.yuque.com/songxingguo/devhints/settings/webhooks" target="_blank" rel="noopener">webhook 配置页面</a>，填写名称和<strong>推送钉钉消息</strong>云函数的公网地址，并选择<strong>更新文档</strong>时触发。<br><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/Fmtzly3_0hghg_uvqaK6eDgmsT-M.png" alt></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="Hoppscotch"><a href="#Hoppscotch" class="headerlink" title="Hoppscotch"></a><a href="https://hoppscotch.io/" target="_blank" rel="noopener">Hoppscotch</a></h3><p>Hoppscotch 和 postman 的功能是一样的，但这个是线上的版本，更加的方便。有时请求会出现请求无法到达的问题，需要配置插件代理，将请求的域名加入到插件中。<br><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FkPke4qlMP1Zv2PALiW8f-dAATr5.png" alt></p>
+<h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a><a href="https://www.yuque.com/songxingguo/devhints/gwpsg4dq6tp27z3s" target="_blank" rel="noopener">拓展阅读</a></h2><p><a href="https://www.yuque.com/1874w/1874.cool/ovugli?view=doc_embed" target="_blank" rel="noopener">Github Actions 持续集成 Docker 构建并部署 Node 项目到云服务器</a></p>
+<p><a href="https://github.com/LetTTGACO/yuque-hexo-example" target="_blank" rel="noopener">yueque-hexo 图床配置</a></p>
+<p><a href="https://www.yuque.com/1874w/1874.cool/roeayv?view=doc_embed" target="_blank" rel="noopener">语雀云端写作 Hexo+Github Actions+COS 持续集成</a><br><a href="https://www.yuque.com/yuque/developer/doc-webhook?view=doc_embed" target="_blank" rel="noopener">Webhooks</a></p>
+
+      </div>
+    </div>
+    
+    <!-- <div class="follow-wechat"><img src="/blogimgs/follow.jpg"></div> -->
+
+<div class="copyright" itemscope itemtype="http://schema.org/ProfilePage" tabindex="0" aria-hidden="true">
+	<!-- <a href="/about/#support" class="supportme">赏</a> -->
+	<ul>
+		<li>作者: <a href="https://resume.songxingguo.com/" itemprop="name">宋玉</a></li>
+		
+		<li>文章分类: 
+	<a class="category-link" href="/categories/前端/">前端</a>
+
+</li>
+		
+		
+		<li>发表日期: 2023-02-07 05:15:12</li>
+		<li>最后编辑时间: 2024-04-26 03:53:45</li>
+		<li>本文 Markdown 地址: <a target="_
+			" href="https://github.com/songxingguo/blog/tree/master/blog/src/_posts/2023-02-07-如何将语雀文章发布到Hexo博客.md">如何将语雀文章发布到Hexo博客</a></li>
+		<li>版权声明：<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank">CC BY-NC-ND 3.0</a></li>
+		<li>
+			Feed 订阅: <a href="/rss2.xml"><i class="icon">&#x25c8;</i></a>
+			<div style="opacity:.3;text-align:right;margin:5px -5px -10px 0;float:right;font-size: 12px;">
+				编辑本文：<a href="https://github.com/songxingguo/blog/edit/master/blog/src/_posts/2023-02-07-如何将语雀文章发布到Hexo博客.md" target="_blank" aria-hidden="true"><i class="icon">&#xe622;</i></a>；
+				新建文章：<a href="https://github.com/songxingguo/blog/new/master/blog/src/_posts" target="_blank" aria-hidden="true"><i class="icon">&#xe616;</i></a>
+			</div>
+		</li>
+		
+	</ul>
+	<a href="https://resume.songxingguo.com/"><img src="https://blog.songxingguo.com/images/logo.png" /></a>
+</div>
+
+    <em  class="arrow-expend" tabindex="0" aria-hidden="0" aria-label="点击展开网页导航" aria-selected="true" aria-lable="网页导航" aria-expanded="false" id="i1">▾
+<ul role="group" aria-labelledby="i1" aria-expanded="false">
+  <!-- <li><a href="/entry/">博客</a></li> -->
+  <li><a href="https://blog-old-1255450169.cos-website.ap-chongqing.myqcloud.com/">旧版</a></li>
+  <!-- <li><a href="/message/">留言</a></li> -->
+  <!-- <li><a href="/demo/">实验室</a></li> -->
+  <!-- <a><a href="/comments/">最近评论</a></li> -->
+  <!-- <li><a href="/friends/">友情链接</a></li> -->
+</ul>
+</em>
+  </div>
+  <div class="post-relative">
+<div class="page-relative">
+  
+  
+    <a href="/2023/02/05/从零开始搭建在线个人简历/" class="post-next">
+      <span class="aria-readonly">下一篇文章</span>
+      <b>从零开始搭建在线个人简历</b>
+      <i class="icon" tabindex="0" aria-hidden="true">&#xe602;</i>
+    </a>
+  
+</div>
+
+
+<div class="page-relative-fixed" tabindex="0" aria-hidden="true">
+  
+  
+  <a href="/2023/02/05/从零开始搭建在线个人简历/" class="next" title="从零开始搭建在线个人简历">
+    <i class="icon">&#x261e;</i>
+    <b>从零开始搭建在线个人简历</b>
+  </a>
+  
+</div>
+</div>
+</div>
+<div class="sidebar" tabindex="0" aria-hidden="true">
+	<div class="func-btns func-btns-up">
+    <span class="func-item">
+        <i class="func-nav icon">&#xe618;<span>目录</span></i>
+        <div>
+          <i class="left-arrow"></i><i class="left-arrow-clone"></i>
+          <a href="javascript:void(0);" onclick="return false;">显示目录</a>
+        </div>
+    </span>
+    <span class="func-item">
+        <i class="func-font icon">&#xe604;<span>夜间</span></i>
+        <div class="font-choose-box">
+          <i class="left-arrow"></i><i class="left-arrow-clone"></i>
+          <div class="font-choose bg-choose">
+            <a href="javascript:void(0)" onclick="return false;" class="bg-type bg-type-sun font-type-song"><i class="icon">&#xe61a;</i></a>
+            <a href="javascript:void(0)" onclick="return false;" class="bg-type bg-type-moon font-type-hei"><i class="icon">&#xe619;</i></a>
+          </div>
+          <!-- <div class="font-choose">
+            <a href="javascript:void(0)" onclick="return false;" class="font-type font-type-song">黑体</a>
+            <a href="javascript:void(0)" onclick="return false;" class="font-type font-type-hei">宋体</a>
+          </div> -->
+        </div>
+    </span>
+    <span class="func-item">
+        <i class="func-about icon">&#x263b;<span>关于</span></i>
+        <div>
+          <i class="left-arrow"></i><i class="left-arrow-clone"></i>
+          <p><a href="https://resume.songxingguo.com/" class="func-about-link" target="_blank">关于作者</a></p>
+          <!-- <div id="followMeOnWeibo"></div> -->
+        </div>
+    </span>
+	</div>
+	<div class="func-btns">
+    <!-- <span class="func-item">
+        <a href="http://demo.songxingguo.com" target="_blank"><i class="func-rss icon">&#xe603;<span>实验</span></i></a>
+        <div><i class="left-arrow"></i><i class="left-arrow-clone"></i>
+          <p class="seperator"><a href="http://demo.songxingguo.com" target="_blank">Demo平台</a></p>
+          <p class="seperator"><a href="http://md.songxingguo.com" target="_blank">WX格式</a></p>
+          <p><a href="http://snippets.songxingguo.com" target="_blank">Snippet应用</a></p>
+        </div>
+    </span> -->
+    <!-- <span class="func-item">
+        <i class="func-fb icon">&#x2121;<span>留言</span></i>
+        <div><i class="left-arrow"></i><i class="left-arrow-clone"></i>
+          <p class="seperator"><a href="/message/" target="_blank">给我留言</a></p>
+          <p><a href="/comments/" target="_blank">近期留言</a></p>
+        </div>
+    </span> -->
+    <!-- <span class="func-item">
+        <a href="/friends/" target="_blank"><i class="func-rss icon">&#xe601;<span>链接</span></i></a>
+        <div><i class="left-arrow"></i><i class="left-arrow-clone"></i>
+          <a href="/friends/" target="_blank">友情链接</a>
+        </div>
+    </span> -->
+    <span class="func-item">
+        <a href="/rss2.xml" target="_blank"><i class="func-rss icon">&#x25c8;<span>订阅</span></i></a>
+        <div><i class="left-arrow"></i><i class="left-arrow-clone"></i><a href="/rss2.xml" target="_blank">订阅我吧！</a></div>
+    </span>
+	</div>
+</div>
+
+<div class="single-page-footer">
+<div class="footer">
+	<div class="footer-wraper">
+		<div class="footer-content">
+			<div class="footer-nav">
+	<a href="javascript: void(0);" class="ds-thread-count disqus-comment-count"
+	   data-thread-key="如何将语雀文章发布到Hexo博客"
+	   data-disqus-identifier="如何将语雀文章发布到Hexo博客" 
+		 tabindex="0" aria-hidden="true">评论内容</a>
+	<a href="javascript: void(0);" id="comments">相关文章</a>
+	<!-- <a href="/friends/" tabindex="0" aria-hidden="true" style="display: none;">友情链接</a> -->
+</div>
+<div class="nav-detail">
+	<div tabindex="0">
+		
+  <div id="gitalk" sid="如何将语雀文章发布到Hexo博客"></div>
+  <script charset="utf-8" type="text/javascript" src="/public/js/gitalk.js"></script>
+  <script type="text/javascript">
+  var postContent = document.querySelectorAll('.post-content>p');
+  if (postContent && postContent.length) {
+    postContent = postContent.item(0).textContent + (postContent.item(1) && postContent.item(1).textContent || '');
+    postContent = postContent.length > 140 ? postContent.slice(0, 140) + '...' : postContent;
+  }
+
+  var gitalk = new Gitalk({
+    clientID: 'f55a398461d56a3e691e',
+    clientSecret: '77359a5d140ac109d31a3a6f2711f0ddb16c69fe',
+    language: "zh-CN",
+    perPage: 100,
+    createIssueManually: false,
+    repo: 'songxingguo.github.io',
+    owner: 'songxingguo',
+    admin: ['songxingguo'],
+    id: "如何将语雀文章发布到Hexo博客",
+    body: '原文地址：' + location.href + '\n\n文摘：' + postContent,
+    distractionFreeMode: false,
+    proxy: `https://vercel.prohibitorum.top/github_access_token`
+  });
+
+  window.addEventListener('load', function () {
+    gitalk.render('gitalk');
+  });
+
+  // show count
+  var commentTimer = setInterval(() => {
+    var count = document.querySelector('.gt-link-counts');
+    var showCount = document.querySelector('.hash-to-comments');
+    if (count && showCount) {
+      showCount.textContent = count.textContent;
+      clearInterval(commentTimer);
+    }
+  }, 500);
+  setTimeout(() => {
+    clearInterval(commentTimer);
+  }, 60 * 1E3);
+  </script>
+  
+	</div>
+	<div style="display:block;">
+		<div class="relative-wrapper">
+	<div class="relative-article">
+		
+		<ul>
+			<li>
+				<span><font aria-hidden="true">2023-02-05 »</font> </span>
+				<a href="/2023/02/05/从零开始搭建在线个人简历/">从零开始搭建在线个人简历</a>
+				<span class="aria-readonly">发表时间为2023年02月05日</span>
+				<div class="relative-box">
+          <a href="/2023/02/05/从零开始搭建在线个人简历/" class="relative-img-wrapper"><img src="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FohM8kpQxrzWA2KnUa7KGYQPG_5s.png" style="width:100%" loading="lazy" data-original="https://raw.githubusercontent.com/songxingguo/songxingguo.github.io/hexo/static/images/FohM8kpQxrzWA2KnUa7KGYQPG_5s.png"/></a>
+          <span class="aria-readonly">文章概要 </span>写在前面做这个在线简历是出于两点考虑。word 文档式的简历没有办法展示到网上，不能体现我作为一个前端开发工程师的专长。之前也写过一个在线简历，但是现在不好维护了。主要原因是之前使用 Webpack 打包，对于一个简历的小项目来说比较重。然后之前的图床是使用七牛云进行存储的，但现在七牛云所有域名都需要备案，我之前的域名地址也被莫名其妙（😡）的被删除了，已经无力去维护。如果后面有时间和精力再进行升级优化吧。基于上面的两点考虑，我决定做一个简单的且易于维护的在线简历。这次打包采用了开箱即用的parceljs，对于在线简历这个小项目正好合适。而且这次简历依然是使用了模版引擎ejs，让数据和模版分离，通过 json 文件来配置简历，在设计思想上这个参考了Json-Resume，在样式上参考了SHOYUF的简历。
+        </div>
+			</li>
+			
+		</ul>
+	</div>
+</div>
+
+		<div class="relative-to-comment" tabindex="0" aria-hidden="true"><span>留下评论</span></div>
+		<!-- <a href="/entry/" class="relative-to-comment-wrapper" tabindex="0" aria-hidden="true"><div class="relative-to-comment">回到首页</div></a> -->
+	</div>
+	<div class="friends-box">
+		<ul>
+			
+			<li><a href="http://hustskyking.cnblogs.com" target="_blank">旧博客</a> <font aria-hidden="true">»</font> <span>我的旧博客（博客园荣誉博客）</span></li>
+			
+			<li><a href="http://www.zhangmengxue.com" target="_blank">大额</a> <font aria-hidden="true">»</font> <span>大额大额哼歌等日落</span></li>
+			
+			<li><a href="http://www.zhangxinxu.com" target="_blank">张鑫旭</a> <font aria-hidden="true">»</font> <span>原来大学我俩一个团队的~</span></li>
+			
+			<li><a href="http://web-tinker.com" target="_blank">次碳酸钴</a> <font aria-hidden="true">»</font> <span>深度交流的一个好朋友</span></li>
+			
+			<li><a href="http://imququ.com" target="_blank">屈屈</a> <font aria-hidden="true">»</font> <span>蛐蛐同学</span></li>
+			
+			<li><a href="http://www.ruanyifeng.com" target="_blank">阮一峰</a> <font aria-hidden="true">»</font> <span>阮老师</span></li>
+			
+			<li><a href="/friends/">更多列表 <font aria-hidden="true">»</font></a></li>
+		</ul>
+	</div>
+</div>
+			
+<div class="website-info" aria-hidden="true">
+	<a class="page_editor" href="https://www.yuque.com/songxingguo" target="_blank">🙈</a>
+	<span>&copy;2018-2024 <small><a href="https://www.miit.gov.cn/" about="_blank">渝ICP备2024019360号-1</a></small></span>
+	<a href="https://resume.songxingguo.com/">联系方式</a> | Power by <a href="https://www.barretlee.com/">小胡子哥</a> 
+	<a href='https://union.zhaodao.ai/#random' title="随机跳转到一个有意思的网站" target='_blank' class="zhidao_ai"><img src='https://img.alicdn.com/imgextra/i2/O1CN01VjiZUL1r0eXge4taM_!!6000000005569-55-tps-300-300.svg' width="20" height="20"></a>
+</div>
+
+		</div>
+	</div>
+</div>
+</div>
+<div class="tools-wrapper" tabindex="0" aria-hidden="true">
+	<a class="gotop icon" href="#" title="回到顶部">&#x2191;</a>
+	<!-- <a class="wechart icon">&#xe60d;<span><img src="/blogimgs/wechart.png" title="扫码添加宋玉微信"/> </span></a> -->
+	<a class="hash-to-comments icon" title="我要评论">&#x2121;</a>
+</div>
+<div class="fixerr" tabindex="0" aria-hidden="true">纠错模式</div>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":90,"vOffset":-25},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body>
+<script src="/public/js/jquery.js"></script>
+<script src="/public/js/main-20230626.js"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?3524fff9629f2c80f8ea5daa13e67003";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+  window.onerror = function(e) {
+    window.console && window.console.log && window.console.log(e);
+    $('#loadLayer').remove();
+    return true;
+  };
+</script>
+</script>
+</html>
