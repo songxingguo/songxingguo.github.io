@@ -11,7 +11,8 @@
     "delete": "pm2 delete blog",
     "status": "pm2 status blog",
     "restart": "pm2 restart blog",
-    "server": "hexo s"
+    "server": "hexo s",
+    "build":"hexo g"
   },
   "dependencies": {
     "hexo": "^3.8.0",
